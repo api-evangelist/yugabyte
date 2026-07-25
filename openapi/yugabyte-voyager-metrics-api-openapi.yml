@@ -1,0 +1,148 @@
+openapi: 3.0.0
+info:
+  contact:
+    email: support@yugabyte.com
+    name: Yugabyte Cloud Support
+    url: https://support.yugabyte.com/
+  description: YugabyteDB as a Service
+  license:
+    name: Properietary (TBD)
+    url: https://www.yugabyte.com/yugabyte-cloud-terms-of-service
+  termsOfService: https://www.yugabyte.com/yugabyte-cloud-terms-of-service
+  title: Yugabyte Cloud backup-info voyager-metrics API
+  version: v1
+servers:
+- description: Endpoint of the API server
+  url: '{protocol}://{host_port}/api'
+  variables:
+    protocol:
+      default: http
+      enum:
+      - http
+      - https
+    host_port:
+      default: localhost:1323
+security:
+- BearerAuthToken: []
+tags:
+- description: APIs for getting Voyager data migrations metrics
+  name: voyager-metrics
+paths:
+  /migration_metrics:
+    get:
+      description: Get Voyager data migration metrics
+      operationId: GetVoyagerDataMigrationMetrics
+      parameters:
+      - description: uuid of the voyager migration task
+        explode: false
+        in: query
+        name: uuid
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: form
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VoyagerMigrateDataMetrics'
+          description: Voyager data migration metrics response
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+          description: API Error
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+          description: API Error
+      summary: Get Voyager data migration metrics
+      tags:
+      - voyager-metrics
+components:
+  schemas:
+    VoyagerMigrateDataMetrics:
+      description: List of YB Voyager Data migrations metrics
+      example:
+        metrics:
+        - count_total_rows: 5
+          migration_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          migration_phase: 0
+          schema_name: schema_name
+          count_live_rows: 1
+          invocation_timestamp: invocation_timestamp
+          table_name: table_name
+          status: 6
+        - count_total_rows: 5
+          migration_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          migration_phase: 0
+          schema_name: schema_name
+          count_live_rows: 1
+          invocation_timestamp: invocation_timestamp
+          table_name: table_name
+          status: 6
+      properties:
+        metrics:
+          items:
+            $ref: '#/components/schemas/VoyagerMigrateDataMetricsDetails'
+          type: array
+      title: YB Voyager Migrate Data metrics Info
+      type: object
+    ApiError_error:
+      properties:
+        detail:
+          description: Error message
+          type: string
+        status:
+          description: Error code
+          type: integer
+      type: object
+    VoyagerMigrateDataMetricsDetails:
+      description: Voyager data migration metrics details
+      example:
+        count_total_rows: 5
+        migration_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        migration_phase: 0
+        schema_name: schema_name
+        count_live_rows: 1
+        invocation_timestamp: invocation_timestamp
+        table_name: table_name
+        status: 6
+      properties:
+        migration_uuid:
+          format: uuid
+          type: string
+        table_name:
+          type: string
+        schema_name:
+          type: string
+        migration_phase:
+          type: integer
+        status:
+          type: integer
+        count_live_rows:
+          format: int64
+          type: integer
+        count_total_rows:
+          format: int64
+          type: integer
+        invocation_timestamp:
+          type: string
+      title: Voyager Migrate Data Metrics details
+      type: object
+    ApiError:
+      properties:
+        error:
+          $ref: '#/components/schemas/ApiError_error'
+      title: API Error
+      type: object
+  securitySchemes:
+    BearerAuthToken:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http

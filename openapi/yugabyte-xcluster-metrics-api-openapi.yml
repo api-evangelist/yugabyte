@@ -1,0 +1,310 @@
+openapi: 3.0.0
+info:
+  contact:
+    email: support@yugabyte.com
+    name: Yugabyte Cloud Support
+    url: https://support.yugabyte.com/
+  description: YugabyteDB as a Service
+  license:
+    name: Properietary (TBD)
+    url: https://www.yugabyte.com/yugabyte-cloud-terms-of-service
+  termsOfService: https://www.yugabyte.com/yugabyte-cloud-terms-of-service
+  title: Yugabyte Cloud backup-info Xcluster Metrics API
+  version: v1
+servers:
+- description: Endpoint of the API server
+  url: '{protocol}://{host_port}/api'
+  variables:
+    protocol:
+      default: http
+      enum:
+      - http
+      - https
+    host_port:
+      default: localhost:1323
+security:
+- BearerAuthToken: []
+tags:
+- name: Xcluster Metrics
+paths:
+  /xcluster_metrics:
+    get:
+      description: Retrieve the list of databases on which restore is run in the YugabyteDB cluster.
+      operationId: getXclusterReplicationIDs
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/xCluster_Replication_Groups'
+          description: List of all xCluster replication groups
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+          description: API Error
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+          description: API Error
+      summary: Get list of all xCluster replication group ids
+      tags:
+      - Xcluster Metrics
+components:
+  schemas:
+    xClusterInboundGroup:
+      description: Schema for xCluster replication group details.
+      example:
+        target_universe_uuid: target_universe_uuid
+        target_cluster_node_ips:
+        - target_cluster_node_ips
+        - target_cluster_node_ips
+        source_universe_uuid: source_universe_uuid
+        replication_group_id: replication_group_id
+        state: state
+        source_cluster_node_ips:
+        - source_cluster_node_ips
+        - source_cluster_node_ips
+      properties:
+        replication_group_id:
+          description: Unique identifier for the replication group.
+          type: string
+        state:
+          description: The current status of the replication group.
+          type: string
+        target_cluster_node_ips:
+          description: List of target-side node IPs involved in replication.
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+        source_cluster_node_ips:
+          description: List of source-side node IPs involved in replication.
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+        source_universe_uuid:
+          description: UUID of the source universe for the replication group.
+          type: string
+        target_universe_uuid:
+          description: UUID of the target universe for the replication group.
+          type: string
+      required:
+      - current_cluster_ip_address
+      - namespace
+      - replication_group_id
+      - source_leader_host
+      - state
+      title: Get xCluster replication group ids list.
+      type: object
+    TableReplicationLagDetailsOutbound:
+      description: Schema for table details and namespace in replication.
+      example:
+        async_replication_sent_lag_micros: 0
+        async_replication_committed_lag_micros: 6
+        namespace: namespace
+        table_uuid: table_uuid
+        is_checkpointing: true
+        table_name: table_name
+        is_part_of_initial_bootstrap: true
+      properties:
+        namespace:
+          description: Namespace to which the current table belongs.
+          type: string
+        table_uuid:
+          description: Unique identifier for the table.
+          type: string
+        table_name:
+          description: Name of the table.
+          type: string
+        is_checkpointing:
+          description: Indicates whether the table is currently checkpointing.
+          type: boolean
+        is_part_of_initial_bootstrap:
+          description: Indicates whether the table is part of the initial bootstrap process.
+          type: boolean
+        async_replication_sent_lag_micros:
+          description: The lag time in microseconds for sent replication data.
+          format: int64
+          type: integer
+        async_replication_committed_lag_micros:
+          description: The lag time in microseconds for committed replication data.
+          format: int64
+          type: integer
+      required:
+      - async_replication_committed_lag_micros
+      - async_replication_sent_lag_micros
+      - is_checkpointing
+      - is_part_of_initial_bootstrap
+      - keyspace
+      - state
+      - stream_id
+      - table_name
+      - table_uuid
+      title: Table information for a namespace in the replication group and per table level lag time.
+      type: object
+    xClusterOutboundGroup:
+      description: Schema for xCluster replication group details.
+      example:
+        replication_cluster_node_ips:
+        - replication_cluster_node_ips
+        - replication_cluster_node_ips
+        tables_list_with_lag:
+        - async_replication_sent_lag_micros: 0
+          async_replication_committed_lag_micros: 6
+          namespace: namespace
+          table_uuid: table_uuid
+          is_checkpointing: true
+          table_name: table_name
+          is_part_of_initial_bootstrap: true
+        - async_replication_sent_lag_micros: 0
+          async_replication_committed_lag_micros: 6
+          namespace: namespace
+          table_uuid: table_uuid
+          is_checkpointing: true
+          table_name: table_name
+          is_part_of_initial_bootstrap: true
+        target_universe_uuid: target_universe_uuid
+        source_universe_uuid: source_universe_uuid
+        replication_group_id: replication_group_id
+        state: state
+      properties:
+        replication_group_id:
+          description: Unique identifier for the replication group.
+          type: string
+        state:
+          description: The current status of the replication group (e.g., 'active', 'inactive').
+          type: string
+        replication_cluster_node_ips:
+          description: The list of IP addresses of the nodes involved in the replication.
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+        source_universe_uuid:
+          description: UUID of the source universe for the replication group.
+          type: string
+        target_universe_uuid:
+          description: UUID of the target universe for the replication group.
+          type: string
+        tables_list_with_lag:
+          description: List of namespaces from outbound and lag of each table
+          items:
+            $ref: '#/components/schemas/TableReplicationLagDetailsOutbound'
+          type: array
+          uniqueItems: true
+      required:
+      - current_cluster_ip_address
+      - namespace
+      - replication_group_id
+      - state
+      - target_universe_uuid
+      title: Get xCluster replication group ids list.
+      type: object
+    ApiError:
+      properties:
+        error:
+          $ref: '#/components/schemas/ApiError_error'
+      title: API Error
+      type: object
+    ApiError_error:
+      properties:
+        detail:
+          description: Error message
+          type: string
+        status:
+          description: Error code
+          type: integer
+      type: object
+    xCluster_Replication_Groups:
+      example:
+        outbound_replication_groups:
+        - replication_cluster_node_ips:
+          - replication_cluster_node_ips
+          - replication_cluster_node_ips
+          tables_list_with_lag:
+          - async_replication_sent_lag_micros: 0
+            async_replication_committed_lag_micros: 6
+            namespace: namespace
+            table_uuid: table_uuid
+            is_checkpointing: true
+            table_name: table_name
+            is_part_of_initial_bootstrap: true
+          - async_replication_sent_lag_micros: 0
+            async_replication_committed_lag_micros: 6
+            namespace: namespace
+            table_uuid: table_uuid
+            is_checkpointing: true
+            table_name: table_name
+            is_part_of_initial_bootstrap: true
+          target_universe_uuid: target_universe_uuid
+          source_universe_uuid: source_universe_uuid
+          replication_group_id: replication_group_id
+          state: state
+        - replication_cluster_node_ips:
+          - replication_cluster_node_ips
+          - replication_cluster_node_ips
+          tables_list_with_lag:
+          - async_replication_sent_lag_micros: 0
+            async_replication_committed_lag_micros: 6
+            namespace: namespace
+            table_uuid: table_uuid
+            is_checkpointing: true
+            table_name: table_name
+            is_part_of_initial_bootstrap: true
+          - async_replication_sent_lag_micros: 0
+            async_replication_committed_lag_micros: 6
+            namespace: namespace
+            table_uuid: table_uuid
+            is_checkpointing: true
+            table_name: table_name
+            is_part_of_initial_bootstrap: true
+          target_universe_uuid: target_universe_uuid
+          source_universe_uuid: source_universe_uuid
+          replication_group_id: replication_group_id
+          state: state
+        inbound_replication_groups:
+        - target_universe_uuid: target_universe_uuid
+          target_cluster_node_ips:
+          - target_cluster_node_ips
+          - target_cluster_node_ips
+          source_universe_uuid: source_universe_uuid
+          replication_group_id: replication_group_id
+          state: state
+          source_cluster_node_ips:
+          - source_cluster_node_ips
+          - source_cluster_node_ips
+        - target_universe_uuid: target_universe_uuid
+          target_cluster_node_ips:
+          - target_cluster_node_ips
+          - target_cluster_node_ips
+          source_universe_uuid: source_universe_uuid
+          replication_group_id: replication_group_id
+          state: state
+          source_cluster_node_ips:
+          - source_cluster_node_ips
+          - source_cluster_node_ips
+      properties:
+        inbound_replication_groups:
+          items:
+            $ref: '#/components/schemas/xClusterInboundGroup'
+          type: array
+          uniqueItems: true
+        outbound_replication_groups:
+          items:
+            $ref: '#/components/schemas/xClusterOutboundGroup'
+          type: array
+          uniqueItems: true
+      required:
+      - replication_groups
+      title: xCluster Replication Groups
+      type: object
+  securitySchemes:
+    BearerAuthToken:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http

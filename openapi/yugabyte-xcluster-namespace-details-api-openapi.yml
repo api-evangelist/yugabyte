@@ -1,0 +1,279 @@
+openapi: 3.0.0
+info:
+  contact:
+    email: support@yugabyte.com
+    name: Yugabyte Cloud Support
+    url: https://support.yugabyte.com/
+  description: YugabyteDB as a Service
+  license:
+    name: Properietary (TBD)
+    url: https://www.yugabyte.com/yugabyte-cloud-terms-of-service
+  termsOfService: https://www.yugabyte.com/yugabyte-cloud-terms-of-service
+  title: Yugabyte Cloud backup-info Xcluster Namespace Details API
+  version: v1
+servers:
+- description: Endpoint of the API server
+  url: '{protocol}://{host_port}/api'
+  variables:
+    protocol:
+      default: http
+      enum:
+      - http
+      - https
+    host_port:
+      default: localhost:1323
+security:
+- BearerAuthToken: []
+tags:
+- name: Xcluster Namespace Details
+paths:
+  /xcluster_namespace_details/{replication_id}:
+    get:
+      description: Retrieve the list of namespaces and tables involved in the replication group identified by the given replication ID.
+      operationId: getXclusterReplicationNamespacesInfo
+      parameters:
+      - description: Unique identifier for the replication group
+        explode: false
+        in: path
+        name: replication_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/xCluster_Namespace_Metrics'
+          description: List of all namespaces and tables present in a replication group.
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+          description: API Error
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+          description: API Error
+      summary: Get list of all xCluster replication group namespace and table details
+      tags:
+      - Xcluster Namespace Details
+components:
+  schemas:
+    NamespacesInfo:
+      description: A single namespace and its corresponding tables participating in the replication
+      example:
+        namespace: namespace
+        table_info_list:
+        - keyspace: keyspace
+          avg_apply_latency_ms: 6.027456183070403
+          namespace_id: namespace_id
+          avg_throughput_KiBps: 1.4658129805029452
+          stream_id: stream_id
+          table_uuid: table_uuid
+          state: state
+          avg_get_changes_latency_ms: 0.8008281904610115
+          table_name: table_name
+        - keyspace: keyspace
+          avg_apply_latency_ms: 6.027456183070403
+          namespace_id: namespace_id
+          avg_throughput_KiBps: 1.4658129805029452
+          stream_id: stream_id
+          table_uuid: table_uuid
+          state: state
+          avg_get_changes_latency_ms: 0.8008281904610115
+          table_name: table_name
+      properties:
+        namespace:
+          description: Name of the namespace in the replication
+          type: string
+        table_info_list:
+          items:
+            $ref: '#/components/schemas/xClusterTableInfoInbound'
+          type: array
+      required:
+      - namespace
+      - table_info_list
+      title: Namespace and corresponding tables participating in the replication
+      type: object
+    xClusterTableInfoInbound:
+      description: Schema for table details in xCluster replication.
+      example:
+        keyspace: keyspace
+        avg_apply_latency_ms: 6.027456183070403
+        namespace_id: namespace_id
+        avg_throughput_KiBps: 1.4658129805029452
+        stream_id: stream_id
+        table_uuid: table_uuid
+        state: state
+        avg_get_changes_latency_ms: 0.8008281904610115
+        table_name: table_name
+      properties:
+        table_uuid:
+          description: Unique identifier for the table.
+          type: string
+        namespace_id:
+          description: Unique identifier for the namespace.
+          type: string
+        table_name:
+          description: Name of the table.
+          type: string
+        stream_id:
+          description: Stream ID associated with the table for replication.
+          type: string
+        state:
+          description: The current state of the table.
+          type: string
+        keyspace:
+          description: Keyspace to which the table belongs.
+          type: string
+        avg_get_changes_latency_ms:
+          description: The average time taken by the consumer to fetch changes from the producer
+          format: float64
+          type: number
+        avg_apply_latency_ms:
+          description: The average time taken to apply received changes to the consumer table.
+          format: float64
+          type: number
+        avg_throughput_KiBps:
+          description: The average throughput in KiB per second for this replication stream.
+          format: float64
+          type: number
+      required:
+      - avg_apply_latency_ms
+      - avg_get_changes_latency_ms
+      - avg_throughput_KiBps
+      - keyspace
+      - state
+      - stream_id
+      - table_name
+      - table_uuid
+      title: Table information for a namespace in the replication group.
+      type: object
+    xClusterPlacementLocation:
+      description: Get universe's placement location in xCluster replication.
+      example:
+        cloud: cloud
+        zone: zone
+        region: region
+      properties:
+        cloud:
+          description: Cloud name
+          type: string
+        zone:
+          description: Zone name
+          type: string
+        region:
+          description: Region name
+          type: string
+      title: Get xCluster placement location info.
+      type: object
+    ApiError:
+      properties:
+        error:
+          $ref: '#/components/schemas/ApiError_error'
+      title: API Error
+      type: object
+    ApiError_error:
+      properties:
+        detail:
+          description: Error message
+          type: string
+        status:
+          description: Error code
+          type: integer
+      type: object
+    xCluster_Namespace_Metrics:
+      example:
+        namespace_list:
+        - namespace: namespace
+          table_info_list:
+          - keyspace: keyspace
+            avg_apply_latency_ms: 6.027456183070403
+            namespace_id: namespace_id
+            avg_throughput_KiBps: 1.4658129805029452
+            stream_id: stream_id
+            table_uuid: table_uuid
+            state: state
+            avg_get_changes_latency_ms: 0.8008281904610115
+            table_name: table_name
+          - keyspace: keyspace
+            avg_apply_latency_ms: 6.027456183070403
+            namespace_id: namespace_id
+            avg_throughput_KiBps: 1.4658129805029452
+            stream_id: stream_id
+            table_uuid: table_uuid
+            state: state
+            avg_get_changes_latency_ms: 0.8008281904610115
+            table_name: table_name
+        - namespace: namespace
+          table_info_list:
+          - keyspace: keyspace
+            avg_apply_latency_ms: 6.027456183070403
+            namespace_id: namespace_id
+            avg_throughput_KiBps: 1.4658129805029452
+            stream_id: stream_id
+            table_uuid: table_uuid
+            state: state
+            avg_get_changes_latency_ms: 0.8008281904610115
+            table_name: table_name
+          - keyspace: keyspace
+            avg_apply_latency_ms: 6.027456183070403
+            namespace_id: namespace_id
+            avg_throughput_KiBps: 1.4658129805029452
+            stream_id: stream_id
+            table_uuid: table_uuid
+            state: state
+            avg_get_changes_latency_ms: 0.8008281904610115
+            table_name: table_name
+        target_universe_uuid: target_universe_uuid
+        source_universe_uuid: source_universe_uuid
+        replication_group_id: replication_group_id
+        source_placement_location:
+        - cloud: cloud
+          zone: zone
+          region: region
+        - cloud: cloud
+          zone: zone
+          region: region
+        target_placement_location:
+        - cloud: cloud
+          zone: zone
+          region: region
+        - cloud: cloud
+          zone: zone
+          region: region
+      properties:
+        replication_group_id:
+          description: Unique replication group id of each replication
+          type: string
+        namespace_list:
+          items:
+            $ref: '#/components/schemas/NamespacesInfo'
+          type: array
+        source_placement_location:
+          items:
+            $ref: '#/components/schemas/xClusterPlacementLocation'
+          type: array
+        target_placement_location:
+          items:
+            $ref: '#/components/schemas/xClusterPlacementLocation'
+          type: array
+        source_universe_uuid:
+          type: string
+        target_universe_uuid:
+          type: string
+      required:
+      - namespace_list
+      - replication_group_id
+      title: xCluster Namespace Metrics
+      type: object
+  securitySchemes:
+    BearerAuthToken:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http

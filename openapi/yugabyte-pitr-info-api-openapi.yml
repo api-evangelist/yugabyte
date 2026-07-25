@@ -1,0 +1,128 @@
+openapi: 3.0.0
+info:
+  contact:
+    email: support@yugabyte.com
+    name: Yugabyte Cloud Support
+    url: https://support.yugabyte.com/
+  description: YugabyteDB as a Service
+  license:
+    name: Properietary (TBD)
+    url: https://www.yugabyte.com/yugabyte-cloud-terms-of-service
+  termsOfService: https://www.yugabyte.com/yugabyte-cloud-terms-of-service
+  title: Yugabyte Cloud backup-info pitr-info API
+  version: v1
+servers:
+- description: Endpoint of the API server
+  url: '{protocol}://{host_port}/api'
+  variables:
+    protocol:
+      default: http
+      enum:
+      - http
+      - https
+    host_port:
+      default: localhost:1323
+security:
+- BearerAuthToken: []
+tags:
+- description: APIs for getting Point-in-Time Recovery (PITR) schedules
+  name: pitr-info
+paths:
+  /pitr:
+    get:
+      description: Retrieve the list of PITR schedules in the YugabyteDB cluster.
+      operationId: getPITRSchedules
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PITR_Schedule_Response'
+          description: List of PITR Schedules in the cluster
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+          description: API Error
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+          description: API Error
+      summary: Get PITR Schedules
+      tags:
+      - pitr-info
+components:
+  schemas:
+    PITRSchedule:
+      description: Details of a Point-in-Time Recovery (PITR) schedule
+      example:
+        databaseKeyspace: databaseKeyspace
+        interval: interval
+        id: 0
+        retention: retention
+        earliestRecoverableTime: earliestRecoverableTime
+      properties:
+        id:
+          type: integer
+        databaseKeyspace:
+          type: string
+        interval:
+          type: string
+        retention:
+          type: string
+        earliestRecoverableTime:
+          type: string
+      required:
+      - databaseKeyspace
+      - earliestRecoverableTime
+      - id
+      - interval
+      - retention
+      title: List of PITR Schedules in the cluster
+      type: object
+    ApiError_error:
+      properties:
+        detail:
+          description: Error message
+          type: string
+        status:
+          description: Error code
+          type: integer
+      type: object
+    PITR_Schedule_Response:
+      example:
+        schedules:
+        - databaseKeyspace: databaseKeyspace
+          interval: interval
+          id: 0
+          retention: retention
+          earliestRecoverableTime: earliestRecoverableTime
+        - databaseKeyspace: databaseKeyspace
+          interval: interval
+          id: 0
+          retention: retention
+          earliestRecoverableTime: earliestRecoverableTime
+      properties:
+        schedules:
+          items:
+            $ref: '#/components/schemas/PITRSchedule'
+          type: array
+          uniqueItems: true
+      required:
+      - schedules
+      title: PITR Schedule Response
+      type: object
+    ApiError:
+      properties:
+        error:
+          $ref: '#/components/schemas/ApiError_error'
+      title: API Error
+      type: object
+  securitySchemes:
+    BearerAuthToken:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http

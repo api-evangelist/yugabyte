@@ -1,0 +1,158 @@
+openapi: 3.0.0
+info:
+  contact:
+    email: support@yugabyte.com
+    name: Yugabyte Cloud Support
+    url: https://support.yugabyte.com/
+  description: YugabyteDB as a Service
+  license:
+    name: Properietary (TBD)
+    url: https://www.yugabyte.com/yugabyte-cloud-terms-of-service
+  termsOfService: https://www.yugabyte.com/yugabyte-cloud-terms-of-service
+  title: Yugabyte Cloud backup-info API
+  version: v1
+servers:
+- description: Endpoint of the API server
+  url: '{protocol}://{host_port}/api'
+  variables:
+    protocol:
+      default: http
+      enum:
+      - http
+      - https
+    host_port:
+      default: localhost:1323
+security:
+- BearerAuthToken: []
+tags:
+- description: APIs for getting backup Details
+  name: backup-info
+paths:
+  /backup:
+    get:
+      description: Retrieve the list of databases on which backup is enabled.
+      operationId: getBackupDetails
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Backup_Details'
+          description: Retrieve the list of databases on which backup is enabled in the YugabyteDB cluster.
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+          description: API Error
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+          description: API Error
+      summary: Get Backup Details
+      tags:
+      - backup-info
+components:
+  schemas:
+    BackupDetails:
+      description: Details of backup enabled on databases in YugabyteDB cluster
+      example:
+        bytes_transferred: bytes_transferred
+        actual_size: actual_size
+        user_operation: user_operation
+        task_status: task_status
+        database_keyspace: database_keyspace
+        ybdb_api: ybdb_api
+        ybc_task_id: ybc_task_id
+        tserver_ip: tserver_ip
+        time_taken: time_taken
+        task_start_time: task_start_time
+      properties:
+        ybc_task_id:
+          type: string
+        tserver_ip:
+          type: string
+        user_operation:
+          type: string
+        ybdb_api:
+          type: string
+        database_keyspace:
+          type: string
+        task_start_time:
+          type: string
+        task_status:
+          type: string
+        time_taken:
+          type: string
+        bytes_transferred:
+          type: string
+        actual_size:
+          type: string
+      required:
+      - actual_size
+      - bytes_transferred
+      - database_keyspace
+      - task_start_time
+      - task_status
+      - time_taken
+      - tserver_ip
+      - user_operation
+      - ybc_task_id
+      - ybdb_api
+      title: Get Backup Details
+      type: object
+    ApiError_error:
+      properties:
+        detail:
+          description: Error message
+          type: string
+        status:
+          description: Error code
+          type: integer
+      type: object
+    Backup_Details:
+      example:
+        backup:
+        - bytes_transferred: bytes_transferred
+          actual_size: actual_size
+          user_operation: user_operation
+          task_status: task_status
+          database_keyspace: database_keyspace
+          ybdb_api: ybdb_api
+          ybc_task_id: ybc_task_id
+          tserver_ip: tserver_ip
+          time_taken: time_taken
+          task_start_time: task_start_time
+        - bytes_transferred: bytes_transferred
+          actual_size: actual_size
+          user_operation: user_operation
+          task_status: task_status
+          database_keyspace: database_keyspace
+          ybdb_api: ybdb_api
+          ybc_task_id: ybc_task_id
+          tserver_ip: tserver_ip
+          time_taken: time_taken
+          task_start_time: task_start_time
+      properties:
+        backup:
+          items:
+            $ref: '#/components/schemas/BackupDetails'
+          type: array
+          uniqueItems: true
+      required:
+      - backup
+      title: Backup Details
+      type: object
+    ApiError:
+      properties:
+        error:
+          $ref: '#/components/schemas/ApiError_error'
+      title: API Error
+      type: object
+  securitySchemes:
+    BearerAuthToken:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
