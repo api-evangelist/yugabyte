@@ -1,0 +1,15 @@
+generated: '2026-07-21'
+method: generated
+source: openapi/yugabyte-yugabyted-openapi-original.yaml
+description: >-
+  Packaged Agent Skills for the YugabyteDB yugabyted UI API. Each skill grounds
+  its steps in real operationIds verified against the OpenAPI.
+skills:
+- file: yugabyte-inspect-cluster-health.md
+  name: Inspect YugabyteDB cluster health
+  api: openapi/yugabyte-yugabyted-openapi-original.yaml
+  operations: [getCluster, getClusterNodes, getClusterHealthCheck, getClusterAlerts, getIsLoadBalancerIdle]
+- file: yugabyte-diagnose-query-performance.md
+  name: Diagnose YugabyteDB query performance
+  api: openapi/yugabyte-yugabyted-openapi-original.yaml
+  operations: [getLiveQueries, getSlowQueries, getClusterMetric, getClusterActivities, getClusterTables]

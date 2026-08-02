@@ -1,0 +1,33 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/yugabyte-yugabyted-openapi-original.yaml + https://www.yugabyte.com/compliance/
+standards:
+- id: postgresql-wire-compatibility
+  conforms: true
+  evidence: >-
+    YSQL implements the PostgreSQL v15 wire protocol and reuses PostgreSQL
+    drivers/tools.
+- id: cassandra-cql-compatibility
+  conforms: true
+  evidence: YCQL is a Cassandra Query Language-compatible API.
+- id: oauth2
+  conforms: false
+  evidence: Management API uses bearer API-key tokens, not OAuth2 authorization flows.
+- id: bearer-token-auth
+  conforms: true
+  evidence: openapi BearerAuthToken (http bearer) scheme applied API-wide.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: Errors use a uniform ApiError JSON body, not application/problem+json.
+- id: soc2-type-ii
+  conforms: true
+  evidence: SOC 2 Type II attestation - https://www.yugabyte.com/compliance/
+- id: soc3
+  conforms: true
+  evidence: SOC 3 report published - https://www.yugabyte.com/compliance/
+- id: iso-27001
+  conforms: true
+  evidence: ISO/IEC 27001 certified (2023) - https://www.yugabyte.com/blog/iso-27001-certification/
+- id: pci-dss-level-1
+  conforms: true
+  evidence: PCI DSS Level 1 for the YugabyteDB Aeon managed DBaaS - https://www.yugabyte.com/compliance/

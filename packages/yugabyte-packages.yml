@@ -1,0 +1,57 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.yugabyte.com/stable/develop/drivers-orms/smart-drivers/
+description: >-
+  First-party YugabyteDB smart drivers (PostgreSQL/Cassandra client drivers with
+  cluster-aware load balancing and topology awareness) plus the ybm CLI. Verified
+  on the public registries.
+packages:
+- language: java
+  registry: maven
+  name: com.yugabyte:jdbc-yugabytedb
+  url: https://repo1.maven.org/maven2/com/yugabyte/jdbc-yugabytedb/
+  install: "implementation 'com.yugabyte:jdbc-yugabytedb:LATEST'"
+  official: true
+  description: YugabyteDB JDBC Smart Driver for YSQL (built on the PostgreSQL JDBC driver).
+- language: java
+  registry: maven
+  name: com.yugabyte:java-driver-core
+  url: https://repo1.maven.org/maven2/com/yugabyte/java-driver-core/
+  install: "implementation 'com.yugabyte:java-driver-core:LATEST'"
+  official: true
+  description: YugabyteDB Java Driver for YCQL (fork of the DataStax Cassandra driver).
+- language: python
+  registry: pypi
+  name: psycopg2-yugabytedb
+  url: https://pypi.org/project/psycopg2-yugabytedb/
+  install: pip install psycopg2-yugabytedb
+  official: true
+  description: YugabyteDB Psycopg2 Smart Driver for YSQL.
+- language: javascript
+  registry: npm
+  name: "@yugabytedb/pg"
+  url: https://www.npmjs.com/package/@yugabytedb/pg
+  install: npm install @yugabytedb/pg
+  official: true
+  description: YugabyteDB node-postgres Smart Driver for YSQL.
+- language: go
+  registry: pkg.go.dev
+  name: github.com/yugabyte/pgx/v5
+  url: https://pkg.go.dev/github.com/yugabyte/pgx/v5
+  install: go get github.com/yugabyte/pgx/v5
+  official: true
+  description: YugabyteDB PGX Smart Driver for YSQL (fork of jackc/pgx).
+- language: go
+  registry: pkg.go.dev
+  name: github.com/yugabyte/gocql
+  url: https://pkg.go.dev/github.com/yugabyte/gocql
+  install: go get github.com/yugabyte/gocql
+  official: true
+  description: YugabyteDB Go Driver for YCQL (fork of gocql).
+- language: go
+  registry: github
+  name: ybm-cli
+  url: https://github.com/yugabyte/ybm-cli
+  install: brew install yugabyte/tap/ybm
+  official: true
+  description: ybm - the open source YugabyteDB Aeon command line interface.

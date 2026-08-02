@@ -1,0 +1,82 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/yugabyte-yugabyted-openapi-original.yaml
+description: >-
+  Entity-relationship model derived from the yugabyted UI API OpenAPI component
+  schemas. The cluster is the root aggregate; nodes, tables, tablets, queries,
+  backups, and PITR schedules hang off it. xCluster replication and Voyager
+  migration are cross-cutting subsystems.
+entities:
+- name: Cluster
+  schemas: [ClusterSpec, ClusterData, ClusterInfo, ClusterDataInfo, PlacementInfo, EncryptionInfo]
+  description: The distributed SQL cluster - root aggregate.
+- name: ClusterNode
+  schemas: [ClusterNodeInfo, NodeData]
+  description: A yb-tserver / yb-master node in the cluster.
+- name: ClusterRegion
+  schemas: [ClusterRegionInfo, CloudInfo, ClusterPlacementLocation]
+  description: A cloud region / placement location for the cluster.
+- name: Table
+  description: A YSQL/YCQL table (getClusterTables / getTableInfo).
+- name: Tablet
+  description: A shard of a table's data (getClusterTablets).
+- name: LiveQuery
+  schemas: [LiveQueryResponseData, LiveQueryResponseYSQLQueryItem, LiveQueryResponseYCQLQueryItem]
+  description: In-flight query on the cluster.
+- name: SlowQuery
+  schemas: [SlowQueryResponseData, SlowQueryResponseYSQLQueryItem]
+  description: Aggregated slow-query statistics.
+- name: Backup
+  description: On-demand or scheduled backup (getBackupDetails).
+- name: Restore
+  description: A restore operation (getRestoreDetails).
+- name: PITRSchedule
+  description: Point-in-time-recovery schedule (getPITRSchedules).
+- name: Alert
+  description: Cluster alert (getClusterAlerts).
+- name: Metric
+  schemas: [MetricData]
+  description: Cluster metric time series (getClusterMetric).
+- name: XClusterReplication
+  schemas: [xClusterInboundGroup, xClusterOutboundGroup, xClusterTableInfoInbound]
+  description: Cross-cluster (xCluster) replication group.
+- name: VoyagerMigration
+  schemas: [VoyagerMigrationDetails, MigrationAssessmentReport, SchemaAnalysisReport]
+  description: YugabyteDB Voyager database migration task and assessment.
+relationships:
+- from: Cluster
+  to: ClusterNode
+  type: has_many
+  via: nodes
+- from: Cluster
+  to: ClusterRegion
+  type: has_many
+  via: regions
+- from: Cluster
+  to: Table
+  type: has_many
+  via: tables
+- from: Table
+  to: Tablet
+  type: has_many
+  via: tablets
+- from: Cluster
+  to: Backup
+  type: has_many
+  via: backups
+- from: Cluster
+  to: PITRSchedule
+  type: has_many
+  via: pitr_schedules
+- from: Cluster
+  to: Alert
+  type: has_many
+  via: alerts
+- from: Backup
+  to: Restore
+  type: has_many
+  via: restores
+- from: Cluster
+  to: XClusterReplication
+  type: has_many
+  via: xcluster_groups

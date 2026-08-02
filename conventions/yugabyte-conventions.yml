@@ -1,0 +1,48 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/yugabyte-yugabyted-openapi-original.yaml + https://docs.yugabyte.com/stable/yugabyte-cloud/managed-automation/
+description: >-
+  Cross-cutting request/response semantics for the YugabyteDB REST management
+  surface (Aeon REST API and the yugabyted UI API). Derived from the OpenAPI and
+  the Aeon automation docs.
+authentication:
+  style: bearer-token
+  header: 'Authorization: Bearer <api-key>'
+  scheme: BearerAuthToken (http bearer, JWT)
+  notes: >-
+    Aeon API keys are role-scoped (e.g. Developer, Admin) and issued per account.
+    See authentication/yugabyte-authentication.yml.
+idempotency:
+  supported: true
+  mechanism: http-verb-semantics
+  detail: >-
+    Management operations are modeled with idempotent HTTP verbs - GET reads,
+    PUT/edit and DELETE are idempotent by resource id (e.g. editCluster,
+    deleteCluster operate on a stable cluster id, so re-issuing converges to the
+    same state). The API does not document a dedicated Idempotency-Key header;
+    idempotency is achieved through addressable resource ids and idempotent verbs.
+  header: null
+pagination:
+  style: none-documented
+  detail: >-
+    List operations in the yugabyted UI API return full collections (nodes,
+    tables, live/slow queries) rather than cursor/offset pages. The Aeon REST API
+    paginates large collections via query parameters documented per endpoint.
+error_envelope:
+  media_type: application/json
+  schema: ApiError
+  cross_reference: errors/yugabyte-problem-types.yml
+request_tracing:
+  request_id_header: null
+  notes: Responses carry standard HTTP status; no documented custom request-id header.
+versioning:
+  style: uri-path
+  detail: Aeon REST API is versioned in the path (/api/public/v1).
+  cross_reference: lifecycle/yugabyte-lifecycle.yml
+rate_limiting:
+  documented: false
+  notes: No published rate-limit headers; Aeon enforces per-account operational limits.
+cross_links:
+  authentication: authentication/yugabyte-authentication.yml
+  errors: errors/yugabyte-problem-types.yml
+  lifecycle: lifecycle/yugabyte-lifecycle.yml

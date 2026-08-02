@@ -1,0 +1,43 @@
+generated: '2026-07-21'
+method: derived
+status: candidate
+source: openapi/yugabyte-yugabyted-openapi-original.yaml
+description: >-
+  Candidate MCP server tool list derived one-to-one from the yugabyted UI API
+  OpenAPI operations. No official hosted YugabyteDB MCP server was found at search
+  time; this is a governance/agent-readiness starting point, not a published
+  server.
+server:
+  name: yugabyte
+  transport: stdio
+tools:
+- name: get_cluster
+  description: Get cluster metadata and status.
+  source_operation: openapi/yugabyte-yugabyted-openapi-original.yaml#getCluster
+- name: get_cluster_nodes
+  description: List cluster nodes.
+  source_operation: openapi/yugabyte-yugabyted-openapi-original.yaml#getClusterNodes
+- name: get_cluster_tables
+  description: List tables in the cluster.
+  source_operation: openapi/yugabyte-yugabyted-openapi-original.yaml#getClusterTables
+- name: get_cluster_metric
+  description: Read a cluster metric time series.
+  source_operation: openapi/yugabyte-yugabyted-openapi-original.yaml#getClusterMetric
+- name: get_cluster_health_check
+  description: Run a cluster health check.
+  source_operation: openapi/yugabyte-yugabyted-openapi-original.yaml#getClusterHealthCheck
+- name: get_live_queries
+  description: List live queries.
+  source_operation: openapi/yugabyte-yugabyted-openapi-original.yaml#getLiveQueries
+- name: get_slow_queries
+  description: List slow queries.
+  source_operation: openapi/yugabyte-yugabyted-openapi-original.yaml#getSlowQueries
+- name: get_cluster_alerts
+  description: List cluster alerts.
+  source_operation: openapi/yugabyte-yugabyted-openapi-original.yaml#getClusterAlerts
+- name: get_backup_details
+  description: Get backup details.
+  source_operation: openapi/yugabyte-yugabyted-openapi-original.yaml#getBackupDetails
+- name: get_pitr_schedules
+  description: List point-in-time-recovery schedules.
+  source_operation: openapi/yugabyte-yugabyted-openapi-original.yaml#getPITRSchedules

@@ -1,0 +1,31 @@
+generated: '2026-07-21'
+method: derived
+format: json
+source: openapi/yugabyte-yugabyted-openapi-original.yaml
+envelope:
+  media_type: application/json
+  schema: ApiError
+  description: >-
+    Uniform error envelope - every yugabyted UI API operation declares a 400 and
+    a 500 response, both returning the ApiError schema (an error object carrying a
+    status/message describing the failure).
+problems:
+- status: 400
+  title: Bad Request
+  schema: ApiError
+  remediation: >-
+    Validate request parameters and body against the OpenAPI. Malformed cluster
+    ids, missing required query parameters, or unsupported filter values return 400.
+  applies_to: all operations
+- status: 500
+  title: API Error
+  schema: ApiError
+  remediation: >-
+    Server-side or backend error while servicing the request. Retry with backoff;
+    if persistent, capture the request id and contact Yugabyte support.
+  applies_to: all operations
+notes: >-
+  The yugabyted UI API uses a single ApiError body across all 30 operations rather
+  than RFC 9457 problem+json. For product-level error semantics (YSQL/YCQL SQLSTATE
+  codes) see the PostgreSQL-compatible error surface documented at
+  https://docs.yugabyte.com/stable/api/ysql/.

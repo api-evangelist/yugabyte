@@ -1,0 +1,20 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for YugabyteDB yugabyted UI API
+  version: 1.0.0
+extends: openapi/yugabyte-yugabyted-openapi-original.yaml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-enriched: '2026-07-21'
+    x-apievangelist-provider: yugabyte
+    x-apievangelist-error-model: rfc-uniform-apierror
+    x-apievangelist-notes: >-
+      Uniform error model - every operation returns 400 (bad request) and 500
+      (API Error) with an ApiError body. Bearer-token (JWT) authentication via
+      the BearerAuthToken scheme.
+- target: $.info
+  update:
+    x-apievangelist-related-apis:
+    - YugabyteDB Aeon REST API (cloud management)
+    x-apievangelist-drivers: [jdbc-yugabytedb, psycopg2-yugabytedb, '@yugabytedb/pg', yugabyte/pgx, yugabyte/gocql]

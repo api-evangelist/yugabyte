@@ -1,0 +1,62 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.yugabyte.com/stable/yugabyte-cloud/managed-automation/managed-cli/
+name: ybm
+description: >-
+  ybm is the open source YugabyteDB Aeon command line interface. It wraps the
+  Aeon REST API so you can create and manage clusters, VPCs, network allow lists,
+  backups, integrations, and metrics exporters from the shell. Requires an API
+  key.
+repository: https://github.com/yugabyte/ybm-cli
+docs: https://docs.yugabyte.com/preview/yugabyte-cloud/managed-automation/managed-cli/managed-cli-reference/
+install:
+- method: homebrew
+  command: brew install yugabyte/tap/ybm
+- method: script
+  command: curl -fsSL https://raw.githubusercontent.com/yugabyte/ybm-cli/main/install.sh | sh
+- method: github-release
+  command: download from https://github.com/yugabyte/ybm-cli/releases
+global_flags:
+- name: --apiKey / -a
+  description: YugabyteDB Aeon API key (bearer token).
+- name: --config
+  description: Config file (default $HOME/.ybm-cli.yaml).
+- name: --output / -o
+  description: Output format - table, json, or pretty.
+- name: --wait
+  description: Block until the operation completes.
+- name: --timeout
+  description: Maximum wait time for an operation.
+command_groups:
+- name: cluster
+  description: Create, list, edit, pause, resume, and delete clusters and read replicas.
+- name: backup
+  description: Create, list, restore, and manage on-demand backups.
+- name: vpc
+  description: Manage dedicated VPCs and VPC peering.
+- name: network-allow-list
+  description: Manage IP allow lists.
+- name: region
+  description: Manage cluster regions and node placement.
+- name: api-key
+  description: Create, list, and revoke API keys.
+- name: auth
+  description: Configure the CLI with an API key.
+- name: user
+  description: Manage account users.
+- name: role
+  description: Manage roles.
+- name: permission
+  description: List permissions.
+- name: integration
+  description: Manage third-party integrations (metrics/log export).
+- name: metrics-exporter
+  description: Configure metrics exporters (Datadog, Grafana, Prometheus, etc.).
+- name: usage
+  description: Report account usage.
+- name: signup
+  description: Sign up for a YugabyteDB Aeon account.
+key_flows:
+- Configure the CLI once with `ybm auth` and an API key, then drive Aeon headlessly.
+- Provision a free/dedicated cluster from CI with `ybm cluster create`.
+- Automate scheduled backups and restores with `ybm backup`.

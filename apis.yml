@@ -1,8 +1,30 @@
 aid: yugabyte
 name: Yugabyte
-description: Yugabyte is a company surfaced as a portfolio company of lightspeed-venture-partners and
-  added to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment
-  pipeline.
+description: >-
+  Yugabyte is the company behind YugabyteDB, an open source (Apache 2.0),
+  PostgreSQL-compatible distributed SQL database built for cloud-native and
+  mission-critical applications. It pairs PostgreSQL wire-compatibility (the YSQL
+  API) and a Cassandra-inspired API (YCQL) with horizontal scalability, built-in
+  resilience, automatic sharding, and automatic failover across multi-region and
+  multi-cloud deployments. Yugabyte ships the database in three form factors:
+  self-managed YugabyteDB, YugabyteDB Anywhere for private and hybrid clouds, and
+  YugabyteDB Aeon, a fully managed database-as-a-service. Developers integrate
+  through PostgreSQL-compatible smart drivers, the YugabyteDB Aeon REST management
+  API, the open source ybm CLI, a Terraform provider, and the yugabyted local
+  admin API.
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://github.com/yugabyte.png
 url: https://raw.githubusercontent.com/api-evangelist/yugabyte/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -12,12 +34,202 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
 tags:
 - Company
-apis: []
+- Database
+- Distributed SQL
+- PostgreSQL
+- Cloud
+- DBaaS
+- Open Source
+- SQL
+- Data
+- Infrastructure
+apis:
+- name: YugabyteDB Aeon REST API
+  description: >-
+    Programmatic management API for YugabyteDB Aeon, the fully managed cloud DBaaS. Deploy and manage
+    clusters and read replicas, schedule and run on-demand backups and restores, manage IP allow lists,
+    configure maintenance windows, and set up monitoring and alerts. Uses bearer-token (API key) authentication.
+  humanURL: https://api-docs.yugabyte.com/docs/managed-apis/9u5yqnccbe8lk-yugabyte-db-aeon-rest-api
+  baseURL: https://cloud.yugabyte.com/api/public/v1
+  tags:
+  - Database
+  - DBaaS
+  - Management
+  properties:
+  - type: Documentation
+    url: https://docs.yugabyte.com/stable/yugabyte-cloud/managed-automation/managed-api/
+  - type: APIReference
+    url: https://api-docs.yugabyte.com/docs/managed-apis/9u5yqnccbe8lk-yugabyte-db-aeon-rest-api
+  - type: Authentication
+    url: https://docs.yugabyte.com/preview/yugabyte-cloud/managed-automation/managed-apikeys/
+- aid: yugabyte:yugabyte-backup-info-api
+  name: Yugabyte backup-info API
+  description: APIs for getting backup Details
+  humanURL: https://api-docs.yugabyte.com/docs/managed-apis/9u5yqnccbe8lk-yugabyte-db-aeon-rest-api
+  baseURL: https://cloud.yugabyte.com/api/public/v1
+  tags:
+  - backup-info
+  properties:
+  - type: OpenAPI
+    url: openapi/yugabyte-backup-info-api-openapi.yml
+- aid: yugabyte:yugabyte-cluster-api
+  name: Yugabyte cluster API
+  description: APIs for cluster CRUD
+  humanURL: https://api-docs.yugabyte.com/docs/managed-apis/9u5yqnccbe8lk-yugabyte-db-aeon-rest-api
+  baseURL: https://cloud.yugabyte.com/api/public/v1
+  tags:
+  - cluster
+  properties:
+  - type: OpenAPI
+    url: openapi/yugabyte-cluster-api-openapi.yml
+- aid: yugabyte:yugabyte-cluster-info-api
+  name: Yugabyte cluster-info API
+  description: APIs for getting information about an existing cluster
+  humanURL: https://api-docs.yugabyte.com/docs/managed-apis/9u5yqnccbe8lk-yugabyte-db-aeon-rest-api
+  baseURL: https://cloud.yugabyte.com/api/public/v1
+  tags:
+  - cluster-info
+  properties:
+  - type: OpenAPI
+    url: openapi/yugabyte-cluster-info-api-openapi.yml
+- aid: yugabyte:yugabyte-pitr-info-api
+  name: Yugabyte pitr-info API
+  description: APIs for getting Point-in-Time Recovery (PITR) schedules
+  humanURL: https://api-docs.yugabyte.com/docs/managed-apis/9u5yqnccbe8lk-yugabyte-db-aeon-rest-api
+  baseURL: https://cloud.yugabyte.com/api/public/v1
+  tags:
+  - pitr-info
+  properties:
+  - type: OpenAPI
+    url: openapi/yugabyte-pitr-info-api-openapi.yml
+- aid: yugabyte:yugabyte-restore-info-api
+  name: Yugabyte restore-info API
+  description: APIs for getting restore Details
+  humanURL: https://api-docs.yugabyte.com/docs/managed-apis/9u5yqnccbe8lk-yugabyte-db-aeon-rest-api
+  baseURL: https://cloud.yugabyte.com/api/public/v1
+  tags:
+  - restore-info
+  properties:
+  - type: OpenAPI
+    url: openapi/yugabyte-restore-info-api-openapi.yml
+- aid: yugabyte:yugabyte-voyager-info-api
+  name: Yugabyte voyager-info API
+  description: APIs for getting information about Voyager migrations
+  humanURL: https://api-docs.yugabyte.com/docs/managed-apis/9u5yqnccbe8lk-yugabyte-db-aeon-rest-api
+  baseURL: https://cloud.yugabyte.com/api/public/v1
+  tags:
+  - voyager-info
+  properties:
+  - type: OpenAPI
+    url: openapi/yugabyte-voyager-info-api-openapi.yml
+- aid: yugabyte:yugabyte-voyager-metrics-api
+  name: Yugabyte voyager-metrics API
+  description: APIs for getting Voyager data migrations metrics
+  humanURL: https://api-docs.yugabyte.com/docs/managed-apis/9u5yqnccbe8lk-yugabyte-db-aeon-rest-api
+  baseURL: https://cloud.yugabyte.com/api/public/v1
+  tags:
+  - voyager-metrics
+  properties:
+  - type: OpenAPI
+    url: openapi/yugabyte-voyager-metrics-api-openapi.yml
+- aid: yugabyte:yugabyte-xcluster-metrics-api
+  name: Yugabyte Xcluster Metrics API
+  description: The Xcluster Metrics API from Yugabyte — 1 operation(s) for xcluster metrics.
+  humanURL: https://api-docs.yugabyte.com/docs/managed-apis/9u5yqnccbe8lk-yugabyte-db-aeon-rest-api
+  baseURL: https://cloud.yugabyte.com/api/public/v1
+  tags:
+  - Xcluster Metrics
+  properties:
+  - type: OpenAPI
+    url: openapi/yugabyte-xcluster-metrics-api-openapi.yml
+- aid: yugabyte:yugabyte-xcluster-namespace-details-api
+  name: Yugabyte Xcluster Namespace Details API
+  description: >-
+    The Xcluster Namespace Details API from Yugabyte — 1 operation(s) for xcluster namespace details.
+  humanURL: https://api-docs.yugabyte.com/docs/managed-apis/9u5yqnccbe8lk-yugabyte-db-aeon-rest-api
+  baseURL: https://cloud.yugabyte.com/api/public/v1
+  tags:
+  - Xcluster Namespace Details
+  properties:
+  - type: OpenAPI
+    url: openapi/yugabyte-xcluster-namespace-details-api-openapi.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 18
+  pass: local-v1
+common:
+- type: DeveloperPortal
+  url: https://docs.yugabyte.com/
+- type: Documentation
+  url: https://docs.yugabyte.com/
+- type: APIReference
+  url: https://api-docs.yugabyte.com/docs/managed-apis/9u5yqnccbe8lk-yugabyte-db-aeon-rest-api
+- type: GettingStarted
+  url: https://docs.yugabyte.com/stable/quick-start/
+- type: Support
+  url: https://forum.yugabyte.com/
+- type: Blog
+  url: https://www.yugabyte.com/blog/
+- type: GitHubOrganization
+  url: https://github.com/yugabyte
+- type: Pricing
+  url: https://www.yugabyte.com/pricing/
+- type: SignUp
+  url: https://cloud.yugabyte.com/signup
+- type: Login
+  url: https://cloud.yugabyte.com/login
+- type: TermsOfService
+  url: https://www.yugabyte.com/terms-of-service/
+- type: PrivacyPolicy
+  url: https://www.yugabyte.com/privacy-policy/
+- type: StatusPage
+  url: https://yugabytedb.statuspage.io/
+- type: ChangeLog
+  url: https://docs.yugabyte.com/stable/releases/
+- type: TrustCenter
+  url: https://compliance.yugabyte.com/
+- type: Compliance
+  url: https://www.yugabyte.com/compliance/
+- type: Packages
+  url: packages/yugabyte-packages.yml
+- type: SDKs
+  url: packages/yugabyte-packages.yml
+- type: CLI
+  url: cli/yugabyte-cli.yml
+- type: Authentication
+  url: authentication/yugabyte-authentication.yml
+- type: MCPServer
+  url: mcp/yugabyte-mcp.yml
+- type: LLMsTxt
+  url: llms/yugabyte-llms.txt
+- type: WellKnown
+  url: well-known/yugabyte-well-known.yml
+- type: ErrorCatalog
+  url: errors/yugabyte-problem-types.yml
+- type: Conventions
+  url: conventions/yugabyte-conventions.yml
+- type: Lifecycle
+  url: lifecycle/yugabyte-lifecycle.yml
+- type: Deprecation
+  url: lifecycle/yugabyte-lifecycle.yml
+- type: Conformance
+  url: conformance/yugabyte-conformance.yml
+- type: DataModel
+  url: data-model/yugabyte-data-model.yml
+- type: ChangeLog
+  url: changelog/yugabyte-changelog.yml
+- type: DomainSecurity
+  url: security/yugabyte-domain-security.yml
+- type: AgenticAccess
+  url: agentic-access/yugabyte-agentic-access.yml
+- type: AgentSkill
+  url: skills/_index.yml
