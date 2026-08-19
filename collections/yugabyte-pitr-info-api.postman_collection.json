@@ -1,0 +1,287 @@
+{
+  "item": [
+    {
+      "id": "96a42049-54bc-4735-99c0-424fc78efdf9",
+      "name": "pitr-info",
+      "description": {
+        "content": "APIs for getting Point-in-Time Recovery (PITR) schedules",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "14519ded-39be-4cfa-b0c1-efccebe03dc2",
+          "name": "Get PITR Schedules",
+          "request": {
+            "name": "Get PITR Schedules",
+            "description": {
+              "content": "Retrieve the list of PITR schedules in the YugabyteDB cluster.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pitr"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": " (This can only be one of http,https)",
+                  "type": "any",
+                  "value": "{{protocol}}",
+                  "key": "protocol"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{host_port}}",
+                  "key": "host_port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6866c373-d5bf-4a21-87c9-06a3cb2dfe67",
+              "name": "List of PITR Schedules in the cluster",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pitr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": " (This can only be one of http,https)",
+                      "type": "any",
+                      "value": "{{protocol}}",
+                      "key": "protocol"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{host_port}}",
+                      "key": "host_port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"schedules\": [\n    {\n      \"databaseKeyspace\": \"databaseKeyspace\",\n      \"interval\": \"interval\",\n      \"id\": 0,\n      \"retention\": \"retention\",\n      \"earliestRecoverableTime\": \"earliestRecoverableTime\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1e303fd1-39b5-4bde-8f83-bbab368d6c90",
+              "name": "API Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pitr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": " (This can only be one of http,https)",
+                      "type": "any",
+                      "value": "{{protocol}}",
+                      "key": "protocol"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{host_port}}",
+                      "key": "host_port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"detail\": \"string\",\n    \"status\": 6135\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "27e3b420-fe3d-4806-85ab-84908d8288b1",
+              "name": "API Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pitr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": " (This can only be one of http,https)",
+                      "type": "any",
+                      "value": "{{protocol}}",
+                      "key": "protocol"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{host_port}}",
+                      "key": "host_port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"detail\": \"string\",\n    \"status\": 6135\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": " (This can only be one of http,https)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "http",
+      "key": "protocol"
+    },
+    {
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "localhost:1323",
+      "key": "host_port"
+    },
+    {
+      "type": "string",
+      "value": "{{protocol}}://{{host_port}}/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "32b04b84-5b55-41f4-9173-8c88b8ea204d",
+    "name": "Yugabyte Cloud backup-info pitr-info API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "YugabyteDB as a Service\n\nContact Support:\n Name: Yugabyte Cloud Support\n Email: support@yugabyte.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Yugabyte Cloud backup-info API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "backup-info",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Backup Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{protocol}://{host_port}/api/backup"
+          },
+          "docs": "Retrieve the list of databases on which backup is enabled."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

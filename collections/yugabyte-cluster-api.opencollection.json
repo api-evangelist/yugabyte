@@ -1,0 +1,61 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Yugabyte Cloud backup-info cluster API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "cluster",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{protocol}://{host_port}/api/cluster"
+          },
+          "docs": "Get a Yugabyte Cluster"
+        },
+        {
+          "info": {
+            "name": "Submit task to edit a cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{protocol}://{host_port}/api/cluster",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit task to edit a Yugabyte Cluster"
+        },
+        {
+          "info": {
+            "name": "Submit task to delete a cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{protocol}://{host_port}/api/cluster"
+          },
+          "docs": "Submit task to delete a Yugabyte Cluster"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

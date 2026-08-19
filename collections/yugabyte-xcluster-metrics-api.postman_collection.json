@@ -1,0 +1,287 @@
+{
+  "item": [
+    {
+      "id": "c0f480f7-02b3-4f73-bd36-1b2e9e3e76bb",
+      "name": "Xcluster Metrics",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1383701d-ec4f-481a-baca-560f3a17de46",
+          "name": "Get list of all xCluster replication group ids",
+          "request": {
+            "name": "Get list of all xCluster replication group ids",
+            "description": {
+              "content": "Retrieve the list of databases on which restore is run in the YugabyteDB cluster.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "xcluster_metrics"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": " (This can only be one of http,https)",
+                  "type": "any",
+                  "value": "{{protocol}}",
+                  "key": "protocol"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{host_port}}",
+                  "key": "host_port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9ef3c88d-ab61-4118-ba43-5f2d69783a8c",
+              "name": "List of all xCluster replication groups",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "xcluster_metrics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": " (This can only be one of http,https)",
+                      "type": "any",
+                      "value": "{{protocol}}",
+                      "key": "protocol"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{host_port}}",
+                      "key": "host_port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"inbound_replication_groups\": [\n    {\n      \"replication_group_id\": \"string\",\n      \"state\": \"string\",\n      \"target_cluster_node_ips\": [\n        \"string\"\n      ],\n      \"source_cluster_node_ips\": [\n        \"string\"\n      ],\n      \"source_universe_uuid\": \"string\",\n      \"target_universe_uuid\": \"string\"\n    }\n  ],\n  \"outbound_replication_groups\": [\n    {\n      \"replication_group_id\": \"string\",\n      \"state\": \"string\",\n      \"target_universe_uuid\": \"string\",\n      \"replication_cluster_node_ips\": [\n        \"string\"\n      ],\n      \"source_universe_uuid\": \"string\",\n      \"tables_list_with_lag\": [\n        {\n          \"async_replication_committed_lag_micros\": 6217,\n          \"async_replication_sent_lag_micros\": 8174,\n          \"is_checkpointing\": false,\n          \"is_part_of_initial_bootstrap\": false,\n          \"table_name\": \"string\",\n          \"table_uuid\": \"string\",\n          \"namespace\": \"string\",\n          \"keyspace\": 1175,\n          \"state\": 6486\n        },\n        {\n          \"async_replication_committed_lag_micros\": 142,\n          \"async_replication_sent_lag_micros\": 8168,\n          \"is_checkpointing\": false,\n          \"is_part_of_initial_bootstrap\": true,\n          \"table_name\": \"string\",\n          \"table_uuid\": \"string\",\n          \"namespace\": \"string\",\n          \"keyspace\": 2171.846230663227,\n          \"state\": 4960.342417475871\n        }\n      ]\n    },\n    {\n      \"replication_group_id\": \"string\",\n      \"state\": \"string\",\n      \"target_universe_uuid\": \"string\",\n      \"replication_cluster_node_ips\": [\n        \"string\"\n      ],\n      \"source_universe_uuid\": \"string\",\n      \"tables_list_with_lag\": [\n        {\n          \"async_replication_committed_lag_micros\": 1509,\n          \"async_replication_sent_lag_micros\": 330,\n          \"is_checkpointing\": false,\n          \"is_part_of_initial_bootstrap\": false,\n          \"table_name\": \"string\",\n          \"table_uuid\": \"string\",\n          \"namespace\": \"string\",\n          \"keyspace\": \"string\",\n          \"state\": 1490\n        },\n        {\n          \"async_replication_committed_lag_micros\": 61,\n          \"async_replication_sent_lag_micros\": 8618,\n          \"is_checkpointing\": false,\n          \"is_part_of_initial_bootstrap\": false,\n          \"table_name\": \"string\",\n          \"table_uuid\": \"string\",\n          \"namespace\": \"string\",\n          \"keyspace\": 7218,\n          \"state\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8dca6d7b-5fe3-4057-913d-2cee1afe12f7",
+              "name": "API Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "xcluster_metrics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": " (This can only be one of http,https)",
+                      "type": "any",
+                      "value": "{{protocol}}",
+                      "key": "protocol"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{host_port}}",
+                      "key": "host_port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"detail\": \"string\",\n    \"status\": 8127\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "44cc7706-3dbb-454c-b2bf-225a97ab1a08",
+              "name": "API Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "xcluster_metrics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": " (This can only be one of http,https)",
+                      "type": "any",
+                      "value": "{{protocol}}",
+                      "key": "protocol"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{host_port}}",
+                      "key": "host_port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"detail\": \"string\",\n    \"status\": 8127\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": " (This can only be one of http,https)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "http",
+      "key": "protocol"
+    },
+    {
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "localhost:1323",
+      "key": "host_port"
+    },
+    {
+      "type": "string",
+      "value": "{{protocol}}://{{host_port}}/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8ce28b12-cb4c-45fc-999b-fbc703eca714",
+    "name": "Yugabyte Cloud backup-info Xcluster Metrics API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "YugabyteDB as a Service\n\nContact Support:\n Name: Yugabyte Cloud Support\n Email: support@yugabyte.com",
+      "type": "text/plain"
+    }
+  }
+}

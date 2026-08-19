@@ -1,0 +1,43 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Yugabyte Cloud backup-info Xcluster Namespace Details API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Xcluster Namespace Details",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get list of all xCluster replication group namespace and table details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{protocol}://{host_port}/api/xcluster_namespace_details/:replication_id",
+            "params": [
+              {
+                "name": "replication_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the replication group"
+              }
+            ]
+          },
+          "docs": "Retrieve the list of namespaces and tables involved in the replication group identified by the given replication ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

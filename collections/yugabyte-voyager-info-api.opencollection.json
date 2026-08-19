@@ -1,0 +1,144 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Yugabyte Cloud backup-info voyager-info API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "voyager-info",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get the list of Voyager migrations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{protocol}://{host_port}/api/migrations",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "query",
+                "description": "uuid of the voyager migration task"
+              },
+              {
+                "name": "migration_phase",
+                "value": "",
+                "type": "query",
+                "description": "specify the migration phase for which details are required"
+              }
+            ]
+          },
+          "docs": "Get the list of Voyager migrations"
+        },
+        {
+          "info": {
+            "name": "Get Voyager data migration metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{protocol}://{host_port}/api/migration_assesment",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "query",
+                "description": "uuid of the voyager migration task"
+              }
+            ]
+          },
+          "docs": "Get Voyager data migration metrics"
+        },
+        {
+          "info": {
+            "name": "Get Voyager data migration metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{protocol}://{host_port}/api/migrate_schema",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "query",
+                "description": "uuid of the voyager migration task"
+              }
+            ]
+          },
+          "docs": "Get Voyager data migration metrics"
+        },
+        {
+          "info": {
+            "name": "Get the Database assessment details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{protocol}://{host_port}/api/migration_assessment_v2",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "query",
+                "description": "uuid of the voyager migration task"
+              }
+            ]
+          },
+          "docs": "Get the Database assessment details"
+        },
+        {
+          "info": {
+            "name": "Get the Source Database SQL object details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{protocol}://{host_port}/api/assessment_source_db_details",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "query",
+                "description": "uuid of the voyager migration task"
+              }
+            ]
+          },
+          "docs": "Get the Source Database SQL object details"
+        },
+        {
+          "info": {
+            "name": "Get the Target Database recommendation details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{protocol}://{host_port}/api/assessment_target_recommendation_details",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "query",
+                "description": "uuid of the voyager migration task"
+              }
+            ]
+          },
+          "docs": "Get the Target Database recommendation details"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

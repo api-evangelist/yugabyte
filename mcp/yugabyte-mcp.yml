@@ -2,11 +2,9 @@ generated: '2026-07-21'
 method: derived
 status: candidate
 source: openapi/yugabyte-yugabyted-openapi-original.yaml
-description: >-
-  Candidate MCP server tool list derived one-to-one from the yugabyted UI API
-  OpenAPI operations. No official hosted YugabyteDB MCP server was found at search
-  time; this is a governance/agent-readiness starting point, not a published
-  server.
+description: Candidate MCP server tool list derived one-to-one from the yugabyted UI API OpenAPI operations.
+  No official hosted YugabyteDB MCP server was found at search time; this is a governance/agent-readiness
+  starting point, not a published server.
 server:
   name: yugabyte
   transport: stdio
@@ -41,3 +39,9 @@ tools:
 - name: get_pitr_schedules
   description: List point-in-time-recovery schedules.
   source_operation: openapi/yugabyte-yugabyted-openapi-original.yaml#getPITRSchedules
+deployment:
+  mode: none
+  verified: derived
+  tools: 10
+  checked: '2026-08-12'
+  source: catalog MCP census

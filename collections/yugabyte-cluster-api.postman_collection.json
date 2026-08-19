@@ -1,0 +1,752 @@
+{
+  "item": [
+    {
+      "id": "7b7648f1-81f7-43f9-b154-4d294f5a23b5",
+      "name": "cluster",
+      "description": {
+        "content": "APIs for cluster CRUD",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0c1aa7a8-db14-4fee-abd4-055f964cbffe",
+          "name": "Submit task to delete a cluster",
+          "request": {
+            "name": "Submit task to delete a cluster",
+            "description": {
+              "content": "Submit task to delete a Yugabyte Cluster",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cluster"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": " (This can only be one of http,https)",
+                  "type": "any",
+                  "value": "{{protocol}}",
+                  "key": "protocol"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{host_port}}",
+                  "key": "host_port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6d330d72-7628-4ecd-8529-31d95ae838ce",
+              "name": "Successfully submitted delete cluster request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cluster"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": " (This can only be one of http,https)",
+                      "type": "any",
+                      "value": "{{protocol}}",
+                      "key": "protocol"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{host_port}}",
+                      "key": "host_port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ba4b2622-f691-4410-9272-88993e6a527f",
+              "name": "API Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cluster"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": " (This can only be one of http,https)",
+                      "type": "any",
+                      "value": "{{protocol}}",
+                      "key": "protocol"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{host_port}}",
+                      "key": "host_port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"detail\": \"string\",\n    \"status\": 8927\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "749524fd-bcd7-45de-b259-7f1c2886179d",
+              "name": "API Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cluster"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": " (This can only be one of http,https)",
+                      "type": "any",
+                      "value": "{{protocol}}",
+                      "key": "protocol"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{host_port}}",
+                      "key": "host_port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"detail\": \"string\",\n    \"status\": 8927\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "51bec81e-6ac5-4a4c-990a-84799befed54",
+          "name": "Get a cluster",
+          "request": {
+            "name": "Get a cluster",
+            "description": {
+              "content": "Get a Yugabyte Cluster",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cluster"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": " (This can only be one of http,https)",
+                  "type": "any",
+                  "value": "{{protocol}}",
+                  "key": "protocol"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{host_port}}",
+                  "key": "host_port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "29515598-c395-453e-b624-7cce13288735",
+              "name": "Cluster response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cluster"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": " (This can only be one of http,https)",
+                      "type": "any",
+                      "value": "{{protocol}}",
+                      "key": "protocol"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{host_port}}",
+                      "key": "host_port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"info\": {\n      \"cluster_uuid\": \"55d0a30f-4e4d-994d-4691-d5bb0b9d2b70\",\n      \"metadata\": {\n        \"updated_on\": \"updated_on\",\n        \"created_on\": \"created_on\"\n      },\n      \"state\": \"string\",\n      \"universe_uuid\": \"9488fe66-b740-d0c9-cbf9-716b75d410c6\",\n      \"software_version\": \"string\"\n    },\n    \"spec\": {\n      \"cloud_info\": {\n        \"code\": \"MANUAL\",\n        \"region\": \"us-west2\"\n      },\n      \"cluster_info\": {\n        \"fault_tolerance\": \"ZONE\",\n        \"is_production\": false,\n        \"node_info\": {\n          \"disk_size_used_gb\": 5.637376656633329,\n          \"num_cores\": 7,\n          \"memory_mb\": 1.4658129805029452,\n          \"ram_provisioned_gb\": 9.301444243932576,\n          \"cpu_usage\": 2.3021358869347655,\n          \"disk_size_gb\": 5.962133916683182\n        },\n        \"num_nodes\": 3,\n        \"replication_factor\": 15,\n        \"version\": 3320\n      },\n      \"encryption_info\": {\n        \"encryption_in_transit\": false,\n        \"encryption_at_rest\": false\n      },\n      \"name\": \"zlpuixah5gvhhso\",\n      \"cluster_region_info\": [\n        {\n          \"placement_info\": {\n            \"cloud_info\": {\n              \"region\": \"us-west2\"\n            },\n            \"num_nodes\": 5\n          }\n        }\n      ],\n      \"network_info\": true\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e7b76b83-89a6-4f7f-bf36-b4f5e037c308",
+              "name": "API Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cluster"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": " (This can only be one of http,https)",
+                      "type": "any",
+                      "value": "{{protocol}}",
+                      "key": "protocol"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{host_port}}",
+                      "key": "host_port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"detail\": \"string\",\n    \"status\": 8927\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2c03d5fa-cf74-4c41-9e6e-a9b8fc0e670b",
+              "name": "API Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cluster"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": " (This can only be one of http,https)",
+                      "type": "any",
+                      "value": "{{protocol}}",
+                      "key": "protocol"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{host_port}}",
+                      "key": "host_port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"detail\": \"string\",\n    \"status\": 8927\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "59d0d2f0-2251-41c1-bae1-d45f2ada3fbe",
+          "name": "Submit task to edit a cluster",
+          "request": {
+            "name": "Submit task to edit a cluster",
+            "description": {
+              "content": "Submit task to edit a Yugabyte Cluster",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cluster"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": " (This can only be one of http,https)",
+                  "type": "any",
+                  "value": "{{protocol}}",
+                  "key": "protocol"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{host_port}}",
+                  "key": "host_port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cloud_info\": {\n    \"code\": \"MANUAL\",\n    \"region\": \"us-west2\"\n  },\n  \"cluster_info\": {\n    \"fault_tolerance\": \"ZONE\",\n    \"is_production\": false,\n    \"node_info\": {\n      \"disk_size_gb\": 0,\n      \"memory_mb\": 0,\n      \"num_cores\": 0,\n      \"ram_provisioned_gb\": 0,\n      \"disk_size_used_gb\": 0,\n      \"cpu_usage\": 0\n    },\n    \"num_nodes\": 3,\n    \"replication_factor\": \"<integer>\",\n    \"version\": \"<integer>\"\n  },\n  \"encryption_info\": {\n    \"encryption_at_rest\": false,\n    \"encryption_in_transit\": false\n  },\n  \"name\": \"<string>\",\n  \"cluster_region_info\": [\n    {\n      \"placement_info\": {\n        \"cloud_info\": {\n          \"code\": \"MANUAL\",\n          \"region\": \"us-west2\"\n        },\n        \"num_nodes\": 3\n      }\n    },\n    {\n      \"placement_info\": {\n        \"cloud_info\": {\n          \"code\": \"MANUAL\",\n          \"region\": \"us-west2\"\n        },\n        \"num_nodes\": 3\n      }\n    }\n  ],\n  \"network_info\": \"string\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7c7c1697-e41c-46ec-8abb-a695b49f99e5",
+              "name": "Cluster response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cluster"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": " (This can only be one of http,https)",
+                      "type": "any",
+                      "value": "{{protocol}}",
+                      "key": "protocol"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{host_port}}",
+                      "key": "host_port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"info\": {\n      \"cluster_uuid\": \"bde3de4b-91f5-c7b0-41da-1269adccb9ee\",\n      \"metadata\": {\n        \"updated_on\": \"updated_on\",\n        \"created_on\": \"created_on\"\n      },\n      \"state\": \"string\",\n      \"universe_uuid\": \"6d26f247-40aa-f2b1-9244-6703e2630fa5\",\n      \"software_version\": \"string\"\n    },\n    \"spec\": {\n      \"cloud_info\": {\n        \"code\": \"MANUAL\",\n        \"region\": \"us-west2\"\n      },\n      \"cluster_info\": {\n        \"fault_tolerance\": \"ZONE\",\n        \"is_production\": false,\n        \"node_info\": {\n          \"disk_size_used_gb\": 5.637376656633329,\n          \"num_cores\": 7,\n          \"memory_mb\": 1.4658129805029452,\n          \"ram_provisioned_gb\": 9.301444243932576,\n          \"cpu_usage\": 2.3021358869347655,\n          \"disk_size_gb\": 5.962133916683182\n        },\n        \"num_nodes\": 3,\n        \"replication_factor\": \"<integer>\",\n        \"version\": \"<integer>\"\n      },\n      \"encryption_info\": {\n        \"encryption_in_transit\": false,\n        \"encryption_at_rest\": false\n      },\n      \"name\": \"<string>\",\n      \"cluster_region_info\": [\n        {\n          \"placement_info\": {\n            \"cloud_info\": {\n              \"region\": \"us-west2\"\n            },\n            \"num_nodes\": 5\n          }\n        }\n      ],\n      \"network_info\": 3157.349874113845\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "77b2cbf4-5bd4-4e1c-b3c2-0429f4948ac7",
+              "name": "API Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cluster"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": " (This can only be one of http,https)",
+                      "type": "any",
+                      "value": "{{protocol}}",
+                      "key": "protocol"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{host_port}}",
+                      "key": "host_port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"detail\": \"string\",\n    \"status\": 8927\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4b049e61-68cf-4610-b723-b945c306d9eb",
+              "name": "API Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cluster"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": " (This can only be one of http,https)",
+                      "type": "any",
+                      "value": "{{protocol}}",
+                      "key": "protocol"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{host_port}}",
+                      "key": "host_port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"detail\": \"string\",\n    \"status\": 8927\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": " (This can only be one of http,https)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "http",
+      "key": "protocol"
+    },
+    {
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "localhost:1323",
+      "key": "host_port"
+    },
+    {
+      "type": "string",
+      "value": "{{protocol}}://{{host_port}}/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "30b858d2-3552-4190-af0d-278f6f5c58f3",
+    "name": "Yugabyte Cloud backup-info cluster API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "YugabyteDB as a Service\n\nContact Support:\n Name: Yugabyte Cloud Support\n Email: support@yugabyte.com",
+      "type": "text/plain"
+    }
+  }
+}

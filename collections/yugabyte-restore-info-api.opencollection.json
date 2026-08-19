@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Yugabyte Cloud backup-info restore-info API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "restore-info",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Restore Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{protocol}://{host_port}/api/restore"
+          },
+          "docs": "Retrieve the list of databases on which restore is run in the YugabyteDB cluster."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,1577 @@
+{
+  "item": [
+    {
+      "id": "cd61d34e-caa1-434d-beb0-69d861af7c77",
+      "name": "voyager-info",
+      "description": {
+        "content": "APIs for getting information about Voyager migrations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "41c2a1b5-5403-4da8-b4fa-30c520840f1e",
+          "name": "Get the list of Voyager migrations",
+          "request": {
+            "name": "Get the list of Voyager migrations",
+            "description": {
+              "content": "Get the list of Voyager migrations",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "migrations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "uuid",
+                  "value": "<uuid>",
+                  "description": "uuid of the voyager migration task"
+                },
+                {
+                  "disabled": false,
+                  "key": "migration_phase",
+                  "value": "<long>",
+                  "description": "specify the migration phase for which details are required"
+                }
+              ],
+              "variable": [
+                {
+                  "description": " (This can only be one of http,https)",
+                  "type": "any",
+                  "value": "{{protocol}}",
+                  "key": "protocol"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{host_port}}",
+                  "key": "host_port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e2f547a8-e980-4fb2-bfcd-ef215e738cd6",
+              "name": "List of the Voyager migrations",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "migrations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "uuid",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "migration_phase",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": " (This can only be one of http,https)",
+                      "type": "any",
+                      "value": "{{protocol}}",
+                      "key": "protocol"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{host_port}}",
+                      "key": "host_port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"migrations\": [\n    {\n      \"complexity\": \"complexity\",\n      \"migration_type\": \"migration_type\",\n      \"migration_uuid\": \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\",\n      \"start_timestamp\": \"start_timestamp\",\n      \"source_db\": {\n        \"schema\": \"schema\",\n        \"database\": \"database\",\n        \"port\": \"port\",\n        \"engine\": \"engine\",\n        \"ip\": \"ip\",\n        \"version\": \"version\"\n      },\n      \"target_cluster\": {\n        \"port\": \"port\",\n        \"engine\": \"engine\",\n        \"ip\": \"ip\",\n        \"version\": \"version\"\n      },\n      \"voyager\": {\n        \"os\": \"os\",\n        \"avail_disk_bytes\": \"avail_disk_bytes\",\n        \"machine_ip\": \"machine_ip\",\n        \"exported_schema_location\": \"exported_schema_location\",\n        \"export_dir\": \"export_dir\"\n      },\n      \"migration_phase\": 0,\n      \"invocation_sequence\": 6,\n      \"progress\": \"progress\",\n      \"migration_name\": \"migration_name\",\n      \"invocation_timestamp\": \"invocation_timestamp\",\n      \"status\": \"status\"\n    },\n    {\n      \"complexity\": \"complexity\",\n      \"migration_type\": \"migration_type\",\n      \"migration_uuid\": \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\",\n      \"start_timestamp\": \"start_timestamp\",\n      \"source_db\": {\n        \"schema\": \"schema\",\n        \"database\": \"database\",\n        \"port\": \"port\",\n        \"engine\": \"engine\",\n        \"ip\": \"ip\",\n        \"version\": \"version\"\n      },\n      \"target_cluster\": {\n        \"port\": \"port\",\n        \"engine\": \"engine\",\n        \"ip\": \"ip\",\n        \"version\": \"version\"\n      },\n      \"voyager\": {\n        \"os\": \"os\",\n        \"avail_disk_bytes\": \"avail_disk_bytes\",\n        \"machine_ip\": \"machine_ip\",\n        \"exported_schema_location\": \"exported_schema_location\",\n        \"export_dir\": \"export_dir\"\n      },\n      \"migration_phase\": 0,\n      \"invocation_sequence\": 6,\n      \"progress\": \"progress\",\n      \"migration_name\": \"migration_name\",\n      \"invocation_timestamp\": \"invocation_timestamp\",\n      \"status\": \"status\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ce51a304-0ebb-4258-bd97-74789be02a34",
+              "name": "API Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "migrations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "uuid",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "migration_phase",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": " (This can only be one of http,https)",
+                      "type": "any",
+                      "value": "{{protocol}}",
+                      "key": "protocol"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{host_port}}",
+                      "key": "host_port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"detail\": \"string\",\n    \"status\": 7192\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ec415a4d-3fdc-4fb4-ab1f-1e436562b65a",
+              "name": "API Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "migrations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "uuid",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "migration_phase",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": " (This can only be one of http,https)",
+                      "type": "any",
+                      "value": "{{protocol}}",
+                      "key": "protocol"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{host_port}}",
+                      "key": "host_port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"detail\": \"string\",\n    \"status\": 7192\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "661be7bd-88ae-48b8-b6fa-cf0defe9fec0",
+          "name": "Get Voyager data migration metrics",
+          "request": {
+            "name": "Get Voyager data migration metrics",
+            "description": {
+              "content": "Get Voyager data migration metrics",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "migration_assesment"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "uuid",
+                  "value": "<uuid>",
+                  "description": "(Required) uuid of the voyager migration task"
+                }
+              ],
+              "variable": [
+                {
+                  "description": " (This can only be one of http,https)",
+                  "type": "any",
+                  "value": "{{protocol}}",
+                  "key": "protocol"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{host_port}}",
+                  "key": "host_port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "034518a9-345d-4f8d-a966-550f49c8e145",
+              "name": "Response for Plan and Asses page",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "migration_assesment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "uuid",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": " (This can only be one of http,https)",
+                      "type": "any",
+                      "value": "{{protocol}}",
+                      "key": "protocol"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{host_port}}",
+                      "key": "host_port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"complexity_overview\": [\n      {\n        \"schema\": \"schema\",\n        \"table_count\": 6,\n        \"complexity\": \"complexity\",\n        \"sql_objects_count\": 0\n      },\n      {\n        \"schema\": \"schema\",\n        \"table_count\": 6,\n        \"complexity\": \"complexity\",\n        \"sql_objects_count\": 0\n      }\n    ],\n    \"assesment_status\": true,\n    \"top_errors\": [\n      \"top_errors\",\n      \"top_errors\"\n    ],\n    \"operating_system\": \"operating_system\",\n    \"top_suggestions\": [\n      \"top_suggestions\",\n      \"top_suggestions\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8d45b0da-8bbe-46d5-a5a7-3588fa4616da",
+              "name": "API Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "migration_assesment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "uuid",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": " (This can only be one of http,https)",
+                      "type": "any",
+                      "value": "{{protocol}}",
+                      "key": "protocol"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{host_port}}",
+                      "key": "host_port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"detail\": \"string\",\n    \"status\": 7192\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cdc3fa9a-831f-4d98-b76d-20ce9e4bbc37",
+              "name": "API Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "migration_assesment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "uuid",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": " (This can only be one of http,https)",
+                      "type": "any",
+                      "value": "{{protocol}}",
+                      "key": "protocol"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{host_port}}",
+                      "key": "host_port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"detail\": \"string\",\n    \"status\": 7192\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c4f7bdcc-7468-4a52-8463-4b471ba2d538",
+          "name": "Get Voyager data migration metrics",
+          "request": {
+            "name": "Get Voyager data migration metrics",
+            "description": {
+              "content": "Get Voyager data migration metrics",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "migrate_schema"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "uuid",
+                  "value": "<uuid>",
+                  "description": "(Required) uuid of the voyager migration task"
+                }
+              ],
+              "variable": [
+                {
+                  "description": " (This can only be one of http,https)",
+                  "type": "any",
+                  "value": "{{protocol}}",
+                  "key": "protocol"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{host_port}}",
+                  "key": "host_port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "14719f7f-1ab2-41e5-be53-27e54e023830",
+              "name": "Response for individual migration task",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "migrate_schema"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "uuid",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": " (This can only be one of http,https)",
+                      "type": "any",
+                      "value": "{{protocol}}",
+                      "key": "protocol"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{host_port}}",
+                      "key": "host_port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"import_schema\": \"import_schema\",\n    \"suggestions_errors\": [\n      {\n        \"issueType\": \"issueType\",\n        \"reason\": \"reason\",\n        \"GH\": \"GH\",\n        \"sqlStatement\": \"sqlStatement\",\n        \"filePath\": \"filePath\",\n        \"suggestion\": \"suggestion\",\n        \"objectName\": \"objectName\",\n        \"objectType\": \"objectType\"\n      },\n      {\n        \"issueType\": \"issueType\",\n        \"reason\": \"reason\",\n        \"GH\": \"GH\",\n        \"sqlStatement\": \"sqlStatement\",\n        \"filePath\": \"filePath\",\n        \"suggestion\": \"suggestion\",\n        \"objectName\": \"objectName\",\n        \"objectType\": \"objectType\"\n      }\n    ],\n    \"migration_uuid\": \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\",\n    \"overall_status\": \"overall_status\",\n    \"analyze_schema\": \"analyze_schema\",\n    \"sql_objects\": [\n      {\n        \"invalidCount\": 2,\n        \"totalCount\": 5,\n        \"objectNames\": \"objectNames\",\n        \"objectDetails\": \"objectDetails\",\n        \"objectType\": \"objectType\"\n      },\n      {\n        \"invalidCount\": 2,\n        \"totalCount\": 5,\n        \"objectNames\": \"objectNames\",\n        \"objectDetails\": \"objectDetails\",\n        \"objectType\": \"objectType\"\n      }\n    ],\n    \"export_schema\": \"export_schema\",\n    \"analysis_history\": [\n      {\n        \"unsupported_features\": [\n          {\n            \"suggestions_errors\": [\n              {\n                \"issueType\": \"issueType\",\n                \"reason\": \"reason\",\n                \"GH\": \"GH\",\n                \"sqlStatement\": \"sqlStatement\",\n                \"filePath\": \"filePath\",\n                \"suggestion\": \"suggestion\",\n                \"objectName\": \"objectName\",\n                \"objectType\": \"objectType\"\n              },\n              {\n                \"issueType\": \"issueType\",\n                \"reason\": \"reason\",\n                \"GH\": \"GH\",\n                \"sqlStatement\": \"sqlStatement\",\n                \"filePath\": \"filePath\",\n                \"suggestion\": \"suggestion\",\n                \"objectName\": \"objectName\",\n                \"objectType\": \"objectType\"\n              }\n            ],\n            \"unsupported_type\": \"unsupported_type\",\n            \"count\": 0\n          },\n          {\n            \"suggestions_errors\": [\n              {\n                \"issueType\": \"issueType\",\n                \"reason\": \"reason\",\n                \"GH\": \"GH\",\n                \"sqlStatement\": \"sqlStatement\",\n                \"filePath\": \"filePath\",\n                \"suggestion\": \"suggestion\",\n                \"objectName\": \"objectName\",\n                \"objectType\": \"objectType\"\n              },\n              {\n                \"issueType\": \"issueType\",\n                \"reason\": \"reason\",\n                \"GH\": \"GH\",\n                \"sqlStatement\": \"sqlStatement\",\n                \"filePath\": \"filePath\",\n                \"suggestion\": \"suggestion\",\n                \"objectName\": \"objectName\",\n                \"objectType\": \"objectType\"\n              }\n            ],\n            \"unsupported_type\": \"unsupported_type\",\n            \"count\": 0\n          }\n        ],\n        \"recommended_refactoring\": {\n          \"refactor_details\": [\n            {\n              \"sql_object_type\": \"sql_object_type\",\n              \"invalid\": 5,\n              \"automatic\": 1,\n              \"manual\": 6\n            },\n            {\n              \"sql_object_type\": \"sql_object_type\",\n              \"invalid\": 5,\n              \"automatic\": 1,\n              \"manual\": 6\n            }\n          ]\n        },\n        \"unsupported_datatypes\": [\n          {\n            \"suggestions_errors\": [\n              {\n                \"issueType\": \"issueType\",\n                \"reason\": \"reason\",\n                \"GH\": \"GH\",\n                \"sqlStatement\": \"sqlStatement\",\n                \"filePath\": \"filePath\",\n                \"suggestion\": \"suggestion\",\n                \"objectName\": \"objectName\",\n                \"objectType\": \"objectType\"\n              },\n              {\n                \"issueType\": \"issueType\",\n                \"reason\": \"reason\",\n                \"GH\": \"GH\",\n                \"sqlStatement\": \"sqlStatement\",\n                \"filePath\": \"filePath\",\n                \"suggestion\": \"suggestion\",\n                \"objectName\": \"objectName\",\n                \"objectType\": \"objectType\"\n              }\n            ],\n            \"unsupported_type\": \"unsupported_type\",\n            \"count\": 0\n          },\n          {\n            \"suggestions_errors\": [\n              {\n                \"issueType\": \"issueType\",\n                \"reason\": \"reason\",\n                \"GH\": \"GH\",\n                \"sqlStatement\": \"sqlStatement\",\n                \"filePath\": \"filePath\",\n                \"suggestion\": \"suggestion\",\n                \"objectName\": \"objectName\",\n                \"objectType\": \"objectType\"\n              },\n              {\n                \"issueType\": \"issueType\",\n                \"reason\": \"reason\",\n                \"GH\": \"GH\",\n                \"sqlStatement\": \"sqlStatement\",\n                \"filePath\": \"filePath\",\n                \"suggestion\": \"suggestion\",\n                \"objectName\": \"objectName\",\n                \"objectType\": \"objectType\"\n              }\n            ],\n            \"unsupported_type\": \"unsupported_type\",\n            \"count\": 0\n          }\n        ],\n        \"unsupported_functions\": [\n          {\n            \"suggestions_errors\": [\n              {\n                \"issueType\": \"issueType\",\n                \"reason\": \"reason\",\n                \"GH\": \"GH\",\n                \"sqlStatement\": \"sqlStatement\",\n                \"filePath\": \"filePath\",\n                \"suggestion\": \"suggestion\",\n                \"objectName\": \"objectName\",\n                \"objectType\": \"objectType\"\n              },\n              {\n                \"issueType\": \"issueType\",\n                \"reason\": \"reason\",\n                \"GH\": \"GH\",\n                \"sqlStatement\": \"sqlStatement\",\n                \"filePath\": \"filePath\",\n                \"suggestion\": \"suggestion\",\n                \"objectName\": \"objectName\",\n                \"objectType\": \"objectType\"\n              }\n            ],\n            \"unsupported_type\": \"unsupported_type\",\n            \"count\": 0\n          },\n          {\n            \"suggestions_errors\": [\n              {\n                \"issueType\": \"issueType\",\n                \"reason\": \"reason\",\n                \"GH\": \"GH\",\n                \"sqlStatement\": \"sqlStatement\",\n                \"filePath\": \"filePath\",\n                \"suggestion\": \"suggestion\",\n                \"objectName\": \"objectName\",\n                \"objectType\": \"objectType\"\n              },\n              {\n                \"issueType\": \"issueType\",\n                \"reason\": \"reason\",\n                \"GH\": \"GH\",\n                \"sqlStatement\": \"sqlStatement\",\n                \"filePath\": \"filePath\",\n                \"suggestion\": \"suggestion\",\n                \"objectName\": \"objectName\",\n                \"objectType\": \"objectType\"\n              }\n            ],\n            \"unsupported_type\": \"unsupported_type\",\n            \"count\": 0\n          }\n        ]\n      },\n      {\n        \"unsupported_features\": [\n          {\n            \"suggestions_errors\": [\n              {\n                \"issueType\": \"issueType\",\n                \"reason\": \"reason\",\n                \"GH\": \"GH\",\n                \"sqlStatement\": \"sqlStatement\",\n                \"filePath\": \"filePath\",\n                \"suggestion\": \"suggestion\",\n                \"objectName\": \"objectName\",\n                \"objectType\": \"objectType\"\n              },\n              {\n                \"issueType\": \"issueType\",\n                \"reason\": \"reason\",\n                \"GH\": \"GH\",\n                \"sqlStatement\": \"sqlStatement\",\n                \"filePath\": \"filePath\",\n                \"suggestion\": \"suggestion\",\n                \"objectName\": \"objectName\",\n                \"objectType\": \"objectType\"\n              }\n            ],\n            \"unsupported_type\": \"unsupported_type\",\n            \"count\": 0\n          },\n          {\n            \"suggestions_errors\": [\n              {\n                \"issueType\": \"issueType\",\n                \"reason\": \"reason\",\n                \"GH\": \"GH\",\n                \"sqlStatement\": \"sqlStatement\",\n                \"filePath\": \"filePath\",\n                \"suggestion\": \"suggestion\",\n                \"objectName\": \"objectName\",\n                \"objectType\": \"objectType\"\n              },\n              {\n                \"issueType\": \"issueType\",\n                \"reason\": \"reason\",\n                \"GH\": \"GH\",\n                \"sqlStatement\": \"sqlStatement\",\n                \"filePath\": \"filePath\",\n                \"suggestion\": \"suggestion\",\n                \"objectName\": \"objectName\",\n                \"objectType\": \"objectType\"\n              }\n            ],\n            \"unsupported_type\": \"unsupported_type\",\n            \"count\": 0\n          }\n        ],\n        \"recommended_refactoring\": {\n          \"refactor_details\": [\n            {\n              \"sql_object_type\": \"sql_object_type\",\n              \"invalid\": 5,\n              \"automatic\": 1,\n              \"manual\": 6\n            },\n            {\n              \"sql_object_type\": \"sql_object_type\",\n              \"invalid\": 5,\n              \"automatic\": 1,\n              \"manual\": 6\n            }\n          ]\n        },\n        \"unsupported_datatypes\": [\n          {\n            \"suggestions_errors\": [\n              {\n                \"issueType\": \"issueType\",\n                \"reason\": \"reason\",\n                \"GH\": \"GH\",\n                \"sqlStatement\": \"sqlStatement\",\n                \"filePath\": \"filePath\",\n                \"suggestion\": \"suggestion\",\n                \"objectName\": \"objectName\",\n                \"objectType\": \"objectType\"\n              },\n              {\n                \"issueType\": \"issueType\",\n                \"reason\": \"reason\",\n                \"GH\": \"GH\",\n                \"sqlStatement\": \"sqlStatement\",\n                \"filePath\": \"filePath\",\n                \"suggestion\": \"suggestion\",\n                \"objectName\": \"objectName\",\n                \"objectType\": \"objectType\"\n              }\n            ],\n            \"unsupported_type\": \"unsupported_type\",\n            \"count\": 0\n          },\n          {\n            \"suggestions_errors\": [\n              {\n                \"issueType\": \"issueType\",\n                \"reason\": \"reason\",\n                \"GH\": \"GH\",\n                \"sqlStatement\": \"sqlStatement\",\n                \"filePath\": \"filePath\",\n                \"suggestion\": \"suggestion\",\n                \"objectName\": \"objectName\",\n                \"objectType\": \"objectType\"\n              },\n              {\n                \"issueType\": \"issueType\",\n                \"reason\": \"reason\",\n                \"GH\": \"GH\",\n                \"sqlStatement\": \"sqlStatement\",\n                \"filePath\": \"filePath\",\n                \"suggestion\": \"suggestion\",\n                \"objectName\": \"objectName\",\n                \"objectType\": \"objectType\"\n              }\n            ],\n            \"unsupported_type\": \"unsupported_type\",\n            \"count\": 0\n          }\n        ],\n        \"unsupported_functions\": [\n          {\n            \"suggestions_errors\": [\n              {\n                \"issueType\": \"issueType\",\n                \"reason\": \"reason\",\n                \"GH\": \"GH\",\n                \"sqlStatement\": \"sqlStatement\",\n                \"filePath\": \"filePath\",\n                \"suggestion\": \"suggestion\",\n                \"objectName\": \"objectName\",\n                \"objectType\": \"objectType\"\n              },\n              {\n                \"issueType\": \"issueType\",\n                \"reason\": \"reason\",\n                \"GH\": \"GH\",\n                \"sqlStatement\": \"sqlStatement\",\n                \"filePath\": \"filePath\",\n                \"suggestion\": \"suggestion\",\n                \"objectName\": \"objectName\",\n                \"objectType\": \"objectType\"\n              }\n            ],\n            \"unsupported_type\": \"unsupported_type\",\n            \"count\": 0\n          },\n          {\n            \"suggestions_errors\": [\n              {\n                \"issueType\": \"issueType\",\n                \"reason\": \"reason\",\n                \"GH\": \"GH\",\n                \"sqlStatement\": \"sqlStatement\",\n                \"filePath\": \"filePath\",\n                \"suggestion\": \"suggestion\",\n                \"objectName\": \"objectName\",\n                \"objectType\": \"objectType\"\n              },\n              {\n                \"issueType\": \"issueType\",\n                \"reason\": \"reason\",\n                \"GH\": \"GH\",\n                \"sqlStatement\": \"sqlStatement\",\n                \"filePath\": \"filePath\",\n                \"suggestion\": \"suggestion\",\n                \"objectName\": \"objectName\",\n                \"objectType\": \"objectType\"\n              }\n            ],\n            \"unsupported_type\": \"unsupported_type\",\n            \"count\": 0\n          }\n        ]\n      }\n    ],\n    \"current_analysis_report\": {\n      \"unsupported_features\": [\n        {\n          \"suggestions_errors\": [\n            {\n              \"issueType\": \"issueType\",\n              \"reason\": \"reason\",\n              \"GH\": \"GH\",\n              \"sqlStatement\": \"sqlStatement\",\n              \"filePath\": \"filePath\",\n              \"suggestion\": \"suggestion\",\n              \"objectName\": \"objectName\",\n              \"objectType\": \"objectType\"\n            },\n            {\n              \"issueType\": \"issueType\",\n              \"reason\": \"reason\",\n              \"GH\": \"GH\",\n              \"sqlStatement\": \"sqlStatement\",\n              \"filePath\": \"filePath\",\n              \"suggestion\": \"suggestion\",\n              \"objectName\": \"objectName\",\n              \"objectType\": \"objectType\"\n            }\n          ],\n          \"unsupported_type\": \"unsupported_type\",\n          \"count\": 0\n        },\n        {\n          \"suggestions_errors\": [\n            {\n              \"issueType\": \"issueType\",\n              \"reason\": \"reason\",\n              \"GH\": \"GH\",\n              \"sqlStatement\": \"sqlStatement\",\n              \"filePath\": \"filePath\",\n              \"suggestion\": \"suggestion\",\n              \"objectName\": \"objectName\",\n              \"objectType\": \"objectType\"\n            },\n            {\n              \"issueType\": \"issueType\",\n              \"reason\": \"reason\",\n              \"GH\": \"GH\",\n              \"sqlStatement\": \"sqlStatement\",\n              \"filePath\": \"filePath\",\n              \"suggestion\": \"suggestion\",\n              \"objectName\": \"objectName\",\n              \"objectType\": \"objectType\"\n            }\n          ],\n          \"unsupported_type\": \"unsupported_type\",\n          \"count\": 0\n        }\n      ],\n      \"recommended_refactoring\": {\n        \"refactor_details\": [\n          {\n            \"sql_object_type\": \"sql_object_type\",\n            \"invalid\": 5,\n            \"automatic\": 1,\n            \"manual\": 6\n          },\n          {\n            \"sql_object_type\": \"sql_object_type\",\n            \"invalid\": 5,\n            \"automatic\": 1,\n            \"manual\": 6\n          }\n        ]\n      },\n      \"unsupported_datatypes\": [\n        {\n          \"suggestions_errors\": [\n            {\n              \"issueType\": \"issueType\",\n              \"reason\": \"reason\",\n              \"GH\": \"GH\",\n              \"sqlStatement\": \"sqlStatement\",\n              \"filePath\": \"filePath\",\n              \"suggestion\": \"suggestion\",\n              \"objectName\": \"objectName\",\n              \"objectType\": \"objectType\"\n            },\n            {\n              \"issueType\": \"issueType\",\n              \"reason\": \"reason\",\n              \"GH\": \"GH\",\n              \"sqlStatement\": \"sqlStatement\",\n              \"filePath\": \"filePath\",\n              \"suggestion\": \"suggestion\",\n              \"objectName\": \"objectName\",\n              \"objectType\": \"objectType\"\n            }\n          ],\n          \"unsupported_type\": \"unsupported_type\",\n          \"count\": 0\n        },\n        {\n          \"suggestions_errors\": [\n            {\n              \"issueType\": \"issueType\",\n              \"reason\": \"reason\",\n              \"GH\": \"GH\",\n              \"sqlStatement\": \"sqlStatement\",\n              \"filePath\": \"filePath\",\n              \"suggestion\": \"suggestion\",\n              \"objectName\": \"objectName\",\n              \"objectType\": \"objectType\"\n            },\n            {\n              \"issueType\": \"issueType\",\n              \"reason\": \"reason\",\n              \"GH\": \"GH\",\n              \"sqlStatement\": \"sqlStatement\",\n              \"filePath\": \"filePath\",\n              \"suggestion\": \"suggestion\",\n              \"objectName\": \"objectName\",\n              \"objectType\": \"objectType\"\n            }\n          ],\n          \"unsupported_type\": \"unsupported_type\",\n          \"count\": 0\n        }\n      ],\n      \"unsupported_functions\": [\n        {\n          \"suggestions_errors\": [\n            {\n              \"issueType\": \"issueType\",\n              \"reason\": \"reason\",\n              \"GH\": \"GH\",\n              \"sqlStatement\": \"sqlStatement\",\n              \"filePath\": \"filePath\",\n              \"suggestion\": \"suggestion\",\n              \"objectName\": \"objectName\",\n              \"objectType\": \"objectType\"\n            },\n            {\n              \"issueType\": \"issueType\",\n              \"reason\": \"reason\",\n              \"GH\": \"GH\",\n              \"sqlStatement\": \"sqlStatement\",\n              \"filePath\": \"filePath\",\n              \"suggestion\": \"suggestion\",\n              \"objectName\": \"objectName\",\n              \"objectType\": \"objectType\"\n            }\n          ],\n          \"unsupported_type\": \"unsupported_type\",\n          \"count\": 0\n        },\n        {\n          \"suggestions_errors\": [\n            {\n              \"issueType\": \"issueType\",\n              \"reason\": \"reason\",\n              \"GH\": \"GH\",\n              \"sqlStatement\": \"sqlStatement\",\n              \"filePath\": \"filePath\",\n              \"suggestion\": \"suggestion\",\n              \"objectName\": \"objectName\",\n              \"objectType\": \"objectType\"\n            },\n            {\n              \"issueType\": \"issueType\",\n              \"reason\": \"reason\",\n              \"GH\": \"GH\",\n              \"sqlStatement\": \"sqlStatement\",\n              \"filePath\": \"filePath\",\n              \"suggestion\": \"suggestion\",\n              \"objectName\": \"objectName\",\n              \"objectType\": \"objectType\"\n            }\n          ],\n          \"unsupported_type\": \"unsupported_type\",\n          \"count\": 0\n        }\n      ]\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cb04e738-1036-4dca-859b-06adb2b0eabd",
+              "name": "API Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "migrate_schema"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "uuid",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": " (This can only be one of http,https)",
+                      "type": "any",
+                      "value": "{{protocol}}",
+                      "key": "protocol"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{host_port}}",
+                      "key": "host_port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"detail\": \"string\",\n    \"status\": 7192\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6470a36b-30fd-42a4-a7fa-6dfff216b174",
+              "name": "API Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "migrate_schema"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "uuid",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": " (This can only be one of http,https)",
+                      "type": "any",
+                      "value": "{{protocol}}",
+                      "key": "protocol"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{host_port}}",
+                      "key": "host_port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"detail\": \"string\",\n    \"status\": 7192\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5c13c807-8e7b-4aa4-b5c0-4706acf776e5",
+          "name": "Get the Database assessment details",
+          "request": {
+            "name": "Get the Database assessment details",
+            "description": {
+              "content": "Get the Database assessment details",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "migration_assessment_v2"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "uuid",
+                  "value": "<uuid>",
+                  "description": "(Required) uuid of the voyager migration task"
+                }
+              ],
+              "variable": [
+                {
+                  "description": " (This can only be one of http,https)",
+                  "type": "any",
+                  "value": "{{protocol}}",
+                  "key": "protocol"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{host_port}}",
+                  "key": "host_port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fd8ee0b5-077e-4435-b6eb-5b27a11edd1a",
+              "name": "Response for migration assessment page",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "migration_assessment_v2"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "uuid",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": " (This can only be one of http,https)",
+                      "type": "any",
+                      "value": "{{protocol}}",
+                      "key": "protocol"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{host_port}}",
+                      "key": "host_port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"summary\": {\n      \"summary\": \"summary\",\n      \"estimated_migration_time\": \"estimated_migration_time\",\n      \"migration_complexity\": \"migration_complexity\"\n    },\n    \"target_recommendations\": {\n      \"target_cluster_recommendation\": {\n        \"memory_per_node\": 7,\n        \"inserts_per_node\": 3,\n        \"vcpu_per_node\": 2,\n        \"connections_per_node\": 9,\n        \"num_nodes\": 5\n      },\n      \"target_schema_recommendation\": {\n        \"no_of_colocated_tables\": 2,\n        \"total_size_colocated_tables\": 4,\n        \"total_size_sharded_tables\": 1,\n        \"no_of_sharded_tables\": 7\n      },\n      \"recommendation_summary\": \"recommendation_summary\"\n    },\n    \"unsupported_features\": [\n      {\n        \"unsupported_type\": \"unsupported_type\",\n        \"objects\": [\n          {\n            \"object_name\": \"object_name\",\n            \"sql_statement\": \"sql_statement\"\n          },\n          {\n            \"object_name\": \"object_name\",\n            \"sql_statement\": \"sql_statement\"\n          }\n        ],\n        \"count\": 1,\n        \"docs_link\": \"docs_link\"\n      },\n      {\n        \"unsupported_type\": \"unsupported_type\",\n        \"objects\": [\n          {\n            \"object_name\": \"object_name\",\n            \"sql_statement\": \"sql_statement\"\n          },\n          {\n            \"object_name\": \"object_name\",\n            \"sql_statement\": \"sql_statement\"\n          }\n        ],\n        \"count\": 1,\n        \"docs_link\": \"docs_link\"\n      }\n    ],\n    \"recommended_refactoring\": {\n      \"refactor_details\": [\n        {\n          \"sql_object_type\": \"sql_object_type\",\n          \"invalid\": 5,\n          \"automatic\": 1,\n          \"manual\": 6\n        },\n        {\n          \"sql_object_type\": \"sql_object_type\",\n          \"invalid\": 5,\n          \"automatic\": 1,\n          \"manual\": 6\n        }\n      ]\n    },\n    \"assessment_status\": true,\n    \"source_environment\": {\n      \"total_memory\": \"total_memory\",\n      \"total_disk_size\": \"total_disk_size\",\n      \"no_of_connections\": \"no_of_connections\",\n      \"total_vcpu\": \"total_vcpu\"\n    },\n    \"unsupported_functions\": [\n      {\n        \"unsupported_type\": \"unsupported_type\",\n        \"objects\": [\n          {\n            \"object_name\": \"object_name\",\n            \"sql_statement\": \"sql_statement\"\n          },\n          {\n            \"object_name\": \"object_name\",\n            \"sql_statement\": \"sql_statement\"\n          }\n        ],\n        \"count\": 1,\n        \"docs_link\": \"docs_link\"\n      },\n      {\n        \"unsupported_type\": \"unsupported_type\",\n        \"objects\": [\n          {\n            \"object_name\": \"object_name\",\n            \"sql_statement\": \"sql_statement\"\n          },\n          {\n            \"object_name\": \"object_name\",\n            \"sql_statement\": \"sql_statement\"\n          }\n        ],\n        \"count\": 1,\n        \"docs_link\": \"docs_link\"\n      }\n    ],\n    \"source_database\": {\n      \"table_size\": 0,\n      \"total_index_size\": 5,\n      \"table_row_count\": 6,\n      \"total_table_size\": 1\n    },\n    \"unsupported_data_types\": [\n      {\n        \"unsupported_type\": \"unsupported_type\",\n        \"objects\": [\n          {\n            \"object_name\": \"object_name\",\n            \"sql_statement\": \"sql_statement\"\n          },\n          {\n            \"object_name\": \"object_name\",\n            \"sql_statement\": \"sql_statement\"\n          }\n        ],\n        \"count\": 1,\n        \"docs_link\": \"docs_link\"\n      },\n      {\n        \"unsupported_type\": \"unsupported_type\",\n        \"objects\": [\n          {\n            \"object_name\": \"object_name\",\n            \"sql_statement\": \"sql_statement\"\n          },\n          {\n            \"object_name\": \"object_name\",\n            \"sql_statement\": \"sql_statement\"\n          }\n        ],\n        \"count\": 1,\n        \"docs_link\": \"docs_link\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b8e1d21a-ca88-4c27-8666-82d5615f12da",
+              "name": "API Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "migration_assessment_v2"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "uuid",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": " (This can only be one of http,https)",
+                      "type": "any",
+                      "value": "{{protocol}}",
+                      "key": "protocol"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{host_port}}",
+                      "key": "host_port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"detail\": \"string\",\n    \"status\": 7192\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "65d40ef9-e662-4183-af6e-bb40fd7fca13",
+              "name": "API Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "migration_assessment_v2"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "uuid",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": " (This can only be one of http,https)",
+                      "type": "any",
+                      "value": "{{protocol}}",
+                      "key": "protocol"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{host_port}}",
+                      "key": "host_port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"detail\": \"string\",\n    \"status\": 7192\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5d2b8e47-7e0b-45a0-9e67-d4b3af9804ad",
+          "name": "Get the Source Database SQL object details",
+          "request": {
+            "name": "Get the Source Database SQL object details",
+            "description": {
+              "content": "Get the Source Database SQL object details",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assessment_source_db_details"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "uuid",
+                  "value": "<uuid>",
+                  "description": "(Required) uuid of the voyager migration task"
+                }
+              ],
+              "variable": [
+                {
+                  "description": " (This can only be one of http,https)",
+                  "type": "any",
+                  "value": "{{protocol}}",
+                  "key": "protocol"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{host_port}}",
+                  "key": "host_port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "13599636-f8de-4e58-ab24-8a663ecb3e53",
+              "name": "Response for migration assessment source db metadata page",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assessment_source_db_details"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "uuid",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": " (This can only be one of http,https)",
+                      "type": "any",
+                      "value": "{{protocol}}",
+                      "key": "protocol"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{host_port}}",
+                      "key": "host_port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"sql_objects_metadata\": [\n      {\n        \"size\": 1,\n        \"object_name\": \"object_name\",\n        \"sql_type\": \"sql_type\",\n        \"iops\": 5,\n        \"row_count\": 6\n      },\n      {\n        \"size\": 1,\n        \"object_name\": \"object_name\",\n        \"sql_type\": \"sql_type\",\n        \"iops\": 5,\n        \"row_count\": 6\n      }\n    ],\n    \"sql_objects_count\": [\n      {\n        \"sql_type\": \"sql_type\",\n        \"count\": 0\n      },\n      {\n        \"sql_type\": \"sql_type\",\n        \"count\": 0\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b987d372-287d-410f-b04c-c525113a479b",
+              "name": "API Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assessment_source_db_details"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "uuid",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": " (This can only be one of http,https)",
+                      "type": "any",
+                      "value": "{{protocol}}",
+                      "key": "protocol"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{host_port}}",
+                      "key": "host_port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"detail\": \"string\",\n    \"status\": 7192\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6e89af5c-8b98-4861-bf34-1dcce7cd4c8a",
+              "name": "API Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assessment_source_db_details"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "uuid",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": " (This can only be one of http,https)",
+                      "type": "any",
+                      "value": "{{protocol}}",
+                      "key": "protocol"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{host_port}}",
+                      "key": "host_port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"detail\": \"string\",\n    \"status\": 7192\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "35300722-f4c3-4d25-8788-61450b535092",
+          "name": "Get the Target Database recommendation details",
+          "request": {
+            "name": "Get the Target Database recommendation details",
+            "description": {
+              "content": "Get the Target Database recommendation details",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assessment_target_recommendation_details"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "uuid",
+                  "value": "<uuid>",
+                  "description": "(Required) uuid of the voyager migration task"
+                }
+              ],
+              "variable": [
+                {
+                  "description": " (This can only be one of http,https)",
+                  "type": "any",
+                  "value": "{{protocol}}",
+                  "key": "protocol"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{host_port}}",
+                  "key": "host_port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b75200ab-3719-486d-acf1-693a10797f8a",
+              "name": "Response for migration assessment target recommendation page",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assessment_target_recommendation_details"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "uuid",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": " (This can only be one of http,https)",
+                      "type": "any",
+                      "value": "{{protocol}}",
+                      "key": "protocol"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{host_port}}",
+                      "key": "host_port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"recommendation_details\": [\n      {\n        \"schema_recommendation\": \"schema_recommendation\",\n        \"disk_size\": 5,\n        \"table_name\": \"table_name\"\n      },\n      {\n        \"schema_recommendation\": \"schema_recommendation\",\n        \"disk_size\": 5,\n        \"table_name\": \"table_name\"\n      }\n    ],\n    \"num_of_sharded_table\": 1,\n    \"total_size_colocated_tables\": 6,\n    \"total_size_sharded_tables\": 5,\n    \"num_of_colocated_tables\": 0\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "01222195-8a12-4e64-888c-416a2542a9e6",
+              "name": "API Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assessment_target_recommendation_details"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "uuid",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": " (This can only be one of http,https)",
+                      "type": "any",
+                      "value": "{{protocol}}",
+                      "key": "protocol"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{host_port}}",
+                      "key": "host_port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"detail\": \"string\",\n    \"status\": 7192\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f64e0594-3f57-4ffc-ae20-d8b5c304709e",
+              "name": "API Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assessment_target_recommendation_details"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "uuid",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": " (This can only be one of http,https)",
+                      "type": "any",
+                      "value": "{{protocol}}",
+                      "key": "protocol"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{host_port}}",
+                      "key": "host_port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"detail\": \"string\",\n    \"status\": 7192\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": " (This can only be one of http,https)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "http",
+      "key": "protocol"
+    },
+    {
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "localhost:1323",
+      "key": "host_port"
+    },
+    {
+      "type": "string",
+      "value": "{{protocol}}://{{host_port}}/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8c195388-44f1-45d0-9c2d-0eb44f2d5b66",
+    "name": "Yugabyte Cloud backup-info voyager-info API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "YugabyteDB as a Service\n\nContact Support:\n Name: Yugabyte Cloud Support\n Email: support@yugabyte.com",
+      "type": "text/plain"
+    }
+  }
+}

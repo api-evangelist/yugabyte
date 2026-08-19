@@ -1,0 +1,307 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Yugabyte Cloud backup-info cluster-info API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "cluster-info",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get the live queries in a cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{protocol}://{host_port}/api/live_queries",
+            "params": [
+              {
+                "name": "api",
+                "value": "",
+                "type": "query",
+                "description": "type of queries for which to retrieve Live Queries (YSQL or YCQL)"
+              }
+            ]
+          },
+          "docs": "Get the Live Queries in a Yugabyte Cluster"
+        },
+        {
+          "info": {
+            "name": "Get the slow queries in a cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{protocol}://{host_port}/api/slow_queries"
+          },
+          "docs": "Get the Slow Queries in a Yugabyte Cluster"
+        },
+        {
+          "info": {
+            "name": "Get the nodes for a cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{protocol}://{host_port}/api/nodes",
+            "params": [
+              {
+                "name": "get_all_masters",
+                "value": "",
+                "type": "query",
+                "description": "Whether to get master-only nodes that have no tserver"
+              }
+            ]
+          },
+          "docs": "Get nodes for a Yugabyte cluster"
+        },
+        {
+          "info": {
+            "name": "Get a metric for a cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{protocol}://{host_port}/api/metrics",
+            "params": [
+              {
+                "name": "metrics",
+                "value": "",
+                "type": "query",
+                "description": "Which metrics to retrieve results for"
+              },
+              {
+                "name": "node_name",
+                "value": "",
+                "type": "query",
+                "description": "Node name within the cluster"
+              },
+              {
+                "name": "region",
+                "value": "",
+                "type": "query",
+                "description": "Region name to filter for the given cluster"
+              },
+              {
+                "name": "zone",
+                "value": "",
+                "type": "query",
+                "description": "Zone to filter for the given cluster"
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "Start of range of time series data (in epoch seconds)"
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "End of range of time series data (in epoch seconds)"
+              },
+              {
+                "name": "cluster_type",
+                "value": "",
+                "type": "query",
+                "description": "Cluster type (primary or read replica)"
+              }
+            ]
+          },
+          "docs": "Get metrics for a Yugabyte cluster"
+        },
+        {
+          "info": {
+            "name": "Get a activities data for a cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{protocol}://{host_port}/api/activities",
+            "params": [
+              {
+                "name": "activities",
+                "value": "",
+                "type": "query",
+                "description": "Which activities data to retrieve"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Completed or In-Progress"
+              },
+              {
+                "name": "database",
+                "value": "",
+                "type": "query",
+                "description": "Which database's activities data is to be retrived."
+              }
+            ]
+          },
+          "docs": "Get activities data for a Yugabyte cluster"
+        },
+        {
+          "info": {
+            "name": "Get list of DB tables per YB API (YCQL/YSQL)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{protocol}://{host_port}/api/tables",
+            "params": [
+              {
+                "name": "api",
+                "value": "",
+                "type": "query",
+                "description": "Which DB API to get tables for (YCQL/YSQL)"
+              }
+            ]
+          },
+          "docs": "Get list of tables per YB API (YCQL/YSQL)"
+        },
+        {
+          "info": {
+            "name": "Get info on a single table, given table uuid",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{protocol}://{host_port}/api/table",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "UUID of the table"
+              },
+              {
+                "name": "node_address",
+                "value": "",
+                "type": "query",
+                "description": "Specify the node ip-address from where the table info is retrieved"
+              }
+            ]
+          },
+          "docs": "Get info on a single table, given table uuid"
+        },
+        {
+          "info": {
+            "name": "Get health information about the cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{protocol}://{host_port}/api/health-check"
+          },
+          "docs": "Get health information about the cluster"
+        },
+        {
+          "info": {
+            "name": "Get list of tablets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{protocol}://{host_port}/api/tablets"
+          },
+          "docs": "Get list of tablets"
+        },
+        {
+          "info": {
+            "name": "Get YugabyteDB version",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{protocol}://{host_port}/api/version"
+          },
+          "docs": "Get YugabyteDB version"
+        },
+        {
+          "info": {
+            "name": "Check if cluster load balancer is idle",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{protocol}://{host_port}/api/is_load_balancer_idle"
+          },
+          "docs": "Check if cluster load balancer is idle"
+        },
+        {
+          "info": {
+            "name": "Get gflags of master and tserver process",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{protocol}://{host_port}/api/gflags",
+            "params": [
+              {
+                "name": "node_address",
+                "value": "",
+                "type": "query",
+                "description": "Specify the node ip-address from where alerts are retrieved"
+              }
+            ]
+          },
+          "docs": "Retrieve gflags of master and tserver process"
+        },
+        {
+          "info": {
+            "name": "Get any alerts for the cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{protocol}://{host_port}/api/alerts",
+            "params": [
+              {
+                "name": "node_address",
+                "value": "",
+                "type": "query",
+                "description": "Specify the node ip-address from where gflags are retrieved"
+              }
+            ]
+          },
+          "docs": "Get any alerts for the cluster"
+        },
+        {
+          "info": {
+            "name": "Get YSQL connection manager stats for every node of the cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{protocol}://{host_port}/api/connections"
+          },
+          "docs": "Get YSQL connection manager stats for every node of the cluster"
+        },
+        {
+          "info": {
+            "name": "Get the node address for the current node",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{protocol}://{host_port}/api/node_address"
+          },
+          "docs": "Get the node address for the current node"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
