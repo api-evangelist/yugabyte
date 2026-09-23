@@ -1,4 +1,4 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   contact:
     email: support@yugabyte.com
@@ -9,7 +9,7 @@ info:
     name: Properietary (TBD)
     url: https://www.yugabyte.com/yugabyte-cloud-terms-of-service
   termsOfService: https://www.yugabyte.com/yugabyte-cloud-terms-of-service
-  title: Yugabyte Cloud backup-info Xcluster Metrics API
+  title: Yugabyte Cloud Xcluster Metrics API
   version: v1
 servers:
 - description: Endpoint of the API server
@@ -55,98 +55,6 @@ paths:
       - Xcluster Metrics
 components:
   schemas:
-    xClusterInboundGroup:
-      description: Schema for xCluster replication group details.
-      example:
-        target_universe_uuid: target_universe_uuid
-        target_cluster_node_ips:
-        - target_cluster_node_ips
-        - target_cluster_node_ips
-        source_universe_uuid: source_universe_uuid
-        replication_group_id: replication_group_id
-        state: state
-        source_cluster_node_ips:
-        - source_cluster_node_ips
-        - source_cluster_node_ips
-      properties:
-        replication_group_id:
-          description: Unique identifier for the replication group.
-          type: string
-        state:
-          description: The current status of the replication group.
-          type: string
-        target_cluster_node_ips:
-          description: List of target-side node IPs involved in replication.
-          items:
-            type: string
-          type: array
-          uniqueItems: true
-        source_cluster_node_ips:
-          description: List of source-side node IPs involved in replication.
-          items:
-            type: string
-          type: array
-          uniqueItems: true
-        source_universe_uuid:
-          description: UUID of the source universe for the replication group.
-          type: string
-        target_universe_uuid:
-          description: UUID of the target universe for the replication group.
-          type: string
-      required:
-      - current_cluster_ip_address
-      - namespace
-      - replication_group_id
-      - source_leader_host
-      - state
-      title: Get xCluster replication group ids list.
-      type: object
-    TableReplicationLagDetailsOutbound:
-      description: Schema for table details and namespace in replication.
-      example:
-        async_replication_sent_lag_micros: 0
-        async_replication_committed_lag_micros: 6
-        namespace: namespace
-        table_uuid: table_uuid
-        is_checkpointing: true
-        table_name: table_name
-        is_part_of_initial_bootstrap: true
-      properties:
-        namespace:
-          description: Namespace to which the current table belongs.
-          type: string
-        table_uuid:
-          description: Unique identifier for the table.
-          type: string
-        table_name:
-          description: Name of the table.
-          type: string
-        is_checkpointing:
-          description: Indicates whether the table is currently checkpointing.
-          type: boolean
-        is_part_of_initial_bootstrap:
-          description: Indicates whether the table is part of the initial bootstrap process.
-          type: boolean
-        async_replication_sent_lag_micros:
-          description: The lag time in microseconds for sent replication data.
-          format: int64
-          type: integer
-        async_replication_committed_lag_micros:
-          description: The lag time in microseconds for committed replication data.
-          format: int64
-          type: integer
-      required:
-      - async_replication_committed_lag_micros
-      - async_replication_sent_lag_micros
-      - is_checkpointing
-      - is_part_of_initial_bootstrap
-      - keyspace
-      - state
-      - stream_id
-      - table_name
-      - table_uuid
-      title: Table information for a namespace in the replication group and per table level lag time.
-      type: object
     xClusterOutboundGroup:
       description: Schema for xCluster replication group details.
       example:
@@ -205,12 +113,6 @@ components:
       - target_universe_uuid
       title: Get xCluster replication group ids list.
       type: object
-    ApiError:
-      properties:
-        error:
-          $ref: '#/components/schemas/ApiError_error'
-      title: API Error
-      type: object
     ApiError_error:
       properties:
         detail:
@@ -219,6 +121,98 @@ components:
         status:
           description: Error code
           type: integer
+      type: object
+    TableReplicationLagDetailsOutbound:
+      description: Schema for table details and namespace in replication.
+      example:
+        async_replication_sent_lag_micros: 0
+        async_replication_committed_lag_micros: 6
+        namespace: namespace
+        table_uuid: table_uuid
+        is_checkpointing: true
+        table_name: table_name
+        is_part_of_initial_bootstrap: true
+      properties:
+        namespace:
+          description: Namespace to which the current table belongs.
+          type: string
+        table_uuid:
+          description: Unique identifier for the table.
+          type: string
+        table_name:
+          description: Name of the table.
+          type: string
+        is_checkpointing:
+          description: Indicates whether the table is currently checkpointing.
+          type: boolean
+        is_part_of_initial_bootstrap:
+          description: Indicates whether the table is part of the initial bootstrap process.
+          type: boolean
+        async_replication_sent_lag_micros:
+          description: The lag time in microseconds for sent replication data.
+          format: int64
+          type: integer
+        async_replication_committed_lag_micros:
+          description: The lag time in microseconds for committed replication data.
+          format: int64
+          type: integer
+      required:
+      - async_replication_committed_lag_micros
+      - async_replication_sent_lag_micros
+      - is_checkpointing
+      - is_part_of_initial_bootstrap
+      - keyspace
+      - state
+      - stream_id
+      - table_name
+      - table_uuid
+      title: Table information for a namespace in the replication group and per table level lag time.
+      type: object
+    xClusterInboundGroup:
+      description: Schema for xCluster replication group details.
+      example:
+        target_universe_uuid: target_universe_uuid
+        target_cluster_node_ips:
+        - target_cluster_node_ips
+        - target_cluster_node_ips
+        source_universe_uuid: source_universe_uuid
+        replication_group_id: replication_group_id
+        state: state
+        source_cluster_node_ips:
+        - source_cluster_node_ips
+        - source_cluster_node_ips
+      properties:
+        replication_group_id:
+          description: Unique identifier for the replication group.
+          type: string
+        state:
+          description: The current status of the replication group.
+          type: string
+        target_cluster_node_ips:
+          description: List of target-side node IPs involved in replication.
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+        source_cluster_node_ips:
+          description: List of source-side node IPs involved in replication.
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+        source_universe_uuid:
+          description: UUID of the source universe for the replication group.
+          type: string
+        target_universe_uuid:
+          description: UUID of the target universe for the replication group.
+          type: string
+      required:
+      - current_cluster_ip_address
+      - namespace
+      - replication_group_id
+      - source_leader_host
+      - state
+      title: Get xCluster replication group ids list.
       type: object
     xCluster_Replication_Groups:
       example:
@@ -302,6 +296,12 @@ components:
       required:
       - replication_groups
       title: xCluster Replication Groups
+      type: object
+    ApiError:
+      properties:
+        error:
+          $ref: '#/components/schemas/ApiError_error'
+      title: API Error
       type: object
   securitySchemes:
     BearerAuthToken:

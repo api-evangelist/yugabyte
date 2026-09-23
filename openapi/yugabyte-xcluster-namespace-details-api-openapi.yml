@@ -1,4 +1,4 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   contact:
     email: support@yugabyte.com
@@ -9,7 +9,7 @@ info:
     name: Properietary (TBD)
     url: https://www.yugabyte.com/yugabyte-cloud-terms-of-service
   termsOfService: https://www.yugabyte.com/yugabyte-cloud-terms-of-service
-  title: Yugabyte Cloud backup-info Xcluster Namespace Details API
+  title: Yugabyte Cloud Xcluster Namespace Details API
   version: v1
 servers:
 - description: Endpoint of the API server
@@ -64,42 +64,6 @@ paths:
       - Xcluster Namespace Details
 components:
   schemas:
-    NamespacesInfo:
-      description: A single namespace and its corresponding tables participating in the replication
-      example:
-        namespace: namespace
-        table_info_list:
-        - keyspace: keyspace
-          avg_apply_latency_ms: 6.027456183070403
-          namespace_id: namespace_id
-          avg_throughput_KiBps: 1.4658129805029452
-          stream_id: stream_id
-          table_uuid: table_uuid
-          state: state
-          avg_get_changes_latency_ms: 0.8008281904610115
-          table_name: table_name
-        - keyspace: keyspace
-          avg_apply_latency_ms: 6.027456183070403
-          namespace_id: namespace_id
-          avg_throughput_KiBps: 1.4658129805029452
-          stream_id: stream_id
-          table_uuid: table_uuid
-          state: state
-          avg_get_changes_latency_ms: 0.8008281904610115
-          table_name: table_name
-      properties:
-        namespace:
-          description: Name of the namespace in the replication
-          type: string
-        table_info_list:
-          items:
-            $ref: '#/components/schemas/xClusterTableInfoInbound'
-          type: array
-      required:
-      - namespace
-      - table_info_list
-      title: Namespace and corresponding tables participating in the replication
-      type: object
     xClusterTableInfoInbound:
       description: Schema for table details in xCluster replication.
       example:
@@ -171,21 +135,6 @@ components:
           description: Region name
           type: string
       title: Get xCluster placement location info.
-      type: object
-    ApiError:
-      properties:
-        error:
-          $ref: '#/components/schemas/ApiError_error'
-      title: API Error
-      type: object
-    ApiError_error:
-      properties:
-        detail:
-          description: Error message
-          type: string
-        status:
-          description: Error code
-          type: integer
       type: object
     xCluster_Namespace_Metrics:
       example:
@@ -271,6 +220,57 @@ components:
       - namespace_list
       - replication_group_id
       title: xCluster Namespace Metrics
+      type: object
+    ApiError_error:
+      properties:
+        detail:
+          description: Error message
+          type: string
+        status:
+          description: Error code
+          type: integer
+      type: object
+    NamespacesInfo:
+      description: A single namespace and its corresponding tables participating in the replication
+      example:
+        namespace: namespace
+        table_info_list:
+        - keyspace: keyspace
+          avg_apply_latency_ms: 6.027456183070403
+          namespace_id: namespace_id
+          avg_throughput_KiBps: 1.4658129805029452
+          stream_id: stream_id
+          table_uuid: table_uuid
+          state: state
+          avg_get_changes_latency_ms: 0.8008281904610115
+          table_name: table_name
+        - keyspace: keyspace
+          avg_apply_latency_ms: 6.027456183070403
+          namespace_id: namespace_id
+          avg_throughput_KiBps: 1.4658129805029452
+          stream_id: stream_id
+          table_uuid: table_uuid
+          state: state
+          avg_get_changes_latency_ms: 0.8008281904610115
+          table_name: table_name
+      properties:
+        namespace:
+          description: Name of the namespace in the replication
+          type: string
+        table_info_list:
+          items:
+            $ref: '#/components/schemas/xClusterTableInfoInbound'
+          type: array
+      required:
+      - namespace
+      - table_info_list
+      title: Namespace and corresponding tables participating in the replication
+      type: object
+    ApiError:
+      properties:
+        error:
+          $ref: '#/components/schemas/ApiError_error'
+      title: API Error
       type: object
   securitySchemes:
     BearerAuthToken:

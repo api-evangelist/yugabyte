@@ -1,4 +1,4 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   contact:
     email: support@yugabyte.com
@@ -9,7 +9,7 @@ info:
     name: Properietary (TBD)
     url: https://www.yugabyte.com/yugabyte-cloud-terms-of-service
   termsOfService: https://www.yugabyte.com/yugabyte-cloud-terms-of-service
-  title: Yugabyte Cloud backup-info pitr-info API
+  title: Yugabyte Cloud Pitr Info API
   version: v1
 servers:
 - description: Endpoint of the API server
@@ -56,6 +56,44 @@ paths:
       - pitr-info
 components:
   schemas:
+    ApiError_error:
+      properties:
+        detail:
+          description: Error message
+          type: string
+        status:
+          description: Error code
+          type: integer
+      type: object
+    ApiError:
+      properties:
+        error:
+          $ref: '#/components/schemas/ApiError_error'
+      title: API Error
+      type: object
+    PITR_Schedule_Response:
+      example:
+        schedules:
+        - databaseKeyspace: databaseKeyspace
+          interval: interval
+          id: 0
+          retention: retention
+          earliestRecoverableTime: earliestRecoverableTime
+        - databaseKeyspace: databaseKeyspace
+          interval: interval
+          id: 0
+          retention: retention
+          earliestRecoverableTime: earliestRecoverableTime
+      properties:
+        schedules:
+          items:
+            $ref: '#/components/schemas/PITRSchedule'
+          type: array
+          uniqueItems: true
+      required:
+      - schedules
+      title: PITR Schedule Response
+      type: object
     PITRSchedule:
       description: Details of a Point-in-Time Recovery (PITR) schedule
       example:
@@ -82,44 +120,6 @@ components:
       - interval
       - retention
       title: List of PITR Schedules in the cluster
-      type: object
-    ApiError_error:
-      properties:
-        detail:
-          description: Error message
-          type: string
-        status:
-          description: Error code
-          type: integer
-      type: object
-    PITR_Schedule_Response:
-      example:
-        schedules:
-        - databaseKeyspace: databaseKeyspace
-          interval: interval
-          id: 0
-          retention: retention
-          earliestRecoverableTime: earliestRecoverableTime
-        - databaseKeyspace: databaseKeyspace
-          interval: interval
-          id: 0
-          retention: retention
-          earliestRecoverableTime: earliestRecoverableTime
-      properties:
-        schedules:
-          items:
-            $ref: '#/components/schemas/PITRSchedule'
-          type: array
-          uniqueItems: true
-      required:
-      - schedules
-      title: PITR Schedule Response
-      type: object
-    ApiError:
-      properties:
-        error:
-          $ref: '#/components/schemas/ApiError_error'
-      title: API Error
       type: object
   securitySchemes:
     BearerAuthToken:
