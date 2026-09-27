@@ -1,0 +1,1000 @@
+# x-archived-from: yugabytedb-certificate-info-api-openapi.yml
+# x-archived-on: 2026-09-26
+openapi: 3.2.0
+info:
+  title: Yugabytedb Certificate Info API
+  version: v1
+  contact:
+    name: https://docs.yugabyte.com
+  license:
+    name: Polyform Free Trial License 1.0.0
+    url: https://github.com/yugabyte/yugabyte-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
+  termsOfService: TODO(chirag)
+  description: 'Operations tagged Certificate Info across 2 of this provider''s published API definitions: openapi_2.yaml, platform.swagger.json. Each path carries the servers of the definition it was published in.'
+servers:
+- url: /
+tags:
+- name: Certificate Info
+paths:
+  /api/v1/customers/{cUUID}/certificates:
+    get:
+      operationId: getListOfCertificate
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CertificateInfoExt'
+                type: array
+          description: successful operation
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YBPError'
+          description: If there was a server or database issue when listing the regions
+      security:
+      - apiKeyAuth: []
+      summary: List a customer's certificates
+      tags:
+      - Certificate Info
+    post:
+      operationId: upload
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CertificateParams'
+        description: certificate params of the backup to be restored
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                format: uuid
+                type: string
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Restore a certificate from backup
+      tags:
+      - Certificate Info
+      x-codegen-request-body-name: certificate
+    servers:
+    - url: /
+  /api/v1/customers/{cUUID}/certificates/create_self_signed_cert:
+    post:
+      description: YbaApi Internal.
+      operationId: createSelfSignedCert
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+        description: certificate label
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                format: uuid
+                type: string
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Create a self signed certificate
+      tags:
+      - Certificate Info
+      x-codegen-request-body-name: label
+    servers:
+    - url: /
+  /api/v1/customers/{cUUID}/certificates/{name}:
+    get:
+      description: YbaApi Internal.
+      operationId: getCertificate
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: name
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                format: uuid
+                type: string
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Get a certificate's UUID
+      tags:
+      - Certificate Info
+    servers:
+    - url: /
+  /api/v1/customers/{cUUID}/certificates/{rUUID}:
+    delete:
+      operationId: deleteCertificate
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: rUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YBPSuccess'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Delete a certificate
+      tags:
+      - Certificate Info
+    post:
+      operationId: getClientCert
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: rUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClientCertParams'
+        description: post certificate info
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CertificateDetails'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Add a client certificate
+      tags:
+      - Certificate Info
+      x-codegen-request-body-name: certificate
+    servers:
+    - url: /
+  /api/v1/customers/{cUUID}/certificates/{rUUID}/download:
+    get:
+      operationId: getRootCert
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: rUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Get a customer's root certificate
+      tags:
+      - Certificate Info
+    servers:
+    - url: /
+  /api/v1/customers/{cUUID}/certificates/{rUUID}/edit:
+    post:
+      operationId: editCertificate
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: rUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CertificateParams'
+        description: certificate params to edit
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YBPSuccess'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Edit TLS certificate config details
+      tags:
+      - Certificate Info
+      x-codegen-request-body-name: certificate
+    servers:
+    - url: /
+  /api/v1/customers/{cUUID}/certificates/{rUUID}/update_empty_cert:
+    post:
+      description: YbaApi Internal.
+      operationId: updateEmptyCustomCert
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: rUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CertificateInfoExt'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Update an empty certificate
+      tags:
+      - Certificate Info
+    servers:
+    - url: /
+components:
+  schemas:
+    CertificateDetails:
+      example:
+        yugabytedb.key: yugabytedb.key
+        yugabytedb.crt: yugabytedb.crt
+      properties:
+        yugabytedb.crt:
+          type: string
+        yugabytedb.key:
+          type: string
+      type: object
+    CustomServerCertData:
+      example:
+        serverCertContent: serverCertContent
+        serverKeyContent: serverKeyContent
+      properties:
+        serverCertContent:
+          type: string
+        serverKeyContent:
+          type: string
+      required:
+      - serverCertContent
+      - serverKeyContent
+      type: object
+    CustomServerCertInfo:
+      example:
+        serverCert: serverCert
+        serverKey: serverKey
+      properties:
+        serverCert:
+          type: string
+        serverKey:
+          type: string
+      required:
+      - serverCert
+      - serverKey
+      type: object
+    CustomCertInfo:
+      example:
+        nodeCertPath: nodeCertPath
+        nodeKeyPath: nodeKeyPath
+        clientKeyPath: clientKeyPath
+        clientCertPath: clientCertPath
+        rootCertPath: rootCertPath
+      properties:
+        clientCertPath:
+          type: string
+        clientKeyPath:
+          type: string
+        nodeCertPath:
+          type: string
+        nodeKeyPath:
+          type: string
+        rootCertPath:
+          type: string
+      required:
+      - clientCertPath
+      - clientKeyPath
+      - nodeCertPath
+      - nodeKeyPath
+      - rootCertPath
+      type: object
+    CertificateParams:
+      description: Certificate Params is used to validate constraints for the custom certificate Data
+      example:
+        certStart: 6
+        customCertInfo:
+          nodeCertPath: nodeCertPath
+          nodeKeyPath: nodeKeyPath
+          clientKeyPath: clientKeyPath
+          clientCertPath: clientCertPath
+          rootCertPath: rootCertPath
+        customServerCertData:
+          serverCertContent: serverCertContent
+          serverKeyContent: serverKeyContent
+        certType: SelfSigned
+        certContent: certContent
+        certExpiry: 0
+        keyContent: keyContent
+        label: label
+        hcVaultCertParams:
+          vaultAddr: vaultAddr
+          vaultRoleID: vaultRoleID
+          mountPath: mountPath
+          role: role
+          engine: engine
+          ttlExpiry: 6
+          vaultAuthNamespace: vaultAuthNamespace
+          vaultSecretID: vaultSecretID
+          ttl: 0
+          vaultToken: vaultToken
+      properties:
+        certContent:
+          type: string
+        certExpiry:
+          format: int64
+          type: integer
+        certStart:
+          format: int64
+          type: integer
+        certType:
+          enum:
+          - SelfSigned
+          - CustomCertHostPath
+          - CustomServerCert
+          - HashicorpVault
+          - K8SCertManager
+          type: string
+        customCertInfo:
+          $ref: '#/components/schemas/CustomCertInfo'
+        customServerCertData:
+          $ref: '#/components/schemas/CustomServerCertData'
+        hcVaultCertParams:
+          $ref: '#/components/schemas/HashicorpVaultConfigParams'
+        keyContent:
+          type: string
+        label:
+          type: string
+      required:
+      - certContent
+      - certExpiry
+      - certStart
+      - certType
+      - label
+      type: object
+    YBPError:
+      description: Generic error response from the YugabyteDB Anywhere API
+      example:
+        success: false
+        requestUri: /customers/8918921-af3782-633de/universe/8173ab-fd2453/create
+        error: There was a problem creating the universe
+        httpMethod: POST
+        errorJson: '{ "foo" : "bar", "baz" : [1, 2, 3] }'
+        requestJson: '{ "foo" : "bar", "baz" : [1, 2, 3] }'
+      properties:
+        error:
+          description: User-visible unstructured error message
+          example: There was a problem creating the universe
+          type: string
+        errorJson:
+          description: User visible structured error message as json object
+          example: '{ "foo" : "bar", "baz" : [1, 2, 3] }'
+          properties: {}
+          type: object
+        httpMethod:
+          description: Method for HTTP call that resulted in this error
+          example: POST
+          type: string
+        requestJson:
+          description: User request JSON object
+          example: '{ "foo" : "bar", "baz" : [1, 2, 3] }'
+          properties: {}
+          type: object
+        requestUri:
+          description: URI for HTTP request that resulted in this error
+          example: /customers/8918921-af3782-633de/universe/8173ab-fd2453/create
+          type: string
+        success:
+          description: Always set to false to indicate failure
+          example: false
+          type: boolean
+      type: object
+    YBPSuccess:
+      example:
+        success: true
+        message: message
+      properties:
+        message:
+          description: API response message.
+          readOnly: true
+          type: string
+        success:
+          description: API operation status. A value of true indicates the operation was successful.
+          readOnly: true
+          type: boolean
+      type: object
+    HashicorpVaultConfigParams:
+      example:
+        vaultAddr: vaultAddr
+        vaultRoleID: vaultRoleID
+        mountPath: mountPath
+        role: role
+        engine: engine
+        ttlExpiry: 6
+        vaultAuthNamespace: vaultAuthNamespace
+        vaultSecretID: vaultSecretID
+        ttl: 0
+        vaultToken: vaultToken
+      properties:
+        engine:
+          type: string
+        mountPath:
+          type: string
+        role:
+          type: string
+        ttl:
+          format: int64
+          type: integer
+        ttlExpiry:
+          format: int64
+          type: integer
+        vaultAddr:
+          type: string
+        vaultAuthNamespace:
+          type: string
+        vaultRoleID:
+          type: string
+        vaultSecretID:
+          type: string
+        vaultToken:
+          type: string
+      required:
+      - engine
+      - mountPath
+      - role
+      - vaultAddr
+      type: object
+    ClientCertParams:
+      example:
+        certStart: 6
+        certExpiry: 0
+        username: username
+      properties:
+        certExpiry:
+          format: int64
+          type: integer
+        certStart:
+          format: int64
+          type: integer
+        username:
+          type: string
+      required:
+      - certExpiry
+      - certStart
+      - username
+      type: object
+    CertificateInfoExt:
+      description: SSL certificate used by the universe
+      example:
+        customServerCertInfo:
+          serverCert: serverCert
+          serverKey: serverKey
+        certType: SelfSigned
+        customHCPKICertInfo:
+          vaultAddr: vaultAddr
+          vaultRoleID: vaultRoleID
+          mountPath: mountPath
+          role: role
+          engine: engine
+          ttlExpiry: 6
+          vaultAuthNamespace: vaultAuthNamespace
+          vaultSecretID: vaultSecretID
+          ttl: 0
+          vaultToken: vaultToken
+        certificate: /opt/yugaware/certs/.../ca.root.cert
+        label: yb-admin-example
+        uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        expiryDateIso: 2022-12-12 13:07:18+00:00
+        expiryDate: 2000-01-23 04:56:07+00:00
+        privateKey: /opt/yugaware/.../example.key.pem
+        customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        universeDetails:
+        - universePaused: true
+          updateSucceeded: true
+          name: name
+          updateInProgress: true
+          creationDate: 1
+          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - universePaused: true
+          updateSucceeded: true
+          name: name
+          updateInProgress: true
+          creationDate: 1
+          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        startDateIso: 2022-12-12 13:07:18+00:00
+        universeDetailSubsets:
+        - universePaused: true
+          updateSucceeded: true
+          name: name
+          updateInProgress: true
+          creationDate: 1
+          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - universePaused: true
+          updateSucceeded: true
+          name: name
+          updateInProgress: true
+          creationDate: 1
+          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        checksum: checksum
+        inUse: true
+        customCertPathParams:
+          nodeCertPath: nodeCertPath
+          nodeKeyPath: nodeKeyPath
+          clientKeyPath: clientKeyPath
+          clientCertPath: clientCertPath
+          rootCertPath: rootCertPath
+        startDate: 2000-01-23 04:56:07+00:00
+      properties:
+        certType:
+          description: Type of the certificate
+          enum:
+          - SelfSigned
+          - CustomCertHostPath
+          - CustomServerCert
+          - HashicorpVault
+          - K8SCertManager
+          example: SelfSigned
+          type: string
+        certificate:
+          description: Certificate path
+          example: /opt/yugaware/certs/.../ca.root.cert
+          type: string
+        checksum:
+          description: The certificate file's checksum
+          readOnly: true
+          type: string
+        customCertPathParams:
+          $ref: '#/components/schemas/CustomCertInfo'
+        customHCPKICertInfo:
+          $ref: '#/components/schemas/HashicorpVaultConfigParams'
+        customServerCertInfo:
+          $ref: '#/components/schemas/CustomServerCertInfo'
+        customerUUID:
+          description: Customer UUID of the backup which it belongs to
+          format: uuid
+          type: string
+        expiryDate:
+          description: The certificate's expiry date. <b style="color:#ff0000">Deprecated since YBA version 2.17.2.0.</b> Use expirtyDateIso instead
+          format: date-time
+          type: string
+        expiryDateIso:
+          description: The certificate's expiry date
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          type: string
+        inUse:
+          description: Indicates whether the certificate is in use. This value is `true` if the universe contains a reference to the certificate.
+          readOnly: true
+          type: boolean
+        label:
+          description: Certificate label
+          example: yb-admin-example
+          type: string
+        privateKey:
+          description: Private key path
+          example: /opt/yugaware/.../example.key.pem
+          type: string
+        startDate:
+          description: The certificate's creation date. <b style="color:#ff0000">Deprecated since YBA version 2.17.2.0.</b> Use stateDateIso instead
+          format: date-time
+          type: string
+        startDateIso:
+          description: The certificate's creation date
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          type: string
+        universeDetailSubsets:
+          items:
+            $ref: '#/components/schemas/UniverseDetailSubset'
+          type: array
+        universeDetails:
+          description: Associated universe details for the certificate
+          items:
+            $ref: '#/components/schemas/UniverseDetailSubset'
+          readOnly: true
+          type: array
+        uuid:
+          description: Certificate UUID
+          format: uuid
+          readOnly: true
+          type: string
+      required:
+      - customCertPathParams
+      - customHCPKICertInfo
+      - customServerCertInfo
+      - universeDetailSubsets
+      type: object
+    UniverseDetailSubset:
+      description: A small subset of universe information
+      example:
+        universePaused: true
+        updateSucceeded: true
+        name: name
+        updateInProgress: true
+        creationDate: 1
+        uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        creationDate:
+          format: int64
+          type: integer
+        name:
+          type: string
+        universePaused:
+          type: boolean
+        updateInProgress:
+          type: boolean
+        updateSucceeded:
+          type: boolean
+        uuid:
+          format: uuid
+          type: string
+      required:
+      - creationDate
+      - name
+      - universePaused
+      - updateInProgress
+      - updateSucceeded
+      - uuid
+      type: object
+    CustomServerCertData_2:
+      properties:
+        serverCertContent:
+          type: string
+        serverKeyContent:
+          type: string
+      required:
+      - serverCertContent
+      - serverKeyContent
+      type: object
+    CustomServerCertInfo_2:
+      properties:
+        serverCert:
+          type: string
+        serverKey:
+          type: string
+      required:
+      - serverCert
+      - serverKey
+      type: object
+    CustomCertInfo_2:
+      properties:
+        clientCertPath:
+          type: string
+        clientKeyPath:
+          type: string
+        nodeCertPath:
+          type: string
+        nodeKeyPath:
+          type: string
+        rootCertPath:
+          type: string
+      required:
+      - clientCertPath
+      - clientKeyPath
+      - nodeCertPath
+      - nodeKeyPath
+      - rootCertPath
+      type: object
+    CertificateInfo:
+      description: SSL certificate used by the universe
+      properties:
+        certType:
+          description: Type of the certificate
+          enum:
+          - SelfSigned
+          - CustomCertHostPath
+          - CustomServerCert
+          - HashicorpVault
+          example: SelfSigned
+          type: string
+        certificate:
+          description: Certificate path
+          example: /opt/yugaware/certs/.../ca.root.cert
+          type: string
+        checksum:
+          description: The certificate file's checksum
+          readOnly: true
+          type: string
+        customCertPathParams:
+          $ref: '#/components/schemas/CustomCertInfo_2'
+        customHCPKICertInfo:
+          $ref: '#/components/schemas/HashicorpVaultConfigParams_2'
+        customServerCertInfo:
+          $ref: '#/components/schemas/CustomServerCertInfo_2'
+        customerUUID:
+          description: Customer UUID of the backup which it belongs to
+          format: uuid
+          type: string
+        expiryDate:
+          description: The certificate's expiry date
+          format: date-time
+          type: string
+        inUse:
+          description: Indicates whether the certificate is in use. This value is `true` if the universe contains a reference to the certificate.
+          readOnly: true
+          type: boolean
+        label:
+          description: Certificate label
+          example: yb-admin-example
+          type: string
+        privateKey:
+          description: Private key path
+          example: /opt/yugaware/.../example.key.pem
+          type: string
+        startDate:
+          description: The certificate's creation date
+          format: date-time
+          type: string
+        universeDetails:
+          description: Associated universe details for the certificate
+          items:
+            $ref: '#/components/schemas/UniverseDetailSubset_2'
+          readOnly: true
+          type: array
+        uuid:
+          description: Certificate UUID
+          format: uuid
+          readOnly: true
+          type: string
+      required:
+      - customCertPathParams
+      - customHCPKICertInfo
+      - customServerCertInfo
+      type: object
+    CertificateParams_2:
+      properties:
+        certContent:
+          type: string
+        certExpiry:
+          format: int64
+          type: integer
+        certStart:
+          format: int64
+          type: integer
+        certType:
+          enum:
+          - SelfSigned
+          - CustomCertHostPath
+          - CustomServerCert
+          - HashicorpVault
+          type: string
+        customCertInfo:
+          $ref: '#/components/schemas/CustomCertInfo_2'
+        customServerCertData:
+          $ref: '#/components/schemas/CustomServerCertData_2'
+        hcVaultCertParams:
+          $ref: '#/components/schemas/HashicorpVaultConfigParams_2'
+        keyContent:
+          type: string
+        label:
+          type: string
+      required:
+      - certContent
+      - certExpiry
+      - certStart
+      - certType
+      - customCertInfo
+      - customServerCertData
+      - hcVaultCertParams
+      - keyContent
+      - label
+      type: object
+    UniverseDetailSubset_2:
+      description: A small subset of universe information
+      properties:
+        creationDate:
+          format: int64
+          type: integer
+        name:
+          type: string
+        universePaused:
+          type: boolean
+        updateInProgress:
+          type: boolean
+        updateSucceeded:
+          type: boolean
+        uuid:
+          format: uuid
+          type: string
+      required:
+      - creationDate
+      - name
+      - universePaused
+      - updateInProgress
+      - updateSucceeded
+      - uuid
+      type: object
+    YBPError_2:
+      description: Generic error response from the YugabyteDB Anywhere API
+      properties:
+        error:
+          description: User-visible unstructured error message
+          example: There was a problem creating the universe
+          type: string
+        errorJson:
+          description: User visible error message as json object
+          example: '{ "foo" : "bar", "baz" : [1, 2, 3] }'
+          type: object
+        success:
+          description: Always set to false to indicate failure
+          example: false
+          type: boolean
+      type: object
+    YBPSuccess_2:
+      properties:
+        message:
+          description: API response message.
+          readOnly: true
+          type: string
+        success:
+          description: API operation status. A value of true indicates the operation was successful.
+          readOnly: true
+          type: boolean
+      type: object
+    ClientCertParams_2:
+      properties:
+        certExpiry:
+          format: int64
+          type: integer
+        certStart:
+          format: int64
+          type: integer
+        username:
+          type: string
+      required:
+      - certExpiry
+      - certStart
+      - username
+      type: object
+    HashicorpVaultConfigParams_2:
+      properties:
+        engine:
+          type: string
+        mountPath:
+          type: string
+        role:
+          type: string
+        ttl:
+          format: int64
+          type: integer
+        ttlExpiry:
+          format: int64
+          type: integer
+        vaultAddr:
+          type: string
+        vaultToken:
+          type: string
+      required:
+      - engine
+      - mountPath
+      - role
+      - vaultAddr
+      - vaultToken
+      type: object
+    CertificateRoot:
+      description: 'UNOFFICIAL ADDITION: Root certificate for a universe'
+      properties:
+        root.crt:
+          type: string
+      type: object
+    CertificateDetails_2:
+      properties:
+        yugabytedb.crt:
+          type: string
+        yugabytedb.key:
+          type: string
+      type: object
+  securitySchemes:
+    apiKeyAuth:
+      description: API token passed as header
+      in: header
+      name: X-AUTH-YW-API-TOKEN
+      type: apiKey
+externalDocs:
+  description: About YugabyteDB Anywhere
+  url: https://docs.yugabyte.com/latest/yugabyte-platform/
+x-refined-from:
+- openapi_2.yaml
+- platform.swagger.json

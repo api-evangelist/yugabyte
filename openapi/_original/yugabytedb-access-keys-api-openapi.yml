@@ -1,0 +1,497 @@
+# x-archived-from: yugabytedb-access-keys-api-openapi.yml
+# x-archived-on: 2026-09-26
+openapi: 3.2.0
+info:
+  title: Yugabytedb Access Keys API
+  version: v1
+  contact:
+    name: https://docs.yugabyte.com
+  license:
+    name: Polyform Free Trial License 1.0.0
+    url: https://github.com/yugabyte/yugabyte-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
+  termsOfService: TODO(chirag)
+  description: 'Operations tagged Access Keys across 2 of this provider''s published API definitions: openapi_2.yaml, platform.swagger.json. Each path carries the servers of the definition it was published in.'
+servers:
+- url: /
+tags:
+- name: Access Keys
+paths:
+  /api/v1/customers/{cUUID}/access_keys:
+    get:
+      operationId: listAllForCustomer
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/AccessKey'
+                type: array
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: List access keys for all providers of a customer
+      tags:
+      - Access Keys
+    servers:
+    - url: /
+  /api/v1/customers/{cUUID}/providers/{pUUID}/access_keys:
+    get:
+      operationId: list
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: pUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/AccessKey'
+                type: array
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: List access keys for a specific provider
+      tags:
+      - Access Keys
+    post:
+      deprecated: true
+      description: 'Deprecated since YBA version 2.20.0.0.
+
+        Use /api/v1/customers/{cUUID}/provider/{pUUID}/edit instead for adding the key'
+      operationId: createAccesskey
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: pUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccessKeyFormData'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessKey'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Create/Upload Access Key for onprem provider region - deprecated
+      tags:
+      - Access Keys
+      x-codegen-request-body-name: AccessKeyFormData
+    servers:
+    - url: /
+  /api/v1/customers/{cUUID}/providers/{pUUID}/access_keys/{keyCode}:
+    delete:
+      operationId: delete_accesskey
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: pUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: keyCode
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YBPSuccess'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Delete an access key
+      tags:
+      - Access Keys
+    get:
+      operationId: index
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: pUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: keyCode
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessKey'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Get an access key
+      tags:
+      - Access Keys
+    put:
+      description: 'WARNING: This is a preview API that could change.'
+      operationId: editAccesskey
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: pUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: keyCode
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccessKey'
+        description: access key edit form data
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessKey'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Modify the existing access Key
+      tags:
+      - Access Keys
+      x-codegen-request-body-name: accesskey
+    servers:
+    - url: /
+components:
+  schemas:
+    AccessKeyId:
+      example:
+        keyCode: keyCode
+        providerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        keyCode:
+          type: string
+        providerUUID:
+          format: uuid
+          type: string
+      type: object
+    YBPSuccess:
+      example:
+        success: true
+        message: message
+      properties:
+        message:
+          description: API response message.
+          readOnly: true
+          type: string
+        success:
+          description: API operation status. A value of true indicates the operation was successful.
+          readOnly: true
+          type: boolean
+      type: object
+    KeyInfo:
+      example:
+        sshPort: 6
+        nodeExporterPort: 0
+        installNodeExporter: true
+        skipProvisioning: true
+        nodeExporterUser: nodeExporterUser
+        provisionInstanceScript: provisionInstanceScript
+        passwordlessSudoAccess: true
+        publicKey: publicKey
+        vaultFile: vaultFile
+        sshPrivateKeyContent: sshPrivateKeyContent
+        privateKey: privateKey
+        setUpChrony: true
+        vaultPasswordFile: vaultPasswordFile
+        ntpServers:
+        - ntpServers
+        - ntpServers
+        skipKeyValidateAndUpload: true
+        sshUser: sshUser
+        deleteRemote: true
+        showSetUpChrony: true
+        airGapInstall: true
+        keyPairName: keyPairName
+        managementState: YBAManaged
+      properties:
+        airGapInstall:
+          type: boolean
+        deleteRemote:
+          type: boolean
+        installNodeExporter:
+          type: boolean
+        keyPairName:
+          type: string
+        managementState:
+          description: Key Management state
+          enum:
+          - YBAManaged
+          - SelfManaged
+          - Unknown
+          readOnly: true
+          type: string
+        nodeExporterPort:
+          format: int32
+          type: integer
+        nodeExporterUser:
+          type: string
+        ntpServers:
+          items:
+            type: string
+          type: array
+        passwordlessSudoAccess:
+          type: boolean
+        privateKey:
+          type: string
+        provisionInstanceScript:
+          type: string
+        publicKey:
+          type: string
+        setUpChrony:
+          type: boolean
+        showSetUpChrony:
+          type: boolean
+        skipKeyValidateAndUpload:
+          type: boolean
+        skipProvisioning:
+          type: boolean
+        sshPort:
+          format: int32
+          type: integer
+        sshPrivateKeyContent:
+          type: string
+        sshUser:
+          type: string
+        vaultFile:
+          type: string
+        vaultPasswordFile:
+          type: string
+      type: object
+    AccessKey:
+      description: Access key for the cloud provider. This helps to authenticate the user and get access to the provider.
+      example:
+        idKey:
+          keyCode: keyCode
+          providerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        creationDate: 2022-12-12 13:07:18+00:00
+        keyInfo:
+          sshPort: 6
+          nodeExporterPort: 0
+          installNodeExporter: true
+          skipProvisioning: true
+          nodeExporterUser: nodeExporterUser
+          provisionInstanceScript: provisionInstanceScript
+          passwordlessSudoAccess: true
+          publicKey: publicKey
+          vaultFile: vaultFile
+          sshPrivateKeyContent: sshPrivateKeyContent
+          privateKey: privateKey
+          setUpChrony: true
+          vaultPasswordFile: vaultPasswordFile
+          ntpServers:
+          - ntpServers
+          - ntpServers
+          skipKeyValidateAndUpload: true
+          sshUser: sshUser
+          deleteRemote: true
+          showSetUpChrony: true
+          airGapInstall: true
+          keyPairName: keyPairName
+          managementState: YBAManaged
+        expirationDate: 2022-12-12 13:07:18+00:00
+      properties:
+        creationDate:
+          description: Creation date of key
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          readOnly: true
+          type: string
+        expirationDate:
+          description: Expiration date of key
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          type: string
+        idKey:
+          $ref: '#/components/schemas/AccessKeyId'
+        keyInfo:
+          $ref: '#/components/schemas/KeyInfo'
+      required:
+      - idKey
+      - keyInfo
+      type: object
+    AccessKeyFormData:
+      example:
+        expirationThresholdDays: 0
+        keyCode: keyCode
+        keyContent: keyContent
+        keyType: PUBLIC
+      properties:
+        expirationThresholdDays:
+          format: int32
+          type: integer
+        keyCode:
+          type: string
+        keyContent:
+          type: string
+        keyType:
+          enum:
+          - PUBLIC
+          - PRIVATE
+          type: string
+      required:
+      - keyCode
+      - keyContent
+      - keyType
+      type: object
+    YBPSuccess_2:
+      properties:
+        message:
+          description: API response message.
+          readOnly: true
+          type: string
+        success:
+          description: API operation status. A value of true indicates the operation was successful.
+          readOnly: true
+          type: boolean
+      type: object
+    KeyInfo_2:
+      properties:
+        airGapInstall:
+          type: boolean
+        deleteRemote:
+          type: boolean
+        installNodeExporter:
+          type: boolean
+        nodeExporterPort:
+          format: int32
+          type: integer
+        nodeExporterUser:
+          type: string
+        ntpServers:
+          items:
+            type: string
+          type: array
+        passwordlessSudoAccess:
+          type: boolean
+        privateKey:
+          type: string
+        provisionInstanceScript:
+          type: string
+        publicKey:
+          type: string
+        setUpChrony:
+          type: boolean
+        showSetUpChrony:
+          type: boolean
+        skipProvisioning:
+          type: boolean
+        sshPort:
+          format: int32
+          type: integer
+        sshUser:
+          type: string
+        vaultFile:
+          type: string
+        vaultPasswordFile:
+          type: string
+      type: object
+    AccessKeyId_2:
+      properties:
+        keyCode:
+          type: string
+        providerUUID:
+          format: uuid
+          type: string
+      type: object
+    AccessKey_2:
+      description: Access key for the cloud provider. This helps to authenticate the user and get access to the provider.
+      properties:
+        idKey:
+          $ref: '#/components/schemas/AccessKeyId_2'
+        keyInfo:
+          $ref: '#/components/schemas/KeyInfo_2'
+          description: Cloud provider key information
+      required:
+      - idKey
+      - keyInfo
+      type: object
+  securitySchemes:
+    apiKeyAuth:
+      description: API token passed as header
+      in: header
+      name: X-AUTH-YW-API-TOKEN
+      type: apiKey
+externalDocs:
+  description: About YugabyteDB Anywhere
+  url: https://docs.yugabyte.com/latest/yugabyte-platform/
+x-refined-from:
+- openapi_2.yaml
+- platform.swagger.json

@@ -1,0 +1,256 @@
+# x-archived-from: yugabytedb-ldapoidc-role-management-api-openapi.yml
+# x-archived-on: 2026-09-26
+openapi: 3.2.0
+info:
+  contact:
+    name: https://docs.yugabyte.com
+  description: ALPHA - NOT FOR EXTERNAL USE
+  license:
+    name: Polyform Free Trial License 1.0.0
+    url: https://github.com/yugabyte/yugabyte-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
+  termsOfService: TODO(chirag)
+  title: YugabyteDB Anywhere LDAPOIDC Role management API
+  version: v1
+servers:
+- url: /
+tags:
+- name: LDAPOIDC Role management
+paths:
+  /api/v1/customers/{cUUID}/ldap_mappings:
+    get:
+      deprecated: true
+      description: Deprecated since YBA version 2024.2.0.0. Please use the v2 /auth/group-mappings GET endpoint instead. Note that this API will not return the custom roles assigned to groups via the new /api/v2/customers/{cUUID}/auth/group-mappings API.
+      operationId: listLdapDnToYbaRoles
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LdapDnToYbaRoleData'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: List LDAP Mappings
+      tags:
+      - LDAPOIDC Role management
+    put:
+      deprecated: true
+      description: Deprecated since YBA version 2024.2.0.0. Please use the v2 /auth/group-mappings PUT endpoint instead
+      operationId: setLdapDnToYbaRoles
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LdapDnToYbaRoleData'
+        description: New LDAP Mappings to be set
+        required: true
+      responses:
+        default:
+          content: {}
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Set LDAP Mappings
+      tags:
+      - LDAPOIDC Role management
+      x-codegen-request-body-name: ldapMappings
+  /api/v1/customers/{cUUID}/oidc_mappings:
+    get:
+      deprecated: true
+      description: Deprecated since YBA version 2024.2.0.0. Please use the v2 /auth/group-mappings GET endpoint instead. Note that this API will not return the custom roles assigned to groups via the new /api/v2/customers/{cUUID}/auth/group-mappings API.
+      operationId: listOidcGroupToYbaRoles
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OidcGroupToYbaRolesData'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: List OIDC Group Mappings
+      tags:
+      - LDAPOIDC Role management
+    put:
+      deprecated: true
+      description: Deprecated since YBA version 2024.2.0.0. Please use the v2 /auth/group-mappings PUT endpoint instead
+      operationId: mapOidcGroupToYbaRoles
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OidcGroupToYbaRolesData'
+        description: New OIDC Mappings to be set
+        required: true
+      responses:
+        default:
+          content: {}
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Set OIDC Mappings
+      tags:
+      - LDAPOIDC Role management
+      x-codegen-request-body-name: oidcMappings
+  /api/v1/customers/{cUUID}/oidc_mappings/{groupName}:
+    delete:
+      deprecated: true
+      description: Deprecated since YBA version 2024.2.0.0. Please use the v2 /auth/group-mappings/{groupUUID} DELETE endpoint instead
+      operationId: deleteOidcGroupMapping
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: groupName
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YBPSuccess'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Delete a OIDC group mapping
+      tags:
+      - LDAPOIDC Role management
+components:
+  schemas:
+    LdapDnToYbaRoleData:
+      description: A list of LDAP DN, YBA role pairs
+      example:
+        ldapDnToYbaRolePairs:
+        - ybaRole: ConnectOnly
+          distinguishedName: distinguishedName
+        - ybaRole: ConnectOnly
+          distinguishedName: distinguishedName
+      properties:
+        ldapDnToYbaRolePairs:
+          description: ' list of pairs of distinguishedName and ybaRole'
+          items:
+            $ref: '#/components/schemas/LdapDnYbaRoleDataPair'
+          type: array
+      type: object
+    OidcGroupToYbaRolesData:
+      example:
+        oidcGroupToYbaRolesPairs:
+        - groupName: groupName
+          roles:
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - groupName: groupName
+          roles:
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        oidcGroupToYbaRolesPairs:
+          description: ' list of pairs of groupName and roles'
+          items:
+            $ref: '#/components/schemas/OidcGroupToYbaRolesPair'
+          type: array
+      type: object
+    OidcGroupToYbaRolesPair:
+      example:
+        groupName: groupName
+        roles:
+        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        groupName:
+          type: string
+        roles:
+          items:
+            format: uuid
+            type: string
+          type: array
+      required:
+      - groupName
+      - roles
+      type: object
+    YBPSuccess:
+      example:
+        success: true
+        message: message
+      properties:
+        message:
+          description: API response message.
+          readOnly: true
+          type: string
+        success:
+          description: API operation status. A value of true indicates the operation was successful.
+          readOnly: true
+          type: boolean
+      type: object
+    LdapDnYbaRoleDataPair:
+      example:
+        ybaRole: ConnectOnly
+        distinguishedName: distinguishedName
+      properties:
+        distinguishedName:
+          type: string
+        ybaRole:
+          enum:
+          - ConnectOnly
+          - ReadOnly
+          - BackupAdmin
+          - Admin
+          - SuperAdmin
+          type: string
+      required:
+      - distinguishedName
+      - ybaRole
+      type: object
+  securitySchemes:
+    apiKeyAuth:
+      description: API token passed as header
+      in: header
+      name: X-AUTH-YW-API-TOKEN
+      type: apiKey
+externalDocs:
+  description: About YugabyteDB Anywhere
+  url: https://docs.yugabyte.com/latest/yugabyte-platform/
+x-original-swagger-version: '2.0'

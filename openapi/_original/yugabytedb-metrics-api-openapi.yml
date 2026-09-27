@@ -1,0 +1,128 @@
+# x-archived-from: yugabytedb-metrics-api-openapi.yml
+# x-archived-on: 2026-09-26
+openapi: 3.2.0
+info:
+  title: Yugabytedb Metrics API
+  license:
+    name: Polyform Free Trial License 1.0.0
+    url: https://github.com/yugabyte/yugabyte-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
+  version: '1.0'
+  description: 'Operations tagged Metrics across 3 of this provider''s published API definitions: openapi.yaml, openapi_2.yaml, platform.swagger.json. Each path carries the servers of the definition it was published in.'
+servers:
+- description: API endpoint of YBA server
+  url: '{protocol}://{host_port}/api/v2'
+  variables:
+    protocol:
+      default: http
+      enum:
+      - http
+      - https
+    host_port:
+      default: localhost:9000
+- url: /
+tags:
+- description: CRUD operations for YBA metrics
+  name: Metrics
+paths:
+  /host-info:
+    get:
+      description: Get the Url for the Prometheus instance of the current YBA
+      operationId: GetPrometheusHostInfo
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PrometheusHostInfo'
+          description: success
+          x-yba-api-visibility: internal
+        '400':
+          description: Client Error
+        '500':
+          description: Server Error
+      security:
+      - apiKeyAuth: []
+      summary: Get Prometheus host info
+      tags:
+      - Metrics
+      x-yba-api-audit:
+        noAudit: true
+      x-yba-api-authz:
+        noAuthz: true
+      x-yba-api-since: 2024.2.0.0
+      x-yba-api-visibility: internal
+      x-accepts:
+      - application/json
+    servers:
+    - description: API endpoint of YBA server
+      url: '{protocol}://{host_port}/api/v2'
+      variables:
+        protocol:
+          default: http
+          enum:
+          - http
+          - https
+        host_port:
+          default: localhost:9000
+  /api/v1/prometheus_metrics:
+    get:
+      description: Available since YBA version 2.8.0.0.
+      operationId: MetricsDetail
+      parameters:
+      - in: query
+        name: request
+        schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: string
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Get Prometheus metrics
+      tags:
+      - Metrics
+    servers:
+    - url: /
+components:
+  schemas:
+    PrometheusHostInfo:
+      description: 'PrometheusHostInfo
+
+
+        Information about the the Prometheus instance for the current YBA. Part of PrometheusHostInfoResp.
+
+        '
+      example:
+        prometheus_url: https://localhost:9000
+        use_browser_fqdn: true
+      properties:
+        prometheus_url:
+          description: URL for accessing Prometheus
+          example: https://localhost:9000
+          readOnly: true
+          type: string
+        use_browser_fqdn:
+          description: If the Prometheus link in the browser should use the browser's FQDN or use prometheus url directly.
+          readOnly: true
+          type: boolean
+      required:
+      - prometheus_url
+      - use_browser_fqdn
+      title: PrometheusHostInfo
+      type: object
+      x-yba-api-visibility: internal
+  securitySchemes:
+    apiKeyAuth:
+      in: header
+      name: X-AUTH-YW-API-TOKEN
+      type: apiKey
+externalDocs:
+  description: About YugabyteDB Anywhere
+  url: https://docs.yugabyte.com/latest/yugabyte-platform/
+x-refined-from:
+- openapi.yaml
+- openapi_2.yaml
+- platform.swagger.json

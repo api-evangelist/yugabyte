@@ -1,0 +1,223 @@
+openapi: 3.2.0
+info:
+  contact:
+    name: https://docs.yugabyte.com
+  description: ALPHA - NOT FOR EXTERNAL USE
+  license:
+    name: Polyform Free Trial License 1.0.0
+    url: https://github.com/yugabyte/yugabyte-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
+  termsOfService: TODO(chirag)
+  title: YugabyteDB Anywhere Universe performance suggestions API
+  version: v1
+servers:
+- url: /
+tags:
+- name: Universe performance suggestions
+paths:
+  /api/v1/customers/{cUUID}/universes/{uniUUID}/query_distribution_suggestions:
+    get:
+      description: 'WARNING: This is a preview API that could change.'
+      operationId: getQueryDistributionSuggestions
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: uniUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryDistributionSuggestionResponse'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Get query distribution improvement suggestion for a universe
+      tags:
+      - Universe performance suggestions
+  /api/v1/customers/{cUUID}/universes/{uniUUID}/range_hash:
+    get:
+      description: 'WARNING: This is a preview API that could change. Returns list of hash indexes on timestamp columns.'
+      operationId: getRangeHash
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: uniUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HashedTimestampColumnFinderResponse'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Return list of hash indexes
+      tags:
+      - Universe performance suggestions
+  /api/v1/customers/{cUUID}/universes/{uniUUID}/unused_indexes:
+    get:
+      description: 'WARNING: This is a preview API that could change. Returns list of unused indexes, along with their database and table.'
+      operationId: getUnusedIndexes
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: uniUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnusedIndexFinderResponse'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Return list of each unused index across the universe
+      tags:
+      - Universe performance suggestions
+components:
+  schemas:
+    HashedTimestampColumnFinderResponse:
+      example:
+        index_command: index_command
+        description: description
+        current_database: current_database
+        index_name: index_name
+        table_name: table_name
+      properties:
+        current_database:
+          type: string
+        description:
+          type: string
+        index_command:
+          type: string
+        index_name:
+          type: string
+        table_name:
+          type: string
+      type: object
+    QueryDistributionSuggestionResponse:
+      example:
+        suggestion: suggestion
+        description: description
+        details:
+        - node: node
+          numInsert: 6
+          numDelete: 0
+          numUpdate: 5
+          numSelect: 1
+        - node: node
+          numInsert: 6
+          numDelete: 0
+          numUpdate: 5
+          numSelect: 1
+        startTime: startTime
+        endTime: endTime
+        adviceType: adviceType
+      properties:
+        adviceType:
+          type: string
+        description:
+          type: string
+        details:
+          items:
+            $ref: '#/components/schemas/NodeQueryDistributionDetails'
+          type: array
+        endTime:
+          type: string
+        startTime:
+          type: string
+        suggestion:
+          type: string
+      required:
+      - adviceType
+      - description
+      - details
+      - endTime
+      - startTime
+      - suggestion
+      type: object
+    NodeQueryDistributionDetails:
+      example:
+        node: node
+        numInsert: 6
+        numDelete: 0
+        numUpdate: 5
+        numSelect: 1
+      properties:
+        node:
+          type: string
+        numDelete:
+          format: int32
+          type: integer
+        numInsert:
+          format: int32
+          type: integer
+        numSelect:
+          format: int32
+          type: integer
+        numUpdate:
+          format: int32
+          type: integer
+      required:
+      - node
+      - numDelete
+      - numInsert
+      - numSelect
+      - numUpdate
+      type: object
+    UnusedIndexFinderResponse:
+      example:
+        index_command: index_command
+        description: description
+        current_database: current_database
+        index_name: index_name
+        table_name: table_name
+      properties:
+        current_database:
+          type: string
+        description:
+          type: string
+        index_command:
+          type: string
+        index_name:
+          type: string
+        table_name:
+          type: string
+      type: object
+  securitySchemes:
+    apiKeyAuth:
+      description: API token passed as header
+      in: header
+      name: X-AUTH-YW-API-TOKEN
+      type: apiKey
+externalDocs:
+  description: About YugabyteDB Anywhere
+  url: https://docs.yugabyte.com/latest/yugabyte-platform/
+x-original-swagger-version: '2.0'

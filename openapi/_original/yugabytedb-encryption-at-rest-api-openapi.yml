@@ -1,0 +1,470 @@
+# x-archived-from: yugabytedb-encryption-at-rest-api-openapi.yml
+# x-archived-on: 2026-09-26
+openapi: 3.2.0
+info:
+  title: Yugabytedb Encryption at rest API
+  version: v1
+  contact:
+    name: https://docs.yugabyte.com
+  license:
+    name: Polyform Free Trial License 1.0.0
+    url: https://github.com/yugabyte/yugabyte-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
+  termsOfService: TODO(chirag)
+  description: 'Operations tagged Encryption at rest across 2 of this provider''s published API definitions: openapi_2.yaml, platform.swagger.json. Each path carries the servers of the definition it was published in.'
+servers:
+- url: /
+tags:
+- name: Encryption at rest
+paths:
+  /api/v1/customers/{cUUID}/kms_configs:
+    get:
+      operationId: listKMSConfigs
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  properties: {}
+                  type: object
+                type: array
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: List KMS configurations
+      tags:
+      - Encryption at rest
+    servers:
+    - url: /
+  /api/v1/customers/{cUUID}/kms_configs/{configUUID}:
+    delete:
+      operationId: deleteKMSConfig
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: configUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YBPTask'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Delete a KMS configuration
+      tags:
+      - Encryption at rest
+    get:
+      operationId: getKMSConfig
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: configUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  properties: {}
+                  type: object
+                type: object
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Get details of a KMS configuration
+      tags:
+      - Encryption at rest
+    servers:
+    - url: /
+  /api/v1/customers/{cUUID}/kms_configs/{configUUID}/edit:
+    post:
+      operationId: editKMSConfig
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: configUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: KMS config to be edited
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YBPTask'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Edit a KMS configuration
+      tags:
+      - Encryption at rest
+      x-codegen-request-body-name: KMS config
+    servers:
+    - url: /
+  /api/v1/customers/{cUUID}/kms_configs/{configUUID}/refresh:
+    put:
+      description: 'WARNING: This is a preview API that could change.'
+      operationId: refreshKMSConfig
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: configUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YBPSuccess'
+          description: successful operation
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YBPError'
+          description: If there is an error refreshing the KMS config.
+      security:
+      - apiKeyAuth: []
+      summary: Refresh KMS Config
+      tags:
+      - Encryption at rest
+    servers:
+    - url: /
+  /api/v1/customers/{cUUID}/kms_configs/{kmsProvider}:
+    post:
+      operationId: createKMSConfig
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: kmsProvider
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: KMS config to be created
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YBPTask'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Create a KMS configuration
+      tags:
+      - Encryption at rest
+      x-codegen-request-body-name: KMS config
+    servers:
+    - url: /
+  /api/v1/customers/{cUUID}/universes/{uniUUID}/kms:
+    delete:
+      deprecated: true
+      description: 'Deprecated since YBA version 2.20.0.0.
+
+        Do not use.'
+      operationId: removeKeyRefHistory
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: uniUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YBPSuccess'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: This API removes a universe's key reference history - deprecated
+      tags:
+      - Encryption at rest
+    get:
+      description: YbaApi Internal.
+      operationId: getKeyRefHistory
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: uniUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  properties: {}
+                  type: object
+                type: array
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Get a universe's key reference history
+      tags:
+      - Encryption at rest
+    post:
+      description: YbaApi Internal.
+      operationId: retrieveKey
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: uniUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  properties: {}
+                  type: object
+                type: object
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Retrive a universe's KMS key
+      tags:
+      - Encryption at rest
+    servers:
+    - url: /
+  /api/v1/customers/{cUUID}/universes/{uniUUID}/kms/key_ref:
+    get:
+      description: YbaApi Internal.
+      operationId: getCurrentKeyRef
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: uniUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  properties: {}
+                  type: object
+                type: object
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Get a universe's key reference
+      tags:
+      - Encryption at rest
+    servers:
+    - url: /
+components:
+  schemas:
+    YBPError:
+      description: Generic error response from the YugabyteDB Anywhere API
+      example:
+        success: false
+        requestUri: /customers/8918921-af3782-633de/universe/8173ab-fd2453/create
+        error: There was a problem creating the universe
+        httpMethod: POST
+        errorJson: '{ "foo" : "bar", "baz" : [1, 2, 3] }'
+        requestJson: '{ "foo" : "bar", "baz" : [1, 2, 3] }'
+      properties:
+        error:
+          description: User-visible unstructured error message
+          example: There was a problem creating the universe
+          type: string
+        errorJson:
+          description: User visible structured error message as json object
+          example: '{ "foo" : "bar", "baz" : [1, 2, 3] }'
+          properties: {}
+          type: object
+        httpMethod:
+          description: Method for HTTP call that resulted in this error
+          example: POST
+          type: string
+        requestJson:
+          description: User request JSON object
+          example: '{ "foo" : "bar", "baz" : [1, 2, 3] }'
+          properties: {}
+          type: object
+        requestUri:
+          description: URI for HTTP request that resulted in this error
+          example: /customers/8918921-af3782-633de/universe/8173ab-fd2453/create
+          type: string
+        success:
+          description: Always set to false to indicate failure
+          example: false
+          type: boolean
+      type: object
+    YBPSuccess:
+      example:
+        success: true
+        message: message
+      properties:
+        message:
+          description: API response message.
+          readOnly: true
+          type: string
+        success:
+          description: API operation status. A value of true indicates the operation was successful.
+          readOnly: true
+          type: boolean
+      type: object
+    YBPTask:
+      example:
+        taskUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        resourceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        resourceUUID:
+          description: UUID of the resource being modified by the task
+          format: uuid
+          readOnly: true
+          type: string
+        taskUUID:
+          description: Task UUID
+          format: uuid
+          readOnly: true
+          type: string
+      type: object
+    YBPSuccess_2:
+      properties:
+        message:
+          description: API response message.
+          readOnly: true
+          type: string
+        success:
+          description: API operation status. A value of true indicates the operation was successful.
+          readOnly: true
+          type: boolean
+      type: object
+    YBPTask_2:
+      properties:
+        resourceUUID:
+          description: UUID of the resource being modified by the task
+          format: uuid
+          readOnly: true
+          type: string
+        taskUUID:
+          description: Task UUID
+          format: uuid
+          readOnly: true
+          type: string
+      type: object
+  securitySchemes:
+    apiKeyAuth:
+      description: API token passed as header
+      in: header
+      name: X-AUTH-YW-API-TOKEN
+      type: apiKey
+externalDocs:
+  description: About YugabyteDB Anywhere
+  url: https://docs.yugabyte.com/latest/yugabyte-platform/
+x-refined-from:
+- openapi_2.yaml
+- platform.swagger.json

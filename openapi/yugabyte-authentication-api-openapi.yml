@@ -1,0 +1,335 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@yugabyte.com
+    name: YugabyteDB Anywhere Support
+    url: https://docs.yugabyte.com
+  description: An improved set of APIs for managing YugabyteDB Anywhere
+  license:
+    name: Polyform Free Trial License 1.0.0
+    url: https://github.com/yugabyte/yugabyte-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
+  title: YugabyteDB Anywhere V2 Authentication API
+  version: v2
+servers:
+- description: API endpoint of YBA server
+  url: '{protocol}://{host_port}/api/v2'
+  variables:
+    protocol:
+      default: http
+      enum:
+      - http
+      - https
+    host_port:
+      default: localhost:9000
+tags:
+- description: Authentication operations on YBA
+  name: Authentication
+paths:
+  /customers/{cUUID}/auth/group-mappings:
+    get:
+      description: Get list of all OIDC and LDAP Group Mappings.
+      operationId: listMappings
+      parameters:
+      - description: Customer UUID
+        explode: false
+        in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/AuthGroupToRolesMapping'
+                type: array
+          description: OK
+        '400':
+          description: Invalid input
+        '500':
+          description: Server error
+      security:
+      - apiKeyAuth: []
+      summary: List Group Mappings
+      tags:
+      - Authentication
+      x-yba-api-audit:
+        noAudit: true
+      x-yba-api-authz:
+      - requiredPermission:
+          resourceType: other
+          action: read
+        resourceLocation:
+          path: customers
+          sourceType: endpoint
+      x-yba-api-since: 2024.2.0.0
+      x-yba-api-visibility: preview
+      x-accepts:
+      - application/json
+    put:
+      description: Map LDAP and OIDC groups to YBA roles
+      operationId: updateGroupMappings
+      parameters:
+      - description: Customer UUID
+        explode: false
+        in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        $ref: '#/components/requestBodies/AuthGroupToRolesMappingReq'
+      responses:
+        '200':
+          description: Operation Successfull
+        '400':
+          description: Invalid input
+        '500':
+          description: Server error
+      security:
+      - apiKeyAuth: []
+      summary: Create Group Mappings
+      tags:
+      - Authentication
+      x-yba-api-audit:
+        auditTargetType: GroupMapping
+        auditTargetId: cUUID.toString()
+        auditActionType: Set
+      x-yba-api-authz:
+      - requiredPermission:
+          resourceType: other
+          action: super_admin_actions
+        resourceLocation:
+          path: customers
+          sourceType: endpoint
+      x-yba-api-since: 2024.2.0.0
+      x-yba-api-visibility: preview
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /customers/{cUUID}/auth/group-mappings/{gUUID}:
+    delete:
+      description: Delete LDAP and OIDC group mapping
+      operationId: deleteGroupMappings
+      parameters:
+      - description: Customer UUID
+        explode: false
+        in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - description: Group UUID
+        explode: false
+        in: path
+        name: gUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Invalid input
+        '404':
+          description: Not found
+        '500':
+          description: Server error
+      security:
+      - apiKeyAuth: []
+      summary: Delete Group Mappings
+      tags:
+      - Authentication
+      x-yba-api-audit:
+        auditTargetType: GroupMapping
+        auditTargetId: gUUID.toString()
+        auditActionType: Delete
+      x-yba-api-authz:
+      - requiredPermission:
+          resourceType: other
+          action: super_admin_actions
+        resourceLocation:
+          path: customers
+          sourceType: endpoint
+      x-yba-api-since: 2024.2.0.0
+      x-yba-api-visibility: preview
+      x-accepts:
+      - application/json
+components:
+  schemas:
+    ResourceGroup:
+      description: Resource group definition for the role. Only applicable for custom roles.
+      example:
+        resource_definition_set:
+        - resource_type: UNIVERSE
+          resource_uuid_set:
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          allow_all: true
+        - resource_type: UNIVERSE
+          resource_uuid_set:
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          allow_all: true
+      properties:
+        resource_definition_set:
+          items:
+            $ref: '#/components/schemas/ResourceDefinition'
+          type: array
+      required:
+      - resource_definition_set
+      title: ResourceGroup
+      type: object
+    AuthGroupToRolesMapping:
+      description: 'AuthGroupToRolesMapping
+
+
+        Group mapping properties. This is used to map LDAP and OIDC group to YBA roles.
+
+        '
+      example:
+        role_resource_definitions:
+        - resource_group:
+            resource_definition_set:
+            - resource_type: UNIVERSE
+              resource_uuid_set:
+              - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              allow_all: true
+            - resource_type: UNIVERSE
+              resource_uuid_set:
+              - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              allow_all: true
+          role_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - resource_group:
+            resource_definition_set:
+            - resource_type: UNIVERSE
+              resource_uuid_set:
+              - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              allow_all: true
+            - resource_type: UNIVERSE
+              resource_uuid_set:
+              - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              allow_all: true
+          role_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        group_identifier: group_identifier
+        creation_date: 2022-12-12 13:07:18+00:00
+        type: LDAP
+        uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        group_identifier:
+          description: Group name incase of OIDC. Group DN incase of LDAP.
+          type: string
+        uuid:
+          description: System generated UUID for this group mapping.
+          format: uuid
+          readOnly: true
+          type: string
+        type:
+          description: The type of group. Can be either LDAP/OIDC.
+          enum:
+          - LDAP
+          - OIDC
+          type: string
+        creation_date:
+          description: Group mapping creation date.
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          readOnly: true
+          type: string
+        role_resource_definitions:
+          items:
+            $ref: '#/components/schemas/RoleResourceDefinition'
+          type: array
+      required:
+      - group_identifier
+      - role_resource_definitions
+      - type
+      title: AuthGroupToRolesMapping
+      type: object
+    RoleResourceDefinition:
+      description: Defines the association of Role to Resource Groups. Part of AuthGroupToRolesMapping.
+      example:
+        resource_group:
+          resource_definition_set:
+          - resource_type: UNIVERSE
+            resource_uuid_set:
+            - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            allow_all: true
+          - resource_type: UNIVERSE
+            resource_uuid_set:
+            - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            allow_all: true
+        role_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        role_uuid:
+          description: UUID of the role to attach resource group to.
+          format: uuid
+          type: string
+        resource_group:
+          $ref: '#/components/schemas/ResourceGroup'
+      required:
+      - role_uuid
+      title: RoleResourceDefinition.
+      type: object
+    ResourceDefinition:
+      description: Resource definition containing the resource type and resource set.
+      example:
+        resource_type: UNIVERSE
+        resource_uuid_set:
+        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        allow_all: true
+      properties:
+        resource_type:
+          description: Resource Type
+          enum:
+          - UNIVERSE
+          - ROLE
+          - USER
+          - OTHER
+          type: string
+        allow_all:
+          description: Select all resources (including future resources)
+          type: boolean
+        resource_uuid_set:
+          default: []
+          description: Set of resource UUIDs
+          items:
+            format: uuid
+            type: string
+          type: array
+      required:
+      - allow_all
+      - resource_type
+      title: ResourceDefinition
+      type: object
+  requestBodies:
+    AuthGroupToRolesMappingReq:
+      content:
+        application/json:
+          schema:
+            items:
+              $ref: '#/components/schemas/AuthGroupToRolesMapping'
+            type: array
+      required: true
+  securitySchemes:
+    apiKeyAuth:
+      in: header
+      name: X-AUTH-YW-API-TOKEN
+      type: apiKey

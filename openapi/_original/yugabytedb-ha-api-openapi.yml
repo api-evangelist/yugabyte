@@ -1,0 +1,303 @@
+# x-archived-from: yugabytedb-ha-api-openapi.yml
+# x-archived-on: 2026-09-26
+openapi: 3.2.0
+info:
+  contact:
+    name: https://docs.yugabyte.com
+  description: ALPHA - NOT FOR EXTERNAL USE
+  license:
+    name: Polyform Free Trial License 1.0.0
+    url: https://github.com/yugabyte/yugabyte-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
+  termsOfService: TODO(chirag)
+  title: YugabyteDB Anywhere HA API
+  version: v1
+servers:
+- url: /
+tags:
+- name: HA
+paths:
+  /api/v1/settings/ha/config:
+    get:
+      operationId: getHAConfig
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HAConfigGetResp'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Get high availability config
+      tags:
+      - HA
+    post:
+      description: Available since YBA version 2.20.0.
+      operationId: createHAConfig
+      parameters:
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HAConfigFormData'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HighAvailabilityConfig'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Create high availability config
+      tags:
+      - HA
+      x-codegen-request-body-name: HAConfigFormRequest
+  /api/v1/settings/ha/config/{cUUID}:
+    delete:
+      operationId: deleteHAConfig
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      responses:
+        default:
+          content: {}
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      tags:
+      - HA
+      summary: Delete HA config
+      x-summary-source: derived
+    put:
+      operationId: editHAConfig
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      responses:
+        default:
+          content: {}
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      tags:
+      - HA
+      summary: Edit HA config
+      x-summary-source: derived
+  /api/v1/settings/ha/generate_key:
+    get:
+      description: Available since YBA version 2.20.0.
+      operationId: generateClusterKey
+      responses:
+        default:
+          content: {}
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Generate cluster key
+      tags:
+      - HA
+components:
+  schemas:
+    HAConfigGetResp:
+      description: HA config response
+      example:
+        cluster_key: cluster_key
+        instances:
+        - address: address
+          config_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          instance_state: Awaiting Connection to Replicas
+          ybaVersion: ybaVersion
+          state: LEADER
+          is_local: true
+          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          is_leader: true
+          last_backup: 2022-12-12 13:07:18+00:00
+        - address: address
+          config_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          instance_state: Awaiting Connection to Replicas
+          ybaVersion: ybaVersion
+          state: LEADER
+          is_local: true
+          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          is_leader: true
+          last_backup: 2022-12-12 13:07:18+00:00
+        accept_any_certificate: true
+        global_state: Unknown
+        last_failover: 2022-12-12 13:07:18+00:00
+        uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        accept_any_certificate:
+          description: HA accepts any certificate
+          readOnly: true
+          type: boolean
+        cluster_key:
+          description: HA config cluster key
+          readOnly: true
+          type: string
+        global_state:
+          description: HA config global state
+          enum:
+          - Unknown
+          - NoReplicas
+          - AwaitingReplicas
+          - Operational
+          - Error
+          - Warning
+          - StandbyConnected
+          - StandbyDisconnected
+          readOnly: true
+          type: string
+        instances:
+          description: HA config platform instances
+          items:
+            $ref: '#/components/schemas/PlatformInstance'
+          type: array
+        last_failover:
+          description: HA last failover
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          readOnly: true
+          type: string
+        uuid:
+          description: HA config UUID
+          format: uuid
+          type: string
+      type: object
+    HighAvailabilityConfig:
+      example:
+        cluster_key: cluster_key
+        instances:
+        - address: address
+          config_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          instance_state: Awaiting Connection to Replicas
+          ybaVersion: ybaVersion
+          state: LEADER
+          is_local: true
+          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          is_leader: true
+          last_backup: 2022-12-12 13:07:18+00:00
+        - address: address
+          config_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          instance_state: Awaiting Connection to Replicas
+          ybaVersion: ybaVersion
+          state: LEADER
+          is_local: true
+          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          is_leader: true
+          last_backup: 2022-12-12 13:07:18+00:00
+        accept_any_certificate: true
+        last_failover: 2022-12-12 13:07:18+00:00
+        uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        accept_any_certificate:
+          type: boolean
+        cluster_key:
+          type: string
+        instances:
+          items:
+            $ref: '#/components/schemas/PlatformInstance'
+          type: array
+        last_failover:
+          description: HA last failover
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          type: string
+        uuid:
+          format: uuid
+          type: string
+      required:
+      - instances
+      - uuid
+      type: object
+    HAConfigFormData:
+      example:
+        cluster_key: cluster_key
+        accept_any_certificate: true
+      properties:
+        accept_any_certificate:
+          type: boolean
+        cluster_key:
+          type: string
+      required:
+      - accept_any_certificate
+      - cluster_key
+      type: object
+    PlatformInstance:
+      example:
+        address: address
+        config_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        instance_state: Awaiting Connection to Replicas
+        ybaVersion: ybaVersion
+        state: LEADER
+        is_local: true
+        uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        is_leader: true
+        last_backup: 2022-12-12 13:07:18+00:00
+      properties:
+        address:
+          type: string
+        config_uuid:
+          format: uuid
+          type: string
+        instance_state:
+          enum:
+          - Awaiting Connection to Replicas
+          - Connected
+          - Disconnected
+          type: string
+        is_leader:
+          type: boolean
+        is_local:
+          type: boolean
+        last_backup:
+          description: Last backup time
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          type: string
+        state:
+          enum:
+          - LEADER
+          - STAND_BY
+          type: string
+        uuid:
+          format: uuid
+          type: string
+        ybaVersion:
+          type: string
+      required:
+      - address
+      - instance_state
+      - is_leader
+      - state
+      - uuid
+      - ybaVersion
+      type: object
+  securitySchemes:
+    apiKeyAuth:
+      description: API token passed as header
+      in: header
+      name: X-AUTH-YW-API-TOKEN
+      type: apiKey
+externalDocs:
+  description: About YugabyteDB Anywhere
+  url: https://docs.yugabyte.com/latest/yugabyte-platform/
+x-original-swagger-version: '2.0'

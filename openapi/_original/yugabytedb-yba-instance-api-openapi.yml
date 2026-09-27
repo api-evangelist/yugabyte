@@ -1,0 +1,79 @@
+# x-archived-from: yugabytedb-yba-instance-api-openapi.yml
+# x-archived-on: 2026-09-26
+openapi: 3.2.0
+info:
+  contact:
+    email: support@yugabyte.com
+    name: YugabyteDB Anywhere Support
+    url: https://docs.yugabyte.com
+  description: An improved set of APIs for managing YugabyteDB Anywhere
+  license:
+    name: Polyform Free Trial License 1.0.0
+    url: https://github.com/yugabyte/yugabyte-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
+  title: YugabyteDB Anywhere V2 YBA Instance API
+  version: v2
+servers:
+- description: API endpoint of YBA server
+  url: '{protocol}://{host_port}/api/v2'
+  variables:
+    protocol:
+      default: http
+      enum:
+      - http
+      - https
+    host_port:
+      default: localhost:9000
+tags:
+- description: YBA Instance operations
+  name: YBA Instance
+paths:
+  /yba-info:
+    get:
+      description: Get YBA Instance info
+      operationId: GetYBAInstanceInfo
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YBAInfo'
+          description: YBA Info
+          x-yba-api-visibility: internal
+        '400':
+          description: Client Error
+        '500':
+          description: Server Error
+      security:
+      - apiKeyAuth: []
+      summary: Get YBAInstance info
+      tags:
+      - YBA Instance
+      x-yba-api-audit:
+        noAudit: true
+      x-yba-api-authz:
+        noAuthz: true
+      x-yba-api-since: 2025.2.0.0
+      x-yba-api-visibility: internal
+      x-accepts:
+      - application/json
+components:
+  schemas:
+    YBAInfo:
+      description: Describes YBA instance info
+      example:
+        fips_enabled: true
+      properties:
+        fips_enabled:
+          description: Whether YBA instance is FIPS compliant
+          readOnly: true
+          type: boolean
+      required:
+      - fips_enabled
+      title: YBAInfo
+      type: object
+      x-yba-api-visibility: internal
+  securitySchemes:
+    apiKeyAuth:
+      in: header
+      name: X-AUTH-YW-API-TOKEN
+      type: apiKey

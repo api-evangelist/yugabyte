@@ -1,0 +1,139 @@
+openapi: 3.2.0
+info:
+  title: Yugabytedb Universe actions API
+  version: v1
+  contact:
+    name: https://docs.yugabyte.com
+  license:
+    name: Polyform Free Trial License 1.0.0
+    url: https://github.com/yugabyte/yugabyte-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
+  termsOfService: TODO(chirag)
+  description: 'Operations tagged Universe actions across 2 of this provider''s published API definitions: openapi_2.yaml, platform.swagger.json. Each path carries the servers of the definition it was published in.'
+servers:
+- url: /
+tags:
+- name: Universe actions
+paths:
+  /api/v1/customers/{cUUID}/universes/import:
+    servers:
+    - url: /
+    post:
+      deprecated: true
+      description: 'Deprecated since YBA version 2.19.3.0.
+
+        Do not use, this will be removed soon.'
+      operationId: importUniverse
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportUniverseFormData'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Import a universe - deprecated
+      tags:
+      - Universe actions
+components:
+  schemas:
+    ImportUniverseFormData:
+      example:
+        singleStep: true
+        replicationFactor: 0
+        instanceType: instanceType
+        regionName: regionName
+        providerType: unknown
+        masterAddresses: masterAddresses
+        universeUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        regionCode: regionCode
+        cloudName: cloudName
+        cloudProviderType: cloudProviderType
+        zoneName: zoneName
+        currentState: BEGIN
+        universeName: universeName
+        zoneCode: zoneCode
+      properties:
+        cloudName:
+          type: string
+        cloudProviderType:
+          type: string
+        currentState:
+          enum:
+          - BEGIN
+          - IMPORTED_MASTERS
+          - IMPORTED_TSERVERS
+          - FINISHED
+          type: string
+        instanceType:
+          type: string
+        masterAddresses:
+          type: string
+        providerType:
+          enum:
+          - unknown
+          - aws
+          - gcp
+          - azu
+          - docker
+          - onprem
+          - kubernetes
+          - local
+          - other
+          type: string
+        regionCode:
+          type: string
+        regionName:
+          type: string
+        replicationFactor:
+          format: int32
+          type: integer
+        singleStep:
+          type: boolean
+        universeName:
+          type: string
+        universeUUID:
+          format: uuid
+          type: string
+        zoneCode:
+          type: string
+        zoneName:
+          type: string
+      required:
+      - cloudName
+      - cloudProviderType
+      - currentState
+      - instanceType
+      - masterAddresses
+      - providerType
+      - regionCode
+      - regionName
+      - replicationFactor
+      - singleStep
+      - universeName
+      - universeUUID
+      - zoneCode
+      - zoneName
+      type: object
+  securitySchemes:
+    apiKeyAuth:
+      description: API token passed as header
+      in: header
+      name: X-AUTH-YW-API-TOKEN
+      type: apiKey
+externalDocs:
+  description: About YugabyteDB Anywhere
+  url: https://docs.yugabyte.com/latest/yugabyte-platform/
+x-refined-from:
+- openapi_2.yaml
+- platform.swagger.json

@@ -1,0 +1,141 @@
+# x-archived-from: yugabytedb-projects-api-openapi.yml
+# x-archived-on: 2026-09-26
+openapi: 3.2.0
+info:
+  title: YugabyteDB Aeon REST Projects API
+  description: The YugabyteDB Aeon REST API provides programmatic access to YugabyteDB's fully managed cloud database service.
+  version: v1
+  contact:
+    name: Yugabyte Support
+    url: https://support.yugabyte.com
+  termsOfService: https://www.yugabyte.com/yugabytedb-managed-service-terms/
+  x-generated-from: documentation
+  x-source-url: https://api-docs.yugabyte.com/docs/managed-apis/
+  x-last-validated: '2026-05-03'
+servers:
+- url: https://cloud.yugabyte.com/api/public/v1
+  description: YugabyteDB Aeon Production Server
+security:
+- bearerAuth: []
+tags:
+- name: Projects
+  description: Manage projects within a YugabyteDB Aeon account. Projects provide organizational grouping for clusters, allow lists, and billing.
+paths:
+  /accounts/{accountId}/projects:
+    get:
+      operationId: listProjects
+      summary: YugabyteDB Aeon List Projects
+      description: Returns all projects within the specified account. Projects group clusters and resources for organizational or billing purposes.
+      tags:
+      - Projects
+      parameters:
+      - $ref: '#/components/parameters/accountId'
+      responses:
+        '200':
+          description: List of projects returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Project'
+              examples:
+                ListProjects200Example:
+                  summary: Default listProjects 200 response
+                  x-microcks-default: true
+                  value:
+                    data:
+                    - id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+                      name: example-name
+                      account_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+                      created_at: '2026-05-03T12:00:00Z'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  parameters:
+    accountId:
+      name: accountId
+      in: path
+      required: true
+      description: The unique identifier of the YugabyteDB Aeon account.
+      schema:
+        type: string
+        format: uuid
+      example: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+  responses:
+    Unauthorized:
+      description: The API key is missing, invalid, or expired.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          examples:
+            UnauthorizedExample:
+              summary: Default Unauthorized response
+              x-microcks-default: true
+              value:
+                error:
+                  code: OK
+                  message: Example message
+                  status: 100
+  schemas:
+    Project:
+      type: object
+      description: A project within a YugabyteDB Aeon account that groups clusters and resources.
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique identifier for the project.
+          example: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        name:
+          type: string
+          description: Display name of the project.
+          example: example-name
+        account_id:
+          type: string
+          format: uuid
+          description: The account this project belongs to.
+          example: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        created_at:
+          type: string
+          format: date-time
+          description: Timestamp when the project was created.
+          example: '2026-05-03T12:00:00Z'
+    ErrorResponse:
+      type: object
+      description: Standard error response returned by the API on failure.
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: Machine-readable error code.
+              example: OK
+            message:
+              type: string
+              description: Human-readable description of the error.
+              example: Example message
+            status:
+              type: integer
+              description: HTTP status code.
+              example: 100
+          example:
+            code: OK
+            message: Example message
+            status: 100
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: API key obtained from the YugabyteDB Aeon UI under User Profile > API Keys. Pass the key as a Bearer token in the Authorization header.
+externalDocs:
+  description: YugabyteDB Aeon REST API Documentation
+  url: https://docs.yugabyte.com/stable/yugabyte-cloud/managed-automation/managed-api/

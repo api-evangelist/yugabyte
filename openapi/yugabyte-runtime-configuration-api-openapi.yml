@@ -1,0 +1,422 @@
+openapi: 3.2.0
+info:
+  title: Yugabytedb Runtime configuration API
+  version: v1
+  contact:
+    name: https://docs.yugabyte.com
+  license:
+    name: Polyform Free Trial License 1.0.0
+    url: https://github.com/yugabyte/yugabyte-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
+  termsOfService: TODO(chirag)
+  description: 'Operations tagged Runtime configuration across 2 of this provider''s published API definitions: openapi_2.yaml, platform.swagger.json. Each path carries the servers of the definition it was published in.'
+servers:
+- url: /
+tags:
+- name: Runtime configuration
+paths:
+  /api/v1/customers/{cUUID}/runtime_config/scopes:
+    servers:
+    - url: /
+    get:
+      description: Lists all (including empty scopes) runtime config scopes for current customer. List includes the Global scope that spans multiple customers, scope for customer specific overrides for current customer and one scope each for each universe and provider.
+      operationId: listScopes
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RuntimeConfigData'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: List configuration scopes
+      tags:
+      - Runtime configuration
+  /api/v1/customers/{cUUID}/runtime_config/{scope}:
+    servers:
+    - url: /
+    get:
+      description: Lists all runtime config entries for a given scope for current customer.
+      operationId: getConfig
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: scope
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: includeInherited
+        schema:
+          default: false
+          type: boolean
+      - in: query
+        name: request
+        schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScopedConfig'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: List configuration entries for a scope
+      tags:
+      - Runtime configuration
+  /api/v1/customers/{cUUID}/runtime_config/{scope}/key/{key}:
+    servers:
+    - url: /
+    delete:
+      operationId: deleteKey
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: scope
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: key
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YBPSuccess'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Delete a configuration key
+      tags:
+      - Runtime configuration
+    get:
+      operationId: getConfigurationKey
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: scope
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: key
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      responses:
+        '200':
+          content:
+            text/plain:
+              schema:
+                type: string
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Get a configuration key
+      tags:
+      - Runtime configuration
+    put:
+      operationId: setKey
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: scope
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: key
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          text/plain:
+            schema:
+              type: string
+        description: New value for config key
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YBPSuccess'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Update a configuration key
+      tags:
+      - Runtime configuration
+      x-codegen-request-body-name: newValue
+  /api/v1/runtime_config/feature_flags:
+    servers:
+    - url: /
+    get:
+      description: YbaApi Internal.
+      operationId: listFeatureFlags
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ConfigEntry'
+                type: array
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: List all the feature flag runtime config keys and their values
+      tags:
+      - Runtime configuration
+  /api/v1/runtime_config/mutable_key_info:
+    servers:
+    - url: /
+    get:
+      description: List all the mutable runtime config keys with metadata
+      operationId: listKeyInfo
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ConfKeyInfo'
+                type: array
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: List mutable keys
+      tags:
+      - Runtime configuration
+  /api/v1/runtime_config/mutable_keys:
+    servers:
+    - url: /
+    get:
+      description: List all the mutable runtime config keys
+      operationId: listKeys
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  type: string
+                type: array
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: List mutable keys
+      tags:
+      - Runtime configuration
+components:
+  schemas:
+    ScopedConfig:
+      description: Scoped configuration
+      example:
+        configEntries:
+        - inherited: true
+          value: value
+          key: key
+        - inherited: true
+          value: value
+          key: key
+        mutableScope: true
+        type: GLOBAL
+        uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        configEntries:
+          description: List of configurations
+          items:
+            $ref: '#/components/schemas/ConfigEntry'
+          type: array
+        mutableScope:
+          description: Mutability of the scope. Only super admin users can change global scope; other scopes are customer-mutable.
+          type: boolean
+        type:
+          description: Scope type
+          enum:
+          - GLOBAL
+          - CUSTOMER
+          - UNIVERSE
+          - PROVIDER
+          type: string
+        uuid:
+          description: Scope UIID
+          format: uuid
+          type: string
+      type: object
+    ConfigEntry:
+      description: Configuration entry
+      example:
+        inherited: true
+        value: value
+        key: key
+      properties:
+        inherited:
+          description: Is this configuration inherited?
+          type: boolean
+        key:
+          description: Configuration key
+          type: string
+        value:
+          description: Configuration value
+          type: string
+      type: object
+    ConfDataTypeObject:
+      example:
+        name: name
+      properties:
+        name:
+          type: string
+      required:
+      - name
+      type: object
+    YBPSuccess:
+      example:
+        success: true
+        message: message
+      properties:
+        message:
+          description: API response message.
+          readOnly: true
+          type: string
+        success:
+          description: API operation status. A value of true indicates the operation was successful.
+          readOnly: true
+          type: boolean
+      type: object
+    ConfKeyInfo:
+      example:
+        displayName: displayName
+        dataType:
+          name: name
+        scope: GLOBAL
+        helpTxt: helpTxt
+        key: key
+        tags:
+        - PUBLIC
+        - PUBLIC
+      properties:
+        dataType:
+          $ref: '#/components/schemas/ConfDataTypeObject'
+        displayName:
+          type: string
+        helpTxt:
+          type: string
+        key:
+          type: string
+        scope:
+          enum:
+          - GLOBAL
+          - CUSTOMER
+          - UNIVERSE
+          - PROVIDER
+          type: string
+        tags:
+          items:
+            enum:
+            - PUBLIC
+            - INTERNAL
+            - FEATURE_FLAG
+            type: string
+          type: array
+      required:
+      - dataType
+      - displayName
+      - helpTxt
+      - key
+      - scope
+      - tags
+      type: object
+    RuntimeConfigData:
+      description: Runtime configuration data
+      example:
+        scopedConfigList:
+        - configEntries:
+          - inherited: true
+            value: value
+            key: key
+          - inherited: true
+            value: value
+            key: key
+          mutableScope: true
+          type: GLOBAL
+          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - configEntries:
+          - inherited: true
+            value: value
+            key: key
+          - inherited: true
+            value: value
+            key: key
+          mutableScope: true
+          type: GLOBAL
+          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        scopedConfigList:
+          description: List of scoped configurations
+          items:
+            $ref: '#/components/schemas/ScopedConfig'
+          type: array
+      type: object
+  securitySchemes:
+    apiKeyAuth:
+      description: API token passed as header
+      in: header
+      name: X-AUTH-YW-API-TOKEN
+      type: apiKey
+externalDocs:
+  description: About YugabyteDB Anywhere
+  url: https://docs.yugabyte.com/latest/yugabyte-platform/
+x-refined-from:
+- openapi_2.yaml
+- platform.swagger.json

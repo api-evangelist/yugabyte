@@ -1,0 +1,1798 @@
+# x-archived-from: yugabytedb-customer-tasks-api-openapi.yml
+# x-archived-on: 2026-09-26
+openapi: 3.2.0
+info:
+  title: Yugabytedb Customer Tasks API
+  version: v1
+  contact:
+    name: https://docs.yugabyte.com
+  license:
+    name: Polyform Free Trial License 1.0.0
+    url: https://github.com/yugabyte/yugabyte-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
+  termsOfService: TODO(chirag)
+  description: 'Operations tagged Customer Tasks across 2 of this provider''s published API definitions: openapi_2.yaml, platform.swagger.json. Each path carries the servers of the definition it was published in.'
+servers:
+- url: /
+tags:
+- name: Customer Tasks
+paths:
+  /api/v1/customers/{cUUID}/tasks/{tUUID}:
+    get:
+      operationId: taskStatus
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: tUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Get a task's status
+      tags:
+      - Customer Tasks
+    servers:
+    - url: /
+  /api/v1/customers/{cUUID}/tasks/{tUUID}/abort:
+    post:
+      description: Aborts a running task
+      operationId: abortTask
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: tUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YBPSuccess'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Abort a task
+      tags:
+      - Customer Tasks
+    servers:
+    - url: /
+  /api/v1/customers/{cUUID}/tasks/{tUUID}/failed:
+    get:
+      deprecated: true
+      description: 'Deprecated since YBA version 2.19.1.0.
+
+        Use /api/v1/customers/{cUUID}/tasks/{tUUID}/failed_subtasks instead.'
+      operationId: failedSubtasks
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: tUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  properties: {}
+                  type: object
+                type: object
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Fetch failed subtasks - deprecated
+      tags:
+      - Customer Tasks
+    servers:
+    - url: /
+  /api/v1/customers/{cUUID}/tasks/{tUUID}/failed_subtasks:
+    get:
+      operationId: listFailedSubtasks
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: tUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FailedSubtasks'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Get a list of task's failed subtasks
+      tags:
+      - Customer Tasks
+    servers:
+    - url: /
+  /api/v1/customers/{cUUID}/tasks/{tUUID}/retry:
+    post:
+      description: Retry a Universe or Provider task.
+      operationId: retryTask
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: tUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YBPTask'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Retry a Universe or Provider task
+      tags:
+      - Customer Tasks
+    servers:
+    - url: /
+  /api/v1/customers/{cUUID}/tasks/{tUUID}/rollback:
+    post:
+      description: Rollback a Universe or Provider task.
+      operationId: rollbackTask
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: tUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YBPTask'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Rollback a Universe or Provider task
+      tags:
+      - Customer Tasks
+    servers:
+    - url: /
+  /api/v1/customers/{cUUID}/tasks_list:
+    get:
+      operationId: tasksList
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: uUUID
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CustomerTaskData'
+                type: array
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: List task
+      tags:
+      - Customer Tasks
+    servers:
+    - url: /
+  /api/v1/customers/{cUUID}/tasks_list/page:
+    post:
+      description: 'WARNING: This is a preview API that could change.'
+      operationId: listTasksV2
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskPagedApiQuery'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskPagedApiResponse'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: List Tasks (paginated)
+      tags:
+      - Customer Tasks
+      x-codegen-request-body-name: PageTasksRequest
+    servers:
+    - url: /
+components:
+  schemas:
+    TaskApiFilter:
+      example:
+        targetUUIDList:
+        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        targetList:
+        - Universe
+        - Universe
+        dateRangeEnd: 2022-12-12 13:07:18+00:00
+        typeList:
+        - Create
+        - Create
+        typeNameList:
+        - typeNameList
+        - typeNameList
+        dateRangeStart: 2022-12-12 13:07:18+00:00
+        status:
+        - Created
+        - Created
+      properties:
+        dateRangeEnd:
+          description: The end date to filter paged query.
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          type: string
+        dateRangeStart:
+          description: The start date to filter paged query.
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          type: string
+        status:
+          items:
+            enum:
+            - Created
+            - Initializing
+            - Running
+            - Success
+            - Failure
+            - Unknown
+            - Abort
+            - Aborted
+            type: string
+          type: array
+          uniqueItems: true
+        targetList:
+          items:
+            enum:
+            - Universe
+            - Cluster
+            - Table
+            - Provider
+            - Node
+            - Backup
+            - Schedule
+            - CustomerConfiguration
+            - KMSConfiguration
+            - XClusterConfig
+            - DrConfig
+            - UniverseKey
+            - MasterKey
+            - NodeAgent
+            - Yba
+            - User
+            type: string
+          type: array
+          uniqueItems: true
+        targetUUIDList:
+          items:
+            format: uuid
+            type: string
+          type: array
+          uniqueItems: true
+        typeList:
+          items:
+            enum:
+            - Create
+            - Pause
+            - Resume
+            - Update
+            - Delete
+            - Stop
+            - Start
+            - Restart
+            - Remove
+            - Add
+            - Release
+            - Reboot
+            - HardReboot
+            - Replace
+            - Edit
+            - Sync
+            - LdapSync
+            - RestartUniverse
+            - SoftwareUpgrade
+            - SoftwareUpgradeYB
+            - FinalizeUpgrade
+            - RollbackUpgrade
+            - GFlagsUpgrade
+            - KubernetesOverridesUpgrade
+            - EditKubernetesUniverse
+            - CertsRotate
+            - TlsToggle
+            - VMImageUpgrade
+            - SystemdUpgrade
+            - RebootUniverse
+            - UpgradeSoftware
+            - UpgradeVMImage
+            - ResizeNode
+            - UpdateCert
+            - UpdateDiskSize
+            - UpgradeGflags
+            - UpdateLoadBalancerConfig
+            - BulkImportData
+            - Backup
+            - Restore
+            - CreatePitrConfig
+            - UpdatePitrConfig
+            - DeletePitrConfig
+            - RestoreSnapshotSchedule
+            - SetEncryptionKey
+            - EnableEncryptionAtRest
+            - SetActiveUniverseKeys
+            - RotateEncryptionKey
+            - DisableEncryptionAtRest
+            - StartMaster
+            - CreateAlertDefinitions
+            - ManageAlertDefinitions
+            - ExternalScript
+            - CreateXClusterConfig
+            - EditXClusterConfig
+            - DeleteXClusterConfig
+            - SyncXClusterConfig
+            - Failover
+            - Switchover
+            - SwitchoverRollback
+            - PrecheckNode
+            - Abort
+            - CreateSupportBundle
+            - CreateTableSpaces
+            - ThirdpartySoftwareUpgrade
+            - ModifyAuditLoggingConfig
+            - ModifyQueryLoggingConfig
+            - ModifyMetricsExportConfig
+            - RotateAccessKey
+            - CreateAndRotateAccessKey
+            - RunApiTriggeredHooks
+            - InstallYbcSoftware
+            - InstallYbcSoftwareOnK8s
+            - UpgradeUniverseYbc
+            - DisableYbc
+            - UpgradeYbcGFlags
+            - UpgradeKubernetesYbcGFlags
+            - UpdateYbcThrottleFlags
+            - UpdateK8sYbcThrottleFlags
+            - ConfigureDBApis
+            - ConfigureDBApisKubernetes
+            - CreateImageBundle
+            - ReprovisionNode
+            - Install
+            - ProvisionUniverseNodes
+            - MasterFailover
+            - UpdateProxyConfig
+            - SyncMasterAddresses
+            - CreateYbaBackup
+            - RestoreYbaBackup
+            - RestoreContinuousBackup
+            - EnableNodeAgent
+            - Decommission
+            - CloneNamespace
+            - UpdateOOMServiceState
+            - SendUserNotification
+            - ImportUniverse
+            - MigrateUniverse
+            - KubernetesToggleImmutableYbc
+            - OperatorImport
+            type: string
+          type: array
+          uniqueItems: true
+        typeNameList:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+      required:
+      - status
+      - targetList
+      - targetUUIDList
+      - typeList
+      - typeNameList
+      type: object
+    TaskPagedApiQuery:
+      example:
+        filter:
+          targetUUIDList:
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          targetList:
+          - Universe
+          - Universe
+          dateRangeEnd: 2022-12-12 13:07:18+00:00
+          typeList:
+          - Create
+          - Create
+          typeNameList:
+          - typeNameList
+          - typeNameList
+          dateRangeStart: 2022-12-12 13:07:18+00:00
+          status:
+          - Created
+          - Created
+        offset: 6
+        needTotalCount: true
+        limit: 0
+        sortBy: createTime
+        direction: ASC
+      properties:
+        direction:
+          enum:
+          - ASC
+          - DESC
+          type: string
+        filter:
+          $ref: '#/components/schemas/TaskApiFilter'
+        limit:
+          format: int32
+          type: integer
+        needTotalCount:
+          type: boolean
+        offset:
+          format: int32
+          type: integer
+        sortBy:
+          enum:
+          - createTime
+          type: string
+      required:
+      - direction
+      - filter
+      - limit
+      - needTotalCount
+      - offset
+      - sortBy
+      type: object
+    TaskPagedApiResponse:
+      example:
+        entities:
+        - retryable: true
+          abortable: true
+          typeName: Software Upgrade
+          percentComplete: 100
+          title: 'Deleted Universe : test-universe'
+          type: Delete
+          targetUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          target: Universe
+          completionTime: 2022-12-12 13:07:18+00:00
+          createTime: 2022-12-12 13:07:18+00:00
+          canRollback: true
+          correlationId: correlationId
+          userEmail: userEmail
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          status: Complete
+        - retryable: true
+          abortable: true
+          typeName: Software Upgrade
+          percentComplete: 100
+          title: 'Deleted Universe : test-universe'
+          type: Delete
+          targetUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          target: Universe
+          completionTime: 2022-12-12 13:07:18+00:00
+          createTime: 2022-12-12 13:07:18+00:00
+          canRollback: true
+          correlationId: correlationId
+          userEmail: userEmail
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          status: Complete
+        hasPrev: true
+        hasNext: true
+        totalCount: 0
+      properties:
+        entities:
+          items:
+            $ref: '#/components/schemas/CustomerTaskData'
+          type: array
+        hasNext:
+          type: boolean
+        hasPrev:
+          type: boolean
+        totalCount:
+          format: int32
+          type: integer
+      required:
+      - entities
+      - hasNext
+      - hasPrev
+      - totalCount
+      type: object
+    YBPSuccess:
+      example:
+        success: true
+        message: message
+      properties:
+        message:
+          description: API response message.
+          readOnly: true
+          type: string
+        success:
+          description: API operation status. A value of true indicates the operation was successful.
+          readOnly: true
+          type: boolean
+      type: object
+    YBPTask:
+      example:
+        taskUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        resourceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        resourceUUID:
+          description: UUID of the resource being modified by the task
+          format: uuid
+          readOnly: true
+          type: string
+        taskUUID:
+          description: Task UUID
+          format: uuid
+          readOnly: true
+          type: string
+      type: object
+    CustomerTaskData:
+      description: Customer task data
+      example:
+        retryable: true
+        abortable: true
+        typeName: Software Upgrade
+        percentComplete: 100
+        title: 'Deleted Universe : test-universe'
+        type: Delete
+        targetUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        target: Universe
+        completionTime: 2022-12-12 13:07:18+00:00
+        createTime: 2022-12-12 13:07:18+00:00
+        canRollback: true
+        correlationId: correlationId
+        userEmail: userEmail
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        status: Complete
+      properties:
+        abortable:
+          description: Customer task abortable
+          type: boolean
+        canRollback:
+          description: Whether the Customer task can be rolled back
+          type: boolean
+        completionTime:
+          description: Customer task completion time
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          type: string
+        correlationId:
+          description: Correlation id
+          type: string
+        createTime:
+          description: Customer task creation time
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          type: string
+        id:
+          description: Customer task UUID
+          format: uuid
+          type: string
+        percentComplete:
+          description: Customer task percentage completed
+          example: 100
+          format: int32
+          type: integer
+        retryable:
+          description: Customer task retryable
+          type: boolean
+        status:
+          description: Customer task status
+          example: Complete
+          type: string
+        target:
+          description: Customer task target
+          example: Universe
+          type: string
+        targetUUID:
+          description: Customer task target UUID
+          format: uuid
+          type: string
+        title:
+          description: Customer task title
+          example: 'Deleted Universe : test-universe'
+          type: string
+        type:
+          description: Customer task type
+          example: Delete
+          type: string
+        typeName:
+          description: Customer task type name
+          example: Software Upgrade
+          type: string
+        userEmail:
+          description: Customer Email
+          readOnly: true
+          type: string
+      type: object
+    FailedSubtasks:
+      description: Failed Subtasks
+      example:
+        failedSubTasks:
+        - errorString: errorString
+          creationTime: 2022-12-12 13:07:18+00:00
+          subTaskUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          subTaskType: subTaskType
+          errorCode: UNKNOWN_ERROR
+          subTaskGroupType: subTaskGroupType
+          subTaskState: subTaskState
+        - errorString: errorString
+          creationTime: 2022-12-12 13:07:18+00:00
+          subTaskUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          subTaskType: subTaskType
+          errorCode: UNKNOWN_ERROR
+          subTaskGroupType: subTaskGroupType
+          subTaskState: subTaskState
+      properties:
+        failedSubTasks:
+          description: List of failed subtasks
+          items:
+            $ref: '#/components/schemas/SubtaskData'
+          type: array
+      type: object
+    SubtaskData:
+      description: Detailed subtask data
+      example:
+        errorString: errorString
+        creationTime: 2022-12-12 13:07:18+00:00
+        subTaskUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        subTaskType: subTaskType
+        errorCode: UNKNOWN_ERROR
+        subTaskGroupType: subTaskGroupType
+        subTaskState: subTaskState
+      properties:
+        creationTime:
+          description: Creation time (unix timestamp) of the task
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          type: string
+        errorCode:
+          description: 'WARNING: This is a preview API that could change. Subtask error code'
+          enum:
+          - UNKNOWN_ERROR
+          - INTERNAL_ERROR
+          - PLATFORM_SHUTDOWN
+          - PLATFORM_RESTARTED
+          - INSTALLATION_ERROR
+          - SERVICE_START_ERROR
+          - CONNECTION_ERROR
+          - TIMED_OUT
+          type: string
+        errorString:
+          description: Failed SubTask Error message
+          type: string
+        subTaskGroupType:
+          description: Failed SubTask Group Type
+          type: string
+        subTaskState:
+          description: Failed SubTask State
+          type: string
+        subTaskType:
+          description: Failed SubTask Type
+          type: string
+        subTaskUUID:
+          description: Failed SubTask UUID
+          format: uuid
+          type: string
+      type: object
+    EncryptionAtRestConfig:
+      description: Encryption at rest configuration
+      properties:
+        encryptionAtRestEnabled:
+          description: Whether a universe is currently encrypted at rest
+          type: boolean
+        kmsConfigUUID:
+          description: KMS configuration UUID
+          format: uuid
+          type: string
+        opType:
+          description: 'Operation type: enable, disable, or rotate the universe key/encryption at rest'
+          enum:
+          - ENABLE
+          - DISABLE
+          - UNDEFINED
+          type: string
+        type:
+          description: Whether to generate a data key or just retrieve the CMK ARN
+          enum:
+          - CMK
+          - DATA_KEY
+          type: string
+      type: object
+    PlacementInfo:
+      properties:
+        cloudList:
+          items:
+            $ref: '#/components/schemas/PlacementCloud'
+          type: array
+      required:
+      - cloudList
+      type: object
+    CommunicationPorts:
+      description: Communication ports
+      properties:
+        masterHttpPort:
+          description: Master table HTTP port
+          format: int32
+          type: integer
+        masterRpcPort:
+          description: Master table RCP port
+          format: int32
+          type: integer
+        nodeExporterPort:
+          description: Node exporter port
+          format: int32
+          type: integer
+        redisServerHttpPort:
+          description: Redis HTTP port
+          format: int32
+          type: integer
+        redisServerRpcPort:
+          description: Redis RPC port
+          format: int32
+          type: integer
+        tserverHttpPort:
+          description: Tablet server HTTP port
+          format: int32
+          type: integer
+        tserverRpcPort:
+          description: Tablet server RPC port
+          format: int32
+          type: integer
+        yqlServerHttpPort:
+          description: YQL HTTP port
+          format: int32
+          type: integer
+        yqlServerRpcPort:
+          description: YQL RPC port
+          format: int32
+          type: integer
+        ysqlServerHttpPort:
+          description: YSQL HTTP port
+          format: int32
+          type: integer
+        ysqlServerRpcPort:
+          description: YSQL RPC port
+          format: int32
+          type: integer
+      type: object
+    ExtraDependencies:
+      description: Extra dependencies
+      properties:
+        installNodeExporter:
+          description: Install node exporter on nodes
+          type: boolean
+      type: object
+    NodeDetailsResp:
+      properties:
+        allowedActions:
+          items:
+            enum:
+            - ADD
+            - REMOVE
+            - START
+            - STOP
+            - DELETE
+            - QUERY
+            - RELEASE
+            - START_MASTER
+            - PRECHECK_DETACHED
+            type: string
+          readOnly: true
+          type: array
+          uniqueItems: true
+        azUuid:
+          description: The availability zone's UUID
+          format: uuid
+          type: string
+        cloudInfo:
+          $ref: '#/components/schemas/CloudSpecificInfo'
+          description: Node information, as reported by the cloud provider
+        cronsActive:
+          description: True if cron jobs were properly configured for this node
+          type: boolean
+        disksAreMountedByUUID:
+          description: Disks are mounted by uuid
+          type: boolean
+        isMaster:
+          description: True if this node is a master
+          type: boolean
+        isRedisServer:
+          description: True if this node is a REDIS server
+          type: boolean
+        isTserver:
+          description: True if this node is a Tablet server
+          type: boolean
+        isYqlServer:
+          description: True if this node is a YCQL server
+          type: boolean
+        isYsqlServer:
+          description: True if this node is a YSQL server
+          type: boolean
+        machineImage:
+          description: Machine image name
+          type: string
+        masterHttpPort:
+          description: Master HTTP port
+          format: int32
+          type: integer
+        masterRpcPort:
+          description: Master RCP port
+          format: int32
+          type: integer
+        masterState:
+          description: Master state
+          enum:
+          - None
+          - ToStart
+          - Configured
+          - ToStop
+          example: ToStart
+          type: string
+        nodeExporterPort:
+          description: Node exporter port
+          format: int32
+          type: integer
+        nodeIdx:
+          description: Node ID
+          format: int32
+          type: integer
+        nodeName:
+          description: Node name
+          type: string
+        nodeUuid:
+          description: Node UUID
+          format: uuid
+          type: string
+        placementUuid:
+          description: UUID of the cluster to which this node belongs
+          format: uuid
+          type: string
+        redisServerHttpPort:
+          description: REDIS HTTP port
+          format: int32
+          type: integer
+        redisServerRpcPort:
+          description: REDIS RPC port
+          format: int32
+          type: integer
+        state:
+          description: Node state
+          enum:
+          - ToBeAdded
+          - InstanceCreated
+          - ServerSetup
+          - ToJoinCluster
+          - Reprovisioning
+          - Provisioned
+          - SoftwareInstalled
+          - UpgradeSoftware
+          - UpdateGFlags
+          - Live
+          - Stopping
+          - Starting
+          - Stopped
+          - Unreachable
+          - ToBeRemoved
+          - Removing
+          - Removed
+          - Adding
+          - BeingDecommissioned
+          - Decommissioned
+          - UpdateCert
+          - ToggleTls
+          - Resizing
+          - SystemdUpgrade
+          - Terminating
+          - Terminated
+          example: Provisioned
+          type: string
+        tserverHttpPort:
+          description: Tablet server HTTP port
+          format: int32
+          type: integer
+        tserverRpcPort:
+          description: Tablet server RPC port
+          format: int32
+          type: integer
+        ybPrebuiltAmi:
+          description: True if this a custom YB AMI
+          type: boolean
+        yqlServerHttpPort:
+          description: YCQL HTTP port
+          format: int32
+          type: integer
+        yqlServerRpcPort:
+          description: YCQL RPC port
+          format: int32
+          type: integer
+        ysqlServerHttpPort:
+          description: YSQL HTTP port
+          format: int32
+          type: integer
+        ysqlServerRpcPort:
+          description: YSQL RPC port
+          format: int32
+          type: integer
+      type: object
+    PlacementRegion:
+      properties:
+        azList:
+          items:
+            $ref: '#/components/schemas/PlacementAZ'
+          type: array
+        code:
+          type: string
+        name:
+          type: string
+        uuid:
+          format: uuid
+          type: string
+      type: object
+    Cluster:
+      properties:
+        clusterType:
+          enum:
+          - PRIMARY
+          - ASYNC
+          type: string
+        index:
+          format: int32
+          type: integer
+        placementInfo:
+          $ref: '#/components/schemas/PlacementInfo'
+        regions:
+          items:
+            $ref: '#/components/schemas/Region'
+          readOnly: true
+          type: array
+        userIntent:
+          $ref: '#/components/schemas/UserIntent'
+        uuid:
+          format: uuid
+          type: string
+      required:
+      - clusterType
+      - userIntent
+      type: object
+    CloudSpecificInfo:
+      description: Node information reported by the cloud provider
+      properties:
+        assignPublicIP:
+          description: True if the node has a public IP address assigned
+          type: boolean
+        az:
+          description: The node's availability zone
+          type: string
+        cloud:
+          description: The node's cloud provider
+          type: string
+        instance_type:
+          description: The node's instance type
+          type: string
+        mount_roots:
+          description: Mount roots
+          type: string
+        private_dns:
+          description: The node's private DNS
+          type: string
+        private_ip:
+          description: The node's private IP address
+          type: string
+        public_dns:
+          description: The node's public DNS name
+          type: string
+        public_ip:
+          description: The node's public IP address
+          type: string
+        region:
+          description: The node's region
+          type: string
+        secondary_private_ip:
+          description: Secondary Private IP
+          type: string
+        secondary_subnet_id:
+          description: Secondary Subnet IP
+          type: string
+        subnet_id:
+          description: ID of the subnet on which this node is deployed
+          type: string
+        useTimeSync:
+          description: True if `use time sync` is enabled
+          type: boolean
+      type: object
+    Region:
+      description: Region within a given provider. Typically, this maps to a single cloud provider region.
+      properties:
+        active:
+          readOnly: true
+          type: boolean
+        architecture:
+          enum:
+          - x86_64
+          - arm64
+          type: string
+        code:
+          description: Cloud provider region code
+          example: us-west-2
+          type: string
+        config:
+          additionalProperties:
+            type: string
+          type: object
+        latitude:
+          description: The region's latitude
+          example: 37.22
+          format: double
+          readOnly: true
+          type: number
+        longitude:
+          description: The region's longitude
+          example: -120.01
+          format: double
+          readOnly: true
+          type: number
+        name:
+          description: Cloud provider region name
+          example: US West (Oregon)
+          readOnly: true
+          type: string
+        securityGroupId:
+          type: string
+        uuid:
+          description: Region UUID
+          format: uuid
+          readOnly: true
+          type: string
+        vnetName:
+          type: string
+        ybImage:
+          description: The AMI to be used in this region.
+          example: TODO
+          type: string
+        zones:
+          items:
+            $ref: '#/components/schemas/AvailabilityZone'
+          type: array
+      required:
+      - zones
+      type: object
+    PlacementAZ:
+      properties:
+        isAffinitized:
+          type: boolean
+        name:
+          type: string
+        numNodesInAZ:
+          format: int32
+          type: integer
+        replicationFactor:
+          format: int32
+          type: integer
+        secondarySubnet:
+          type: string
+        subnet:
+          type: string
+        uuid:
+          format: uuid
+          type: string
+      type: object
+    PlacementCloud:
+      properties:
+        code:
+          type: string
+        defaultRegion:
+          format: uuid
+          type: string
+        regionList:
+          items:
+            $ref: '#/components/schemas/PlacementRegion'
+          type: array
+        uuid:
+          format: uuid
+          type: string
+      type: object
+    DeviceInfo:
+      description: Device information
+      properties:
+        diskIops:
+          description: Desired IOPS for the volumes mounted on this instance
+          format: int32
+          type: integer
+        mountPoints:
+          description: Comma-separated list of mount points for the devices in each instance
+          type: string
+        numVolumes:
+          description: Number of volumes to be mounted on this instance at the default path
+          format: int32
+          type: integer
+        storageClass:
+          description: Name of the storage class
+          type: string
+        storageType:
+          description: Storage type used for this instance
+          enum:
+          - IO1
+          - GP2
+          - GP3
+          - Scratch
+          - Persistent
+          - StandardSSD_LRS
+          - Premium_LRS
+          - UltraSSD_LRS
+          type: string
+        throughput:
+          description: Desired throughput for the volumes mounted on this instance
+          format: int32
+          type: integer
+        volumeSize:
+          description: The size of each volume in each instance
+          format: int32
+          type: integer
+      type: object
+    UniverseResourceDetails:
+      properties:
+        azList:
+          description: Azs
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+        ebsPricePerHour:
+          description: EBS price per hour
+          format: double
+          type: number
+        gp3FreePiops:
+          description: gp3 free piops
+          format: int32
+          type: integer
+        gp3FreeThroughput:
+          description: gp3 free throughput
+          format: int32
+          type: integer
+        memSizeGB:
+          description: Memory GB
+          format: double
+          type: number
+        numCores:
+          description: Numbers of cores
+          format: double
+          type: number
+        numNodes:
+          description: Numbers of node
+          format: int32
+          type: integer
+        pricePerHour:
+          description: Price per hour
+          format: double
+          type: number
+        pricingKnown:
+          description: Known pricing info
+          type: boolean
+        volumeCount:
+          description: Volume count
+          format: int32
+          type: integer
+        volumeSizeGB:
+          description: Volume in GB
+          format: int32
+          type: integer
+      type: object
+    UserIntent:
+      properties:
+        accessKeyCode:
+          type: string
+        assignPublicIP:
+          type: boolean
+        assignStaticPublicIP:
+          description: Whether to assign static public IP
+          type: boolean
+        awsArnString:
+          type: string
+        deviceInfo:
+          $ref: '#/components/schemas/DeviceInfo'
+        enableClientToNodeEncrypt:
+          type: boolean
+        enableExposingService:
+          enum:
+          - NONE
+          - EXPOSED
+          - UNEXPOSED
+          type: string
+        enableIPV6:
+          type: boolean
+        enableNodeToNodeEncrypt:
+          type: boolean
+        enableVolumeEncryption:
+          type: boolean
+        enableYCQL:
+          type: boolean
+        enableYCQLAuth:
+          type: boolean
+        enableYEDIS:
+          type: boolean
+        enableYSQL:
+          type: boolean
+        enableYSQLAuth:
+          type: boolean
+        instanceTags:
+          additionalProperties:
+            type: string
+          type: object
+        instanceType:
+          type: string
+        masterGFlags:
+          additionalProperties:
+            type: string
+          type: object
+        numNodes:
+          format: int32
+          type: integer
+        preferredRegion:
+          format: uuid
+          type: string
+        provider:
+          type: string
+        providerType:
+          enum:
+          - unknown
+          - aws
+          - gcp
+          - azu
+          - docker
+          - onprem
+          - kubernetes
+          - local
+          - other
+          type: string
+        regionList:
+          items:
+            format: uuid
+            type: string
+          type: array
+        replicationFactor:
+          format: int32
+          type: integer
+        tserverGFlags:
+          additionalProperties:
+            type: string
+          type: object
+        universeName:
+          type: string
+        useHostname:
+          type: boolean
+        useSystemd:
+          type: boolean
+        useTimeSync:
+          type: boolean
+        ybSoftwareVersion:
+          type: string
+        ycqlPassword:
+          type: string
+        ysqlPassword:
+          type: string
+      type: object
+    UniverseResp:
+      description: Universe-creation response
+      properties:
+        creationDate:
+          description: Universe creation date
+          type: string
+        dnsName:
+          description: DNS name
+          type: string
+        name:
+          description: Universe name
+          type: string
+        pricePerHour:
+          description: Price
+          format: double
+          type: number
+        resources:
+          $ref: '#/components/schemas/UniverseResourceDetails'
+          description: Universe resource details
+        sampleAppCommandTxt:
+          description: Sample command
+          type: string
+        taskUUID:
+          description: Task UUID
+          format: uuid
+          type: string
+        universeConfig:
+          additionalProperties:
+            type: string
+          description: Universe configuration
+          type: object
+        universeDetails:
+          $ref: '#/components/schemas/UniverseDefinitionTaskParamsResp'
+          description: Universe details
+        universeUUID:
+          description: Universe UUID
+          format: uuid
+          type: string
+        version:
+          description: Universe version
+          format: int32
+          type: integer
+      type: object
+    CustomerTaskData_2:
+      description: Customer task data
+      properties:
+        abortable:
+          description: Customer task abortable
+          type: boolean
+        completionTime:
+          description: Customer task completion time
+          example: 2021-06-17T15:00:05-0400
+          format: date-time
+          type: string
+        createTime:
+          description: Customer task creation time
+          example: 2021-06-17T15:00:05-0400
+          format: date-time
+          type: string
+        id:
+          description: Customer task UUID
+          format: uuid
+          type: string
+        percentComplete:
+          description: Customer task percentage completed
+          example: 100
+          format: int32
+          type: integer
+        retryable:
+          description: Customer task retryable
+          type: boolean
+        status:
+          description: Customer task status
+          example: Complete
+          type: string
+        target:
+          description: Customer task target
+          example: Universe
+          type: string
+        targetUUID:
+          description: Customer task target UUID
+          format: uuid
+          type: string
+        title:
+          description: Customer task title
+          example: 'Deleted Universe : test-universe'
+          type: string
+        type:
+          description: Customer task type
+          example: Delete
+          type: string
+        typeName:
+          description: Customer task type name
+          example: Software Upgrade
+          type: string
+      type: object
+    UniverseDefinitionTaskParamsResp:
+      properties:
+        allowInsecure:
+          type: boolean
+        backupInProgress:
+          type: boolean
+        capability:
+          enum:
+          - READ_ONLY
+          - EDITS_ALLOWED
+          type: string
+        clientRootCA:
+          format: uuid
+          type: string
+        clusters:
+          items:
+            $ref: '#/components/schemas/Cluster'
+          type: array
+        cmkArn:
+          description: Amazon Resource Name (ARN) of the CMK
+          type: string
+        communicationPorts:
+          $ref: '#/components/schemas/CommunicationPorts'
+          description: Communication ports
+        currentClusterType:
+          enum:
+          - PRIMARY
+          - ASYNC
+          type: string
+        deviceInfo:
+          $ref: '#/components/schemas/DeviceInfo'
+          description: Device information
+        encryptionAtRestConfig:
+          $ref: '#/components/schemas/EncryptionAtRestConfig'
+          description: Encryption at rest configation
+        errorString:
+          description: Error message
+          type: string
+        expectedUniverseVersion:
+          description: Expected universe version
+          format: int32
+          type: integer
+        extraDependencies:
+          $ref: '#/components/schemas/ExtraDependencies'
+          description: Extra dependencies
+        firstTry:
+          description: Whether this task has been tried before
+          type: boolean
+        importedState:
+          enum:
+          - NONE
+          - STARTED
+          - MASTERS_ADDED
+          - TSERVERS_ADDED
+          - IMPORTED
+          type: string
+        itestS3PackagePath:
+          type: string
+        nextClusterIndex:
+          format: int32
+          type: integer
+        nodeDetailsSet:
+          items:
+            $ref: '#/components/schemas/NodeDetailsResp'
+          readOnly: true
+          type: array
+          uniqueItems: true
+        nodeExporterUser:
+          description: Node exporter user
+          type: string
+        nodePrefix:
+          type: string
+        nodesResizeAvailable:
+          type: boolean
+        previousTaskUUID:
+          description: Previous task UUID only if this task is a retry
+          format: uuid
+          type: string
+        remotePackagePath:
+          type: string
+        resetAZConfig:
+          type: boolean
+        rootAndClientRootCASame:
+          type: boolean
+        rootCA:
+          format: uuid
+          type: string
+        setTxnTableWaitCountFlag:
+          type: boolean
+        sourceXClusterConfigs:
+          description: The source universe's xcluster replication relationships
+          items:
+            format: uuid
+            type: string
+          readOnly: true
+          type: array
+        targetXClusterConfigs:
+          description: The target universe's xcluster replication relationships
+          items:
+            format: uuid
+            type: string
+          readOnly: true
+          type: array
+        universePaused:
+          type: boolean
+        universeUUID:
+          description: Associated universe UUID
+          format: uuid
+          type: string
+        updateInProgress:
+          type: boolean
+        updateSucceeded:
+          type: boolean
+        updatingTask:
+          enum:
+          - CloudBootstrap
+          - CloudCleanup
+          - CreateCassandraTable
+          - CreateUniverse
+          - ReadOnlyClusterCreate
+          - ReadOnlyClusterDelete
+          - CreateKubernetesUniverse
+          - DestroyUniverse
+          - PauseUniverse
+          - ResumeUniverse
+          - DestroyKubernetesUniverse
+          - DeleteTable
+          - BackupUniverse
+          - RestoreBackup
+          - MultiTableBackup
+          - CreateBackup
+          - EditUniverse
+          - EditKubernetesUniverse
+          - ExternalScript
+          - KubernetesProvision
+          - ImportIntoTable
+          - UpgradeUniverse
+          - RestartUniverse
+          - SoftwareUpgrade
+          - SoftwareKubernetesUpgrade
+          - GFlagsUpgrade
+          - GFlagsKubernetesUpgrade
+          - CertsRotate
+          - CertsRotateKubernetesUpgrade
+          - TlsToggle
+          - VMImageUpgrade
+          - SystemdUpgrade
+          - CreateRootVolumes
+          - ReplaceRootVolume
+          - ChangeInstanceType
+          - PersistResizeNode
+          - PersistSystemdUpgrade
+          - UpdateNodeDetails
+          - UpgradeKubernetesUniverse
+          - DeleteNodeFromUniverse
+          - StopNodeInUniverse
+          - StartNodeInUniverse
+          - AddNodeToUniverse
+          - RemoveNodeFromUniverse
+          - ReleaseInstanceFromUniverse
+          - SetUniverseKey
+          - SetKubernetesUniverseKey
+          - CreateKMSConfig
+          - EditKMSConfig
+          - DeleteKMSConfig
+          - UpdateDiskSize
+          - StartMasterOnNode
+          - CreateXClusterConfig
+          - EditXClusterConfig
+          - DeleteXClusterConfig
+          - SyncXClusterConfig
+          - CreateSupportBundle
+          - AnsibleClusterServerCtl
+          - AnsibleConfigureServers
+          - AnsibleDestroyServer
+          - PauseServer
+          - ResumeServer
+          - AnsibleSetupServer
+          - AnsibleCreateServer
+          - PrecheckNode
+          - PrecheckNodeDetached
+          - AnsibleUpdateNodeInfo
+          - BulkImport
+          - ChangeMasterConfig
+          - ChangeAdminPassword
+          - CreateTable
+          - DeleteNode
+          - DeleteBackup
+          - DeleteBackupYb
+          - DeleteCustomerConfig
+          - DeleteCustomerStorageConfig
+          - UpdateNodeProcess
+          - DeleteTableFromUniverse
+          - LoadBalancerStateChange
+          - ModifyBlackList
+          - ManipulateDnsRecordTask
+          - RemoveUniverseEntry
+          - SetFlagInMemory
+          - SetNodeState
+          - SwamperTargetsFileUpdate
+          - UniverseUpdateSucceeded
+          - UpdateAndPersistGFlags
+          - UpdatePlacementInfo
+          - UpdateSoftwareVersion
+          - WaitForDataMove
+          - WaitForLeaderBlacklistCompletion
+          - WaitForFollowerLag
+          - WaitForLoadBalance
+          - WaitForMasterLeader
+          - WaitForServer
+          - WaitForTServerHeartBeats
+          - DeleteClusterFromUniverse
+          - InstanceActions
+          - WaitForServerReady
+          - RunExternalScript
+          - XClusterConfigSetup
+          - XClusterConfigSetStatus
+          - XClusterConfigModifyTables
+          - XClusterConfigRename
+          - XClusterConfigDelete
+          - XClusterConfigSync
+          - XClusterConfigUpdateMasterAddresses
+          - CloudAccessKeyCleanup
+          - CloudAccessKeySetup
+          - CloudInitializer
+          - CloudProviderCleanup
+          - CloudRegionCleanup
+          - CloudRegionSetup
+          - CloudSetup
+          - BackupTable
+          - BackupTableYb
+          - BackupUniverseKeys
+          - RestoreBackupYb
+          - RestoreUniverseKeys
+          - RestoreUniverseKeysYb
+          - WaitForLeadersOnPreferredOnly
+          - EnableEncryptionAtRest
+          - DisableEncryptionAtRest
+          - DestroyEncryptionAtRest
+          - KubernetesCommandExecutor
+          - KubernetesWaitForPod
+          - KubernetesCheckNumPod
+          - SetActiveUniverseKeys
+          - CopyEncryptionKeyFile
+          - WaitForEncryptionKeyInMemory
+          - UnivSetCertificate
+          - CreateAlertDefinitions
+          - ManageAlertDefinitions
+          - UniverseSetTlsParams
+          - UniverseUpdateRootCert
+          - ResetUniverseVersion
+          - DeleteCertificate
+          - SetNodeStatus
+          - CheckMasterLeader
+          - CheckMasters
+          - CheckTServers
+          - WaitForTServerHBs
+          - CreatePrometheusSwamperConfig
+          - PreflightNodeCheck
+          - RunYsqlUpgrade
+          - ResizeNode
+          - CheckMemory
+          - UpdateMountedDisks
+          - TransferXClusterCerts
+          - CreateTableSpacesInUniverse
+          - CreateTableSpaces
+          - ThirdpartySoftwareUpgrade
+          - MarkUniverseForHealthScriptReUpload
+          - UpdateUniverseTags
+          type: string
+        updatingTaskUUID:
+          format: uuid
+          type: string
+        userAZSelected:
+          type: boolean
+        ybPrevSoftwareVersion:
+          description: Previous software version
+          type: string
+      required:
+      - clusters
+      type: object
+    AvailabilityZone:
+      description: Availability zone (AZ) for a region
+      properties:
+        active:
+          description: AZ status. This value is `true` for an active AZ.
+          readOnly: true
+          type: boolean
+        code:
+          description: AZ code
+          example: us-west1-a
+          type: string
+        config:
+          additionalProperties:
+            type: string
+          description: AZ configuration values
+          type: object
+        kubeconfigPath:
+          description: Path to Kubernetes configuration file
+          readOnly: true
+          type: string
+        name:
+          description: AZ name
+          example: us-west1-a
+          type: string
+        secondarySubnet:
+          description: AZ secondary subnet
+          example: secondary subnet id
+          type: string
+        subnet:
+          description: AZ subnet
+          example: subnet id
+          type: string
+        uuid:
+          description: AZ UUID
+          format: uuid
+          readOnly: true
+          type: string
+      required:
+      - name
+      type: object
+    YBPSuccess_2:
+      properties:
+        message:
+          description: API response message.
+          readOnly: true
+          type: string
+        success:
+          description: API operation status. A value of true indicates the operation was successful.
+          readOnly: true
+          type: boolean
+      type: object
+  securitySchemes:
+    apiKeyAuth:
+      description: API token passed as header
+      in: header
+      name: X-AUTH-YW-API-TOKEN
+      type: apiKey
+externalDocs:
+  description: About YugabyteDB Anywhere
+  url: https://docs.yugabyte.com/latest/yugabyte-platform/
+x-refined-from:
+- openapi_2.yaml
+- platform.swagger.json

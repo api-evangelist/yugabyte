@@ -1,0 +1,2910 @@
+openapi: 3.2.0
+info:
+  title: Yugabytedb Alerts API
+  version: v1
+  contact:
+    name: https://docs.yugabyte.com
+  license:
+    name: Polyform Free Trial License 1.0.0
+    url: https://github.com/yugabyte/yugabyte-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
+  termsOfService: TODO(chirag)
+  description: 'Operations tagged Alerts across 2 of this provider''s published API definitions: openapi_2.yaml, platform.swagger.json. Each path carries the servers of the definition it was published in.'
+servers:
+- url: /
+tags:
+- name: Alerts
+paths:
+  /api/v1/customers/{cUUID}/alert_channel_templates:
+    servers:
+    - url: /
+    get:
+      description: 'WARNING: This is a preview API that could change.'
+      operationId: listAlertChannelTemplates
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Alert_channel_templates_ext_with_default_values'
+                type: array
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: List all alert channel templates
+      tags:
+      - Alerts
+  /api/v1/customers/{cUUID}/alert_channel_templates/{acType}:
+    servers:
+    - url: /
+    delete:
+      description: 'WARNING: This is a preview API that could change.'
+      operationId: deleteAlertChannelTemplates
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: acType
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YBPSuccess'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Delete alert channel templates
+      tags:
+      - Alerts
+    get:
+      description: 'WARNING: This is a preview API that could change.'
+      operationId: getAlertChannelTemplates
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: acType
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Alert_channel_templates_ext_with_default_values'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Get alert channel templates
+      tags:
+      - Alerts
+    post:
+      description: 'WARNING: This is a preview API that could change.'
+      operationId: setAlertChannelTemplates
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: acType
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AlertChannelTemplates'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlertChannelTemplates'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Set alert channel templates
+      tags:
+      - Alerts
+      x-codegen-request-body-name: SetAlertChannelTemplatesRequest
+  /api/v1/customers/{cUUID}/alert_channels:
+    servers:
+    - url: /
+    get:
+      description: 'WARNING: This is a preview API that could change.'
+      operationId: listAlertChannels
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/AlertChannel'
+                type: array
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: List all alert channels
+      tags:
+      - Alerts
+    post:
+      description: 'WARNING: This is a preview API that could change.'
+      operationId: createAlertChannel
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AlertChannelFormData'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlertChannel'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Create an alert channel
+      tags:
+      - Alerts
+      x-codegen-request-body-name: CreateAlertChannelRequest
+  /api/v1/customers/{cUUID}/alert_channels/{acUUID}:
+    servers:
+    - url: /
+    delete:
+      description: 'WARNING: This is a preview API that could change.'
+      operationId: deleteAlertChannel
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: acUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YBPSuccess'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Delete an alert channel
+      tags:
+      - Alerts
+    get:
+      description: 'WARNING: This is a preview API that could change.'
+      operationId: getAlertChannel
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: acUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlertChannel'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Get an alert channel
+      tags:
+      - Alerts
+    put:
+      description: 'WARNING: This is a preview API that could change.'
+      operationId: updateAlertChannel
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: acUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AlertChannelFormData'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlertChannel'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Update an alert channel
+      tags:
+      - Alerts
+      x-codegen-request-body-name: UpdateAlertChannelRequest
+  /api/v1/customers/{cUUID}/alert_configurations:
+    servers:
+    - url: /
+    post:
+      description: 'WARNING: This is a preview API that could change.'
+      operationId: createAlertConfiguration
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AlertConfiguration'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlertConfiguration'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Create an alert configuration
+      tags:
+      - Alerts
+      x-codegen-request-body-name: CreateAlertConfigurationRequest
+  /api/v1/customers/{cUUID}/alert_configurations/list:
+    servers:
+    - url: /
+    post:
+      description: 'WARNING: This is a preview API that could change.'
+      operationId: listAlertConfigurations
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AlertConfigurationApiFilter'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/AlertConfiguration'
+                type: array
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Get filtered list of alert configurations
+      tags:
+      - Alerts
+      x-codegen-request-body-name: ListAlertConfigurationsRequest
+  /api/v1/customers/{cUUID}/alert_configurations/page:
+    servers:
+    - url: /
+    post:
+      description: 'WARNING: This is a preview API that could change.'
+      operationId: pageAlertConfigurations
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AlertConfigurationPagedApiQuery'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlertConfigurationPagedResponse'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: List all alert configurations (paginated)
+      tags:
+      - Alerts
+      x-codegen-request-body-name: PageAlertConfigurationsRequest
+  /api/v1/customers/{cUUID}/alert_configurations/{configurationUUID}:
+    servers:
+    - url: /
+    delete:
+      description: 'WARNING: This is a preview API that could change.'
+      operationId: deleteAlertConfiguration
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: configurationUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YBPSuccess'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Delete an alert configuration
+      tags:
+      - Alerts
+    get:
+      description: 'WARNING: This is a preview API that could change.'
+      operationId: getAlertConfiguration
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: configurationUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlertConfiguration'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Get an alert configuration
+      tags:
+      - Alerts
+    put:
+      description: 'WARNING: This is a preview API that could change.'
+      operationId: updateAlertConfiguration
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: configurationUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AlertConfiguration'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlertConfiguration'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Update an alert configuration
+      tags:
+      - Alerts
+      x-codegen-request-body-name: UpdateAlertConfigurationRequest
+  /api/v1/customers/{cUUID}/alert_configurations/{configurationUUID}/test_alert:
+    servers:
+    - url: /
+    post:
+      description: 'WARNING: This is a preview API that could change.'
+      operationId: sendTestAlert
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: configurationUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YBPSuccess'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Send test alert for alert configuration
+      tags:
+      - Alerts
+  /api/v1/customers/{cUUID}/alert_destinations:
+    servers:
+    - url: /
+    get:
+      description: 'WARNING: This is a preview API that could change.'
+      operationId: listAlertDestinations
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/AlertDestination'
+                type: array
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: List alert destinations
+      tags:
+      - Alerts
+    post:
+      description: 'WARNING: This is a preview API that could change.'
+      operationId: createAlertDestination
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AlertDestinationFormData'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlertDestination'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Create an alert destination
+      tags:
+      - Alerts
+      x-codegen-request-body-name: CreateAlertDestinationRequest
+  /api/v1/customers/{cUUID}/alert_destinations/{adUUID}:
+    servers:
+    - url: /
+    delete:
+      description: 'WARNING: This is a preview API that could change.'
+      operationId: deleteAlertDestination
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: adUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YBPSuccess'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Delete an alert destination
+      tags:
+      - Alerts
+    get:
+      description: 'WARNING: This is a preview API that could change.'
+      operationId: getAlertDestination
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: adUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlertDestination'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Get an alert destination
+      tags:
+      - Alerts
+    put:
+      description: 'WARNING: This is a preview API that could change.'
+      operationId: updateAlertDestination
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: adUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AlertDestinationFormData'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlertDestination'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Update an alert destination
+      tags:
+      - Alerts
+      x-codegen-request-body-name: UpdateAlertDestinationRequest
+  /api/v1/customers/{cUUID}/alert_notification_preview:
+    servers:
+    - url: /
+    post:
+      description: 'WARNING: This is a preview API that could change.'
+      operationId: alertNotificationPreview
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AlertTemplateVariablesFormData'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlertTemplateVariablesList'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Prepare alert notification preview
+      tags:
+      - Alerts
+      x-codegen-request-body-name: NotificationPreviewRequest
+  /api/v1/customers/{cUUID}/alert_template_settings:
+    servers:
+    - url: /
+    get:
+      deprecated: true
+      description: Deprecated since YBA version 2.20.0.0.
+      operationId: listAlertTemplateSettings
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/AlertTemplateSettings'
+                type: array
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Get alert template settings - deprecated
+      tags:
+      - Alerts
+    put:
+      deprecated: true
+      description: Deprecated since YBA version 2.20.0.0.
+      operationId: editAlertTemplateSettings
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AlertTemplateSettingsFormData'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/AlertTemplateSettings'
+                type: array
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Create or update alert template settings list - deprecated
+      tags:
+      - Alerts
+      x-codegen-request-body-name: EditAlertTemplateSettingsRequest
+  /api/v1/customers/{cUUID}/alert_template_settings/{settingsUUID}:
+    servers:
+    - url: /
+    delete:
+      deprecated: true
+      description: Deprecated since YBA version 2.20.0.0.
+      operationId: deleteAlertTemplateSettings
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: settingsUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YBPSuccess'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Delete an alert template settings - deprecated
+      tags:
+      - Alerts
+  /api/v1/customers/{cUUID}/alert_template_variables:
+    servers:
+    - url: /
+    get:
+      description: 'WARNING: This is a preview API that could change.'
+      operationId: listAlertTemplateVariables
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlertTemplateVariablesList'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: List alert template variables
+      tags:
+      - Alerts
+    put:
+      description: 'WARNING: This is a preview API that could change.'
+      operationId: editAlertTemplateVariables
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AlertTemplateVariablesFormData'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/AlertTemplateVariable'
+                type: array
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Create or update alert template variables
+      tags:
+      - Alerts
+      x-codegen-request-body-name: EditAlertTemplateVariablesRequest
+  /api/v1/customers/{cUUID}/alert_template_variables/{variableUUID}:
+    servers:
+    - url: /
+    delete:
+      description: 'WARNING: This is a preview API that could change.'
+      operationId: deleteAlertTemplateVariables
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: variableUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YBPSuccess'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Delete an alert template variables
+      tags:
+      - Alerts
+  /api/v1/customers/{cUUID}/alert_templates:
+    servers:
+    - url: /
+    post:
+      description: 'WARNING: This is a preview API that could change.'
+      operationId: listAlertTemplates
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AlertTemplateApiFilter'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/AlertConfigurationTemplate'
+                type: array
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Get filtered list of alert configuration templates
+      tags:
+      - Alerts
+      x-codegen-request-body-name: ListTemplatesRequest
+  /api/v1/customers/{cUUID}/alerts:
+    servers:
+    - url: /
+    get:
+      description: 'WARNING: This is a preview API that could change.'
+      operationId: listOfAlerts
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Alert'
+                type: array
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: List all alerts
+      tags:
+      - Alerts
+  /api/v1/customers/{cUUID}/alerts/acknowledge:
+    servers:
+    - url: /
+    post:
+      deprecated: true
+      description: Deprecated since YBA version 2.8.0.0.
+      operationId: acknowledgeByFilter
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AlertApiFilter'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Alert'
+                type: array
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Acknowledge all alerts - deprecated
+      tags:
+      - Alerts
+      x-codegen-request-body-name: AcknowledgeAlertsRequest
+  /api/v1/customers/{cUUID}/alerts/active:
+    servers:
+    - url: /
+    get:
+      deprecated: true
+      description: Deprecated since YBA version 2.8.0.0.
+      operationId: listActive
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Alert'
+                type: array
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: List active alerts - deprecated
+      tags:
+      - Alerts
+  /api/v1/customers/{cUUID}/alerts/count:
+    servers:
+    - url: /
+    post:
+      description: 'WARNING: This is a preview API that could change.'
+      operationId: countAlerts
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AlertApiFilter'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                format: int32
+                type: integer
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Count alerts
+      tags:
+      - Alerts
+      x-codegen-request-body-name: CountAlertsRequest
+  /api/v1/customers/{cUUID}/alerts/page:
+    servers:
+    - url: /
+    post:
+      description: 'WARNING: This is a preview API that could change.'
+      operationId: pageAlerts
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AlertPagedApiQuery'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlertPagedResponse'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: List alerts (paginated)
+      tags:
+      - Alerts
+      x-codegen-request-body-name: PageAlertsRequest
+  /api/v1/customers/{cUUID}/alerts/{alertUUID}:
+    servers:
+    - url: /
+    get:
+      description: 'WARNING: This is a preview API that could change.'
+      operationId: get
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: alertUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Alert'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Get details of an alert
+      tags:
+      - Alerts
+  /api/v1/customers/{cUUID}/alerts/{alertUUID}/acknowledge:
+    servers:
+    - url: /
+    post:
+      description: 'WARNING: This is a preview API that could change.'
+      operationId: acknowledge
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: alertUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Alert'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Acknowledge an alert
+      tags:
+      - Alerts
+components:
+  schemas:
+    AlertConfigurationThreshold:
+      description: Alert configuration threshold. Conditions can be either greater than a specified value, or less than a specified value.
+      example:
+        condition: GREATER_THAN
+        threshold: 1.4658129805029452
+      properties:
+        condition:
+          description: Threshold condition (greater than, or less than)
+          enum:
+          - GREATER_THAN
+          - LESS_THAN
+          - NOT_EQUAL
+          type: string
+        threshold:
+          description: Threshold value
+          format: double
+          type: number
+      required:
+      - condition
+      - threshold
+      type: object
+    AlertTemplateVariable:
+      description: Alert template variable
+      example:
+        possibleValues:
+        - possibleValues
+        - possibleValues
+        - possibleValues
+        - possibleValues
+        - possibleValues
+        customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        defaultValue: defaultValue
+        name: name
+        uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        customerUUID:
+          description: Customer UUID
+          format: uuid
+          readOnly: true
+          type: string
+        defaultValue:
+          description: Default value
+          maxLength: 2147483647
+          minLength: 1
+          type: string
+        name:
+          description: Name
+          maxLength: 100
+          minLength: 1
+          type: string
+        possibleValues:
+          description: Possible values
+          items:
+            type: string
+          maxItems: 2147483647
+          minItems: 1
+          type: array
+          uniqueItems: true
+        uuid:
+          description: Variable UUID
+          format: uuid
+          readOnly: true
+          type: string
+      required:
+      - customerUUID
+      - defaultValue
+      - name
+      - possibleValues
+      type: object
+    AlertChannelTemplates:
+      description: Alert channel templates
+      example:
+        customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        textTemplate: textTemplate
+        type: Email
+        titleTemplate: titleTemplate
+      properties:
+        customerUUID:
+          description: Customer UUID
+          format: uuid
+          readOnly: true
+          type: string
+        textTemplate:
+          description: Notification text template
+          type: string
+        titleTemplate:
+          description: Notification title template
+          type: string
+        type:
+          description: Channel type
+          enum:
+          - Email
+          - Slack
+          - PagerDuty
+          - WebHook
+          type: string
+      required:
+      - customerUUID
+      - textTemplate
+      - type
+      type: object
+    AlertConfigurationPagedApiQuery:
+      example:
+        filter:
+          severity: SEVERE
+          template: REPLICATION_LAG
+          destinationUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          name: name
+          active: true
+          destinationType: NO_DESTINATION
+          targetType: PLATFORM
+          target:
+            all: true
+            uuids:
+            - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          uuids:
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        offset: 6
+        needTotalCount: true
+        limit: 0
+        sortBy: uuid
+        direction: ASC
+      properties:
+        direction:
+          enum:
+          - ASC
+          - DESC
+          type: string
+        filter:
+          $ref: '#/components/schemas/AlertConfigurationApiFilter'
+        limit:
+          format: int32
+          type: integer
+        needTotalCount:
+          type: boolean
+        offset:
+          format: int32
+          type: integer
+        sortBy:
+          enum:
+          - uuid
+          - name
+          - active
+          - targetType
+          - target
+          - createTime
+          - template
+          - severity
+          - destination
+          - alertCount
+          type: string
+      required:
+      - direction
+      - filter
+      - limit
+      - needTotalCount
+      - offset
+      - sortBy
+      type: object
+    AlertPagedResponse:
+      example:
+        entities:
+        - severity: SEVERE
+          nextNotificationTime: 2022-12-12 13:07:18+00:00
+          resolvedTime: 2022-12-12 13:07:18+00:00
+          severityIndex: 6
+          message: message
+          notifiedState: ACTIVE
+          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          definitionUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          labels:
+          - name: name
+            value: value
+            key:
+              name: name
+          - name: name
+            value: value
+            key:
+              name: name
+          customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          createTime: 2022-12-12 13:07:18+00:00
+          sourceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          stateIndex: 1
+          name: name
+          notificationAttemptTime: 2022-12-12 13:07:18+00:00
+          sourceName: sourceName
+          state: ACTIVE
+          configurationType: PLATFORM
+          configurationUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          notificationsFailed: 0
+          acknowledgedTime: 2022-12-12 13:07:18+00:00
+        - severity: SEVERE
+          nextNotificationTime: 2022-12-12 13:07:18+00:00
+          resolvedTime: 2022-12-12 13:07:18+00:00
+          severityIndex: 6
+          message: message
+          notifiedState: ACTIVE
+          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          definitionUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          labels:
+          - name: name
+            value: value
+            key:
+              name: name
+          - name: name
+            value: value
+            key:
+              name: name
+          customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          createTime: 2022-12-12 13:07:18+00:00
+          sourceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          stateIndex: 1
+          name: name
+          notificationAttemptTime: 2022-12-12 13:07:18+00:00
+          sourceName: sourceName
+          state: ACTIVE
+          configurationType: PLATFORM
+          configurationUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          notificationsFailed: 0
+          acknowledgedTime: 2022-12-12 13:07:18+00:00
+        hasPrev: true
+        hasNext: true
+        totalCount: 0
+      properties:
+        entities:
+          items:
+            $ref: '#/components/schemas/Alert'
+          type: array
+        hasNext:
+          type: boolean
+        hasPrev:
+          type: boolean
+        totalCount:
+          format: int32
+          type: integer
+      required:
+      - entities
+      - hasNext
+      - hasPrev
+      - totalCount
+      type: object
+    AlertChannel:
+      description: Alert notification channel
+      example:
+        customer_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        name: name
+        params:
+          channelType: Email
+          textTemplate: textTemplate
+          titleTemplate: titleTemplate
+        uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        customer_uuid:
+          description: Customer UUID
+          format: uuid
+          readOnly: true
+          type: string
+        name:
+          description: Name
+          maxLength: 63
+          minLength: 1
+          type: string
+        params:
+          $ref: '#/components/schemas/AlertChannelParams'
+        uuid:
+          description: Channel UUID
+          format: uuid
+          readOnly: true
+          type: string
+      required:
+      - customer_uuid
+      - name
+      - params
+      type: object
+    AlertConfigurationTarget:
+      description: Alert target. Set to `all`, or specify one or more target UUIDs.
+      example:
+        all: true
+        uuids:
+        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        all:
+          description: Alert applicable to all targets
+          type: boolean
+        uuids:
+          description: Alert target UUIDs
+          items:
+            format: uuid
+            type: string
+          type: array
+          uniqueItems: true
+      type: object
+    YBPSuccess:
+      example:
+        success: true
+        message: message
+      properties:
+        message:
+          description: API response message.
+          readOnly: true
+          type: string
+        success:
+          description: API operation status. A value of true indicates the operation was successful.
+          readOnly: true
+          type: boolean
+      type: object
+    AlertConfigurationPagedResponse:
+      example:
+        entities:
+        - template: REPLICATION_LAG
+          active: true
+          description: description
+          targetType: PLATFORM
+          maintenanceWindowUuids:
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          labels:
+            key: labels
+          target:
+            all: true
+            uuids:
+            - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          thresholds:
+            key:
+              condition: GREATER_THAN
+              threshold: 1.4658129805029452
+          customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          thresholdUnit: STATUS
+          alertCount: 0.8008281904610115
+          createTime: 2022-12-12 13:07:18+00:00
+          defaultDestination: true
+          destinationUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          name: name
+          durationSec: 0
+        - template: REPLICATION_LAG
+          active: true
+          description: description
+          targetType: PLATFORM
+          maintenanceWindowUuids:
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          labels:
+            key: labels
+          target:
+            all: true
+            uuids:
+            - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          thresholds:
+            key:
+              condition: GREATER_THAN
+              threshold: 1.4658129805029452
+          customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          thresholdUnit: STATUS
+          alertCount: 0.8008281904610115
+          createTime: 2022-12-12 13:07:18+00:00
+          defaultDestination: true
+          destinationUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          name: name
+          durationSec: 0
+        hasPrev: true
+        hasNext: true
+        totalCount: 0
+      properties:
+        entities:
+          items:
+            $ref: '#/components/schemas/AlertConfiguration'
+          type: array
+        hasNext:
+          type: boolean
+        hasPrev:
+          type: boolean
+        totalCount:
+          format: int32
+          type: integer
+      required:
+      - entities
+      - hasNext
+      - hasPrev
+      - totalCount
+      type: object
+    AlertTemplateVariablesFormData:
+      example:
+        variables:
+        - possibleValues:
+          - possibleValues
+          - possibleValues
+          - possibleValues
+          - possibleValues
+          - possibleValues
+          customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          defaultValue: defaultValue
+          name: name
+          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - possibleValues:
+          - possibleValues
+          - possibleValues
+          - possibleValues
+          - possibleValues
+          - possibleValues
+          customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          defaultValue: defaultValue
+          name: name
+          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - possibleValues:
+          - possibleValues
+          - possibleValues
+          - possibleValues
+          - possibleValues
+          - possibleValues
+          customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          defaultValue: defaultValue
+          name: name
+          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - possibleValues:
+          - possibleValues
+          - possibleValues
+          - possibleValues
+          - possibleValues
+          - possibleValues
+          customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          defaultValue: defaultValue
+          name: name
+          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - possibleValues:
+          - possibleValues
+          - possibleValues
+          - possibleValues
+          - possibleValues
+          - possibleValues
+          customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          defaultValue: defaultValue
+          name: name
+          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        variables:
+          items:
+            $ref: '#/components/schemas/AlertTemplateVariable'
+          maxItems: 2147483647
+          minItems: 1
+          type: array
+      required:
+      - variables
+      type: object
+    Alert:
+      description: Alert definition. Used to send an alert notification.
+      example:
+        severity: SEVERE
+        nextNotificationTime: 2022-12-12 13:07:18+00:00
+        resolvedTime: 2022-12-12 13:07:18+00:00
+        severityIndex: 6
+        message: message
+        notifiedState: ACTIVE
+        uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        definitionUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        labels:
+        - name: name
+          value: value
+          key:
+            name: name
+        - name: name
+          value: value
+          key:
+            name: name
+        customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        createTime: 2022-12-12 13:07:18+00:00
+        sourceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        stateIndex: 1
+        name: name
+        notificationAttemptTime: 2022-12-12 13:07:18+00:00
+        sourceName: sourceName
+        state: ACTIVE
+        configurationType: PLATFORM
+        configurationUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        notificationsFailed: 0
+        acknowledgedTime: 2022-12-12 13:07:18+00:00
+      properties:
+        acknowledgedTime:
+          description: Timestamp at which the alert was acknowledged
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          readOnly: true
+          type: string
+        configurationType:
+          description: Alert configuration type
+          enum:
+          - PLATFORM
+          - UNIVERSE
+          readOnly: true
+          type: string
+        configurationUuid:
+          description: Alert configuration UUID
+          format: uuid
+          readOnly: true
+          type: string
+        createTime:
+          description: Alert creation timestamp
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          readOnly: true
+          type: string
+        customerUUID:
+          description: Customer UUID
+          format: uuid
+          readOnly: true
+          type: string
+        definitionUuid:
+          description: Alert definition UUID
+          format: uuid
+          readOnly: true
+          type: string
+        labels:
+          items:
+            $ref: '#/components/schemas/AlertLabel'
+          type: array
+        message:
+          description: The alert's message text
+          maxLength: 2147483647
+          minLength: 1
+          readOnly: true
+          type: string
+        name:
+          description: The alert's name
+          maxLength: 1000
+          minLength: 1
+          readOnly: true
+          type: string
+        nextNotificationTime:
+          description: Time of the next notification attempt
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          readOnly: true
+          type: string
+        notificationAttemptTime:
+          description: Time of the last notification attempt
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          readOnly: true
+          type: string
+        notificationsFailed:
+          description: Count of failures to send a notification
+          format: int32
+          readOnly: true
+          type: integer
+        notifiedState:
+          description: Alert state in the last-sent notification
+          enum:
+          - ACTIVE
+          - ACKNOWLEDGED
+          - SUSPENDED
+          - RESOLVED
+          readOnly: true
+          type: string
+        resolvedTime:
+          description: Timestamp at which the alert was resolved
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          readOnly: true
+          type: string
+        severity:
+          description: Alert configuration severity
+          enum:
+          - SEVERE
+          - WARNING
+          readOnly: true
+          type: string
+        severityIndex:
+          format: int32
+          type: integer
+        sourceName:
+          description: The source of the alert
+          readOnly: true
+          type: string
+        sourceUUID:
+          description: The sourceUUID of the alert
+          format: uuid
+          readOnly: true
+          type: string
+        state:
+          description: The alert's state
+          enum:
+          - ACTIVE
+          - ACKNOWLEDGED
+          - SUSPENDED
+          - RESOLVED
+          readOnly: true
+          type: string
+        stateIndex:
+          format: int32
+          type: integer
+        uuid:
+          description: Alert UUID
+          format: uuid
+          readOnly: true
+          type: string
+      required:
+      - configurationType
+      - configurationUuid
+      - createTime
+      - customerUUID
+      - definitionUuid
+      - labels
+      - message
+      - name
+      - severity
+      - severityIndex
+      - sourceName
+      - sourceUUID
+      - state
+      - stateIndex
+      type: object
+    AlertChannelFormData:
+      example:
+        name: name
+        params:
+          channelType: Email
+          textTemplate: textTemplate
+          titleTemplate: titleTemplate
+        alertChannelUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        alertChannelUUID:
+          format: uuid
+          type: string
+        name:
+          type: string
+        params:
+          $ref: '#/components/schemas/AlertChannelParams'
+      required:
+      - alertChannelUUID
+      - name
+      - params
+      type: object
+    Alert_channel_templates_ext_with_default_values:
+      example:
+        customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        defaultTitleTemplate: defaultTitleTemplate
+        defaultTextTemplate: defaultTextTemplate
+        textTemplate: textTemplate
+        type: Email
+        titleTemplate: titleTemplate
+      properties:
+        customerUUID:
+          description: Customer UUID
+          format: uuid
+          readOnly: true
+          type: string
+        defaultTextTemplate:
+          description: Default text template
+          type: string
+        defaultTitleTemplate:
+          description: Default title template
+          type: string
+        textTemplate:
+          description: Notification text template
+          type: string
+        titleTemplate:
+          description: Notification title template
+          type: string
+        type:
+          description: Channel type
+          enum:
+          - Email
+          - Slack
+          - PagerDuty
+          - WebHook
+          type: string
+      required:
+      - customerUUID
+      - textTemplate
+      - type
+      type: object
+    AlertConfigurationTemplate:
+      description: Alert configuration template
+      example:
+        template: REPLICATION_LAG
+        thresholdUnitName: thresholdUnitName
+        thresholdMaxValue: 1.4658129805029452
+        active: true
+        description: description
+        targetType: PLATFORM
+        maintenanceWindowUuids:
+        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        labels:
+          key: labels
+        target:
+          all: true
+          uuids:
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        thresholdInteger: true
+        thresholds:
+          key:
+            condition: GREATER_THAN
+            threshold: 1.4658129805029452
+        customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        thresholdUnit: STATUS
+        alertCount: 0.8008281904610115
+        createTime: 2022-12-12 13:07:18+00:00
+        thresholdConditionReadOnly: true
+        thresholdMinValue: 5.962133916683182
+        thresholdReadOnly: true
+        defaultDestination: true
+        destinationUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        name: name
+        durationSec: 0
+      properties:
+        active:
+          description: Is configured alerts raised or not
+          type: boolean
+        alertCount:
+          format: double
+          type: number
+        createTime:
+          description: Creation time
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          readOnly: true
+          type: string
+        customerUUID:
+          description: Customer UUID
+          format: uuid
+          readOnly: true
+          type: string
+        defaultDestination:
+          description: Is default destination used for this config
+          type: boolean
+        description:
+          description: Description
+          type: string
+        destinationUUID:
+          description: Alert destination UUID
+          format: uuid
+          type: string
+        durationSec:
+          description: Duration in seconds, while condition is met to raise an alert
+          format: int32
+          minimum: 0
+          type: integer
+        labels:
+          additionalProperties:
+            type: string
+          description: Labels
+          type: object
+        maintenanceWindowUuids:
+          description: Maintenance window UUIDs, applied to this alert config
+          items:
+            format: uuid
+            type: string
+          readOnly: true
+          type: array
+          uniqueItems: true
+        name:
+          description: Name
+          maxLength: 1000
+          minLength: 1
+          type: string
+        target:
+          $ref: '#/components/schemas/AlertConfigurationTarget'
+        targetType:
+          description: Target type
+          enum:
+          - PLATFORM
+          - UNIVERSE
+          type: string
+        template:
+          description: Template name
+          enum:
+          - REPLICATION_LAG
+          - CLOCK_SKEW
+          - CLOCK_SYNC_CHECK_FAILED
+          - MEMORY_CONSUMPTION
+          - HEALTH_CHECK_ERROR
+          - HEALTH_CHECK_NOTIFICATION_ERROR
+          - UNIVERSE_METRIC_COLLECTION_FAILURE
+          - BACKUP_FAILURE
+          - BACKUP_DELETION_FAILURE
+          - BACKUP_SCHEDULE_FAILURE
+          - INACTIVE_CRON_NODES
+          - ALERT_QUERY_FAILED
+          - ALERT_CONFIG_WRITING_FAILED
+          - ALERT_NOTIFICATION_ERROR
+          - ALERT_NOTIFICATION_CHANNEL_ERROR
+          - NODE_DOWN
+          - NODE_RESTART
+          - NODE_CPU_USAGE
+          - NODE_DISK_USAGE
+          - NODE_SYSTEM_DISK_USAGE
+          - NODE_FILE_DESCRIPTORS_USAGE
+          - NODE_OOM_KILLS
+          - DB_VERSION_MISMATCH
+          - DB_INSTANCE_DOWN
+          - DB_INSTANCE_RESTART
+          - DB_FATAL_LOGS
+          - DB_ERROR_LOGS
+          - DB_CORE_FILES
+          - DB_YSQL_CONNECTION
+          - DB_YCQL_CONNECTION
+          - DB_REDIS_CONNECTION
+          - DB_MEMORY_OVERLOAD
+          - DB_COMPACTION_OVERLOAD
+          - DB_DRIVE_FAILURE
+          - DB_WRITE_READ_TEST_ERROR
+          - DDL_ATOMICITY_CHECK
+          - NODE_TO_NODE_CA_CERT_EXPIRY
+          - NODE_TO_NODE_CERT_EXPIRY
+          - CLIENT_TO_NODE_CA_CERT_EXPIRY
+          - CLIENT_TO_NODE_CERT_EXPIRY
+          - ENCRYPTION_AT_REST_CONFIG_EXPIRY
+          - UNIVERSE_KMS_KEY_STATUS
+          - UNIVERSE_TSERVER_CONNECTIVITY_ERROR
+          - SSH_KEY_EXPIRY
+          - SSH_KEY_ROTATION_FAILURE
+          - PITR_CONFIG_FAILURE
+          - YSQL_OP_AVG_LATENCY
+          - YCQL_OP_AVG_LATENCY
+          - YSQL_OP_P99_LATENCY
+          - YCQL_OP_P99_LATENCY
+          - HIGH_NUM_YSQL_CONNECTIONS
+          - HIGH_NUM_YCQL_CONNECTIONS
+          - HIGH_NUM_YEDIS_CONNECTIONS
+          - YSQL_THROUGHPUT
+          - YCQL_THROUGHPUT
+          - YCQL_MICROSECOND_TIMESTAMPS_DETECTED
+          - MASTER_LEADER_MISSING
+          - MASTER_UNDER_REPLICATED
+          - LEADERLESS_TABLETS
+          - UNDER_REPLICATED_TABLETS
+          - PRIVATE_ACCESS_KEY_STATUS
+          - UNIVERSE_OS_UPDATE_REQUIRED
+          - DB_YCQL_WEB_SERVER_DOWN
+          - DB_YSQL_WEB_SERVER_DOWN
+          - INCREASED_REMOTE_BOOTSTRAPS
+          - TABLET_SERVER_AVG_READ_LATENCY
+          - TABLET_SERVER_AVG_WRITE_LATENCY
+          - REACTOR_DELAYS
+          - RPC_QUEUE_SIZE
+          - LOG_CACHE_SIZE
+          - CACHE_MISS
+          - HA_STANDBY_SYNC
+          - NODE_AGENT_DOWN
+          - NODE_AGENT_MISSING
+          - UNIVERSE_RELEASE_FILES_STATUS
+          - HA_VERSION_MISMATCH
+          - TABLET_PEERS_GUARDRAIL
+          - XCLUSTER_CONFIG_TABLE_BAD_STATE
+          - NODE_CLOCK_DRIFT
+          - UNIVERSE_UNEXPECTED_MASTERS_RUNNING
+          - UNIVERSE_UNEXPECTED_TSERVERS_RUNNING
+          - SAFETIME_LAG
+          - CONTINUOUS_BACKUPS_STATUS
+          - THP_RSS_ISSUE
+          - THP_INCORRECT_SETTINGS
+          - YNP_VERSION_SKEW
+          - CDCSDK_FLUSH_LAG
+          - CDCSDK_EXPIRY
+          - OTEL_LOG_EXPORT_FAILURE
+          - OTEL_METRIC_EXPORT_FAILURE
+          type: string
+        thresholdConditionReadOnly:
+          description: Is alert threshold condition read-only or configurable
+          readOnly: true
+          type: boolean
+        thresholdInteger:
+          description: Is alert threshold integer or floating point
+          readOnly: true
+          type: boolean
+        thresholdMaxValue:
+          description: Alert threshold maximal value
+          format: double
+          readOnly: true
+          type: number
+        thresholdMinValue:
+          description: Alert threshold minimal value
+          format: double
+          readOnly: true
+          type: number
+        thresholdReadOnly:
+          description: Is alert threshold read-only or configurable
+          readOnly: true
+          type: boolean
+        thresholdUnit:
+          description: Threshold unit
+          enum:
+          - STATUS
+          - COUNT
+          - PERCENT
+          - MILLISECOND
+          - SECOND
+          - MINUTE
+          - DAY
+          - MEGABYTE
+          type: string
+        thresholdUnitName:
+          description: Threshold unit name
+          readOnly: true
+          type: string
+        thresholds:
+          additionalProperties:
+            $ref: '#/components/schemas/AlertConfigurationThreshold'
+          description: Thresholds
+          type: object
+        uuid:
+          description: Configuration UUID
+          format: uuid
+          readOnly: true
+          type: string
+      required:
+      - active
+      - alertCount
+      - createTime
+      - customerUUID
+      - defaultDestination
+      - description
+      - durationSec
+      - name
+      - target
+      - targetType
+      - template
+      - thresholdUnit
+      - thresholds
+      type: object
+    AlertLabel:
+      example:
+        name: name
+        value: value
+        key:
+          name: name
+      properties:
+        key:
+          $ref: '#/components/schemas/AlertLabelKey'
+        name:
+          type: string
+        value:
+          type: string
+      required:
+      - key
+      - name
+      - value
+      type: object
+    AlertChannelParams:
+      description: Supertype for channel params for different channel types.
+      discriminator:
+        propertyName: channelType
+      example:
+        channelType: Email
+        textTemplate: textTemplate
+        titleTemplate: titleTemplate
+      properties:
+        channelType:
+          description: Channel type
+          enum:
+          - Email
+          - Slack
+          - PagerDuty
+          - WebHook
+          type: string
+        textTemplate:
+          description: Notification text template
+          type: string
+        titleTemplate:
+          description: Notification title template
+          type: string
+      type: object
+    AlertPagedApiQuery:
+      example:
+        filter:
+          sourceUUIDs:
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          configurationTypes:
+          - PLATFORM
+          - PLATFORM
+          sourceName: sourceName
+          configurationUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          severities:
+          - SEVERE
+          - SEVERE
+          states:
+          - ACTIVE
+          - ACTIVE
+          uuids:
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        offset: 6
+        needTotalCount: true
+        limit: 0
+        sortBy: uuid
+        direction: ASC
+      properties:
+        direction:
+          enum:
+          - ASC
+          - DESC
+          type: string
+        filter:
+          $ref: '#/components/schemas/AlertApiFilter'
+        limit:
+          format: int32
+          type: integer
+        needTotalCount:
+          type: boolean
+        offset:
+          format: int32
+          type: integer
+        sortBy:
+          enum:
+          - uuid
+          - createTime
+          - severity
+          - name
+          - sourceName
+          - state
+          type: string
+      required:
+      - direction
+      - filter
+      - limit
+      - needTotalCount
+      - offset
+      - sortBy
+      type: object
+    AlertTemplateSettings:
+      description: Alert template settings
+      example:
+        template: template
+        customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        createTime: 2022-12-12 13:07:18+00:00
+        uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        labels:
+          key: labels
+      properties:
+        createTime:
+          description: Creation time
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          readOnly: true
+          type: string
+        customerUUID:
+          description: Customer UUID
+          format: uuid
+          readOnly: true
+          type: string
+        labels:
+          additionalProperties:
+            type: string
+          description: Labels
+          type: object
+        template:
+          description: Template
+          maxLength: 50
+          minLength: 1
+          type: string
+        uuid:
+          format: uuid
+          type: string
+      required:
+      - createTime
+      - customerUUID
+      - template
+      - uuid
+      type: object
+    AlertConfiguration:
+      description: Alert configuration
+      example:
+        template: REPLICATION_LAG
+        active: true
+        description: description
+        targetType: PLATFORM
+        maintenanceWindowUuids:
+        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        labels:
+          key: labels
+        target:
+          all: true
+          uuids:
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        thresholds:
+          key:
+            condition: GREATER_THAN
+            threshold: 1.4658129805029452
+        customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        thresholdUnit: STATUS
+        alertCount: 0.8008281904610115
+        createTime: 2022-12-12 13:07:18+00:00
+        defaultDestination: true
+        destinationUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        name: name
+        durationSec: 0
+      properties:
+        active:
+          description: Is configured alerts raised or not
+          type: boolean
+        alertCount:
+          format: double
+          type: number
+        createTime:
+          description: Creation time
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          readOnly: true
+          type: string
+        customerUUID:
+          description: Customer UUID
+          format: uuid
+          readOnly: true
+          type: string
+        defaultDestination:
+          description: Is default destination used for this config
+          type: boolean
+        description:
+          description: Description
+          type: string
+        destinationUUID:
+          description: Alert destination UUID
+          format: uuid
+          type: string
+        durationSec:
+          description: Duration in seconds, while condition is met to raise an alert
+          format: int32
+          minimum: 0
+          type: integer
+        labels:
+          additionalProperties:
+            type: string
+          description: Labels
+          type: object
+        maintenanceWindowUuids:
+          description: Maintenance window UUIDs, applied to this alert config
+          items:
+            format: uuid
+            type: string
+          readOnly: true
+          type: array
+          uniqueItems: true
+        name:
+          description: Name
+          maxLength: 1000
+          minLength: 1
+          type: string
+        target:
+          $ref: '#/components/schemas/AlertConfigurationTarget'
+        targetType:
+          description: Target type
+          enum:
+          - PLATFORM
+          - UNIVERSE
+          type: string
+        template:
+          description: Template name
+          enum:
+          - REPLICATION_LAG
+          - CLOCK_SKEW
+          - CLOCK_SYNC_CHECK_FAILED
+          - MEMORY_CONSUMPTION
+          - HEALTH_CHECK_ERROR
+          - HEALTH_CHECK_NOTIFICATION_ERROR
+          - UNIVERSE_METRIC_COLLECTION_FAILURE
+          - BACKUP_FAILURE
+          - BACKUP_DELETION_FAILURE
+          - BACKUP_SCHEDULE_FAILURE
+          - INACTIVE_CRON_NODES
+          - ALERT_QUERY_FAILED
+          - ALERT_CONFIG_WRITING_FAILED
+          - ALERT_NOTIFICATION_ERROR
+          - ALERT_NOTIFICATION_CHANNEL_ERROR
+          - NODE_DOWN
+          - NODE_RESTART
+          - NODE_CPU_USAGE
+          - NODE_DISK_USAGE
+          - NODE_SYSTEM_DISK_USAGE
+          - NODE_FILE_DESCRIPTORS_USAGE
+          - NODE_OOM_KILLS
+          - DB_VERSION_MISMATCH
+          - DB_INSTANCE_DOWN
+          - DB_INSTANCE_RESTART
+          - DB_FATAL_LOGS
+          - DB_ERROR_LOGS
+          - DB_CORE_FILES
+          - DB_YSQL_CONNECTION
+          - DB_YCQL_CONNECTION
+          - DB_REDIS_CONNECTION
+          - DB_MEMORY_OVERLOAD
+          - DB_COMPACTION_OVERLOAD
+          - DB_DRIVE_FAILURE
+          - DB_WRITE_READ_TEST_ERROR
+          - DDL_ATOMICITY_CHECK
+          - NODE_TO_NODE_CA_CERT_EXPIRY
+          - NODE_TO_NODE_CERT_EXPIRY
+          - CLIENT_TO_NODE_CA_CERT_EXPIRY
+          - CLIENT_TO_NODE_CERT_EXPIRY
+          - ENCRYPTION_AT_REST_CONFIG_EXPIRY
+          - UNIVERSE_KMS_KEY_STATUS
+          - UNIVERSE_TSERVER_CONNECTIVITY_ERROR
+          - SSH_KEY_EXPIRY
+          - SSH_KEY_ROTATION_FAILURE
+          - PITR_CONFIG_FAILURE
+          - YSQL_OP_AVG_LATENCY
+          - YCQL_OP_AVG_LATENCY
+          - YSQL_OP_P99_LATENCY
+          - YCQL_OP_P99_LATENCY
+          - HIGH_NUM_YSQL_CONNECTIONS
+          - HIGH_NUM_YCQL_CONNECTIONS
+          - HIGH_NUM_YEDIS_CONNECTIONS
+          - YSQL_THROUGHPUT
+          - YCQL_THROUGHPUT
+          - YCQL_MICROSECOND_TIMESTAMPS_DETECTED
+          - MASTER_LEADER_MISSING
+          - MASTER_UNDER_REPLICATED
+          - LEADERLESS_TABLETS
+          - UNDER_REPLICATED_TABLETS
+          - PRIVATE_ACCESS_KEY_STATUS
+          - UNIVERSE_OS_UPDATE_REQUIRED
+          - DB_YCQL_WEB_SERVER_DOWN
+          - DB_YSQL_WEB_SERVER_DOWN
+          - INCREASED_REMOTE_BOOTSTRAPS
+          - TABLET_SERVER_AVG_READ_LATENCY
+          - TABLET_SERVER_AVG_WRITE_LATENCY
+          - REACTOR_DELAYS
+          - RPC_QUEUE_SIZE
+          - LOG_CACHE_SIZE
+          - CACHE_MISS
+          - HA_STANDBY_SYNC
+          - NODE_AGENT_DOWN
+          - NODE_AGENT_MISSING
+          - UNIVERSE_RELEASE_FILES_STATUS
+          - HA_VERSION_MISMATCH
+          - TABLET_PEERS_GUARDRAIL
+          - XCLUSTER_CONFIG_TABLE_BAD_STATE
+          - NODE_CLOCK_DRIFT
+          - UNIVERSE_UNEXPECTED_MASTERS_RUNNING
+          - UNIVERSE_UNEXPECTED_TSERVERS_RUNNING
+          - SAFETIME_LAG
+          - CONTINUOUS_BACKUPS_STATUS
+          - THP_RSS_ISSUE
+          - THP_INCORRECT_SETTINGS
+          - YNP_VERSION_SKEW
+          - CDCSDK_FLUSH_LAG
+          - CDCSDK_EXPIRY
+          - OTEL_LOG_EXPORT_FAILURE
+          - OTEL_METRIC_EXPORT_FAILURE
+          type: string
+        thresholdUnit:
+          description: Threshold unit
+          enum:
+          - STATUS
+          - COUNT
+          - PERCENT
+          - MILLISECOND
+          - SECOND
+          - MINUTE
+          - DAY
+          - MEGABYTE
+          type: string
+        thresholds:
+          additionalProperties:
+            $ref: '#/components/schemas/AlertConfigurationThreshold'
+          description: Thresholds
+          type: object
+        uuid:
+          description: Configuration UUID
+          format: uuid
+          readOnly: true
+          type: string
+      required:
+      - active
+      - alertCount
+      - createTime
+      - customerUUID
+      - defaultDestination
+      - description
+      - durationSec
+      - name
+      - target
+      - targetType
+      - template
+      - thresholdUnit
+      - thresholds
+      type: object
+    AlertApiFilter:
+      example:
+        sourceUUIDs:
+        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        configurationTypes:
+        - PLATFORM
+        - PLATFORM
+        sourceName: sourceName
+        configurationUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        severities:
+        - SEVERE
+        - SEVERE
+        states:
+        - ACTIVE
+        - ACTIVE
+        uuids:
+        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        configurationTypes:
+          description: Alert Configuration Target Types
+          items:
+            enum:
+            - PLATFORM
+            - UNIVERSE
+            type: string
+          type: array
+          uniqueItems: true
+        configurationUuid:
+          description: The uuid of the alert configuration.
+          format: uuid
+          type: string
+        severities:
+          description: The severity of the alerts.
+          items:
+            enum:
+            - SEVERE
+            - WARNING
+            type: string
+          type: array
+          uniqueItems: true
+        sourceName:
+          description: The source name of the alerts.
+          type: string
+        sourceUUIDs:
+          description: The source uuids of the alerts.
+          items:
+            format: uuid
+            type: string
+          type: array
+          uniqueItems: true
+        states:
+          description: The state of the alerts.
+          items:
+            enum:
+            - ACTIVE
+            - ACKNOWLEDGED
+            - SUSPENDED
+            - RESOLVED
+            type: string
+          type: array
+          uniqueItems: true
+        uuids:
+          description: The uuids of the alerts.
+          items:
+            format: uuid
+            type: string
+          type: array
+          uniqueItems: true
+      type: object
+    AlertTemplateVariablesList:
+      example:
+        customVariables:
+        - possibleValues:
+          - possibleValues
+          - possibleValues
+          - possibleValues
+          - possibleValues
+          - possibleValues
+          customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          defaultValue: defaultValue
+          name: name
+          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - possibleValues:
+          - possibleValues
+          - possibleValues
+          - possibleValues
+          - possibleValues
+          - possibleValues
+          customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          defaultValue: defaultValue
+          name: name
+          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        systemVariables:
+        - YUGABYTE_ALERT_STATUS
+        - YUGABYTE_ALERT_STATUS
+      properties:
+        customVariables:
+          items:
+            $ref: '#/components/schemas/AlertTemplateVariable'
+          type: array
+        systemVariables:
+          items:
+            enum:
+            - YUGABYTE_ALERT_STATUS
+            - YUGABYTE_ALERT_SEVERITY
+            - YUGABYTE_ALERT_TYPE
+            - YUGABYTE_ALERT_EXPRESSION
+            - YUGABYTE_ALERT_UUID
+            - YUGABYTE_CUSTOMER_CODE
+            - YUGABYTE_CUSTOMER_NAME
+            - YUGABYTE_CUSTOMER_UUID
+            - YUGABYTE_ALERT_SOURCE_UUID
+            - YUGABYTE_ALERT_SOURCE_TYPE
+            - YUGABYTE_ALERT_SOURCE_NAME
+            - YUGABYTE_ALERT_POLICY_TYPE
+            - YUGABYTE_ALERT_POLICY_NAME
+            - YUGABYTE_ALERT_POLICY_UUID
+            - YUGABYTE_ALERT_MESSAGE
+            - YUGABYTE_ALERT_START_TIME
+            - YUGABYTE_ALERT_END_TIME
+            - YUGABYTE_ALERT_CHANNEL_NAME
+            - YUGABYTE_AFFECTED_NODE_NAMES
+            - YUGABYTE_AFFECTED_NODE_ADDRESSES
+            - YUGABYTE_AFFECTED_NODE_IDENTIFIERS
+            - YUGABYTE_ALERT_LABELS_JSON
+            type: string
+          type: array
+      required:
+      - customVariables
+      - systemVariables
+      type: object
+    AlertTemplateApiFilter:
+      example:
+        name: name
+        targetType: PLATFORM
+      properties:
+        name:
+          description: The name of the alert template.
+          type: string
+        targetType:
+          description: The target type of the alert template.
+          enum:
+          - PLATFORM
+          - UNIVERSE
+          type: string
+      type: object
+    AlertConfigurationApiFilter:
+      example:
+        severity: SEVERE
+        template: REPLICATION_LAG
+        destinationUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        name: name
+        active: true
+        destinationType: NO_DESTINATION
+        targetType: PLATFORM
+        target:
+          all: true
+          uuids:
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        uuids:
+        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        active:
+          description: Whether the alert configuration is active.
+          type: boolean
+        destinationType:
+          description: 'The destination type of the alert configuration. '
+          enum:
+          - NO_DESTINATION
+          - DEFAULT_DESTINATION
+          - SELECTED_DESTINATION
+          type: string
+        destinationUuid:
+          description: 'The destination uuid of the alert configuration. '
+          format: uuid
+          type: string
+        name:
+          description: The name of the alert configuration.
+          type: string
+        severity:
+          description: The severity of the alert configuration.
+          enum:
+          - SEVERE
+          - WARNING
+          type: string
+        target:
+          $ref: '#/components/schemas/AlertConfigurationTarget'
+        targetType:
+          description: The target type of the alert configuration.
+          enum:
+          - PLATFORM
+          - UNIVERSE
+          type: string
+        template:
+          description: The template of the alert configuration.
+          enum:
+          - REPLICATION_LAG
+          - CLOCK_SKEW
+          - CLOCK_SYNC_CHECK_FAILED
+          - MEMORY_CONSUMPTION
+          - HEALTH_CHECK_ERROR
+          - HEALTH_CHECK_NOTIFICATION_ERROR
+          - UNIVERSE_METRIC_COLLECTION_FAILURE
+          - BACKUP_FAILURE
+          - BACKUP_DELETION_FAILURE
+          - BACKUP_SCHEDULE_FAILURE
+          - INACTIVE_CRON_NODES
+          - ALERT_QUERY_FAILED
+          - ALERT_CONFIG_WRITING_FAILED
+          - ALERT_NOTIFICATION_ERROR
+          - ALERT_NOTIFICATION_CHANNEL_ERROR
+          - NODE_DOWN
+          - NODE_RESTART
+          - NODE_CPU_USAGE
+          - NODE_DISK_USAGE
+          - NODE_SYSTEM_DISK_USAGE
+          - NODE_FILE_DESCRIPTORS_USAGE
+          - NODE_OOM_KILLS
+          - DB_VERSION_MISMATCH
+          - DB_INSTANCE_DOWN
+          - DB_INSTANCE_RESTART
+          - DB_FATAL_LOGS
+          - DB_ERROR_LOGS
+          - DB_CORE_FILES
+          - DB_YSQL_CONNECTION
+          - DB_YCQL_CONNECTION
+          - DB_REDIS_CONNECTION
+          - DB_MEMORY_OVERLOAD
+          - DB_COMPACTION_OVERLOAD
+          - DB_DRIVE_FAILURE
+          - DB_WRITE_READ_TEST_ERROR
+          - DDL_ATOMICITY_CHECK
+          - NODE_TO_NODE_CA_CERT_EXPIRY
+          - NODE_TO_NODE_CERT_EXPIRY
+          - CLIENT_TO_NODE_CA_CERT_EXPIRY
+          - CLIENT_TO_NODE_CERT_EXPIRY
+          - ENCRYPTION_AT_REST_CONFIG_EXPIRY
+          - UNIVERSE_KMS_KEY_STATUS
+          - UNIVERSE_TSERVER_CONNECTIVITY_ERROR
+          - SSH_KEY_EXPIRY
+          - SSH_KEY_ROTATION_FAILURE
+          - PITR_CONFIG_FAILURE
+          - YSQL_OP_AVG_LATENCY
+          - YCQL_OP_AVG_LATENCY
+          - YSQL_OP_P99_LATENCY
+          - YCQL_OP_P99_LATENCY
+          - HIGH_NUM_YSQL_CONNECTIONS
+          - HIGH_NUM_YCQL_CONNECTIONS
+          - HIGH_NUM_YEDIS_CONNECTIONS
+          - YSQL_THROUGHPUT
+          - YCQL_THROUGHPUT
+          - YCQL_MICROSECOND_TIMESTAMPS_DETECTED
+          - MASTER_LEADER_MISSING
+          - MASTER_UNDER_REPLICATED
+          - LEADERLESS_TABLETS
+          - UNDER_REPLICATED_TABLETS
+          - PRIVATE_ACCESS_KEY_STATUS
+          - UNIVERSE_OS_UPDATE_REQUIRED
+          - DB_YCQL_WEB_SERVER_DOWN
+          - DB_YSQL_WEB_SERVER_DOWN
+          - INCREASED_REMOTE_BOOTSTRAPS
+          - TABLET_SERVER_AVG_READ_LATENCY
+          - TABLET_SERVER_AVG_WRITE_LATENCY
+          - REACTOR_DELAYS
+          - RPC_QUEUE_SIZE
+          - LOG_CACHE_SIZE
+          - CACHE_MISS
+          - HA_STANDBY_SYNC
+          - NODE_AGENT_DOWN
+          - NODE_AGENT_MISSING
+          - UNIVERSE_RELEASE_FILES_STATUS
+          - HA_VERSION_MISMATCH
+          - TABLET_PEERS_GUARDRAIL
+          - XCLUSTER_CONFIG_TABLE_BAD_STATE
+          - NODE_CLOCK_DRIFT
+          - UNIVERSE_UNEXPECTED_MASTERS_RUNNING
+          - UNIVERSE_UNEXPECTED_TSERVERS_RUNNING
+          - SAFETIME_LAG
+          - CONTINUOUS_BACKUPS_STATUS
+          - THP_RSS_ISSUE
+          - THP_INCORRECT_SETTINGS
+          - YNP_VERSION_SKEW
+          - CDCSDK_FLUSH_LAG
+          - CDCSDK_EXPIRY
+          - OTEL_LOG_EXPORT_FAILURE
+          - OTEL_METRIC_EXPORT_FAILURE
+          type: string
+        uuids:
+          description: The uuids of the alert configurations.
+          items:
+            format: uuid
+            type: string
+          type: array
+          uniqueItems: true
+      type: object
+    AlertLabelKey:
+      example:
+        name: name
+      properties:
+        name:
+          type: string
+      required:
+      - name
+      type: object
+    AlertTemplateSettingsFormData:
+      example:
+        settings:
+        - template: template
+          customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          createTime: 2022-12-12 13:07:18+00:00
+          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          labels:
+            key: labels
+        - template: template
+          customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          createTime: 2022-12-12 13:07:18+00:00
+          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          labels:
+            key: labels
+        - template: template
+          customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          createTime: 2022-12-12 13:07:18+00:00
+          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          labels:
+            key: labels
+        - template: template
+          customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          createTime: 2022-12-12 13:07:18+00:00
+          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          labels:
+            key: labels
+        - template: template
+          customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          createTime: 2022-12-12 13:07:18+00:00
+          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          labels:
+            key: labels
+      properties:
+        settings:
+          items:
+            $ref: '#/components/schemas/AlertTemplateSettings'
+          maxItems: 2147483647
+          minItems: 1
+          type: array
+      required:
+      - settings
+      type: object
+    AlertDestination:
+      description: Alert notification destination
+      example:
+        customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        channels:
+        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        defaultDestination: true
+        name: name
+        uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        channels:
+          description: Alert notification channels
+          items:
+            format: uuid
+            type: string
+          maxItems: 2147483647
+          minItems: 1
+          type: array
+        customerUUID:
+          description: Customer UUID
+          format: uuid
+          readOnly: true
+          type: string
+        defaultDestination:
+          description: Default alert notification destination
+          type: boolean
+        name:
+          description: Name
+          maxLength: 63
+          minLength: 1
+          type: string
+        uuid:
+          description: Destination UUID
+          format: uuid
+          readOnly: true
+          type: string
+      required:
+      - channels
+      - customerUUID
+      - defaultDestination
+      - name
+      type: object
+    AlertDestinationFormData:
+      example:
+        channels:
+        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        defaultDestination: true
+        name: name
+      properties:
+        channels:
+          items:
+            format: uuid
+            type: string
+          type: array
+        defaultDestination:
+          type: boolean
+        name:
+          type: string
+      required:
+      - channels
+      - defaultDestination
+      - name
+      type: object
+  securitySchemes:
+    apiKeyAuth:
+      description: API token passed as header
+      in: header
+      name: X-AUTH-YW-API-TOKEN
+      type: apiKey
+externalDocs:
+  description: About YugabyteDB Anywhere
+  url: https://docs.yugabyte.com/latest/yugabyte-platform/
+x-refined-from:
+- openapi_2.yaml
+- platform.swagger.json

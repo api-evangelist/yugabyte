@@ -1,0 +1,427 @@
+# x-archived-from: yugabytedb-session-management-api-openapi.yml
+# x-archived-on: 2026-09-26
+openapi: 3.2.0
+info:
+  title: Yugabytedb Session management API
+  version: v1
+  contact:
+    name: https://docs.yugabyte.com
+  license:
+    name: Polyform Free Trial License 1.0.0
+    url: https://github.com/yugabyte/yugabyte-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
+  termsOfService: TODO(chirag)
+  description: 'Operations tagged Session management across 2 of this provider''s published API definitions: openapi_2.yaml, platform.swagger.json. Each path carries the servers of the definition it was published in.'
+servers:
+- url: /
+tags:
+- name: Session Management
+paths:
+  /api/v1/api_login:
+    post:
+      operationId: apiLogin
+      parameters:
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerLoginFormData'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionInfo'
+          description: successful operation
+      summary: Authenticate user using email and password
+      tags:
+      - Session Management
+      x-codegen-request-body-name: CustomerLoginFormData
+    servers:
+    - url: /
+  /api/v1/app_version:
+    get:
+      operationId: appVersion
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  type: string
+                type: object
+          description: successful operation
+      summary: appVersion
+      tags:
+      - Session Management
+    servers:
+    - url: /
+  /api/v1/customer_count:
+    get:
+      operationId: customerCount
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerCountResp'
+          description: successful operation
+      summary: customerCount
+      tags:
+      - Session Management
+    servers:
+    - url: /
+  /api/v1/customers/{cUUID}/admin_notifications:
+    get:
+      description: 'WARNING: This is a preview API that could change.'
+      operationId: getAdminNotifications
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Current_admin_notification_messages'
+          description: successful operation
+      summary: Current list of notifications for admin
+      tags:
+      - Session Management
+    servers:
+    - url: /
+  /api/v1/customers/{cUUID}/api_token:
+    put:
+      operationId: api_token
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: apiTokenVersion
+        schema:
+          default: -1
+          format: int64
+          type: integer
+      - in: query
+        name: request
+        schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionInfo'
+          description: successful operation
+      summary: Regenerate and fetch API token
+      tags:
+      - Session Management
+    servers:
+    - url: /
+  /api/v1/logs:
+    get:
+      operationId: getFilteredLogs
+      parameters:
+      - in: query
+        name: maxLines
+        schema:
+          default: 10000
+          format: int32
+          type: integer
+      - in: query
+        name: universeName
+        schema:
+          default: 'null'
+          type: string
+      - in: query
+        name: queryRegex
+        schema:
+          default: 'null'
+          type: string
+      - in: query
+        name: startDate
+        schema:
+          default: 'null'
+          type: string
+      - in: query
+        name: endDate
+        schema:
+          default: 'null'
+          type: string
+      responses:
+        '200':
+          content:
+            text/plain:
+              schema:
+                type: string
+          description: successful operation
+      summary: getFilteredLogs
+      tags:
+      - Session Management
+    servers:
+    - url: /
+  /api/v1/logs/{maxLines}:
+    get:
+      operationId: getLogs
+      parameters:
+      - in: path
+        name: maxLines
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LogData'
+          description: successful operation
+      summary: getLogs
+      tags:
+      - Session Management
+    servers:
+    - url: /
+  /api/v1/register:
+    post:
+      description: Creates new customer and user
+      operationId: registerCustomer
+      parameters:
+      - in: query
+        name: generateApiToken
+        schema:
+          default: false
+          type: boolean
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerRegisterFormData'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionInfo'
+          description: successful operation
+      summary: Register a customer
+      tags:
+      - Session Management
+      x-codegen-request-body-name: CustomerRegisterFormData
+    servers:
+    - url: /
+  /api/v1/session_info:
+    get:
+      description: Available since YBA version 2.20.0.
+      operationId: getSessionInfo
+      parameters:
+      - in: query
+        name: request
+        schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionInfo'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Get current user and customer uuid.
+      tags:
+      - Session Management
+    servers:
+    - url: /
+components:
+  schemas:
+    CustomerLoginFormData:
+      example:
+        password: password
+        email: email
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      required:
+      - email
+      - password
+      type: object
+    CustomerRegisterFormData:
+      example:
+        password: password
+        code: code
+        name: name
+        email: email
+      properties:
+        code:
+          type: string
+        email:
+          type: string
+        name:
+          type: string
+        password:
+          type: string
+      required:
+      - code
+      - email
+      - name
+      - password
+      type: object
+    Admin_notification:
+      example:
+        code: code
+        htmlMessage: htmlMessage
+      properties:
+        code:
+          description: Notification code
+          readOnly: true
+          type: string
+        htmlMessage:
+          description: Notification message with HTML markup
+          readOnly: true
+          type: string
+      type: object
+    LogData:
+      example:
+        lines:
+        - lines
+        - lines
+      properties:
+        lines:
+          items:
+            type: string
+          type: array
+      required:
+      - lines
+      type: object
+    SessionInfo:
+      description: Session information
+      example:
+        apiToken: apiToken
+        customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        apiTokenVersion: 0
+        authToken: authToken
+        userUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        apiToken:
+          description: API token
+          type: string
+        apiTokenVersion:
+          description: API token version
+          format: int64
+          type: integer
+        authToken:
+          description: Auth token
+          type: string
+        customerUUID:
+          description: Customer UUID
+          format: uuid
+          type: string
+        userUUID:
+          description: User UUID
+          format: uuid
+          type: string
+      type: object
+    CustomerCountResp:
+      example:
+        count: 0
+      properties:
+        count:
+          format: int32
+          type: integer
+      required:
+      - count
+      type: object
+    Current_admin_notification_messages:
+      example:
+        messages:
+        - code: code
+          htmlMessage: htmlMessage
+        - code: code
+          htmlMessage: htmlMessage
+      properties:
+        messages:
+          description: Messages
+          items:
+            $ref: '#/components/schemas/Admin_notification'
+          readOnly: true
+          type: array
+      type: object
+    LogData_2:
+      properties:
+        lines:
+          items:
+            type: string
+          type: array
+      required:
+      - lines
+      type: object
+    CustomerRegisterFormData_2:
+      properties:
+        code:
+          type: string
+        email:
+          type: string
+        name:
+          type: string
+        password:
+          type: string
+      required:
+      - code
+      - email
+      - name
+      - password
+      type: object
+    SessionInfo_2:
+      description: Session information
+      properties:
+        apiToken:
+          description: API token
+          type: string
+        authToken:
+          description: Auth token
+          type: string
+        customerUUID:
+          description: Customer UUID
+          format: uuid
+          type: string
+        userUUID:
+          description: User UUID
+          format: uuid
+          type: string
+      type: object
+    CustomerCountResp_2:
+      properties:
+        count:
+          format: int32
+          type: integer
+      required:
+      - count
+      type: object
+  securitySchemes:
+    apiKeyAuth:
+      description: API token passed as header
+      in: header
+      name: X-AUTH-YW-API-TOKEN
+      type: apiKey
+externalDocs:
+  description: About YugabyteDB Anywhere
+  url: https://docs.yugabyte.com/latest/yugabyte-platform/
+x-refined-from:
+- openapi_2.yaml
+- platform.swagger.json

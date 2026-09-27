@@ -56,6 +56,12 @@ paths:
       - restore-info
 components:
   schemas:
+    ApiError:
+      properties:
+        error:
+          $ref: '#/components/schemas/ApiError_error'
+      title: API Error
+      type: object
     ApiError_error:
       properties:
         detail:
@@ -64,45 +70,6 @@ components:
         status:
           description: Error code
           type: integer
-      type: object
-    Restore_Details:
-      example:
-        restore:
-        - bytes_transferred: bytes_transferred
-          actual_size: actual_size
-          user_operation: user_operation
-          task_status: task_status
-          database_keyspace: database_keyspace
-          ybdb_api: ybdb_api
-          ybc_task_id: ybc_task_id
-          tserver_ip: tserver_ip
-          time_taken: time_taken
-          task_start_time: task_start_time
-        - bytes_transferred: bytes_transferred
-          actual_size: actual_size
-          user_operation: user_operation
-          task_status: task_status
-          database_keyspace: database_keyspace
-          ybdb_api: ybdb_api
-          ybc_task_id: ybc_task_id
-          tserver_ip: tserver_ip
-          time_taken: time_taken
-          task_start_time: task_start_time
-      properties:
-        restore:
-          items:
-            $ref: '#/components/schemas/RestoreDetails'
-          type: array
-          uniqueItems: true
-      required:
-      - restore
-      title: Restore Details
-      type: object
-    ApiError:
-      properties:
-        error:
-          $ref: '#/components/schemas/ApiError_error'
-      title: API Error
       type: object
     RestoreDetails:
       description: Details of databases in YugabyteDB cluster on which restore operation in run
@@ -150,6 +117,39 @@ components:
       - ybc_task_id
       - ybdb_api
       title: Get Restore Details
+      type: object
+    Restore_Details:
+      example:
+        restore:
+        - bytes_transferred: bytes_transferred
+          actual_size: actual_size
+          user_operation: user_operation
+          task_status: task_status
+          database_keyspace: database_keyspace
+          ybdb_api: ybdb_api
+          ybc_task_id: ybc_task_id
+          tserver_ip: tserver_ip
+          time_taken: time_taken
+          task_start_time: task_start_time
+        - bytes_transferred: bytes_transferred
+          actual_size: actual_size
+          user_operation: user_operation
+          task_status: task_status
+          database_keyspace: database_keyspace
+          ybdb_api: ybdb_api
+          ybc_task_id: ybc_task_id
+          tserver_ip: tserver_ip
+          time_taken: time_taken
+          task_start_time: task_start_time
+      properties:
+        restore:
+          items:
+            $ref: '#/components/schemas/RestoreDetails'
+          type: array
+          uniqueItems: true
+      required:
+      - restore
+      title: Restore Details
       type: object
   securitySchemes:
     BearerAuthToken:

@@ -1,0 +1,931 @@
+openapi: 3.2.0
+info:
+  title: Yugabytedb Region management API
+  version: v1
+  contact:
+    name: https://docs.yugabyte.com
+  license:
+    name: Polyform Free Trial License 1.0.0
+    url: https://github.com/yugabyte/yugabyte-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
+  termsOfService: TODO(chirag)
+  description: 'Operations tagged Region management across 2 of this provider''s published API definitions: openapi_2.yaml, platform.swagger.json. Each path carries the servers of the definition it was published in.'
+servers:
+- url: /
+tags:
+- name: Region management
+paths:
+  /api/v1/customers/{cUUID}/providers/{pUUID}/provider_regions:
+    servers:
+    - url: /
+    post:
+      description: 'WARNING: This is a preview API that could change.'
+      operationId: createProviderRegion
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: pUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Region'
+        description: Specification of Region to be created
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Region'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Create a new region
+      tags:
+      - Region management
+      x-codegen-request-body-name: region
+  /api/v1/customers/{cUUID}/providers/{pUUID}/provider_regions/{rUUID}:
+    servers:
+    - url: /
+    put:
+      description: 'WARNING: This is a preview API that could change.'
+      operationId: editProviderRegion
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: pUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: rUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Region'
+        description: Specification of Region to be edited
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Region'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Modify a region
+      tags:
+      - Region management
+      x-codegen-request-body-name: region
+  /api/v1/customers/{cUUID}/providers/{pUUID}/regions:
+    servers:
+    - url: /
+    get:
+      operationId: getRegion
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: pUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Region'
+                type: array
+          description: successful operation
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YBPError'
+          description: If there was a server or database issue when listing the regions
+      security:
+      - apiKeyAuth: []
+      summary: List a provider's regions
+      tags:
+      - Region management
+    post:
+      deprecated: true
+      description: 'Deprecated since YBA version 2.18.2.0.
+
+        Use /api/v1/customers/{cUUID}/provider/{pUUID}/provider_regions instead'
+      operationId: createRegion
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: pUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegionFormData'
+        description: region form data for new region to be created
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Region'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Create Region - deprecated
+      tags:
+      - Region management
+      x-codegen-request-body-name: region
+  /api/v1/customers/{cUUID}/providers/{pUUID}/regions/{rUUID}:
+    servers:
+    - url: /
+    delete:
+      operationId: deleteRegion
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: pUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: rUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Delete a region
+      tags:
+      - Region management
+    put:
+      deprecated: true
+      description: 'Deprecated since YBA version 2.18.2.0.
+
+        Use /api/v1/customers/{cUUID}/provider/{pUUID}/provider_regions instead'
+      operationId: editRegion
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: pUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: rUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegionFormData'
+        description: region edit form data
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Edit regions - deprecated
+      tags:
+      - Region management
+      x-codegen-request-body-name: region
+  /api/v1/customers/{cUUID}/regions:
+    servers:
+    - url: /
+    get:
+      operationId: listAllRegions
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Region'
+                type: array
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: List regions for all providers
+      tags:
+      - Region management
+components:
+  schemas:
+    KubernetesRegionInfo:
+      example:
+        kubeNamespace: kubeNamespace
+        kubernetesImagePullSecretName: kubernetesImagePullSecretName
+        kubernetesPullSecretContent: kubernetesPullSecretContent
+        certManagerIssuer: certManagerIssuer
+        isKubernetesOperatorControlled: true
+        kubernetesOperatorControlled: true
+        kubeConfig: kubeConfig
+        kubeDomain: kubeDomain
+        overrides: overrides
+        certManagerIssuerName: certManagerIssuerName
+        kubernetesPullSecret: kubernetesPullSecret
+        kubeConfigName: kubeConfigName
+        certManagerIssuerKind: certManagerIssuerKind
+        kubePodAddressTemplate: kubePodAddressTemplate
+        kubernetesProvider: kubernetesProvider
+        kubeConfigContent: kubeConfigContent
+        kubernetesPullSecretName: kubernetesPullSecretName
+        certManagerIssuerGroup: certManagerIssuerGroup
+        kubernetesImageRegistry: kubernetesImageRegistry
+        certManagerClusterIssuer: certManagerClusterIssuer
+        kubernetesStorageClass: kubernetesStorageClass
+        kubernetesServiceAccount: kubernetesServiceAccount
+      properties:
+        certManagerClusterIssuer:
+          description: <b style="color:#ff0000">Deprecated since YBA version 2024.2.3.0.</b>. Use certManagerIssuerKind and certManagerIssuerName instead
+          type: string
+        certManagerIssuer:
+          description: <b style="color:#ff0000">Deprecated since YBA version 2024.2.3.0.</b>. Use certManagerIssuerKind and certManagerIssuerName instead
+          type: string
+        certManagerIssuerGroup:
+          type: string
+        certManagerIssuerKind:
+          type: string
+        certManagerIssuerName:
+          type: string
+        isKubernetesOperatorControlled:
+          readOnly: true
+          type: boolean
+        kubeConfig:
+          readOnly: true
+          type: string
+        kubeConfigContent:
+          type: string
+        kubeConfigName:
+          type: string
+        kubeDomain:
+          type: string
+        kubeNamespace:
+          type: string
+        kubePodAddressTemplate:
+          type: string
+        kubernetesImagePullSecretName:
+          type: string
+        kubernetesImageRegistry:
+          type: string
+        kubernetesOperatorControlled:
+          type: boolean
+        kubernetesProvider:
+          type: string
+        kubernetesPullSecret:
+          readOnly: true
+          type: string
+        kubernetesPullSecretContent:
+          type: string
+        kubernetesPullSecretName:
+          type: string
+        kubernetesServiceAccount:
+          description: <b style="color:#ff0000">Deprecated since YBA version 2.17.3.0.</b> kubernetes service account is not needed.
+          type: string
+        kubernetesStorageClass:
+          type: string
+        overrides:
+          type: string
+      required:
+      - kubernetesOperatorControlled
+      type: object
+    AvailabilityZone:
+      description: Availability zone (AZ) for a region
+      example:
+        subnet: subnet id
+        code: us-west1-a
+        name: us-west1-a
+        active: true
+        details:
+          cloudInfo:
+            kubernetes:
+              kubeNamespace: kubeNamespace
+              kubernetesImagePullSecretName: kubernetesImagePullSecretName
+              kubernetesPullSecretContent: kubernetesPullSecretContent
+              certManagerIssuer: certManagerIssuer
+              isKubernetesOperatorControlled: true
+              kubernetesOperatorControlled: true
+              kubeConfig: kubeConfig
+              kubeDomain: kubeDomain
+              overrides: overrides
+              certManagerIssuerName: certManagerIssuerName
+              kubernetesPullSecret: kubernetesPullSecret
+              kubeConfigName: kubeConfigName
+              certManagerIssuerKind: certManagerIssuerKind
+              kubePodAddressTemplate: kubePodAddressTemplate
+              kubernetesProvider: kubernetesProvider
+              kubeConfigContent: kubeConfigContent
+              kubernetesPullSecretName: kubernetesPullSecretName
+              certManagerIssuerGroup: certManagerIssuerGroup
+              kubernetesImageRegistry: kubernetesImageRegistry
+              certManagerClusterIssuer: certManagerClusterIssuer
+              kubernetesStorageClass: kubernetesStorageClass
+              kubernetesServiceAccount: kubernetesServiceAccount
+        kubeconfigPath: kubeconfigPath
+        config:
+          key: config
+        uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        secondarySubnet: secondary subnet id
+      properties:
+        active:
+          description: AZ status. This value is `true` for an active AZ.
+          readOnly: true
+          type: boolean
+        code:
+          description: AZ code
+          example: us-west1-a
+          type: string
+        config:
+          additionalProperties:
+            type: string
+          description: AZ configuration values
+          type: object
+        details:
+          $ref: '#/components/schemas/AvailabilityZoneDetails'
+        kubeconfigPath:
+          description: Path to Kubernetes configuration file
+          readOnly: true
+          type: string
+        name:
+          description: AZ name
+          example: us-west1-a
+          type: string
+        secondarySubnet:
+          description: AZ secondary subnet
+          example: secondary subnet id
+          type: string
+        subnet:
+          description: AZ subnet
+          example: subnet id
+          type: string
+        uuid:
+          description: AZ UUID. This must be specified for existing AZs on update
+          format: uuid
+          type: string
+      required:
+      - name
+      type: object
+    GCPRegionCloudInfo:
+      example:
+        instanceTemplate: instanceTemplate
+        ybImage: ybImage
+      properties:
+        instanceTemplate:
+          description: The instance template to be used for nodes created in this region.
+          type: string
+        ybImage:
+          description: <b style="color:#ff0000">Deprecated since YBA version 2.20.0.</b> Use provider.imageBundle instead
+          type: string
+      type: object
+    RegionDetails:
+      example:
+        cloudInfo:
+          kubernetes:
+            kubeNamespace: kubeNamespace
+            kubernetesImagePullSecretName: kubernetesImagePullSecretName
+            kubernetesPullSecretContent: kubernetesPullSecretContent
+            certManagerIssuer: certManagerIssuer
+            isKubernetesOperatorControlled: true
+            kubernetesOperatorControlled: true
+            kubeConfig: kubeConfig
+            kubeDomain: kubeDomain
+            overrides: overrides
+            certManagerIssuerName: certManagerIssuerName
+            kubernetesPullSecret: kubernetesPullSecret
+            kubeConfigName: kubeConfigName
+            certManagerIssuerKind: certManagerIssuerKind
+            kubePodAddressTemplate: kubePodAddressTemplate
+            kubernetesProvider: kubernetesProvider
+            kubeConfigContent: kubeConfigContent
+            kubernetesPullSecretName: kubernetesPullSecretName
+            certManagerIssuerGroup: certManagerIssuerGroup
+            kubernetesImageRegistry: kubernetesImageRegistry
+            certManagerClusterIssuer: certManagerClusterIssuer
+            kubernetesStorageClass: kubernetesStorageClass
+            kubernetesServiceAccount: kubernetesServiceAccount
+          gcp:
+            instanceTemplate: instanceTemplate
+            ybImage: ybImage
+          aws:
+            securityGroupId: securityGroupId
+            vnet: vnet
+            ybImage: ybImage
+            arch: x86_64
+          azu:
+            securityGroupId: securityGroupId
+            vnet: vnet
+            ybImage: ybImage
+            azuNetworkRGOverride: azuNetworkRGOverride
+            azuRGOverride: azuRGOverride
+      properties:
+        cloudInfo:
+          $ref: '#/components/schemas/RegionCloudInfo'
+      type: object
+    RegionCloudInfo:
+      example:
+        kubernetes:
+          kubeNamespace: kubeNamespace
+          kubernetesImagePullSecretName: kubernetesImagePullSecretName
+          kubernetesPullSecretContent: kubernetesPullSecretContent
+          certManagerIssuer: certManagerIssuer
+          isKubernetesOperatorControlled: true
+          kubernetesOperatorControlled: true
+          kubeConfig: kubeConfig
+          kubeDomain: kubeDomain
+          overrides: overrides
+          certManagerIssuerName: certManagerIssuerName
+          kubernetesPullSecret: kubernetesPullSecret
+          kubeConfigName: kubeConfigName
+          certManagerIssuerKind: certManagerIssuerKind
+          kubePodAddressTemplate: kubePodAddressTemplate
+          kubernetesProvider: kubernetesProvider
+          kubeConfigContent: kubeConfigContent
+          kubernetesPullSecretName: kubernetesPullSecretName
+          certManagerIssuerGroup: certManagerIssuerGroup
+          kubernetesImageRegistry: kubernetesImageRegistry
+          certManagerClusterIssuer: certManagerClusterIssuer
+          kubernetesStorageClass: kubernetesStorageClass
+          kubernetesServiceAccount: kubernetesServiceAccount
+        gcp:
+          instanceTemplate: instanceTemplate
+          ybImage: ybImage
+        aws:
+          securityGroupId: securityGroupId
+          vnet: vnet
+          ybImage: ybImage
+          arch: x86_64
+        azu:
+          securityGroupId: securityGroupId
+          vnet: vnet
+          ybImage: ybImage
+          azuNetworkRGOverride: azuNetworkRGOverride
+          azuRGOverride: azuRGOverride
+      properties:
+        aws:
+          $ref: '#/components/schemas/AWSRegionCloudInfo'
+        azu:
+          $ref: '#/components/schemas/AzureRegionCloudInfo'
+        gcp:
+          $ref: '#/components/schemas/GCPRegionCloudInfo'
+        kubernetes:
+          $ref: '#/components/schemas/KubernetesRegionInfo'
+      type: object
+    YBPError:
+      description: Generic error response from the YugabyteDB Anywhere API
+      example:
+        success: false
+        requestUri: /customers/8918921-af3782-633de/universe/8173ab-fd2453/create
+        error: There was a problem creating the universe
+        httpMethod: POST
+        errorJson: '{ "foo" : "bar", "baz" : [1, 2, 3] }'
+        requestJson: '{ "foo" : "bar", "baz" : [1, 2, 3] }'
+      properties:
+        error:
+          description: User-visible unstructured error message
+          example: There was a problem creating the universe
+          type: string
+        errorJson:
+          description: User visible structured error message as json object
+          example: '{ "foo" : "bar", "baz" : [1, 2, 3] }'
+          properties: {}
+          type: object
+        httpMethod:
+          description: Method for HTTP call that resulted in this error
+          example: POST
+          type: string
+        requestJson:
+          description: User request JSON object
+          example: '{ "foo" : "bar", "baz" : [1, 2, 3] }'
+          properties: {}
+          type: object
+        requestUri:
+          description: URI for HTTP request that resulted in this error
+          example: /customers/8918921-af3782-633de/universe/8173ab-fd2453/create
+          type: string
+        success:
+          description: Always set to false to indicate failure
+          example: false
+          type: boolean
+      type: object
+    AWSRegionCloudInfo:
+      example:
+        securityGroupId: securityGroupId
+        vnet: vnet
+        ybImage: ybImage
+        arch: x86_64
+      properties:
+        arch:
+          description: <b style="color:#ff0000">Deprecated since YBA version 2.20.0.</b> Use provider.imageBundle instead
+          enum:
+          - x86_64
+          - aarch64
+          type: string
+        securityGroupId:
+          type: string
+        vnet:
+          type: string
+        ybImage:
+          description: <b style="color:#ff0000">Deprecated since YBA version 2.20.0.</b> Use provider.imageBundle instead
+          type: string
+      type: object
+    AZCloudInfo:
+      example:
+        kubernetes:
+          kubeNamespace: kubeNamespace
+          kubernetesImagePullSecretName: kubernetesImagePullSecretName
+          kubernetesPullSecretContent: kubernetesPullSecretContent
+          certManagerIssuer: certManagerIssuer
+          isKubernetesOperatorControlled: true
+          kubernetesOperatorControlled: true
+          kubeConfig: kubeConfig
+          kubeDomain: kubeDomain
+          overrides: overrides
+          certManagerIssuerName: certManagerIssuerName
+          kubernetesPullSecret: kubernetesPullSecret
+          kubeConfigName: kubeConfigName
+          certManagerIssuerKind: certManagerIssuerKind
+          kubePodAddressTemplate: kubePodAddressTemplate
+          kubernetesProvider: kubernetesProvider
+          kubeConfigContent: kubeConfigContent
+          kubernetesPullSecretName: kubernetesPullSecretName
+          certManagerIssuerGroup: certManagerIssuerGroup
+          kubernetesImageRegistry: kubernetesImageRegistry
+          certManagerClusterIssuer: certManagerClusterIssuer
+          kubernetesStorageClass: kubernetesStorageClass
+          kubernetesServiceAccount: kubernetesServiceAccount
+      properties:
+        kubernetes:
+          $ref: '#/components/schemas/KubernetesRegionInfo'
+      type: object
+    AzureRegionCloudInfo:
+      example:
+        securityGroupId: securityGroupId
+        vnet: vnet
+        ybImage: ybImage
+        azuNetworkRGOverride: azuNetworkRGOverride
+        azuRGOverride: azuRGOverride
+      properties:
+        azuNetworkRGOverride:
+          type: string
+        azuRGOverride:
+          type: string
+        securityGroupId:
+          type: string
+        vnet:
+          type: string
+        ybImage:
+          description: <b style="color:#ff0000">Deprecated since YBA version 2.20.0.</b> Use provider.imageBundle instead
+          type: string
+      type: object
+    Region:
+      description: Region within a given provider. Typically, this maps to a single cloud provider region.
+      example:
+        securityGroupId: securityGroupId
+        code: us-west-2
+        ybImage: TODO
+        latitude: 37.22
+        name: US West (Oregon)
+        active: true
+        details:
+          cloudInfo:
+            kubernetes:
+              kubeNamespace: kubeNamespace
+              kubernetesImagePullSecretName: kubernetesImagePullSecretName
+              kubernetesPullSecretContent: kubernetesPullSecretContent
+              certManagerIssuer: certManagerIssuer
+              isKubernetesOperatorControlled: true
+              kubernetesOperatorControlled: true
+              kubeConfig: kubeConfig
+              kubeDomain: kubeDomain
+              overrides: overrides
+              certManagerIssuerName: certManagerIssuerName
+              kubernetesPullSecret: kubernetesPullSecret
+              kubeConfigName: kubeConfigName
+              certManagerIssuerKind: certManagerIssuerKind
+              kubePodAddressTemplate: kubePodAddressTemplate
+              kubernetesProvider: kubernetesProvider
+              kubeConfigContent: kubeConfigContent
+              kubernetesPullSecretName: kubernetesPullSecretName
+              certManagerIssuerGroup: certManagerIssuerGroup
+              kubernetesImageRegistry: kubernetesImageRegistry
+              certManagerClusterIssuer: certManagerClusterIssuer
+              kubernetesStorageClass: kubernetesStorageClass
+              kubernetesServiceAccount: kubernetesServiceAccount
+            gcp:
+              instanceTemplate: instanceTemplate
+              ybImage: ybImage
+            aws:
+              securityGroupId: securityGroupId
+              vnet: vnet
+              ybImage: ybImage
+              arch: x86_64
+            azu:
+              securityGroupId: securityGroupId
+              vnet: vnet
+              ybImage: ybImage
+              azuNetworkRGOverride: azuNetworkRGOverride
+              azuRGOverride: azuRGOverride
+        vnetName: vnetName
+        zones:
+        - subnet: subnet id
+          code: us-west1-a
+          name: us-west1-a
+          active: true
+          details:
+            cloudInfo:
+              kubernetes:
+                kubeNamespace: kubeNamespace
+                kubernetesImagePullSecretName: kubernetesImagePullSecretName
+                kubernetesPullSecretContent: kubernetesPullSecretContent
+                certManagerIssuer: certManagerIssuer
+                isKubernetesOperatorControlled: true
+                kubernetesOperatorControlled: true
+                kubeConfig: kubeConfig
+                kubeDomain: kubeDomain
+                overrides: overrides
+                certManagerIssuerName: certManagerIssuerName
+                kubernetesPullSecret: kubernetesPullSecret
+                kubeConfigName: kubeConfigName
+                certManagerIssuerKind: certManagerIssuerKind
+                kubePodAddressTemplate: kubePodAddressTemplate
+                kubernetesProvider: kubernetesProvider
+                kubeConfigContent: kubeConfigContent
+                kubernetesPullSecretName: kubernetesPullSecretName
+                certManagerIssuerGroup: certManagerIssuerGroup
+                kubernetesImageRegistry: kubernetesImageRegistry
+                certManagerClusterIssuer: certManagerClusterIssuer
+                kubernetesStorageClass: kubernetesStorageClass
+                kubernetesServiceAccount: kubernetesServiceAccount
+          kubeconfigPath: kubeconfigPath
+          config:
+            key: config
+          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          secondarySubnet: secondary subnet id
+        - subnet: subnet id
+          code: us-west1-a
+          name: us-west1-a
+          active: true
+          details:
+            cloudInfo:
+              kubernetes:
+                kubeNamespace: kubeNamespace
+                kubernetesImagePullSecretName: kubernetesImagePullSecretName
+                kubernetesPullSecretContent: kubernetesPullSecretContent
+                certManagerIssuer: certManagerIssuer
+                isKubernetesOperatorControlled: true
+                kubernetesOperatorControlled: true
+                kubeConfig: kubeConfig
+                kubeDomain: kubeDomain
+                overrides: overrides
+                certManagerIssuerName: certManagerIssuerName
+                kubernetesPullSecret: kubernetesPullSecret
+                kubeConfigName: kubeConfigName
+                certManagerIssuerKind: certManagerIssuerKind
+                kubePodAddressTemplate: kubePodAddressTemplate
+                kubernetesProvider: kubernetesProvider
+                kubeConfigContent: kubeConfigContent
+                kubernetesPullSecretName: kubernetesPullSecretName
+                certManagerIssuerGroup: certManagerIssuerGroup
+                kubernetesImageRegistry: kubernetesImageRegistry
+                certManagerClusterIssuer: certManagerClusterIssuer
+                kubernetesStorageClass: kubernetesStorageClass
+                kubernetesServiceAccount: kubernetesServiceAccount
+          kubeconfigPath: kubeconfigPath
+          config:
+            key: config
+          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          secondarySubnet: secondary subnet id
+        config:
+          key: config
+        uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        longitude: -120.01
+      properties:
+        active:
+          readOnly: true
+          type: boolean
+        code:
+          description: Cloud provider region code
+          example: us-west-2
+          type: string
+        config:
+          additionalProperties:
+            type: string
+          type: object
+        details:
+          $ref: '#/components/schemas/RegionDetails'
+        latitude:
+          description: The region's latitude
+          example: 37.22
+          format: double
+          readOnly: true
+          type: number
+        longitude:
+          description: The region's longitude
+          example: -120.01
+          format: double
+          readOnly: true
+          type: number
+        name:
+          description: Cloud provider region name
+          example: US West (Oregon)
+          readOnly: true
+          type: string
+        securityGroupId:
+          description: <b style="color:#ff0000">Deprecated since YBA version 2.17.2.0.</b> Moved to regionDetails.cloudInfo aws/azure securityGroupId property
+          type: string
+        uuid:
+          description: Region UUID
+          format: uuid
+          readOnly: true
+          type: string
+        vnetName:
+          description: <b style="color:#ff0000">Deprecated since YBA version 2.17.2.0.</b> Moved to regionDetails.cloudInfo aws/azure vnet property
+          type: string
+        ybImage:
+          description: <b style="color:#ff0000">Deprecated since YBA version 2.17.2.0.</b> Moved to details.cloudInfo aws/gcp/azure ybImage property
+          example: TODO
+          type: string
+        zones:
+          items:
+            $ref: '#/components/schemas/AvailabilityZone'
+          type: array
+      required:
+      - zones
+      type: object
+    RegionFormData:
+      example:
+        securityGroupId: securityGroupId
+        hostVpcId: hostVpcId
+        code: code
+        destVpcId: destVpcId
+        ybImage: ybImage
+        latitude: 0.8008281904610115
+        name: name
+        vnetName: vnetName
+        hostVpcRegion: hostVpcRegion
+        longitude: 6.027456183070403
+      properties:
+        code:
+          type: string
+        destVpcId:
+          type: string
+        hostVpcId:
+          type: string
+        hostVpcRegion:
+          type: string
+        latitude:
+          format: double
+          type: number
+        longitude:
+          format: double
+          type: number
+        name:
+          type: string
+        securityGroupId:
+          type: string
+        vnetName:
+          type: string
+        ybImage:
+          type: string
+      required:
+      - code
+      - destVpcId
+      - hostVpcId
+      - hostVpcRegion
+      - latitude
+      - longitude
+      - name
+      - securityGroupId
+      - vnetName
+      - ybImage
+      type: object
+    AvailabilityZoneDetails:
+      example:
+        cloudInfo:
+          kubernetes:
+            kubeNamespace: kubeNamespace
+            kubernetesImagePullSecretName: kubernetesImagePullSecretName
+            kubernetesPullSecretContent: kubernetesPullSecretContent
+            certManagerIssuer: certManagerIssuer
+            isKubernetesOperatorControlled: true
+            kubernetesOperatorControlled: true
+            kubeConfig: kubeConfig
+            kubeDomain: kubeDomain
+            overrides: overrides
+            certManagerIssuerName: certManagerIssuerName
+            kubernetesPullSecret: kubernetesPullSecret
+            kubeConfigName: kubeConfigName
+            certManagerIssuerKind: certManagerIssuerKind
+            kubePodAddressTemplate: kubePodAddressTemplate
+            kubernetesProvider: kubernetesProvider
+            kubeConfigContent: kubeConfigContent
+            kubernetesPullSecretName: kubernetesPullSecretName
+            certManagerIssuerGroup: certManagerIssuerGroup
+            kubernetesImageRegistry: kubernetesImageRegistry
+            certManagerClusterIssuer: certManagerClusterIssuer
+            kubernetesStorageClass: kubernetesStorageClass
+            kubernetesServiceAccount: kubernetesServiceAccount
+      properties:
+        cloudInfo:
+          $ref: '#/components/schemas/AZCloudInfo'
+      type: object
+  securitySchemes:
+    apiKeyAuth:
+      description: API token passed as header
+      in: header
+      name: X-AUTH-YW-API-TOKEN
+      type: apiKey
+externalDocs:
+  description: About YugabyteDB Anywhere
+  url: https://docs.yugabyte.com/latest/yugabyte-platform/
+x-refined-from:
+- openapi_2.yaml
+- platform.swagger.json

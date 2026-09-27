@@ -1,0 +1,423 @@
+openapi: 3.2.0
+info:
+  title: Yugabytedb Release management API
+  version: v1
+  contact:
+    name: https://docs.yugabyte.com
+  license:
+    name: Polyform Free Trial License 1.0.0
+    url: https://github.com/yugabyte/yugabyte-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
+  termsOfService: TODO(chirag)
+  description: 'Operations tagged Release management across 2 of this provider''s published API definitions: openapi_2.yaml, platform.swagger.json. Each path carries the servers of the definition it was published in.'
+servers:
+- url: /
+tags:
+- name: Release management
+paths:
+  /api/v1/customers/{cUUID}/providers/{pUUID}/releases:
+    servers:
+    - url: /
+    get:
+      deprecated: true
+      description: 'Deprecated since YBA version 2.20.0.0.
+
+        Use /api/v1/customers/{cUUID}/releases/:arch instead'
+      operationId: getListOfRegionReleases
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: pUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: includeMetadata
+        schema:
+          default: false
+          type: boolean
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  properties: {}
+                  type: object
+                type: object
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: List releases by provider - deprecated
+      tags:
+      - Release management
+  /api/v1/customers/{cUUID}/releases:
+    servers:
+    - url: /
+    get:
+      deprecated: true
+      operationId: getListOfReleases
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: includeMetadata
+        schema:
+          default: false
+          type: boolean
+      - in: query
+        name: arch
+        schema:
+          default: 'null'
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  properties: {}
+                  type: object
+                type: object
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: 'Deprecated: sinceVersion: 2024.1'
+      tags:
+      - Release management
+    post:
+      deprecated: true
+      operationId: createRelease
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReleaseFormData'
+        description: Release data for remote downloading to be created
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YBPSuccess'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: 'Deprecated: sinceVersion 2024.1'
+      tags:
+      - Release management
+      x-codegen-request-body-name: Release
+    put:
+      operationId: refresh
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YBPSuccess'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Refresh a release
+      tags:
+      - Release management
+  /api/v1/customers/{cUUID}/releases/{name}:
+    servers:
+    - url: /
+    delete:
+      deprecated: true
+      operationId: deleteRelease
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: name
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReleaseMetadata'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: 'Deprecated: sinceVersion: 2024.1'
+      tags:
+      - Release management
+    put:
+      deprecated: true
+      operationId: updateRelease
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: name
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: Release data to be updated
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReleaseMetadata'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: 'Deprecated: sinceVersion: 2024.1'
+      tags:
+      - Release management
+      x-codegen-request-body-name: Release
+components:
+  schemas:
+    HttpLocation:
+      example:
+        paths:
+          x86_64: x86_64
+          helmChart: helmChart
+          helmChartChecksum: helmChartChecksum
+          x86_64_checksum: x86_64_checksum
+      properties:
+        paths:
+          $ref: '#/components/schemas/PackagePaths'
+      type: object
+    S3Location:
+      example:
+        paths:
+          x86_64: x86_64
+          helmChart: helmChart
+          helmChartChecksum: helmChartChecksum
+          x86_64_checksum: x86_64_checksum
+      properties:
+        paths:
+          $ref: '#/components/schemas/PackagePaths'
+      type: object
+    GCSLocation:
+      example:
+        paths:
+          x86_64: x86_64
+          helmChart: helmChart
+          helmChartChecksum: helmChartChecksum
+          x86_64_checksum: x86_64_checksum
+      properties:
+        paths:
+          $ref: '#/components/schemas/PackagePaths'
+      type: object
+    PackagePaths:
+      example:
+        x86_64: x86_64
+        helmChart: helmChart
+        helmChartChecksum: helmChartChecksum
+        x86_64_checksum: x86_64_checksum
+      properties:
+        helmChart:
+          description: Path to the Helm chart package
+          type: string
+        helmChartChecksum:
+          description: Checksum for the Helm chart package
+          type: string
+        x86_64:
+          description: Path to x86_64 package
+          type: string
+        x86_64_checksum:
+          description: Checksum for x86_64 package
+          type: string
+      type: object
+    Package:
+      example:
+        path: path
+        arch: x86_64
+      properties:
+        arch:
+          enum:
+          - x86_64
+          - aarch64
+          type: string
+        path:
+          type: string
+      type: object
+    YBPSuccess:
+      example:
+        success: true
+        message: message
+      properties:
+        message:
+          description: API response message.
+          readOnly: true
+          type: string
+        success:
+          description: API operation status. A value of true indicates the operation was successful.
+          readOnly: true
+          type: boolean
+      type: object
+    ReleaseFormData:
+      description: Specification for release locations
+      example:
+        s3:
+          paths:
+            x86_64: x86_64
+            helmChart: helmChart
+            helmChartChecksum: helmChartChecksum
+            x86_64_checksum: x86_64_checksum
+        gcs:
+          paths:
+            x86_64: x86_64
+            helmChart: helmChart
+            helmChartChecksum: helmChartChecksum
+            x86_64_checksum: x86_64_checksum
+        http:
+          paths:
+            x86_64: x86_64
+            helmChart: helmChart
+            helmChartChecksum: helmChartChecksum
+            x86_64_checksum: x86_64_checksum
+        version: version
+      properties:
+        gcs:
+          $ref: '#/components/schemas/GCSLocation'
+        http:
+          $ref: '#/components/schemas/HttpLocation'
+        s3:
+          $ref: '#/components/schemas/S3Location'
+        version:
+          type: string
+      required:
+      - gcs
+      - http
+      - s3
+      - version
+      type: object
+    ReleaseMetadata:
+      description: Yugabyte release metadata
+      example:
+        s3:
+          paths:
+            x86_64: x86_64
+            helmChart: helmChart
+            helmChartChecksum: helmChartChecksum
+            x86_64_checksum: x86_64_checksum
+        notes:
+        - notes
+        - notes
+        gcs:
+          paths:
+            x86_64: x86_64
+            helmChart: helmChart
+            helmChartChecksum: helmChartChecksum
+            x86_64_checksum: x86_64_checksum
+        filePath: filePath
+        http:
+          paths:
+            x86_64: x86_64
+            helmChart: helmChart
+            helmChartChecksum: helmChartChecksum
+            x86_64_checksum: x86_64_checksum
+        state: ACTIVE
+        imageTag: imageTag
+        packages:
+        - path: path
+          arch: x86_64
+        - path: path
+          arch: x86_64
+        chartPath: chartPath
+      properties:
+        chartPath:
+          description: Helm chart path
+          type: string
+        filePath:
+          description: Release file path
+          type: string
+        gcs:
+          $ref: '#/components/schemas/GCSLocation'
+        http:
+          $ref: '#/components/schemas/HttpLocation'
+        imageTag:
+          description: Release image tag
+          type: string
+        notes:
+          description: Release notes
+          items:
+            type: string
+          type: array
+        packages:
+          description: Release packages
+          items:
+            $ref: '#/components/schemas/Package'
+          type: array
+        s3:
+          $ref: '#/components/schemas/S3Location'
+        state:
+          description: Release state
+          enum:
+          - ACTIVE
+          - DISABLED
+          - DELETED
+          example: ACTIVE
+          type: string
+      type: object
+  securitySchemes:
+    apiKeyAuth:
+      description: API token passed as header
+      in: header
+      name: X-AUTH-YW-API-TOKEN
+      type: apiKey
+externalDocs:
+  description: About YugabyteDB Anywhere
+  url: https://docs.yugabyte.com/latest/yugabyte-platform/
+x-refined-from:
+- openapi_2.yaml
+- platform.swagger.json

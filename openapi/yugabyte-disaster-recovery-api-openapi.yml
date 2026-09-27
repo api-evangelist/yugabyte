@@ -1,0 +1,1672 @@
+openapi: 3.2.0
+info:
+  contact:
+    name: https://docs.yugabyte.com
+  description: ALPHA - NOT FOR EXTERNAL USE
+  license:
+    name: Polyform Free Trial License 1.0.0
+    url: https://github.com/yugabyte/yugabyte-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
+  termsOfService: TODO(chirag)
+  title: YugabyteDB Anywhere Disaster Recovery API
+  version: v1
+servers:
+- url: /
+tags:
+- name: Disaster Recovery
+paths:
+  /api/v1/customers/{cUUID}/dr_configs:
+    post:
+      description: 'WARNING: This is a preview API that could change.'
+      operationId: createDrConfig
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DrConfigCreateForm'
+        description: Disaster Recovery Create Form Data
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YBPTask'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Create disaster recovery config
+      tags:
+      - Disaster Recovery
+      x-codegen-request-body-name: disaster_recovery_create_form_data
+  /api/v1/customers/{cUUID}/dr_configs/{drUUID}:
+    delete:
+      description: 'WARNING: This is a preview API that could change.'
+      operationId: deleteXClusterConfig
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: drUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: isForceDelete
+        schema:
+          default: false
+          type: boolean
+      - in: query
+        name: request
+        schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YBPTask'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Delete xcluster config
+      tags:
+      - Disaster Recovery
+    get:
+      description: 'WARNING: This is a preview API that could change.'
+      operationId: getDrConfig
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: drUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: syncWithDB
+        schema:
+          default: true
+          type: boolean
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DrConfigGetResp'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Get disaster recovery config
+      tags:
+      - Disaster Recovery
+  /api/v1/customers/{cUUID}/dr_configs/{drUUID}/edit:
+    post:
+      description: 'WARNING: This is a preview API that could change.'
+      operationId: editDrConfig
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: drUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DrConfigEditForm'
+        description: Disaster Recovery Edit Form Data
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YBPTask'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Edit disaster recovery config
+      tags:
+      - Disaster Recovery
+      x-codegen-request-body-name: disaster_recovery_edit_form_data
+  /api/v1/customers/{cUUID}/dr_configs/{drUUID}/failover:
+    post:
+      description: 'WARNING: This is a preview API that could change.'
+      operationId: failoverDrConfig
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: drUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DrConfigFailoverForm'
+        description: Disaster Recovery Failover Form Data
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YBPTask'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Failover a disaster recovery config
+      tags:
+      - Disaster Recovery
+      x-codegen-request-body-name: disaster_recovery_failover_form_data
+  /api/v1/customers/{cUUID}/dr_configs/{drUUID}/pause:
+    post:
+      description: 'WARNING: This is a preview API that could change.'
+      operationId: pauseDrConfig
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: drUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YBPTask'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Pause DR config
+      tags:
+      - Disaster Recovery
+  /api/v1/customers/{cUUID}/dr_configs/{drUUID}/pause_universes:
+    post:
+      description: 'WARNING: This is a preview API that could change.'
+      operationId: pauseDrUniverses
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: drUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YBPTask'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Pause DR config and universes associated with DR
+      tags:
+      - Disaster Recovery
+  /api/v1/customers/{cUUID}/dr_configs/{drUUID}/replace_replica:
+    post:
+      description: 'WARNING: This is a preview API that could change.'
+      operationId: replaceReplicaDrConfig
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: drUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DrConfigReplaceReplicaForm'
+        description: Disaster Recovery Replace Replica Form Data
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YBPTask'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Replace Replica in a disaster recovery config
+      tags:
+      - Disaster Recovery
+      x-codegen-request-body-name: disaster_recovery_replace_replica_form_data
+  /api/v1/customers/{cUUID}/dr_configs/{drUUID}/restart:
+    post:
+      description: 'WARNING: This is a preview API that could change.'
+      operationId: restartDrConfig
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: drUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: isForceDelete
+        schema:
+          default: false
+          type: boolean
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DrConfigRestartForm'
+        description: Disaster Recovery Restart Form Data
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YBPTask'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Restart disaster recovery config
+      tags:
+      - Disaster Recovery
+      x-codegen-request-body-name: disaster_recovery_restart_form_data
+  /api/v1/customers/{cUUID}/dr_configs/{drUUID}/resume:
+    post:
+      description: 'WARNING: This is a preview API that could change.'
+      operationId: resumeDrConfig
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: drUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YBPTask'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Resume DR config
+      tags:
+      - Disaster Recovery
+  /api/v1/customers/{cUUID}/dr_configs/{drUUID}/resume_universes:
+    post:
+      description: 'WARNING: This is a preview API that could change.'
+      operationId: resumeDrUniverses
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: drUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YBPTask'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Resume DR config and universes associated with DR
+      tags:
+      - Disaster Recovery
+  /api/v1/customers/{cUUID}/dr_configs/{drUUID}/safetime:
+    get:
+      description: 'WARNING: This is a preview API that could change.'
+      operationId: getDrConfigSafetime
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: drUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DrConfigSafetimeResp'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Get disaster recovery config safetime
+      tags:
+      - Disaster Recovery
+  /api/v1/customers/{cUUID}/dr_configs/{drUUID}/set_dbs:
+    put:
+      description: 'WARNING: This is a preview API that could change.'
+      operationId: setDatabasesDrConfig
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: drUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DrConfigSetDatabasesForm'
+        description: Disaster Recovery Set Databases Form Data
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YBPTask'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Set databases in disaster recovery config
+      tags:
+      - Disaster Recovery
+      x-codegen-request-body-name: disaster_recovery_set_databases_form_data
+  /api/v1/customers/{cUUID}/dr_configs/{drUUID}/set_tables:
+    post:
+      description: 'WARNING: This is a preview API that could change.'
+      operationId: setTablesDrConfig
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: drUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DrConfigSetTablesForm'
+        description: Disaster Recovery Set Tables Form Data
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YBPTask'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Set tables in disaster recovery config
+      tags:
+      - Disaster Recovery
+      x-codegen-request-body-name: disaster_recovery_set_tables_form_data
+  /api/v1/customers/{cUUID}/dr_configs/{drUUID}/switchover:
+    post:
+      description: 'WARNING: This is a preview API that could change.'
+      operationId: switchoverDrConfig
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: drUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DrConfigSwitchoverForm'
+        description: Disaster Recovery Switchover Form Data
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YBPTask'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Switchover a disaster recovery config
+      tags:
+      - Disaster Recovery
+      x-codegen-request-body-name: disaster_recovery_switchover_form_data
+  /api/v1/customers/{cUUID}/dr_configs/{drUUID}/sync:
+    post:
+      description: 'WARNING: This is a preview API that could change.'
+      operationId: syncDrConfig
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: drUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YBPTask'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Sync disaster recovery config
+      tags:
+      - Disaster Recovery
+components:
+  schemas:
+    YBPTask:
+      example:
+        taskUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        resourceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        resourceUUID:
+          description: UUID of the resource being modified by the task
+          format: uuid
+          readOnly: true
+          type: string
+        taskUUID:
+          description: Task UUID
+          format: uuid
+          readOnly: true
+          type: string
+      type: object
+    NamespaceInfoResp:
+      description: Namespace information response
+      example:
+        tableType: YQL_TABLE_TYPE
+        name: name
+        namespaceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        name:
+          description: Namespace name
+          type: string
+        namespaceUUID:
+          description: Namespace UUID
+          format: uuid
+          readOnly: true
+          type: string
+        tableType:
+          description: Table type
+          enum:
+          - YQL_TABLE_TYPE
+          - REDIS_TABLE_TYPE
+          - PGSQL_TABLE_TYPE
+          - TRANSACTION_STATUS_TABLE_TYPE
+          type: string
+      type: object
+    XClusterTableConfig:
+      example:
+        restoreUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        streamId: a9d2470786694dc4b34e0e58e592da9e
+        backupUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        replicationStatusErrors:
+        - Unknown error
+        - Unknown error
+        sourceTableInfo:
+          relationType: SYSTEM_TABLE_RELATION
+          colocated: true
+          walSizeBytes: 3.616076749251911
+          indexTableIDs:
+          - indexTableIDs
+          - indexTableIDs
+          pgSchemaName: public
+          sizeBytes: 9.301444243932576
+          tableName: tableName
+          tableSpace: tableSpace
+          tableUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          mainTableUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          parentTableUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          tableType: YQL_TABLE_TYPE
+          keySpace: keySpace
+          tableID: tableID
+          nameSpace: nameSpace
+          colocationParentId: colocationParentId
+        replicationSetupDone: true
+        restoreTime: 2022-12-12 13:07:18+00:00
+        bootstrapCreateTime: 2022-12-12 13:07:18+00:00
+        indexTable: true
+        tableId: 000033df000030008000000000004005
+        targetTableInfo:
+          relationType: SYSTEM_TABLE_RELATION
+          colocated: true
+          walSizeBytes: 3.616076749251911
+          indexTableIDs:
+          - indexTableIDs
+          - indexTableIDs
+          pgSchemaName: public
+          sizeBytes: 9.301444243932576
+          tableName: tableName
+          tableSpace: tableSpace
+          tableUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          mainTableUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          parentTableUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          tableType: YQL_TABLE_TYPE
+          keySpace: keySpace
+          tableID: tableID
+          nameSpace: nameSpace
+          colocationParentId: colocationParentId
+        needBootstrap: true
+        status: Validated
+      properties:
+        backupUuid:
+          format: uuid
+          type: string
+        bootstrapCreateTime:
+          description: Time of the bootstrap of the table
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          type: string
+        indexTable:
+          description: YbaApi Internal. Whether this table is an index table and its main table is in replication
+          type: boolean
+        needBootstrap:
+          description: YbaApi Internal. Whether this table needs bootstrap process for replication setup
+          type: boolean
+        replicationSetupDone:
+          description: YbaApi Internal. Whether replication is set up for this table
+          type: boolean
+        replicationStatusErrors:
+          description: Short human readable replication status error messages
+          items:
+            enum:
+            - Unknown error
+            - Missing op ID
+            - Schema mismatch
+            - Missing table
+            - Uninitialized
+            - Auto flag config mismatch
+            - Source unreachable
+            - System error
+            type: string
+          type: array
+          uniqueItems: true
+        restoreTime:
+          description: Time of the last try to restore data to the target universe
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          type: string
+        restoreUuid:
+          format: uuid
+          type: string
+        sourceTableInfo:
+          $ref: '#/components/schemas/TableInfoResp'
+        status:
+          description: Status
+          enum:
+          - Validated
+          - Running
+          - Updating
+          - Warning
+          - Error
+          - Bootstrapping
+          - Failed
+          - UnableToFetch
+          type: string
+        streamId:
+          description: Stream ID if replication is setup; bootstrap ID if the table is bootstrapped
+          example: a9d2470786694dc4b34e0e58e592da9e
+          type: string
+        tableId:
+          description: Table ID
+          example: 000033df000030008000000000004005
+          type: string
+        targetTableInfo:
+          $ref: '#/components/schemas/TableInfoResp'
+      required:
+      - backupUuid
+      - restoreUuid
+      type: object
+    DrConfigCreateForm:
+      description: drConfig create form
+      example:
+        targetUniverseUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        dryRun: true
+        bootstrapParams:
+          backupRequestParams:
+            storageConfigUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            parallelism: 0
+        dbs: '["0000412b000030008000000000000000", "0000412b000030008000000000000001"]'
+        name: Dr-config1
+        sourceUniverseUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        pitrParams:
+          snapshotIntervalSec: 1
+          retentionPeriodSec: 6
+      properties:
+        bootstrapParams:
+          $ref: '#/components/schemas/RestartBootstrapParams'
+        dbs:
+          description: Source Universe DB IDs
+          example: '["0000412b000030008000000000000000", "0000412b000030008000000000000001"]'
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+        dryRun:
+          description: Run the pre-checks without actually running the subtasks
+          type: boolean
+        name:
+          description: Name
+          example: Dr-config1
+          type: string
+        pitrParams:
+          $ref: '#/components/schemas/PitrParams'
+        sourceUniverseUUID:
+          description: Source Universe UUID
+          format: uuid
+          type: string
+        targetUniverseUUID:
+          description: Target Universe UUID
+          format: uuid
+          type: string
+      required:
+      - dbs
+      - name
+      - sourceUniverseUUID
+      - targetUniverseUUID
+      type: object
+    DrConfigSetTablesForm:
+      description: dr config set tables form
+      example:
+        tables: '["000033df000030008000000000004006", "000033df00003000800000000000400b"]'
+        bootstrapParams:
+          backupRequestParams:
+            storageConfigUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            parallelism: 0
+        autoIncludeIndexTables: true
+      properties:
+        autoIncludeIndexTables:
+          description: Whether or not YBA should also include all index tables from any provided main tables.
+          type: boolean
+        bootstrapParams:
+          $ref: '#/components/schemas/RestartBootstrapParams'
+        tables:
+          description: Source universe table IDs
+          example: '["000033df000030008000000000004006", "000033df00003000800000000000400b"]'
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+      type: object
+    GetWebhookResponse:
+      description: Webhook get response
+      example:
+        uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        url: url
+      properties:
+        url:
+          description: Webhook url
+          type: string
+        uuid:
+          description: Webhook UUID
+          format: uuid
+          type: string
+      type: object
+    PitrParams:
+      description: PITR parameters
+      example:
+        snapshotIntervalSec: 1
+        retentionPeriodSec: 6
+      properties:
+        retentionPeriodSec:
+          description: Retention period of a snapshot in seconds
+          format: int64
+          type: integer
+        snapshotIntervalSec:
+          description: <b style="color:#ff0000">Deprecated since YBA version 2024.2.0.0.</b> Time interval between snapshots in seconds
+          format: int64
+          type: integer
+      type: object
+    TableInfoResp:
+      description: Table information response
+      example:
+        relationType: SYSTEM_TABLE_RELATION
+        colocated: true
+        walSizeBytes: 3.616076749251911
+        indexTableIDs:
+        - indexTableIDs
+        - indexTableIDs
+        pgSchemaName: public
+        sizeBytes: 9.301444243932576
+        tableName: tableName
+        tableSpace: tableSpace
+        tableUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        mainTableUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        parentTableUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        tableType: YQL_TABLE_TYPE
+        keySpace: keySpace
+        tableID: tableID
+        nameSpace: nameSpace
+        colocationParentId: colocationParentId
+      properties:
+        colocated:
+          description: Flag, indicating colocated table
+          type: boolean
+        colocationParentId:
+          description: Colocation parent id
+          type: string
+        indexTableIDs:
+          description: Index Table IDs of main table
+          items:
+            type: string
+          type: array
+        keySpace:
+          description: Keyspace
+          type: string
+        mainTableUUID:
+          description: Main Table UUID of index tables
+          format: uuid
+          type: string
+        nameSpace:
+          description: Namespace or Schema
+          type: string
+        parentTableUUID:
+          description: Parent Table UUID
+          format: uuid
+          type: string
+        pgSchemaName:
+          description: Postgres schema name of the table
+          example: public
+          type: string
+        relationType:
+          description: Relation type
+          enum:
+          - SYSTEM_TABLE_RELATION
+          - USER_TABLE_RELATION
+          - INDEX_TABLE_RELATION
+          - MATVIEW_TABLE_RELATION
+          - COLOCATED_PARENT_TABLE_RELATION
+          type: string
+        sizeBytes:
+          description: SST size in bytes
+          format: double
+          readOnly: true
+          type: number
+        tableID:
+          description: Table ID
+          readOnly: true
+          type: string
+        tableName:
+          description: Table name
+          type: string
+        tableSpace:
+          description: Table space
+          type: string
+        tableType:
+          description: Table type
+          enum:
+          - YQL_TABLE_TYPE
+          - REDIS_TABLE_TYPE
+          - PGSQL_TABLE_TYPE
+          - TRANSACTION_STATUS_TABLE_TYPE
+          type: string
+        tableUUID:
+          description: Table UUID
+          format: uuid
+          readOnly: true
+          type: string
+        walSizeBytes:
+          description: WAL size in bytes
+          format: double
+          readOnly: true
+          type: number
+      type: object
+    DrConfigSafetimeResp:
+      description: Get DR config safetime response
+      example:
+        safetimes:
+        - namespaceId: namespaceId
+          safetimeLagUs: 1
+          estimatedDataLossMs: 0.8008281904610115
+          safetimeEpochUs: 6
+          namespaceName: namespaceName
+          safetimeSkewUs: 5
+        - namespaceId: namespaceId
+          safetimeLagUs: 1
+          estimatedDataLossMs: 0.8008281904610115
+          safetimeEpochUs: 6
+          namespaceName: namespaceName
+          safetimeSkewUs: 5
+      properties:
+        safetimes:
+          description: The list of current safetime for each database
+          items:
+            $ref: '#/components/schemas/NamespaceSafetime'
+          type: array
+      type: object
+    DrConfigGetResp:
+      description: disaster recovery get response
+      example:
+        paused: true
+        replicationGroupName: replicationGroupName
+        bootstrapParams:
+          backupRequestParams:
+            storageConfigUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            parallelism: 0
+        xclusterConfigUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        drReplicaUniverseState: Unconfigured for DR
+        type: Basic
+        uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        xclusterConfigsUuid:
+        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        tableType: UNKNOWN
+        tables:
+        - tables
+        - tables
+        modifyTime: 2022-12-12 13:07:18+00:00
+        primaryUniverseUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        drReplicaUniverseActive: true
+        state: Initializing
+        primaryUniverseState: Unconfigured for DR
+        tableDetails:
+        - restoreUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          streamId: a9d2470786694dc4b34e0e58e592da9e
+          backupUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          replicationStatusErrors:
+          - Unknown error
+          - Unknown error
+          sourceTableInfo:
+            relationType: SYSTEM_TABLE_RELATION
+            colocated: true
+            walSizeBytes: 3.616076749251911
+            indexTableIDs:
+            - indexTableIDs
+            - indexTableIDs
+            pgSchemaName: public
+            sizeBytes: 9.301444243932576
+            tableName: tableName
+            tableSpace: tableSpace
+            tableUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            mainTableUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            parentTableUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            tableType: YQL_TABLE_TYPE
+            keySpace: keySpace
+            tableID: tableID
+            nameSpace: nameSpace
+            colocationParentId: colocationParentId
+          replicationSetupDone: true
+          restoreTime: 2022-12-12 13:07:18+00:00
+          bootstrapCreateTime: 2022-12-12 13:07:18+00:00
+          indexTable: true
+          tableId: 000033df000030008000000000004005
+          targetTableInfo:
+            relationType: SYSTEM_TABLE_RELATION
+            colocated: true
+            walSizeBytes: 3.616076749251911
+            indexTableIDs:
+            - indexTableIDs
+            - indexTableIDs
+            pgSchemaName: public
+            sizeBytes: 9.301444243932576
+            tableName: tableName
+            tableSpace: tableSpace
+            tableUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            mainTableUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            parentTableUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            tableType: YQL_TABLE_TYPE
+            keySpace: keySpace
+            tableID: tableID
+            nameSpace: nameSpace
+            colocationParentId: colocationParentId
+          needBootstrap: true
+          status: Validated
+        - restoreUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          streamId: a9d2470786694dc4b34e0e58e592da9e
+          backupUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          replicationStatusErrors:
+          - Unknown error
+          - Unknown error
+          sourceTableInfo:
+            relationType: SYSTEM_TABLE_RELATION
+            colocated: true
+            walSizeBytes: 3.616076749251911
+            indexTableIDs:
+            - indexTableIDs
+            - indexTableIDs
+            pgSchemaName: public
+            sizeBytes: 9.301444243932576
+            tableName: tableName
+            tableSpace: tableSpace
+            tableUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            mainTableUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            parentTableUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            tableType: YQL_TABLE_TYPE
+            keySpace: keySpace
+            tableID: tableID
+            nameSpace: nameSpace
+            colocationParentId: colocationParentId
+          replicationSetupDone: true
+          restoreTime: 2022-12-12 13:07:18+00:00
+          bootstrapCreateTime: 2022-12-12 13:07:18+00:00
+          indexTable: true
+          tableId: 000033df000030008000000000004005
+          targetTableInfo:
+            relationType: SYSTEM_TABLE_RELATION
+            colocated: true
+            walSizeBytes: 3.616076749251911
+            indexTableIDs:
+            - indexTableIDs
+            - indexTableIDs
+            pgSchemaName: public
+            sizeBytes: 9.301444243932576
+            tableName: tableName
+            tableSpace: tableSpace
+            tableUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            mainTableUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            parentTableUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            tableType: YQL_TABLE_TYPE
+            keySpace: keySpace
+            tableID: tableID
+            nameSpace: nameSpace
+            colocationParentId: colocationParentId
+          needBootstrap: true
+          status: Validated
+        dbDetails:
+        - restoreUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          sourceNamespaceId: sourceNamespaceId
+          backupUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          replicationSetupTime: 2022-12-12 13:07:18+00:00
+          sourceNamespaceInfo:
+            tableType: YQL_TABLE_TYPE
+            name: name
+            namespaceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          targetNamespaceInfo:
+            tableType: YQL_TABLE_TYPE
+            name: name
+            namespaceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          status: Validated
+        - restoreUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          sourceNamespaceId: sourceNamespaceId
+          backupUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          replicationSetupTime: 2022-12-12 13:07:18+00:00
+          sourceNamespaceInfo:
+            tableType: YQL_TABLE_TYPE
+            name: name
+            namespaceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          targetNamespaceInfo:
+            tableType: YQL_TABLE_TYPE
+            name: name
+            namespaceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          status: Validated
+        pitrConfigs:
+        - dbName: dbName
+          updateTime: 2022-12-12 13:07:18+00:00
+          createdForDr: true
+          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          minRecoverTimeInMillis: 1
+          scheduleInterval: 5
+          tableType: YQL_TABLE_TYPE
+          customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          createTime: 2022-12-12 13:07:18+00:00
+          intermittentMinRecoverTimeInMillis: 0
+          maxRecoverTimeInMillis: 6
+          name: name
+          disabled: true
+          usedForXCluster: true
+          state: UNKNOWN
+          retentionPeriod: 5
+        - dbName: dbName
+          updateTime: 2022-12-12 13:07:18+00:00
+          createdForDr: true
+          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          minRecoverTimeInMillis: 1
+          scheduleInterval: 5
+          tableType: YQL_TABLE_TYPE
+          customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          createTime: 2022-12-12 13:07:18+00:00
+          intermittentMinRecoverTimeInMillis: 0
+          maxRecoverTimeInMillis: 6
+          name: name
+          disabled: true
+          usedForXCluster: true
+          state: UNKNOWN
+          retentionPeriod: 5
+        primaryUniverseActive: true
+        automaticDdlMode: true
+        dbs:
+        - dbs
+        - dbs
+        createTime: 2022-12-12 13:07:18+00:00
+        webhooks:
+        - uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          url: url
+        - uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          url: url
+        name: name
+        drReplicaUniverseUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        keyspacePending: keyspacePending
+        pitrRetentionPeriodSec: 2
+        pitrSnapshotIntervalSec: 7
+        status: Initialized
+      properties:
+        automaticDdlMode:
+          description: Whether the config is using automatic DDL replication mode.
+          type: boolean
+        bootstrapParams:
+          $ref: '#/components/schemas/RestartBootstrapParams'
+        createTime:
+          description: Create time of the DR config
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          type: string
+        dbDetails:
+          description: 'WARNING: This is a preview API that could change. List of db details in replication'
+          items:
+            $ref: '#/components/schemas/XClusterNamespaceConfig'
+          type: array
+          uniqueItems: true
+        dbs:
+          description: 'WARNING: This is a preview API that could change. List of db ids in replication'
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+        drReplicaUniverseActive:
+          description: Whether the dr replica universe is active
+          type: boolean
+        drReplicaUniverseState:
+          description: 'WARNING: This is a preview API that could change. The replication status of the dr replica universe.'
+          enum:
+          - Unconfigured for DR
+          - Bootstrapping
+          - Receiving data, Ready for reads
+          - Switching to DR primary
+          - Universe marked as DR failed
+          type: string
+        drReplicaUniverseUuid:
+          description: DR Replica Universe UUID
+          format: uuid
+          type: string
+        keyspacePending:
+          description: 'WARNING: This is a preview API that could change. The keyspace name that the current task is working on.'
+          type: string
+        modifyTime:
+          description: Last modify time of the DR config
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          type: string
+        name:
+          description: Disaster recovery config name
+          type: string
+        paused:
+          description: Whether the underlying xCluster config is paused
+          type: boolean
+        pitrConfigs:
+          description: 'WARNING: This is a preview API that could change. The list of PITR configs used for the underlying txn xCluster config'
+          items:
+            $ref: '#/components/schemas/PitrConfig'
+          type: array
+        pitrRetentionPeriodSec:
+          description: 'WARNING: This is a preview API that could change. PITR Retention Period in seconds'
+          format: int64
+          type: integer
+        pitrSnapshotIntervalSec:
+          description: 'WARNING: This is a preview API that could change. PITR Retention Period in seconds'
+          format: int64
+          type: integer
+        primaryUniverseActive:
+          description: Whether the primary universe is active
+          type: boolean
+        primaryUniverseState:
+          description: 'WARNING: This is a preview API that could change. The replication status of the primary universe.'
+          enum:
+          - Unconfigured for DR
+          - Ready to replicate
+          - Waiting for DR
+          - Replicating data
+          - Preparing for switchover
+          - Switching to DR replica
+          - Universe marked as DR failed
+          type: string
+        primaryUniverseUuid:
+          description: Primary Universe UUID
+          format: uuid
+          type: string
+        replicationGroupName:
+          description: Replication group name in the dr replica universe cluster config
+          type: string
+        state:
+          description: The state of the DR config
+          enum:
+          - Initializing
+          - Replicating
+          - Switchover in Progress
+          - Failover in Progress
+          - Halted
+          - Updating
+          - Failed
+          type: string
+        status:
+          description: Status
+          enum:
+          - Initialized
+          - Running
+          - Updating
+          - DeletedUniverse
+          - DeletionFailed
+          - Failed
+          type: string
+        tableDetails:
+          description: Details for each table in replication
+          items:
+            $ref: '#/components/schemas/XClusterTableConfig'
+          type: array
+          uniqueItems: true
+        tableType:
+          description: The type of tables that are being replicated
+          enum:
+          - UNKNOWN
+          - YSQL
+          - YCQL
+          type: string
+        tables:
+          description: List of table ids in replication
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+        type:
+          description: Whether the config is basic, txn, or db scoped xCluster
+          enum:
+          - Basic
+          - Txn
+          - Db
+          type: string
+        uuid:
+          description: DR config UUID
+          format: uuid
+          type: string
+        webhooks:
+          items:
+            $ref: '#/components/schemas/GetWebhookResponse'
+          type: array
+        xclusterConfigUuid:
+          description: UUID of the underlying xCluster config that is managing the replication
+          format: uuid
+          type: string
+        xclusterConfigsUuid:
+          description: YbaApi Internal. The list of xCluster configs' uuids that belong to this dr config
+          items:
+            format: uuid
+            type: string
+          type: array
+      required:
+      - webhooks
+      type: object
+    DrConfigFailoverForm:
+      description: drConfig failover form
+      example:
+        namespaceIdSafetimeEpochUsMap:
+          key: 0
+        drReplicaUniverseUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        primaryUniverseUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        drReplicaUniverseUuid:
+          description: New dr replica universe UUID
+          format: uuid
+          type: string
+        namespaceIdSafetimeEpochUsMap:
+          additionalProperties:
+            format: int64
+            type: integer
+          description: A map from database ID to its safetime since epoch in micro-seconds to use during unplanned failover
+          type: object
+        primaryUniverseUuid:
+          description: New primary universe UUID
+          format: uuid
+          type: string
+      type: object
+    DrConfigReplaceReplicaForm:
+      description: drConfig edit form
+      example:
+        bootstrapParams:
+          backupRequestParams:
+            storageConfigUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            parallelism: 0
+        drReplicaUniverseUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        primaryUniverseUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        bootstrapParams:
+          $ref: '#/components/schemas/RestartBootstrapParams'
+        drReplicaUniverseUuid:
+          description: New dr replica universe UUID
+          format: uuid
+          type: string
+        primaryUniverseUuid:
+          description: The current primary universe UUID
+          format: uuid
+          type: string
+      type: object
+    PitrConfig:
+      description: PITR config created on the universe
+      example:
+        dbName: dbName
+        updateTime: 2022-12-12 13:07:18+00:00
+        createdForDr: true
+        uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        minRecoverTimeInMillis: 1
+        scheduleInterval: 5
+        tableType: YQL_TABLE_TYPE
+        customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        createTime: 2022-12-12 13:07:18+00:00
+        intermittentMinRecoverTimeInMillis: 0
+        maxRecoverTimeInMillis: 6
+        name: name
+        disabled: true
+        usedForXCluster: true
+        state: UNKNOWN
+        retentionPeriod: 5
+      properties:
+        createTime:
+          description: Create time of the PITR config
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          readOnly: true
+          type: string
+        createdForDr:
+          description: Created for DR
+          readOnly: true
+          type: boolean
+        customerUUID:
+          description: Customer UUID of this config
+          format: uuid
+          type: string
+        dbName:
+          description: DB Name
+          type: string
+        disabled:
+          description: Whether the PITR config is disabled
+          readOnly: true
+          type: boolean
+        intermittentMinRecoverTimeInMillis:
+          description: Intermittent min recovery time in millis if retention period is increased
+          format: int64
+          type: integer
+        maxRecoverTimeInMillis:
+          format: int64
+          type: integer
+        minRecoverTimeInMillis:
+          format: int64
+          type: integer
+        name:
+          description: PITR config name
+          type: string
+        retentionPeriod:
+          description: Retention Period in seconds
+          format: int64
+          type: integer
+        scheduleInterval:
+          description: Interval between snasphots in seconds
+          format: int64
+          type: integer
+        state:
+          enum:
+          - UNKNOWN
+          - CREATING
+          - COMPLETE
+          - DELETING
+          - DELETED
+          - FAILED
+          - CANCELLED
+          - RESTORING
+          - RESTORED
+          type: string
+        tableType:
+          description: Table Type
+          enum:
+          - YQL_TABLE_TYPE
+          - REDIS_TABLE_TYPE
+          - PGSQL_TABLE_TYPE
+          - TRANSACTION_STATUS_TABLE_TYPE
+          type: string
+        updateTime:
+          description: Update time of the PITR con
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          type: string
+        usedForXCluster:
+          readOnly: true
+          type: boolean
+        uuid:
+          description: PITR config UUID
+          format: uuid
+          type: string
+      required:
+      - maxRecoverTimeInMillis
+      - minRecoverTimeInMillis
+      - state
+      type: object
+    XClusterNamespaceConfig:
+      example:
+        restoreUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        sourceNamespaceId: sourceNamespaceId
+        backupUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        replicationSetupTime: 2022-12-12 13:07:18+00:00
+        sourceNamespaceInfo:
+          tableType: YQL_TABLE_TYPE
+          name: name
+          namespaceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        targetNamespaceInfo:
+          tableType: YQL_TABLE_TYPE
+          name: name
+          namespaceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        status: Validated
+      properties:
+        backupUuid:
+          format: uuid
+          type: string
+        replicationSetupTime:
+          description: Time of replication setup, ie, table added to the replication group on the target universe
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          type: string
+        restoreUuid:
+          format: uuid
+          type: string
+        sourceNamespaceId:
+          type: string
+        sourceNamespaceInfo:
+          $ref: '#/components/schemas/NamespaceInfoResp'
+        status:
+          description: Status
+          enum:
+          - Validated
+          - Running
+          - Updating
+          - Warning
+          - Error
+          - Bootstrapping
+          - Failed
+          type: string
+        targetNamespaceInfo:
+          $ref: '#/components/schemas/NamespaceInfoResp'
+      required:
+      - backupUuid
+      - restoreUuid
+      - sourceNamespaceId
+      type: object
+    DrConfigRestartForm:
+      description: dr config restart form
+      example:
+        bootstrapParams:
+          backupRequestParams:
+            storageConfigUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            parallelism: 0
+        dbs: '["0000412b000030008000000000000000", "0000412b000030008000000000000001"]'
+      properties:
+        bootstrapParams:
+          $ref: '#/components/schemas/RestartBootstrapParams'
+        dbs:
+          description: Primary Universe DB IDs
+          example: '["0000412b000030008000000000000000", "0000412b000030008000000000000001"]'
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+      required:
+      - dbs
+      type: object
+    NamespaceSafetime:
+      example:
+        namespaceId: namespaceId
+        safetimeLagUs: 1
+        estimatedDataLossMs: 0.8008281904610115
+        safetimeEpochUs: 6
+        namespaceName: namespaceName
+        safetimeSkewUs: 5
+      properties:
+        estimatedDataLossMs:
+          format: double
+          type: number
+        namespaceId:
+          type: string
+        namespaceName:
+          type: string
+        safetimeEpochUs:
+          format: int64
+          type: integer
+        safetimeLagUs:
+          format: int64
+          type: integer
+        safetimeSkewUs:
+          format: int64
+          type: integer
+      required:
+      - estimatedDataLossMs
+      - namespaceId
+      - namespaceName
+      - safetimeEpochUs
+      - safetimeLagUs
+      - safetimeSkewUs
+      type: object
+    DrConfigEditForm:
+      description: drConfig edit form
+      example:
+        bootstrapParams:
+          backupRequestParams:
+            storageConfigUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            parallelism: 0
+        webhookUrls:
+        - webhookUrls
+        - webhookUrls
+        pitrParams:
+          snapshotIntervalSec: 1
+          retentionPeriodSec: 6
+      properties:
+        bootstrapParams:
+          $ref: '#/components/schemas/RestartBootstrapParams'
+        pitrParams:
+          $ref: '#/components/schemas/PitrParams'
+        webhookUrls:
+          description: List of urls for webhook
+          items:
+            type: string
+          type: array
+      type: object
+    BootstrapBackupParams:
+      description: Backup parameters for bootstrapping
+      example:
+        storageConfigUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        parallelism: 0
+      properties:
+        parallelism:
+          description: Number of concurrent commands used by yb_backup (not ybc) to run on nodes over SSH
+          format: int32
+          type: integer
+        storageConfigUUID:
+          description: Storage configuration UUID
+          format: uuid
+          type: string
+      required:
+      - storageConfigUUID
+      type: object
+    DrConfigSetDatabasesForm:
+      description: dr config set databases form
+      example:
+        dbs: '["000033df000030008000000000004006", "000033df00003000800000000000400b"]'
+      properties:
+        dbs:
+          description: 'WARNING: This is a preview API that could change. Source universe database IDs'
+          example: '["000033df000030008000000000004006", "000033df00003000800000000000400b"]'
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+      type: object
+    DrConfigSwitchoverForm:
+      description: drConfig failover form
+      example:
+        drReplicaUniverseUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        primaryUniverseUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        drReplicaUniverseUuid:
+          description: New dr replica universe UUID
+          format: uuid
+          type: string
+        primaryUniverseUuid:
+          description: New primary universe UUID
+          format: uuid
+          type: string
+      type: object
+    RestartBootstrapParams:
+      description: Bootstrap parameters for restarting
+      example:
+        backupRequestParams:
+          storageConfigUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          parallelism: 0
+      properties:
+        backupRequestParams:
+          $ref: '#/components/schemas/BootstrapBackupParams'
+      required:
+      - backupRequestParams
+      type: object
+  securitySchemes:
+    apiKeyAuth:
+      description: API token passed as header
+      in: header
+      name: X-AUTH-YW-API-TOKEN
+      type: apiKey
+externalDocs:
+  description: About YugabyteDB Anywhere
+  url: https://docs.yugabyte.com/latest/yugabyte-platform/
+x-original-swagger-version: '2.0'

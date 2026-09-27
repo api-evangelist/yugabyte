@@ -1,0 +1,771 @@
+openapi: 3.2.0
+info:
+  title: Yugabytedb Customer Tasks API
+  version: v1
+  contact:
+    name: https://docs.yugabyte.com
+  license:
+    name: Polyform Free Trial License 1.0.0
+    url: https://github.com/yugabyte/yugabyte-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
+  termsOfService: TODO(chirag)
+  description: 'Operations tagged Customer Tasks across 2 of this provider''s published API definitions: openapi_2.yaml, platform.swagger.json. Each path carries the servers of the definition it was published in.'
+servers:
+- url: /
+tags:
+- name: Customer Tasks
+paths:
+  /api/v1/customers/{cUUID}/tasks/{tUUID}:
+    servers:
+    - url: /
+    get:
+      operationId: taskStatus
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: tUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Get a task's status
+      tags:
+      - Customer Tasks
+  /api/v1/customers/{cUUID}/tasks/{tUUID}/abort:
+    servers:
+    - url: /
+    post:
+      description: Aborts a running task
+      operationId: abortTask
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: tUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YBPSuccess'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Abort a task
+      tags:
+      - Customer Tasks
+  /api/v1/customers/{cUUID}/tasks/{tUUID}/failed:
+    servers:
+    - url: /
+    get:
+      deprecated: true
+      description: 'Deprecated since YBA version 2.19.1.0.
+
+        Use /api/v1/customers/{cUUID}/tasks/{tUUID}/failed_subtasks instead.'
+      operationId: failedSubtasks
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: tUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  properties: {}
+                  type: object
+                type: object
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Fetch failed subtasks - deprecated
+      tags:
+      - Customer Tasks
+  /api/v1/customers/{cUUID}/tasks/{tUUID}/failed_subtasks:
+    servers:
+    - url: /
+    get:
+      operationId: listFailedSubtasks
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: tUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FailedSubtasks'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Get a list of task's failed subtasks
+      tags:
+      - Customer Tasks
+  /api/v1/customers/{cUUID}/tasks/{tUUID}/retry:
+    servers:
+    - url: /
+    post:
+      description: Retry a Universe or Provider task.
+      operationId: retryTask
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: tUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YBPTask'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Retry a Universe or Provider task
+      tags:
+      - Customer Tasks
+  /api/v1/customers/{cUUID}/tasks/{tUUID}/rollback:
+    servers:
+    - url: /
+    post:
+      description: Rollback a Universe or Provider task.
+      operationId: rollbackTask
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: tUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YBPTask'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Rollback a Universe or Provider task
+      tags:
+      - Customer Tasks
+  /api/v1/customers/{cUUID}/tasks_list:
+    servers:
+    - url: /
+    get:
+      operationId: tasksList
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: uUUID
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CustomerTaskData'
+                type: array
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: List task
+      tags:
+      - Customer Tasks
+  /api/v1/customers/{cUUID}/tasks_list/page:
+    servers:
+    - url: /
+    post:
+      description: 'WARNING: This is a preview API that could change.'
+      operationId: listTasksV2
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskPagedApiQuery'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskPagedApiResponse'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: List Tasks (paginated)
+      tags:
+      - Customer Tasks
+      x-codegen-request-body-name: PageTasksRequest
+components:
+  schemas:
+    FailedSubtasks:
+      description: Failed Subtasks
+      example:
+        failedSubTasks:
+        - errorString: errorString
+          creationTime: 2022-12-12 13:07:18+00:00
+          subTaskUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          subTaskType: subTaskType
+          errorCode: UNKNOWN_ERROR
+          subTaskGroupType: subTaskGroupType
+          subTaskState: subTaskState
+        - errorString: errorString
+          creationTime: 2022-12-12 13:07:18+00:00
+          subTaskUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          subTaskType: subTaskType
+          errorCode: UNKNOWN_ERROR
+          subTaskGroupType: subTaskGroupType
+          subTaskState: subTaskState
+      properties:
+        failedSubTasks:
+          description: List of failed subtasks
+          items:
+            $ref: '#/components/schemas/SubtaskData'
+          type: array
+      type: object
+    CustomerTaskData:
+      description: Customer task data
+      example:
+        retryable: true
+        abortable: true
+        typeName: Software Upgrade
+        percentComplete: 100
+        title: 'Deleted Universe : test-universe'
+        type: Delete
+        targetUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        target: Universe
+        completionTime: 2022-12-12 13:07:18+00:00
+        createTime: 2022-12-12 13:07:18+00:00
+        canRollback: true
+        correlationId: correlationId
+        userEmail: userEmail
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        status: Complete
+      properties:
+        abortable:
+          description: Customer task abortable
+          type: boolean
+        canRollback:
+          description: Whether the Customer task can be rolled back
+          type: boolean
+        completionTime:
+          description: Customer task completion time
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          type: string
+        correlationId:
+          description: Correlation id
+          type: string
+        createTime:
+          description: Customer task creation time
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          type: string
+        id:
+          description: Customer task UUID
+          format: uuid
+          type: string
+        percentComplete:
+          description: Customer task percentage completed
+          example: 100
+          format: int32
+          type: integer
+        retryable:
+          description: Customer task retryable
+          type: boolean
+        status:
+          description: Customer task status
+          example: Complete
+          type: string
+        target:
+          description: Customer task target
+          example: Universe
+          type: string
+        targetUUID:
+          description: Customer task target UUID
+          format: uuid
+          type: string
+        title:
+          description: Customer task title
+          example: 'Deleted Universe : test-universe'
+          type: string
+        type:
+          description: Customer task type
+          example: Delete
+          type: string
+        typeName:
+          description: Customer task type name
+          example: Software Upgrade
+          type: string
+        userEmail:
+          description: Customer Email
+          readOnly: true
+          type: string
+      type: object
+    YBPSuccess:
+      example:
+        success: true
+        message: message
+      properties:
+        message:
+          description: API response message.
+          readOnly: true
+          type: string
+        success:
+          description: API operation status. A value of true indicates the operation was successful.
+          readOnly: true
+          type: boolean
+      type: object
+    TaskApiFilter:
+      example:
+        targetUUIDList:
+        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        targetList:
+        - Universe
+        - Universe
+        dateRangeEnd: 2022-12-12 13:07:18+00:00
+        typeList:
+        - Create
+        - Create
+        typeNameList:
+        - typeNameList
+        - typeNameList
+        dateRangeStart: 2022-12-12 13:07:18+00:00
+        status:
+        - Created
+        - Created
+      properties:
+        dateRangeEnd:
+          description: The end date to filter paged query.
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          type: string
+        dateRangeStart:
+          description: The start date to filter paged query.
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          type: string
+        status:
+          items:
+            enum:
+            - Created
+            - Initializing
+            - Running
+            - Success
+            - Failure
+            - Unknown
+            - Abort
+            - Aborted
+            type: string
+          type: array
+          uniqueItems: true
+        targetList:
+          items:
+            enum:
+            - Universe
+            - Cluster
+            - Table
+            - Provider
+            - Node
+            - Backup
+            - Schedule
+            - CustomerConfiguration
+            - KMSConfiguration
+            - XClusterConfig
+            - DrConfig
+            - UniverseKey
+            - MasterKey
+            - NodeAgent
+            - Yba
+            - User
+            type: string
+          type: array
+          uniqueItems: true
+        targetUUIDList:
+          items:
+            format: uuid
+            type: string
+          type: array
+          uniqueItems: true
+        typeList:
+          items:
+            enum:
+            - Create
+            - Pause
+            - Resume
+            - Update
+            - Delete
+            - Stop
+            - Start
+            - Restart
+            - Remove
+            - Add
+            - Release
+            - Reboot
+            - HardReboot
+            - Replace
+            - Edit
+            - Sync
+            - LdapSync
+            - RestartUniverse
+            - SoftwareUpgrade
+            - SoftwareUpgradeYB
+            - FinalizeUpgrade
+            - RollbackUpgrade
+            - GFlagsUpgrade
+            - KubernetesOverridesUpgrade
+            - EditKubernetesUniverse
+            - CertsRotate
+            - TlsToggle
+            - VMImageUpgrade
+            - SystemdUpgrade
+            - RebootUniverse
+            - UpgradeSoftware
+            - UpgradeVMImage
+            - ResizeNode
+            - UpdateCert
+            - UpdateDiskSize
+            - UpgradeGflags
+            - UpdateLoadBalancerConfig
+            - BulkImportData
+            - Backup
+            - Restore
+            - CreatePitrConfig
+            - UpdatePitrConfig
+            - DeletePitrConfig
+            - RestoreSnapshotSchedule
+            - SetEncryptionKey
+            - EnableEncryptionAtRest
+            - SetActiveUniverseKeys
+            - RotateEncryptionKey
+            - DisableEncryptionAtRest
+            - StartMaster
+            - CreateAlertDefinitions
+            - ManageAlertDefinitions
+            - ExternalScript
+            - CreateXClusterConfig
+            - EditXClusterConfig
+            - DeleteXClusterConfig
+            - SyncXClusterConfig
+            - Failover
+            - Switchover
+            - SwitchoverRollback
+            - PrecheckNode
+            - Abort
+            - CreateSupportBundle
+            - CreateTableSpaces
+            - ThirdpartySoftwareUpgrade
+            - ModifyAuditLoggingConfig
+            - ModifyQueryLoggingConfig
+            - ModifyMetricsExportConfig
+            - RotateAccessKey
+            - CreateAndRotateAccessKey
+            - RunApiTriggeredHooks
+            - InstallYbcSoftware
+            - InstallYbcSoftwareOnK8s
+            - UpgradeUniverseYbc
+            - DisableYbc
+            - UpgradeYbcGFlags
+            - UpgradeKubernetesYbcGFlags
+            - UpdateYbcThrottleFlags
+            - UpdateK8sYbcThrottleFlags
+            - ConfigureDBApis
+            - ConfigureDBApisKubernetes
+            - CreateImageBundle
+            - ReprovisionNode
+            - Install
+            - ProvisionUniverseNodes
+            - MasterFailover
+            - UpdateProxyConfig
+            - SyncMasterAddresses
+            - CreateYbaBackup
+            - RestoreYbaBackup
+            - RestoreContinuousBackup
+            - EnableNodeAgent
+            - Decommission
+            - CloneNamespace
+            - UpdateOOMServiceState
+            - SendUserNotification
+            - ImportUniverse
+            - MigrateUniverse
+            - KubernetesToggleImmutableYbc
+            - OperatorImport
+            type: string
+          type: array
+          uniqueItems: true
+        typeNameList:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+      required:
+      - status
+      - targetList
+      - targetUUIDList
+      - typeList
+      - typeNameList
+      type: object
+    TaskPagedApiQuery:
+      example:
+        filter:
+          targetUUIDList:
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          targetList:
+          - Universe
+          - Universe
+          dateRangeEnd: 2022-12-12 13:07:18+00:00
+          typeList:
+          - Create
+          - Create
+          typeNameList:
+          - typeNameList
+          - typeNameList
+          dateRangeStart: 2022-12-12 13:07:18+00:00
+          status:
+          - Created
+          - Created
+        offset: 6
+        needTotalCount: true
+        limit: 0
+        sortBy: createTime
+        direction: ASC
+      properties:
+        direction:
+          enum:
+          - ASC
+          - DESC
+          type: string
+        filter:
+          $ref: '#/components/schemas/TaskApiFilter'
+        limit:
+          format: int32
+          type: integer
+        needTotalCount:
+          type: boolean
+        offset:
+          format: int32
+          type: integer
+        sortBy:
+          enum:
+          - createTime
+          type: string
+      required:
+      - direction
+      - filter
+      - limit
+      - needTotalCount
+      - offset
+      - sortBy
+      type: object
+    TaskPagedApiResponse:
+      example:
+        entities:
+        - retryable: true
+          abortable: true
+          typeName: Software Upgrade
+          percentComplete: 100
+          title: 'Deleted Universe : test-universe'
+          type: Delete
+          targetUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          target: Universe
+          completionTime: 2022-12-12 13:07:18+00:00
+          createTime: 2022-12-12 13:07:18+00:00
+          canRollback: true
+          correlationId: correlationId
+          userEmail: userEmail
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          status: Complete
+        - retryable: true
+          abortable: true
+          typeName: Software Upgrade
+          percentComplete: 100
+          title: 'Deleted Universe : test-universe'
+          type: Delete
+          targetUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          target: Universe
+          completionTime: 2022-12-12 13:07:18+00:00
+          createTime: 2022-12-12 13:07:18+00:00
+          canRollback: true
+          correlationId: correlationId
+          userEmail: userEmail
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          status: Complete
+        hasPrev: true
+        hasNext: true
+        totalCount: 0
+      properties:
+        entities:
+          items:
+            $ref: '#/components/schemas/CustomerTaskData'
+          type: array
+        hasNext:
+          type: boolean
+        hasPrev:
+          type: boolean
+        totalCount:
+          format: int32
+          type: integer
+      required:
+      - entities
+      - hasNext
+      - hasPrev
+      - totalCount
+      type: object
+    SubtaskData:
+      description: Detailed subtask data
+      example:
+        errorString: errorString
+        creationTime: 2022-12-12 13:07:18+00:00
+        subTaskUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        subTaskType: subTaskType
+        errorCode: UNKNOWN_ERROR
+        subTaskGroupType: subTaskGroupType
+        subTaskState: subTaskState
+      properties:
+        creationTime:
+          description: Creation time (unix timestamp) of the task
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          type: string
+        errorCode:
+          description: 'WARNING: This is a preview API that could change. Subtask error code'
+          enum:
+          - UNKNOWN_ERROR
+          - INTERNAL_ERROR
+          - PLATFORM_SHUTDOWN
+          - PLATFORM_RESTARTED
+          - INSTALLATION_ERROR
+          - SERVICE_START_ERROR
+          - CONNECTION_ERROR
+          - TIMED_OUT
+          type: string
+        errorString:
+          description: Failed SubTask Error message
+          type: string
+        subTaskGroupType:
+          description: Failed SubTask Group Type
+          type: string
+        subTaskState:
+          description: Failed SubTask State
+          type: string
+        subTaskType:
+          description: Failed SubTask Type
+          type: string
+        subTaskUUID:
+          description: Failed SubTask UUID
+          format: uuid
+          type: string
+      type: object
+    YBPTask:
+      example:
+        taskUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        resourceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        resourceUUID:
+          description: UUID of the resource being modified by the task
+          format: uuid
+          readOnly: true
+          type: string
+        taskUUID:
+          description: Task UUID
+          format: uuid
+          readOnly: true
+          type: string
+      type: object
+  securitySchemes:
+    apiKeyAuth:
+      description: API token passed as header
+      in: header
+      name: X-AUTH-YW-API-TOKEN
+      type: apiKey
+externalDocs:
+  description: About YugabyteDB Anywhere
+  url: https://docs.yugabyte.com/latest/yugabyte-platform/
+x-refined-from:
+- openapi_2.yaml
+- platform.swagger.json

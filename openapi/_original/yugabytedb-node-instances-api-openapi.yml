@@ -1,0 +1,1243 @@
+# x-archived-from: yugabytedb-node-instances-api-openapi.yml
+# x-archived-on: 2026-09-26
+openapi: 3.2.0
+info:
+  title: Yugabytedb Node instances API
+  version: v1
+  contact:
+    name: https://docs.yugabyte.com
+  license:
+    name: Polyform Free Trial License 1.0.0
+    url: https://github.com/yugabyte/yugabyte-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
+  termsOfService: TODO(chirag)
+  description: 'Operations tagged Node instances across 2 of this provider''s published API definitions: openapi_2.yaml, platform.swagger.json. Each path carries the servers of the definition it was published in.'
+servers:
+- url: /
+tags:
+- name: Node instances
+paths:
+  /api/v1/customers/{cUUID}/nodes:
+    get:
+      operationId: List
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: nodeIp
+        schema:
+          default: 'null'
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NodeInstance'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: List all node instances of a customer
+      tags:
+      - Node instances
+    servers:
+    - url: /
+  /api/v1/customers/{cUUID}/nodes/{nodeUUID}/list:
+    get:
+      operationId: getNodeInstance
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: nodeUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NodeInstance'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Get a node instance
+      tags:
+      - Node instances
+    servers:
+    - url: /
+  /api/v1/customers/{cUUID}/providers/{pUUID}/instances/{instanceIP}:
+    delete:
+      operationId: deleteInstance
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: pUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: instanceIP
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YBPSuccess'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Delete a node instance
+      tags:
+      - Node instances
+    post:
+      operationId: detachedNodeAction
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: pUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: instanceIP
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NodeActionFormData'
+        description: Node action data to be updated
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YBPTask'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Detached node action
+      tags:
+      - Node instances
+      x-codegen-request-body-name: Node action
+    servers:
+    - url: /
+  /api/v1/customers/{cUUID}/providers/{pUUID}/instances/{instanceIP}/state:
+    put:
+      description: 'WARNING: This is a preview API that could change.'
+      operationId: updateState
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: pUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: instanceIP
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NodeInstanceStateFormData'
+        description: Resultant node instance state to transition to
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YBPTask'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Update node instance state
+      tags:
+      - Node instances
+      x-codegen-request-body-name: NodeInstanceStateFormData
+    servers:
+    - url: /
+  /api/v1/customers/{cUUID}/providers/{pUUID}/nodes/list:
+    get:
+      operationId: listByProvider
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: pUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/NodeInstance'
+                type: array
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: List all of a provider's node instances
+      tags:
+      - Node instances
+    servers:
+    - url: /
+  /api/v1/customers/{cUUID}/universes/{universeUUID}/nodes/{nodeName}:
+    put:
+      operationId: nodeAction
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: universeUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: nodeName
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NodeActionFormData'
+        description: Details of the node action to be performed
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YBPTask'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Perform the specified action on the universe node
+      tags:
+      - Node instances
+      x-codegen-request-body-name: Node action
+    servers:
+    - url: /
+  /api/v1/customers/{cUUID}/universes/{universeUUID}/nodes/{nodeName}/details:
+    get:
+      operationId: getNodeDetails
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: universeUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: nodeName
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NodeDetailsResp'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Get node details
+      tags:
+      - Node instances
+    servers:
+    - url: /
+  /api/v1/customers/{cUUID}/zones/{azUUID}/nodes:
+    post:
+      operationId: createNodeInstance
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: azUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NodeInstanceFormData'
+        description: Node instance data to be created
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  $ref: '#/components/schemas/NodeInstance'
+                type: object
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Create a node instance
+      tags:
+      - Node instances
+      x-codegen-request-body-name: Node instance
+    servers:
+    - url: /
+  /api/v1/customers/{cUUID}/zones/{azUUID}/nodes/list:
+    get:
+      operationId: listByZone
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: azUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/NodeInstance'
+                type: array
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: List all of a zone's node instances
+      tags:
+      - Node instances
+    servers:
+    - url: /
+  /api/v1/customers/{cUUID}/zones/{azUUID}/nodes/validate:
+    post:
+      operationId: validateNodeInstance
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: azUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  $ref: '#/components/schemas/ValidationResult'
+                type: object
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Validate a node instance
+      tags:
+      - Node instances
+    servers:
+    - url: /
+components:
+  schemas:
+    ValidationResult:
+      description: Validation result of a node config
+      properties:
+        description:
+          type: string
+        required:
+          type: boolean
+        type:
+          enum:
+          - NTP_SERVICE_STATUS
+          - PROMETHEUS_SPACE
+          - MOUNT_POINTS_WRITABLE
+          - USER
+          - USER_GROUP
+          - HOME_DIR_SPACE
+          - HOME_DIR_EXISTS
+          - HOME_DIR_MATCHES
+          - RAM_SIZE
+          - INTERNET_CONNECTION
+          - CPU_CORES
+          - PROMETHEUS_NO_NODE_EXPORTER
+          - TMP_DIR_SPACE
+          - PAM_LIMITS_WRITABLE
+          - PYTHON_VERSION
+          - MOUNT_POINTS_VOLUME
+          - CHRONYD_RUNNING
+          - LOCALE_PRESENT
+          - SSH_PORT
+          - SUDO_ACCESS
+          - OPENSSL
+          - POLICYCOREUTILS
+          - RSYNC
+          - XXHASH
+          - LIBATOMIC1
+          - LIBNCURSES6
+          - LIBATOMIC
+          - AZCOPY
+          - CHRONYC
+          - GSUTIL
+          - S3CMD
+          - NODE_EXPORTER_RUNNING
+          - NODE_EXPORTER_PORT
+          - SWAPPINESS
+          - ULIMIT_CORE
+          - ULIMIT_OPEN_FILES
+          - ULIMIT_USER_PROCESSES
+          - SSH_ACCESS
+          - NODE_AGENT_ACCESS
+          - MASTER_HTTP_PORT
+          - MASTER_RPC_PORT
+          - TSERVER_HTTP_PORT
+          - TSERVER_RPC_PORT
+          - YB_CONTROLLER_HTTP_PORT
+          - YB_CONTROLLER_RPC_PORT
+          - REDIS_SERVER_HTTP_PORT
+          - REDIS_SERVER_RPC_PORT
+          - YB_HOME_DIR_CLEAN
+          - DATA_DIR_CLEAN
+          - YCQL_SERVER_HTTP_PORT
+          - YCQL_SERVER_RPC_PORT
+          - YSQL_SERVER_HTTP_PORT
+          - YSQL_SERVER_RPC_PORT
+          - VM_MAX_MAP_COUNT
+          - NTP_SKEW
+          type: string
+        valid:
+          type: boolean
+        value:
+          type: string
+      required:
+      - description
+      - required
+      - type
+      - valid
+      - value
+      type: object
+    NodeInstanceStateFormData:
+      example:
+        state: DECOMMISSIONED
+      properties:
+        state:
+          description: Target state of the node instance
+          enum:
+          - DECOMMISSIONED
+          - USED
+          - FREE
+          type: string
+      type: object
+    NodeActionFormData:
+      example:
+        nodeAction: ADD
+        runOnlyPrechecks: true
+        force: true
+      properties:
+        force:
+          description: Should ignore master unavailability and proceed with the node action
+          type: boolean
+        nodeAction:
+          description: Action to perform on the node.
+          enum:
+          - ADD
+          - REMOVE
+          - START
+          - STOP
+          - DELETE
+          - QUERY
+          - RELEASE
+          - REBOOT
+          - START_MASTER
+          - PRECHECK_DETACHED
+          - HARD_REBOOT
+          - REPROVISION
+          - REPLACE
+          - DECOMMISSION
+          type: string
+        runOnlyPrechecks:
+          description: YbaApi Internal. Run only prechecks during task run
+          type: boolean
+      required:
+      - nodeAction
+      type: object
+    CloudSpecificInfo:
+      description: Node information reported by the cloud provider
+      example:
+        mount_roots: mount_roots
+        kubernetesNamespace: kubernetesNamespace
+        public_ip: public_ip
+        secondary_subnet_id: secondary_subnet_id
+        private_dns: private_dns
+        useTimeSync: true
+        kubernetesPodName: kubernetesPodName
+        root_volume: root_volume
+        secondary_private_ip: secondary_private_ip
+        private_ip: private_ip
+        cloud: cloud
+        lun_indexes:
+        - 6
+        - 6
+        assignPublicIP: true
+        az: az
+        subnet_id: subnet_id
+        public_dns: public_dns
+        region: region
+        instance_type: instance_type
+      properties:
+        assignPublicIP:
+          description: True if the node has a public IP address assigned
+          type: boolean
+        az:
+          description: The node's availability zone
+          type: string
+        cloud:
+          description: The node's cloud provider
+          type: string
+        instance_type:
+          description: The node's instance type
+          type: string
+        kubernetesNamespace:
+          description: Kubernetes namespace
+          type: string
+        kubernetesPodName:
+          description: Pod name in Kubernetes
+          type: string
+        lun_indexes:
+          description: Mounted disks LUN indexes
+          items:
+            format: int32
+            type: integer
+          type: array
+        mount_roots:
+          description: Mount roots
+          type: string
+        private_dns:
+          description: The node's private DNS
+          type: string
+        private_ip:
+          description: The node's private IP address
+          type: string
+        public_dns:
+          description: The node's public DNS name
+          type: string
+        public_ip:
+          description: The node's public IP address
+          type: string
+        region:
+          description: The node's region
+          type: string
+        root_volume:
+          description: Root volume ID or name
+          type: string
+        secondary_private_ip:
+          description: Secondary Private IP
+          type: string
+        secondary_subnet_id:
+          description: Secondary Subnet IP
+          type: string
+        subnet_id:
+          description: ID of the subnet on which this node is deployed
+          type: string
+        useTimeSync:
+          description: True if `use time sync` is enabled
+          type: boolean
+      type: object
+    NodeInstanceData:
+      description: Details of a node instance. Used by the API to validate data against input constraints.
+      example:
+        nodeName: universe_node1
+        instanceName: Mumbai instance
+        zone: south-east
+        instanceType: c5large
+        ip: 1.1.1.1
+        sshUser: centos
+        region: south-east
+      properties:
+        instanceName:
+          description: Node instance name
+          example: Mumbai instance
+          type: string
+        instanceType:
+          description: Node instance type
+          example: c5large
+          type: string
+        ip:
+          description: IP address
+          example: 1.1.1.1
+          type: string
+        nodeName:
+          description: Node name in a universe
+          example: universe_node1
+          readOnly: true
+          type: string
+        region:
+          description: Region
+          example: south-east
+          type: string
+        sshUser:
+          description: SSH user
+          example: centos
+          type: string
+        zone:
+          description: Zone
+          example: south-east
+          type: string
+      required:
+      - instanceName
+      - instanceType
+      - ip
+      - region
+      - zone
+      type: object
+    NodeInstanceFormData:
+      example:
+        nodes:
+        - nodeName: universe_node1
+          instanceName: Mumbai instance
+          zone: south-east
+          instanceType: c5large
+          ip: 1.1.1.1
+          sshUser: centos
+          region: south-east
+        - nodeName: universe_node1
+          instanceName: Mumbai instance
+          zone: south-east
+          instanceType: c5large
+          ip: 1.1.1.1
+          sshUser: centos
+          region: south-east
+        - nodeName: universe_node1
+          instanceName: Mumbai instance
+          zone: south-east
+          instanceType: c5large
+          ip: 1.1.1.1
+          sshUser: centos
+          region: south-east
+        - nodeName: universe_node1
+          instanceName: Mumbai instance
+          zone: south-east
+          instanceType: c5large
+          ip: 1.1.1.1
+          sshUser: centos
+          region: south-east
+        - nodeName: universe_node1
+          instanceName: Mumbai instance
+          zone: south-east
+          instanceType: c5large
+          ip: 1.1.1.1
+          sshUser: centos
+          region: south-east
+      properties:
+        nodes:
+          description: Node instances
+          items:
+            $ref: '#/components/schemas/NodeInstanceData'
+          maxItems: 2147483647
+          minItems: 1
+          type: array
+      required:
+      - nodes
+      type: object
+    YBPSuccess:
+      example:
+        success: true
+        message: message
+      properties:
+        message:
+          description: API response message.
+          readOnly: true
+          type: string
+        success:
+          description: API operation status. A value of true indicates the operation was successful.
+          readOnly: true
+          type: boolean
+      type: object
+    YBPTask:
+      example:
+        taskUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        resourceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        resourceUUID:
+          description: UUID of the resource being modified by the task
+          format: uuid
+          readOnly: true
+          type: string
+        taskUUID:
+          description: Task UUID
+          format: uuid
+          readOnly: true
+          type: string
+      type: object
+    NodeInstance:
+      description: A single node instance, attached to a provider and availability zone
+      example:
+        manuallyDecommissioned: true
+        nodeName: universe_node1
+        instanceName: Mumbai instance
+        instanceTypeCode: c5large
+        inUse: true
+        zoneUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        details:
+          nodeName: universe_node1
+          instanceName: Mumbai instance
+          zone: south-east
+          instanceType: c5large
+          ip: 1.1.1.1
+          sshUser: centos
+          region: south-east
+        state: DECOMMISSIONED
+        nodeUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        detailsJson: '{"ip":"1.1.1.1","sshUser":"centos"}'
+      properties:
+        details:
+          $ref: '#/components/schemas/NodeInstanceData'
+        detailsJson:
+          description: Node details (as a JSON object)
+          example: '{"ip":"1.1.1.1","sshUser":"centos"}'
+          readOnly: true
+          type: string
+        inUse:
+          description: True if the node is in use  <b style="color:#ff0000">Deprecated since YBA version 2024.1.0.0.</b> Use NodeInstance.state instead
+          type: boolean
+        instanceName:
+          description: The node instance's name
+          example: Mumbai instance
+          type: string
+        instanceTypeCode:
+          description: The node's type code
+          example: c5large
+          type: string
+        manuallyDecommissioned:
+          description: Manually set to decommissioned state by user
+          readOnly: true
+          type: boolean
+        nodeName:
+          description: The node's name in a universe
+          example: universe_node1
+          readOnly: true
+          type: string
+        nodeUuid:
+          description: The node's UUID
+          format: uuid
+          readOnly: true
+          type: string
+        state:
+          description: State of on-prem node
+          enum:
+          - DECOMMISSIONED
+          - USED
+          - FREE
+          readOnly: true
+          type: string
+        zoneUuid:
+          description: The availability zone's UUID
+          format: uuid
+          type: string
+      required:
+      - details
+      type: object
+    NodeDetailsResp:
+      example:
+        nodeName: nodeName
+        nodeExporterPort: 6
+        allowedActions:
+        - ADD
+        - ADD
+        placementUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        ybControllerHttpPort: 6
+        dedicatedTo: MASTER
+        machineImage: machineImage
+        redisServerHttpPort: 3
+        masterState: ToStart
+        tserverRpcPort: 7
+        ysqlServerHttpPort: 7
+        yqlServerRpcPort: 8
+        otelCollectorMetricsPort: 6
+        isMaster: true
+        sshUserOverride: sshUserOverride
+        cloudInfo:
+          mount_roots: mount_roots
+          kubernetesNamespace: kubernetesNamespace
+          public_ip: public_ip
+          secondary_subnet_id: secondary_subnet_id
+          private_dns: private_dns
+          useTimeSync: true
+          kubernetesPodName: kubernetesPodName
+          root_volume: root_volume
+          secondary_private_ip: secondary_private_ip
+          private_ip: private_ip
+          cloud: cloud
+          lun_indexes:
+          - 6
+          - 6
+          assignPublicIP: true
+          az: az
+          subnet_id: subnet_id
+          public_dns: public_dns
+          region: region
+          instance_type: instance_type
+        sshPortOverride: 7
+        cronsActive: true
+        state: Provisioned
+        nodeIdx: 5
+        masterRpcPort: 6
+        redisServerRpcPort: 3
+        lastVolumeUpdateTime: 2022-12-12 13:07:18+00:00
+        kubernetesOverrides: kubernetesOverrides
+        tserverHttpPort: 0
+        disksAreMountedByUUID: true
+        isRedisServer: true
+        ybPrebuiltAmi: true
+        internalYsqlServerRpcPort: 1
+        isTserver: true
+        nodeUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        isYsqlServer: true
+        ybControllerRpcPort: 0
+        isYqlServer: true
+        azUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        masterHttpPort: 2
+        ysqlServerRpcPort: 3
+        autoSyncMasterAddrs: true
+        yqlServerHttpPort: 4
+      properties:
+        allowedActions:
+          items:
+            enum:
+            - ADD
+            - REMOVE
+            - START
+            - STOP
+            - DELETE
+            - QUERY
+            - RELEASE
+            - REBOOT
+            - START_MASTER
+            - PRECHECK_DETACHED
+            - HARD_REBOOT
+            - REPROVISION
+            - REPLACE
+            - DECOMMISSION
+            type: string
+          readOnly: true
+          type: array
+          uniqueItems: true
+        autoSyncMasterAddrs:
+          description: 'WARNING: This is a preview API that could change. Used by auto master failover'
+          readOnly: true
+          type: boolean
+        azUuid:
+          description: The availability zone's UUID
+          format: uuid
+          type: string
+        cloudInfo:
+          $ref: '#/components/schemas/CloudSpecificInfo'
+        cronsActive:
+          description: True if cron jobs were properly configured for this node
+          type: boolean
+        dedicatedTo:
+          description: Used for configurations where each node can have only one process
+          enum:
+          - MASTER
+          - TSERVER
+          - CONTROLLER
+          - YQLSERVER
+          - YSQLSERVER
+          - REDISSERVER
+          - EITHER
+          type: string
+        disksAreMountedByUUID:
+          description: Disks are mounted by uuid
+          type: boolean
+        internalYsqlServerRpcPort:
+          description: Internal YSQL RPC port
+          format: int32
+          type: integer
+        isMaster:
+          description: True if this node is a master
+          type: boolean
+        isRedisServer:
+          description: True if this node is a REDIS server
+          type: boolean
+        isTserver:
+          description: True if this node is a Tablet server
+          type: boolean
+        isYqlServer:
+          description: True if this node is a YCQL server
+          type: boolean
+        isYsqlServer:
+          description: True if this node is a YSQL server
+          type: boolean
+        kubernetesOverrides:
+          type: string
+        lastVolumeUpdateTime:
+          description: Store last volume update time
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          readOnly: true
+          type: string
+        machineImage:
+          description: Machine image name
+          type: string
+        masterHttpPort:
+          description: Master HTTP port
+          format: int32
+          type: integer
+        masterRpcPort:
+          description: Master RPC port
+          format: int32
+          type: integer
+        masterState:
+          description: Master state
+          enum:
+          - None
+          - ToStart
+          - Configured
+          - ToStop
+          example: ToStart
+          type: string
+        nodeExporterPort:
+          description: Node exporter port
+          format: int32
+          type: integer
+        nodeIdx:
+          description: Node ID
+          format: int32
+          type: integer
+        nodeName:
+          description: Node name
+          type: string
+        nodeUuid:
+          description: Node UUID
+          format: uuid
+          type: string
+        otelCollectorMetricsPort:
+          description: Otel collector metrics port
+          format: int32
+          type: integer
+        placementUuid:
+          description: UUID of the cluster to which this node belongs
+          format: uuid
+          type: string
+        redisServerHttpPort:
+          description: REDIS HTTP port
+          format: int32
+          type: integer
+        redisServerRpcPort:
+          description: REDIS RPC port
+          format: int32
+          type: integer
+        sshPortOverride:
+          description: SSH port override for the AMI
+          format: int32
+          type: integer
+        sshUserOverride:
+          description: SSH user override for the AMI
+          type: string
+        state:
+          description: Node state
+          enum:
+          - ToBeAdded
+          - InstanceCreated
+          - ServerSetup
+          - ToJoinCluster
+          - Reprovisioning
+          - Provisioned
+          - SoftwareInstalled
+          - UpgradeMasterSoftware
+          - UpgradeSoftware
+          - RollbackUpgrade
+          - FinalizeUpgrade
+          - UpdateGFlags
+          - Live
+          - Stopping
+          - Starting
+          - Stopped
+          - Unreachable
+          - MetricsUnavailable
+          - ToBeRemoved
+          - Removing
+          - Removed
+          - Adding
+          - BeingDecommissioned
+          - Decommissioned
+          - UpdateCert
+          - ToggleTls
+          - ConfigureDBApis
+          - Resizing
+          - SystemdUpgrade
+          - Terminating
+          - Terminated
+          - Rebooting
+          - HardRebooting
+          - VMImageUpgrade
+          - InstanceStopping
+          - InstanceStopped
+          example: Provisioned
+          type: string
+        tserverHttpPort:
+          description: Tablet server HTTP port
+          format: int32
+          type: integer
+        tserverRpcPort:
+          description: Tablet server RPC port
+          format: int32
+          type: integer
+        ybControllerHttpPort:
+          description: Yb controller HTTP port
+          format: int32
+          type: integer
+        ybControllerRpcPort:
+          description: Yb controller RPC port
+          format: int32
+          type: integer
+        ybPrebuiltAmi:
+          description: True if this a custom YB AMI
+          type: boolean
+        yqlServerHttpPort:
+          description: YCQL HTTP port
+          format: int32
+          type: integer
+        yqlServerRpcPort:
+          description: YCQL RPC port
+          format: int32
+          type: integer
+        ysqlServerHttpPort:
+          description: YSQL HTTP port
+          format: int32
+          type: integer
+        ysqlServerRpcPort:
+          description: YSQL RPC port
+          format: int32
+          type: integer
+      required:
+      - kubernetesOverrides
+      type: object
+    NodeActionFormData_2:
+      properties:
+        nodeAction:
+          enum:
+          - ADD
+          - REMOVE
+          - START
+          - STOP
+          - DELETE
+          - QUERY
+          - RELEASE
+          - START_MASTER
+          - PRECHECK_DETACHED
+          type: string
+      required:
+      - nodeAction
+      type: object
+    NodeInstanceData_2:
+      description: Details of a node instance. Used by the API to validate data against input constraints.
+      properties:
+        instanceName:
+          description: Node instance name
+          example: Mumbai instance
+          type: string
+        instanceType:
+          description: Node instance type
+          example: c5large
+          type: string
+        ip:
+          description: IP address
+          example: 1.1.1.1
+          type: string
+        nodeName:
+          description: Node name
+          example: India node
+          type: string
+        region:
+          description: Region
+          example: south-east
+          type: string
+        sshUser:
+          description: SSH user
+          example: centos
+          type: string
+        zone:
+          description: Zone
+          example: south-east
+          type: string
+      required:
+      - instanceName
+      - instanceType
+      - ip
+      - region
+      - sshUser
+      - zone
+      type: object
+    NodeInstanceFormData_2:
+      properties:
+        nodes:
+          description: Node instances
+          items:
+            $ref: '#/components/schemas/NodeInstanceData_2'
+          maxItems: 2147483647
+          minItems: 1
+          type: array
+      required:
+      - nodes
+      type: object
+    YBPSuccess_2:
+      properties:
+        message:
+          description: API response message.
+          readOnly: true
+          type: string
+        success:
+          description: API operation status. A value of true indicates the operation was successful.
+          readOnly: true
+          type: boolean
+      type: object
+    YBPTask_2:
+      properties:
+        resourceUUID:
+          description: UUID of the resource being modified by the task
+          format: uuid
+          readOnly: true
+          type: string
+        taskUUID:
+          description: Task UUID
+          format: uuid
+          readOnly: true
+          type: string
+      type: object
+    NodeInstance_2:
+      description: A single node instance, attached to a provider and availability zone
+      properties:
+        details:
+          $ref: '#/components/schemas/NodeInstanceData_2'
+        detailsJson:
+          description: Node details (as a JSON object)
+          example: '{"ip":"1.1.1.1","sshUser":"centos"}'
+          type: string
+        inUse:
+          description: True if the node is in use
+          type: boolean
+        instanceName:
+          description: The node instance's name
+          example: Mumbai instance
+          type: string
+        instanceTypeCode:
+          description: The node's type code
+          example: c5large
+          type: string
+        nodeName:
+          description: The node's name
+          example: India node
+          type: string
+        nodeUuid:
+          description: The node's UUID
+          format: uuid
+          readOnly: true
+          type: string
+        zoneUuid:
+          description: The availability zone's UUID
+          format: uuid
+          type: string
+      required:
+      - details
+      type: object
+  securitySchemes:
+    apiKeyAuth:
+      description: API token passed as header
+      in: header
+      name: X-AUTH-YW-API-TOKEN
+      type: apiKey
+externalDocs:
+  description: About YugabyteDB Anywhere
+  url: https://docs.yugabyte.com/latest/yugabyte-platform/
+x-refined-from:
+- openapi_2.yaml
+- platform.swagger.json

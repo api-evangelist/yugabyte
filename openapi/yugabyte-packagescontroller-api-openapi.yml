@@ -1,0 +1,90 @@
+openapi: 3.2.0
+info:
+  contact:
+    name: https://docs.yugabyte.com
+  description: ALPHA - NOT FOR EXTERNAL USE
+  license:
+    name: Polyform Free Trial License 1.0.0
+    url: https://github.com/yugabyte/yugabyte-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
+  termsOfService: TODO(chirag)
+  title: YugabyteDB Anywhere Packages Controller API
+  version: v1
+servers:
+- url: /
+tags:
+- name: PackagesController
+paths:
+  /api/v1/fetch_package:
+    post:
+      description: YbaApi Internal.
+      operationId: fetchPackage
+      parameters:
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PackagesRequestParams'
+        description: Package to be imported
+        required: true
+      responses:
+        '200':
+          content:
+            application/gzip:
+              schema:
+                type: string
+          description: successful operation
+      summary: Fetch a package
+      tags:
+      - PackagesController
+      x-codegen-request-body-name: Package
+components:
+  schemas:
+    PackagesRequestParams:
+      description: Packages request parameters
+      example:
+        archiveType: archiveType
+        architectureType: AARCH64
+        osType: CENTOS
+        packageName: packageName
+        buildNumber: buildNumber
+      properties:
+        architectureType:
+          description: Architecture Type
+          enum:
+          - AARCH64
+          - X86_64
+          type: string
+        archiveType:
+          description: Archive Type
+          type: string
+        buildNumber:
+          description: Build number
+          type: string
+        osType:
+          description: OS Type
+          enum:
+          - CENTOS
+          - ALMALINUX
+          - DARWIN
+          - LINUX
+          - EL8
+          type: string
+        packageName:
+          description: Package name
+          type: string
+      required:
+      - buildNumber
+      type: object
+  securitySchemes:
+    apiKeyAuth:
+      description: API token passed as header
+      in: header
+      name: X-AUTH-YW-API-TOKEN
+      type: apiKey
+externalDocs:
+  description: About YugabyteDB Anywhere
+  url: https://docs.yugabyte.com/latest/yugabyte-platform/
+x-original-swagger-version: '2.0'

@@ -1,0 +1,187 @@
+# x-archived-from: yugabytedb-ldap-role-management-api-openapi.yml
+# x-archived-on: 2026-09-26
+openapi: 3.2.0
+info:
+  contact:
+    name: https://docs.yugabyte.com
+  description: ALPHA - NOT FOR EXTERNAL USE
+  license:
+    name: Polyform Free Trial License 1.0.0
+    url: https://github.com/yugabyte/yugabyte-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
+  termsOfService: TODO(chirag)
+  title: YugabyteDB Anywhere LDAP Role management API
+  version: v1
+servers:
+- url: /
+tags:
+- name: LDAP Role management
+paths:
+  /api/v1/customers/{cUUID}/universes/{univUUID}/ldap_roles_sync:
+    post:
+      description: 'WARNING: This is a preview API that could change.'
+      operationId: syncLdapUniverse
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: univUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LdapUnivSyncFormData'
+        description: config to sync universe roles with ldap users
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YBPTask'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Perform an LDAP users sync on the universe
+      tags:
+      - LDAP Role management
+      x-codegen-request-body-name: syncLdapUniverse
+components:
+  schemas:
+    LdapUnivSyncFormData:
+      description: Config to sync universe roles with ldap users
+      example:
+        ldapServer: ldapServer
+        createGroups: true
+        ldapSearchFilter: (objectclass=person)
+        useLdapTls: true
+        ldapUserfield: cn, sAMAccountName
+        dbuserPassword: dbuserPassword
+        excludeUsers:
+        - excludeUsers
+        - excludeUsers
+        targetApi: ysql
+        ldapPort: 0
+        ldapBasedn: dc=example,dc=org
+        ldapGroupMemberOfAttribute: ldapGroupMemberOfAttribute
+        groupsToSync:
+        - groupsToSync
+        - groupsToSync
+        ldapBindDn: cn=user,dc=example,dc=com
+        useLdapSsl: true
+        ldapTlsProtocol: TLSv1
+        dbUser: dbUser
+        ldapBindPassword: ldapBindPassword
+        ldapGroupfield: cn
+      properties:
+        createGroups:
+          description: Allow the API to create the LDAP groups as DB superusers
+          type: boolean
+        dbUser:
+          description: 'Database user to connect: yugabyte for ysql, cassandra for ycql'
+          type: string
+        dbuserPassword:
+          type: string
+        excludeUsers:
+          description: List of users to exclude while revoking and dropping
+          items:
+            type: string
+          type: array
+        groupsToSync:
+          description: LDAP groups to sync. In case user belongs to multiple groups & we don't want to sync all of them to DB
+          items:
+            type: string
+          type: array
+        ldapBasedn:
+          description: Dn of the search starting point.
+          example: dc=example,dc=org
+          type: string
+        ldapBindDn:
+          description: Dn of the user authenticating to LDAP.
+          example: cn=user,dc=example,dc=com
+          type: string
+        ldapBindPassword:
+          description: Password of the user authenticating to LDAP.
+          type: string
+        ldapGroupMemberOfAttribute:
+          description: LDAP group dn attribute to which the user belongs
+          type: string
+        ldapGroupfield:
+          description: LDAP field to get the group information
+          example: cn
+          type: string
+        ldapPort:
+          description: 'Port of the ldap server : 389 or 636(tls)'
+          format: int32
+          type: integer
+        ldapSearchFilter:
+          description: LDAP search filter to get the user entries
+          example: (objectclass=person)
+          type: string
+        ldapServer:
+          description: IP address of the LDAP server
+          type: string
+        ldapTlsProtocol:
+          description: 'TLS versions for LDAPS : TLSv1, TLSv1_1, TLSv1_2'
+          enum:
+          - TLSv1
+          - TLSv1_1
+          - TLSv1_2
+          type: string
+        ldapUserfield:
+          description: Dn/Attribute field to get the user's name from
+          example: cn, sAMAccountName
+          type: string
+        targetApi:
+          enum:
+          - ysql
+          - ycql
+          type: string
+        useLdapSsl:
+          description: Use LDAP SSL
+          type: boolean
+        useLdapTls:
+          description: Use LDAP TLS
+          type: boolean
+      required:
+      - dbuserPassword
+      - ldapGroupfield
+      - ldapUserfield
+      - targetApi
+      type: object
+    YBPTask:
+      example:
+        taskUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        resourceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        resourceUUID:
+          description: UUID of the resource being modified by the task
+          format: uuid
+          readOnly: true
+          type: string
+        taskUUID:
+          description: Task UUID
+          format: uuid
+          readOnly: true
+          type: string
+      type: object
+  securitySchemes:
+    apiKeyAuth:
+      description: API token passed as header
+      in: header
+      name: X-AUTH-YW-API-TOKEN
+      type: apiKey
+externalDocs:
+  description: About YugabyteDB Anywhere
+  url: https://docs.yugabyte.com/latest/yugabyte-platform/
+x-original-swagger-version: '2.0'

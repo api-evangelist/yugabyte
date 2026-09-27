@@ -1,0 +1,342 @@
+openapi: 3.2.0
+info:
+  contact:
+    name: https://docs.yugabyte.com
+  description: ALPHA - NOT FOR EXTERNAL USE
+  license:
+    name: Polyform Free Trial License 1.0.0
+    url: https://github.com/yugabyte/yugabyte-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
+  termsOfService: TODO(chirag)
+  title: YugabyteDB Anywhere Preview API
+  version: v1
+servers:
+- url: /
+tags:
+- name: Preview
+paths:
+  /api/v1/customers/{cUUID}/providers/{pUUID}/image_bundle:
+    get:
+      description: 'WARNING: This is a preview API that could change.'
+      operationId: getListOfImageBundles
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: pUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: arch
+        schema:
+          default: 'null'
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ImageBundle'
+                type: array
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: List image bundles
+      tags:
+      - Preview
+    post:
+      description: 'WARNING: This is a preview API that could change.'
+      operationId: createImageBundle
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: pUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImageBundle'
+        description: CreateImageBundleRequest
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImageBundle'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Create a image bundle
+      tags:
+      - Preview
+      x-codegen-request-body-name: body
+  /api/v1/customers/{cUUID}/providers/{pUUID}/image_bundle/{iBUUID}:
+    delete:
+      description: 'WARNING: This is a preview API that could change.'
+      operationId: delete
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: pUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: iBUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YBPSuccess'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Delete a image bundle
+      tags:
+      - Preview
+    get:
+      description: 'WARNING: This is a preview API that could change.'
+      operationId: getImageBundle
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: pUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: iBUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImageBundle'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Get a image bundle
+      tags:
+      - Preview
+    put:
+      description: 'WARNING: This is a preview API that could change.'
+      operationId: editImageBundle
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: pUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: iBUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImageBundle'
+        description: EditImageBundleRequest
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImageBundle'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Update a image bundle
+      tags:
+      - Preview
+      x-codegen-request-body-name: body
+components:
+  schemas:
+    ImageBundle:
+      example:
+        metadata:
+          type: YBA_ACTIVE
+          version: version
+        useAsDefault: true
+        name: name
+        active: true
+        details:
+          sshPort: 5
+          regions:
+            key:
+              sshUserOverride: sshUserOverride
+              ybImage: ybImage
+              sshPortOverride: 1
+          useIMDSv2: true
+          globalYbImage: globalYbImage
+          sshUser: sshUser
+          arch: x86_64
+        uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        active:
+          description: Is the ImageBundle Active
+          type: boolean
+        details:
+          $ref: '#/components/schemas/ImageBundleDetails'
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+        name:
+          description: Image Bundle Name
+          type: string
+        useAsDefault:
+          description: Default Image Bundle. A provider can have two defaults, one per architecture
+          type: boolean
+        uuid:
+          description: Image Bundle UUID
+          format: uuid
+          readOnly: true
+          type: string
+      type: object
+    YBPSuccess:
+      example:
+        success: true
+        message: message
+      properties:
+        message:
+          description: API response message.
+          readOnly: true
+          type: string
+        success:
+          description: API operation status. A value of true indicates the operation was successful.
+          readOnly: true
+          type: boolean
+      type: object
+    BundleInfo:
+      example:
+        sshUserOverride: sshUserOverride
+        ybImage: ybImage
+        sshPortOverride: 1
+      properties:
+        sshPortOverride:
+          description: sshPortOverride for the bundle. <b style="color:#ff0000">Deprecated since YBA version 2.20.3.0.</b> Use imageBundles.details.sshUser instead.
+          format: int32
+          type: integer
+        sshUserOverride:
+          description: sshUserOverride for the bundle. <b style="color:#ff0000">Deprecated since YBA version 2.20.3.0.</b> Use imageBundles.details.sshUser instead.
+          type: string
+        ybImage:
+          type: string
+      type: object
+    Metadata:
+      example:
+        type: YBA_ACTIVE
+        version: version
+      properties:
+        type:
+          enum:
+          - YBA_ACTIVE
+          - YBA_DEPRECATED
+          - CUSTOM
+          type: string
+        version:
+          type: string
+      required:
+      - type
+      - version
+      type: object
+    ImageBundleDetails:
+      example:
+        sshPort: 5
+        regions:
+          key:
+            sshUserOverride: sshUserOverride
+            ybImage: ybImage
+            sshPortOverride: 1
+        useIMDSv2: true
+        globalYbImage: globalYbImage
+        sshUser: sshUser
+        arch: x86_64
+      properties:
+        arch:
+          description: Architecture type for the image bundle
+          enum:
+          - x86_64
+          - aarch64
+          type: string
+        globalYbImage:
+          description: Global YB image for the bundle
+          type: string
+        regions:
+          additionalProperties:
+            $ref: '#/components/schemas/BundleInfo'
+          description: Regions override for image bundle
+          type: object
+        sshPort:
+          format: int32
+          type: integer
+        sshUser:
+          type: string
+        useIMDSv2:
+          type: boolean
+      type: object
+  securitySchemes:
+    apiKeyAuth:
+      description: API token passed as header
+      in: header
+      name: X-AUTH-YW-API-TOKEN
+      type: apiKey
+externalDocs:
+  description: About YugabyteDB Anywhere
+  url: https://docs.yugabyte.com/latest/yugabyte-platform/
+x-original-swagger-version: '2.0'

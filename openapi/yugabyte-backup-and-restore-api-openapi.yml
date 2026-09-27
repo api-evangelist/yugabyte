@@ -1,0 +1,89 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@yugabyte.com
+    name: YugabyteDB Anywhere Support
+    url: https://docs.yugabyte.com
+  description: An improved set of APIs for managing YugabyteDB Anywhere
+  license:
+    name: Polyform Free Trial License 1.0.0
+    url: https://github.com/yugabyte/yugabyte-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
+  title: YugabyteDB Anywhere V2 Backup And Restore API
+  version: v2
+servers:
+- description: API endpoint of YBA server
+  url: '{protocol}://{host_port}/api/v2'
+  variables:
+    protocol:
+      default: http
+      enum:
+      - http
+      - https
+    host_port:
+      default: localhost:9000
+tags:
+- description: Operations related to universe backup and restore
+  name: Backup And Restore
+paths:
+  /ybc/gflags-metadata:
+    get:
+      description: Get list of all YBC gflags and related metadata.
+      operationId: listYbcGflagsMetadata
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/GflagMetadata'
+                type: array
+          description: OK
+        '404':
+          description: Not found
+      security:
+      - apiKeyAuth: []
+      summary: List YBC Gflags metadata
+      tags:
+      - Backup And Restore
+      x-yba-api-audit:
+        noAudit: true
+      x-yba-api-authz:
+      - requiredPermission:
+          resourceType: other
+          action: read
+        resourceLocation:
+          path: customers
+          sourceType: endpoint
+      x-yba-api-since: 2024.2.0.0
+      x-yba-api-visibility: preview
+      x-accepts:
+      - application/json
+components:
+  schemas:
+    GflagMetadata:
+      description: Metadata for Gflags of YB Controller.
+      example:
+        default: default
+        meaning: meaning
+        name: name
+        type: type
+      properties:
+        name:
+          description: The name of the flag.
+          type: string
+        meaning:
+          description: A brief description of what the flag does.
+          type: string
+        default:
+          description: The default value of the flag.
+          type: string
+        type:
+          description: The data type of the flag.
+          type: string
+      title: GflagMetadata
+      type: object
+  securitySchemes:
+    apiKeyAuth:
+      in: header
+      name: X-AUTH-YW-API-TOKEN
+      type: apiKey

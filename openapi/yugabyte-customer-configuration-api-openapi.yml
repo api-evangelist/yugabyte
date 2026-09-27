@@ -1,0 +1,568 @@
+openapi: 3.2.0
+info:
+  title: Yugabytedb Customer Configuration API
+  version: v1
+  contact:
+    name: https://docs.yugabyte.com
+  license:
+    name: Polyform Free Trial License 1.0.0
+    url: https://github.com/yugabyte/yugabyte-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
+  termsOfService: TODO(chirag)
+  description: 'Operations tagged Customer Configuration across 2 of this provider''s published API definitions: openapi_2.yaml, platform.swagger.json. Each path carries the servers of the definition it was published in.'
+servers:
+- url: /
+tags:
+- name: Customer Configuration
+paths:
+  /api/v1/customers/{cUUID}/cloud/{cloud}/buckets:
+    servers:
+    - url: /
+    post:
+      operationId: listBuckets
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: cloud
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerConfigData'
+        description: Credentials to list buckets
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: List buckets with provided credentials
+      tags:
+      - Customer Configuration
+      x-codegen-request-body-name: Credentials
+  /api/v1/customers/{cUUID}/configs:
+    servers:
+    - url: /
+    get:
+      operationId: getListOfCustomerConfig
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CustomerConfigUI'
+                type: array
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: List all customer configurations
+      tags:
+      - Customer Configuration
+    post:
+      operationId: createCustomerConfig
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerConfig'
+        description: Configuration data to be created
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerConfig'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Create a customer configuration
+      tags:
+      - Customer Configuration
+      x-codegen-request-body-name: Config
+  /api/v1/customers/{cUUID}/configs/{configUUID}:
+    servers:
+    - url: /
+    delete:
+      deprecated: true
+      description: 'Deprecated since YBA version 2.25.0.0.
+
+        Use ''Delete a customer configuration V2'' instead.'
+      operationId: deleteCustomerConfig
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: configUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: isDeleteBackups
+        schema:
+          default: false
+          type: boolean
+      - in: query
+        name: request
+        schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YBPTask'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Delete a customer configuration
+      tags:
+      - Customer Configuration
+    put:
+      operationId: editCustomerConfig
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: configUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerConfig'
+        description: Configuration data to be updated
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerConfig'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Update a customer configuration
+      tags:
+      - Customer Configuration
+      x-codegen-request-body-name: Config
+  /api/v1/customers/{cUUID}/configs/{configUUID}/backup_dirs:
+    servers:
+    - url: /
+    get:
+      operationId: getListOfYbaBackupDirsCustomerConfig
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: configUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  type: string
+                type: array
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: List all backup dirs within a customer configurations
+      tags:
+      - Customer Configuration
+  /api/v1/customers/{cUUID}/configs/{configUUID}/delete:
+    servers:
+    - url: /
+    delete:
+      operationId: deleteCustomerConfigV2
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: configUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: isDeleteBackups
+        schema:
+          default: false
+          type: boolean
+      - in: query
+        name: request
+        schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YBPTask'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Delete a customer configuration V2
+      tags:
+      - Customer Configuration
+  /api/v1/customers/{cUUID}/configs/{configUUID}/edit:
+    servers:
+    - url: /
+    put:
+      operationId: putApiV1CustomersByCUUIDConfigsByConfigUUIDEdit
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: configUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerConfig'
+        description: Configuration data to be updated
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerConfig'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Update a customer configuration V2
+      tags:
+      - Customer Configuration
+      x-codegen-request-body-name: Config
+      x-operation-id-source: normalized
+      x-operation-id-original: editCustomerConfig
+  /api/v1/customers/{cUUID}/api_token:
+    put:
+      description: UNOFFICIAL API ADDITION - Requires a DUMMY body to work around issue https://yugabyte.atlassian.net/browse/PLAT-2076
+      operationId: generateAPIToken
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionInfo'
+      security:
+      - apiKeyAuth: []
+      summary: Generate an API token for the current user
+      tags:
+      - Customer Configuration
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DummyBody'
+        description: Dummy value to work around platform bug PLAT-2076
+        required: true
+components:
+  schemas:
+    CustomerConfig:
+      description: Customer configuration. Includes storage, alerts, password policy, and call-home level.
+      example:
+        configName: backup20-01-2021
+        configUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        data: '{"AWS_ACCESS_KEY_ID": "AK****************ZD"}'
+        kubernetesOperatorControlled: true
+        name: S3
+        state: Active
+        type: STORAGE
+      properties:
+        configName:
+          description: Config name
+          example: backup20-01-2021
+          maxLength: 100
+          minLength: 1
+          type: string
+        configUUID:
+          description: Config UUID
+          format: uuid
+          readOnly: true
+          type: string
+        customerUUID:
+          description: Customer UUID
+          format: uuid
+          readOnly: true
+          type: string
+        data:
+          description: Configuration data
+          example: '{"AWS_ACCESS_KEY_ID": "AK****************ZD"}'
+          properties: {}
+          type: object
+        kubernetesOperatorControlled:
+          type: boolean
+        name:
+          description: Name
+          example: S3
+          maxLength: 50
+          minLength: 1
+          type: string
+        state:
+          description: state of the customerConfig. Possible values are Active, QueuedForDeletion.
+          enum:
+          - Active
+          - QueuedForDeletion
+          readOnly: true
+          type: string
+        type:
+          description: Config type
+          enum:
+          - STORAGE
+          - ALERTS
+          - CALLHOME
+          - PASSWORD_POLICY
+          example: STORAGE
+          type: string
+      required:
+      - configName
+      - customerUUID
+      - data
+      - kubernetesOperatorControlled
+      - name
+      - type
+      type: object
+    SessionInfo:
+      description: Session information
+      properties:
+        apiToken:
+          description: API token
+          type: string
+        authToken:
+          description: Auth token
+          type: string
+        customerUUID:
+          description: Customer UUID
+          format: uuid
+          type: string
+        userUUID:
+          description: User UUID
+          format: uuid
+          type: string
+      type: object
+    CustomerConfigData:
+      type: object
+    DummyBody:
+      description: Dummy value to work around platform bug PLAT-2076
+      properties:
+        dummy:
+          format: int32
+          type: integer
+      type: object
+    UniverseDetailSubset:
+      description: A small subset of universe information
+      example:
+        universePaused: true
+        updateSucceeded: true
+        name: name
+        updateInProgress: true
+        creationDate: 1
+        uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        creationDate:
+          format: int64
+          type: integer
+        name:
+          type: string
+        universePaused:
+          type: boolean
+        updateInProgress:
+          type: boolean
+        updateSucceeded:
+          type: boolean
+        uuid:
+          format: uuid
+          type: string
+      required:
+      - creationDate
+      - name
+      - universePaused
+      - updateInProgress
+      - updateSucceeded
+      - uuid
+      type: object
+    YBPTask:
+      example:
+        taskUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        resourceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        resourceUUID:
+          description: UUID of the resource being modified by the task
+          format: uuid
+          readOnly: true
+          type: string
+        taskUUID:
+          description: Task UUID
+          format: uuid
+          readOnly: true
+          type: string
+      type: object
+    CustomerConfigUI:
+      description: Customer configuration with additional information. Includes storage, alerts, password policy, and call-home level.
+      example:
+        configName: backup20-01-2021
+        configUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        data: '{"AWS_ACCESS_KEY_ID": "AK****************ZD"}'
+        universeDetails: '{"name": "jd-aws-21-6-21-test4"}'
+        inUse: true
+        kubernetesOperatorControlled: true
+        name: S3
+        state: Active
+        type: STORAGE
+      properties:
+        configName:
+          description: Config name
+          example: backup20-01-2021
+          maxLength: 100
+          minLength: 1
+          type: string
+        configUUID:
+          description: Config UUID
+          format: uuid
+          readOnly: true
+          type: string
+        customerUUID:
+          description: Customer UUID
+          format: uuid
+          readOnly: true
+          type: string
+        data:
+          description: Configuration data
+          example: '{"AWS_ACCESS_KEY_ID": "AK****************ZD"}'
+          properties: {}
+          type: object
+        inUse:
+          description: True if there is an in use reference to the object
+          readOnly: true
+          type: boolean
+        kubernetesOperatorControlled:
+          type: boolean
+        name:
+          description: Name
+          example: S3
+          maxLength: 50
+          minLength: 1
+          type: string
+        state:
+          description: state of the customerConfig. Possible values are Active, QueuedForDeletion.
+          enum:
+          - Active
+          - QueuedForDeletion
+          readOnly: true
+          type: string
+        type:
+          description: Config type
+          enum:
+          - STORAGE
+          - ALERTS
+          - CALLHOME
+          - PASSWORD_POLICY
+          example: STORAGE
+          type: string
+        universeDetails:
+          description: Universe details
+          example: '{"name": "jd-aws-21-6-21-test4"}'
+          items:
+            $ref: '#/components/schemas/UniverseDetailSubset'
+          type: array
+      required:
+      - configName
+      - customerUUID
+      - data
+      - kubernetesOperatorControlled
+      - name
+      - type
+      type: object
+  securitySchemes:
+    apiKeyAuth:
+      description: API token passed as header
+      in: header
+      name: X-AUTH-YW-API-TOKEN
+      type: apiKey
+externalDocs:
+  description: About YugabyteDB Anywhere
+  url: https://docs.yugabyte.com/latest/yugabyte-platform/
+x-refined-from:
+- openapi_2.yaml
+- platform.swagger.json

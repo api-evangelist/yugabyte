@@ -1,0 +1,506 @@
+openapi: 3.2.0
+info:
+  title: Yugabytedb Instance Types API
+  version: v1
+  contact:
+    name: https://docs.yugabyte.com
+  license:
+    name: Polyform Free Trial License 1.0.0
+    url: https://github.com/yugabyte/yugabyte-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
+  termsOfService: TODO(chirag)
+  description: 'Operations tagged Instance types across 2 of this provider''s published API definitions: openapi_2.yaml, platform.swagger.json. Each path carries the servers of the definition it was published in.'
+servers:
+- url: /
+tags:
+- name: Instance Types
+paths:
+  /api/v1/customers/{cUUID}/providers/{pUUID}/instance_types:
+    servers:
+    - url: /
+    get:
+      operationId: listOfInstanceType
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: pUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - explode: true
+        in: query
+        name: zone
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - in: query
+        name: arch
+        schema:
+          default: 'null'
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/InstanceTypeResp'
+                type: array
+          description: successful operation
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YBPError'
+          description: If there was a server or database issue when listing the instance types
+      security:
+      - apiKeyAuth: []
+      summary: List a provider's instance types
+      tags:
+      - Instance Types
+    post:
+      operationId: createInstanceType
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: pUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InstanceType'
+        description: Instance type data of the instance to be stored
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InstanceTypeResp'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Create an instance type
+      tags:
+      - Instance Types
+      x-codegen-request-body-name: Instance type
+  /api/v1/customers/{cUUID}/providers/{pUUID}/instance_types/{code}:
+    servers:
+    - url: /
+    delete:
+      operationId: deleteInstanceType
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: pUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YBPSuccess'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Delete an instance type
+      tags:
+      - Instance Types
+    get:
+      operationId: instanceTypeDetail
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: pUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InstanceTypeResp'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Get details of an instance type
+      tags:
+      - Instance Types
+  /api/v1/metadata/azu_types:
+    servers:
+    - url: /
+    get:
+      operationId: getAZUTypes
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  enum:
+                  - IO1
+                  - IO2
+                  - GP2
+                  - GP3
+                  - Scratch
+                  - Persistent
+                  - Hyperdisk_Balanced
+                  - Hyperdisk_Extreme
+                  - StandardSSD_LRS
+                  - Premium_LRS
+                  - PremiumV2_LRS
+                  - UltraSSD_LRS
+                  - Local
+                  type: string
+                type: array
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: List supported Azure disk types
+      tags:
+      - Instance Types
+  /api/v1/metadata/ebs_types:
+    servers:
+    - url: /
+    get:
+      operationId: getEBSTypes
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  enum:
+                  - IO1
+                  - IO2
+                  - GP2
+                  - GP3
+                  - Scratch
+                  - Persistent
+                  - Hyperdisk_Balanced
+                  - Hyperdisk_Extreme
+                  - StandardSSD_LRS
+                  - Premium_LRS
+                  - PremiumV2_LRS
+                  - UltraSSD_LRS
+                  - Local
+                  type: string
+                type: array
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: List supported EBS volume types
+      tags:
+      - Instance Types
+  /api/v1/metadata/gcp_types:
+    servers:
+    - url: /
+    get:
+      operationId: getGCPTypes
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  enum:
+                  - IO1
+                  - IO2
+                  - GP2
+                  - GP3
+                  - Scratch
+                  - Persistent
+                  - Hyperdisk_Balanced
+                  - Hyperdisk_Extreme
+                  - StandardSSD_LRS
+                  - Premium_LRS
+                  - PremiumV2_LRS
+                  - UltraSSD_LRS
+                  - Local
+                  type: string
+                type: array
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: List supported GCP disk types
+      tags:
+      - Instance Types
+components:
+  schemas:
+    InstanceTypeDetails:
+      example:
+        tenancy: Shared
+        arch: x86_64
+        volumeDetailsList:
+        - volumeSizeGB: 0
+          volumeType: EBS
+          mountPath: mountPath
+        - volumeSizeGB: 0
+          volumeType: EBS
+          mountPath: mountPath
+      properties:
+        arch:
+          description: Architecture for the instance.
+          enum:
+          - x86_64
+          - aarch64
+          type: string
+        tenancy:
+          description: Tenancy for the instance.
+          enum:
+          - Shared
+          - Dedicated
+          - Host
+          type: string
+        volumeDetailsList:
+          description: Volume Details for the instance.
+          items:
+            $ref: '#/components/schemas/VolumeDetails'
+          type: array
+      type: object
+    YBPSuccess:
+      example:
+        success: true
+        message: message
+      properties:
+        message:
+          description: API response message.
+          readOnly: true
+          type: string
+        success:
+          description: API operation status. A value of true indicates the operation was successful.
+          readOnly: true
+          type: boolean
+      type: object
+    InstanceTypeResp:
+      description: Details of a cloud instance type
+      example:
+        numCores: 1.4658129805029452
+        idKey:
+          instanceTypeCode: instanceTypeCode
+          providerUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        providerCode: providerCode
+        memSizeGB: 6.027456183070403
+        instanceTypeCode: instanceTypeCode
+        instanceTypeDetails:
+          tenancy: Shared
+          arch: x86_64
+          volumeDetailsList:
+          - volumeSizeGB: 0
+            volumeType: EBS
+            mountPath: mountPath
+          - volumeSizeGB: 0
+            volumeType: EBS
+            mountPath: mountPath
+        active: true
+        providerUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        active:
+          description: True if the instance is active
+          readOnly: true
+          type: boolean
+        idKey:
+          $ref: '#/components/schemas/InstanceTypeKey'
+        instanceTypeCode:
+          description: Instance type code
+          readOnly: true
+          type: string
+        instanceTypeDetails:
+          $ref: '#/components/schemas/InstanceTypeDetails'
+        memSizeGB:
+          description: The instance's memory size, in gigabytes
+          format: double
+          type: number
+        numCores:
+          description: The instance's number of CPU cores
+          format: double
+          type: number
+        providerCode:
+          description: Cloud provider code
+          readOnly: true
+          type: string
+        providerUuid:
+          description: Provider UUID
+          format: uuid
+          readOnly: true
+          type: string
+      required:
+      - idKey
+      type: object
+    VolumeDetails:
+      example:
+        volumeSizeGB: 0
+        volumeType: EBS
+        mountPath: mountPath
+      properties:
+        mountPath:
+          type: string
+        volumeSizeGB:
+          format: int32
+          type: integer
+        volumeType:
+          enum:
+          - EBS
+          - SSD
+          - HDD
+          - NVME
+          type: string
+      required:
+      - mountPath
+      - volumeSizeGB
+      - volumeType
+      type: object
+    YBPError:
+      description: Generic error response from the YugabyteDB Anywhere API
+      example:
+        success: false
+        requestUri: /customers/8918921-af3782-633de/universe/8173ab-fd2453/create
+        error: There was a problem creating the universe
+        httpMethod: POST
+        errorJson: '{ "foo" : "bar", "baz" : [1, 2, 3] }'
+        requestJson: '{ "foo" : "bar", "baz" : [1, 2, 3] }'
+      properties:
+        error:
+          description: User-visible unstructured error message
+          example: There was a problem creating the universe
+          type: string
+        errorJson:
+          description: User visible structured error message as json object
+          example: '{ "foo" : "bar", "baz" : [1, 2, 3] }'
+          properties: {}
+          type: object
+        httpMethod:
+          description: Method for HTTP call that resulted in this error
+          example: POST
+          type: string
+        requestJson:
+          description: User request JSON object
+          example: '{ "foo" : "bar", "baz" : [1, 2, 3] }'
+          properties: {}
+          type: object
+        requestUri:
+          description: URI for HTTP request that resulted in this error
+          example: /customers/8918921-af3782-633de/universe/8173ab-fd2453/create
+          type: string
+        success:
+          description: Always set to false to indicate failure
+          example: false
+          type: boolean
+      type: object
+    InstanceType:
+      description: Information about an instance
+      example:
+        numCores: 6.027456183070403
+        idKey:
+          instanceTypeCode: instanceTypeCode
+          providerUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        memSizeGB: 0.8008281904610115
+        instanceTypeCode: instanceTypeCode
+        instanceTypeDetails:
+          tenancy: Shared
+          arch: x86_64
+          volumeDetailsList:
+          - volumeSizeGB: 0
+            volumeType: EBS
+            mountPath: mountPath
+          - volumeSizeGB: 0
+            volumeType: EBS
+            mountPath: mountPath
+        active: true
+      properties:
+        active:
+          description: True if the instance is active
+          readOnly: true
+          type: boolean
+        idKey:
+          $ref: '#/components/schemas/InstanceTypeKey'
+        instanceTypeCode:
+          description: Instance type code
+          readOnly: true
+          type: string
+        instanceTypeDetails:
+          $ref: '#/components/schemas/InstanceTypeDetails'
+        memSizeGB:
+          description: The instance's memory size, in gigabytes
+          format: double
+          type: number
+        numCores:
+          description: The instance's number of CPU cores
+          format: double
+          type: number
+      required:
+      - idKey
+      type: object
+    InstanceTypeKey:
+      example:
+        instanceTypeCode: instanceTypeCode
+        providerUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        instanceTypeCode:
+          type: string
+        providerUuid:
+          format: uuid
+          type: string
+      required:
+      - instanceTypeCode
+      - providerUuid
+      type: object
+  securitySchemes:
+    apiKeyAuth:
+      description: API token passed as header
+      in: header
+      name: X-AUTH-YW-API-TOKEN
+      type: apiKey
+externalDocs:
+  description: About YugabyteDB Anywhere
+  url: https://docs.yugabyte.com/latest/yugabyte-platform/
+x-refined-from:
+- openapi_2.yaml
+- platform.swagger.json

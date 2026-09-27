@@ -56,14 +56,11 @@ paths:
       - Backup Info
 components:
   schemas:
-    ApiError_error:
+    ApiError:
       properties:
-        detail:
-          description: Error message
-          type: string
-        status:
-          description: Error code
-          type: integer
+        error:
+          $ref: '#/components/schemas/ApiError_error'
+      title: API Error
       type: object
     BackupDetails:
       description: Details of backup enabled on databases in YugabyteDB cluster
@@ -112,11 +109,14 @@ components:
       - ybdb_api
       title: Get Backup Details
       type: object
-    ApiError:
+    ApiError_error:
       properties:
-        error:
-          $ref: '#/components/schemas/ApiError_error'
-      title: API Error
+        detail:
+          description: Error message
+          type: string
+        status:
+          description: Error code
+          type: integer
       type: object
     Backup_Details:
       example:

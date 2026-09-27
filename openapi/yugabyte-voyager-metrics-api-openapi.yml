@@ -65,38 +65,11 @@ paths:
       - voyager-metrics
 components:
   schemas:
-    VoyagerMigrateDataMetricsDetails:
-      description: Voyager data migration metrics details
-      example:
-        count_total_rows: 5
-        migration_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        migration_phase: 0
-        schema_name: schema_name
-        count_live_rows: 1
-        invocation_timestamp: invocation_timestamp
-        table_name: table_name
-        status: 6
+    ApiError:
       properties:
-        migration_uuid:
-          format: uuid
-          type: string
-        table_name:
-          type: string
-        schema_name:
-          type: string
-        migration_phase:
-          type: integer
-        status:
-          type: integer
-        count_live_rows:
-          format: int64
-          type: integer
-        count_total_rows:
-          format: int64
-          type: integer
-        invocation_timestamp:
-          type: string
-      title: Voyager Migrate Data Metrics details
+        error:
+          $ref: '#/components/schemas/ApiError_error'
+      title: API Error
       type: object
     ApiError_error:
       properties:
@@ -134,11 +107,38 @@ components:
           type: array
       title: YB Voyager Migrate Data metrics Info
       type: object
-    ApiError:
+    VoyagerMigrateDataMetricsDetails:
+      description: Voyager data migration metrics details
+      example:
+        count_total_rows: 5
+        migration_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        migration_phase: 0
+        schema_name: schema_name
+        count_live_rows: 1
+        invocation_timestamp: invocation_timestamp
+        table_name: table_name
+        status: 6
       properties:
-        error:
-          $ref: '#/components/schemas/ApiError_error'
-      title: API Error
+        migration_uuid:
+          format: uuid
+          type: string
+        table_name:
+          type: string
+        schema_name:
+          type: string
+        migration_phase:
+          type: integer
+        status:
+          type: integer
+        count_live_rows:
+          format: int64
+          type: integer
+        count_total_rows:
+          format: int64
+          type: integer
+        invocation_timestamp:
+          type: string
+      title: Voyager Migrate Data Metrics details
       type: object
   securitySchemes:
     BearerAuthToken:

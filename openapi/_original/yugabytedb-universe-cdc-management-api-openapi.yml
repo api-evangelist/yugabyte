@@ -1,0 +1,140 @@
+# x-archived-from: yugabytedb-universe-cdc-management-api-openapi.yml
+# x-archived-on: 2026-09-26
+openapi: 3.2.0
+info:
+  contact:
+    name: https://docs.yugabyte.com
+  description: ALPHA - NOT FOR EXTERNAL USE
+  license:
+    name: Polyform Free Trial License 1.0.0
+    url: https://github.com/yugabyte/yugabyte-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
+  termsOfService: TODO(chirag)
+  title: YugabyteDB Anywhere Universe CDC Management API
+  version: v1
+servers:
+- url: /
+tags:
+- name: Universe CDC Management
+paths:
+  /api/v1/customers/{cUUID}/universes/{uniUUID}/cdc_replication_slots:
+    get:
+      description: 'WARNING: This is a preview API that could change.'
+      operationId: listReplicationSlot
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: uniUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        default:
+          content: {}
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: List CDC Replication slot for a cluster
+      tags:
+      - Universe CDC Management
+  /api/v1/customers/{cUUID}/universes/{uniUUID}/cdc_streams:
+    get:
+      description: YbaApi Internal.
+      operationId: listCdcStreams
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: uniUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        default:
+          content: {}
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: List CDC Streams for a cluster
+      tags:
+      - Universe CDC Management
+    post:
+      description: YbaApi Internal.
+      operationId: createCdcStream
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: uniUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      responses:
+        default:
+          content: {}
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Create CDC Stream for a cluster
+      tags:
+      - Universe CDC Management
+  /api/v1/customers/{cUUID}/universes/{uniUUID}/cdc_streams/{streamId}:
+    delete:
+      description: YbaApi Internal.
+      operationId: deleteCdcStream
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: uniUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: streamId
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          content: {}
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Delete a CDC stream for a cluster
+      tags:
+      - Universe CDC Management
+components:
+  securitySchemes:
+    apiKeyAuth:
+      description: API token passed as header
+      in: header
+      name: X-AUTH-YW-API-TOKEN
+      type: apiKey
+externalDocs:
+  description: About YugabyteDB Anywhere
+  url: https://docs.yugabyte.com/latest/yugabyte-platform/
+x-original-swagger-version: '2.0'

@@ -1,0 +1,342 @@
+openapi: 3.2.0
+info:
+  title: Yugabytedb Telemetry Provider API
+  license:
+    name: Polyform Free Trial License 1.0.0
+    url: https://github.com/yugabyte/yugabyte-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
+  version: '1.0'
+  description: 'Operations tagged Telemetry Provider across 2 of this provider''s published API definitions: openapi.yaml, openapi_2.yaml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: API endpoint of YBA server
+  url: '{protocol}://{host_port}/api/v2'
+  variables:
+    protocol:
+      default: http
+      enum:
+      - http
+      - https
+    host_port:
+      default: localhost:9000
+- url: /
+tags:
+- description: Operations for Telemetry Providers
+  name: Telemetry Provider
+paths:
+  /customers/{cUUID}/telemetry-provider/types:
+    servers:
+    - description: API endpoint of YBA server
+      url: '{protocol}://{host_port}/api/v2'
+      variables:
+        protocol:
+          default: http
+          enum:
+          - http
+          - https
+        host_port:
+          default: localhost:9000
+    get:
+      description: Get list of all available telemetry provider types with their capabilities
+      operationId: listTelemetryProviderTypes
+      parameters:
+      - description: Customer UUID
+        explode: false
+        in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - description: Filter by export type (logs or metrics)
+        explode: true
+        in: query
+        name: exportType
+        required: false
+        schema:
+          enum:
+          - logs
+          - metrics
+          type: string
+        style: form
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/TelemetryProviderTypeInfo'
+                type: array
+          description: successful operation
+        '400':
+          description: Invalid input
+        '500':
+          description: Server error
+      security:
+      - apiKeyAuth: []
+      summary: List Available Telemetry Provider Types
+      tags:
+      - Telemetry Provider
+      x-yba-api-audit:
+        noAudit: true
+      x-yba-api-authz:
+      - requiredPermission:
+          resourceType: other
+          action: read
+        resourceLocation:
+          path: customers
+          sourceType: endpoint
+      x-yba-api-since: 2025.2.0.0
+      x-yba-api-visibility: preview
+      x-accepts:
+      - application/json
+  /api/v1/customers/{cUUID}/telemetry_provider:
+    servers:
+    - url: /
+    get:
+      description: 'WARNING: This is a preview API that could change. List All Telemetry Providers'
+      operationId: listAllTelemetryProviders
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/TelemetryProvider'
+                type: array
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: List All Telemetry Providers
+      tags:
+      - Telemetry Provider
+    post:
+      description: 'WARNING: This is a preview API that could change. Create Telemetry Provider'
+      operationId: createTelemetry
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TelemetryProvider'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TelemetryProvider'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Create Telemetry Provider
+      tags:
+      - Telemetry Provider
+      x-codegen-request-body-name: providerData
+  /api/v1/customers/{cUUID}/telemetry_provider/{intUUID}:
+    servers:
+    - url: /
+    delete:
+      description: 'WARNING: This is a preview API that could change. Delete a Telemetry Provider'
+      operationId: deleteTelemetryProvider
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: intUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YBPSuccess'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Delete a telemetry provider
+      tags:
+      - Telemetry Provider
+    get:
+      description: 'WARNING: This is a preview API that could change. Get Telemetry Provider'
+      operationId: getTelemetryProvider
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: intUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TelemetryProvider'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Get Telemetry Provider
+      tags:
+      - Telemetry Provider
+components:
+  schemas:
+    YBPSuccess:
+      example:
+        success: true
+        message: message
+      properties:
+        message:
+          description: API response message.
+          readOnly: true
+          type: string
+        success:
+          description: API operation status. A value of true indicates the operation was successful.
+          readOnly: true
+          type: boolean
+      type: object
+    TelemetryProviderConfig:
+      description: Telemetry Provider Configuration
+      discriminator:
+        propertyName: type
+      example:
+        type: DATA_DOG
+      properties:
+        type:
+          description: Telemetry Provider Type
+          enum:
+          - DATA_DOG
+          - SPLUNK
+          - AWS_CLOUDWATCH
+          - GCP_CLOUD_MONITORING
+          - LOKI
+          - DYNATRACE
+          - S3
+          - OTLP
+          type: string
+      type: object
+    TelemetryProvider:
+      description: Telemetry Provider Model
+      example:
+        customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        createTime: 2022-12-12 13:07:18+00:00
+        name: name
+        updateTime: 2022-12-12 13:07:18+00:00
+        config:
+          type: DATA_DOG
+        uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        tags:
+          key: tags
+      properties:
+        config:
+          $ref: '#/components/schemas/TelemetryProviderConfig'
+        createTime:
+          description: Creation timestamp
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          readOnly: true
+          type: string
+        customerUUID:
+          description: Customer UUID
+          format: uuid
+          readOnly: true
+          type: string
+        name:
+          description: Name
+          type: string
+        tags:
+          additionalProperties:
+            type: string
+          description: Extra Tags
+          type: object
+        updateTime:
+          description: Updation timestamp
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          readOnly: true
+          type: string
+        uuid:
+          description: Telemetry Provider UUID
+          format: uuid
+          readOnly: true
+          type: string
+      required:
+      - config
+      - customerUUID
+      - name
+      - tags
+      - uuid
+      type: object
+    TelemetryProviderTypeInfo:
+      description: Telemetry Provider Type Information
+      example:
+        provider_type: DATA_DOG
+        is_allowed_for_logs: true
+        is_allowed_for_metrics: true
+      properties:
+        provider_type:
+          description: Provider type name
+          enum:
+          - DATA_DOG
+          - SPLUNK
+          - AWS_CLOUDWATCH
+          - GCP_CLOUD_MONITORING
+          - LOKI
+          - DYNATRACE
+          - S3
+          - OTLP
+          example: DATA_DOG
+          type: string
+        is_allowed_for_logs:
+          description: Whether this provider supports logs export
+          example: true
+          type: boolean
+        is_allowed_for_metrics:
+          description: Whether this provider supports metrics export
+          example: true
+          type: boolean
+      type: object
+      x-yba-api-since: 2025.2.0.0
+      x-yba-api-visibility: preview
+  securitySchemes:
+    apiKeyAuth:
+      in: header
+      name: X-AUTH-YW-API-TOKEN
+      type: apiKey
+externalDocs:
+  description: About YugabyteDB Anywhere
+  url: https://docs.yugabyte.com/latest/yugabyte-platform/
+x-refined-from:
+- openapi.yaml
+- openapi_2.yaml

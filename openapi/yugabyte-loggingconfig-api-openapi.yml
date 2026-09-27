@@ -1,0 +1,151 @@
+openapi: 3.2.0
+info:
+  title: Yugabytedb Logging Config API
+  version: v1
+  contact:
+    name: https://docs.yugabyte.com
+  license:
+    name: Polyform Free Trial License 1.0.0
+    url: https://github.com/yugabyte/yugabyte-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
+  termsOfService: TODO(chirag)
+  description: 'Operations tagged LoggingConfig across 2 of this provider''s published API definitions: openapi_2.yaml, platform.swagger.json. Each path carries the servers of the definition it was published in.'
+servers:
+- url: /
+tags:
+- name: LoggingConfig
+paths:
+  /api/v1/audit_logging_config:
+    servers:
+    - url: /
+    post:
+      operationId: setAuditLoggingSettings
+      parameters:
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuditLoggingConfig'
+        description: Audit Logging config to be updated
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuditLoggingConfig'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Set Audit Logging Level
+      tags:
+      - LoggingConfig
+      x-codegen-request-body-name: Audit Logging Config
+  /api/v1/logging_config:
+    servers:
+    - url: /
+    post:
+      operationId: setLoggingSettings
+      parameters:
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PlatformLoggingConfig'
+        description: Logging config to be updated
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlatformLoggingConfig'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Set Logging Level
+      tags:
+      - LoggingConfig
+      x-codegen-request-body-name: Logging Config
+components:
+  schemas:
+    PlatformLoggingConfig:
+      example:
+        level: ERROR
+        maxHistory: 0
+        fileNamePrefix: yb-platform-
+        rolloverPattern: rolloverPattern
+      properties:
+        fileNamePrefix:
+          description: 'WARNING: This is a preview API that could change. Application log file name prefix. Defaults to "". For example, setting this to "yb-platform-" will generate application log files as "yb-platform-application.log" instead of "application.log".'
+          example: yb-platform-
+          type: string
+        level:
+          enum:
+          - ERROR
+          - WARN
+          - INFO
+          - DEBUG
+          - TRACE
+          type: string
+        maxHistory:
+          format: int32
+          minimum: 0
+          type: integer
+        rolloverPattern:
+          type: string
+      required:
+      - level
+      - maxHistory
+      - rolloverPattern
+      type: object
+    AuditLoggingConfig:
+      description: Audit Logging Configuration
+      example:
+        outputToStdout: true
+        maxHistory: 30
+        fileNamePrefix: yb-platform-
+        rolloverPattern: yyyy-MM-dd
+        outputToFile: true
+      properties:
+        fileNamePrefix:
+          description: 'WARNING: This is a preview API that could change. Audit log file name prefix. Defaults to "". For example, setting this to "yb-platform-" will generate audit log files as "yb-platform-audit.log" instead of "audit.log".'
+          example: yb-platform-
+          type: string
+        maxHistory:
+          description: Max number of days up till which logs are kept
+          example: 30
+          format: int32
+          minimum: 0
+          type: integer
+        outputToFile:
+          description: Flag to enable/disable audit logs output to file
+          type: boolean
+        outputToStdout:
+          description: Flag to enable/disable audit logs output to stdout
+          type: boolean
+        rolloverPattern:
+          description: Rollover Pattern
+          example: yyyy-MM-dd
+          type: string
+      required:
+      - outputToFile
+      - outputToStdout
+      type: object
+  securitySchemes:
+    apiKeyAuth:
+      description: API token passed as header
+      in: header
+      name: X-AUTH-YW-API-TOKEN
+      type: apiKey
+externalDocs:
+  description: About YugabyteDB Anywhere
+  url: https://docs.yugabyte.com/latest/yugabyte-platform/
+x-refined-from:
+- openapi_2.yaml
+- platform.swagger.json

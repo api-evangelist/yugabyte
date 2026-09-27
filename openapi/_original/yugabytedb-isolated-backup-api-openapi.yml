@@ -1,0 +1,225 @@
+# x-archived-from: yugabytedb-isolated-backup-api-openapi.yml
+# x-archived-on: 2026-09-26
+openapi: 3.2.0
+info:
+  contact:
+    email: support@yugabyte.com
+    name: YugabyteDB Anywhere Support
+    url: https://docs.yugabyte.com
+  description: An improved set of APIs for managing YugabyteDB Anywhere
+  license:
+    name: Polyform Free Trial License 1.0.0
+    url: https://github.com/yugabyte/yugabyte-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
+  title: YugabyteDB Anywhere V2 Isolated Backup API
+  version: v2
+servers:
+- description: API endpoint of YBA server
+  url: '{protocol}://{host_port}/api/v2'
+  variables:
+    protocol:
+      default: http
+      enum:
+      - http
+      - https
+    host_port:
+      default: localhost:9000
+tags:
+- description: Isolated backup/restore of YBA to local filesystem
+  name: Isolated Backup
+paths:
+  /customers/{cUUID}/yba-backups:
+    post:
+      description: Trigger a one time backup of YBA to the desired storage location
+      operationId: CreateYbaBackup
+      parameters:
+      - description: Customer UUID
+        explode: false
+        in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        $ref: '#/components/requestBodies/IsolatedBackupCreateReq'
+      responses:
+        '202':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YBATask'
+          description: task accepted
+        '400':
+          description: Invalid input
+        '500':
+          description: Server error
+      security:
+      - apiKeyAuth: []
+      summary: Create YBA Backup
+      tags:
+      - Isolated Backup
+      x-yba-api-audit:
+        auditTargetType: IsolatedBackup
+        auditTargetId: 'null'
+        auditActionType: Create
+      x-yba-api-authz:
+      - requiredPermission:
+          resourceType: other
+          action: SUPER_ADMIN_ACTIONS
+        resourceLocation:
+          path: customers
+          sourceType: endpoint
+      x-yba-api-since: 2024.2.0.0
+      x-yba-api-visibility: preview
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /customers/{cUUID}/yba-backups/restore:
+    post:
+      description: Trigger a one time restore of YBA from the desired storage location
+      operationId: RestoreYbaBackup
+      parameters:
+      - description: Customer UUID
+        explode: false
+        in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        $ref: '#/components/requestBodies/IsolatedBackupRestoreReq'
+      responses:
+        '202':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YBATask'
+          description: task accepted
+        '400':
+          description: Invalid input
+        '500':
+          description: Server error
+      security:
+      - apiKeyAuth: []
+      summary: Restore YBA Backup
+      tags:
+      - Isolated Backup
+      x-yba-api-audit:
+        auditTargetType: IsolatedBackup
+        auditTargetId: 'null'
+        auditActionType: Restore
+      x-yba-api-authz:
+      - requiredPermission:
+          resourceType: other
+          action: SUPER_ADMIN_ACTIONS
+        resourceLocation:
+          path: customers
+          sourceType: endpoint
+      x-yba-api-since: 2024.2.0.0
+      x-yba-api-visibility: preview
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+components:
+  schemas:
+    IsolatedBackupRestoreSpec:
+      description: 'IsolatedBackupRestoreSpec
+
+
+        User provided details to trigger a restore of YBA from a local filepath.
+
+        '
+      example:
+        local_path: /opt/yba_backups/yba_backup.tar.gz
+      properties:
+        local_path:
+          description: full path to YBA backup file on host
+          example: /opt/yba_backups/yba_backup.tar.gz
+          type: string
+      required:
+      - local_path
+      title: IsolatedBackupRestoreSpec
+      type: object
+    IsolatedBackupCreateSpec:
+      description: 'IsolatedBackupCreateSpec
+
+
+        User provided details to trigger a one time backup of YBA to a particular local directory.
+
+        '
+      example:
+        components:
+        - YBA
+        - YBA
+        local_dir: /opt/yba_backups
+      properties:
+        local_dir:
+          description: local directory to store backup
+          example: /opt/yba_backups
+          type: string
+        components:
+          description: the components to include in YBA backup
+          items:
+            $ref: '#/components/schemas/YbaComponent'
+          type: array
+      required:
+      - components
+      - local_dir
+      title: IsolatedBackupCreateSpec
+      type: object
+    YbaComponent:
+      description: 'Individual YBA components to be backed up
+
+        '
+      enum:
+      - YBA
+      - PROMETHEUS
+      - RELEASES
+      title: YbaComponent
+      type: string
+    YBATask:
+      description: 'YBATask
+
+
+        YugabyteDB Anywhere Task object is used to represent a task that is being executed on a resource. This Task object can be polled for progress and status of the task. This object is returned as a response to most of the YugabyteDB Anywhere API calls.
+
+        '
+      example:
+        resource_uuid: f33e3c9b-75ab-4c30-80ad-cba85646ea39
+        task_uuid: 89a46d52-4edd-4736-922a-35177a0b990c
+      properties:
+        resource_uuid:
+          description: UUID of the resource being modified by the task
+          example: f33e3c9b-75ab-4c30-80ad-cba85646ea39
+          format: uuid
+          readOnly: true
+          type: string
+        task_uuid:
+          description: Task UUID
+          example: 89a46d52-4edd-4736-922a-35177a0b990c
+          format: uuid
+          readOnly: true
+          type: string
+      title: YBATask
+      type: object
+  requestBodies:
+    IsolatedBackupRestoreReq:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/IsolatedBackupRestoreSpec'
+      required: true
+    IsolatedBackupCreateReq:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/IsolatedBackupCreateSpec'
+      required: true
+  securitySchemes:
+    apiKeyAuth:
+      in: header
+      name: X-AUTH-YW-API-TOKEN
+      type: apiKey

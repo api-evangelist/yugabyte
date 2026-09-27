@@ -1,0 +1,432 @@
+# x-archived-from: yugabytedb-new-release-management-api-openapi.yml
+# x-archived-on: 2026-09-26
+openapi: 3.2.0
+info:
+  contact:
+    name: https://docs.yugabyte.com
+  description: ALPHA - NOT FOR EXTERNAL USE
+  license:
+    name: Polyform Free Trial License 1.0.0
+    url: https://github.com/yugabyte/yugabyte-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
+  termsOfService: TODO(chirag)
+  title: YugabyteDB Anywhere New Release management API
+  version: v1
+servers:
+- url: /
+tags:
+- name: New Release management
+paths:
+  /api/v1/customers/{cUUID}/ybdb_release:
+    get:
+      description: 'WARNING: This is a preview API that could change: list ybdb releases'
+      operationId: listNewReleases
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: deployment_type
+        schema:
+          default: 'null'
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ResponseRelease'
+                type: array
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: List releases
+      tags:
+      - New Release management
+    post:
+      description: 'WARNING: This is a preview API that could change: create a ybdb release'
+      operationId: createNewRelease
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateRelease'
+        description: Release data to be created
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YBPCreateSuccess'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Create a release
+      tags:
+      - New Release management
+      x-codegen-request-body-name: Release
+  /api/v1/customers/{cUUID}/ybdb_release/{rUUID}:
+    delete:
+      description: 'WARNING: This is a preview API that could change: delete a ybdb release'
+      operationId: deleteNewRelease
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: rUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YBPSuccess'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: delete a release
+      tags:
+      - New Release management
+    get:
+      description: 'WARNING: This is a preview API that could change: get a specific ybdb release'
+      operationId: getNewRelease
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: rUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseRelease'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Get a release
+      tags:
+      - New Release management
+    put:
+      description: 'WARNING: This is a preview API that could change: update or edit a ybdb release'
+      operationId: updateNewRelease
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: rUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateRelease'
+        description: Release data to be updated
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YBPSuccess'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Update a release
+      tags:
+      - New Release management
+      x-codegen-request-body-name: Release
+components:
+  schemas:
+    UpdateRelease:
+      description: Release metadata required to create a new release
+      example:
+        release_notes: release_notes
+        release_date: 0
+        state: state
+        release_tag: release_tag
+        artifacts:
+        - package_url: package_url
+          sha256: sha256
+          package_file_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          platform: LINUX
+          architecture: x86_64
+        - package_url: package_url
+          sha256: sha256
+          package_file_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          platform: LINUX
+          architecture: x86_64
+      properties:
+        artifacts:
+          items:
+            $ref: '#/components/schemas/Artifact'
+          type: array
+        release_date:
+          format: int64
+          type: integer
+        release_notes:
+          type: string
+        release_tag:
+          type: string
+        state:
+          type: string
+      required:
+      - artifacts
+      - release_date
+      - release_notes
+      - release_tag
+      - state
+      type: object
+    Artifact:
+      example:
+        package_url: package_url
+        sha256: sha256
+        package_file_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        platform: LINUX
+        architecture: x86_64
+      properties:
+        architecture:
+          enum:
+          - x86_64
+          - aarch64
+          type: string
+        package_file_id:
+          format: uuid
+          type: string
+        package_url:
+          type: string
+        platform:
+          enum:
+          - LINUX
+          - KUBERNETES
+          type: string
+        sha256:
+          type: string
+      required:
+      - architecture
+      - package_file_id
+      - package_url
+      - platform
+      - sha256
+      type: object
+    YBPSuccess:
+      example:
+        success: true
+        message: message
+      properties:
+        message:
+          description: API response message.
+          readOnly: true
+          type: string
+        success:
+          description: API operation status. A value of true indicates the operation was successful.
+          readOnly: true
+          type: boolean
+      type: object
+    ResponseRelease:
+      example:
+        release_notes: release_notes
+        release_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        universes:
+        - name: name
+          creation_date: 2024-07-28 01:02:03+00:00
+          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - name: name
+          creation_date: 2024-07-28 01:02:03+00:00
+          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        release_type: release_type
+        release_date_msecs: 0
+        state: state
+        version: version
+        release_tag: release_tag
+        yb_type: yb_type
+        artifacts:
+        - package_url: package_url
+          sha256: sha256
+          package_file_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          platform: LINUX
+          architecture: x86_64
+        - package_url: package_url
+          sha256: sha256
+          package_file_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          platform: LINUX
+          architecture: x86_64
+      properties:
+        artifacts:
+          items:
+            $ref: '#/components/schemas/Artifact'
+          type: array
+        release_date_msecs:
+          format: int64
+          type: integer
+        release_notes:
+          type: string
+        release_tag:
+          type: string
+        release_type:
+          type: string
+        release_uuid:
+          format: uuid
+          type: string
+        state:
+          type: string
+        universes:
+          items:
+            $ref: '#/components/schemas/Universe'
+          type: array
+        version:
+          type: string
+        yb_type:
+          type: string
+      required:
+      - artifacts
+      - release_date_msecs
+      - release_notes
+      - release_tag
+      - release_type
+      - release_uuid
+      - state
+      - universes
+      - version
+      - yb_type
+      type: object
+    CreateRelease:
+      description: Release metadata required to create a new release
+      example:
+        release_notes: release_notes
+        release_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        release_type: release_type
+        release_date_msecs: 0
+        version: version
+        release_tag: release_tag
+        yb_type: yb_type
+        artifacts:
+        - package_url: package_url
+          sha256: sha256
+          package_file_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          platform: LINUX
+          architecture: x86_64
+        - package_url: package_url
+          sha256: sha256
+          package_file_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          platform: LINUX
+          architecture: x86_64
+      properties:
+        artifacts:
+          items:
+            $ref: '#/components/schemas/Artifact'
+          type: array
+        release_date_msecs:
+          format: int64
+          type: integer
+        release_notes:
+          type: string
+        release_tag:
+          type: string
+        release_type:
+          type: string
+        release_uuid:
+          format: uuid
+          type: string
+        version:
+          type: string
+        yb_type:
+          type: string
+      required:
+      - artifacts
+      - release_date_msecs
+      - release_notes
+      - release_tag
+      - release_type
+      - release_uuid
+      - version
+      - yb_type
+      type: object
+    YBPCreateSuccess:
+      example:
+        resourceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        resourceUUID:
+          description: UUID of the successfully created resource
+          format: uuid
+          readOnly: true
+          type: string
+      type: object
+    Universe:
+      example:
+        name: name
+        creation_date: 2024-07-28 01:02:03+00:00
+        uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        creation_date:
+          description: Universe creation date
+          example: 2024-07-28 01:02:03+00:00
+          format: date-time
+          type: string
+        name:
+          type: string
+        uuid:
+          format: uuid
+          type: string
+      required:
+      - name
+      - uuid
+      type: object
+  securitySchemes:
+    apiKeyAuth:
+      description: API token passed as header
+      in: header
+      name: X-AUTH-YW-API-TOKEN
+      type: apiKey
+externalDocs:
+  description: About YugabyteDB Anywhere
+  url: https://docs.yugabyte.com/latest/yugabyte-platform/
+x-original-swagger-version: '2.0'

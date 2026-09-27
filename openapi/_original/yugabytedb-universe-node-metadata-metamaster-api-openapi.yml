@@ -1,0 +1,475 @@
+# x-archived-from: yugabytedb-universe-node-metadata-metamaster-api-openapi.yml
+# x-archived-on: 2026-09-26
+openapi: 3.2.0
+info:
+  title: Yugabytedb Universe node metadata (metamaster) API
+  version: v1
+  contact:
+    name: https://docs.yugabyte.com
+  license:
+    name: Polyform Free Trial License 1.0.0
+    url: https://github.com/yugabyte/yugabyte-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
+  termsOfService: TODO(chirag)
+  description: 'Operations tagged Universe node metadata (metamaster) across 2 of this provider''s published API definitions: openapi_2.yaml, platform.swagger.json. Each path carries the servers of the definition it was published in.'
+servers:
+- url: /
+tags:
+- name: Universe node metadata (metamaster)
+paths:
+  /api/v1/customers/{cUUID}/universes/{uniUUID}/master_lb_state:
+    get:
+      description: YbaApi Internal. Available since YBA version 2024.2.0
+      operationId: getMasterLBState
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: uniUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MasterLBStateResponse'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Get the state of master load balancing ops
+      tags:
+      - Universe node metadata (metamaster)
+    servers:
+    - url: /
+  /api/v1/customers/{cUUID}/universes/{uniUUID}/masters:
+    get:
+      description: Available since YBA version 2.2.0.0.
+      operationId: getMasterAddresses
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: uniUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: string
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: List a master node's addresses
+      tags:
+      - Universe node metadata (metamaster)
+    servers:
+    - url: /
+  /api/v1/customers/{cUUID}/universes/{uniUUID}/redisservers:
+    get:
+      description: Available since YBA version 2.2.0.0.
+      operationId: getRedisServerAddresses
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: uniUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: string
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: List a REDIS server's addresses
+      tags:
+      - Universe node metadata (metamaster)
+    servers:
+    - url: /
+  /api/v1/customers/{cUUID}/universes/{uniUUID}/yqlservers:
+    get:
+      description: Available since YBA version 2.2.0.0.
+      operationId: getYQLServerAddresses
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: uniUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: string
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: List a YQL server's addresses
+      tags:
+      - Universe node metadata (metamaster)
+    servers:
+    - url: /
+  /api/v1/customers/{cUUID}/universes/{uniUUID}/ysqlservers:
+    get:
+      description: Available since YBA version 2.2.0.0.
+      operationId: getYSQLServerAddresses
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: uniUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: string
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: List a YSQL server's addresses
+      tags:
+      - Universe node metadata (metamaster)
+    servers:
+    - url: /
+  /metamaster/universe/{universeUUID}:
+    get:
+      operationId: getUniverseMasterNodes
+      parameters:
+      - in: path
+        name: universeUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MastersList'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: List a universe's master nodes
+      tags:
+      - Universe node metadata (metamaster)
+    servers:
+    - url: /
+components:
+  schemas:
+    MastersList:
+      example:
+        masters:
+        - cloudInfo:
+            mount_roots: mount_roots
+            kubernetesNamespace: kubernetesNamespace
+            public_ip: public_ip
+            secondary_subnet_id: secondary_subnet_id
+            private_dns: private_dns
+            useTimeSync: true
+            kubernetesPodName: kubernetesPodName
+            root_volume: root_volume
+            secondary_private_ip: secondary_private_ip
+            private_ip: private_ip
+            cloud: cloud
+            lun_indexes:
+            - 6
+            - 6
+            assignPublicIP: true
+            az: az
+            subnet_id: subnet_id
+            public_dns: public_dns
+            region: region
+            instance_type: instance_type
+          masterRpcPort: 0
+        - cloudInfo:
+            mount_roots: mount_roots
+            kubernetesNamespace: kubernetesNamespace
+            public_ip: public_ip
+            secondary_subnet_id: secondary_subnet_id
+            private_dns: private_dns
+            useTimeSync: true
+            kubernetesPodName: kubernetesPodName
+            root_volume: root_volume
+            secondary_private_ip: secondary_private_ip
+            private_ip: private_ip
+            cloud: cloud
+            lun_indexes:
+            - 6
+            - 6
+            assignPublicIP: true
+            az: az
+            subnet_id: subnet_id
+            public_dns: public_dns
+            region: region
+            instance_type: instance_type
+          masterRpcPort: 0
+      properties:
+        masters:
+          items:
+            $ref: '#/components/schemas/MasterNode'
+          type: array
+      required:
+      - masters
+      type: object
+    MasterLBStateResponse:
+      description: Master tablet load balancer status
+      example:
+        isEnabled: true
+        isIdle: true
+        estTimeToBalanceSecs: 0
+      properties:
+        estTimeToBalanceSecs:
+          description: YbaApi Internal Estimate of time for which master tablet load balancer will be active
+          format: int64
+          type: integer
+        isEnabled:
+          description: YbaApi Internal Whether master tablet load balancer is enabled
+          type: boolean
+        isIdle:
+          description: YbaApi Internal Whether master tablet load balancer is inactive
+          type: boolean
+      required:
+      - isEnabled
+      type: object
+    CloudSpecificInfo:
+      description: Node information reported by the cloud provider
+      example:
+        mount_roots: mount_roots
+        kubernetesNamespace: kubernetesNamespace
+        public_ip: public_ip
+        secondary_subnet_id: secondary_subnet_id
+        private_dns: private_dns
+        useTimeSync: true
+        kubernetesPodName: kubernetesPodName
+        root_volume: root_volume
+        secondary_private_ip: secondary_private_ip
+        private_ip: private_ip
+        cloud: cloud
+        lun_indexes:
+        - 6
+        - 6
+        assignPublicIP: true
+        az: az
+        subnet_id: subnet_id
+        public_dns: public_dns
+        region: region
+        instance_type: instance_type
+      properties:
+        assignPublicIP:
+          description: True if the node has a public IP address assigned
+          type: boolean
+        az:
+          description: The node's availability zone
+          type: string
+        cloud:
+          description: The node's cloud provider
+          type: string
+        instance_type:
+          description: The node's instance type
+          type: string
+        kubernetesNamespace:
+          description: Kubernetes namespace
+          type: string
+        kubernetesPodName:
+          description: Pod name in Kubernetes
+          type: string
+        lun_indexes:
+          description: Mounted disks LUN indexes
+          items:
+            format: int32
+            type: integer
+          type: array
+        mount_roots:
+          description: Mount roots
+          type: string
+        private_dns:
+          description: The node's private DNS
+          type: string
+        private_ip:
+          description: The node's private IP address
+          type: string
+        public_dns:
+          description: The node's public DNS name
+          type: string
+        public_ip:
+          description: The node's public IP address
+          type: string
+        region:
+          description: The node's region
+          type: string
+        root_volume:
+          description: Root volume ID or name
+          type: string
+        secondary_private_ip:
+          description: Secondary Private IP
+          type: string
+        secondary_subnet_id:
+          description: Secondary Subnet IP
+          type: string
+        subnet_id:
+          description: ID of the subnet on which this node is deployed
+          type: string
+        useTimeSync:
+          description: True if `use time sync` is enabled
+          type: boolean
+      type: object
+    MasterNode:
+      example:
+        cloudInfo:
+          mount_roots: mount_roots
+          kubernetesNamespace: kubernetesNamespace
+          public_ip: public_ip
+          secondary_subnet_id: secondary_subnet_id
+          private_dns: private_dns
+          useTimeSync: true
+          kubernetesPodName: kubernetesPodName
+          root_volume: root_volume
+          secondary_private_ip: secondary_private_ip
+          private_ip: private_ip
+          cloud: cloud
+          lun_indexes:
+          - 6
+          - 6
+          assignPublicIP: true
+          az: az
+          subnet_id: subnet_id
+          public_dns: public_dns
+          region: region
+          instance_type: instance_type
+        masterRpcPort: 0
+      properties:
+        cloudInfo:
+          $ref: '#/components/schemas/CloudSpecificInfo'
+        masterRpcPort:
+          format: int32
+          type: integer
+      required:
+      - cloudInfo
+      - masterRpcPort
+      type: object
+    MastersList_2:
+      properties:
+        masters:
+          items:
+            $ref: '#/components/schemas/MasterNode_2'
+          type: array
+      required:
+      - masters
+      type: object
+    DummyBody:
+      description: Dummy value to work around platform bug PLAT-2076
+      properties:
+        dummy:
+          format: int32
+          type: integer
+      type: object
+    CloudSpecificInfo_2:
+      description: Node information reported by the cloud provider
+      properties:
+        assignPublicIP:
+          description: True if the node has a public IP address assigned
+          type: boolean
+        az:
+          description: The node's availability zone
+          type: string
+        cloud:
+          description: The node's cloud provider
+          type: string
+        instance_type:
+          description: The node's instance type
+          type: string
+        mount_roots:
+          description: Mount roots
+          type: string
+        private_dns:
+          description: The node's private DNS
+          type: string
+        private_ip:
+          description: The node's private IP address
+          type: string
+        public_dns:
+          description: The node's public DNS name
+          type: string
+        public_ip:
+          description: The node's public IP address
+          type: string
+        region:
+          description: The node's region
+          type: string
+        secondary_private_ip:
+          description: Secondary Private IP
+          type: string
+        secondary_subnet_id:
+          description: Secondary Subnet IP
+          type: string
+        subnet_id:
+          description: ID of the subnet on which this node is deployed
+          type: string
+        useTimeSync:
+          description: True if `use time sync` is enabled
+          type: boolean
+      type: object
+    MasterNode_2:
+      properties:
+        cloudInfo:
+          $ref: '#/components/schemas/CloudSpecificInfo_2'
+        masterRpcPort:
+          format: int32
+          type: integer
+      required:
+      - cloudInfo
+      - masterRpcPort
+      type: object
+  securitySchemes:
+    apiKeyAuth:
+      description: API token passed as header
+      in: header
+      name: X-AUTH-YW-API-TOKEN
+      type: apiKey
+externalDocs:
+  description: About YugabyteDB Anywhere
+  url: https://docs.yugabyte.com/latest/yugabyte-platform/
+x-refined-from:
+- openapi_2.yaml
+- platform.swagger.json

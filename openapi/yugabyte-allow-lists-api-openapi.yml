@@ -1,0 +1,326 @@
+openapi: 3.2.0
+info:
+  title: YugabyteDB Aeon REST Allow Lists API
+  description: The YugabyteDB Aeon REST API provides programmatic access to YugabyteDB's fully managed cloud database service.
+  version: v1
+  contact:
+    name: Yugabyte Support
+    url: https://support.yugabyte.com
+  termsOfService: https://www.yugabyte.com/yugabytedb-managed-service-terms/
+  x-generated-from: documentation
+  x-source-url: https://api-docs.yugabyte.com/docs/managed-apis/
+  x-last-validated: '2026-05-03'
+servers:
+- url: https://cloud.yugabyte.com/api/public/v1
+  description: YugabyteDB Aeon Production Server
+security:
+- bearerAuth: []
+tags:
+- name: Allow Lists
+  description: Manage IP allow lists that control which client IP addresses or CIDR ranges are permitted to connect to a cluster.
+paths:
+  /accounts/{accountId}/projects/{projectId}/allow-lists:
+    get:
+      operationId: listAllowLists
+      summary: YugabyteDB Aeon List Allow Lists
+      description: Returns all IP allow lists defined within the specified project. Allow lists control which IP addresses or CIDR ranges are permitted to connect to clusters in the project.
+      tags:
+      - Allow Lists
+      parameters:
+      - $ref: '#/components/parameters/accountId'
+      - $ref: '#/components/parameters/projectId'
+      responses:
+        '200':
+          description: List of allow lists returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/AllowList'
+              examples:
+                ListAllowLists200Example:
+                  summary: Default listAllowLists 200 response
+                  x-microcks-default: true
+                  value:
+                    data:
+                    - id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+                      name: example-name
+                      description: Example description
+                      allow_list:
+                      - example-allow_list
+                      created_at: '2026-05-03T12:00:00Z'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: createAllowList
+      summary: YugabyteDB Aeon Create Allow List
+      description: Creates a new IP allow list with one or more CIDR entries. The allow list can be assigned to one or more clusters to permit inbound connections from the specified IP ranges.
+      tags:
+      - Allow Lists
+      parameters:
+      - $ref: '#/components/parameters/accountId'
+      - $ref: '#/components/parameters/projectId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AllowListSpec'
+            examples:
+              CreateAllowListRequestExample:
+                summary: Default createAllowList request
+                x-microcks-default: true
+                value:
+                  name: example-name
+                  description: Example description
+                  allow_list:
+                  - example-allow_list
+      responses:
+        '200':
+          description: Allow list created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AllowList'
+              examples:
+                CreateAllowList200Example:
+                  summary: Default createAllowList 200 response
+                  x-microcks-default: true
+                  value:
+                    id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+                    name: example-name
+                    description: Example description
+                    allow_list:
+                    - example-allow_list
+                    created_at: '2026-05-03T12:00:00Z'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /accounts/{accountId}/projects/{projectId}/allow-lists/{allowListId}:
+    get:
+      operationId: getAllowList
+      summary: YugabyteDB Aeon Get Allow List
+      description: Returns details for a specific IP allow list, including its name, description, and all CIDR entries it contains.
+      tags:
+      - Allow Lists
+      parameters:
+      - $ref: '#/components/parameters/accountId'
+      - $ref: '#/components/parameters/projectId'
+      - $ref: '#/components/parameters/allowListId'
+      responses:
+        '200':
+          description: Allow list returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AllowList'
+              examples:
+                GetAllowList200Example:
+                  summary: Default getAllowList 200 response
+                  x-microcks-default: true
+                  value:
+                    id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+                    name: example-name
+                    description: Example description
+                    allow_list:
+                    - example-allow_list
+                    created_at: '2026-05-03T12:00:00Z'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: deleteAllowList
+      summary: YugabyteDB Aeon Delete Allow List
+      description: Permanently deletes the specified IP allow list. The allow list must not be currently assigned to any cluster before it can be deleted.
+      tags:
+      - Allow Lists
+      parameters:
+      - $ref: '#/components/parameters/accountId'
+      - $ref: '#/components/parameters/projectId'
+      - $ref: '#/components/parameters/allowListId'
+      responses:
+        '200':
+          description: Allow list deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      description: Standard error response returned by the API on failure.
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: Machine-readable error code.
+              example: OK
+            message:
+              type: string
+              description: Human-readable description of the error.
+              example: Example message
+            status:
+              type: integer
+              description: HTTP status code.
+              example: 100
+          example:
+            code: OK
+            message: Example message
+            status: 100
+    AllowList:
+      type: object
+      description: An IP allow list containing CIDR entries that are permitted to connect to clusters.
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique identifier for the allow list.
+          example: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        name:
+          type: string
+          description: Display name for the allow list.
+          example: example-name
+        description:
+          type: string
+          description: Human-readable description of the allow list's purpose.
+          example: Example description
+        allow_list:
+          type: array
+          description: List of CIDR entries permitted to connect.
+          items:
+            type: string
+            description: An IPv4 or IPv6 CIDR range (e.g., 192.168.1.0/24).
+          example:
+          - example-allow_list
+        created_at:
+          type: string
+          format: date-time
+          description: Timestamp when the allow list was created.
+          example: '2026-05-03T12:00:00Z'
+    AllowListSpec:
+      type: object
+      description: Specification for creating an IP allow list.
+      required:
+      - name
+      - allow_list
+      properties:
+        name:
+          type: string
+          description: Display name for the allow list.
+          maxLength: 64
+          example: example-name
+        description:
+          type: string
+          description: Human-readable description of the allow list's purpose.
+          example: Example description
+        allow_list:
+          type: array
+          description: List of CIDR entries to include in the allow list.
+          items:
+            type: string
+            description: An IPv4 or IPv6 CIDR range.
+          example:
+          - example-allow_list
+  parameters:
+    allowListId:
+      name: allowListId
+      in: path
+      required: true
+      description: The unique identifier of the IP allow list.
+      schema:
+        type: string
+        format: uuid
+      example: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+    projectId:
+      name: projectId
+      in: path
+      required: true
+      description: The unique identifier of the project within the account.
+      schema:
+        type: string
+        format: uuid
+      example: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+    accountId:
+      name: accountId
+      in: path
+      required: true
+      description: The unique identifier of the YugabyteDB Aeon account.
+      schema:
+        type: string
+        format: uuid
+      example: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+  responses:
+    Unauthorized:
+      description: The API key is missing, invalid, or expired.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          examples:
+            UnauthorizedExample:
+              summary: Default Unauthorized response
+              x-microcks-default: true
+              value:
+                error:
+                  code: OK
+                  message: Example message
+                  status: 100
+    BadRequest:
+      description: The request was malformed or contained invalid parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          examples:
+            BadRequestExample:
+              summary: Default BadRequest response
+              x-microcks-default: true
+              value:
+                error:
+                  code: OK
+                  message: Example message
+                  status: 100
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          examples:
+            NotFoundExample:
+              summary: Default NotFound response
+              x-microcks-default: true
+              value:
+                error:
+                  code: OK
+                  message: Example message
+                  status: 100
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: API key obtained from the YugabyteDB Aeon UI under User Profile > API Keys. Pass the key as a Bearer token in the Authorization header.
+externalDocs:
+  description: YugabyteDB Aeon REST API Documentation
+  url: https://docs.yugabyte.com/stable/yugabyte-cloud/managed-automation/managed-api/

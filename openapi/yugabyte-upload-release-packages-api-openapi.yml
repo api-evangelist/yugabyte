@@ -1,0 +1,156 @@
+openapi: 3.2.0
+info:
+  contact:
+    name: https://docs.yugabyte.com
+  description: ALPHA - NOT FOR EXTERNAL USE
+  license:
+    name: Polyform Free Trial License 1.0.0
+    url: https://github.com/yugabyte/yugabyte-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
+  termsOfService: TODO(chirag)
+  title: YugabyteDB Anywhere Upload Release packages API
+  version: v1
+servers:
+- url: /
+tags:
+- name: Upload Release packages
+paths:
+  /api/v1/customers/{cUUID}/ybdb_release/upload:
+    post:
+      description: 'WARNING: This is a preview API that could change: upload release tgz file'
+      operationId: uploadRelease
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YBPCreateSuccess'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: upload a release tgz
+      tags:
+      - Upload Release packages
+  /api/v1/customers/{cUUID}/ybdb_release/upload/{rUUID}:
+    get:
+      description: 'WARNING: This is a preview API that could change: get uploaded release metadata'
+      operationId: getUploadRelease
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: rUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseExtractMetadata'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: get an uploaded release metadata
+      tags:
+      - Upload Release packages
+components:
+  schemas:
+    YBPCreateSuccess:
+      example:
+        resourceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        resourceUUID:
+          description: UUID of the successfully created resource
+          format: uuid
+          readOnly: true
+          type: string
+      type: object
+    ResponseExtractMetadata:
+      example:
+        release_notes: release_notes
+        sha256: sha256
+        metadata_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        release_type: release_type
+        release_date_msecs: 0
+        version: version
+        platform: LINUX
+        yb_type: YBDB
+        architecture: x86_64
+        status: waiting
+      properties:
+        architecture:
+          enum:
+          - x86_64
+          - aarch64
+          type: string
+        metadata_uuid:
+          format: uuid
+          type: string
+        platform:
+          enum:
+          - LINUX
+          - KUBERNETES
+          type: string
+        release_date_msecs:
+          format: int64
+          type: integer
+        release_notes:
+          type: string
+        release_type:
+          type: string
+        sha256:
+          type: string
+        status:
+          enum:
+          - waiting
+          - running
+          - success
+          - failure
+          type: string
+        version:
+          type: string
+        yb_type:
+          enum:
+          - YBDB
+          type: string
+      required:
+      - architecture
+      - metadata_uuid
+      - platform
+      - release_date_msecs
+      - release_notes
+      - release_type
+      - sha256
+      - status
+      - version
+      - yb_type
+      type: object
+  securitySchemes:
+    apiKeyAuth:
+      description: API token passed as header
+      in: header
+      name: X-AUTH-YW-API-TOKEN
+      type: apiKey
+externalDocs:
+  description: About YugabyteDB Anywhere
+  url: https://docs.yugabyte.com/latest/yugabyte-platform/
+x-original-swagger-version: '2.0'

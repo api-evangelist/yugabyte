@@ -1,0 +1,959 @@
+# x-archived-from: yugabytedb-customer-management-api-openapi.yml
+# x-archived-on: 2026-09-26
+openapi: 3.2.0
+info:
+  title: Yugabytedb Customer management API
+  version: v1
+  contact:
+    name: https://docs.yugabyte.com
+  license:
+    name: Polyform Free Trial License 1.0.0
+    url: https://github.com/yugabyte/yugabyte-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
+  termsOfService: TODO(chirag)
+  description: 'Operations tagged Customer management across 2 of this provider''s published API definitions: openapi_2.yaml, platform.swagger.json. Each path carries the servers of the definition it was published in.'
+servers:
+- url: /
+tags:
+- name: Customer Management
+paths:
+  /api/v1/customers:
+    get:
+      operationId: ListOfCustomers
+      parameters:
+      - in: query
+        name: request
+        schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Customer'
+                type: array
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: List customers
+      tags:
+      - Customer Management
+    servers:
+    - url: /
+  /api/v1/customers/{cUUID}:
+    delete:
+      operationId: deleteCustomer
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YBPSuccess'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Delete a customer
+      tags:
+      - Customer Management
+    get:
+      operationId: CustomerDetail
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerDetailsData'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Get a customer's details
+      tags:
+      - Customer Management
+    put:
+      operationId: UpdateCustomer
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerAlertData'
+        description: Customer data to be updated
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Update a customer
+      tags:
+      - Customer Management
+      x-codegen-request-body-name: Customer
+    servers:
+    - url: /
+  /api/v1/customers/{cUUID}/host_info:
+    get:
+      operationId: getHostInfo
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  properties: {}
+                  type: object
+                type: object
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Get a customer's host info
+      tags:
+      - Customer Management
+    servers:
+    - url: /
+  /api/v1/customers/{cUUID}/metrics:
+    post:
+      description: YbaApi Internal.
+      operationId: metrics
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MetricQueryParams'
+        description: Metrics to be added
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  properties: {}
+                  type: object
+                type: object
+          description: successful operation
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YBPError'
+          description: When request fails validations.
+      security:
+      - apiKeyAuth: []
+      summary: Add metrics to a customer
+      tags:
+      - Customer Management
+      x-codegen-request-body-name: Metrics
+    servers:
+    - url: /
+components:
+  schemas:
+    Customer:
+      description: Customer information, including associated universes
+      example:
+        code: admin
+        customerId: 1
+        name: sridhar
+        creationDate: 2022-12-12 13:07:18+00:00
+        uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        code:
+          description: Customer code
+          example: admin
+          type: string
+        creationDate:
+          description: Creation time
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          readOnly: true
+          type: string
+        customerId:
+          description: Customer ID
+          example: 1
+          format: int64
+          readOnly: true
+          type: integer
+        name:
+          description: Name of customer
+          example: sridhar
+          type: string
+        uuid:
+          description: Customer UUID
+          format: uuid
+          readOnly: true
+          type: string
+      required:
+      - code
+      - name
+      type: object
+    CustomerDetailsData:
+      description: Customer details, including their universe UUIDs. Only the customer code and name are modifiable.
+      example:
+        code: admin
+        alertingData:
+          alertingEmail: test@example.com
+          statusUpdateIntervalMs: 1
+          checkIntervalMs: 6
+          reportOnlyErrors: true
+          sendAlertsToYb: true
+          activeAlertNotificationIntervalMs: 0
+        callhomeLevel: MEDIUM
+        customerId: 5
+        name: Sridhar
+        smtpData:
+          smtpServer: smtp.example.com
+          smtpUsername: testsmtp
+          smtpPort: 465
+          smtpPassword: XurenRknsc
+          emailFrom: test@example.com
+          useTLS: false
+          useSSL: true
+        creationDate: 2022-12-12 13:07:18+00:00
+        universeUUIDs: '["c3595ca7-68a3-47f0-b1b2-1725886d5ed5", "9e0bb733-556c-4935-83dd-6b742a2c32e6"]'
+        uuid: uuid
+      properties:
+        alertingData:
+          $ref: '#/components/schemas/AlertingData'
+        callhomeLevel:
+          description: Call-home level
+          example: MEDIUM
+          readOnly: true
+          type: string
+        code:
+          description: Customer code
+          example: admin
+          type: string
+        creationDate:
+          description: Creation timestamp
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          readOnly: true
+          type: string
+        customerId:
+          description: Customer ID
+          format: int32
+          readOnly: true
+          type: integer
+        name:
+          description: Customer name
+          example: Sridhar
+          type: string
+        smtpData:
+          $ref: '#/components/schemas/SmtpData'
+        universeUUIDs:
+          description: Associated universe IDs
+          example: '["c3595ca7-68a3-47f0-b1b2-1725886d5ed5", "9e0bb733-556c-4935-83dd-6b742a2c32e6"]'
+          items:
+            format: uuid
+            type: string
+          readOnly: true
+          type: array
+        uuid:
+          description: User UUID
+          readOnly: true
+          type: string
+      required:
+      - code
+      - name
+      type: object
+    CustomerAlertData:
+      description: Format of an alert, used by the API and UI to validate data against input constraints
+      example:
+        features:
+          key: '{}'
+        password: XurenRknsc
+        code: code
+        alertingData:
+          alertingEmail: test@example.com
+          statusUpdateIntervalMs: 1
+          checkIntervalMs: 6
+          reportOnlyErrors: true
+          sendAlertsToYb: true
+          activeAlertNotificationIntervalMs: 0
+        callhomeLevel: callhomeLevel
+        name: Test alert
+        confirmPassword: XurenRknsc
+        smtpData:
+          smtpServer: smtp.example.com
+          smtpUsername: testsmtp
+          smtpPort: 465
+          smtpPassword: XurenRknsc
+          emailFrom: test@example.com
+          useTLS: false
+          useSSL: true
+        email: test@example.com
+      properties:
+        alertingData:
+          $ref: '#/components/schemas/AlertingData'
+        callhomeLevel:
+          type: string
+        code:
+          description: Alert code
+          type: string
+        confirmPassword:
+          description: Email password confirmation
+          example: XurenRknsc
+          type: string
+        email:
+          description: Alert email address
+          example: test@example.com
+          type: string
+        features:
+          additionalProperties:
+            properties: {}
+            type: object
+          description: Features
+          type: object
+        name:
+          description: Alert name
+          example: Test alert
+          type: string
+        password:
+          description: Email password
+          example: XurenRknsc
+          type: string
+        smtpData:
+          $ref: '#/components/schemas/SmtpData'
+      required:
+      - alertingData
+      - callhomeLevel
+      - smtpData
+      type: object
+    SmtpData:
+      description: SMTP configuration information
+      example:
+        smtpServer: smtp.example.com
+        smtpUsername: testsmtp
+        smtpPort: 465
+        smtpPassword: XurenRknsc
+        emailFrom: test@example.com
+        useTLS: false
+        useSSL: true
+      properties:
+        emailFrom:
+          description: SMTP email 'from' address
+          example: test@example.com
+          type: string
+        smtpPassword:
+          description: SMTP password
+          example: XurenRknsc
+          type: string
+        smtpPort:
+          description: SMTP port number
+          example: 465
+          format: int32
+          type: integer
+        smtpServer:
+          description: SMTP server
+          example: smtp.example.com
+          type: string
+        smtpUsername:
+          description: SMTP email username
+          example: testsmtp
+          type: string
+        useSSL:
+          description: Connect to SMTP server using SSL
+          example: true
+          type: boolean
+        useTLS:
+          description: Connect to SMTP server using TLS
+          example: false
+          type: boolean
+      type: object
+    MetricQueryParams:
+      description: Metrics request data
+      example:
+        streamId: streamId
+        metricsWithSettings:
+        - timeAggregation: DEFAULT
+          metric: metric
+          aggregatedValueFunction: DEFAULT
+          splitCount: 6
+          nodeAggregation: DEFAULT
+          splitMode: NONE
+          returnAggregatedValue: true
+          splitType: NONE
+        - timeAggregation: DEFAULT
+          metric: metric
+          aggregatedValueFunction: DEFAULT
+          splitCount: 6
+          nodeAggregation: DEFAULT
+          splitMode: NONE
+          returnAggregatedValue: true
+          splitType: NONE
+        start: 1
+        availabilityZones:
+        - availabilityZones
+        - availabilityZones
+        nodePrefix: nodePrefix
+        xclusterConfigUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        nodeNames:
+        - nodeNames
+        - nodeNames
+        tableName: tableName
+        regionCodes:
+        - regionCodes
+        - regionCodes
+        serverType: MASTER
+        clusterUuids:
+        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        tableId: tableId
+        end: 0
+        recharts: true
+        metrics:
+        - metrics
+        - metrics
+      properties:
+        availabilityZones:
+          description: YbaApi Internal. Availability zone code
+          items:
+            type: string
+          type: array
+        clusterUuids:
+          description: YbaApi Internal. Cluster UUIDs
+          items:
+            format: uuid
+            type: string
+          type: array
+        end:
+          description: YbaApi Internal. End time
+          format: int64
+          type: integer
+        metrics:
+          description: YbaApi Internal. Metrics
+          items:
+            type: string
+          type: array
+        metricsWithSettings:
+          description: YbaApi Internal. List of metrics with custom settings
+          items:
+            $ref: '#/components/schemas/MetricSettings'
+          type: array
+        nodeNames:
+          description: YbaApi Internal. Node names
+          items:
+            type: string
+          type: array
+        nodePrefix:
+          description: YbaApi Internal. Node prefix
+          type: string
+        recharts:
+          type: boolean
+        regionCodes:
+          description: YbaApi Internal. Region code
+          items:
+            type: string
+          type: array
+        serverType:
+          description: YbaApi Internal. Server type
+          enum:
+          - MASTER
+          - TSERVER
+          - CONTROLLER
+          - YQLSERVER
+          - YSQLSERVER
+          - REDISSERVER
+          - EITHER
+          type: string
+        start:
+          description: YbaApi Internal. Start time
+          format: int64
+          type: integer
+        streamId:
+          description: YbaApi Internal. Stream id
+          type: string
+        tableId:
+          description: YbaApi Internal. Table id
+          type: string
+        tableName:
+          description: YbaApi Internal. Table name
+          type: string
+        xclusterConfigUuid:
+          format: uuid
+          type: string
+      required:
+      - recharts
+      - start
+      - xclusterConfigUuid
+      type: object
+    YBPError:
+      description: Generic error response from the YugabyteDB Anywhere API
+      example:
+        success: false
+        requestUri: /customers/8918921-af3782-633de/universe/8173ab-fd2453/create
+        error: There was a problem creating the universe
+        httpMethod: POST
+        errorJson: '{ "foo" : "bar", "baz" : [1, 2, 3] }'
+        requestJson: '{ "foo" : "bar", "baz" : [1, 2, 3] }'
+      properties:
+        error:
+          description: User-visible unstructured error message
+          example: There was a problem creating the universe
+          type: string
+        errorJson:
+          description: User visible structured error message as json object
+          example: '{ "foo" : "bar", "baz" : [1, 2, 3] }'
+          properties: {}
+          type: object
+        httpMethod:
+          description: Method for HTTP call that resulted in this error
+          example: POST
+          type: string
+        requestJson:
+          description: User request JSON object
+          example: '{ "foo" : "bar", "baz" : [1, 2, 3] }'
+          properties: {}
+          type: object
+        requestUri:
+          description: URI for HTTP request that resulted in this error
+          example: /customers/8918921-af3782-633de/universe/8173ab-fd2453/create
+          type: string
+        success:
+          description: Always set to false to indicate failure
+          example: false
+          type: boolean
+      type: object
+    YBPSuccess:
+      example:
+        success: true
+        message: message
+      properties:
+        message:
+          description: API response message.
+          readOnly: true
+          type: string
+        success:
+          description: API operation status. A value of true indicates the operation was successful.
+          readOnly: true
+          type: boolean
+      type: object
+    AlertingData:
+      description: Alerting configuration
+      example:
+        alertingEmail: test@example.com
+        statusUpdateIntervalMs: 1
+        checkIntervalMs: 6
+        reportOnlyErrors: true
+        sendAlertsToYb: true
+        activeAlertNotificationIntervalMs: 0
+      properties:
+        activeAlertNotificationIntervalMs:
+          description: Period, which is used to send active alert notifications
+          format: int64
+          type: integer
+        alertingEmail:
+          description: Alert email address
+          example: test@example.com
+          type: string
+        checkIntervalMs:
+          description: Alert interval, in milliseconds
+          format: int64
+          type: integer
+        reportOnlyErrors:
+          description: Trigger an alert only for errors
+          type: boolean
+        sendAlertsToYb:
+          description: Send alerts to YB as well as to customer
+          type: boolean
+        statusUpdateIntervalMs:
+          description: Status update of alert interval, in milliseconds
+          format: int64
+          type: integer
+      type: object
+    MetricSettings:
+      description: Settings, selected for particular metric
+      example:
+        timeAggregation: DEFAULT
+        metric: metric
+        aggregatedValueFunction: DEFAULT
+        splitCount: 6
+        nodeAggregation: DEFAULT
+        splitMode: NONE
+        returnAggregatedValue: true
+        splitType: NONE
+      properties:
+        aggregatedValueFunction:
+          description: YbaApi Internal. Defines the method of metrics aggregation used to obtain additional aggregate time series. The provided aggregator wraps over the final query. Only applicable if `returnAggregatedValue = true`.
+          enum:
+          - DEFAULT
+          - MIN
+          - MAX
+          - AVG
+          - SUM
+          type: string
+        metric:
+          description: YbaApi Internal. Metric name
+          type: string
+        nodeAggregation:
+          description: YbaApi Internal. Top level aggregation for each metric line.
+          enum:
+          - DEFAULT
+          - MIN
+          - MAX
+          - AVG
+          - SUM
+          type: string
+        returnAggregatedValue:
+          description: YbaApi Internal. Defines if we return additional aggregate time series (ex. avg, min) when we are selecting a subset of time series to return (ex. top K, bottom k).
+          type: boolean
+        splitCount:
+          description: YbaApi Internal. Defines how many node lines we return in case we split by nodes/tables/etc.
+          format: int32
+          type: integer
+        splitMode:
+          description: YbaApi Internal. Controls if we split nodes, tables, etc. into own lines OR aggregate  and how we select lines in case of split query
+          enum:
+          - NONE
+          - TOP
+          - BOTTOM
+          type: string
+        splitType:
+          description: YbaApi Internal. Defines set of labels, which we use for a split query
+          enum:
+          - NONE
+          - NODE
+          - TABLE
+          - NAMESPACE
+          type: string
+        timeAggregation:
+          description: YbaApi Internal. Way of metrics aggregation over time
+          enum:
+          - DEFAULT
+          - MIN
+          - MAX
+          - AVG
+          type: string
+      required:
+      - metric
+      type: object
+    Customer_2:
+      description: Customer information, including associated universes
+      properties:
+        code:
+          description: Customer code
+          example: admin
+          type: string
+        creationDate:
+          description: Creation time
+          example: 2021-06-17T15:00:05-0400
+          format: date-time
+          readOnly: true
+          type: string
+        customerId:
+          description: Customer ID
+          example: 1
+          format: int64
+          readOnly: true
+          type: integer
+        name:
+          description: Name of customer
+          example: sridhar
+          type: string
+        universeUUIDs:
+          description: Universe UUIDs
+          example: '[c3595ca7-68a3-47f0-b1b2-1725886d5ed5, 9e0bb733-556c-4935-83dd-6b742a2c32e6]'
+          items:
+            format: uuid
+            type: string
+          readOnly: true
+          type: array
+          uniqueItems: true
+        uuid:
+          description: Customer UUID
+          format: uuid
+          readOnly: true
+          type: string
+      required:
+      - code
+      - name
+      type: object
+    CustomerDetailsData_2:
+      description: Customer details, including their universe UUIDs. Only the customer code and name are modifiable.
+      properties:
+        alertingData:
+          $ref: '#/components/schemas/AlertingData_2'
+          description: Alerts
+          readOnly: true
+        callhomeLevel:
+          description: Call-home level
+          example: MEDIUM
+          readOnly: true
+          type: string
+        code:
+          description: Customer code
+          example: admin
+          type: string
+        creationDate:
+          description: Creation timestamp
+          example: '2021-06-17 15:00:05'
+          format: date-time
+          readOnly: true
+          type: string
+        customerId:
+          description: Customer ID
+          format: int32
+          readOnly: true
+          type: integer
+        name:
+          description: Customer name
+          example: Sridhar
+          type: string
+        smtpData:
+          $ref: '#/components/schemas/SmtpData_2'
+          description: SMTP
+          readOnly: true
+        universeUUIDs:
+          description: Associated universe IDs
+          example: '[c3595ca7-68a3-47f0-b1b2-1725886d5ed5, 9e0bb733-556c-4935-83dd-6b742a2c32e6]'
+          items:
+            format: uuid
+            type: string
+          readOnly: true
+          type: array
+        uuid:
+          description: User UUID
+          readOnly: true
+          type: string
+      required:
+      - code
+      - name
+      type: object
+    CustomerAlertData_2:
+      description: Format of an alert, used by the API and UI to validate data against input constraints
+      properties:
+        alertingData:
+          $ref: '#/components/schemas/AlertingData_2'
+        callhomeLevel:
+          type: string
+        code:
+          description: Alert code
+          type: string
+        confirmPassword:
+          description: Email password confirmation
+          example: XurenRknsc
+          type: string
+        email:
+          description: Alert email address
+          example: test@example.com
+          type: string
+        features:
+          additionalProperties:
+            type: object
+          description: Features
+          type: object
+        name:
+          description: Alert name
+          example: Test alert
+          type: string
+        password:
+          description: Email password
+          example: XurenRknsc
+          type: string
+        smtpData:
+          $ref: '#/components/schemas/SmtpData_2'
+      required:
+      - alertingData
+      - callhomeLevel
+      - smtpData
+      type: object
+    SmtpData_2:
+      description: SMTP configuration information
+      properties:
+        emailFrom:
+          description: SMTP email 'from' address
+          example: test@example.com
+          type: string
+        smtpPassword:
+          description: SMTP password
+          example: XurenRknsc
+          type: string
+        smtpPort:
+          description: SMTP port number
+          example: 465
+          format: int32
+          type: integer
+        smtpServer:
+          description: SMTP server
+          example: smtp.example.com
+          type: string
+        smtpUsername:
+          description: SMTP email username
+          example: testsmtp
+          type: string
+        useSSL:
+          description: Connect to SMTP server using SSL
+          example: true
+          type: boolean
+        useTLS:
+          description: Connect to SMTP server using TLS
+          example: false
+          type: boolean
+      type: object
+    MetricQueryParams_2:
+      description: Metrics request data
+      properties:
+        end:
+          description: End time
+          format: int64
+          type: integer
+        isRecharts:
+          description: Is Recharts
+          type: boolean
+        metrics:
+          description: Metrics
+          items:
+            type: string
+          type: array
+        metricsWithSettings:
+          description: List of metrics with custom settings
+          items:
+            $ref: '#/components/schemas/MetricSettings_2'
+          type: array
+        nodeName:
+          description: Node name
+          type: string
+        nodePrefix:
+          description: Node prefix
+          type: string
+        start:
+          description: Start time
+          format: int64
+          type: integer
+      required:
+      - start
+      type: object
+    YBPError_2:
+      description: Generic error response from the YugabyteDB Anywhere API
+      properties:
+        error:
+          description: User-visible unstructured error message
+          example: There was a problem creating the universe
+          type: string
+        errorJson:
+          description: User visible error message as json object
+          example: '{ "foo" : "bar", "baz" : [1, 2, 3] }'
+          type: object
+        success:
+          description: Always set to false to indicate failure
+          example: false
+          type: boolean
+      type: object
+    YBPSuccess_2:
+      properties:
+        message:
+          description: API response message.
+          readOnly: true
+          type: string
+        success:
+          description: API operation status. A value of true indicates the operation was successful.
+          readOnly: true
+          type: boolean
+      type: object
+    AlertingData_2:
+      description: Alerting configuration
+      properties:
+        activeAlertNotificationIntervalMs:
+          description: Period, which is used to send active alert notifications
+          format: int64
+          type: integer
+        alertingEmail:
+          description: Alert email address
+          example: test@example.com
+          type: string
+        checkIntervalMs:
+          description: Alert interval, in milliseconds
+          format: int64
+          type: integer
+        reportOnlyErrors:
+          description: Trigger an alert only for errors
+          type: boolean
+        sendAlertsToYb:
+          description: Send alerts to YB as well as to customer
+          type: boolean
+        statusUpdateIntervalMs:
+          description: Status update of alert interval, in milliseconds
+          format: int64
+          type: integer
+      type: object
+    MetricSettings_2:
+      description: Settings, selected for particular metric
+      properties:
+        aggregation:
+          description: Way of metrics aggregation over time and across nodes
+          enum:
+          - DEFAULT
+          - MIN
+          - MAX
+          - AVG
+          - SUM
+          type: string
+        metric:
+          description: Metric name
+          type: string
+        splitTopNodes:
+          description: Query result for 'top' nodes separately. 0 means aggregate over all nodes
+          format: int32
+          type: integer
+      required:
+      - aggregation
+      - metric
+      - splitTopNodes
+      type: object
+  securitySchemes:
+    apiKeyAuth:
+      description: API token passed as header
+      in: header
+      name: X-AUTH-YW-API-TOKEN
+      type: apiKey
+externalDocs:
+  description: About YugabyteDB Anywhere
+  url: https://docs.yugabyte.com/latest/yugabyte-platform/
+x-refined-from:
+- openapi_2.yaml
+- platform.swagger.json

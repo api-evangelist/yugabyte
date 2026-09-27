@@ -1,0 +1,658 @@
+openapi: 3.2.0
+info:
+  title: Yugabytedb Support Bundle management API
+  version: v1
+  contact:
+    name: https://docs.yugabyte.com
+  license:
+    name: Polyform Free Trial License 1.0.0
+    url: https://github.com/yugabyte/yugabyte-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
+  termsOfService: TODO(chirag)
+  description: 'Operations tagged Support Bundle management across 2 of this provider''s published API definitions: openapi_2.yaml, platform.swagger.json. Each path carries the servers of the definition it was published in.'
+servers:
+- url: /
+tags:
+- name: Support Bundle management
+paths:
+  /api/v1/customers/{cUUID}/support_bundle/components:
+    servers:
+    - url: /
+    get:
+      operationId: listSupportBundleComponents
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  enum:
+                  - UniverseLogs
+                  - OutputFiles
+                  - ErrorFiles
+                  - CoreFiles
+                  - GFlags
+                  - Instance
+                  - ConsensusMeta
+                  - TabletMeta
+                  - YbcLogs
+                  - NodeAgent
+                  - SystemLogs
+                  - TabletReport
+                  - K8sInfo
+                  - YbaMetadata
+                  - PrometheusMetrics
+                  - PerfAdvisor
+                  - ApplicationLogs
+                  type: string
+                type: array
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: List all components available in support bundle
+      tags:
+      - Support Bundle management
+  /api/v1/customers/{cUUID}/universes/{uniUUID}/support_bundle:
+    servers:
+    - url: /
+    get:
+      operationId: listSupportBundle
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: uniUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/SupportBundle'
+                type: array
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: List all support bundles from a universe
+      tags:
+      - Support Bundle management
+    post:
+      operationId: createSupportBundle
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: uniUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SupportBundleFormData'
+        description: post support bundle info
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YBPTask'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Create support bundle for specific universe
+      tags:
+      - Support Bundle management
+      x-codegen-request-body-name: supportBundle
+  /api/v1/customers/{cUUID}/universes/{uniUUID}/support_bundle/estimate_size:
+    servers:
+    - url: /
+    post:
+      description: YbaApi Internal.
+      operationId: estimateSupportBundleSize
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: uniUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SupportBundleFormData'
+        description: support bundle info
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SupportBundleSizeEstimateResponse'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Estimate support bundle size for specific universe
+      tags:
+      - Support Bundle management
+      x-codegen-request-body-name: supportBundle
+  /api/v1/customers/{cUUID}/universes/{uniUUID}/support_bundle/{sbUUID}:
+    servers:
+    - url: /
+    delete:
+      operationId: deleteSupportBundle
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: uniUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: sbUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YBPSuccess'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Delete a support bundle
+      tags:
+      - Support Bundle management
+    get:
+      operationId: getSupportBundle
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: uniUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: sbUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SupportBundle'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Get a support bundle from a universe
+      tags:
+      - Support Bundle management
+  /api/v1/customers/{cUUID}/universes/{uniUUID}/support_bundle/{sbUUID}/download:
+    servers:
+    - url: /
+    get:
+      operationId: downloadSupportBundle
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: uniUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: sbUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/x-compressed:
+              schema:
+                type: string
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Download support bundle
+      tags:
+      - Support Bundle management
+components:
+  schemas:
+    YBPSuccess:
+      example:
+        success: true
+        message: message
+      properties:
+        message:
+          description: API response message.
+          readOnly: true
+          type: string
+        success:
+          description: API operation status. A value of true indicates the operation was successful.
+          readOnly: true
+          type: boolean
+      type: object
+    YBPTask:
+      example:
+        taskUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        resourceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        resourceUUID:
+          description: UUID of the resource being modified by the task
+          format: uuid
+          readOnly: true
+          type: string
+        taskUUID:
+          description: Task UUID
+          format: uuid
+          readOnly: true
+          type: string
+      type: object
+    BundleDetails:
+      example:
+        maxNumRecentCores: 6
+        components:
+        - UniverseLogs
+        - UniverseLogs
+        paDumpStartDate: 2022-12-12 13:07:18+00:00
+        promDumpEndDate: 2022-12-12 13:07:18+00:00
+        promDumpStartDate: 2022-12-12 13:07:18+00:00
+        promMetricsFormat: PROMQL_JSON
+        paDumpEndDate: 2022-12-12 13:07:18+00:00
+        paMetricsFormat: PROMQL_JSON
+        promMetricsStepSec: 1
+        prometheusMetricsTypes:
+        - MASTER_EXPORT
+        - MASTER_EXPORT
+        maxCoreFileSize: 0
+      properties:
+        components:
+          items:
+            enum:
+            - UniverseLogs
+            - OutputFiles
+            - ErrorFiles
+            - CoreFiles
+            - GFlags
+            - Instance
+            - ConsensusMeta
+            - TabletMeta
+            - YbcLogs
+            - NodeAgent
+            - SystemLogs
+            - TabletReport
+            - K8sInfo
+            - YbaMetadata
+            - PrometheusMetrics
+            - PerfAdvisor
+            - ApplicationLogs
+            type: string
+          type: array
+        maxCoreFileSize:
+          description: Max size of the collected cores (if any)
+          format: int64
+          type: integer
+        maxNumRecentCores:
+          description: Max number of most recent cores to collect (if any)
+          format: int32
+          type: integer
+        paDumpEndDate:
+          description: End date to filter Perf Advisor data
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          type: string
+        paDumpStartDate:
+          description: Start date to filter Perf Advisor data
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          type: string
+        paMetricsFormat:
+          description: Specifies PA Dump metrics format.
+          enum:
+          - PROMQL_JSON
+          - PROM_CHUNK
+          type: string
+        promDumpEndDate:
+          description: End date to filter prometheus metrics till
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          type: string
+        promDumpStartDate:
+          description: Start date to filter prometheus metrics from
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          type: string
+        promMetricsFormat:
+          description: Specifies Prom Dump metrics format.
+          enum:
+          - PROMQL_JSON
+          - PROM_CHUNK
+          type: string
+        promMetricsStepSec:
+          description: Specifies Prom Dump metrics step in seconds.
+          format: int32
+          type: integer
+        prometheusMetricsTypes:
+          description: List of exports to be included in the prometheus dump
+          items:
+            enum:
+            - MASTER_EXPORT
+            - NODE_EXPORT
+            - PLATFORM
+            - PROMETHEUS
+            - TSERVER_EXPORT
+            - CQL_EXPORT
+            - YSQL_EXPORT
+            type: string
+          type: array
+      required:
+      - components
+      type: object
+    SupportBundleFormData:
+      description: Support bundle form metadata
+      example:
+        maxNumRecentCores: 1
+        components:
+        - UniverseLogs
+        - UniverseLogs
+        paDumpStartDate: 2022-12-12 13:07:18+00:00
+        promDumpEndDate: 2022-12-12 13:07:18+00:00
+        promDumpStartDate: 2022-12-12 13:07:18+00:00
+        endDate: 2022-12-12 13:07:18+00:00
+        filterPgAuditLogs: true
+        prometheusMetricsTypes:
+        - MASTER_EXPORT
+        - MASTER_EXPORT
+        promDumpDownSample: true
+        promQueries:
+          key: promQueries
+        stepPromDumpSecs: 5
+        batchDurationPromDumpMins: 0
+        promMetricsFormat: PROMQL_JSON
+        paDumpEndDate: 2022-12-12 13:07:18+00:00
+        paMetricsFormat: PROMQL_JSON
+        startDate: 2022-12-12 13:07:18+00:00
+        maxCoreFileSize: 6
+        promExportType: PROMQL
+      properties:
+        batchDurationPromDumpMins:
+          description: Batch duration for the prometheus dump (in minutes). Overrides global default. Use with stepPromDumpSecs to get longer historical trends while keeping the same number of data points
+          format: int32
+          type: integer
+        components:
+          description: List of components to be included in the support bundle
+          items:
+            enum:
+            - UniverseLogs
+            - OutputFiles
+            - ErrorFiles
+            - CoreFiles
+            - GFlags
+            - Instance
+            - ConsensusMeta
+            - TabletMeta
+            - YbcLogs
+            - NodeAgent
+            - SystemLogs
+            - TabletReport
+            - K8sInfo
+            - YbaMetadata
+            - PrometheusMetrics
+            - PerfAdvisor
+            - ApplicationLogs
+            type: string
+          type: array
+        endDate:
+          description: End date to filter logs till
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          type: string
+        filterPgAuditLogs:
+          description: Specifies if Postgres audit logs should be filtered out when collecting universe logs.
+          type: boolean
+        maxCoreFileSize:
+          description: Max size in bytes of the recent collected cores (if any)
+          format: int64
+          type: integer
+        maxNumRecentCores:
+          description: Max number of the most recent cores to collect (if any)
+          format: int32
+          type: integer
+        paDumpEndDate:
+          description: End date to filter Perf Advisor data
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          type: string
+        paDumpStartDate:
+          description: Start date to filter Perf Advisor data
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          type: string
+        paMetricsFormat:
+          description: Specifies metrics format.
+          enum:
+          - PROMQL_JSON
+          - PROM_CHUNK
+          type: string
+        promDumpDownSample:
+          description: When promExportType is REMOTE_READ, whether to downsample raw data points by yb.support_bundle.step_prom_dump_secs or stepPromDumpSecs. Ignored for PROMQL (always downsampled). Default true.
+          type: boolean
+        promDumpEndDate:
+          description: End date to filter prometheus metrics till
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          type: string
+        promDumpStartDate:
+          description: Start date to filter prometheus metrics from
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          type: string
+        promExportType:
+          description: 'How to export Prometheus metrics: PROMQL (query_range) or REMOTE_READ. Default PROMQL for backward compatibility.'
+          enum:
+          - PROMQL
+          - REMOTE_READ
+          type: string
+        promMetricsFormat:
+          description: 'When promExportType is REMOTE_READ, format for remote read export: PROMQL_JSON or PROM_CHUNK. Default PROMQL_JSON for backward compatibility.'
+          enum:
+          - PROMQL_JSON
+          - PROM_CHUNK
+          type: string
+        promQueries:
+          additionalProperties:
+            type: string
+          description: Map of query names to custom PromQL queries to collect in promdump
+          type: object
+        prometheusMetricsTypes:
+          description: List of exports to be included in the prometheus dump
+          items:
+            enum:
+            - MASTER_EXPORT
+            - NODE_EXPORT
+            - PLATFORM
+            - PROMETHEUS
+            - TSERVER_EXPORT
+            - CQL_EXPORT
+            - YSQL_EXPORT
+            type: string
+          type: array
+        startDate:
+          description: Start date to filter logs from
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          type: string
+        stepPromDumpSecs:
+          description: Metrics downsample step (in seconds). Overrides global default. Use with batchDurationPromDumpMins to get longer historical trends while keeping the same number of data points
+          format: int32
+          type: integer
+      required:
+      - components
+      - endDate
+      - startDate
+      type: object
+    SupportBundleSizeEstimateResponse:
+      example:
+        data:
+          key:
+            key: 0
+      properties:
+        data:
+          additionalProperties:
+            additionalProperties:
+              format: int64
+              type: integer
+            type: object
+          description: A map of universe node names to component sizes for the given support bundle payload. Global component sizes are mapped to "YBA" node.
+          type: object
+      type: object
+    SupportBundle:
+      example:
+        path: path
+        sizeInBytes: 5
+        scopeUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        bundleDetails:
+          maxNumRecentCores: 6
+          components:
+          - UniverseLogs
+          - UniverseLogs
+          paDumpStartDate: 2022-12-12 13:07:18+00:00
+          promDumpEndDate: 2022-12-12 13:07:18+00:00
+          promDumpStartDate: 2022-12-12 13:07:18+00:00
+          promMetricsFormat: PROMQL_JSON
+          paDumpEndDate: 2022-12-12 13:07:18+00:00
+          paMetricsFormat: PROMQL_JSON
+          promMetricsStepSec: 1
+          prometheusMetricsTypes:
+          - MASTER_EXPORT
+          - MASTER_EXPORT
+          maxCoreFileSize: 0
+        endDate: 2022-12-12 13:07:18+00:00
+        bundleUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        creationDate: 2022-12-12 13:07:18+00:00
+        startDate: 2022-12-12 13:07:18+00:00
+        expirationDate: 2022-12-12 13:07:18+00:00
+        status: Running
+      properties:
+        bundleDetails:
+          $ref: '#/components/schemas/BundleDetails'
+        bundleUUID:
+          format: uuid
+          type: string
+        creationDate:
+          description: Support bundle creation date.
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          type: string
+        endDate:
+          description: Support bundle end date.
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          type: string
+        expirationDate:
+          description: Support bundle expiration date.
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          type: string
+        path:
+          type: string
+        scopeUUID:
+          format: uuid
+          type: string
+        sizeInBytes:
+          description: Size in bytes of the support bundle
+          format: int64
+          type: integer
+        startDate:
+          description: Support bundle start date.
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          type: string
+        status:
+          enum:
+          - Running
+          - Success
+          - Failed
+          - Aborted
+          type: string
+      required:
+      - bundleDetails
+      - bundleUUID
+      - path
+      - scopeUUID
+      - status
+      type: object
+  securitySchemes:
+    apiKeyAuth:
+      description: API token passed as header
+      in: header
+      name: X-AUTH-YW-API-TOKEN
+      type: apiKey
+externalDocs:
+  description: About YugabyteDB Anywhere
+  url: https://docs.yugabyte.com/latest/yugabyte-platform/
+x-refined-from:
+- openapi_2.yaml
+- platform.swagger.json

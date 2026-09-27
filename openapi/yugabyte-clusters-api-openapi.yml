@@ -1,0 +1,650 @@
+openapi: 3.2.0
+info:
+  title: YugabyteDB Aeon REST Clusters API
+  description: The YugabyteDB Aeon REST API provides programmatic access to YugabyteDB's fully managed cloud database service.
+  version: v1
+  contact:
+    name: Yugabyte Support
+    url: https://support.yugabyte.com
+  termsOfService: https://www.yugabyte.com/yugabytedb-managed-service-terms/
+  x-generated-from: documentation
+  x-source-url: https://api-docs.yugabyte.com/docs/managed-apis/
+  x-last-validated: '2026-05-03'
+servers:
+- url: https://cloud.yugabyte.com/api/public/v1
+  description: YugabyteDB Aeon Production Server
+security:
+- bearerAuth: []
+tags:
+- name: Clusters
+  description: Create, list, retrieve, update, pause, resume, and delete YugabyteDB clusters within an account and project. Supports both single-region and multi-region cluster configurations.
+paths:
+  /accounts/{accountId}/projects/{projectId}/clusters:
+    get:
+      operationId: listClusters
+      summary: YugabyteDB Aeon List Clusters
+      description: Returns all clusters within the specified account and project. Each cluster entry includes configuration, state, cloud provider, region placement, and endpoint information.
+      tags:
+      - Clusters
+      parameters:
+      - $ref: '#/components/parameters/accountId'
+      - $ref: '#/components/parameters/projectId'
+      responses:
+        '200':
+          description: List of clusters returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Cluster'
+              examples:
+                ListClusters200Example:
+                  summary: Default listClusters 200 response
+                  x-microcks-default: true
+                  value:
+                    data:
+                    - id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+                      name: example-name
+                      state: ACTIVE
+                      cloud_info:
+                        code: AWS
+                        region: us-east-1
+                      cluster_info:
+                        num_nodes: 10
+                        fault_tolerance: NONE
+                        cluster_tier: FREE
+                        yugabytedb_version: 2.20.0.0
+                      cluster_endpoints:
+                      - accessibility_type: PUBLIC
+                        host: yugabyte.example.com
+                        region: us-east-1
+                      created_at: '2026-05-03T12:00:00Z'
+                      updated_at: '2026-05-03T12:00:00Z'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: createCluster
+      summary: YugabyteDB Aeon Create Cluster
+      description: Creates a new YugabyteDB Aeon cluster within the specified account and project. The request body defines the cluster name, cloud provider, region, tier, node configuration, and fault tolerance level.
+      tags:
+      - Clusters
+      parameters:
+      - $ref: '#/components/parameters/accountId'
+      - $ref: '#/components/parameters/projectId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClusterSpec'
+            examples:
+              CreateClusterRequestExample:
+                summary: Default createCluster request
+                x-microcks-default: true
+                value:
+                  name: example-name
+                  cloud_info:
+                    code: AWS
+                    region: us-east-1
+                  cluster_info:
+                    num_nodes: 10
+                    fault_tolerance: NONE
+                    cluster_tier: FREE
+                    node_info:
+                      num_cores: 10
+                      memory_mb: 100
+                      disk_size_gb: 10
+                    yugabytedb_version: 2.20.0.0
+      responses:
+        '200':
+          description: Cluster creation initiated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cluster'
+              examples:
+                CreateCluster200Example:
+                  summary: Default createCluster 200 response
+                  x-microcks-default: true
+                  value:
+                    id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+                    name: example-name
+                    state: ACTIVE
+                    cloud_info:
+                      code: AWS
+                      region: us-east-1
+                    cluster_info:
+                      num_nodes: 10
+                      fault_tolerance: NONE
+                      cluster_tier: FREE
+                      node_info:
+                        num_cores: 10
+                        memory_mb: 100
+                        disk_size_gb: 10
+                      yugabytedb_version: 2.20.0.0
+                    cluster_endpoints:
+                    - accessibility_type: PUBLIC
+                      host: yugabyte.example.com
+                      region: us-east-1
+                    created_at: '2026-05-03T12:00:00Z'
+                    updated_at: '2026-05-03T12:00:00Z'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /accounts/{accountId}/projects/{projectId}/clusters/{clusterId}:
+    get:
+      operationId: getCluster
+      summary: YugabyteDB Aeon Get Cluster
+      description: Returns detailed information about a specific cluster, including its current state, configuration, cloud provider, region, node count, and connection endpoints.
+      tags:
+      - Clusters
+      parameters:
+      - $ref: '#/components/parameters/accountId'
+      - $ref: '#/components/parameters/projectId'
+      - $ref: '#/components/parameters/clusterId'
+      responses:
+        '200':
+          description: Cluster details returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cluster'
+              examples:
+                GetCluster200Example:
+                  summary: Default getCluster 200 response
+                  x-microcks-default: true
+                  value:
+                    id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+                    name: example-name
+                    state: ACTIVE
+                    cloud_info:
+                      code: AWS
+                      region: us-east-1
+                    cluster_info:
+                      num_nodes: 10
+                      fault_tolerance: NONE
+                      cluster_tier: FREE
+                      node_info:
+                        num_cores: 10
+                        memory_mb: 100
+                        disk_size_gb: 10
+                      yugabytedb_version: 2.20.0.0
+                    cluster_endpoints:
+                    - accessibility_type: PUBLIC
+                      host: yugabyte.example.com
+                      region: us-east-1
+                    created_at: '2026-05-03T12:00:00Z'
+                    updated_at: '2026-05-03T12:00:00Z'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      operationId: updateCluster
+      summary: YugabyteDB Aeon Update Cluster
+      description: Updates the configuration of an existing cluster, such as scaling node count, changing disk size, or modifying fault tolerance settings.
+      tags:
+      - Clusters
+      parameters:
+      - $ref: '#/components/parameters/accountId'
+      - $ref: '#/components/parameters/projectId'
+      - $ref: '#/components/parameters/clusterId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClusterSpec'
+            examples:
+              UpdateClusterRequestExample:
+                summary: Default updateCluster request
+                x-microcks-default: true
+                value:
+                  name: example-name
+                  cloud_info:
+                    code: AWS
+                    region: us-east-1
+                  cluster_info:
+                    num_nodes: 10
+                    fault_tolerance: NONE
+                    cluster_tier: FREE
+                    node_info:
+                      num_cores: 10
+                      memory_mb: 100
+                      disk_size_gb: 10
+                    yugabytedb_version: 2.20.0.0
+      responses:
+        '200':
+          description: Cluster update initiated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cluster'
+              examples:
+                UpdateCluster200Example:
+                  summary: Default updateCluster 200 response
+                  x-microcks-default: true
+                  value:
+                    id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+                    name: example-name
+                    state: ACTIVE
+                    cloud_info:
+                      code: AWS
+                      region: us-east-1
+                    cluster_info:
+                      num_nodes: 10
+                      fault_tolerance: NONE
+                      cluster_tier: FREE
+                      node_info:
+                        num_cores: 10
+                        memory_mb: 100
+                        disk_size_gb: 10
+                      yugabytedb_version: 2.20.0.0
+                    cluster_endpoints:
+                    - accessibility_type: PUBLIC
+                      host: yugabyte.example.com
+                      region: us-east-1
+                    created_at: '2026-05-03T12:00:00Z'
+                    updated_at: '2026-05-03T12:00:00Z'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: deleteCluster
+      summary: YugabyteDB Aeon Delete Cluster
+      description: Permanently deletes the specified cluster and all its data. This operation is irreversible. All backups associated with the cluster are also deleted.
+      tags:
+      - Clusters
+      parameters:
+      - $ref: '#/components/parameters/accountId'
+      - $ref: '#/components/parameters/projectId'
+      - $ref: '#/components/parameters/clusterId'
+      responses:
+        '200':
+          description: Cluster deletion initiated successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /accounts/{accountId}/projects/{projectId}/clusters/{clusterId}/pause:
+    post:
+      operationId: pauseCluster
+      summary: YugabyteDB Aeon Pause Cluster
+      description: Pauses a running cluster to suspend compute billing while retaining all data and configuration. The cluster can be resumed at any time. Only clusters in the ACTIVE state can be paused.
+      tags:
+      - Clusters
+      parameters:
+      - $ref: '#/components/parameters/accountId'
+      - $ref: '#/components/parameters/projectId'
+      - $ref: '#/components/parameters/clusterId'
+      responses:
+        '200':
+          description: Cluster pause initiated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cluster'
+              examples:
+                PauseCluster200Example:
+                  summary: Default pauseCluster 200 response
+                  x-microcks-default: true
+                  value:
+                    id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+                    name: example-name
+                    state: ACTIVE
+                    cloud_info:
+                      code: AWS
+                      region: us-east-1
+                    cluster_info:
+                      num_nodes: 10
+                      fault_tolerance: NONE
+                      cluster_tier: FREE
+                      node_info:
+                        num_cores: 10
+                        memory_mb: 100
+                        disk_size_gb: 10
+                      yugabytedb_version: 2.20.0.0
+                    cluster_endpoints:
+                    - accessibility_type: PUBLIC
+                      host: yugabyte.example.com
+                      region: us-east-1
+                    created_at: '2026-05-03T12:00:00Z'
+                    updated_at: '2026-05-03T12:00:00Z'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /accounts/{accountId}/projects/{projectId}/clusters/{clusterId}/resume:
+    post:
+      operationId: resumeCluster
+      summary: YugabyteDB Aeon Resume Cluster
+      description: Resumes a previously paused cluster, restoring it to the ACTIVE state and resuming compute billing. The cluster restores all data and configuration from before the pause.
+      tags:
+      - Clusters
+      parameters:
+      - $ref: '#/components/parameters/accountId'
+      - $ref: '#/components/parameters/projectId'
+      - $ref: '#/components/parameters/clusterId'
+      responses:
+        '200':
+          description: Cluster resume initiated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cluster'
+              examples:
+                ResumeCluster200Example:
+                  summary: Default resumeCluster 200 response
+                  x-microcks-default: true
+                  value:
+                    id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+                    name: example-name
+                    state: ACTIVE
+                    cloud_info:
+                      code: AWS
+                      region: us-east-1
+                    cluster_info:
+                      num_nodes: 10
+                      fault_tolerance: NONE
+                      cluster_tier: FREE
+                      node_info:
+                        num_cores: 10
+                        memory_mb: 100
+                        disk_size_gb: 10
+                      yugabytedb_version: 2.20.0.0
+                    cluster_endpoints:
+                    - accessibility_type: PUBLIC
+                      host: yugabyte.example.com
+                      region: us-east-1
+                    created_at: '2026-05-03T12:00:00Z'
+                    updated_at: '2026-05-03T12:00:00Z'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    ClusterSpec:
+      type: object
+      description: Specification used to create or update a YugabyteDB Aeon cluster.
+      required:
+      - name
+      - cloud_info
+      - cluster_info
+      properties:
+        name:
+          type: string
+          description: Display name for the cluster.
+          maxLength: 63
+          example: example-name
+        cloud_info:
+          $ref: '#/components/schemas/CloudInfo'
+        cluster_info:
+          $ref: '#/components/schemas/ClusterInfo'
+    ClusterEndpoint:
+      type: object
+      description: A connection endpoint for a YugabyteDB Aeon cluster.
+      properties:
+        accessibility_type:
+          type: string
+          description: Network accessibility type for the endpoint.
+          enum:
+          - PUBLIC
+          - PRIVATE
+          example: PUBLIC
+        host:
+          type: string
+          description: Hostname for connecting to the cluster endpoint.
+          example: yugabyte.example.com
+        region:
+          type: string
+          description: Cloud region this endpoint serves.
+          example: us-east-1
+    ErrorResponse:
+      type: object
+      description: Standard error response returned by the API on failure.
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: Machine-readable error code.
+              example: OK
+            message:
+              type: string
+              description: Human-readable description of the error.
+              example: Example message
+            status:
+              type: integer
+              description: HTTP status code.
+              example: 100
+          example:
+            code: OK
+            message: Example message
+            status: 100
+    Cluster:
+      type: object
+      description: A YugabyteDB Aeon managed database cluster.
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique identifier for the cluster.
+          example: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        name:
+          type: string
+          description: Display name of the cluster.
+          example: example-name
+        state:
+          type: string
+          description: Current operational state of the cluster.
+          enum:
+          - ACTIVE
+          - PAUSED
+          - CREATING
+          - DELETING
+          - FAILED
+          - UPDATING
+          example: ACTIVE
+        cloud_info:
+          $ref: '#/components/schemas/CloudInfo'
+        cluster_info:
+          $ref: '#/components/schemas/ClusterInfo'
+        cluster_endpoints:
+          type: array
+          description: Connection endpoints for the cluster.
+          items:
+            $ref: '#/components/schemas/ClusterEndpoint'
+          example:
+          - accessibility_type: PUBLIC
+            host: yugabyte.example.com
+            region: us-east-1
+        created_at:
+          type: string
+          format: date-time
+          description: Timestamp when the cluster was created.
+          example: '2026-05-03T12:00:00Z'
+        updated_at:
+          type: string
+          format: date-time
+          description: Timestamp when the cluster was last updated.
+          example: '2026-05-03T12:00:00Z'
+    ClusterInfo:
+      type: object
+      description: Compute and storage configuration for a cluster.
+      properties:
+        num_nodes:
+          type: integer
+          description: Number of nodes in the cluster. Must be a multiple of the replication factor.
+          minimum: 1
+          example: 10
+        fault_tolerance:
+          type: string
+          description: Fault tolerance level determining replication factor and quorum settings.
+          enum:
+          - NONE
+          - NODE
+          - ZONE
+          - REGION
+          example: NONE
+        cluster_tier:
+          type: string
+          description: Cluster tier controlling available features and node sizes.
+          enum:
+          - FREE
+          - DEDICATED
+          example: FREE
+        node_info:
+          $ref: '#/components/schemas/NodeInfo'
+        yugabytedb_version:
+          type: string
+          description: YugabyteDB software version to deploy on the cluster.
+          example: 2.20.0.0
+    CloudInfo:
+      type: object
+      description: Cloud provider and region configuration for a cluster.
+      properties:
+        code:
+          type: string
+          description: Cloud provider code.
+          enum:
+          - AWS
+          - GCP
+          - AZURE
+          example: AWS
+        region:
+          type: string
+          description: Cloud provider region identifier (e.g., us-east-1 for AWS, us-east1 for GCP, eastus for Azure).
+          example: us-east-1
+    NodeInfo:
+      type: object
+      description: Per-node compute and storage resource allocation.
+      properties:
+        num_cores:
+          type: integer
+          description: Number of vCPU cores per node.
+          example: 10
+        memory_mb:
+          type: integer
+          description: Memory in megabytes per node.
+          example: 100
+        disk_size_gb:
+          type: integer
+          description: Storage disk size in gigabytes per node.
+          example: 10
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          examples:
+            NotFoundExample:
+              summary: Default NotFound response
+              x-microcks-default: true
+              value:
+                error:
+                  code: OK
+                  message: Example message
+                  status: 100
+    Unauthorized:
+      description: The API key is missing, invalid, or expired.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          examples:
+            UnauthorizedExample:
+              summary: Default Unauthorized response
+              x-microcks-default: true
+              value:
+                error:
+                  code: OK
+                  message: Example message
+                  status: 100
+    BadRequest:
+      description: The request was malformed or contained invalid parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          examples:
+            BadRequestExample:
+              summary: Default BadRequest response
+              x-microcks-default: true
+              value:
+                error:
+                  code: OK
+                  message: Example message
+                  status: 100
+  parameters:
+    projectId:
+      name: projectId
+      in: path
+      required: true
+      description: The unique identifier of the project within the account.
+      schema:
+        type: string
+        format: uuid
+      example: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+    accountId:
+      name: accountId
+      in: path
+      required: true
+      description: The unique identifier of the YugabyteDB Aeon account.
+      schema:
+        type: string
+        format: uuid
+      example: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+    clusterId:
+      name: clusterId
+      in: path
+      required: true
+      description: The unique identifier of the cluster.
+      schema:
+        type: string
+        format: uuid
+      example: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: API key obtained from the YugabyteDB Aeon UI under User Profile > API Keys. Pass the key as a Bearer token in the Authorization header.
+externalDocs:
+  description: YugabyteDB Aeon REST API Documentation
+  url: https://docs.yugabyte.com/stable/yugabyte-cloud/managed-automation/managed-api/

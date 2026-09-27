@@ -1,0 +1,47 @@
+openapi: 3.2.0
+info:
+  title: Yugabytedb Grafana Dashboard API
+  version: v1
+  contact:
+    name: https://docs.yugabyte.com
+  license:
+    name: Polyform Free Trial License 1.0.0
+    url: https://github.com/yugabyte/yugabyte-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
+  termsOfService: TODO(chirag)
+  description: 'Operations tagged Grafana Dashboard across 2 of this provider''s published API definitions: openapi_2.yaml, platform.swagger.json. Each path carries the servers of the definition it was published in.'
+servers:
+- url: /
+tags:
+- name: Grafana Dashboard
+paths:
+  /api/v1/grafana_dashboard:
+    servers:
+    - url: /
+    get:
+      description: 'WARNING: This is a preview API that could change.'
+      operationId: GrafanaDashboard
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: string
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Get Grafana Dashboard
+      tags:
+      - Grafana Dashboard
+components:
+  securitySchemes:
+    apiKeyAuth:
+      description: API token passed as header
+      in: header
+      name: X-AUTH-YW-API-TOKEN
+      type: apiKey
+externalDocs:
+  description: About YugabyteDB Anywhere
+  url: https://docs.yugabyte.com/latest/yugabyte-platform/
+x-refined-from:
+- openapi_2.yaml
+- platform.swagger.json

@@ -56,15 +56,6 @@ paths:
       - pitr-info
 components:
   schemas:
-    ApiError_error:
-      properties:
-        detail:
-          description: Error message
-          type: string
-        status:
-          description: Error code
-          type: integer
-      type: object
     ApiError:
       properties:
         error:
@@ -93,6 +84,15 @@ components:
       required:
       - schedules
       title: PITR Schedule Response
+      type: object
+    ApiError_error:
+      properties:
+        detail:
+          description: Error message
+          type: string
+        status:
+          description: Error code
+          type: integer
       type: object
     PITRSchedule:
       description: Details of a Point-in-Time Recovery (PITR) schedule

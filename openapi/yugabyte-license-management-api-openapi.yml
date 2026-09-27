@@ -1,0 +1,132 @@
+openapi: 3.2.0
+info:
+  contact:
+    name: https://docs.yugabyte.com
+  description: ALPHA - NOT FOR EXTERNAL USE
+  license:
+    name: Polyform Free Trial License 1.0.0
+    url: https://github.com/yugabyte/yugabyte-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
+  termsOfService: TODO(chirag)
+  title: YugabyteDB Anywhere License Management API
+  version: v1
+servers:
+- url: /
+tags:
+- name: License Management
+paths:
+  /api/v1/customers/{cUUID}/licenses:
+    post:
+      operationId: upload_license
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerLicense'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Uploads the license
+      tags:
+      - License Management
+  /api/v1/customers/{cUUID}/licenses/{lUUID}:
+    delete:
+      operationId: deleteLicense
+      parameters:
+      - in: path
+        name: cUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: path
+        name: lUUID
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: request
+        schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YBPSuccess'
+          description: successful operation
+      security:
+      - apiKeyAuth: []
+      summary: Delete a license
+      tags:
+      - License Management
+components:
+  schemas:
+    YBPSuccess:
+      example:
+        success: true
+        message: message
+      properties:
+        message:
+          description: API response message.
+          readOnly: true
+          type: string
+        success:
+          description: API operation status. A value of true indicates the operation was successful.
+          readOnly: true
+          type: boolean
+      type: object
+    CustomerLicense:
+      description: Customer Licenses. This helps customer to upload licenses for the thirdparrty softwares if required.
+      example:
+        license: license
+        licenseType: licenseType
+        customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        licenseUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        creationDate: 2022-12-12 13:07:18+00:00
+      properties:
+        creationDate:
+          description: Creation date of license
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          readOnly: true
+          type: string
+        customerUUID:
+          description: Customer UUID that owns this license
+          format: uuid
+          type: string
+        license:
+          description: License File Path
+          type: string
+        licenseType:
+          description: Type of the license
+          type: string
+        licenseUUID:
+          description: License UUID
+          format: uuid
+          readOnly: true
+          type: string
+      required:
+      - license
+      - licenseType
+      type: object
+  securitySchemes:
+    apiKeyAuth:
+      description: API token passed as header
+      in: header
+      name: X-AUTH-YW-API-TOKEN
+      type: apiKey
+externalDocs:
+  description: About YugabyteDB Anywhere
+  url: https://docs.yugabyte.com/latest/yugabyte-platform/
+x-original-swagger-version: '2.0'
