@@ -322,39 +322,6 @@ components:
           type: array
           uniqueItems: true
       type: object
-    AlertConfigurationTarget:
-      description: Alert target. Set to `all`, or specify one or more target UUIDs.
-      example:
-        all: true
-        uuids:
-        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-      properties:
-        all:
-          description: Alert applicable to all targets
-          type: boolean
-        uuids:
-          description: Alert target UUIDs
-          items:
-            format: uuid
-            type: string
-          type: array
-          uniqueItems: true
-      type: object
-    YBPSuccess:
-      example:
-        success: true
-        message: message
-      properties:
-        message:
-          description: API response message.
-          readOnly: true
-          type: string
-        success:
-          description: API operation status. A value of true indicates the operation was successful.
-          readOnly: true
-          type: boolean
-      type: object
     ErrorResponse:
       type: object
       description: Standard error response returned by the API on failure.
@@ -378,88 +345,6 @@ components:
             code: OK
             message: Example message
             status: 100
-    MaintenanceWindowPagedResponse:
-      example:
-        entities:
-        - alertConfigurationFilter:
-            severity: SEVERE
-            template: REPLICATION_LAG
-            destinationUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            name: name
-            active: true
-            destinationType: NO_DESTINATION
-            targetType: PLATFORM
-            target:
-              all: true
-              uuids:
-              - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-              - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            uuids:
-            - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          createTime: 2022-12-12 13:07:18+00:00
-          suppressHealthCheckNotificationsConfig:
-            suppressAllUniverses: true
-            universeUUIDSet:
-            - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          name: name
-          description: description
-          startTime: 2022-12-12 13:07:18+00:00
-          endTime: 2022-12-12 13:07:18+00:00
-          state: FINISHED
-          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        - alertConfigurationFilter:
-            severity: SEVERE
-            template: REPLICATION_LAG
-            destinationUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            name: name
-            active: true
-            destinationType: NO_DESTINATION
-            targetType: PLATFORM
-            target:
-              all: true
-              uuids:
-              - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-              - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            uuids:
-            - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          createTime: 2022-12-12 13:07:18+00:00
-          suppressHealthCheckNotificationsConfig:
-            suppressAllUniverses: true
-            universeUUIDSet:
-            - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          name: name
-          description: description
-          startTime: 2022-12-12 13:07:18+00:00
-          endTime: 2022-12-12 13:07:18+00:00
-          state: FINISHED
-          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        hasPrev: true
-        hasNext: true
-        totalCount: 0
-      properties:
-        entities:
-          items:
-            $ref: '#/components/schemas/MaintenanceWindow'
-          type: array
-        hasNext:
-          type: boolean
-        hasPrev:
-          type: boolean
-        totalCount:
-          format: int32
-          type: integer
-      required:
-      - entities
-      - hasNext
-      - hasPrev
-      - totalCount
-      type: object
     MaintenanceWindowPagedApiQuery:
       example:
         filter:
@@ -506,6 +391,48 @@ components:
       - needTotalCount
       - offset
       - sortBy
+      type: object
+    MaintenanceWindowApiFilter:
+      example:
+        states:
+        - FINISHED
+        - FINISHED
+        uuids:
+        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        states:
+          items:
+            enum:
+            - FINISHED
+            - ACTIVE
+            - PENDING
+            type: string
+          type: array
+          uniqueItems: true
+        uuids:
+          items:
+            format: uuid
+            type: string
+          type: array
+          uniqueItems: true
+      required:
+      - states
+      - uuids
+      type: object
+    YBPSuccess:
+      example:
+        success: true
+        message: message
+      properties:
+        message:
+          description: API response message.
+          readOnly: true
+          type: string
+        success:
+          description: API operation status. A value of true indicates the operation was successful.
+          readOnly: true
+          type: boolean
       type: object
     AlertConfigurationApiFilter:
       example:
@@ -658,6 +585,25 @@ components:
           type: array
           uniqueItems: true
       type: object
+    AlertConfigurationTarget:
+      description: Alert target. Set to `all`, or specify one or more target UUIDs.
+      example:
+        all: true
+        uuids:
+        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        all:
+          description: Alert applicable to all targets
+          type: boolean
+        uuids:
+          description: Alert target UUIDs
+          items:
+            format: uuid
+            type: string
+          type: array
+          uniqueItems: true
+      type: object
     MaintenanceWindow:
       description: Maintenance Window
       example:
@@ -748,34 +694,116 @@ components:
       - name
       - startTime
       type: object
-    MaintenanceWindowApiFilter:
+    MaintenanceWindowPagedResponse:
       example:
-        states:
-        - FINISHED
-        - FINISHED
-        uuids:
-        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        entities:
+        - alertConfigurationFilter:
+            severity: SEVERE
+            template: REPLICATION_LAG
+            destinationUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            name: name
+            active: true
+            destinationType: NO_DESTINATION
+            targetType: PLATFORM
+            target:
+              all: true
+              uuids:
+              - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            uuids:
+            - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          createTime: 2022-12-12 13:07:18+00:00
+          suppressHealthCheckNotificationsConfig:
+            suppressAllUniverses: true
+            universeUUIDSet:
+            - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          name: name
+          description: description
+          startTime: 2022-12-12 13:07:18+00:00
+          endTime: 2022-12-12 13:07:18+00:00
+          state: FINISHED
+          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - alertConfigurationFilter:
+            severity: SEVERE
+            template: REPLICATION_LAG
+            destinationUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            name: name
+            active: true
+            destinationType: NO_DESTINATION
+            targetType: PLATFORM
+            target:
+              all: true
+              uuids:
+              - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            uuids:
+            - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          createTime: 2022-12-12 13:07:18+00:00
+          suppressHealthCheckNotificationsConfig:
+            suppressAllUniverses: true
+            universeUUIDSet:
+            - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          name: name
+          description: description
+          startTime: 2022-12-12 13:07:18+00:00
+          endTime: 2022-12-12 13:07:18+00:00
+          state: FINISHED
+          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        hasPrev: true
+        hasNext: true
+        totalCount: 0
       properties:
-        states:
+        entities:
           items:
-            enum:
-            - FINISHED
-            - ACTIVE
-            - PENDING
-            type: string
+            $ref: '#/components/schemas/MaintenanceWindow'
           type: array
-          uniqueItems: true
-        uuids:
-          items:
-            format: uuid
-            type: string
-          type: array
-          uniqueItems: true
+        hasNext:
+          type: boolean
+        hasPrev:
+          type: boolean
+        totalCount:
+          format: int32
+          type: integer
       required:
-      - states
-      - uuids
+      - entities
+      - hasNext
+      - hasPrev
+      - totalCount
       type: object
+  parameters:
+    clusterId:
+      name: clusterId
+      in: path
+      required: true
+      description: The unique identifier of the cluster.
+      schema:
+        type: string
+        format: uuid
+      example: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+    projectId:
+      name: projectId
+      in: path
+      required: true
+      description: The unique identifier of the project within the account.
+      schema:
+        type: string
+        format: uuid
+      example: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+    accountId:
+      name: accountId
+      in: path
+      required: true
+      description: The unique identifier of the YugabyteDB Aeon account.
+      schema:
+        type: string
+        format: uuid
+      example: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
   responses:
     NotFound:
       description: The requested resource was not found.
@@ -786,21 +814,6 @@ components:
           examples:
             NotFoundExample:
               summary: Default NotFound response
-              x-microcks-default: true
-              value:
-                error:
-                  code: OK
-                  message: Example message
-                  status: 100
-    Unauthorized:
-      description: The API key is missing, invalid, or expired.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-          examples:
-            UnauthorizedExample:
-              summary: Default Unauthorized response
               x-microcks-default: true
               value:
                 error:
@@ -822,34 +835,21 @@ components:
                   code: OK
                   message: Example message
                   status: 100
-  parameters:
-    projectId:
-      name: projectId
-      in: path
-      required: true
-      description: The unique identifier of the project within the account.
-      schema:
-        type: string
-        format: uuid
-      example: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-    accountId:
-      name: accountId
-      in: path
-      required: true
-      description: The unique identifier of the YugabyteDB Aeon account.
-      schema:
-        type: string
-        format: uuid
-      example: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-    clusterId:
-      name: clusterId
-      in: path
-      required: true
-      description: The unique identifier of the cluster.
-      schema:
-        type: string
-        format: uuid
-      example: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+    Unauthorized:
+      description: The API key is missing, invalid, or expired.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          examples:
+            UnauthorizedExample:
+              summary: Default Unauthorized response
+              x-microcks-default: true
+              value:
+                error:
+                  code: OK
+                  message: Example message
+                  status: 100
   securitySchemes:
     apiKeyAuth:
       description: API token passed as header

@@ -307,6 +307,111 @@ paths:
       x-codegen-request-body-name: azFormData
 components:
   schemas:
+    AZCloudInfo:
+      example:
+        kubernetes:
+          kubeNamespace: kubeNamespace
+          kubernetesImagePullSecretName: kubernetesImagePullSecretName
+          kubernetesPullSecretContent: kubernetesPullSecretContent
+          certManagerIssuer: certManagerIssuer
+          isKubernetesOperatorControlled: true
+          kubernetesOperatorControlled: true
+          kubeConfig: kubeConfig
+          kubeDomain: kubeDomain
+          overrides: overrides
+          certManagerIssuerName: certManagerIssuerName
+          kubernetesPullSecret: kubernetesPullSecret
+          kubeConfigName: kubeConfigName
+          certManagerIssuerKind: certManagerIssuerKind
+          kubePodAddressTemplate: kubePodAddressTemplate
+          kubernetesProvider: kubernetesProvider
+          kubeConfigContent: kubeConfigContent
+          kubernetesPullSecretName: kubernetesPullSecretName
+          certManagerIssuerGroup: certManagerIssuerGroup
+          kubernetesImageRegistry: kubernetesImageRegistry
+          certManagerClusterIssuer: certManagerClusterIssuer
+          kubernetesStorageClass: kubernetesStorageClass
+          kubernetesServiceAccount: kubernetesServiceAccount
+      properties:
+        kubernetes:
+          $ref: '#/components/schemas/KubernetesRegionInfo'
+      type: object
+    AvailabilityZone:
+      description: Availability zone (AZ) for a region
+      example:
+        subnet: subnet id
+        code: us-west1-a
+        name: us-west1-a
+        active: true
+        details:
+          cloudInfo:
+            kubernetes:
+              kubeNamespace: kubeNamespace
+              kubernetesImagePullSecretName: kubernetesImagePullSecretName
+              kubernetesPullSecretContent: kubernetesPullSecretContent
+              certManagerIssuer: certManagerIssuer
+              isKubernetesOperatorControlled: true
+              kubernetesOperatorControlled: true
+              kubeConfig: kubeConfig
+              kubeDomain: kubeDomain
+              overrides: overrides
+              certManagerIssuerName: certManagerIssuerName
+              kubernetesPullSecret: kubernetesPullSecret
+              kubeConfigName: kubeConfigName
+              certManagerIssuerKind: certManagerIssuerKind
+              kubePodAddressTemplate: kubePodAddressTemplate
+              kubernetesProvider: kubernetesProvider
+              kubeConfigContent: kubeConfigContent
+              kubernetesPullSecretName: kubernetesPullSecretName
+              certManagerIssuerGroup: certManagerIssuerGroup
+              kubernetesImageRegistry: kubernetesImageRegistry
+              certManagerClusterIssuer: certManagerClusterIssuer
+              kubernetesStorageClass: kubernetesStorageClass
+              kubernetesServiceAccount: kubernetesServiceAccount
+        kubeconfigPath: kubeconfigPath
+        config:
+          key: config
+        uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        secondarySubnet: secondary subnet id
+      properties:
+        active:
+          description: AZ status. This value is `true` for an active AZ.
+          readOnly: true
+          type: boolean
+        code:
+          description: AZ code
+          example: us-west1-a
+          type: string
+        config:
+          additionalProperties:
+            type: string
+          description: AZ configuration values
+          type: object
+        details:
+          $ref: '#/components/schemas/AvailabilityZoneDetails'
+        kubeconfigPath:
+          description: Path to Kubernetes configuration file
+          readOnly: true
+          type: string
+        name:
+          description: AZ name
+          example: us-west1-a
+          type: string
+        secondarySubnet:
+          description: AZ secondary subnet
+          example: secondary subnet id
+          type: string
+        subnet:
+          description: AZ subnet
+          example: subnet id
+          type: string
+        uuid:
+          description: AZ UUID. This must be specified for existing AZs on update
+          format: uuid
+          type: string
+      required:
+      - name
+      type: object
     KubernetesRegionInfo:
       example:
         kubeNamespace: kubeNamespace
@@ -385,6 +490,20 @@ components:
       required:
       - kubernetesOperatorControlled
       type: object
+    YBPSuccess:
+      example:
+        success: true
+        message: message
+      properties:
+        message:
+          description: API response message.
+          readOnly: true
+          type: string
+        success:
+          description: API operation status. A value of true indicates the operation was successful.
+          readOnly: true
+          type: boolean
+      type: object
     AvailabilityZoneData:
       description: Details of an availability zone, used by the API and UI to validate data against input constraints
       example:
@@ -408,145 +527,6 @@ components:
       required:
       - code
       - name
-      type: object
-    AvailabilityZone:
-      description: Availability zone (AZ) for a region
-      example:
-        subnet: subnet id
-        code: us-west1-a
-        name: us-west1-a
-        active: true
-        details:
-          cloudInfo:
-            kubernetes:
-              kubeNamespace: kubeNamespace
-              kubernetesImagePullSecretName: kubernetesImagePullSecretName
-              kubernetesPullSecretContent: kubernetesPullSecretContent
-              certManagerIssuer: certManagerIssuer
-              isKubernetesOperatorControlled: true
-              kubernetesOperatorControlled: true
-              kubeConfig: kubeConfig
-              kubeDomain: kubeDomain
-              overrides: overrides
-              certManagerIssuerName: certManagerIssuerName
-              kubernetesPullSecret: kubernetesPullSecret
-              kubeConfigName: kubeConfigName
-              certManagerIssuerKind: certManagerIssuerKind
-              kubePodAddressTemplate: kubePodAddressTemplate
-              kubernetesProvider: kubernetesProvider
-              kubeConfigContent: kubeConfigContent
-              kubernetesPullSecretName: kubernetesPullSecretName
-              certManagerIssuerGroup: certManagerIssuerGroup
-              kubernetesImageRegistry: kubernetesImageRegistry
-              certManagerClusterIssuer: certManagerClusterIssuer
-              kubernetesStorageClass: kubernetesStorageClass
-              kubernetesServiceAccount: kubernetesServiceAccount
-        kubeconfigPath: kubeconfigPath
-        config:
-          key: config
-        uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        secondarySubnet: secondary subnet id
-      properties:
-        active:
-          description: AZ status. This value is `true` for an active AZ.
-          readOnly: true
-          type: boolean
-        code:
-          description: AZ code
-          example: us-west1-a
-          type: string
-        config:
-          additionalProperties:
-            type: string
-          description: AZ configuration values
-          type: object
-        details:
-          $ref: '#/components/schemas/AvailabilityZoneDetails'
-        kubeconfigPath:
-          description: Path to Kubernetes configuration file
-          readOnly: true
-          type: string
-        name:
-          description: AZ name
-          example: us-west1-a
-          type: string
-        secondarySubnet:
-          description: AZ secondary subnet
-          example: secondary subnet id
-          type: string
-        subnet:
-          description: AZ subnet
-          example: subnet id
-          type: string
-        uuid:
-          description: AZ UUID. This must be specified for existing AZs on update
-          format: uuid
-          type: string
-      required:
-      - name
-      type: object
-    YBPSuccess:
-      example:
-        success: true
-        message: message
-      properties:
-        message:
-          description: API response message.
-          readOnly: true
-          type: string
-        success:
-          description: API operation status. A value of true indicates the operation was successful.
-          readOnly: true
-          type: boolean
-      type: object
-    AvailabilityZoneFormData:
-      example:
-        availabilityZones:
-        - subnet: subnet
-          code: code
-          name: name
-          secondarySubnet: secondarySubnet
-        - subnet: subnet
-          code: code
-          name: name
-          secondarySubnet: secondarySubnet
-      properties:
-        availabilityZones:
-          description: List of availability zones
-          items:
-            $ref: '#/components/schemas/AvailabilityZoneData'
-          type: array
-      required:
-      - availabilityZones
-      type: object
-    AZCloudInfo:
-      example:
-        kubernetes:
-          kubeNamespace: kubeNamespace
-          kubernetesImagePullSecretName: kubernetesImagePullSecretName
-          kubernetesPullSecretContent: kubernetesPullSecretContent
-          certManagerIssuer: certManagerIssuer
-          isKubernetesOperatorControlled: true
-          kubernetesOperatorControlled: true
-          kubeConfig: kubeConfig
-          kubeDomain: kubeDomain
-          overrides: overrides
-          certManagerIssuerName: certManagerIssuerName
-          kubernetesPullSecret: kubernetesPullSecret
-          kubeConfigName: kubeConfigName
-          certManagerIssuerKind: certManagerIssuerKind
-          kubePodAddressTemplate: kubePodAddressTemplate
-          kubernetesProvider: kubernetesProvider
-          kubeConfigContent: kubeConfigContent
-          kubernetesPullSecretName: kubernetesPullSecretName
-          certManagerIssuerGroup: certManagerIssuerGroup
-          kubernetesImageRegistry: kubernetesImageRegistry
-          certManagerClusterIssuer: certManagerClusterIssuer
-          kubernetesStorageClass: kubernetesStorageClass
-          kubernetesServiceAccount: kubernetesServiceAccount
-      properties:
-        kubernetes:
-          $ref: '#/components/schemas/KubernetesRegionInfo'
       type: object
     AvailabilityZoneDetails:
       example:
@@ -577,6 +557,26 @@ components:
       properties:
         cloudInfo:
           $ref: '#/components/schemas/AZCloudInfo'
+      type: object
+    AvailabilityZoneFormData:
+      example:
+        availabilityZones:
+        - subnet: subnet
+          code: code
+          name: name
+          secondarySubnet: secondarySubnet
+        - subnet: subnet
+          code: code
+          name: name
+          secondarySubnet: secondarySubnet
+      properties:
+        availabilityZones:
+          description: List of availability zones
+          items:
+            $ref: '#/components/schemas/AvailabilityZoneData'
+          type: array
+      required:
+      - availabilityZones
       type: object
   securitySchemes:
     apiKeyAuth:

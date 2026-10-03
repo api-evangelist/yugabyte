@@ -284,9 +284,9 @@ paths:
       - PA Collector
 components:
   schemas:
-    PA_Collector_Details_Model:
+    PACollector:
+      description: Performance Advisor Collector Model
       example:
-        inUseStatus: IN_USE
         apiToken: apiToken
         customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         metricsPassword: metricsPassword
@@ -305,13 +305,6 @@ components:
           description: Customer UUID
           format: uuid
           readOnly: true
-          type: string
-        inUseStatus:
-          description: In Use Status
-          enum:
-          - IN_USE
-          - NOT_IN_USE
-          - ERROR
           type: string
         metricsPassword:
           description: Metrics API Password
@@ -349,6 +342,18 @@ components:
       - uuid
       - ybaUrl
       type: object
+    PA_Collector_universe_registration_status:
+      example:
+        success: true
+        advancedObservability: true
+      properties:
+        advancedObservability:
+          description: Whether advanced observability (metrics export to Prometheus) is enabled
+          type: boolean
+        success:
+          description: Whether the universe is registered with PA Collector
+          type: boolean
+      type: object
     YBPSuccess:
       example:
         success: true
@@ -363,21 +368,9 @@ components:
           readOnly: true
           type: boolean
       type: object
-    PA_Collector_universe_registration_status:
+    PA_Collector_Details_Model:
       example:
-        success: true
-        advancedObservability: true
-      properties:
-        advancedObservability:
-          description: Whether advanced observability (metrics export to Prometheus) is enabled
-          type: boolean
-        success:
-          description: Whether the universe is registered with PA Collector
-          type: boolean
-      type: object
-    PACollector:
-      description: Performance Advisor Collector Model
-      example:
+        inUseStatus: IN_USE
         apiToken: apiToken
         customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         metricsPassword: metricsPassword
@@ -396,6 +389,13 @@ components:
           description: Customer UUID
           format: uuid
           readOnly: true
+          type: string
+        inUseStatus:
+          description: In Use Status
+          enum:
+          - IN_USE
+          - NOT_IN_USE
+          - ERROR
           type: string
         metricsPassword:
           description: Metrics API Password

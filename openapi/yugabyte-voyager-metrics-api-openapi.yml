@@ -65,21 +65,6 @@ paths:
       - voyager-metrics
 components:
   schemas:
-    ApiError:
-      properties:
-        error:
-          $ref: '#/components/schemas/ApiError_error'
-      title: API Error
-      type: object
-    ApiError_error:
-      properties:
-        detail:
-          description: Error message
-          type: string
-        status:
-          description: Error code
-          type: integer
-      type: object
     VoyagerMigrateDataMetrics:
       description: List of YB Voyager Data migrations metrics
       example:
@@ -106,6 +91,15 @@ components:
             $ref: '#/components/schemas/VoyagerMigrateDataMetricsDetails'
           type: array
       title: YB Voyager Migrate Data metrics Info
+      type: object
+    ApiError_error:
+      properties:
+        detail:
+          description: Error message
+          type: string
+        status:
+          description: Error code
+          type: integer
       type: object
     VoyagerMigrateDataMetricsDetails:
       description: Voyager data migration metrics details
@@ -139,6 +133,12 @@ components:
         invocation_timestamp:
           type: string
       title: Voyager Migrate Data Metrics details
+      type: object
+    ApiError:
+      properties:
+        error:
+          $ref: '#/components/schemas/ApiError_error'
+      title: API Error
       type: object
   securitySchemes:
     BearerAuthToken:

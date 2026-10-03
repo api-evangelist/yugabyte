@@ -426,95 +426,21 @@ paths:
       - Node instances
 components:
   schemas:
-    YBPSuccess:
+    YBPTask:
       example:
-        success: true
-        message: message
+        taskUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        resourceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
-        message:
-          description: API response message.
+        resourceUUID:
+          description: UUID of the resource being modified by the task
+          format: uuid
           readOnly: true
           type: string
-        success:
-          description: API operation status. A value of true indicates the operation was successful.
+        taskUUID:
+          description: Task UUID
+          format: uuid
           readOnly: true
-          type: boolean
-      type: object
-    ValidationResult:
-      description: Validation result of a node config
-      properties:
-        description:
           type: string
-        required:
-          type: boolean
-        type:
-          enum:
-          - NTP_SERVICE_STATUS
-          - PROMETHEUS_SPACE
-          - MOUNT_POINTS_WRITABLE
-          - USER
-          - USER_GROUP
-          - HOME_DIR_SPACE
-          - HOME_DIR_EXISTS
-          - HOME_DIR_MATCHES
-          - RAM_SIZE
-          - INTERNET_CONNECTION
-          - CPU_CORES
-          - PROMETHEUS_NO_NODE_EXPORTER
-          - TMP_DIR_SPACE
-          - PAM_LIMITS_WRITABLE
-          - PYTHON_VERSION
-          - MOUNT_POINTS_VOLUME
-          - CHRONYD_RUNNING
-          - LOCALE_PRESENT
-          - SSH_PORT
-          - SUDO_ACCESS
-          - OPENSSL
-          - POLICYCOREUTILS
-          - RSYNC
-          - XXHASH
-          - LIBATOMIC1
-          - LIBNCURSES6
-          - LIBATOMIC
-          - AZCOPY
-          - CHRONYC
-          - GSUTIL
-          - S3CMD
-          - NODE_EXPORTER_RUNNING
-          - NODE_EXPORTER_PORT
-          - SWAPPINESS
-          - ULIMIT_CORE
-          - ULIMIT_OPEN_FILES
-          - ULIMIT_USER_PROCESSES
-          - SSH_ACCESS
-          - NODE_AGENT_ACCESS
-          - MASTER_HTTP_PORT
-          - MASTER_RPC_PORT
-          - TSERVER_HTTP_PORT
-          - TSERVER_RPC_PORT
-          - YB_CONTROLLER_HTTP_PORT
-          - YB_CONTROLLER_RPC_PORT
-          - REDIS_SERVER_HTTP_PORT
-          - REDIS_SERVER_RPC_PORT
-          - YB_HOME_DIR_CLEAN
-          - DATA_DIR_CLEAN
-          - YCQL_SERVER_HTTP_PORT
-          - YCQL_SERVER_RPC_PORT
-          - YSQL_SERVER_HTTP_PORT
-          - YSQL_SERVER_RPC_PORT
-          - VM_MAX_MAP_COUNT
-          - NTP_SKEW
-          type: string
-        valid:
-          type: boolean
-        value:
-          type: string
-      required:
-      - description
-      - required
-      - type
-      - valid
-      - value
       type: object
     NodeInstanceData:
       description: Details of a node instance. Used by the API to validate data against input constraints.
@@ -612,136 +538,87 @@ components:
       required:
       - nodes
       type: object
-    CloudSpecificInfo:
-      description: Node information reported by the cloud provider
+    NodeInstance:
+      description: A single node instance, attached to a provider and availability zone
       example:
-        mount_roots: mount_roots
-        kubernetesNamespace: kubernetesNamespace
-        public_ip: public_ip
-        secondary_subnet_id: secondary_subnet_id
-        private_dns: private_dns
-        useTimeSync: true
-        kubernetesPodName: kubernetesPodName
-        root_volume: root_volume
-        secondary_private_ip: secondary_private_ip
-        private_ip: private_ip
-        cloud: cloud
-        lun_indexes:
-        - 6
-        - 6
-        assignPublicIP: true
-        az: az
-        subnet_id: subnet_id
-        public_dns: public_dns
-        region: region
-        instance_type: instance_type
+        manuallyDecommissioned: true
+        nodeName: universe_node1
+        instanceName: Mumbai instance
+        instanceTypeCode: c5large
+        inUse: true
+        zoneUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        details:
+          nodeName: universe_node1
+          instanceName: Mumbai instance
+          zone: south-east
+          instanceType: c5large
+          ip: 1.1.1.1
+          sshUser: centos
+          region: south-east
+        state: DECOMMISSIONED
+        nodeUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        detailsJson: '{"ip":"1.1.1.1","sshUser":"centos"}'
       properties:
-        assignPublicIP:
-          description: True if the node has a public IP address assigned
+        details:
+          $ref: '#/components/schemas/NodeInstanceData'
+        detailsJson:
+          description: Node details (as a JSON object)
+          example: '{"ip":"1.1.1.1","sshUser":"centos"}'
+          readOnly: true
+          type: string
+        inUse:
+          description: True if the node is in use  <b style="color:#ff0000">Deprecated since YBA version 2024.1.0.0.</b> Use NodeInstance.state instead
           type: boolean
-        az:
-          description: The node's availability zone
+        instanceName:
+          description: The node instance's name
+          example: Mumbai instance
           type: string
-        cloud:
-          description: The node's cloud provider
+        instanceTypeCode:
+          description: The node's type code
+          example: c5large
           type: string
-        instance_type:
-          description: The node's instance type
-          type: string
-        kubernetesNamespace:
-          description: Kubernetes namespace
-          type: string
-        kubernetesPodName:
-          description: Pod name in Kubernetes
-          type: string
-        lun_indexes:
-          description: Mounted disks LUN indexes
-          items:
-            format: int32
-            type: integer
-          type: array
-        mount_roots:
-          description: Mount roots
-          type: string
-        private_dns:
-          description: The node's private DNS
-          type: string
-        private_ip:
-          description: The node's private IP address
-          type: string
-        public_dns:
-          description: The node's public DNS name
-          type: string
-        public_ip:
-          description: The node's public IP address
-          type: string
-        region:
-          description: The node's region
-          type: string
-        root_volume:
-          description: Root volume ID or name
-          type: string
-        secondary_private_ip:
-          description: Secondary Private IP
-          type: string
-        secondary_subnet_id:
-          description: Secondary Subnet IP
-          type: string
-        subnet_id:
-          description: ID of the subnet on which this node is deployed
-          type: string
-        useTimeSync:
-          description: True if `use time sync` is enabled
+        manuallyDecommissioned:
+          description: Manually set to decommissioned state by user
+          readOnly: true
           type: boolean
-      type: object
-    NodeActionFormData:
-      example:
-        nodeAction: ADD
-        runOnlyPrechecks: true
-        force: true
-      properties:
-        force:
-          description: Should ignore master unavailability and proceed with the node action
-          type: boolean
-        nodeAction:
-          description: Action to perform on the node.
+        nodeName:
+          description: The node's name in a universe
+          example: universe_node1
+          readOnly: true
+          type: string
+        nodeUuid:
+          description: The node's UUID
+          format: uuid
+          readOnly: true
+          type: string
+        state:
+          description: State of on-prem node
           enum:
-          - ADD
-          - REMOVE
-          - START
-          - STOP
-          - DELETE
-          - QUERY
-          - RELEASE
-          - REBOOT
-          - START_MASTER
-          - PRECHECK_DETACHED
-          - HARD_REBOOT
-          - REPROVISION
-          - REPLACE
-          - DECOMMISSION
+          - DECOMMISSIONED
+          - USED
+          - FREE
+          readOnly: true
           type: string
-        runOnlyPrechecks:
-          description: YbaApi Internal. Run only prechecks during task run
-          type: boolean
+        zoneUuid:
+          description: The availability zone's UUID
+          format: uuid
+          type: string
       required:
-      - nodeAction
+      - details
       type: object
-    YBPTask:
+    YBPSuccess:
       example:
-        taskUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        resourceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        success: true
+        message: message
       properties:
-        resourceUUID:
-          description: UUID of the resource being modified by the task
-          format: uuid
+        message:
+          description: API response message.
           readOnly: true
           type: string
-        taskUUID:
-          description: Task UUID
-          format: uuid
+        success:
+          description: API operation status. A value of true indicates the operation was successful.
           readOnly: true
-          type: string
+          type: boolean
       type: object
     NodeDetailsResp:
       example:
@@ -1031,73 +908,196 @@ components:
           - FREE
           type: string
       type: object
-    NodeInstance:
-      description: A single node instance, attached to a provider and availability zone
+    NodeActionFormData:
       example:
-        manuallyDecommissioned: true
-        nodeName: universe_node1
-        instanceName: Mumbai instance
-        instanceTypeCode: c5large
-        inUse: true
-        zoneUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        details:
-          nodeName: universe_node1
-          instanceName: Mumbai instance
-          zone: south-east
-          instanceType: c5large
-          ip: 1.1.1.1
-          sshUser: centos
-          region: south-east
-        state: DECOMMISSIONED
-        nodeUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        detailsJson: '{"ip":"1.1.1.1","sshUser":"centos"}'
+        nodeAction: ADD
+        runOnlyPrechecks: true
+        force: true
       properties:
-        details:
-          $ref: '#/components/schemas/NodeInstanceData'
-        detailsJson:
-          description: Node details (as a JSON object)
-          example: '{"ip":"1.1.1.1","sshUser":"centos"}'
-          readOnly: true
-          type: string
-        inUse:
-          description: True if the node is in use  <b style="color:#ff0000">Deprecated since YBA version 2024.1.0.0.</b> Use NodeInstance.state instead
+        force:
+          description: Should ignore master unavailability and proceed with the node action
           type: boolean
-        instanceName:
-          description: The node instance's name
-          example: Mumbai instance
-          type: string
-        instanceTypeCode:
-          description: The node's type code
-          example: c5large
-          type: string
-        manuallyDecommissioned:
-          description: Manually set to decommissioned state by user
-          readOnly: true
-          type: boolean
-        nodeName:
-          description: The node's name in a universe
-          example: universe_node1
-          readOnly: true
-          type: string
-        nodeUuid:
-          description: The node's UUID
-          format: uuid
-          readOnly: true
-          type: string
-        state:
-          description: State of on-prem node
+        nodeAction:
+          description: Action to perform on the node.
           enum:
-          - DECOMMISSIONED
-          - USED
-          - FREE
-          readOnly: true
+          - ADD
+          - REMOVE
+          - START
+          - STOP
+          - DELETE
+          - QUERY
+          - RELEASE
+          - REBOOT
+          - START_MASTER
+          - PRECHECK_DETACHED
+          - HARD_REBOOT
+          - REPROVISION
+          - REPLACE
+          - DECOMMISSION
           type: string
-        zoneUuid:
-          description: The availability zone's UUID
-          format: uuid
+        runOnlyPrechecks:
+          description: YbaApi Internal. Run only prechecks during task run
+          type: boolean
+      required:
+      - nodeAction
+      type: object
+    ValidationResult:
+      description: Validation result of a node config
+      properties:
+        description:
+          type: string
+        required:
+          type: boolean
+        type:
+          enum:
+          - NTP_SERVICE_STATUS
+          - PROMETHEUS_SPACE
+          - MOUNT_POINTS_WRITABLE
+          - USER
+          - USER_GROUP
+          - HOME_DIR_SPACE
+          - HOME_DIR_EXISTS
+          - HOME_DIR_MATCHES
+          - RAM_SIZE
+          - INTERNET_CONNECTION
+          - CPU_CORES
+          - PROMETHEUS_NO_NODE_EXPORTER
+          - TMP_DIR_SPACE
+          - PAM_LIMITS_WRITABLE
+          - PYTHON_VERSION
+          - MOUNT_POINTS_VOLUME
+          - CHRONYD_RUNNING
+          - LOCALE_PRESENT
+          - SSH_PORT
+          - SUDO_ACCESS
+          - OPENSSL
+          - POLICYCOREUTILS
+          - RSYNC
+          - XXHASH
+          - LIBATOMIC1
+          - LIBNCURSES6
+          - LIBATOMIC
+          - AZCOPY
+          - CHRONYC
+          - GSUTIL
+          - S3CMD
+          - NODE_EXPORTER_RUNNING
+          - NODE_EXPORTER_PORT
+          - SWAPPINESS
+          - ULIMIT_CORE
+          - ULIMIT_OPEN_FILES
+          - ULIMIT_USER_PROCESSES
+          - SSH_ACCESS
+          - NODE_AGENT_ACCESS
+          - MASTER_HTTP_PORT
+          - MASTER_RPC_PORT
+          - TSERVER_HTTP_PORT
+          - TSERVER_RPC_PORT
+          - YB_CONTROLLER_HTTP_PORT
+          - YB_CONTROLLER_RPC_PORT
+          - REDIS_SERVER_HTTP_PORT
+          - REDIS_SERVER_RPC_PORT
+          - YB_HOME_DIR_CLEAN
+          - DATA_DIR_CLEAN
+          - YCQL_SERVER_HTTP_PORT
+          - YCQL_SERVER_RPC_PORT
+          - YSQL_SERVER_HTTP_PORT
+          - YSQL_SERVER_RPC_PORT
+          - VM_MAX_MAP_COUNT
+          - NTP_SKEW
+          type: string
+        valid:
+          type: boolean
+        value:
           type: string
       required:
-      - details
+      - description
+      - required
+      - type
+      - valid
+      - value
+      type: object
+    CloudSpecificInfo:
+      description: Node information reported by the cloud provider
+      example:
+        mount_roots: mount_roots
+        kubernetesNamespace: kubernetesNamespace
+        public_ip: public_ip
+        secondary_subnet_id: secondary_subnet_id
+        private_dns: private_dns
+        useTimeSync: true
+        kubernetesPodName: kubernetesPodName
+        root_volume: root_volume
+        secondary_private_ip: secondary_private_ip
+        private_ip: private_ip
+        cloud: cloud
+        lun_indexes:
+        - 6
+        - 6
+        assignPublicIP: true
+        az: az
+        subnet_id: subnet_id
+        public_dns: public_dns
+        region: region
+        instance_type: instance_type
+      properties:
+        assignPublicIP:
+          description: True if the node has a public IP address assigned
+          type: boolean
+        az:
+          description: The node's availability zone
+          type: string
+        cloud:
+          description: The node's cloud provider
+          type: string
+        instance_type:
+          description: The node's instance type
+          type: string
+        kubernetesNamespace:
+          description: Kubernetes namespace
+          type: string
+        kubernetesPodName:
+          description: Pod name in Kubernetes
+          type: string
+        lun_indexes:
+          description: Mounted disks LUN indexes
+          items:
+            format: int32
+            type: integer
+          type: array
+        mount_roots:
+          description: Mount roots
+          type: string
+        private_dns:
+          description: The node's private DNS
+          type: string
+        private_ip:
+          description: The node's private IP address
+          type: string
+        public_dns:
+          description: The node's public DNS name
+          type: string
+        public_ip:
+          description: The node's public IP address
+          type: string
+        region:
+          description: The node's region
+          type: string
+        root_volume:
+          description: Root volume ID or name
+          type: string
+        secondary_private_ip:
+          description: Secondary Private IP
+          type: string
+        secondary_subnet_id:
+          description: Secondary Subnet IP
+          type: string
+        subnet_id:
+          description: ID of the subnet on which this node is deployed
+          type: string
+        useTimeSync:
+          description: True if `use time sync` is enabled
+          type: boolean
       type: object
   securitySchemes:
     apiKeyAuth:

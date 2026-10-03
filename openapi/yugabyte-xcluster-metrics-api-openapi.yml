@@ -70,135 +70,6 @@ components:
           $ref: '#/components/schemas/ApiError_error'
       title: API Error
       type: object
-    xCluster_Replication_Groups:
-      example:
-        outbound_replication_groups:
-        - replication_cluster_node_ips:
-          - replication_cluster_node_ips
-          - replication_cluster_node_ips
-          tables_list_with_lag:
-          - async_replication_sent_lag_micros: 0
-            async_replication_committed_lag_micros: 6
-            namespace: namespace
-            table_uuid: table_uuid
-            is_checkpointing: true
-            table_name: table_name
-            is_part_of_initial_bootstrap: true
-          - async_replication_sent_lag_micros: 0
-            async_replication_committed_lag_micros: 6
-            namespace: namespace
-            table_uuid: table_uuid
-            is_checkpointing: true
-            table_name: table_name
-            is_part_of_initial_bootstrap: true
-          target_universe_uuid: target_universe_uuid
-          source_universe_uuid: source_universe_uuid
-          replication_group_id: replication_group_id
-          state: state
-        - replication_cluster_node_ips:
-          - replication_cluster_node_ips
-          - replication_cluster_node_ips
-          tables_list_with_lag:
-          - async_replication_sent_lag_micros: 0
-            async_replication_committed_lag_micros: 6
-            namespace: namespace
-            table_uuid: table_uuid
-            is_checkpointing: true
-            table_name: table_name
-            is_part_of_initial_bootstrap: true
-          - async_replication_sent_lag_micros: 0
-            async_replication_committed_lag_micros: 6
-            namespace: namespace
-            table_uuid: table_uuid
-            is_checkpointing: true
-            table_name: table_name
-            is_part_of_initial_bootstrap: true
-          target_universe_uuid: target_universe_uuid
-          source_universe_uuid: source_universe_uuid
-          replication_group_id: replication_group_id
-          state: state
-        inbound_replication_groups:
-        - target_universe_uuid: target_universe_uuid
-          target_cluster_node_ips:
-          - target_cluster_node_ips
-          - target_cluster_node_ips
-          source_universe_uuid: source_universe_uuid
-          replication_group_id: replication_group_id
-          state: state
-          source_cluster_node_ips:
-          - source_cluster_node_ips
-          - source_cluster_node_ips
-        - target_universe_uuid: target_universe_uuid
-          target_cluster_node_ips:
-          - target_cluster_node_ips
-          - target_cluster_node_ips
-          source_universe_uuid: source_universe_uuid
-          replication_group_id: replication_group_id
-          state: state
-          source_cluster_node_ips:
-          - source_cluster_node_ips
-          - source_cluster_node_ips
-      properties:
-        inbound_replication_groups:
-          items:
-            $ref: '#/components/schemas/xClusterInboundGroup'
-          type: array
-          uniqueItems: true
-        outbound_replication_groups:
-          items:
-            $ref: '#/components/schemas/xClusterOutboundGroup'
-          type: array
-          uniqueItems: true
-      required:
-      - replication_groups
-      title: xCluster Replication Groups
-      type: object
-    TableReplicationLagDetailsOutbound:
-      description: Schema for table details and namespace in replication.
-      example:
-        async_replication_sent_lag_micros: 0
-        async_replication_committed_lag_micros: 6
-        namespace: namespace
-        table_uuid: table_uuid
-        is_checkpointing: true
-        table_name: table_name
-        is_part_of_initial_bootstrap: true
-      properties:
-        namespace:
-          description: Namespace to which the current table belongs.
-          type: string
-        table_uuid:
-          description: Unique identifier for the table.
-          type: string
-        table_name:
-          description: Name of the table.
-          type: string
-        is_checkpointing:
-          description: Indicates whether the table is currently checkpointing.
-          type: boolean
-        is_part_of_initial_bootstrap:
-          description: Indicates whether the table is part of the initial bootstrap process.
-          type: boolean
-        async_replication_sent_lag_micros:
-          description: The lag time in microseconds for sent replication data.
-          format: int64
-          type: integer
-        async_replication_committed_lag_micros:
-          description: The lag time in microseconds for committed replication data.
-          format: int64
-          type: integer
-      required:
-      - async_replication_committed_lag_micros
-      - async_replication_sent_lag_micros
-      - is_checkpointing
-      - is_part_of_initial_bootstrap
-      - keyspace
-      - state
-      - stream_id
-      - table_name
-      - table_uuid
-      title: Table information for a namespace in the replication group and per table level lag time.
-      type: object
     xClusterInboundGroup:
       description: Schema for xCluster replication group details.
       example:
@@ -302,6 +173,135 @@ components:
       - state
       - target_universe_uuid
       title: Get xCluster replication group ids list.
+      type: object
+    TableReplicationLagDetailsOutbound:
+      description: Schema for table details and namespace in replication.
+      example:
+        async_replication_sent_lag_micros: 0
+        async_replication_committed_lag_micros: 6
+        namespace: namespace
+        table_uuid: table_uuid
+        is_checkpointing: true
+        table_name: table_name
+        is_part_of_initial_bootstrap: true
+      properties:
+        namespace:
+          description: Namespace to which the current table belongs.
+          type: string
+        table_uuid:
+          description: Unique identifier for the table.
+          type: string
+        table_name:
+          description: Name of the table.
+          type: string
+        is_checkpointing:
+          description: Indicates whether the table is currently checkpointing.
+          type: boolean
+        is_part_of_initial_bootstrap:
+          description: Indicates whether the table is part of the initial bootstrap process.
+          type: boolean
+        async_replication_sent_lag_micros:
+          description: The lag time in microseconds for sent replication data.
+          format: int64
+          type: integer
+        async_replication_committed_lag_micros:
+          description: The lag time in microseconds for committed replication data.
+          format: int64
+          type: integer
+      required:
+      - async_replication_committed_lag_micros
+      - async_replication_sent_lag_micros
+      - is_checkpointing
+      - is_part_of_initial_bootstrap
+      - keyspace
+      - state
+      - stream_id
+      - table_name
+      - table_uuid
+      title: Table information for a namespace in the replication group and per table level lag time.
+      type: object
+    xCluster_Replication_Groups:
+      example:
+        outbound_replication_groups:
+        - replication_cluster_node_ips:
+          - replication_cluster_node_ips
+          - replication_cluster_node_ips
+          tables_list_with_lag:
+          - async_replication_sent_lag_micros: 0
+            async_replication_committed_lag_micros: 6
+            namespace: namespace
+            table_uuid: table_uuid
+            is_checkpointing: true
+            table_name: table_name
+            is_part_of_initial_bootstrap: true
+          - async_replication_sent_lag_micros: 0
+            async_replication_committed_lag_micros: 6
+            namespace: namespace
+            table_uuid: table_uuid
+            is_checkpointing: true
+            table_name: table_name
+            is_part_of_initial_bootstrap: true
+          target_universe_uuid: target_universe_uuid
+          source_universe_uuid: source_universe_uuid
+          replication_group_id: replication_group_id
+          state: state
+        - replication_cluster_node_ips:
+          - replication_cluster_node_ips
+          - replication_cluster_node_ips
+          tables_list_with_lag:
+          - async_replication_sent_lag_micros: 0
+            async_replication_committed_lag_micros: 6
+            namespace: namespace
+            table_uuid: table_uuid
+            is_checkpointing: true
+            table_name: table_name
+            is_part_of_initial_bootstrap: true
+          - async_replication_sent_lag_micros: 0
+            async_replication_committed_lag_micros: 6
+            namespace: namespace
+            table_uuid: table_uuid
+            is_checkpointing: true
+            table_name: table_name
+            is_part_of_initial_bootstrap: true
+          target_universe_uuid: target_universe_uuid
+          source_universe_uuid: source_universe_uuid
+          replication_group_id: replication_group_id
+          state: state
+        inbound_replication_groups:
+        - target_universe_uuid: target_universe_uuid
+          target_cluster_node_ips:
+          - target_cluster_node_ips
+          - target_cluster_node_ips
+          source_universe_uuid: source_universe_uuid
+          replication_group_id: replication_group_id
+          state: state
+          source_cluster_node_ips:
+          - source_cluster_node_ips
+          - source_cluster_node_ips
+        - target_universe_uuid: target_universe_uuid
+          target_cluster_node_ips:
+          - target_cluster_node_ips
+          - target_cluster_node_ips
+          source_universe_uuid: source_universe_uuid
+          replication_group_id: replication_group_id
+          state: state
+          source_cluster_node_ips:
+          - source_cluster_node_ips
+          - source_cluster_node_ips
+      properties:
+        inbound_replication_groups:
+          items:
+            $ref: '#/components/schemas/xClusterInboundGroup'
+          type: array
+          uniqueItems: true
+        outbound_replication_groups:
+          items:
+            $ref: '#/components/schemas/xClusterOutboundGroup'
+          type: array
+          uniqueItems: true
+      required:
+      - replication_groups
+      title: xCluster Replication Groups
       type: object
   securitySchemes:
     BearerAuthToken:

@@ -506,300 +506,43 @@ paths:
         required: true
 components:
   schemas:
-    BackupTableParams:
-      description: Backup table parameters
+    PlacementBlock:
+      example:
+        cloud: cloud
+        leader_preference: 1
+        zone: zone
+        min_num_replicas: 1
+        region: region
       properties:
-        actionType:
-          description: Action type
-          enum:
-          - CREATE
-          - RESTORE
-          - RESTORE_KEYS
-          - DELETE
+        cloud:
+          description: Cloud
+          maxLength: 2147483647
+          minLength: 1
           type: string
-        alterLoadBalancer:
-          description: Alter load balancer state
-          type: boolean
-        backupList:
-          description: Backups
-          items:
-            $ref: '#/components/schemas/BackupTableParams'
-          type: array
-        backupSizeInBytes:
-          description: Backup size in bytes
-          format: int64
-          type: integer
-        backupType:
-          description: Backup type
-          enum:
-          - YQL_TABLE_TYPE
-          - REDIS_TABLE_TYPE
-          - PGSQL_TABLE_TYPE
-          - TRANSACTION_STATUS_TABLE_TYPE
-          type: string
-        backupUuid:
-          description: Backup UUID
-          format: uuid
-          type: string
-        cmkArn:
-          description: Amazon Resource Name (ARN) of the CMK
-          type: string
-        communicationPorts:
-          $ref: '#/components/schemas/CommunicationPorts_2'
-          description: Communication ports
-        cronExpression:
-          description: Cron expression for a recurring backup
-          type: string
-        customerUuid:
-          description: Customer UUID
-          format: uuid
-          type: string
-        deviceInfo:
-          $ref: '#/components/schemas/DeviceInfo_2'
-          description: Device information
-        disableChecksum:
-          description: Disable checksum
-          type: boolean
-        enableVerboseLogs:
-          description: Is verbose logging enabled
-          type: boolean
-        encryptionAtRestConfig:
-          $ref: '#/components/schemas/EncryptionAtRestConfig_2'
-          description: Encryption at rest configation
-        errorString:
-          description: Error message
-          type: string
-        expectedUniverseVersion:
-          description: Expected universe version
+        leader_preference:
+          description: Leader preference
           format: int32
+          minimum: 1
           type: integer
-        expiryTimeUnit:
-          description: Time unit for backup expiry time
-          enum:
-          - NANOSECONDS
-          - MICROSECONDS
-          - MILLISECONDS
-          - SECONDS
-          - MINUTES
-          - HOURS
-          - DAYS
-          - MONTHS
-          - YEARS
-          type: string
-        extraDependencies:
-          $ref: '#/components/schemas/ExtraDependencies_2'
-          description: Extra dependencies
-        firstTry:
-          description: Whether this task has been tried before
-          type: boolean
-        ignoreErrors:
-          description: Should table backup errors be ignored
-          type: boolean
-        isFullBackup:
-          description: Full Table type backup
-          type: boolean
-        keyspace:
-          description: Key space
-          type: string
-        kmsConfigUUID:
-          description: KMS configuration UUID
-          format: uuid
-          type: string
-        minNumBackupsToRetain:
-          description: Minimum number of backups to retain for a particular backup schedule
+        min_num_replicas:
+          description: Minimum replicas
           format: int32
+          minimum: 1
           type: integer
-        newOwner:
-          description: User name of the new tables owner
+        region:
+          description: Region
+          maxLength: 2147483647
+          minLength: 1
           type: string
-        nodeDetailsSet:
-          description: Node details
-          items:
-            $ref: '#/components/schemas/NodeDetails_2'
-          type: array
-          uniqueItems: true
-        nodeExporterUser:
-          description: Node exporter user
-          type: string
-        oldOwner:
-          description: User name of the current tables owner
-          type: string
-        parallelism:
-          description: Number of concurrent commands to run on nodes over SSH
-          format: int32
-          type: integer
-        previousTaskUUID:
-          description: Previous task UUID only if this task is a retry
-          format: uuid
-          type: string
-        regionLocations:
-          description: Per region locations
-          items:
-            $ref: '#/components/schemas/RegionLocations'
-          type: array
-        restoreTimeStamp:
-          description: Restore TimeStamp
-          type: string
-        scheduleUUID:
-          description: Schedule UUID
-          format: uuid
-          type: string
-        schedulingFrequency:
-          description: Frequency to run the backup, in milliseconds
-          format: int64
-          type: integer
-        sourceXClusterConfigs:
-          description: The source universe's xcluster replication relationships
-          items:
-            format: uuid
-            type: string
-          readOnly: true
-          type: array
-        sse:
-          description: Is SSE
-          type: boolean
-        storageConfigType:
-          description: Type of backup storage config
-          enum:
-          - S3
-          - NFS
-          - AZ
-          - GCS
-          - FILE
-          type: string
-        storageConfigUUID:
-          description: Storage configuration UUID
-          format: uuid
-          type: string
-        storageLocation:
-          description: Storage location
-          type: string
-        tableName:
-          description: Table name
-          type: string
-        tableNameList:
-          description: Tables
-          items:
-            type: string
-          type: array
-        tableUUID:
-          description: Table UUID
-          format: uuid
-          type: string
-        tableUUIDList:
-          description: Table UUIDs
-          items:
-            format: uuid
-            type: string
-          type: array
-        targetXClusterConfigs:
-          description: The target universe's xcluster replication relationships
-          items:
-            format: uuid
-            type: string
-          readOnly: true
-          type: array
-        timeBeforeDelete:
-          description: Time before deleting the backup from storage, in milliseconds
-          format: int64
-          type: integer
-        transactionalBackup:
-          description: Is backup transactional across tables
-          type: boolean
-        universeUUID:
-          description: Associated universe UUID
-          format: uuid
-          type: string
-        useTablespaces:
-          description: Is tablespaces information included
-          type: boolean
-        ybPrevSoftwareVersion:
-          description: Previous software version
+        zone:
+          description: Zone
+          maxLength: 2147483647
+          minLength: 1
           type: string
       required:
-      - storageConfigUUID
-      type: object
-    CloudSpecificInfo:
-      description: Node information reported by the cloud provider
-      example:
-        mount_roots: mount_roots
-        kubernetesNamespace: kubernetesNamespace
-        public_ip: public_ip
-        secondary_subnet_id: secondary_subnet_id
-        private_dns: private_dns
-        useTimeSync: true
-        kubernetesPodName: kubernetesPodName
-        root_volume: root_volume
-        secondary_private_ip: secondary_private_ip
-        private_ip: private_ip
-        cloud: cloud
-        lun_indexes:
-        - 6
-        - 6
-        assignPublicIP: true
-        az: az
-        subnet_id: subnet_id
-        public_dns: public_dns
-        region: region
-        instance_type: instance_type
-      properties:
-        assignPublicIP:
-          description: True if the node has a public IP address assigned
-          type: boolean
-        az:
-          description: The node's availability zone
-          type: string
-        cloud:
-          description: The node's cloud provider
-          type: string
-        instance_type:
-          description: The node's instance type
-          type: string
-        kubernetesNamespace:
-          description: Kubernetes namespace
-          type: string
-        kubernetesPodName:
-          description: Pod name in Kubernetes
-          type: string
-        lun_indexes:
-          description: Mounted disks LUN indexes
-          items:
-            format: int32
-            type: integer
-          type: array
-        mount_roots:
-          description: Mount roots
-          type: string
-        private_dns:
-          description: The node's private DNS
-          type: string
-        private_ip:
-          description: The node's private IP address
-          type: string
-        public_dns:
-          description: The node's public DNS name
-          type: string
-        public_ip:
-          description: The node's public IP address
-          type: string
-        region:
-          description: The node's region
-          type: string
-        root_volume:
-          description: Root volume ID or name
-          type: string
-        secondary_private_ip:
-          description: Secondary Private IP
-          type: string
-        secondary_subnet_id:
-          description: Secondary Subnet IP
-          type: string
-        subnet_id:
-          description: ID of the subnet on which this node is deployed
-          type: string
-        useTimeSync:
-          description: True if `use time sync` is enabled
-          type: boolean
+      - cloud
+      - region
+      - zone
       type: object
     YBPTask:
       example:
@@ -816,6 +559,183 @@ components:
           format: uuid
           readOnly: true
           type: string
+      type: object
+    CloudVolumeEncryption:
+      description: Volume encryption settings for AWS EBS volumes
+      example:
+        enableVolumeEncryption: true
+        kmsConfigUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        enableVolumeEncryption:
+          description: To enable volume encryption or not
+          type: boolean
+        kmsConfigUUID:
+          description: KMS config UUID to be used for volume encryption
+          format: uuid
+          type: string
+      type: object
+    CommunicationPorts:
+      description: Communication ports
+      example:
+        nodeExporterPort: 5
+        tserverHttpPort: 9
+        internalYsqlServerRpcPort: 0
+        ybControllerHttpPort: 2
+        redisServerHttpPort: 2
+        ybControllerrRpcPort: 4
+        tserverRpcPort: 3
+        ysqlServerHttpPort: 1
+        yqlServerRpcPort: 1
+        masterHttpPort: 6
+        otelCollectorMetricsPort: 5
+        ysqlServerRpcPort: 1
+        yqlServerHttpPort: 7
+        masterRpcPort: 1
+        redisServerRpcPort: 7
+      properties:
+        internalYsqlServerRpcPort:
+          description: Internal YSQL RPC port
+          format: int32
+          type: integer
+        masterHttpPort:
+          description: Master table HTTP port
+          format: int32
+          type: integer
+        masterRpcPort:
+          description: Master table RCP port
+          format: int32
+          type: integer
+        nodeExporterPort:
+          description: Node exporter port
+          format: int32
+          type: integer
+        otelCollectorMetricsPort:
+          description: Otel Collector metrics port
+          format: int32
+          type: integer
+        redisServerHttpPort:
+          description: Redis HTTP port
+          format: int32
+          type: integer
+        redisServerRpcPort:
+          description: Redis RPC port
+          format: int32
+          type: integer
+        tserverHttpPort:
+          description: Tablet server HTTP port
+          format: int32
+          type: integer
+        tserverRpcPort:
+          description: Tablet server RPC port
+          format: int32
+          type: integer
+        ybControllerHttpPort:
+          description: Yb controller HTTP port
+          format: int32
+          type: integer
+        ybControllerrRpcPort:
+          description: Yb controller RPC port
+          format: int32
+          type: integer
+        yqlServerHttpPort:
+          description: YQL HTTP port
+          format: int32
+          type: integer
+        yqlServerRpcPort:
+          description: YQL RPC port
+          format: int32
+          type: integer
+        ysqlServerHttpPort:
+          description: YSQL HTTP port
+          format: int32
+          type: integer
+        ysqlServerRpcPort:
+          description: YSQL RPC port
+          format: int32
+          type: integer
+      type: object
+    Users:
+      description: A user associated with a customer
+      example:
+        ldapSpecifiedRole: true
+        customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        role: Admin
+        authTokenIssueDate: 2021-06-17 15:00:05+00:00
+        timezone: timezone
+        oidcJwtAuthToken: oidcJwtAuthToken
+        groupMemberships:
+        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        userType: local
+        creationDate: 2022-12-12 13:07:18+00:00
+        uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        email: username1@example.com
+        primary: true
+      properties:
+        authTokenIssueDate:
+          description: UI session token creation date
+          example: 2021-06-17 15:00:05+00:00
+          format: date-time
+          readOnly: true
+          type: string
+        creationDate:
+          description: User creation date
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          readOnly: true
+          type: string
+        customerUUID:
+          description: Customer UUID
+          format: uuid
+          readOnly: true
+          type: string
+        email:
+          description: User email address
+          example: username1@example.com
+          type: string
+        groupMemberships:
+          items:
+            format: uuid
+            type: string
+          type: array
+          uniqueItems: true
+        ldapSpecifiedRole:
+          description: LDAP Specified Role
+          type: boolean
+        oidcJwtAuthToken:
+          readOnly: true
+          type: string
+        primary:
+          type: boolean
+        role:
+          description: <b style="color:#ff0000">Deprecated since YBA version 2.19.3.0.</b> Use  getRoleBindings instead.
+          enum:
+          - ConnectOnly
+          - ReadOnly
+          - BackupAdmin
+          - Admin
+          - SuperAdmin
+          example: Admin
+          type: string
+        timezone:
+          description: User timezone
+          type: string
+        userType:
+          description: User Type
+          enum:
+          - local
+          - ldap
+          - oidc
+          type: string
+        uuid:
+          description: User UUID
+          format: uuid
+          readOnly: true
+          type: string
+      required:
+      - email
+      - groupMemberships
+      - primary
       type: object
     ColumnDetails:
       description: Details of a CQL database column
@@ -931,13 +851,6 @@ components:
           - USER_DEFINED_TYPE
           type: string
       type: object
-    ExtraDependencies_2:
-      description: Extra dependencies
-      properties:
-        installNodeExporter:
-          description: Install node exporter on nodes
-          type: boolean
-      type: object
     CommunicationPorts_2:
       description: Communication ports
       properties:
@@ -986,6 +899,77 @@ components:
           format: int32
           type: integer
       type: object
+    ExtraDependencies:
+      description: Extra dependencies
+      example:
+        installNodeExporter: true
+      properties:
+        installNodeExporter:
+          description: Install node exporter on nodes
+          type: boolean
+      type: object
+    DeviceInfo_2:
+      description: Device information
+      properties:
+        diskIops:
+          description: Desired IOPS for the volumes mounted on this instance
+          format: int32
+          type: integer
+        mountPoints:
+          description: Comma-separated list of mount points for the devices in each instance
+          type: string
+        numVolumes:
+          description: Number of volumes to be mounted on this instance at the default path
+          format: int32
+          type: integer
+        storageClass:
+          description: Name of the storage class
+          type: string
+        storageType:
+          description: Storage type used for this instance
+          enum:
+          - IO1
+          - GP2
+          - GP3
+          - Scratch
+          - Persistent
+          - StandardSSD_LRS
+          - Premium_LRS
+          - UltraSSD_LRS
+          type: string
+        throughput:
+          description: Desired throughput for the volumes mounted on this instance
+          format: int32
+          type: integer
+        volumeSize:
+          description: The size of each volume in each instance
+          format: int32
+          type: integer
+      type: object
+    EncryptionAtRestConfig_2:
+      description: Encryption at rest configuration
+      properties:
+        encryptionAtRestEnabled:
+          description: Whether a universe is currently encrypted at rest
+          type: boolean
+        kmsConfigUUID:
+          description: KMS configuration UUID
+          format: uuid
+          type: string
+        opType:
+          description: 'Operation type: enable, disable, or rotate the universe key/encryption at rest'
+          enum:
+          - ENABLE
+          - DISABLE
+          - UNDEFINED
+          type: string
+        type:
+          description: Whether to generate a data key or just retrieve the CMK ARN
+          enum:
+          - CMK
+          - DATA_KEY
+          type: string
+      type: object
     NamespaceInfoResp:
       description: Namespace information response
       example:
@@ -1009,6 +993,355 @@ components:
           - PGSQL_TABLE_TYPE
           - TRANSACTION_STATUS_TABLE_TYPE
           type: string
+      type: object
+    NodeDetails:
+      description: Details of a cloud node
+      example:
+        nodeName: nodeName
+        nodeExporterPort: 3
+        placementUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        ybControllerHttpPort: 3
+        dedicatedTo: MASTER
+        machineImage: machineImage
+        redisServerHttpPort: 2
+        masterState: ToStart
+        tserverRpcPort: 6
+        ysqlServerHttpPort: 7
+        yqlServerRpcPort: 0
+        otelCollectorMetricsPort: 1
+        isMaster: true
+        sshUserOverride: sshUserOverride
+        cloudInfo:
+          mount_roots: mount_roots
+          kubernetesNamespace: kubernetesNamespace
+          public_ip: public_ip
+          secondary_subnet_id: secondary_subnet_id
+          private_dns: private_dns
+          useTimeSync: true
+          kubernetesPodName: kubernetesPodName
+          root_volume: root_volume
+          secondary_private_ip: secondary_private_ip
+          private_ip: private_ip
+          cloud: cloud
+          lun_indexes:
+          - 6
+          - 6
+          assignPublicIP: true
+          az: az
+          subnet_id: subnet_id
+          public_dns: public_dns
+          region: region
+          instance_type: instance_type
+        sshPortOverride: 6
+        cronsActive: true
+        state: Provisioned
+        nodeIdx: 6
+        masterRpcPort: 6
+        redisServerRpcPort: 6
+        lastVolumeUpdateTime: 2022-12-12 13:07:18+00:00
+        tserverHttpPort: 5
+        disksAreMountedByUUID: true
+        isRedisServer: true
+        ybPrebuiltAmi: true
+        internalYsqlServerRpcPort: 8
+        isTserver: true
+        nodeUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        isYsqlServer: true
+        ybControllerRpcPort: 3
+        isYqlServer: true
+        azUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        masterHttpPort: 9
+        ysqlServerRpcPort: 6
+        autoSyncMasterAddrs: true
+        yqlServerHttpPort: 7
+      properties:
+        autoSyncMasterAddrs:
+          description: 'WARNING: This is a preview API that could change. Used by auto master failover'
+          readOnly: true
+          type: boolean
+        azUuid:
+          description: The availability zone's UUID
+          format: uuid
+          type: string
+        cloudInfo:
+          $ref: '#/components/schemas/CloudSpecificInfo'
+        cronsActive:
+          description: True if cron jobs were properly configured for this node
+          type: boolean
+        dedicatedTo:
+          description: Used for configurations where each node can have only one process
+          enum:
+          - MASTER
+          - TSERVER
+          - CONTROLLER
+          - YQLSERVER
+          - YSQLSERVER
+          - REDISSERVER
+          - EITHER
+          type: string
+        disksAreMountedByUUID:
+          description: Disks are mounted by uuid
+          type: boolean
+        internalYsqlServerRpcPort:
+          description: Internal YSQL RPC port
+          format: int32
+          type: integer
+        isMaster:
+          description: True if this node is a master
+          type: boolean
+        isRedisServer:
+          description: True if this node is a REDIS server
+          type: boolean
+        isTserver:
+          description: True if this node is a Tablet server
+          type: boolean
+        isYqlServer:
+          description: True if this node is a YCQL server
+          type: boolean
+        isYsqlServer:
+          description: True if this node is a YSQL server
+          type: boolean
+        lastVolumeUpdateTime:
+          description: Store last volume update time
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          readOnly: true
+          type: string
+        machineImage:
+          description: Machine image name
+          type: string
+        masterHttpPort:
+          description: Master HTTP port
+          format: int32
+          type: integer
+        masterRpcPort:
+          description: Master RPC port
+          format: int32
+          type: integer
+        masterState:
+          description: Master state
+          enum:
+          - None
+          - ToStart
+          - Configured
+          - ToStop
+          example: ToStart
+          type: string
+        nodeExporterPort:
+          description: Node exporter port
+          format: int32
+          type: integer
+        nodeIdx:
+          description: Node ID
+          format: int32
+          type: integer
+        nodeName:
+          description: Node name
+          type: string
+        nodeUuid:
+          description: Node UUID
+          format: uuid
+          type: string
+        otelCollectorMetricsPort:
+          description: Otel collector metrics port
+          format: int32
+          type: integer
+        placementUuid:
+          description: UUID of the cluster to which this node belongs
+          format: uuid
+          type: string
+        redisServerHttpPort:
+          description: REDIS HTTP port
+          format: int32
+          type: integer
+        redisServerRpcPort:
+          description: REDIS RPC port
+          format: int32
+          type: integer
+        sshPortOverride:
+          description: SSH port override for the AMI
+          format: int32
+          type: integer
+        sshUserOverride:
+          description: SSH user override for the AMI
+          type: string
+        state:
+          description: Node state
+          enum:
+          - ToBeAdded
+          - InstanceCreated
+          - ServerSetup
+          - ToJoinCluster
+          - Reprovisioning
+          - Provisioned
+          - SoftwareInstalled
+          - UpgradeMasterSoftware
+          - UpgradeSoftware
+          - RollbackUpgrade
+          - FinalizeUpgrade
+          - UpdateGFlags
+          - Live
+          - Stopping
+          - Starting
+          - Stopped
+          - Unreachable
+          - MetricsUnavailable
+          - ToBeRemoved
+          - Removing
+          - Removed
+          - Adding
+          - BeingDecommissioned
+          - Decommissioned
+          - UpdateCert
+          - ToggleTls
+          - ConfigureDBApis
+          - Resizing
+          - SystemdUpgrade
+          - Terminating
+          - Terminated
+          - Rebooting
+          - HardRebooting
+          - VMImageUpgrade
+          - InstanceStopping
+          - InstanceStopped
+          example: Provisioned
+          type: string
+        tserverHttpPort:
+          description: Tablet server HTTP port
+          format: int32
+          type: integer
+        tserverRpcPort:
+          description: Tablet server RPC port
+          format: int32
+          type: integer
+        ybControllerHttpPort:
+          description: Yb controller HTTP port
+          format: int32
+          type: integer
+        ybControllerRpcPort:
+          description: Yb controller RPC port
+          format: int32
+          type: integer
+        ybPrebuiltAmi:
+          description: True if this a custom YB AMI
+          type: boolean
+        yqlServerHttpPort:
+          description: YCQL HTTP port
+          format: int32
+          type: integer
+        yqlServerRpcPort:
+          description: YCQL RPC port
+          format: int32
+          type: integer
+        ysqlServerHttpPort:
+          description: YSQL HTTP port
+          format: int32
+          type: integer
+        ysqlServerRpcPort:
+          description: YSQL RPC port
+          format: int32
+          type: integer
+      type: object
+    TableDetails:
+      description: Table details
+      example:
+        keyspace: keyspace
+        columns:
+        - columnOrder: 5
+          isClusteringKey: true
+          sortOrder: NONE
+          valueType: TINYINT
+          name: name
+          keyType: TINYINT
+          type: TINYINT
+          isPartitionKey: true
+        - columnOrder: 5
+          isClusteringKey: true
+          sortOrder: NONE
+          valueType: TINYINT
+          name: name
+          keyType: TINYINT
+          type: TINYINT
+          isPartitionKey: true
+        ttlInSeconds: 5
+        splitValues:
+        - splitValues
+        - splitValues
+        tableName: tableName
+      properties:
+        columns:
+          description: Details of all columns in the table
+          items:
+            $ref: '#/components/schemas/ColumnDetails'
+          type: array
+        keyspace:
+          description: Keyspace to which this table belongs
+          type: string
+        splitValues:
+          description: Primary key values used to split table into tablets
+          items:
+            type: string
+          type: array
+        tableName:
+          description: Table name
+          type: string
+        ttlInSeconds:
+          description: The default table-level time to live, in seconds. A value of `-1` represents an infinite TTL.
+          format: int64
+          type: integer
+      type: object
+    TableSpaceInfo:
+      description: Tablespace information
+      example:
+        numReplicas: 1
+        name: name
+        placementBlocks:
+        - cloud: cloud
+          leader_preference: 1
+          zone: zone
+          min_num_replicas: 1
+          region: region
+        - cloud: cloud
+          leader_preference: 1
+          zone: zone
+          min_num_replicas: 1
+          region: region
+        - cloud: cloud
+          leader_preference: 1
+          zone: zone
+          min_num_replicas: 1
+          region: region
+        - cloud: cloud
+          leader_preference: 1
+          zone: zone
+          min_num_replicas: 1
+          region: region
+        - cloud: cloud
+          leader_preference: 1
+          zone: zone
+          min_num_replicas: 1
+          region: region
+      properties:
+        name:
+          description: Tablespace Name
+          maxLength: 2147483647
+          minLength: 1
+          type: string
+        numReplicas:
+          description: numReplicas
+          format: int32
+          minimum: 1
+          type: integer
+        placementBlocks:
+          description: placements
+          items:
+            $ref: '#/components/schemas/PlacementBlock'
+          maxItems: 2147483647
+          minItems: 1
+          type: array
+      required:
+      - name
+      - placementBlocks
       type: object
     TableDefinitionTaskParams:
       example:
@@ -1416,210 +1749,11 @@ components:
           readOnly: true
           type: number
       type: object
-    ExtraDependencies:
+    ExtraDependencies_2:
       description: Extra dependencies
-      example:
-        installNodeExporter: true
       properties:
         installNodeExporter:
           description: Install node exporter on nodes
-          type: boolean
-      type: object
-    Users:
-      description: A user associated with a customer
-      example:
-        ldapSpecifiedRole: true
-        customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        role: Admin
-        authTokenIssueDate: 2021-06-17 15:00:05+00:00
-        timezone: timezone
-        oidcJwtAuthToken: oidcJwtAuthToken
-        groupMemberships:
-        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        userType: local
-        creationDate: 2022-12-12 13:07:18+00:00
-        uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        email: username1@example.com
-        primary: true
-      properties:
-        authTokenIssueDate:
-          description: UI session token creation date
-          example: 2021-06-17 15:00:05+00:00
-          format: date-time
-          readOnly: true
-          type: string
-        creationDate:
-          description: User creation date
-          example: 2022-12-12 13:07:18+00:00
-          format: date-time
-          readOnly: true
-          type: string
-        customerUUID:
-          description: Customer UUID
-          format: uuid
-          readOnly: true
-          type: string
-        email:
-          description: User email address
-          example: username1@example.com
-          type: string
-        groupMemberships:
-          items:
-            format: uuid
-            type: string
-          type: array
-          uniqueItems: true
-        ldapSpecifiedRole:
-          description: LDAP Specified Role
-          type: boolean
-        oidcJwtAuthToken:
-          readOnly: true
-          type: string
-        primary:
-          type: boolean
-        role:
-          description: <b style="color:#ff0000">Deprecated since YBA version 2.19.3.0.</b> Use  getRoleBindings instead.
-          enum:
-          - ConnectOnly
-          - ReadOnly
-          - BackupAdmin
-          - Admin
-          - SuperAdmin
-          example: Admin
-          type: string
-        timezone:
-          description: User timezone
-          type: string
-        userType:
-          description: User Type
-          enum:
-          - local
-          - ldap
-          - oidc
-          type: string
-        uuid:
-          description: User UUID
-          format: uuid
-          readOnly: true
-          type: string
-      required:
-      - email
-      - groupMemberships
-      - primary
-      type: object
-    DeviceInfo_2:
-      description: Device information
-      properties:
-        diskIops:
-          description: Desired IOPS for the volumes mounted on this instance
-          format: int32
-          type: integer
-        mountPoints:
-          description: Comma-separated list of mount points for the devices in each instance
-          type: string
-        numVolumes:
-          description: Number of volumes to be mounted on this instance at the default path
-          format: int32
-          type: integer
-        storageClass:
-          description: Name of the storage class
-          type: string
-        storageType:
-          description: Storage type used for this instance
-          enum:
-          - IO1
-          - GP2
-          - GP3
-          - Scratch
-          - Persistent
-          - StandardSSD_LRS
-          - Premium_LRS
-          - UltraSSD_LRS
-          type: string
-        throughput:
-          description: Desired throughput for the volumes mounted on this instance
-          format: int32
-          type: integer
-        volumeSize:
-          description: The size of each volume in each instance
-          format: int32
-          type: integer
-      type: object
-    CloudSpecificInfo_2:
-      description: Node information reported by the cloud provider
-      properties:
-        assignPublicIP:
-          description: True if the node has a public IP address assigned
-          type: boolean
-        az:
-          description: The node's availability zone
-          type: string
-        cloud:
-          description: The node's cloud provider
-          type: string
-        instance_type:
-          description: The node's instance type
-          type: string
-        mount_roots:
-          description: Mount roots
-          type: string
-        private_dns:
-          description: The node's private DNS
-          type: string
-        private_ip:
-          description: The node's private IP address
-          type: string
-        public_dns:
-          description: The node's public DNS name
-          type: string
-        public_ip:
-          description: The node's public IP address
-          type: string
-        region:
-          description: The node's region
-          type: string
-        secondary_private_ip:
-          description: Secondary Private IP
-          type: string
-        secondary_subnet_id:
-          description: Secondary Subnet IP
-          type: string
-        subnet_id:
-          description: ID of the subnet on which this node is deployed
-          type: string
-        useTimeSync:
-          description: True if `use time sync` is enabled
-          type: boolean
-      type: object
-    CloudVolumeEncryption:
-      description: Volume encryption settings for AWS EBS volumes
-      example:
-        enableVolumeEncryption: true
-        kmsConfigUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-      properties:
-        enableVolumeEncryption:
-          description: To enable volume encryption or not
-          type: boolean
-        kmsConfigUUID:
-          description: KMS config UUID to be used for volume encryption
-          format: uuid
-          type: string
-      type: object
-    YBPError:
-      description: Generic error response from the YugabyteDB Anywhere API
-      properties:
-        error:
-          description: User-visible unstructured error message
-          example: There was a problem creating the universe
-          type: string
-        errorJson:
-          description: User visible error message as json object
-          example: '{ "foo" : "bar", "baz" : [1, 2, 3] }'
-          type: object
-        success:
-          description: Always set to false to indicate failure
-          example: false
           type: boolean
       type: object
     YBPTask_2:
@@ -1633,390 +1767,6 @@ components:
           description: Task UUID
           format: uuid
           readOnly: true
-          type: string
-      type: object
-    CommunicationPorts:
-      description: Communication ports
-      example:
-        nodeExporterPort: 5
-        tserverHttpPort: 9
-        internalYsqlServerRpcPort: 0
-        ybControllerHttpPort: 2
-        redisServerHttpPort: 2
-        ybControllerrRpcPort: 4
-        tserverRpcPort: 3
-        ysqlServerHttpPort: 1
-        yqlServerRpcPort: 1
-        masterHttpPort: 6
-        otelCollectorMetricsPort: 5
-        ysqlServerRpcPort: 1
-        yqlServerHttpPort: 7
-        masterRpcPort: 1
-        redisServerRpcPort: 7
-      properties:
-        internalYsqlServerRpcPort:
-          description: Internal YSQL RPC port
-          format: int32
-          type: integer
-        masterHttpPort:
-          description: Master table HTTP port
-          format: int32
-          type: integer
-        masterRpcPort:
-          description: Master table RCP port
-          format: int32
-          type: integer
-        nodeExporterPort:
-          description: Node exporter port
-          format: int32
-          type: integer
-        otelCollectorMetricsPort:
-          description: Otel Collector metrics port
-          format: int32
-          type: integer
-        redisServerHttpPort:
-          description: Redis HTTP port
-          format: int32
-          type: integer
-        redisServerRpcPort:
-          description: Redis RPC port
-          format: int32
-          type: integer
-        tserverHttpPort:
-          description: Tablet server HTTP port
-          format: int32
-          type: integer
-        tserverRpcPort:
-          description: Tablet server RPC port
-          format: int32
-          type: integer
-        ybControllerHttpPort:
-          description: Yb controller HTTP port
-          format: int32
-          type: integer
-        ybControllerrRpcPort:
-          description: Yb controller RPC port
-          format: int32
-          type: integer
-        yqlServerHttpPort:
-          description: YQL HTTP port
-          format: int32
-          type: integer
-        yqlServerRpcPort:
-          description: YQL RPC port
-          format: int32
-          type: integer
-        ysqlServerHttpPort:
-          description: YSQL HTTP port
-          format: int32
-          type: integer
-        ysqlServerRpcPort:
-          description: YSQL RPC port
-          format: int32
-          type: integer
-      type: object
-    MultiTableBackupRequestParams:
-      description: Multi-table backup parameters
-      properties:
-        actionType:
-          description: Action type
-          enum:
-          - CREATE
-          - RESTORE
-          - RESTORE_KEYS
-          - DELETE
-          type: string
-        alterLoadBalancer:
-          description: Alter load balancer state
-          type: boolean
-        backupList:
-          description: Backups
-          items:
-            $ref: '#/components/schemas/BackupTableParams'
-          type: array
-        backupSizeInBytes:
-          description: Backup size in bytes
-          format: int64
-          type: integer
-        backupType:
-          description: Backup type
-          enum:
-          - YQL_TABLE_TYPE
-          - REDIS_TABLE_TYPE
-          - PGSQL_TABLE_TYPE
-          - TRANSACTION_STATUS_TABLE_TYPE
-          type: string
-        backupUuid:
-          description: Backup UUID
-          format: uuid
-          type: string
-        cmkArn:
-          description: Amazon Resource Name (ARN) of the CMK
-          type: string
-        communicationPorts:
-          $ref: '#/components/schemas/CommunicationPorts_2'
-          description: Communication ports
-        cronExpression:
-          description: Cron expression for a recurring backup
-          type: string
-        customerUUID:
-          description: 'Customer UUID. Changes From Upstream: Removes duplicate customerUUID field'
-          format: uuid
-          type: string
-        deviceInfo:
-          $ref: '#/components/schemas/DeviceInfo_2'
-          description: Device information
-        disableChecksum:
-          description: Disable checksum
-          type: boolean
-        enableVerboseLogs:
-          description: Is verbose logging enabled
-          type: boolean
-        encryptionAtRestConfig:
-          $ref: '#/components/schemas/EncryptionAtRestConfig_2'
-          description: Encryption at rest configation
-        errorString:
-          description: Error message
-          type: string
-        expectedUniverseVersion:
-          description: Expected universe version
-          format: int32
-          type: integer
-        expiryTimeUnit:
-          description: Time unit for backup expiry time
-          enum:
-          - NANOSECONDS
-          - MICROSECONDS
-          - MILLISECONDS
-          - SECONDS
-          - MINUTES
-          - HOURS
-          - DAYS
-          - MONTHS
-          - YEARS
-          type: string
-        extraDependencies:
-          $ref: '#/components/schemas/ExtraDependencies_2'
-          description: Extra dependencies
-        firstTry:
-          description: Whether this task has been tried before
-          type: boolean
-        ignoreErrors:
-          description: Should table backup errors be ignored
-          type: boolean
-        isFullBackup:
-          description: Full Table type backup
-          type: boolean
-        keyspace:
-          description: Key space
-          type: string
-        kmsConfigUUID:
-          description: KMS configuration UUID
-          format: uuid
-          type: string
-        minNumBackupsToRetain:
-          description: Minimum number of backups to retain for a particular backup schedule
-          format: int32
-          type: integer
-        newOwner:
-          description: User name of the new tables owner
-          type: string
-        nodeDetailsSet:
-          description: Node details
-          items:
-            $ref: '#/components/schemas/NodeDetails_2'
-          type: array
-          uniqueItems: true
-        nodeExporterUser:
-          description: Node exporter user
-          type: string
-        oldOwner:
-          description: User name of the current tables owner
-          type: string
-        parallelism:
-          description: Number of concurrent commands to run on nodes over SSH
-          format: int32
-          type: integer
-        previousTaskUUID:
-          description: Previous task UUID only if this task is a retry
-          format: uuid
-          type: string
-        regionLocations:
-          description: Per region locations
-          items:
-            $ref: '#/components/schemas/RegionLocations'
-          type: array
-        restoreTimeStamp:
-          description: Restore TimeStamp
-          type: string
-        scheduleUUID:
-          description: Schedule UUID
-          format: uuid
-          type: string
-        schedulingFrequency:
-          description: Frequency to run the backup, in milliseconds
-          format: int64
-          type: integer
-        sourceXClusterConfigs:
-          description: The source universe's xcluster replication relationships
-          items:
-            format: uuid
-            type: string
-          readOnly: true
-          type: array
-        sse:
-          description: Is SSE
-          type: boolean
-        storageConfigType:
-          description: Type of backup storage config
-          enum:
-          - S3
-          - NFS
-          - AZ
-          - GCS
-          - FILE
-          type: string
-        storageConfigUUID:
-          description: Storage configuration UUID
-          format: uuid
-          type: string
-        storageLocation:
-          description: Storage location
-          type: string
-        tableName:
-          description: Table name
-          type: string
-        tableNameList:
-          description: Tables
-          items:
-            type: string
-          type: array
-        tableUUID:
-          description: Table UUID
-          format: uuid
-          type: string
-        tableUUIDList:
-          description: Table UUIDs
-          items:
-            format: uuid
-            type: string
-          type: array
-        targetXClusterConfigs:
-          description: The target universe's xcluster replication relationships
-          items:
-            format: uuid
-            type: string
-          readOnly: true
-          type: array
-        timeBeforeDelete:
-          description: Time before deleting the backup from storage, in milliseconds
-          format: int64
-          type: integer
-        transactionalBackup:
-          description: Is backup transactional across tables
-          type: boolean
-        universeUUID:
-          description: Associated universe UUID
-          format: uuid
-          type: string
-        useTablespaces:
-          description: Is tablespaces information included
-          type: boolean
-        ybPrevSoftwareVersion:
-          description: Previous software version
-          type: string
-      required:
-      - storageConfigUUID
-      type: object
-    PlacementBlock:
-      example:
-        cloud: cloud
-        leader_preference: 1
-        zone: zone
-        min_num_replicas: 1
-        region: region
-      properties:
-        cloud:
-          description: Cloud
-          maxLength: 2147483647
-          minLength: 1
-          type: string
-        leader_preference:
-          description: Leader preference
-          format: int32
-          minimum: 1
-          type: integer
-        min_num_replicas:
-          description: Minimum replicas
-          format: int32
-          minimum: 1
-          type: integer
-        region:
-          description: Region
-          maxLength: 2147483647
-          minLength: 1
-          type: string
-        zone:
-          description: Zone
-          maxLength: 2147483647
-          minLength: 1
-          type: string
-      required:
-      - cloud
-      - region
-      - zone
-      type: object
-    EncryptionAtRestConfig:
-      description: Encryption at rest configuration
-      example:
-        encryptionAtRestEnabled: true
-        opType: ENABLE
-        kmsConfigUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        type: CMK
-      properties:
-        encryptionAtRestEnabled:
-          description: Whether a universe is currently encrypted at rest
-          type: boolean
-        kmsConfigUUID:
-          description: KMS configuration UUID
-          format: uuid
-          type: string
-        opType:
-          description: 'Operation type: enable, disable, or rotate the universe key/encryption at rest'
-          enum:
-          - ENABLE
-          - DISABLE
-          - UNDEFINED
-          type: string
-        type:
-          description: Whether to generate a data key or just retrieve the CMK ARN
-          enum:
-          - CMK
-          - DATA_KEY
-          type: string
-      type: object
-    EncryptionAtRestConfig_2:
-      description: Encryption at rest configuration
-      properties:
-        encryptionAtRestEnabled:
-          description: Whether a universe is currently encrypted at rest
-          type: boolean
-        kmsConfigUUID:
-          description: KMS configuration UUID
-          format: uuid
-          type: string
-        opType:
-          description: 'Operation type: enable, disable, or rotate the universe key/encryption at rest'
-          enum:
-          - ENABLE
-          - DISABLE
-          - UNDEFINED
-          type: string
-        type:
-          description: Whether to generate a data key or just retrieve the CMK ARN
-          enum:
-          - CMK
-          - DATA_KEY
           type: string
       type: object
     NodeDetails_2:
@@ -2155,355 +1905,6 @@ components:
           description: YSQL RPC port
           format: int32
           type: integer
-      type: object
-    TableDetails:
-      description: Table details
-      example:
-        keyspace: keyspace
-        columns:
-        - columnOrder: 5
-          isClusteringKey: true
-          sortOrder: NONE
-          valueType: TINYINT
-          name: name
-          keyType: TINYINT
-          type: TINYINT
-          isPartitionKey: true
-        - columnOrder: 5
-          isClusteringKey: true
-          sortOrder: NONE
-          valueType: TINYINT
-          name: name
-          keyType: TINYINT
-          type: TINYINT
-          isPartitionKey: true
-        ttlInSeconds: 5
-        splitValues:
-        - splitValues
-        - splitValues
-        tableName: tableName
-      properties:
-        columns:
-          description: Details of all columns in the table
-          items:
-            $ref: '#/components/schemas/ColumnDetails'
-          type: array
-        keyspace:
-          description: Keyspace to which this table belongs
-          type: string
-        splitValues:
-          description: Primary key values used to split table into tablets
-          items:
-            type: string
-          type: array
-        tableName:
-          description: Table name
-          type: string
-        ttlInSeconds:
-          description: The default table-level time to live, in seconds. A value of `-1` represents an infinite TTL.
-          format: int64
-          type: integer
-      type: object
-    NodeDetails:
-      description: Details of a cloud node
-      example:
-        nodeName: nodeName
-        nodeExporterPort: 3
-        placementUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        ybControllerHttpPort: 3
-        dedicatedTo: MASTER
-        machineImage: machineImage
-        redisServerHttpPort: 2
-        masterState: ToStart
-        tserverRpcPort: 6
-        ysqlServerHttpPort: 7
-        yqlServerRpcPort: 0
-        otelCollectorMetricsPort: 1
-        isMaster: true
-        sshUserOverride: sshUserOverride
-        cloudInfo:
-          mount_roots: mount_roots
-          kubernetesNamespace: kubernetesNamespace
-          public_ip: public_ip
-          secondary_subnet_id: secondary_subnet_id
-          private_dns: private_dns
-          useTimeSync: true
-          kubernetesPodName: kubernetesPodName
-          root_volume: root_volume
-          secondary_private_ip: secondary_private_ip
-          private_ip: private_ip
-          cloud: cloud
-          lun_indexes:
-          - 6
-          - 6
-          assignPublicIP: true
-          az: az
-          subnet_id: subnet_id
-          public_dns: public_dns
-          region: region
-          instance_type: instance_type
-        sshPortOverride: 6
-        cronsActive: true
-        state: Provisioned
-        nodeIdx: 6
-        masterRpcPort: 6
-        redisServerRpcPort: 6
-        lastVolumeUpdateTime: 2022-12-12 13:07:18+00:00
-        tserverHttpPort: 5
-        disksAreMountedByUUID: true
-        isRedisServer: true
-        ybPrebuiltAmi: true
-        internalYsqlServerRpcPort: 8
-        isTserver: true
-        nodeUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        isYsqlServer: true
-        ybControllerRpcPort: 3
-        isYqlServer: true
-        azUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        masterHttpPort: 9
-        ysqlServerRpcPort: 6
-        autoSyncMasterAddrs: true
-        yqlServerHttpPort: 7
-      properties:
-        autoSyncMasterAddrs:
-          description: 'WARNING: This is a preview API that could change. Used by auto master failover'
-          readOnly: true
-          type: boolean
-        azUuid:
-          description: The availability zone's UUID
-          format: uuid
-          type: string
-        cloudInfo:
-          $ref: '#/components/schemas/CloudSpecificInfo'
-        cronsActive:
-          description: True if cron jobs were properly configured for this node
-          type: boolean
-        dedicatedTo:
-          description: Used for configurations where each node can have only one process
-          enum:
-          - MASTER
-          - TSERVER
-          - CONTROLLER
-          - YQLSERVER
-          - YSQLSERVER
-          - REDISSERVER
-          - EITHER
-          type: string
-        disksAreMountedByUUID:
-          description: Disks are mounted by uuid
-          type: boolean
-        internalYsqlServerRpcPort:
-          description: Internal YSQL RPC port
-          format: int32
-          type: integer
-        isMaster:
-          description: True if this node is a master
-          type: boolean
-        isRedisServer:
-          description: True if this node is a REDIS server
-          type: boolean
-        isTserver:
-          description: True if this node is a Tablet server
-          type: boolean
-        isYqlServer:
-          description: True if this node is a YCQL server
-          type: boolean
-        isYsqlServer:
-          description: True if this node is a YSQL server
-          type: boolean
-        lastVolumeUpdateTime:
-          description: Store last volume update time
-          example: 2022-12-12 13:07:18+00:00
-          format: date-time
-          readOnly: true
-          type: string
-        machineImage:
-          description: Machine image name
-          type: string
-        masterHttpPort:
-          description: Master HTTP port
-          format: int32
-          type: integer
-        masterRpcPort:
-          description: Master RPC port
-          format: int32
-          type: integer
-        masterState:
-          description: Master state
-          enum:
-          - None
-          - ToStart
-          - Configured
-          - ToStop
-          example: ToStart
-          type: string
-        nodeExporterPort:
-          description: Node exporter port
-          format: int32
-          type: integer
-        nodeIdx:
-          description: Node ID
-          format: int32
-          type: integer
-        nodeName:
-          description: Node name
-          type: string
-        nodeUuid:
-          description: Node UUID
-          format: uuid
-          type: string
-        otelCollectorMetricsPort:
-          description: Otel collector metrics port
-          format: int32
-          type: integer
-        placementUuid:
-          description: UUID of the cluster to which this node belongs
-          format: uuid
-          type: string
-        redisServerHttpPort:
-          description: REDIS HTTP port
-          format: int32
-          type: integer
-        redisServerRpcPort:
-          description: REDIS RPC port
-          format: int32
-          type: integer
-        sshPortOverride:
-          description: SSH port override for the AMI
-          format: int32
-          type: integer
-        sshUserOverride:
-          description: SSH user override for the AMI
-          type: string
-        state:
-          description: Node state
-          enum:
-          - ToBeAdded
-          - InstanceCreated
-          - ServerSetup
-          - ToJoinCluster
-          - Reprovisioning
-          - Provisioned
-          - SoftwareInstalled
-          - UpgradeMasterSoftware
-          - UpgradeSoftware
-          - RollbackUpgrade
-          - FinalizeUpgrade
-          - UpdateGFlags
-          - Live
-          - Stopping
-          - Starting
-          - Stopped
-          - Unreachable
-          - MetricsUnavailable
-          - ToBeRemoved
-          - Removing
-          - Removed
-          - Adding
-          - BeingDecommissioned
-          - Decommissioned
-          - UpdateCert
-          - ToggleTls
-          - ConfigureDBApis
-          - Resizing
-          - SystemdUpgrade
-          - Terminating
-          - Terminated
-          - Rebooting
-          - HardRebooting
-          - VMImageUpgrade
-          - InstanceStopping
-          - InstanceStopped
-          example: Provisioned
-          type: string
-        tserverHttpPort:
-          description: Tablet server HTTP port
-          format: int32
-          type: integer
-        tserverRpcPort:
-          description: Tablet server RPC port
-          format: int32
-          type: integer
-        ybControllerHttpPort:
-          description: Yb controller HTTP port
-          format: int32
-          type: integer
-        ybControllerRpcPort:
-          description: Yb controller RPC port
-          format: int32
-          type: integer
-        ybPrebuiltAmi:
-          description: True if this a custom YB AMI
-          type: boolean
-        yqlServerHttpPort:
-          description: YCQL HTTP port
-          format: int32
-          type: integer
-        yqlServerRpcPort:
-          description: YCQL RPC port
-          format: int32
-          type: integer
-        ysqlServerHttpPort:
-          description: YSQL HTTP port
-          format: int32
-          type: integer
-        ysqlServerRpcPort:
-          description: YSQL RPC port
-          format: int32
-          type: integer
-      type: object
-    TableSpaceInfo:
-      description: Tablespace information
-      example:
-        numReplicas: 1
-        name: name
-        placementBlocks:
-        - cloud: cloud
-          leader_preference: 1
-          zone: zone
-          min_num_replicas: 1
-          region: region
-        - cloud: cloud
-          leader_preference: 1
-          zone: zone
-          min_num_replicas: 1
-          region: region
-        - cloud: cloud
-          leader_preference: 1
-          zone: zone
-          min_num_replicas: 1
-          region: region
-        - cloud: cloud
-          leader_preference: 1
-          zone: zone
-          min_num_replicas: 1
-          region: region
-        - cloud: cloud
-          leader_preference: 1
-          zone: zone
-          min_num_replicas: 1
-          region: region
-      properties:
-        name:
-          description: Tablespace Name
-          maxLength: 2147483647
-          minLength: 1
-          type: string
-        numReplicas:
-          description: numReplicas
-          format: int32
-          minimum: 1
-          type: integer
-        placementBlocks:
-          description: placements
-          items:
-            $ref: '#/components/schemas/PlacementBlock'
-          maxItems: 2147483647
-          minItems: 1
-          type: array
-      required:
-      - name
-      - placementBlocks
       type: object
     BulkImportParams:
       description: Bulk import parameters
@@ -2804,71 +2205,87 @@ components:
       - sleepAfterMasterRestartMillis
       - sleepAfterTServerRestartMillis
       type: object
-    DeviceInfo:
-      description: Device information
+    CloudSpecificInfo:
+      description: Node information reported by the cloud provider
       example:
-        cloudVolumeEncryption:
-          enableVolumeEncryption: true
-          kmsConfigUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        diskIops: 6
-        storageClass: storageClass
-        numVolumes: 7
-        mountPoints: mountPoints
-        storageType: IO1
-        throughput: 1
-        volumeSize: 4
+        mount_roots: mount_roots
+        kubernetesNamespace: kubernetesNamespace
+        public_ip: public_ip
+        secondary_subnet_id: secondary_subnet_id
+        private_dns: private_dns
+        useTimeSync: true
+        kubernetesPodName: kubernetesPodName
+        root_volume: root_volume
+        secondary_private_ip: secondary_private_ip
+        private_ip: private_ip
+        cloud: cloud
+        lun_indexes:
+        - 6
+        - 6
+        assignPublicIP: true
+        az: az
+        subnet_id: subnet_id
+        public_dns: public_dns
+        region: region
+        instance_type: instance_type
       properties:
-        cloudVolumeEncryption:
-          $ref: '#/components/schemas/CloudVolumeEncryption'
-        diskIops:
-          description: Desired IOPS for the volumes mounted on this instance
-          format: int32
-          type: integer
-        mountPoints:
-          description: Comma-separated list of mount points for the devices in each instance
+        assignPublicIP:
+          description: True if the node has a public IP address assigned
+          type: boolean
+        az:
+          description: The node's availability zone
           type: string
-        numVolumes:
-          description: Number of volumes to be mounted on this instance at the default path
-          format: int32
-          type: integer
-        storageClass:
-          description: Name of the storage class
+        cloud:
+          description: The node's cloud provider
           type: string
-        storageType:
-          description: Storage type used for this instance
-          enum:
-          - IO1
-          - IO2
-          - GP2
-          - GP3
-          - Scratch
-          - Persistent
-          - Hyperdisk_Balanced
-          - Hyperdisk_Extreme
-          - StandardSSD_LRS
-          - Premium_LRS
-          - PremiumV2_LRS
-          - UltraSSD_LRS
-          - Local
+        instance_type:
+          description: The node's instance type
           type: string
-        throughput:
-          description: Desired throughput for the volumes mounted on this instance
-          format: int32
-          type: integer
-        volumeSize:
-          description: The size of each volume in each instance. Could be modified in payload for /resize_node API call
-          format: int32
-          type: integer
-      type: object
-    RegionLocations:
-      properties:
-        LOCATION:
+        kubernetesNamespace:
+          description: Kubernetes namespace
           type: string
-        REGION:
+        kubernetesPodName:
+          description: Pod name in Kubernetes
           type: string
-      required:
-      - LOCATION
-      - REGION
+        lun_indexes:
+          description: Mounted disks LUN indexes
+          items:
+            format: int32
+            type: integer
+          type: array
+        mount_roots:
+          description: Mount roots
+          type: string
+        private_dns:
+          description: The node's private DNS
+          type: string
+        private_ip:
+          description: The node's private IP address
+          type: string
+        public_dns:
+          description: The node's public DNS name
+          type: string
+        public_ip:
+          description: The node's public IP address
+          type: string
+        region:
+          description: The node's region
+          type: string
+        root_volume:
+          description: Root volume ID or name
+          type: string
+        secondary_private_ip:
+          description: Secondary Private IP
+          type: string
+        secondary_subnet_id:
+          description: Secondary Subnet IP
+          type: string
+        subnet_id:
+          description: ID of the subnet on which this node is deployed
+          type: string
+        useTimeSync:
+          description: True if `use time sync` is enabled
+          type: boolean
       type: object
     CreateTablespaceParams:
       example:
@@ -3023,6 +2440,589 @@ components:
           type: array
       required:
       - tablespaceInfos
+      type: object
+    DeviceInfo:
+      description: Device information
+      example:
+        cloudVolumeEncryption:
+          enableVolumeEncryption: true
+          kmsConfigUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        diskIops: 6
+        storageClass: storageClass
+        numVolumes: 7
+        mountPoints: mountPoints
+        storageType: IO1
+        throughput: 1
+        volumeSize: 4
+      properties:
+        cloudVolumeEncryption:
+          $ref: '#/components/schemas/CloudVolumeEncryption'
+        diskIops:
+          description: Desired IOPS for the volumes mounted on this instance
+          format: int32
+          type: integer
+        mountPoints:
+          description: Comma-separated list of mount points for the devices in each instance
+          type: string
+        numVolumes:
+          description: Number of volumes to be mounted on this instance at the default path
+          format: int32
+          type: integer
+        storageClass:
+          description: Name of the storage class
+          type: string
+        storageType:
+          description: Storage type used for this instance
+          enum:
+          - IO1
+          - IO2
+          - GP2
+          - GP3
+          - Scratch
+          - Persistent
+          - Hyperdisk_Balanced
+          - Hyperdisk_Extreme
+          - StandardSSD_LRS
+          - Premium_LRS
+          - PremiumV2_LRS
+          - UltraSSD_LRS
+          - Local
+          type: string
+        throughput:
+          description: Desired throughput for the volumes mounted on this instance
+          format: int32
+          type: integer
+        volumeSize:
+          description: The size of each volume in each instance. Could be modified in payload for /resize_node API call
+          format: int32
+          type: integer
+      type: object
+    CloudSpecificInfo_2:
+      description: Node information reported by the cloud provider
+      properties:
+        assignPublicIP:
+          description: True if the node has a public IP address assigned
+          type: boolean
+        az:
+          description: The node's availability zone
+          type: string
+        cloud:
+          description: The node's cloud provider
+          type: string
+        instance_type:
+          description: The node's instance type
+          type: string
+        mount_roots:
+          description: Mount roots
+          type: string
+        private_dns:
+          description: The node's private DNS
+          type: string
+        private_ip:
+          description: The node's private IP address
+          type: string
+        public_dns:
+          description: The node's public DNS name
+          type: string
+        public_ip:
+          description: The node's public IP address
+          type: string
+        region:
+          description: The node's region
+          type: string
+        secondary_private_ip:
+          description: Secondary Private IP
+          type: string
+        secondary_subnet_id:
+          description: Secondary Subnet IP
+          type: string
+        subnet_id:
+          description: ID of the subnet on which this node is deployed
+          type: string
+        useTimeSync:
+          description: True if `use time sync` is enabled
+          type: boolean
+      type: object
+    MultiTableBackupRequestParams:
+      description: Multi-table backup parameters
+      properties:
+        actionType:
+          description: Action type
+          enum:
+          - CREATE
+          - RESTORE
+          - RESTORE_KEYS
+          - DELETE
+          type: string
+        alterLoadBalancer:
+          description: Alter load balancer state
+          type: boolean
+        backupList:
+          description: Backups
+          items:
+            $ref: '#/components/schemas/BackupTableParams'
+          type: array
+        backupSizeInBytes:
+          description: Backup size in bytes
+          format: int64
+          type: integer
+        backupType:
+          description: Backup type
+          enum:
+          - YQL_TABLE_TYPE
+          - REDIS_TABLE_TYPE
+          - PGSQL_TABLE_TYPE
+          - TRANSACTION_STATUS_TABLE_TYPE
+          type: string
+        backupUuid:
+          description: Backup UUID
+          format: uuid
+          type: string
+        cmkArn:
+          description: Amazon Resource Name (ARN) of the CMK
+          type: string
+        communicationPorts:
+          $ref: '#/components/schemas/CommunicationPorts_2'
+          description: Communication ports
+        cronExpression:
+          description: Cron expression for a recurring backup
+          type: string
+        customerUUID:
+          description: 'Customer UUID. Changes From Upstream: Removes duplicate customerUUID field'
+          format: uuid
+          type: string
+        deviceInfo:
+          $ref: '#/components/schemas/DeviceInfo_2'
+          description: Device information
+        disableChecksum:
+          description: Disable checksum
+          type: boolean
+        enableVerboseLogs:
+          description: Is verbose logging enabled
+          type: boolean
+        encryptionAtRestConfig:
+          $ref: '#/components/schemas/EncryptionAtRestConfig_2'
+          description: Encryption at rest configation
+        errorString:
+          description: Error message
+          type: string
+        expectedUniverseVersion:
+          description: Expected universe version
+          format: int32
+          type: integer
+        expiryTimeUnit:
+          description: Time unit for backup expiry time
+          enum:
+          - NANOSECONDS
+          - MICROSECONDS
+          - MILLISECONDS
+          - SECONDS
+          - MINUTES
+          - HOURS
+          - DAYS
+          - MONTHS
+          - YEARS
+          type: string
+        extraDependencies:
+          $ref: '#/components/schemas/ExtraDependencies_2'
+          description: Extra dependencies
+        firstTry:
+          description: Whether this task has been tried before
+          type: boolean
+        ignoreErrors:
+          description: Should table backup errors be ignored
+          type: boolean
+        isFullBackup:
+          description: Full Table type backup
+          type: boolean
+        keyspace:
+          description: Key space
+          type: string
+        kmsConfigUUID:
+          description: KMS configuration UUID
+          format: uuid
+          type: string
+        minNumBackupsToRetain:
+          description: Minimum number of backups to retain for a particular backup schedule
+          format: int32
+          type: integer
+        newOwner:
+          description: User name of the new tables owner
+          type: string
+        nodeDetailsSet:
+          description: Node details
+          items:
+            $ref: '#/components/schemas/NodeDetails_2'
+          type: array
+          uniqueItems: true
+        nodeExporterUser:
+          description: Node exporter user
+          type: string
+        oldOwner:
+          description: User name of the current tables owner
+          type: string
+        parallelism:
+          description: Number of concurrent commands to run on nodes over SSH
+          format: int32
+          type: integer
+        previousTaskUUID:
+          description: Previous task UUID only if this task is a retry
+          format: uuid
+          type: string
+        regionLocations:
+          description: Per region locations
+          items:
+            $ref: '#/components/schemas/RegionLocations'
+          type: array
+        restoreTimeStamp:
+          description: Restore TimeStamp
+          type: string
+        scheduleUUID:
+          description: Schedule UUID
+          format: uuid
+          type: string
+        schedulingFrequency:
+          description: Frequency to run the backup, in milliseconds
+          format: int64
+          type: integer
+        sourceXClusterConfigs:
+          description: The source universe's xcluster replication relationships
+          items:
+            format: uuid
+            type: string
+          readOnly: true
+          type: array
+        sse:
+          description: Is SSE
+          type: boolean
+        storageConfigType:
+          description: Type of backup storage config
+          enum:
+          - S3
+          - NFS
+          - AZ
+          - GCS
+          - FILE
+          type: string
+        storageConfigUUID:
+          description: Storage configuration UUID
+          format: uuid
+          type: string
+        storageLocation:
+          description: Storage location
+          type: string
+        tableName:
+          description: Table name
+          type: string
+        tableNameList:
+          description: Tables
+          items:
+            type: string
+          type: array
+        tableUUID:
+          description: Table UUID
+          format: uuid
+          type: string
+        tableUUIDList:
+          description: Table UUIDs
+          items:
+            format: uuid
+            type: string
+          type: array
+        targetXClusterConfigs:
+          description: The target universe's xcluster replication relationships
+          items:
+            format: uuid
+            type: string
+          readOnly: true
+          type: array
+        timeBeforeDelete:
+          description: Time before deleting the backup from storage, in milliseconds
+          format: int64
+          type: integer
+        transactionalBackup:
+          description: Is backup transactional across tables
+          type: boolean
+        universeUUID:
+          description: Associated universe UUID
+          format: uuid
+          type: string
+        useTablespaces:
+          description: Is tablespaces information included
+          type: boolean
+        ybPrevSoftwareVersion:
+          description: Previous software version
+          type: string
+      required:
+      - storageConfigUUID
+      type: object
+    BackupTableParams:
+      description: Backup table parameters
+      properties:
+        actionType:
+          description: Action type
+          enum:
+          - CREATE
+          - RESTORE
+          - RESTORE_KEYS
+          - DELETE
+          type: string
+        alterLoadBalancer:
+          description: Alter load balancer state
+          type: boolean
+        backupList:
+          description: Backups
+          items:
+            $ref: '#/components/schemas/BackupTableParams'
+          type: array
+        backupSizeInBytes:
+          description: Backup size in bytes
+          format: int64
+          type: integer
+        backupType:
+          description: Backup type
+          enum:
+          - YQL_TABLE_TYPE
+          - REDIS_TABLE_TYPE
+          - PGSQL_TABLE_TYPE
+          - TRANSACTION_STATUS_TABLE_TYPE
+          type: string
+        backupUuid:
+          description: Backup UUID
+          format: uuid
+          type: string
+        cmkArn:
+          description: Amazon Resource Name (ARN) of the CMK
+          type: string
+        communicationPorts:
+          $ref: '#/components/schemas/CommunicationPorts_2'
+          description: Communication ports
+        cronExpression:
+          description: Cron expression for a recurring backup
+          type: string
+        customerUuid:
+          description: Customer UUID
+          format: uuid
+          type: string
+        deviceInfo:
+          $ref: '#/components/schemas/DeviceInfo_2'
+          description: Device information
+        disableChecksum:
+          description: Disable checksum
+          type: boolean
+        enableVerboseLogs:
+          description: Is verbose logging enabled
+          type: boolean
+        encryptionAtRestConfig:
+          $ref: '#/components/schemas/EncryptionAtRestConfig_2'
+          description: Encryption at rest configation
+        errorString:
+          description: Error message
+          type: string
+        expectedUniverseVersion:
+          description: Expected universe version
+          format: int32
+          type: integer
+        expiryTimeUnit:
+          description: Time unit for backup expiry time
+          enum:
+          - NANOSECONDS
+          - MICROSECONDS
+          - MILLISECONDS
+          - SECONDS
+          - MINUTES
+          - HOURS
+          - DAYS
+          - MONTHS
+          - YEARS
+          type: string
+        extraDependencies:
+          $ref: '#/components/schemas/ExtraDependencies_2'
+          description: Extra dependencies
+        firstTry:
+          description: Whether this task has been tried before
+          type: boolean
+        ignoreErrors:
+          description: Should table backup errors be ignored
+          type: boolean
+        isFullBackup:
+          description: Full Table type backup
+          type: boolean
+        keyspace:
+          description: Key space
+          type: string
+        kmsConfigUUID:
+          description: KMS configuration UUID
+          format: uuid
+          type: string
+        minNumBackupsToRetain:
+          description: Minimum number of backups to retain for a particular backup schedule
+          format: int32
+          type: integer
+        newOwner:
+          description: User name of the new tables owner
+          type: string
+        nodeDetailsSet:
+          description: Node details
+          items:
+            $ref: '#/components/schemas/NodeDetails_2'
+          type: array
+          uniqueItems: true
+        nodeExporterUser:
+          description: Node exporter user
+          type: string
+        oldOwner:
+          description: User name of the current tables owner
+          type: string
+        parallelism:
+          description: Number of concurrent commands to run on nodes over SSH
+          format: int32
+          type: integer
+        previousTaskUUID:
+          description: Previous task UUID only if this task is a retry
+          format: uuid
+          type: string
+        regionLocations:
+          description: Per region locations
+          items:
+            $ref: '#/components/schemas/RegionLocations'
+          type: array
+        restoreTimeStamp:
+          description: Restore TimeStamp
+          type: string
+        scheduleUUID:
+          description: Schedule UUID
+          format: uuid
+          type: string
+        schedulingFrequency:
+          description: Frequency to run the backup, in milliseconds
+          format: int64
+          type: integer
+        sourceXClusterConfigs:
+          description: The source universe's xcluster replication relationships
+          items:
+            format: uuid
+            type: string
+          readOnly: true
+          type: array
+        sse:
+          description: Is SSE
+          type: boolean
+        storageConfigType:
+          description: Type of backup storage config
+          enum:
+          - S3
+          - NFS
+          - AZ
+          - GCS
+          - FILE
+          type: string
+        storageConfigUUID:
+          description: Storage configuration UUID
+          format: uuid
+          type: string
+        storageLocation:
+          description: Storage location
+          type: string
+        tableName:
+          description: Table name
+          type: string
+        tableNameList:
+          description: Tables
+          items:
+            type: string
+          type: array
+        tableUUID:
+          description: Table UUID
+          format: uuid
+          type: string
+        tableUUIDList:
+          description: Table UUIDs
+          items:
+            format: uuid
+            type: string
+          type: array
+        targetXClusterConfigs:
+          description: The target universe's xcluster replication relationships
+          items:
+            format: uuid
+            type: string
+          readOnly: true
+          type: array
+        timeBeforeDelete:
+          description: Time before deleting the backup from storage, in milliseconds
+          format: int64
+          type: integer
+        transactionalBackup:
+          description: Is backup transactional across tables
+          type: boolean
+        universeUUID:
+          description: Associated universe UUID
+          format: uuid
+          type: string
+        useTablespaces:
+          description: Is tablespaces information included
+          type: boolean
+        ybPrevSoftwareVersion:
+          description: Previous software version
+          type: string
+      required:
+      - storageConfigUUID
+      type: object
+    YBPError:
+      description: Generic error response from the YugabyteDB Anywhere API
+      properties:
+        error:
+          description: User-visible unstructured error message
+          example: There was a problem creating the universe
+          type: string
+        errorJson:
+          description: User visible error message as json object
+          example: '{ "foo" : "bar", "baz" : [1, 2, 3] }'
+          type: object
+        success:
+          description: Always set to false to indicate failure
+          example: false
+          type: boolean
+      type: object
+    RegionLocations:
+      properties:
+        LOCATION:
+          type: string
+        REGION:
+          type: string
+      required:
+      - LOCATION
+      - REGION
+      type: object
+    EncryptionAtRestConfig:
+      description: Encryption at rest configuration
+      example:
+        encryptionAtRestEnabled: true
+        opType: ENABLE
+        kmsConfigUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        type: CMK
+      properties:
+        encryptionAtRestEnabled:
+          description: Whether a universe is currently encrypted at rest
+          type: boolean
+        kmsConfigUUID:
+          description: KMS configuration UUID
+          format: uuid
+          type: string
+        opType:
+          description: 'Operation type: enable, disable, or rotate the universe key/encryption at rest'
+          enum:
+          - ENABLE
+          - DISABLE
+          - UNDEFINED
+          type: string
+        type:
+          description: Whether to generate a data key or just retrieve the CMK ARN
+          enum:
+          - CMK
+          - DATA_KEY
+          type: string
       type: object
   securitySchemes:
     apiKeyAuth:

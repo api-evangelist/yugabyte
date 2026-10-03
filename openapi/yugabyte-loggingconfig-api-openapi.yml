@@ -74,36 +74,6 @@ paths:
       x-codegen-request-body-name: Logging Config
 components:
   schemas:
-    PlatformLoggingConfig:
-      example:
-        level: ERROR
-        maxHistory: 0
-        fileNamePrefix: yb-platform-
-        rolloverPattern: rolloverPattern
-      properties:
-        fileNamePrefix:
-          description: 'WARNING: This is a preview API that could change. Application log file name prefix. Defaults to "". For example, setting this to "yb-platform-" will generate application log files as "yb-platform-application.log" instead of "application.log".'
-          example: yb-platform-
-          type: string
-        level:
-          enum:
-          - ERROR
-          - WARN
-          - INFO
-          - DEBUG
-          - TRACE
-          type: string
-        maxHistory:
-          format: int32
-          minimum: 0
-          type: integer
-        rolloverPattern:
-          type: string
-      required:
-      - level
-      - maxHistory
-      - rolloverPattern
-      type: object
     AuditLoggingConfig:
       description: Audit Logging Configuration
       example:
@@ -136,6 +106,36 @@ components:
       required:
       - outputToFile
       - outputToStdout
+      type: object
+    PlatformLoggingConfig:
+      example:
+        level: ERROR
+        maxHistory: 0
+        fileNamePrefix: yb-platform-
+        rolloverPattern: rolloverPattern
+      properties:
+        fileNamePrefix:
+          description: 'WARNING: This is a preview API that could change. Application log file name prefix. Defaults to "". For example, setting this to "yb-platform-" will generate application log files as "yb-platform-application.log" instead of "application.log".'
+          example: yb-platform-
+          type: string
+        level:
+          enum:
+          - ERROR
+          - WARN
+          - INFO
+          - DEBUG
+          - TRACE
+          type: string
+        maxHistory:
+          format: int32
+          minimum: 0
+          type: integer
+        rolloverPattern:
+          type: string
+      required:
+      - level
+      - maxHistory
+      - rolloverPattern
       type: object
   securitySchemes:
     apiKeyAuth:

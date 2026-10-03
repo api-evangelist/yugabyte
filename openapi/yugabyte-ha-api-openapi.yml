@@ -115,6 +115,115 @@ paths:
       - HA
 components:
   schemas:
+    PlatformInstance:
+      example:
+        address: address
+        config_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        instance_state: Awaiting Connection to Replicas
+        ybaVersion: ybaVersion
+        state: LEADER
+        is_local: true
+        uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        is_leader: true
+        last_backup: 2022-12-12 13:07:18+00:00
+      properties:
+        address:
+          type: string
+        config_uuid:
+          format: uuid
+          type: string
+        instance_state:
+          enum:
+          - Awaiting Connection to Replicas
+          - Connected
+          - Disconnected
+          type: string
+        is_leader:
+          type: boolean
+        is_local:
+          type: boolean
+        last_backup:
+          description: Last backup time
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          type: string
+        state:
+          enum:
+          - LEADER
+          - STAND_BY
+          type: string
+        uuid:
+          format: uuid
+          type: string
+        ybaVersion:
+          type: string
+      required:
+      - address
+      - instance_state
+      - is_leader
+      - state
+      - uuid
+      - ybaVersion
+      type: object
+    HighAvailabilityConfig:
+      example:
+        cluster_key: cluster_key
+        instances:
+        - address: address
+          config_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          instance_state: Awaiting Connection to Replicas
+          ybaVersion: ybaVersion
+          state: LEADER
+          is_local: true
+          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          is_leader: true
+          last_backup: 2022-12-12 13:07:18+00:00
+        - address: address
+          config_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          instance_state: Awaiting Connection to Replicas
+          ybaVersion: ybaVersion
+          state: LEADER
+          is_local: true
+          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          is_leader: true
+          last_backup: 2022-12-12 13:07:18+00:00
+        accept_any_certificate: true
+        last_failover: 2022-12-12 13:07:18+00:00
+        uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        accept_any_certificate:
+          type: boolean
+        cluster_key:
+          type: string
+        instances:
+          items:
+            $ref: '#/components/schemas/PlatformInstance'
+          type: array
+        last_failover:
+          description: HA last failover
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          type: string
+        uuid:
+          format: uuid
+          type: string
+      required:
+      - instances
+      - uuid
+      type: object
+    HAConfigFormData:
+      example:
+        cluster_key: cluster_key
+        accept_any_certificate: true
+      properties:
+        accept_any_certificate:
+          type: boolean
+        cluster_key:
+          type: string
+      required:
+      - accept_any_certificate
+      - cluster_key
+      type: object
     HAConfigGetResp:
       description: HA config response
       example:
@@ -179,115 +288,6 @@ components:
           description: HA config UUID
           format: uuid
           type: string
-      type: object
-    HighAvailabilityConfig:
-      example:
-        cluster_key: cluster_key
-        instances:
-        - address: address
-          config_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          instance_state: Awaiting Connection to Replicas
-          ybaVersion: ybaVersion
-          state: LEADER
-          is_local: true
-          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          is_leader: true
-          last_backup: 2022-12-12 13:07:18+00:00
-        - address: address
-          config_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          instance_state: Awaiting Connection to Replicas
-          ybaVersion: ybaVersion
-          state: LEADER
-          is_local: true
-          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          is_leader: true
-          last_backup: 2022-12-12 13:07:18+00:00
-        accept_any_certificate: true
-        last_failover: 2022-12-12 13:07:18+00:00
-        uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-      properties:
-        accept_any_certificate:
-          type: boolean
-        cluster_key:
-          type: string
-        instances:
-          items:
-            $ref: '#/components/schemas/PlatformInstance'
-          type: array
-        last_failover:
-          description: HA last failover
-          example: 2022-12-12 13:07:18+00:00
-          format: date-time
-          type: string
-        uuid:
-          format: uuid
-          type: string
-      required:
-      - instances
-      - uuid
-      type: object
-    HAConfigFormData:
-      example:
-        cluster_key: cluster_key
-        accept_any_certificate: true
-      properties:
-        accept_any_certificate:
-          type: boolean
-        cluster_key:
-          type: string
-      required:
-      - accept_any_certificate
-      - cluster_key
-      type: object
-    PlatformInstance:
-      example:
-        address: address
-        config_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        instance_state: Awaiting Connection to Replicas
-        ybaVersion: ybaVersion
-        state: LEADER
-        is_local: true
-        uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        is_leader: true
-        last_backup: 2022-12-12 13:07:18+00:00
-      properties:
-        address:
-          type: string
-        config_uuid:
-          format: uuid
-          type: string
-        instance_state:
-          enum:
-          - Awaiting Connection to Replicas
-          - Connected
-          - Disconnected
-          type: string
-        is_leader:
-          type: boolean
-        is_local:
-          type: boolean
-        last_backup:
-          description: Last backup time
-          example: 2022-12-12 13:07:18+00:00
-          format: date-time
-          type: string
-        state:
-          enum:
-          - LEADER
-          - STAND_BY
-          type: string
-        uuid:
-          format: uuid
-          type: string
-        ybaVersion:
-          type: string
-      required:
-      - address
-      - instance_state
-      - is_leader
-      - state
-      - uuid
-      - ybaVersion
       type: object
   securitySchemes:
     apiKeyAuth:

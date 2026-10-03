@@ -256,109 +256,40 @@ paths:
       x-codegen-request-body-name: pitrConfig
 components:
   schemas:
-    PitrConfig:
-      description: PITR config created on the universe
+    YBPTask:
       example:
-        dbName: dbName
-        updateTime: 2022-12-12 13:07:18+00:00
-        createdForDr: true
-        uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        minRecoverTimeInMillis: 1
-        scheduleInterval: 5
-        tableType: YQL_TABLE_TYPE
-        customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        createTime: 2022-12-12 13:07:18+00:00
-        intermittentMinRecoverTimeInMillis: 0
-        maxRecoverTimeInMillis: 6
-        name: name
-        disabled: true
-        usedForXCluster: true
-        state: UNKNOWN
-        retentionPeriod: 5
+        taskUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        resourceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
-        createTime:
-          description: Create time of the PITR config
-          example: 2022-12-12 13:07:18+00:00
-          format: date-time
-          readOnly: true
-          type: string
-        createdForDr:
-          description: Created for DR
-          readOnly: true
-          type: boolean
-        customerUUID:
-          description: Customer UUID of this config
+        resourceUUID:
+          description: UUID of the resource being modified by the task
           format: uuid
-          type: string
-        dbName:
-          description: DB Name
-          type: string
-        disabled:
-          description: Whether the PITR config is disabled
           readOnly: true
-          type: boolean
-        intermittentMinRecoverTimeInMillis:
-          description: Intermittent min recovery time in millis if retention period is increased
-          format: int64
-          type: integer
-        maxRecoverTimeInMillis:
-          format: int64
-          type: integer
-        minRecoverTimeInMillis:
-          format: int64
-          type: integer
-        name:
-          description: PITR config name
           type: string
-        retentionPeriod:
-          description: Retention Period in seconds
-          format: int64
-          type: integer
-        scheduleInterval:
-          description: Interval between snasphots in seconds
-          format: int64
-          type: integer
-        state:
-          enum:
-          - UNKNOWN
-          - CREATING
-          - COMPLETE
-          - DELETING
-          - DELETED
-          - FAILED
-          - CANCELLED
-          - RESTORING
-          - RESTORED
-          type: string
-        tableType:
-          description: Table Type
-          enum:
-          - YQL_TABLE_TYPE
-          - REDIS_TABLE_TYPE
-          - PGSQL_TABLE_TYPE
-          - TRANSACTION_STATUS_TABLE_TYPE
-          type: string
-        updateTime:
-          description: Update time of the PITR con
-          example: 2022-12-12 13:07:18+00:00
-          format: date-time
-          type: string
-        usedForXCluster:
-          readOnly: true
-          type: boolean
-        uuid:
-          description: PITR config UUID
+        taskUUID:
+          description: Task UUID
           format: uuid
+          readOnly: true
           type: string
-      required:
-      - maxRecoverTimeInMillis
-      - minRecoverTimeInMillis
-      - state
       type: object
-    CreatePitrConfigParams:
-      description: Create PITR config parameters
+    CloudVolumeEncryption:
+      description: Volume encryption settings for AWS EBS volumes
       example:
-        expectedUniverseVersion: 0
+        enableVolumeEncryption: true
+        kmsConfigUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        enableVolumeEncryption:
+          description: To enable volume encryption or not
+          type: boolean
+        kmsConfigUUID:
+          description: KMS config UUID to be used for volume encryption
+          format: uuid
+          type: string
+      type: object
+    CloneNamespaceParams:
+      description: Clone Namespace parameters
+      example:
+        expectedUniverseVersion: 6
         sourceXClusterConfigs:
         - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -368,6 +299,8 @@ components:
           opType: ENABLE
           kmsConfigUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           type: CMK
+        cloneTimeInMillis: 0
+        targetKeyspaceName: targetKeyspaceName
         ybcSoftwareVersion: ybcSoftwareVersion
         creatingUser:
           ldapSpecifiedRole: true
@@ -387,10 +320,10 @@ components:
         extraDependencies:
           installNodeExporter: true
         platformVersion: platformVersion
-        intervalInSeconds: 6
         sleepAfterTServerRestartMillis: 5
         runOnlyPrechecks: true
         platformUrl: platformUrl
+        pitrConfigUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         targetXClusterConfigs:
         - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -408,7 +341,6 @@ components:
           volumeSize: 4
         enableYbc: true
         errorString: errorString
-        retentionPeriodInSeconds: 1
         installYbc: true
         nodeDetailsSet:
         - nodeName: nodeName
@@ -526,7 +458,6 @@ components:
           autoSyncMasterAddrs: true
           yqlServerHttpPort: 7
         ybcInstalled: true
-        name: name
         communicationPorts:
           nodeExporterPort: 5
           tserverHttpPort: 9
@@ -544,9 +475,13 @@ components:
           masterRpcPort: 1
           redisServerRpcPort: 7
         cmkArn: cmkArn
-        sleepAfterMasterRestartMillis: 5
+        sleepAfterMasterRestartMillis: 1
         previousTaskUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
+        cloneTimeInMillis:
+          description: Time in millis at which to clone the source namespace. If not specifed, it is cloned to current state.
+          format: int64
+          type: integer
         cmkArn:
           description: Amazon Resource Name (ARN) of the CMK
           type: string
@@ -571,13 +506,6 @@ components:
           $ref: '#/components/schemas/ExtraDependencies'
         installYbc:
           type: boolean
-        intervalInSeconds:
-          description: Time interval between snapshots
-          format: int64
-          type: integer
-        name:
-          description: PITR config name
-          type: string
         nodeDetailsSet:
           description: Node details
           items:
@@ -586,6 +514,10 @@ components:
           uniqueItems: true
         nodeExporterUser:
           description: Node exporter user
+          type: string
+        pitrConfigUUID:
+          description: PITR Config UUID
+          format: uuid
           type: string
         platformUrl:
           type: string
@@ -596,10 +528,6 @@ components:
           description: Previous task UUID of a retry
           format: uuid
           type: string
-        retentionPeriodInSeconds:
-          description: Retention period of a snapshot
-          format: int64
-          type: integer
         runOnlyPrechecks:
           description: YbaApi Internal. Run only prechecks during task run
           type: boolean
@@ -616,6 +544,9 @@ components:
             type: string
           readOnly: true
           type: array
+        targetKeyspaceName:
+          description: Clone namespace name
+          type: string
         targetXClusterConfigs:
           description: The target universe's xcluster replication relationships
           items:
@@ -636,117 +567,488 @@ components:
       - sleepAfterMasterRestartMillis
       - sleepAfterTServerRestartMillis
       type: object
-    EncryptionAtRestConfig:
-      description: Encryption at rest configuration
+    DeviceInfo:
+      description: Device information
       example:
-        encryptionAtRestEnabled: true
-        opType: ENABLE
-        kmsConfigUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        type: CMK
+        cloudVolumeEncryption:
+          enableVolumeEncryption: true
+          kmsConfigUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        diskIops: 6
+        storageClass: storageClass
+        numVolumes: 7
+        mountPoints: mountPoints
+        storageType: IO1
+        throughput: 1
+        volumeSize: 4
       properties:
-        encryptionAtRestEnabled:
-          description: Whether a universe is currently encrypted at rest
-          type: boolean
-        kmsConfigUUID:
-          description: KMS configuration UUID
-          format: uuid
+        cloudVolumeEncryption:
+          $ref: '#/components/schemas/CloudVolumeEncryption'
+        diskIops:
+          description: Desired IOPS for the volumes mounted on this instance
+          format: int32
+          type: integer
+        mountPoints:
+          description: Comma-separated list of mount points for the devices in each instance
           type: string
-        opType:
-          description: 'Operation type: enable, disable, or rotate the universe key/encryption at rest'
+        numVolumes:
+          description: Number of volumes to be mounted on this instance at the default path
+          format: int32
+          type: integer
+        storageClass:
+          description: Name of the storage class
+          type: string
+        storageType:
+          description: Storage type used for this instance
           enum:
-          - ENABLE
-          - DISABLE
-          - UNDEFINED
+          - IO1
+          - IO2
+          - GP2
+          - GP3
+          - Scratch
+          - Persistent
+          - Hyperdisk_Balanced
+          - Hyperdisk_Extreme
+          - StandardSSD_LRS
+          - Premium_LRS
+          - PremiumV2_LRS
+          - UltraSSD_LRS
+          - Local
           type: string
-        type:
-          description: Whether to generate a data key or just retrieve the CMK ARN
-          enum:
-          - CMK
-          - DATA_KEY
-          type: string
+        throughput:
+          description: Desired throughput for the volumes mounted on this instance
+          format: int32
+          type: integer
+        volumeSize:
+          description: The size of each volume in each instance. Could be modified in payload for /resize_node API call
+          format: int32
+          type: integer
       type: object
-    Users:
-      description: A user associated with a customer
+    PitrConfig:
+      description: PITR config created on the universe
       example:
-        ldapSpecifiedRole: true
-        customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        role: Admin
-        authTokenIssueDate: 2021-06-17 15:00:05+00:00
-        timezone: timezone
-        oidcJwtAuthToken: oidcJwtAuthToken
-        groupMemberships:
-        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        userType: local
-        creationDate: 2022-12-12 13:07:18+00:00
+        dbName: dbName
+        updateTime: 2022-12-12 13:07:18+00:00
+        createdForDr: true
         uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        email: username1@example.com
-        primary: true
+        minRecoverTimeInMillis: 1
+        scheduleInterval: 5
+        tableType: YQL_TABLE_TYPE
+        customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        createTime: 2022-12-12 13:07:18+00:00
+        intermittentMinRecoverTimeInMillis: 0
+        maxRecoverTimeInMillis: 6
+        name: name
+        disabled: true
+        usedForXCluster: true
+        state: UNKNOWN
+        retentionPeriod: 5
       properties:
-        authTokenIssueDate:
-          description: UI session token creation date
-          example: 2021-06-17 15:00:05+00:00
-          format: date-time
-          readOnly: true
-          type: string
-        creationDate:
-          description: User creation date
+        createTime:
+          description: Create time of the PITR config
           example: 2022-12-12 13:07:18+00:00
           format: date-time
           readOnly: true
           type: string
+        createdForDr:
+          description: Created for DR
+          readOnly: true
+          type: boolean
         customerUUID:
-          description: Customer UUID
+          description: Customer UUID of this config
           format: uuid
+          type: string
+        dbName:
+          description: DB Name
+          type: string
+        disabled:
+          description: Whether the PITR config is disabled
           readOnly: true
-          type: string
-        email:
-          description: User email address
-          example: username1@example.com
-          type: string
-        groupMemberships:
-          items:
-            format: uuid
-            type: string
-          type: array
-          uniqueItems: true
-        ldapSpecifiedRole:
-          description: LDAP Specified Role
           type: boolean
-        oidcJwtAuthToken:
+        intermittentMinRecoverTimeInMillis:
+          description: Intermittent min recovery time in millis if retention period is increased
+          format: int64
+          type: integer
+        maxRecoverTimeInMillis:
+          format: int64
+          type: integer
+        minRecoverTimeInMillis:
+          format: int64
+          type: integer
+        name:
+          description: PITR config name
+          type: string
+        retentionPeriod:
+          description: Retention Period in seconds
+          format: int64
+          type: integer
+        scheduleInterval:
+          description: Interval between snasphots in seconds
+          format: int64
+          type: integer
+        state:
+          enum:
+          - UNKNOWN
+          - CREATING
+          - COMPLETE
+          - DELETING
+          - DELETED
+          - FAILED
+          - CANCELLED
+          - RESTORING
+          - RESTORED
+          type: string
+        tableType:
+          description: Table Type
+          enum:
+          - YQL_TABLE_TYPE
+          - REDIS_TABLE_TYPE
+          - PGSQL_TABLE_TYPE
+          - TRANSACTION_STATUS_TABLE_TYPE
+          type: string
+        updateTime:
+          description: Update time of the PITR con
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          type: string
+        usedForXCluster:
           readOnly: true
-          type: string
-        primary:
           type: boolean
-        role:
-          description: <b style="color:#ff0000">Deprecated since YBA version 2.19.3.0.</b> Use  getRoleBindings instead.
-          enum:
-          - ConnectOnly
-          - ReadOnly
-          - BackupAdmin
-          - Admin
-          - SuperAdmin
-          example: Admin
-          type: string
-        timezone:
-          description: User timezone
-          type: string
-        userType:
-          description: User Type
-          enum:
-          - local
-          - ldap
-          - oidc
-          type: string
         uuid:
-          description: User UUID
+          description: PITR config UUID
           format: uuid
-          readOnly: true
           type: string
       required:
-      - email
-      - groupMemberships
-      - primary
+      - maxRecoverTimeInMillis
+      - minRecoverTimeInMillis
+      - state
+      type: object
+    NodeDetails:
+      description: Details of a cloud node
+      example:
+        nodeName: nodeName
+        nodeExporterPort: 3
+        placementUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        ybControllerHttpPort: 3
+        dedicatedTo: MASTER
+        machineImage: machineImage
+        redisServerHttpPort: 2
+        masterState: ToStart
+        tserverRpcPort: 6
+        ysqlServerHttpPort: 7
+        yqlServerRpcPort: 0
+        otelCollectorMetricsPort: 1
+        isMaster: true
+        sshUserOverride: sshUserOverride
+        cloudInfo:
+          mount_roots: mount_roots
+          kubernetesNamespace: kubernetesNamespace
+          public_ip: public_ip
+          secondary_subnet_id: secondary_subnet_id
+          private_dns: private_dns
+          useTimeSync: true
+          kubernetesPodName: kubernetesPodName
+          root_volume: root_volume
+          secondary_private_ip: secondary_private_ip
+          private_ip: private_ip
+          cloud: cloud
+          lun_indexes:
+          - 6
+          - 6
+          assignPublicIP: true
+          az: az
+          subnet_id: subnet_id
+          public_dns: public_dns
+          region: region
+          instance_type: instance_type
+        sshPortOverride: 6
+        cronsActive: true
+        state: Provisioned
+        nodeIdx: 6
+        masterRpcPort: 6
+        redisServerRpcPort: 6
+        lastVolumeUpdateTime: 2022-12-12 13:07:18+00:00
+        tserverHttpPort: 5
+        disksAreMountedByUUID: true
+        isRedisServer: true
+        ybPrebuiltAmi: true
+        internalYsqlServerRpcPort: 8
+        isTserver: true
+        nodeUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        isYsqlServer: true
+        ybControllerRpcPort: 3
+        isYqlServer: true
+        azUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        masterHttpPort: 9
+        ysqlServerRpcPort: 6
+        autoSyncMasterAddrs: true
+        yqlServerHttpPort: 7
+      properties:
+        autoSyncMasterAddrs:
+          description: 'WARNING: This is a preview API that could change. Used by auto master failover'
+          readOnly: true
+          type: boolean
+        azUuid:
+          description: The availability zone's UUID
+          format: uuid
+          type: string
+        cloudInfo:
+          $ref: '#/components/schemas/CloudSpecificInfo'
+        cronsActive:
+          description: True if cron jobs were properly configured for this node
+          type: boolean
+        dedicatedTo:
+          description: Used for configurations where each node can have only one process
+          enum:
+          - MASTER
+          - TSERVER
+          - CONTROLLER
+          - YQLSERVER
+          - YSQLSERVER
+          - REDISSERVER
+          - EITHER
+          type: string
+        disksAreMountedByUUID:
+          description: Disks are mounted by uuid
+          type: boolean
+        internalYsqlServerRpcPort:
+          description: Internal YSQL RPC port
+          format: int32
+          type: integer
+        isMaster:
+          description: True if this node is a master
+          type: boolean
+        isRedisServer:
+          description: True if this node is a REDIS server
+          type: boolean
+        isTserver:
+          description: True if this node is a Tablet server
+          type: boolean
+        isYqlServer:
+          description: True if this node is a YCQL server
+          type: boolean
+        isYsqlServer:
+          description: True if this node is a YSQL server
+          type: boolean
+        lastVolumeUpdateTime:
+          description: Store last volume update time
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          readOnly: true
+          type: string
+        machineImage:
+          description: Machine image name
+          type: string
+        masterHttpPort:
+          description: Master HTTP port
+          format: int32
+          type: integer
+        masterRpcPort:
+          description: Master RPC port
+          format: int32
+          type: integer
+        masterState:
+          description: Master state
+          enum:
+          - None
+          - ToStart
+          - Configured
+          - ToStop
+          example: ToStart
+          type: string
+        nodeExporterPort:
+          description: Node exporter port
+          format: int32
+          type: integer
+        nodeIdx:
+          description: Node ID
+          format: int32
+          type: integer
+        nodeName:
+          description: Node name
+          type: string
+        nodeUuid:
+          description: Node UUID
+          format: uuid
+          type: string
+        otelCollectorMetricsPort:
+          description: Otel collector metrics port
+          format: int32
+          type: integer
+        placementUuid:
+          description: UUID of the cluster to which this node belongs
+          format: uuid
+          type: string
+        redisServerHttpPort:
+          description: REDIS HTTP port
+          format: int32
+          type: integer
+        redisServerRpcPort:
+          description: REDIS RPC port
+          format: int32
+          type: integer
+        sshPortOverride:
+          description: SSH port override for the AMI
+          format: int32
+          type: integer
+        sshUserOverride:
+          description: SSH user override for the AMI
+          type: string
+        state:
+          description: Node state
+          enum:
+          - ToBeAdded
+          - InstanceCreated
+          - ServerSetup
+          - ToJoinCluster
+          - Reprovisioning
+          - Provisioned
+          - SoftwareInstalled
+          - UpgradeMasterSoftware
+          - UpgradeSoftware
+          - RollbackUpgrade
+          - FinalizeUpgrade
+          - UpdateGFlags
+          - Live
+          - Stopping
+          - Starting
+          - Stopped
+          - Unreachable
+          - MetricsUnavailable
+          - ToBeRemoved
+          - Removing
+          - Removed
+          - Adding
+          - BeingDecommissioned
+          - Decommissioned
+          - UpdateCert
+          - ToggleTls
+          - ConfigureDBApis
+          - Resizing
+          - SystemdUpgrade
+          - Terminating
+          - Terminated
+          - Rebooting
+          - HardRebooting
+          - VMImageUpgrade
+          - InstanceStopping
+          - InstanceStopped
+          example: Provisioned
+          type: string
+        tserverHttpPort:
+          description: Tablet server HTTP port
+          format: int32
+          type: integer
+        tserverRpcPort:
+          description: Tablet server RPC port
+          format: int32
+          type: integer
+        ybControllerHttpPort:
+          description: Yb controller HTTP port
+          format: int32
+          type: integer
+        ybControllerRpcPort:
+          description: Yb controller RPC port
+          format: int32
+          type: integer
+        ybPrebuiltAmi:
+          description: True if this a custom YB AMI
+          type: boolean
+        yqlServerHttpPort:
+          description: YCQL HTTP port
+          format: int32
+          type: integer
+        yqlServerRpcPort:
+          description: YCQL RPC port
+          format: int32
+          type: integer
+        ysqlServerHttpPort:
+          description: YSQL HTTP port
+          format: int32
+          type: integer
+        ysqlServerRpcPort:
+          description: YSQL RPC port
+          format: int32
+          type: integer
+      type: object
+    CommunicationPorts:
+      description: Communication ports
+      example:
+        nodeExporterPort: 5
+        tserverHttpPort: 9
+        internalYsqlServerRpcPort: 0
+        ybControllerHttpPort: 2
+        redisServerHttpPort: 2
+        ybControllerrRpcPort: 4
+        tserverRpcPort: 3
+        ysqlServerHttpPort: 1
+        yqlServerRpcPort: 1
+        masterHttpPort: 6
+        otelCollectorMetricsPort: 5
+        ysqlServerRpcPort: 1
+        yqlServerHttpPort: 7
+        masterRpcPort: 1
+        redisServerRpcPort: 7
+      properties:
+        internalYsqlServerRpcPort:
+          description: Internal YSQL RPC port
+          format: int32
+          type: integer
+        masterHttpPort:
+          description: Master table HTTP port
+          format: int32
+          type: integer
+        masterRpcPort:
+          description: Master table RCP port
+          format: int32
+          type: integer
+        nodeExporterPort:
+          description: Node exporter port
+          format: int32
+          type: integer
+        otelCollectorMetricsPort:
+          description: Otel Collector metrics port
+          format: int32
+          type: integer
+        redisServerHttpPort:
+          description: Redis HTTP port
+          format: int32
+          type: integer
+        redisServerRpcPort:
+          description: Redis RPC port
+          format: int32
+          type: integer
+        tserverHttpPort:
+          description: Tablet server HTTP port
+          format: int32
+          type: integer
+        tserverRpcPort:
+          description: Tablet server RPC port
+          format: int32
+          type: integer
+        ybControllerHttpPort:
+          description: Yb controller HTTP port
+          format: int32
+          type: integer
+        ybControllerrRpcPort:
+          description: Yb controller RPC port
+          format: int32
+          type: integer
+        yqlServerHttpPort:
+          description: YQL HTTP port
+          format: int32
+          type: integer
+        yqlServerRpcPort:
+          description: YQL RPC port
+          format: int32
+          type: integer
+        ysqlServerHttpPort:
+          description: YSQL HTTP port
+          format: int32
+          type: integer
+        ysqlServerRpcPort:
+          description: YSQL RPC port
+          format: int32
+          type: integer
       type: object
     RestoreSnapshotScheduleParams:
       description: Restore snapshot schedule parameters
@@ -1307,10 +1609,131 @@ components:
       - sleepAfterMasterRestartMillis
       - sleepAfterTServerRestartMillis
       type: object
-    CloneNamespaceParams:
-      description: Clone Namespace parameters
+    Users:
+      description: A user associated with a customer
       example:
-        expectedUniverseVersion: 6
+        ldapSpecifiedRole: true
+        customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        role: Admin
+        authTokenIssueDate: 2021-06-17 15:00:05+00:00
+        timezone: timezone
+        oidcJwtAuthToken: oidcJwtAuthToken
+        groupMemberships:
+        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        userType: local
+        creationDate: 2022-12-12 13:07:18+00:00
+        uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        email: username1@example.com
+        primary: true
+      properties:
+        authTokenIssueDate:
+          description: UI session token creation date
+          example: 2021-06-17 15:00:05+00:00
+          format: date-time
+          readOnly: true
+          type: string
+        creationDate:
+          description: User creation date
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          readOnly: true
+          type: string
+        customerUUID:
+          description: Customer UUID
+          format: uuid
+          readOnly: true
+          type: string
+        email:
+          description: User email address
+          example: username1@example.com
+          type: string
+        groupMemberships:
+          items:
+            format: uuid
+            type: string
+          type: array
+          uniqueItems: true
+        ldapSpecifiedRole:
+          description: LDAP Specified Role
+          type: boolean
+        oidcJwtAuthToken:
+          readOnly: true
+          type: string
+        primary:
+          type: boolean
+        role:
+          description: <b style="color:#ff0000">Deprecated since YBA version 2.19.3.0.</b> Use  getRoleBindings instead.
+          enum:
+          - ConnectOnly
+          - ReadOnly
+          - BackupAdmin
+          - Admin
+          - SuperAdmin
+          example: Admin
+          type: string
+        timezone:
+          description: User timezone
+          type: string
+        userType:
+          description: User Type
+          enum:
+          - local
+          - ldap
+          - oidc
+          type: string
+        uuid:
+          description: User UUID
+          format: uuid
+          readOnly: true
+          type: string
+      required:
+      - email
+      - groupMemberships
+      - primary
+      type: object
+    ExtraDependencies:
+      description: Extra dependencies
+      example:
+        installNodeExporter: true
+      properties:
+        installNodeExporter:
+          description: Install node exporter on nodes
+          type: boolean
+      type: object
+    EncryptionAtRestConfig:
+      description: Encryption at rest configuration
+      example:
+        encryptionAtRestEnabled: true
+        opType: ENABLE
+        kmsConfigUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        type: CMK
+      properties:
+        encryptionAtRestEnabled:
+          description: Whether a universe is currently encrypted at rest
+          type: boolean
+        kmsConfigUUID:
+          description: KMS configuration UUID
+          format: uuid
+          type: string
+        opType:
+          description: 'Operation type: enable, disable, or rotate the universe key/encryption at rest'
+          enum:
+          - ENABLE
+          - DISABLE
+          - UNDEFINED
+          type: string
+        type:
+          description: Whether to generate a data key or just retrieve the CMK ARN
+          enum:
+          - CMK
+          - DATA_KEY
+          type: string
+      type: object
+    CreatePitrConfigParams:
+      description: Create PITR config parameters
+      example:
+        expectedUniverseVersion: 0
         sourceXClusterConfigs:
         - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -1320,8 +1743,6 @@ components:
           opType: ENABLE
           kmsConfigUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           type: CMK
-        cloneTimeInMillis: 0
-        targetKeyspaceName: targetKeyspaceName
         ybcSoftwareVersion: ybcSoftwareVersion
         creatingUser:
           ldapSpecifiedRole: true
@@ -1341,10 +1762,10 @@ components:
         extraDependencies:
           installNodeExporter: true
         platformVersion: platformVersion
+        intervalInSeconds: 6
         sleepAfterTServerRestartMillis: 5
         runOnlyPrechecks: true
         platformUrl: platformUrl
-        pitrConfigUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         targetXClusterConfigs:
         - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -1362,6 +1783,7 @@ components:
           volumeSize: 4
         enableYbc: true
         errorString: errorString
+        retentionPeriodInSeconds: 1
         installYbc: true
         nodeDetailsSet:
         - nodeName: nodeName
@@ -1479,6 +1901,7 @@ components:
           autoSyncMasterAddrs: true
           yqlServerHttpPort: 7
         ybcInstalled: true
+        name: name
         communicationPorts:
           nodeExporterPort: 5
           tserverHttpPort: 9
@@ -1496,13 +1919,9 @@ components:
           masterRpcPort: 1
           redisServerRpcPort: 7
         cmkArn: cmkArn
-        sleepAfterMasterRestartMillis: 1
+        sleepAfterMasterRestartMillis: 5
         previousTaskUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
-        cloneTimeInMillis:
-          description: Time in millis at which to clone the source namespace. If not specifed, it is cloned to current state.
-          format: int64
-          type: integer
         cmkArn:
           description: Amazon Resource Name (ARN) of the CMK
           type: string
@@ -1527,6 +1946,13 @@ components:
           $ref: '#/components/schemas/ExtraDependencies'
         installYbc:
           type: boolean
+        intervalInSeconds:
+          description: Time interval between snapshots
+          format: int64
+          type: integer
+        name:
+          description: PITR config name
+          type: string
         nodeDetailsSet:
           description: Node details
           items:
@@ -1535,10 +1961,6 @@ components:
           uniqueItems: true
         nodeExporterUser:
           description: Node exporter user
-          type: string
-        pitrConfigUUID:
-          description: PITR Config UUID
-          format: uuid
           type: string
         platformUrl:
           type: string
@@ -1549,6 +1971,10 @@ components:
           description: Previous task UUID of a retry
           format: uuid
           type: string
+        retentionPeriodInSeconds:
+          description: Retention period of a snapshot
+          format: int64
+          type: integer
         runOnlyPrechecks:
           description: YbaApi Internal. Run only prechecks during task run
           type: boolean
@@ -1565,9 +1991,6 @@ components:
             type: string
           readOnly: true
           type: array
-        targetKeyspaceName:
-          description: Clone namespace name
-          type: string
         targetXClusterConfigs:
           description: The target universe's xcluster replication relationships
           items:
@@ -1669,429 +2092,6 @@ components:
         useTimeSync:
           description: True if `use time sync` is enabled
           type: boolean
-      type: object
-    NodeDetails:
-      description: Details of a cloud node
-      example:
-        nodeName: nodeName
-        nodeExporterPort: 3
-        placementUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        ybControllerHttpPort: 3
-        dedicatedTo: MASTER
-        machineImage: machineImage
-        redisServerHttpPort: 2
-        masterState: ToStart
-        tserverRpcPort: 6
-        ysqlServerHttpPort: 7
-        yqlServerRpcPort: 0
-        otelCollectorMetricsPort: 1
-        isMaster: true
-        sshUserOverride: sshUserOverride
-        cloudInfo:
-          mount_roots: mount_roots
-          kubernetesNamespace: kubernetesNamespace
-          public_ip: public_ip
-          secondary_subnet_id: secondary_subnet_id
-          private_dns: private_dns
-          useTimeSync: true
-          kubernetesPodName: kubernetesPodName
-          root_volume: root_volume
-          secondary_private_ip: secondary_private_ip
-          private_ip: private_ip
-          cloud: cloud
-          lun_indexes:
-          - 6
-          - 6
-          assignPublicIP: true
-          az: az
-          subnet_id: subnet_id
-          public_dns: public_dns
-          region: region
-          instance_type: instance_type
-        sshPortOverride: 6
-        cronsActive: true
-        state: Provisioned
-        nodeIdx: 6
-        masterRpcPort: 6
-        redisServerRpcPort: 6
-        lastVolumeUpdateTime: 2022-12-12 13:07:18+00:00
-        tserverHttpPort: 5
-        disksAreMountedByUUID: true
-        isRedisServer: true
-        ybPrebuiltAmi: true
-        internalYsqlServerRpcPort: 8
-        isTserver: true
-        nodeUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        isYsqlServer: true
-        ybControllerRpcPort: 3
-        isYqlServer: true
-        azUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        masterHttpPort: 9
-        ysqlServerRpcPort: 6
-        autoSyncMasterAddrs: true
-        yqlServerHttpPort: 7
-      properties:
-        autoSyncMasterAddrs:
-          description: 'WARNING: This is a preview API that could change. Used by auto master failover'
-          readOnly: true
-          type: boolean
-        azUuid:
-          description: The availability zone's UUID
-          format: uuid
-          type: string
-        cloudInfo:
-          $ref: '#/components/schemas/CloudSpecificInfo'
-        cronsActive:
-          description: True if cron jobs were properly configured for this node
-          type: boolean
-        dedicatedTo:
-          description: Used for configurations where each node can have only one process
-          enum:
-          - MASTER
-          - TSERVER
-          - CONTROLLER
-          - YQLSERVER
-          - YSQLSERVER
-          - REDISSERVER
-          - EITHER
-          type: string
-        disksAreMountedByUUID:
-          description: Disks are mounted by uuid
-          type: boolean
-        internalYsqlServerRpcPort:
-          description: Internal YSQL RPC port
-          format: int32
-          type: integer
-        isMaster:
-          description: True if this node is a master
-          type: boolean
-        isRedisServer:
-          description: True if this node is a REDIS server
-          type: boolean
-        isTserver:
-          description: True if this node is a Tablet server
-          type: boolean
-        isYqlServer:
-          description: True if this node is a YCQL server
-          type: boolean
-        isYsqlServer:
-          description: True if this node is a YSQL server
-          type: boolean
-        lastVolumeUpdateTime:
-          description: Store last volume update time
-          example: 2022-12-12 13:07:18+00:00
-          format: date-time
-          readOnly: true
-          type: string
-        machineImage:
-          description: Machine image name
-          type: string
-        masterHttpPort:
-          description: Master HTTP port
-          format: int32
-          type: integer
-        masterRpcPort:
-          description: Master RPC port
-          format: int32
-          type: integer
-        masterState:
-          description: Master state
-          enum:
-          - None
-          - ToStart
-          - Configured
-          - ToStop
-          example: ToStart
-          type: string
-        nodeExporterPort:
-          description: Node exporter port
-          format: int32
-          type: integer
-        nodeIdx:
-          description: Node ID
-          format: int32
-          type: integer
-        nodeName:
-          description: Node name
-          type: string
-        nodeUuid:
-          description: Node UUID
-          format: uuid
-          type: string
-        otelCollectorMetricsPort:
-          description: Otel collector metrics port
-          format: int32
-          type: integer
-        placementUuid:
-          description: UUID of the cluster to which this node belongs
-          format: uuid
-          type: string
-        redisServerHttpPort:
-          description: REDIS HTTP port
-          format: int32
-          type: integer
-        redisServerRpcPort:
-          description: REDIS RPC port
-          format: int32
-          type: integer
-        sshPortOverride:
-          description: SSH port override for the AMI
-          format: int32
-          type: integer
-        sshUserOverride:
-          description: SSH user override for the AMI
-          type: string
-        state:
-          description: Node state
-          enum:
-          - ToBeAdded
-          - InstanceCreated
-          - ServerSetup
-          - ToJoinCluster
-          - Reprovisioning
-          - Provisioned
-          - SoftwareInstalled
-          - UpgradeMasterSoftware
-          - UpgradeSoftware
-          - RollbackUpgrade
-          - FinalizeUpgrade
-          - UpdateGFlags
-          - Live
-          - Stopping
-          - Starting
-          - Stopped
-          - Unreachable
-          - MetricsUnavailable
-          - ToBeRemoved
-          - Removing
-          - Removed
-          - Adding
-          - BeingDecommissioned
-          - Decommissioned
-          - UpdateCert
-          - ToggleTls
-          - ConfigureDBApis
-          - Resizing
-          - SystemdUpgrade
-          - Terminating
-          - Terminated
-          - Rebooting
-          - HardRebooting
-          - VMImageUpgrade
-          - InstanceStopping
-          - InstanceStopped
-          example: Provisioned
-          type: string
-        tserverHttpPort:
-          description: Tablet server HTTP port
-          format: int32
-          type: integer
-        tserverRpcPort:
-          description: Tablet server RPC port
-          format: int32
-          type: integer
-        ybControllerHttpPort:
-          description: Yb controller HTTP port
-          format: int32
-          type: integer
-        ybControllerRpcPort:
-          description: Yb controller RPC port
-          format: int32
-          type: integer
-        ybPrebuiltAmi:
-          description: True if this a custom YB AMI
-          type: boolean
-        yqlServerHttpPort:
-          description: YCQL HTTP port
-          format: int32
-          type: integer
-        yqlServerRpcPort:
-          description: YCQL RPC port
-          format: int32
-          type: integer
-        ysqlServerHttpPort:
-          description: YSQL HTTP port
-          format: int32
-          type: integer
-        ysqlServerRpcPort:
-          description: YSQL RPC port
-          format: int32
-          type: integer
-      type: object
-    YBPTask:
-      example:
-        taskUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        resourceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-      properties:
-        resourceUUID:
-          description: UUID of the resource being modified by the task
-          format: uuid
-          readOnly: true
-          type: string
-        taskUUID:
-          description: Task UUID
-          format: uuid
-          readOnly: true
-          type: string
-      type: object
-    CloudVolumeEncryption:
-      description: Volume encryption settings for AWS EBS volumes
-      example:
-        enableVolumeEncryption: true
-        kmsConfigUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-      properties:
-        enableVolumeEncryption:
-          description: To enable volume encryption or not
-          type: boolean
-        kmsConfigUUID:
-          description: KMS config UUID to be used for volume encryption
-          format: uuid
-          type: string
-      type: object
-    ExtraDependencies:
-      description: Extra dependencies
-      example:
-        installNodeExporter: true
-      properties:
-        installNodeExporter:
-          description: Install node exporter on nodes
-          type: boolean
-      type: object
-    DeviceInfo:
-      description: Device information
-      example:
-        cloudVolumeEncryption:
-          enableVolumeEncryption: true
-          kmsConfigUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        diskIops: 6
-        storageClass: storageClass
-        numVolumes: 7
-        mountPoints: mountPoints
-        storageType: IO1
-        throughput: 1
-        volumeSize: 4
-      properties:
-        cloudVolumeEncryption:
-          $ref: '#/components/schemas/CloudVolumeEncryption'
-        diskIops:
-          description: Desired IOPS for the volumes mounted on this instance
-          format: int32
-          type: integer
-        mountPoints:
-          description: Comma-separated list of mount points for the devices in each instance
-          type: string
-        numVolumes:
-          description: Number of volumes to be mounted on this instance at the default path
-          format: int32
-          type: integer
-        storageClass:
-          description: Name of the storage class
-          type: string
-        storageType:
-          description: Storage type used for this instance
-          enum:
-          - IO1
-          - IO2
-          - GP2
-          - GP3
-          - Scratch
-          - Persistent
-          - Hyperdisk_Balanced
-          - Hyperdisk_Extreme
-          - StandardSSD_LRS
-          - Premium_LRS
-          - PremiumV2_LRS
-          - UltraSSD_LRS
-          - Local
-          type: string
-        throughput:
-          description: Desired throughput for the volumes mounted on this instance
-          format: int32
-          type: integer
-        volumeSize:
-          description: The size of each volume in each instance. Could be modified in payload for /resize_node API call
-          format: int32
-          type: integer
-      type: object
-    CommunicationPorts:
-      description: Communication ports
-      example:
-        nodeExporterPort: 5
-        tserverHttpPort: 9
-        internalYsqlServerRpcPort: 0
-        ybControllerHttpPort: 2
-        redisServerHttpPort: 2
-        ybControllerrRpcPort: 4
-        tserverRpcPort: 3
-        ysqlServerHttpPort: 1
-        yqlServerRpcPort: 1
-        masterHttpPort: 6
-        otelCollectorMetricsPort: 5
-        ysqlServerRpcPort: 1
-        yqlServerHttpPort: 7
-        masterRpcPort: 1
-        redisServerRpcPort: 7
-      properties:
-        internalYsqlServerRpcPort:
-          description: Internal YSQL RPC port
-          format: int32
-          type: integer
-        masterHttpPort:
-          description: Master table HTTP port
-          format: int32
-          type: integer
-        masterRpcPort:
-          description: Master table RCP port
-          format: int32
-          type: integer
-        nodeExporterPort:
-          description: Node exporter port
-          format: int32
-          type: integer
-        otelCollectorMetricsPort:
-          description: Otel Collector metrics port
-          format: int32
-          type: integer
-        redisServerHttpPort:
-          description: Redis HTTP port
-          format: int32
-          type: integer
-        redisServerRpcPort:
-          description: Redis RPC port
-          format: int32
-          type: integer
-        tserverHttpPort:
-          description: Tablet server HTTP port
-          format: int32
-          type: integer
-        tserverRpcPort:
-          description: Tablet server RPC port
-          format: int32
-          type: integer
-        ybControllerHttpPort:
-          description: Yb controller HTTP port
-          format: int32
-          type: integer
-        ybControllerrRpcPort:
-          description: Yb controller RPC port
-          format: int32
-          type: integer
-        yqlServerHttpPort:
-          description: YQL HTTP port
-          format: int32
-          type: integer
-        yqlServerRpcPort:
-          description: YQL RPC port
-          format: int32
-          type: integer
-        ysqlServerHttpPort:
-          description: YSQL HTTP port
-          format: int32
-          type: integer
-        ysqlServerRpcPort:
-          description: YSQL RPC port
-          format: int32
-          type: integer
       type: object
   securitySchemes:
     apiKeyAuth:

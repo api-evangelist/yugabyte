@@ -280,20 +280,6 @@ paths:
       - Support Bundle management
 components:
   schemas:
-    YBPSuccess:
-      example:
-        success: true
-        message: message
-      properties:
-        message:
-          description: API response message.
-          readOnly: true
-          type: string
-        success:
-          description: API operation status. A value of true indicates the operation was successful.
-          readOnly: true
-          type: boolean
-      type: object
     YBPTask:
       example:
         taskUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -409,6 +395,35 @@ components:
           type: array
       required:
       - components
+      type: object
+    YBPSuccess:
+      example:
+        success: true
+        message: message
+      properties:
+        message:
+          description: API response message.
+          readOnly: true
+          type: string
+        success:
+          description: API operation status. A value of true indicates the operation was successful.
+          readOnly: true
+          type: boolean
+      type: object
+    SupportBundleSizeEstimateResponse:
+      example:
+        data:
+          key:
+            key: 0
+      properties:
+        data:
+          additionalProperties:
+            additionalProperties:
+              format: int64
+              type: integer
+            type: object
+          description: A map of universe node names to component sizes for the given support bundle payload. Global component sizes are mapped to "YBA" node.
+          type: object
       type: object
     SupportBundleFormData:
       description: Support bundle form metadata
@@ -552,21 +567,6 @@ components:
       - components
       - endDate
       - startDate
-      type: object
-    SupportBundleSizeEstimateResponse:
-      example:
-        data:
-          key:
-            key: 0
-      properties:
-        data:
-          additionalProperties:
-            additionalProperties:
-              format: int64
-              type: integer
-            type: object
-          description: A map of universe node names to component sizes for the given support bundle payload. Global component sizes are mapped to "YBA" node.
-          type: object
       type: object
     SupportBundle:
       example:

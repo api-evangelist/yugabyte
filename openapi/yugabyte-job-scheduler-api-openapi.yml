@@ -346,6 +346,124 @@ paths:
       - application/json
 components:
   schemas:
+    JobScheduleUpdateSpec:
+      allOf:
+      - $ref: '#/components/schemas/JobScheduleConfigSpec'
+      description: 'JobScheduleUpdateSpec
+
+
+        Request payload for updating schedule config of a job.
+
+        '
+      example:
+        interval_secs: 0
+        disabled: true
+        type: FIXED_DELAY
+        snooze_until: 2024-07-25 13:07:18+00:00
+      title: JobScheduleUpdateSpec
+      type: object
+    JobConfigSpec:
+      description: Job config spec for a schedule that is a part of JobScheduleSpec
+      example:
+        classname: classname
+        config:
+          key: '{}'
+      properties:
+        classname:
+          description: Class name of the job config.
+          readOnly: true
+          type: string
+        config:
+          additionalProperties:
+            type: object
+          description: Additional custom configuration.
+          type: object
+      required:
+      - classname
+      title: JobConfigSpec
+      type: object
+    PaginationSpec:
+      description: Pagination spec in page API requests.
+      properties:
+        offset:
+          description: Start offset of the records.
+          format: int32
+          type: integer
+        limit:
+          description: Maximum number of records to be fetched.
+          format: int32
+          type: integer
+        direction:
+          description: Sort order of the records.
+          enum:
+          - ASC
+          - DESC
+          type: string
+      title: PaginationSpec
+      type: object
+    JobScheduleType:
+      description: 'Job schedule type which is a part of JobScheduleConfigSpec. Fixed delay keeps a fixed interval between the end and start of previous and next job executions respectively. Fixed rate tries to keep a fixed interval between the job execution start times. If a previous job is still running, the next job waits.
+
+        '
+      enum:
+      - FIXED_DELAY
+      - FIXED_RATE
+      title: JobScheduleType
+      type: string
+    JobScheduleConfigSpec:
+      description: Job schedule config spec for a job schedule.
+      example:
+        interval_secs: 0
+        disabled: true
+        type: FIXED_DELAY
+        snooze_until: 2024-07-25 13:07:18+00:00
+      properties:
+        disabled:
+          description: Disable or enable the job schedule.
+          type: boolean
+        interval_secs:
+          description: Delay interval between two jobs.
+          format: int64
+          type: integer
+        snooze_until:
+          description: Time until the job should be snoozed.
+          example: 2024-07-25 13:07:18+00:00
+          format: date-time
+          type: string
+        type:
+          $ref: '#/components/schemas/JobScheduleType'
+      required:
+      - disabled
+      - interval_secs
+      - type
+      title: JobScheduleConfigSpec
+      type: object
+    JobScheduleApiFilter:
+      description: API filter for job schedule that is a part of JobSchedulePagedQuerySpec.
+      example:
+        enabled_only: true
+        next_start_window_secs: 1
+        config_class: config_class
+        name_regex: name_regex
+        type: FIXED_DELAY
+      properties:
+        config_class:
+          description: Filter by config class of the job.
+          type: string
+        enabled_only:
+          description: Filter out disabled job schedules if true.
+          type: boolean
+        name_regex:
+          description: Filter by name regex.
+          type: string
+        next_start_window_secs:
+          description: Filter by next start time window from now.
+          format: int64
+          type: integer
+        type:
+          $ref: '#/components/schemas/JobScheduleType'
+      title: JobScheduleApiFilter
+      type: object
     JobInstanceInfo:
       description: Job instance info representing the execution instance of a JobSchedule.
       example:
@@ -388,185 +506,102 @@ components:
           type: string
       title: JobInstanceInfo
       type: object
-    JobScheduleSpec:
-      description: Spec of a job schedule that is a part of JobSchedule.
+    JobSchedule:
+      description: Job schedule which contains the spec and execution info for a schedule.
       example:
-        job_config:
-          classname: classname
-          config:
-            key: '{}'
-        name: name
-        schedule_config:
-          interval_secs: 0
-          disabled: true
-          type: FIXED_DELAY
-          snooze_until: 2024-07-25 13:07:18+00:00
+        spec:
+          job_config:
+            classname: classname
+            config:
+              key: '{}'
+          name: name
+          schedule_config:
+            interval_secs: 0
+            disabled: true
+            type: FIXED_DELAY
+            snooze_until: 2024-07-25 13:07:18+00:00
+        info:
+          last_end_time: 2024-07-25 13:07:18+00:00
+          updated_at: 2024-07-25 13:07:18+00:00
+          execution_count: 6
+          customer_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          created_at: 2024-07-25 13:07:18+00:00
+          failed_count: 1
+          next_start_time: 2024-07-25 13:07:18+00:00
+          state: ACTIVE
+          last_start_time: 2024-07-25 13:07:18+00:00
+          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          last_job_instance_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
-        name:
-          description: Job schedule name
-          readOnly: true
-          type: string
-        job_config:
-          $ref: '#/components/schemas/JobConfigSpec'
-        schedule_config:
-          $ref: '#/components/schemas/JobScheduleConfigSpec'
-      required:
-      - job_config
-      - name
-      - schedule_config
-      title: JobScheduleSpec
+        spec:
+          $ref: '#/components/schemas/JobScheduleSpec'
+        info:
+          $ref: '#/components/schemas/JobScheduleInfo'
+      title: JobSchedule
       type: object
-    JobConfigSpec:
-      description: Job config spec for a schedule that is a part of JobScheduleSpec
-      example:
-        classname: classname
-        config:
-          key: '{}'
-      properties:
-        classname:
-          description: Class name of the job config.
-          readOnly: true
-          type: string
-        config:
-          additionalProperties:
-            type: object
-          description: Additional custom configuration.
-          type: object
-      required:
-      - classname
-      title: JobConfigSpec
-      type: object
-    JobInstancePagedResp:
+    JobSchedulePagedResp:
       allOf:
       - $ref: '#/components/schemas/PaginationResp'
-      - description: Paged API query response for job instance.
+      - description: Paged API query response for job schedule.
         properties:
           entities:
             items:
-              $ref: '#/components/schemas/JobInstanceInfo'
+              $ref: '#/components/schemas/JobSchedule'
             type: array
-        title: JobInstancePagedResp
+        title: JobSchedulePagedResp
         type: object
         example: null
       example:
         entities:
-        - start_time: 2024-07-25 13:07:18+00:00
-          job_schedule_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          end_time: 2024-07-25 13:07:18+00:00
-          created_at: 2024-07-25 13:07:18+00:00
-          state: FAILED
-          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        - start_time: 2024-07-25 13:07:18+00:00
-          job_schedule_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          end_time: 2024-07-25 13:07:18+00:00
-          created_at: 2024-07-25 13:07:18+00:00
-          state: FAILED
-          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - spec:
+            job_config:
+              classname: classname
+              config:
+                key: '{}'
+            name: name
+            schedule_config:
+              interval_secs: 0
+              disabled: true
+              type: FIXED_DELAY
+              snooze_until: 2024-07-25 13:07:18+00:00
+          info:
+            last_end_time: 2024-07-25 13:07:18+00:00
+            updated_at: 2024-07-25 13:07:18+00:00
+            execution_count: 6
+            customer_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            created_at: 2024-07-25 13:07:18+00:00
+            failed_count: 1
+            next_start_time: 2024-07-25 13:07:18+00:00
+            state: ACTIVE
+            last_start_time: 2024-07-25 13:07:18+00:00
+            uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            last_job_instance_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - spec:
+            job_config:
+              classname: classname
+              config:
+                key: '{}'
+            name: name
+            schedule_config:
+              interval_secs: 0
+              disabled: true
+              type: FIXED_DELAY
+              snooze_until: 2024-07-25 13:07:18+00:00
+          info:
+            last_end_time: 2024-07-25 13:07:18+00:00
+            updated_at: 2024-07-25 13:07:18+00:00
+            execution_count: 6
+            customer_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            created_at: 2024-07-25 13:07:18+00:00
+            failed_count: 1
+            next_start_time: 2024-07-25 13:07:18+00:00
+            state: ACTIVE
+            last_start_time: 2024-07-25 13:07:18+00:00
+            uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            last_job_instance_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         total_count: 0
         has_next: true
         has_prev: true
-      type: object
-    JobInstanceState:
-      description: State of a job instance that is a part of JobInstance.
-      enum:
-      - FAILED
-      - RUNNING
-      - SUCCESS
-      - SCHEDULED
-      - SKIPPED
-      title: JobInstanceState
-      type: string
-    JobScheduleType:
-      description: 'Job schedule type which is a part of JobScheduleConfigSpec. Fixed delay keeps a fixed interval between the end and start of previous and next job executions respectively. Fixed rate tries to keep a fixed interval between the job execution start times. If a previous job is still running, the next job waits.
-
-        '
-      enum:
-      - FIXED_DELAY
-      - FIXED_RATE
-      title: JobScheduleType
-      type: string
-    JobInstancePagedQuerySpec:
-      allOf:
-      - $ref: '#/components/schemas/PaginationSpec'
-      - description: 'JobInstancePagedQuerySpec
-
-
-          Paged API query params for job instance.
-
-          '
-        properties:
-          filter:
-            $ref: '#/components/schemas/JobInstanceApiFilter'
-          sort_by:
-            description: Sort fields of the records.
-            enum:
-            - uuid
-            - jobScheduleUuid
-            - state
-            - createdAt
-            - startTime
-            - endTime
-            type: string
-        title: JobInstancePagedQuerySpec
-        type: object
-        example: null
-      example:
-        filter:
-          state: FAILED
-          start_window_secs: 1
-        offset: 0
-        limit: 6
-        sort_by: uuid
-        direction: ASC
-      type: object
-    JobInstanceApiFilter:
-      description: API filter for job instance that is a part of JobInstancePagedQuerySpec.
-      example:
-        state: FAILED
-        start_window_secs: 1
-      properties:
-        start_window_secs:
-          description: Filter by start time falling within the time window from now.
-          format: int64
-          type: integer
-        state:
-          $ref: '#/components/schemas/JobInstanceState'
-      title: JobInstanceApiFilter
-      type: object
-    JobScheduleState:
-      description: Job schedule state of a schedule that is a part of JobScheduleInfo.
-      enum:
-      - ACTIVE
-      - INACTIVE
-      title: JobScheduleState
-      type: string
-    JobScheduleConfigSpec:
-      description: Job schedule config spec for a job schedule.
-      example:
-        interval_secs: 0
-        disabled: true
-        type: FIXED_DELAY
-        snooze_until: 2024-07-25 13:07:18+00:00
-      properties:
-        disabled:
-          description: Disable or enable the job schedule.
-          type: boolean
-        interval_secs:
-          description: Delay interval between two jobs.
-          format: int64
-          type: integer
-        snooze_until:
-          description: Time until the job should be snoozed.
-          example: 2024-07-25 13:07:18+00:00
-          format: date-time
-          type: string
-        type:
-          $ref: '#/components/schemas/JobScheduleType'
-      required:
-      - disabled
-      - interval_secs
-      - type
-      title: JobScheduleConfigSpec
       type: object
     JobScheduleInfo:
       description: Job schedule info which is a part of JobSchedule.
@@ -642,196 +677,49 @@ components:
           type: string
       title: JobScheduleInfo
       type: object
-    JobSchedulePagedResp:
+    JobInstanceState:
+      description: State of a job instance that is a part of JobInstance.
+      enum:
+      - FAILED
+      - RUNNING
+      - SUCCESS
+      - SCHEDULED
+      - SKIPPED
+      title: JobInstanceState
+      type: string
+    JobInstancePagedQuerySpec:
       allOf:
-      - $ref: '#/components/schemas/PaginationResp'
-      - description: Paged API query response for job schedule.
+      - $ref: '#/components/schemas/PaginationSpec'
+      - description: 'JobInstancePagedQuerySpec
+
+
+          Paged API query params for job instance.
+
+          '
         properties:
-          entities:
-            items:
-              $ref: '#/components/schemas/JobSchedule'
-            type: array
-        title: JobSchedulePagedResp
+          filter:
+            $ref: '#/components/schemas/JobInstanceApiFilter'
+          sort_by:
+            description: Sort fields of the records.
+            enum:
+            - uuid
+            - jobScheduleUuid
+            - state
+            - createdAt
+            - startTime
+            - endTime
+            type: string
+        title: JobInstancePagedQuerySpec
         type: object
         example: null
       example:
-        entities:
-        - spec:
-            job_config:
-              classname: classname
-              config:
-                key: '{}'
-            name: name
-            schedule_config:
-              interval_secs: 0
-              disabled: true
-              type: FIXED_DELAY
-              snooze_until: 2024-07-25 13:07:18+00:00
-          info:
-            last_end_time: 2024-07-25 13:07:18+00:00
-            updated_at: 2024-07-25 13:07:18+00:00
-            execution_count: 6
-            customer_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            created_at: 2024-07-25 13:07:18+00:00
-            failed_count: 1
-            next_start_time: 2024-07-25 13:07:18+00:00
-            state: ACTIVE
-            last_start_time: 2024-07-25 13:07:18+00:00
-            uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            last_job_instance_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        - spec:
-            job_config:
-              classname: classname
-              config:
-                key: '{}'
-            name: name
-            schedule_config:
-              interval_secs: 0
-              disabled: true
-              type: FIXED_DELAY
-              snooze_until: 2024-07-25 13:07:18+00:00
-          info:
-            last_end_time: 2024-07-25 13:07:18+00:00
-            updated_at: 2024-07-25 13:07:18+00:00
-            execution_count: 6
-            customer_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            created_at: 2024-07-25 13:07:18+00:00
-            failed_count: 1
-            next_start_time: 2024-07-25 13:07:18+00:00
-            state: ACTIVE
-            last_start_time: 2024-07-25 13:07:18+00:00
-            uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            last_job_instance_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        total_count: 0
-        has_next: true
-        has_prev: true
-      type: object
-    PaginationSpec:
-      description: Pagination spec in page API requests.
-      properties:
-        offset:
-          description: Start offset of the records.
-          format: int32
-          type: integer
-        limit:
-          description: Maximum number of records to be fetched.
-          format: int32
-          type: integer
-        direction:
-          description: Sort order of the records.
-          enum:
-          - ASC
-          - DESC
-          type: string
-      title: PaginationSpec
-      type: object
-    JobScheduleApiFilter:
-      description: API filter for job schedule that is a part of JobSchedulePagedQuerySpec.
-      example:
-        enabled_only: true
-        next_start_window_secs: 1
-        config_class: config_class
-        name_regex: name_regex
-        type: FIXED_DELAY
-      properties:
-        config_class:
-          description: Filter by config class of the job.
-          type: string
-        enabled_only:
-          description: Filter out disabled job schedules if true.
-          type: boolean
-        name_regex:
-          description: Filter by name regex.
-          type: string
-        next_start_window_secs:
-          description: Filter by next start time window from now.
-          format: int64
-          type: integer
-        type:
-          $ref: '#/components/schemas/JobScheduleType'
-      title: JobScheduleApiFilter
-      type: object
-    JobScheduleSnoozeSpec:
-      description: 'JobScheduleSnoozeSpec
-
-
-        Request payload to put off the next schedule by snooze secs.
-
-        '
-      example:
-        snooze_secs: 0
-      properties:
-        snooze_secs:
-          description: Schedule the next job after the sum of snooze time and interval from now.
-          format: int64
-          type: integer
-      required:
-      - snooze_secs
-      title: JobScheduleSnoozeSpec
-      type: object
-    JobScheduleUpdateSpec:
-      allOf:
-      - $ref: '#/components/schemas/JobScheduleConfigSpec'
-      description: 'JobScheduleUpdateSpec
-
-
-        Request payload for updating schedule config of a job.
-
-        '
-      example:
-        interval_secs: 0
-        disabled: true
-        type: FIXED_DELAY
-        snooze_until: 2024-07-25 13:07:18+00:00
-      title: JobScheduleUpdateSpec
-      type: object
-    JobSchedule:
-      description: Job schedule which contains the spec and execution info for a schedule.
-      example:
-        spec:
-          job_config:
-            classname: classname
-            config:
-              key: '{}'
-          name: name
-          schedule_config:
-            interval_secs: 0
-            disabled: true
-            type: FIXED_DELAY
-            snooze_until: 2024-07-25 13:07:18+00:00
-        info:
-          last_end_time: 2024-07-25 13:07:18+00:00
-          updated_at: 2024-07-25 13:07:18+00:00
-          execution_count: 6
-          customer_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          created_at: 2024-07-25 13:07:18+00:00
-          failed_count: 1
-          next_start_time: 2024-07-25 13:07:18+00:00
-          state: ACTIVE
-          last_start_time: 2024-07-25 13:07:18+00:00
-          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          last_job_instance_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-      properties:
-        spec:
-          $ref: '#/components/schemas/JobScheduleSpec'
-        info:
-          $ref: '#/components/schemas/JobScheduleInfo'
-      title: JobSchedule
-      type: object
-    PaginationResp:
-      description: Pagination information in page API responses.
-      properties:
-        has_next:
-          description: There are more next records if true.
-          type: boolean
-        has_prev:
-          description: There are more previous records if true.
-          type: boolean
-        total_count:
-          description: Total number of records.
-          format: int32
-          type: integer
-      title: PaginationResp
+        filter:
+          state: FAILED
+          start_window_secs: 1
+        offset: 0
+        limit: 6
+        sort_by: uuid
+        direction: ASC
       type: object
     JobSchedulePagedQuerySpec:
       allOf:
@@ -872,13 +760,119 @@ components:
         sort_by: uuid
         direction: ASC
       type: object
+    JobScheduleState:
+      description: Job schedule state of a schedule that is a part of JobScheduleInfo.
+      enum:
+      - ACTIVE
+      - INACTIVE
+      title: JobScheduleState
+      type: string
+    JobInstancePagedResp:
+      allOf:
+      - $ref: '#/components/schemas/PaginationResp'
+      - description: Paged API query response for job instance.
+        properties:
+          entities:
+            items:
+              $ref: '#/components/schemas/JobInstanceInfo'
+            type: array
+        title: JobInstancePagedResp
+        type: object
+        example: null
+      example:
+        entities:
+        - start_time: 2024-07-25 13:07:18+00:00
+          job_schedule_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          end_time: 2024-07-25 13:07:18+00:00
+          created_at: 2024-07-25 13:07:18+00:00
+          state: FAILED
+          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - start_time: 2024-07-25 13:07:18+00:00
+          job_schedule_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          end_time: 2024-07-25 13:07:18+00:00
+          created_at: 2024-07-25 13:07:18+00:00
+          state: FAILED
+          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        total_count: 0
+        has_next: true
+        has_prev: true
+      type: object
+    JobInstanceApiFilter:
+      description: API filter for job instance that is a part of JobInstancePagedQuerySpec.
+      example:
+        state: FAILED
+        start_window_secs: 1
+      properties:
+        start_window_secs:
+          description: Filter by start time falling within the time window from now.
+          format: int64
+          type: integer
+        state:
+          $ref: '#/components/schemas/JobInstanceState'
+      title: JobInstanceApiFilter
+      type: object
+    JobScheduleSpec:
+      description: Spec of a job schedule that is a part of JobSchedule.
+      example:
+        job_config:
+          classname: classname
+          config:
+            key: '{}'
+        name: name
+        schedule_config:
+          interval_secs: 0
+          disabled: true
+          type: FIXED_DELAY
+          snooze_until: 2024-07-25 13:07:18+00:00
+      properties:
+        name:
+          description: Job schedule name
+          readOnly: true
+          type: string
+        job_config:
+          $ref: '#/components/schemas/JobConfigSpec'
+        schedule_config:
+          $ref: '#/components/schemas/JobScheduleConfigSpec'
+      required:
+      - job_config
+      - name
+      - schedule_config
+      title: JobScheduleSpec
+      type: object
+    PaginationResp:
+      description: Pagination information in page API responses.
+      properties:
+        has_next:
+          description: There are more next records if true.
+          type: boolean
+        has_prev:
+          description: There are more previous records if true.
+          type: boolean
+        total_count:
+          description: Total number of records.
+          format: int32
+          type: integer
+      title: PaginationResp
+      type: object
+    JobScheduleSnoozeSpec:
+      description: 'JobScheduleSnoozeSpec
+
+
+        Request payload to put off the next schedule by snooze secs.
+
+        '
+      example:
+        snooze_secs: 0
+      properties:
+        snooze_secs:
+          description: Schedule the next job after the sum of snooze time and interval from now.
+          format: int64
+          type: integer
+      required:
+      - snooze_secs
+      title: JobScheduleSnoozeSpec
+      type: object
   requestBodies:
-    JobInstancePagedReq:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/JobInstancePagedQuerySpec'
-      required: true
     JobScheduleUpdateReq:
       content:
         application/json:
@@ -896,6 +890,12 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/JobScheduleSnoozeSpec'
+      required: true
+    JobInstancePagedReq:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/JobInstancePagedQuerySpec'
       required: true
   securitySchemes:
     apiKeyAuth:

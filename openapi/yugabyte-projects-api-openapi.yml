@@ -103,16 +103,6 @@ components:
             code: OK
             message: Example message
             status: 100
-  parameters:
-    accountId:
-      name: accountId
-      in: path
-      required: true
-      description: The unique identifier of the YugabyteDB Aeon account.
-      schema:
-        type: string
-        format: uuid
-      example: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
   responses:
     Unauthorized:
       description: The API key is missing, invalid, or expired.
@@ -129,6 +119,16 @@ components:
                   code: OK
                   message: Example message
                   status: 100
+  parameters:
+    accountId:
+      name: accountId
+      in: path
+      required: true
+      description: The unique identifier of the YugabyteDB Aeon account.
+      schema:
+        type: string
+        format: uuid
+      example: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
   securitySchemes:
     bearerAuth:
       type: http

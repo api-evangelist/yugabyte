@@ -104,96 +104,70 @@ paths:
       - Cluster
 components:
   schemas:
-    ApiError_error:
+    PlacementInfo:
+      example:
+        cloud_info:
+          region: us-west2
+        num_nodes: 5
       properties:
-        detail:
-          description: Error message
-          type: string
-        status:
-          description: Error code
+        cloud_info:
+          $ref: '#/components/schemas/CloudInfo'
+        num_nodes:
+          default: 3
+          description: How many nodes are in the region
+          maximum: 24
+          minimum: 1
           type: integer
-      type: object
-    ClusterDataInfo:
-      example:
-        metadata:
-          updated_on: updated_on
-          created_on: created_on
-        cluster_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        universe_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        state: state
-        software_version: software_version
-      properties:
-        universe_uuid:
-          description: The UUID of the universe
-          format: uuid
-          type: string
-        cluster_uuid:
-          description: The UUID of the cluster
-          format: uuid
-          type: string
-        state:
-          description: The current state of the cluster
-          type: string
-        software_version:
-          description: The current version of YugabyteDB installed on the cluster
-          type: string
-        metadata:
-          $ref: '#/components/schemas/EntityMetadata'
       required:
-      - cluster_uuid
-      - metadata
-      - project_id
-      - state
-      - universe_uuid
+      - cloud_info
+      - num_nodes
       type: object
-    ClusterData:
-      description: Cluster data
+    ClusterInfo:
+      description: Cluster level information
       example:
-        spec:
-          cluster_region_info:
-          - placement_info:
-              cloud_info:
-                region: us-west2
-              num_nodes: 5
-          - placement_info:
-              cloud_info:
-                region: us-west2
-              num_nodes: 5
-          name: name
-          cloud_info:
-            region: us-west2
-          encryption_info:
-            encryption_in_transit: false
-            encryption_at_rest: false
-          cluster_info:
-            replication_factor: 14
-            node_info:
-              disk_size_used_gb: 5.637376656633329
-              num_cores: 7
-              memory_mb: 1.4658129805029452
-              ram_provisioned_gb: 9.301444243932576
-              cpu_usage: 2.3021358869347655
-              disk_size_gb: 5.962133916683182
-            is_production: false
-            version: 3
-            num_nodes: 2
-        info:
-          metadata:
-            updated_on: updated_on
-            created_on: created_on
-          cluster_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          universe_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          state: state
-          software_version: software_version
+        replication_factor: 14
+        node_info:
+          disk_size_used_gb: 5.637376656633329
+          num_cores: 7
+          memory_mb: 1.4658129805029452
+          ram_provisioned_gb: 9.301444243932576
+          cpu_usage: 2.3021358869347655
+          disk_size_gb: 5.962133916683182
+        is_production: false
+        version: 3
+        num_nodes: 2
       properties:
-        spec:
-          $ref: '#/components/schemas/ClusterSpec'
-        info:
-          $ref: '#/components/schemas/ClusterDataInfo'
+        num_nodes:
+          default: 3
+          description: How many nodes are in the cluster
+          maximum: 24
+          minimum: 1
+          type: integer
+        fault_tolerance:
+          $ref: '#/components/schemas/ClusterFaultTolerance'
+        replication_factor:
+          description: The replication factor applied on the cluster
+          maximum: 24
+          minimum: 1
+          type: integer
+        node_info:
+          $ref: '#/components/schemas/ClusterNodeInfo'
+        is_production:
+          default: false
+          description: Describes if the cluster is a production cluster
+          type: boolean
+        version:
+          description: cluster data version
+          type:
+          - integer
+          - 'null'
       required:
-      - info
-      - spec
-      title: Cluster Data
+      - cluster_tier
+      - fault_tolerance
+      - is_production
+      - node_info
+      - num_nodes
+      title: Cluster Info
       type: object
     ClusterSpec:
       description: Cluster spec
@@ -254,23 +228,53 @@ components:
       - software_info
       title: Cluster Specification
       type: object
-    PlacementInfo:
-      example:
-        cloud_info:
-          region: us-west2
-        num_nodes: 5
+    ApiError:
       properties:
-        cloud_info:
-          $ref: '#/components/schemas/CloudInfo'
-        num_nodes:
-          default: 3
-          description: How many nodes are in the region
-          maximum: 24
-          minimum: 1
-          type: integer
+        error:
+          $ref: '#/components/schemas/ApiError_error'
+      title: API Error
+      type: object
+    CloudEnum:
+      default: MANUAL
+      description: Which cloud the cluster is deployed in
+      enum:
+      - AWS
+      - GCP
+      - MANUAL
+      title: Cloud Enum
+      type: string
+    ClusterDataInfo:
+      example:
+        metadata:
+          updated_on: updated_on
+          created_on: created_on
+        cluster_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        universe_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        state: state
+        software_version: software_version
+      properties:
+        universe_uuid:
+          description: The UUID of the universe
+          format: uuid
+          type: string
+        cluster_uuid:
+          description: The UUID of the cluster
+          format: uuid
+          type: string
+        state:
+          description: The current state of the cluster
+          type: string
+        software_version:
+          description: The current version of YugabyteDB installed on the cluster
+          type: string
+        metadata:
+          $ref: '#/components/schemas/EntityMetadata'
       required:
-      - cloud_info
-      - num_nodes
+      - cluster_uuid
+      - metadata
+      - project_id
+      - state
+      - universe_uuid
       type: object
     EntityMetadata:
       description: Common metadata for entities
@@ -290,22 +294,55 @@ components:
           - 'null'
       title: Entity Metadata
       type: object
-    ApiError:
+    ClusterData:
+      description: Cluster data
+      example:
+        spec:
+          cluster_region_info:
+          - placement_info:
+              cloud_info:
+                region: us-west2
+              num_nodes: 5
+          - placement_info:
+              cloud_info:
+                region: us-west2
+              num_nodes: 5
+          name: name
+          cloud_info:
+            region: us-west2
+          encryption_info:
+            encryption_in_transit: false
+            encryption_at_rest: false
+          cluster_info:
+            replication_factor: 14
+            node_info:
+              disk_size_used_gb: 5.637376656633329
+              num_cores: 7
+              memory_mb: 1.4658129805029452
+              ram_provisioned_gb: 9.301444243932576
+              cpu_usage: 2.3021358869347655
+              disk_size_gb: 5.962133916683182
+            is_production: false
+            version: 3
+            num_nodes: 2
+        info:
+          metadata:
+            updated_on: updated_on
+            created_on: created_on
+          cluster_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          universe_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          state: state
+          software_version: software_version
       properties:
-        error:
-          $ref: '#/components/schemas/ApiError_error'
-      title: API Error
+        spec:
+          $ref: '#/components/schemas/ClusterSpec'
+        info:
+          $ref: '#/components/schemas/ClusterDataInfo'
+      required:
+      - info
+      - spec
+      title: Cluster Data
       type: object
-    ClusterFaultTolerance:
-      default: ZONE
-      description: The level of fault tolerance for the cluster
-      enum:
-      - NONE
-      - NODE
-      - ZONE
-      - REGION
-      title: Cluster Fault Tolerance
-      type: string
     ClusterRegionInfo:
       description: Cluster region info list
       example:
@@ -319,97 +356,6 @@ components:
       required:
       - placement_info
       title: Cluster Region Info
-      type: object
-    ClusterInfo:
-      description: Cluster level information
-      example:
-        replication_factor: 14
-        node_info:
-          disk_size_used_gb: 5.637376656633329
-          num_cores: 7
-          memory_mb: 1.4658129805029452
-          ram_provisioned_gb: 9.301444243932576
-          cpu_usage: 2.3021358869347655
-          disk_size_gb: 5.962133916683182
-        is_production: false
-        version: 3
-        num_nodes: 2
-      properties:
-        num_nodes:
-          default: 3
-          description: How many nodes are in the cluster
-          maximum: 24
-          minimum: 1
-          type: integer
-        fault_tolerance:
-          $ref: '#/components/schemas/ClusterFaultTolerance'
-        replication_factor:
-          description: The replication factor applied on the cluster
-          maximum: 24
-          minimum: 1
-          type: integer
-        node_info:
-          $ref: '#/components/schemas/ClusterNodeInfo'
-        is_production:
-          default: false
-          description: Describes if the cluster is a production cluster
-          type: boolean
-        version:
-          description: cluster data version
-          type:
-          - integer
-          - 'null'
-      required:
-      - cluster_tier
-      - fault_tolerance
-      - is_production
-      - node_info
-      - num_nodes
-      title: Cluster Info
-      type: object
-    Cluster_Response:
-      example:
-        data:
-          spec:
-            cluster_region_info:
-            - placement_info:
-                cloud_info:
-                  region: us-west2
-                num_nodes: 5
-            - placement_info:
-                cloud_info:
-                  region: us-west2
-                num_nodes: 5
-            name: name
-            cloud_info:
-              region: us-west2
-            encryption_info:
-              encryption_in_transit: false
-              encryption_at_rest: false
-            cluster_info:
-              replication_factor: 14
-              node_info:
-                disk_size_used_gb: 5.637376656633329
-                num_cores: 7
-                memory_mb: 1.4658129805029452
-                ram_provisioned_gb: 9.301444243932576
-                cpu_usage: 2.3021358869347655
-                disk_size_gb: 5.962133916683182
-              is_production: false
-              version: 3
-              num_nodes: 2
-          info:
-            metadata:
-              updated_on: updated_on
-              created_on: created_on
-            cluster_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            universe_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            state: state
-            software_version: software_version
-      properties:
-        data:
-          $ref: '#/components/schemas/ClusterData'
-      title: Cluster Response
       type: object
     ClusterNodeInfo:
       description: Node level information
@@ -457,6 +403,74 @@ components:
       - ram_provisioned_gb
       title: Cluster Node Info
       type: object
+    ClusterFaultTolerance:
+      default: ZONE
+      description: The level of fault tolerance for the cluster
+      enum:
+      - NONE
+      - NODE
+      - ZONE
+      - REGION
+      title: Cluster Fault Tolerance
+      type: string
+    Cluster_Response:
+      example:
+        data:
+          spec:
+            cluster_region_info:
+            - placement_info:
+                cloud_info:
+                  region: us-west2
+                num_nodes: 5
+            - placement_info:
+                cloud_info:
+                  region: us-west2
+                num_nodes: 5
+            name: name
+            cloud_info:
+              region: us-west2
+            encryption_info:
+              encryption_in_transit: false
+              encryption_at_rest: false
+            cluster_info:
+              replication_factor: 14
+              node_info:
+                disk_size_used_gb: 5.637376656633329
+                num_cores: 7
+                memory_mb: 1.4658129805029452
+                ram_provisioned_gb: 9.301444243932576
+                cpu_usage: 2.3021358869347655
+                disk_size_gb: 5.962133916683182
+              is_production: false
+              version: 3
+              num_nodes: 2
+          info:
+            metadata:
+              updated_on: updated_on
+              created_on: created_on
+            cluster_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            universe_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            state: state
+            software_version: software_version
+      properties:
+        data:
+          $ref: '#/components/schemas/ClusterData'
+      title: Cluster Response
+      type: object
+    EncryptionInfo:
+      description: Cluster encryption info
+      example:
+        encryption_in_transit: false
+        encryption_at_rest: false
+      properties:
+        encryption_at_rest:
+          default: false
+          type: boolean
+        encryption_in_transit:
+          default: false
+          type: boolean
+      title: Encryption Info
+      type: object
     CloudInfo:
       description: Cloud deployment information
       example:
@@ -473,28 +487,14 @@ components:
       - region
       title: Cloud Info
       type: object
-    CloudEnum:
-      default: MANUAL
-      description: Which cloud the cluster is deployed in
-      enum:
-      - AWS
-      - GCP
-      - MANUAL
-      title: Cloud Enum
-      type: string
-    EncryptionInfo:
-      description: Cluster encryption info
-      example:
-        encryption_in_transit: false
-        encryption_at_rest: false
+    ApiError_error:
       properties:
-        encryption_at_rest:
-          default: false
-          type: boolean
-        encryption_in_transit:
-          default: false
-          type: boolean
-      title: Encryption Info
+        detail:
+          description: Error message
+          type: string
+        status:
+          description: Error code
+          type: integer
       type: object
   requestBodies:
     ClusterSpec:

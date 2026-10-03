@@ -254,6 +254,96 @@ paths:
       - Universe database management
 components:
   schemas:
+    YBPTask:
+      example:
+        taskUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        resourceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        resourceUUID:
+          description: UUID of the resource being modified by the task
+          format: uuid
+          readOnly: true
+          type: string
+        taskUUID:
+          description: Task UUID
+          format: uuid
+          readOnly: true
+          type: string
+      type: object
+    DatabaseSecurityFormData:
+      description: Database security properties
+      example:
+        ycqlAdminUsername: ycqlAdminUsername
+        ysqlAdminPassword: ysqlAdminPassword
+        dbName: dbName
+        ycqlAdminPassword: ycqlAdminPassword
+        ycqlCurrAdminPassword: ycqlCurrAdminPassword
+        ysqlCurrAdminPassword: ysqlCurrAdminPassword
+        ysqlAdminUsername: ysqlAdminUsername
+      properties:
+        dbName:
+          description: YSQL DB Name
+          type: string
+        ycqlAdminPassword:
+          description: New YCQL admin password
+          type: string
+        ycqlAdminUsername:
+          description: YCQL admin username
+          type: string
+        ycqlCurrAdminPassword:
+          description: Current YCQL admin password
+          type: string
+        ysqlAdminPassword:
+          description: New YSQL admin password
+          type: string
+        ysqlAdminUsername:
+          description: YSQL admin username
+          type: string
+        ysqlCurrAdminPassword:
+          description: Current YSQL admin password
+          type: string
+      type: object
+    DatabaseUserFormData:
+      example:
+        password: password
+        ycqlAdminUsername: ycqlAdminUsername
+        dbRoleAttributes:
+        - name: SUPERUSER
+        - name: SUPERUSER
+        ysqlAdminPassword: ysqlAdminPassword
+        dbName: dbName
+        ycqlAdminPassword: ycqlAdminPassword
+        username: username
+        ysqlAdminUsername: ysqlAdminUsername
+      properties:
+        dbName:
+          type: string
+        dbRoleAttributes:
+          description: YbaApi Internal.
+          items:
+            $ref: '#/components/schemas/RoleAttribute'
+          type: array
+        password:
+          type: string
+        username:
+          type: string
+        ycqlAdminPassword:
+          type: string
+        ycqlAdminUsername:
+          type: string
+        ysqlAdminPassword:
+          type: string
+        ysqlAdminUsername:
+          type: string
+      required:
+      - dbName
+      - password
+      - username
+      - ycqlAdminPassword
+      - ycqlAdminUsername
+      - ysqlAdminPassword
+      - ysqlAdminUsername
+      type: object
     PerProcessFlags:
       example:
         value:
@@ -268,53 +358,6 @@ components:
           type: object
       required:
       - value
-      type: object
-    SpecificGFlags:
-      description: GFlags for current cluster
-      example:
-        inheritFromPrimary: true
-        perProcessFlags:
-          value:
-            key:
-              key: value
-        gflagGroups: '["ENHANCED_POSTGRES_COMPATIBILITY"]'
-        perAZ:
-          key:
-            value:
-              key:
-                key: value
-      properties:
-        gflagGroups:
-          description: YbaApi Internal. GFlag groups to be applied
-          example: '["ENHANCED_POSTGRES_COMPATIBILITY"]'
-          items:
-            enum:
-            - ENHANCED_POSTGRES_COMPATIBILITY
-            type: string
-          type: array
-        inheritFromPrimary:
-          type: boolean
-        perAZ:
-          additionalProperties:
-            $ref: '#/components/schemas/PerProcessFlags'
-          description: Overrides for gflags per availability zone
-          type: object
-        perProcessFlags:
-          $ref: '#/components/schemas/PerProcessFlags'
-      type: object
-    YBPSuccess:
-      example:
-        success: true
-        message: message
-      properties:
-        message:
-          description: API response message.
-          readOnly: true
-          type: string
-        success:
-          description: API operation status. A value of true indicates the operation was successful.
-          readOnly: true
-          type: boolean
       type: object
     ConfigureYSQLFormData:
       description: YSQL properties
@@ -372,97 +415,6 @@ components:
         ysqlPassword:
           description: YSQL Auth password
           type: string
-      type: object
-    ConfigureYCQLFormData:
-      description: YCQL properties
-      example:
-        enableYCQL: true
-        enableYCQLAuth: true
-        ycqlPassword: ycqlPassword
-        communicationPorts:
-          nodeExporterPort: 5
-          tserverHttpPort: 9
-          internalYsqlServerRpcPort: 0
-          ybControllerHttpPort: 2
-          redisServerHttpPort: 2
-          ybControllerrRpcPort: 4
-          tserverRpcPort: 3
-          ysqlServerHttpPort: 1
-          yqlServerRpcPort: 1
-          masterHttpPort: 6
-          otelCollectorMetricsPort: 5
-          ysqlServerRpcPort: 1
-          yqlServerHttpPort: 7
-          masterRpcPort: 1
-          redisServerRpcPort: 7
-      properties:
-        communicationPorts:
-          $ref: '#/components/schemas/CommunicationPorts'
-        enableYCQL:
-          description: Enable YCQL Api for the universe
-          type: boolean
-        enableYCQLAuth:
-          description: Enable YCQL Auth for the universe
-          type: boolean
-        ycqlPassword:
-          description: YCQL Auth password
-          type: string
-      type: object
-    YBPTask:
-      example:
-        taskUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        resourceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-      properties:
-        resourceUUID:
-          description: UUID of the resource being modified by the task
-          format: uuid
-          readOnly: true
-          type: string
-        taskUUID:
-          description: Task UUID
-          format: uuid
-          readOnly: true
-          type: string
-      type: object
-    YBPError:
-      description: Generic error response from the YugabyteDB Anywhere API
-      properties:
-        error:
-          description: User-visible unstructured error message
-          example: There was a problem creating the universe
-          type: string
-        errorJson:
-          description: User visible error message as json object
-          example: '{ "foo" : "bar", "baz" : [1, 2, 3] }'
-          type: object
-        success:
-          description: Always set to false to indicate failure
-          example: false
-          type: boolean
-      type: object
-    RoleAttribute:
-      example:
-        name: SUPERUSER
-      properties:
-        name:
-          enum:
-          - SUPERUSER
-          - NOSUPERUSER
-          - CREATEDB
-          - NOCREATEDB
-          - CREATEROLE
-          - NOCREATEROLE
-          - INHERIT
-          - NOINHERIT
-          - LOGIN
-          - NOLOGIN
-          - REPLICATION
-          - NOREPLICATION
-          - BYPASSRLS
-          - NOBYPASSRLS
-          type: string
-      required:
-      - name
       type: object
     CommunicationPorts:
       description: Communication ports
@@ -544,6 +496,95 @@ components:
           format: int32
           type: integer
       type: object
+    ConfigureYCQLFormData:
+      description: YCQL properties
+      example:
+        enableYCQL: true
+        enableYCQLAuth: true
+        ycqlPassword: ycqlPassword
+        communicationPorts:
+          nodeExporterPort: 5
+          tserverHttpPort: 9
+          internalYsqlServerRpcPort: 0
+          ybControllerHttpPort: 2
+          redisServerHttpPort: 2
+          ybControllerrRpcPort: 4
+          tserverRpcPort: 3
+          ysqlServerHttpPort: 1
+          yqlServerRpcPort: 1
+          masterHttpPort: 6
+          otelCollectorMetricsPort: 5
+          ysqlServerRpcPort: 1
+          yqlServerHttpPort: 7
+          masterRpcPort: 1
+          redisServerRpcPort: 7
+      properties:
+        communicationPorts:
+          $ref: '#/components/schemas/CommunicationPorts'
+        enableYCQL:
+          description: Enable YCQL Api for the universe
+          type: boolean
+        enableYCQLAuth:
+          description: Enable YCQL Auth for the universe
+          type: boolean
+        ycqlPassword:
+          description: YCQL Auth password
+          type: string
+      type: object
+    YBPSuccess:
+      example:
+        success: true
+        message: message
+      properties:
+        message:
+          description: API response message.
+          readOnly: true
+          type: string
+        success:
+          description: API operation status. A value of true indicates the operation was successful.
+          readOnly: true
+          type: boolean
+      type: object
+    YBPError:
+      description: Generic error response from the YugabyteDB Anywhere API
+      properties:
+        error:
+          description: User-visible unstructured error message
+          example: There was a problem creating the universe
+          type: string
+        errorJson:
+          description: User visible error message as json object
+          example: '{ "foo" : "bar", "baz" : [1, 2, 3] }'
+          type: object
+        success:
+          description: Always set to false to indicate failure
+          example: false
+          type: boolean
+      type: object
+    RoleAttribute:
+      example:
+        name: SUPERUSER
+      properties:
+        name:
+          enum:
+          - SUPERUSER
+          - NOSUPERUSER
+          - CREATEDB
+          - NOCREATEDB
+          - CREATEROLE
+          - NOCREATEROLE
+          - INHERIT
+          - NOINHERIT
+          - LOGIN
+          - NOLOGIN
+          - REPLICATION
+          - NOREPLICATION
+          - BYPASSRLS
+          - NOBYPASSRLS
+          type: string
+      required:
+      - name
+      type: object
     RunQueryFormData:
       example:
         db_name: db_name
@@ -570,79 +611,38 @@ components:
       - query
       - table_type
       type: object
-    DatabaseUserFormData:
+    SpecificGFlags:
+      description: GFlags for current cluster
       example:
-        password: password
-        ycqlAdminUsername: ycqlAdminUsername
-        dbRoleAttributes:
-        - name: SUPERUSER
-        - name: SUPERUSER
-        ysqlAdminPassword: ysqlAdminPassword
-        dbName: dbName
-        ycqlAdminPassword: ycqlAdminPassword
-        username: username
-        ysqlAdminUsername: ysqlAdminUsername
+        inheritFromPrimary: true
+        perProcessFlags:
+          value:
+            key:
+              key: value
+        gflagGroups: '["ENHANCED_POSTGRES_COMPATIBILITY"]'
+        perAZ:
+          key:
+            value:
+              key:
+                key: value
       properties:
-        dbName:
-          type: string
-        dbRoleAttributes:
-          description: YbaApi Internal.
+        gflagGroups:
+          description: YbaApi Internal. GFlag groups to be applied
+          example: '["ENHANCED_POSTGRES_COMPATIBILITY"]'
           items:
-            $ref: '#/components/schemas/RoleAttribute'
+            enum:
+            - ENHANCED_POSTGRES_COMPATIBILITY
+            type: string
           type: array
-        password:
-          type: string
-        username:
-          type: string
-        ycqlAdminPassword:
-          type: string
-        ycqlAdminUsername:
-          type: string
-        ysqlAdminPassword:
-          type: string
-        ysqlAdminUsername:
-          type: string
-      required:
-      - dbName
-      - password
-      - username
-      - ycqlAdminPassword
-      - ycqlAdminUsername
-      - ysqlAdminPassword
-      - ysqlAdminUsername
-      type: object
-    DatabaseSecurityFormData:
-      description: Database security properties
-      example:
-        ycqlAdminUsername: ycqlAdminUsername
-        ysqlAdminPassword: ysqlAdminPassword
-        dbName: dbName
-        ycqlAdminPassword: ycqlAdminPassword
-        ycqlCurrAdminPassword: ycqlCurrAdminPassword
-        ysqlCurrAdminPassword: ysqlCurrAdminPassword
-        ysqlAdminUsername: ysqlAdminUsername
-      properties:
-        dbName:
-          description: YSQL DB Name
-          type: string
-        ycqlAdminPassword:
-          description: New YCQL admin password
-          type: string
-        ycqlAdminUsername:
-          description: YCQL admin username
-          type: string
-        ycqlCurrAdminPassword:
-          description: Current YCQL admin password
-          type: string
-        ysqlAdminPassword:
-          description: New YSQL admin password
-          type: string
-        ysqlAdminUsername:
-          description: YSQL admin username
-          type: string
-        ysqlCurrAdminPassword:
-          description: Current YSQL admin password
-          type: string
+        inheritFromPrimary:
+          type: boolean
+        perAZ:
+          additionalProperties:
+            $ref: '#/components/schemas/PerProcessFlags'
+          description: Overrides for gflags per availability zone
+          type: object
+        perProcessFlags:
+          $ref: '#/components/schemas/PerProcessFlags'
       type: object
   securitySchemes:
     apiKeyAuth:

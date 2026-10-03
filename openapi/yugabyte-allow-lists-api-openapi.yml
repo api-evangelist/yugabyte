@@ -164,6 +164,34 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  parameters:
+    allowListId:
+      name: allowListId
+      in: path
+      required: true
+      description: The unique identifier of the IP allow list.
+      schema:
+        type: string
+        format: uuid
+      example: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+    projectId:
+      name: projectId
+      in: path
+      required: true
+      description: The unique identifier of the project within the account.
+      schema:
+        type: string
+        format: uuid
+      example: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+    accountId:
+      name: accountId
+      in: path
+      required: true
+      description: The unique identifier of the YugabyteDB Aeon account.
+      schema:
+        type: string
+        format: uuid
+      example: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
   schemas:
     ErrorResponse:
       type: object
@@ -188,6 +216,30 @@ components:
             code: OK
             message: Example message
             status: 100
+    AllowListSpec:
+      type: object
+      description: Specification for creating an IP allow list.
+      required:
+      - name
+      - allow_list
+      properties:
+        name:
+          type: string
+          description: Display name for the allow list.
+          maxLength: 64
+          example: example-name
+        description:
+          type: string
+          description: Human-readable description of the allow list's purpose.
+          example: Example description
+        allow_list:
+          type: array
+          description: List of CIDR entries to include in the allow list.
+          items:
+            type: string
+            description: An IPv4 or IPv6 CIDR range.
+          example:
+          - example-allow_list
     AllowList:
       type: object
       description: An IP allow list containing CIDR entries that are permitted to connect to clusters.
@@ -218,68 +270,16 @@ components:
           format: date-time
           description: Timestamp when the allow list was created.
           example: '2026-05-03T12:00:00Z'
-    AllowListSpec:
-      type: object
-      description: Specification for creating an IP allow list.
-      required:
-      - name
-      - allow_list
-      properties:
-        name:
-          type: string
-          description: Display name for the allow list.
-          maxLength: 64
-          example: example-name
-        description:
-          type: string
-          description: Human-readable description of the allow list's purpose.
-          example: Example description
-        allow_list:
-          type: array
-          description: List of CIDR entries to include in the allow list.
-          items:
-            type: string
-            description: An IPv4 or IPv6 CIDR range.
-          example:
-          - example-allow_list
-  parameters:
-    allowListId:
-      name: allowListId
-      in: path
-      required: true
-      description: The unique identifier of the IP allow list.
-      schema:
-        type: string
-        format: uuid
-      example: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-    projectId:
-      name: projectId
-      in: path
-      required: true
-      description: The unique identifier of the project within the account.
-      schema:
-        type: string
-        format: uuid
-      example: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-    accountId:
-      name: accountId
-      in: path
-      required: true
-      description: The unique identifier of the YugabyteDB Aeon account.
-      schema:
-        type: string
-        format: uuid
-      example: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
   responses:
-    Unauthorized:
-      description: The API key is missing, invalid, or expired.
+    NotFound:
+      description: The requested resource was not found.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
           examples:
-            UnauthorizedExample:
-              summary: Default Unauthorized response
+            NotFoundExample:
+              summary: Default NotFound response
               x-microcks-default: true
               value:
                 error:
@@ -301,15 +301,15 @@ components:
                   code: OK
                   message: Example message
                   status: 100
-    NotFound:
-      description: The requested resource was not found.
+    Unauthorized:
+      description: The API key is missing, invalid, or expired.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
           examples:
-            NotFoundExample:
-              summary: Default NotFound response
+            UnauthorizedExample:
+              summary: Default Unauthorized response
               x-microcks-default: true
               value:
                 error:

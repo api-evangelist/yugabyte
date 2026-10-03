@@ -363,20 +363,6 @@ paths:
       - Encryption at rest
 components:
   schemas:
-    YBPSuccess:
-      example:
-        success: true
-        message: message
-      properties:
-        message:
-          description: API response message.
-          readOnly: true
-          type: string
-        success:
-          description: API operation status. A value of true indicates the operation was successful.
-          readOnly: true
-          type: boolean
-      type: object
     YBPTask:
       example:
         taskUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -428,6 +414,20 @@ components:
         success:
           description: Always set to false to indicate failure
           example: false
+          type: boolean
+      type: object
+    YBPSuccess:
+      example:
+        success: true
+        message: message
+      properties:
+        message:
+          description: API response message.
+          readOnly: true
+          type: string
+        success:
+          description: API operation status. A value of true indicates the operation was successful.
+          readOnly: true
           type: boolean
       type: object
   securitySchemes:

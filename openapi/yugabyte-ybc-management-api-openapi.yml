@@ -191,19 +191,21 @@ paths:
       x-codegen-request-body-name: throttleParams
 components:
   schemas:
-    YBPSuccess:
+    YBPTask:
       example:
-        success: true
-        message: message
+        taskUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        resourceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
-        message:
-          description: API response message.
+        resourceUUID:
+          description: UUID of the resource being modified by the task
+          format: uuid
           readOnly: true
           type: string
-        success:
-          description: API operation status. A value of true indicates the operation was successful.
+        taskUUID:
+          description: Task UUID
+          format: uuid
           readOnly: true
-          type: boolean
+          type: string
       type: object
     YbcThrottleParameters:
       description: YB-Controller throttle parameters
@@ -244,21 +246,19 @@ components:
           description: Unset Throttle parameters in YB-Controller
           type: boolean
       type: object
-    YBPTask:
+    YBPSuccess:
       example:
-        taskUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        resourceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        success: true
+        message: message
       properties:
-        resourceUUID:
-          description: UUID of the resource being modified by the task
-          format: uuid
+        message:
+          description: API response message.
           readOnly: true
           type: string
-        taskUUID:
-          description: Task UUID
-          format: uuid
+        success:
+          description: API operation status. A value of true indicates the operation was successful.
           readOnly: true
-          type: string
+          type: boolean
       type: object
   securitySchemes:
     apiKeyAuth:

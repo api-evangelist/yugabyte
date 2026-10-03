@@ -123,6 +123,33 @@ paths:
       - application/json
 components:
   schemas:
+    IsolatedBackupCreateSpec:
+      description: 'IsolatedBackupCreateSpec
+
+
+        User provided details to trigger a one time backup of YBA to a particular local directory.
+
+        '
+      example:
+        components:
+        - YBA
+        - YBA
+        local_dir: /opt/yba_backups
+      properties:
+        local_dir:
+          description: local directory to store backup
+          example: /opt/yba_backups
+          type: string
+        components:
+          description: the components to include in YBA backup
+          items:
+            $ref: '#/components/schemas/YbaComponent'
+          type: array
+      required:
+      - components
+      - local_dir
+      title: IsolatedBackupCreateSpec
+      type: object
     YbaComponent:
       description: 'Individual YBA components to be backed up
 
@@ -158,33 +185,6 @@ components:
           type: string
       title: YBATask
       type: object
-    IsolatedBackupCreateSpec:
-      description: 'IsolatedBackupCreateSpec
-
-
-        User provided details to trigger a one time backup of YBA to a particular local directory.
-
-        '
-      example:
-        components:
-        - YBA
-        - YBA
-        local_dir: /opt/yba_backups
-      properties:
-        local_dir:
-          description: local directory to store backup
-          example: /opt/yba_backups
-          type: string
-        components:
-          description: the components to include in YBA backup
-          items:
-            $ref: '#/components/schemas/YbaComponent'
-          type: array
-      required:
-      - components
-      - local_dir
-      title: IsolatedBackupCreateSpec
-      type: object
     IsolatedBackupRestoreSpec:
       description: 'IsolatedBackupRestoreSpec
 
@@ -204,17 +204,17 @@ components:
       title: IsolatedBackupRestoreSpec
       type: object
   requestBodies:
-    IsolatedBackupRestoreReq:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/IsolatedBackupRestoreSpec'
-      required: true
     IsolatedBackupCreateReq:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/IsolatedBackupCreateSpec'
+      required: true
+    IsolatedBackupRestoreReq:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/IsolatedBackupRestoreSpec'
       required: true
   securitySchemes:
     apiKeyAuth:

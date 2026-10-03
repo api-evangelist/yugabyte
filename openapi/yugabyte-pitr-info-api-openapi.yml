@@ -56,12 +56,6 @@ paths:
       - pitr-info
 components:
   schemas:
-    ApiError:
-      properties:
-        error:
-          $ref: '#/components/schemas/ApiError_error'
-      title: API Error
-      type: object
     PITR_Schedule_Response:
       example:
         schedules:
@@ -120,6 +114,12 @@ components:
       - interval
       - retention
       title: List of PITR Schedules in the cluster
+      type: object
+    ApiError:
+      properties:
+        error:
+          $ref: '#/components/schemas/ApiError_error'
+      title: API Error
       type: object
   securitySchemes:
     BearerAuthToken:

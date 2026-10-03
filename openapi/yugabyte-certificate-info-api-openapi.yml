@@ -328,85 +328,28 @@ paths:
       - Certificate Info
 components:
   schemas:
-    HashicorpVaultConfigParams:
+    CertificateDetails:
       example:
-        vaultAddr: vaultAddr
-        vaultRoleID: vaultRoleID
-        mountPath: mountPath
-        role: role
-        engine: engine
-        ttlExpiry: 6
-        vaultAuthNamespace: vaultAuthNamespace
-        vaultSecretID: vaultSecretID
-        ttl: 0
-        vaultToken: vaultToken
+        yugabytedb.key: yugabytedb.key
+        yugabytedb.crt: yugabytedb.crt
       properties:
-        engine:
+        yugabytedb.crt:
           type: string
-        mountPath:
+        yugabytedb.key:
           type: string
-        role:
+      type: object
+    CustomServerCertInfo:
+      example:
+        serverCert: serverCert
+        serverKey: serverKey
+      properties:
+        serverCert:
           type: string
-        ttl:
-          format: int64
-          type: integer
-        ttlExpiry:
-          format: int64
-          type: integer
-        vaultAddr:
-          type: string
-        vaultAuthNamespace:
-          type: string
-        vaultRoleID:
-          type: string
-        vaultSecretID:
-          type: string
-        vaultToken:
+        serverKey:
           type: string
       required:
-      - engine
-      - mountPath
-      - role
-      - vaultAddr
-      type: object
-    YBPSuccess:
-      example:
-        success: true
-        message: message
-      properties:
-        message:
-          description: API response message.
-          readOnly: true
-          type: string
-        success:
-          description: API operation status. A value of true indicates the operation was successful.
-          readOnly: true
-          type: boolean
-      type: object
-    CustomCertInfo:
-      example:
-        nodeCertPath: nodeCertPath
-        nodeKeyPath: nodeKeyPath
-        clientKeyPath: clientKeyPath
-        clientCertPath: clientCertPath
-        rootCertPath: rootCertPath
-      properties:
-        clientCertPath:
-          type: string
-        clientKeyPath:
-          type: string
-        nodeCertPath:
-          type: string
-        nodeKeyPath:
-          type: string
-        rootCertPath:
-          type: string
-      required:
-      - clientCertPath
-      - clientKeyPath
-      - nodeCertPath
-      - nodeKeyPath
-      - rootCertPath
+      - serverCert
+      - serverKey
       type: object
     UniverseDetailSubset:
       description: A small subset of universe information
@@ -439,6 +382,39 @@ components:
       - updateInProgress
       - updateSucceeded
       - uuid
+      type: object
+    YBPSuccess:
+      example:
+        success: true
+        message: message
+      properties:
+        message:
+          description: API response message.
+          readOnly: true
+          type: string
+        success:
+          description: API operation status. A value of true indicates the operation was successful.
+          readOnly: true
+          type: boolean
+      type: object
+    ClientCertParams:
+      example:
+        certStart: 6
+        certExpiry: 0
+        username: username
+      properties:
+        certExpiry:
+          format: int64
+          type: integer
+        certStart:
+          format: int64
+          type: integer
+        username:
+          type: string
+      required:
+      - certExpiry
+      - certStart
+      - username
       type: object
     CertificateInfoExt:
       description: SSL certificate used by the universe
@@ -581,55 +557,18 @@ components:
       - customServerCertInfo
       - universeDetailSubsets
       type: object
-    YBPError:
-      description: Generic error response from the YugabyteDB Anywhere API
+    CustomServerCertData:
       example:
-        success: false
-        requestUri: /customers/8918921-af3782-633de/universe/8173ab-fd2453/create
-        error: There was a problem creating the universe
-        httpMethod: POST
-        errorJson: '{ "foo" : "bar", "baz" : [1, 2, 3] }'
-        requestJson: '{ "foo" : "bar", "baz" : [1, 2, 3] }'
+        serverCertContent: serverCertContent
+        serverKeyContent: serverKeyContent
       properties:
-        error:
-          description: User-visible unstructured error message
-          example: There was a problem creating the universe
+        serverCertContent:
           type: string
-        errorJson:
-          description: User visible structured error message as json object
-          example: '{ "foo" : "bar", "baz" : [1, 2, 3] }'
-          properties: {}
-          type: object
-        httpMethod:
-          description: Method for HTTP call that resulted in this error
-          example: POST
-          type: string
-        requestJson:
-          description: User request JSON object
-          example: '{ "foo" : "bar", "baz" : [1, 2, 3] }'
-          properties: {}
-          type: object
-        requestUri:
-          description: URI for HTTP request that resulted in this error
-          example: /customers/8918921-af3782-633de/universe/8173ab-fd2453/create
-          type: string
-        success:
-          description: Always set to false to indicate failure
-          example: false
-          type: boolean
-      type: object
-    CustomServerCertInfo:
-      example:
-        serverCert: serverCert
-        serverKey: serverKey
-      properties:
-        serverCert:
-          type: string
-        serverKey:
+        serverKeyContent:
           type: string
       required:
-      - serverCert
-      - serverKey
+      - serverCertContent
+      - serverKeyContent
       type: object
     CertificateParams:
       description: Certificate Params is used to validate constraints for the custom certificate Data
@@ -694,47 +633,108 @@ components:
       - certType
       - label
       type: object
-    CustomServerCertData:
+    YBPError:
+      description: Generic error response from the YugabyteDB Anywhere API
       example:
-        serverCertContent: serverCertContent
-        serverKeyContent: serverKeyContent
+        success: false
+        requestUri: /customers/8918921-af3782-633de/universe/8173ab-fd2453/create
+        error: There was a problem creating the universe
+        httpMethod: POST
+        errorJson: '{ "foo" : "bar", "baz" : [1, 2, 3] }'
+        requestJson: '{ "foo" : "bar", "baz" : [1, 2, 3] }'
       properties:
-        serverCertContent:
+        error:
+          description: User-visible unstructured error message
+          example: There was a problem creating the universe
           type: string
-        serverKeyContent:
+        errorJson:
+          description: User visible structured error message as json object
+          example: '{ "foo" : "bar", "baz" : [1, 2, 3] }'
+          properties: {}
+          type: object
+        httpMethod:
+          description: Method for HTTP call that resulted in this error
+          example: POST
+          type: string
+        requestJson:
+          description: User request JSON object
+          example: '{ "foo" : "bar", "baz" : [1, 2, 3] }'
+          properties: {}
+          type: object
+        requestUri:
+          description: URI for HTTP request that resulted in this error
+          example: /customers/8918921-af3782-633de/universe/8173ab-fd2453/create
+          type: string
+        success:
+          description: Always set to false to indicate failure
+          example: false
+          type: boolean
+      type: object
+    CustomCertInfo:
+      example:
+        nodeCertPath: nodeCertPath
+        nodeKeyPath: nodeKeyPath
+        clientKeyPath: clientKeyPath
+        clientCertPath: clientCertPath
+        rootCertPath: rootCertPath
+      properties:
+        clientCertPath:
+          type: string
+        clientKeyPath:
+          type: string
+        nodeCertPath:
+          type: string
+        nodeKeyPath:
+          type: string
+        rootCertPath:
           type: string
       required:
-      - serverCertContent
-      - serverKeyContent
+      - clientCertPath
+      - clientKeyPath
+      - nodeCertPath
+      - nodeKeyPath
+      - rootCertPath
       type: object
-    CertificateDetails:
+    HashicorpVaultConfigParams:
       example:
-        yugabytedb.key: yugabytedb.key
-        yugabytedb.crt: yugabytedb.crt
+        vaultAddr: vaultAddr
+        vaultRoleID: vaultRoleID
+        mountPath: mountPath
+        role: role
+        engine: engine
+        ttlExpiry: 6
+        vaultAuthNamespace: vaultAuthNamespace
+        vaultSecretID: vaultSecretID
+        ttl: 0
+        vaultToken: vaultToken
       properties:
-        yugabytedb.crt:
+        engine:
           type: string
-        yugabytedb.key:
+        mountPath:
           type: string
-      type: object
-    ClientCertParams:
-      example:
-        certStart: 6
-        certExpiry: 0
-        username: username
-      properties:
-        certExpiry:
+        role:
+          type: string
+        ttl:
           format: int64
           type: integer
-        certStart:
+        ttlExpiry:
           format: int64
           type: integer
-        username:
+        vaultAddr:
+          type: string
+        vaultAuthNamespace:
+          type: string
+        vaultRoleID:
+          type: string
+        vaultSecretID:
+          type: string
+        vaultToken:
           type: string
       required:
-      - certExpiry
-      - certStart
-      - username
+      - engine
+      - mountPath
+      - role
+      - vaultAddr
       type: object
   securitySchemes:
     apiKeyAuth:

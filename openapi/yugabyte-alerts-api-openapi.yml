@@ -1188,106 +1188,283 @@ paths:
       - Alerts
 components:
   schemas:
-    AlertConfigurationThreshold:
-      description: Alert configuration threshold. Conditions can be either greater than a specified value, or less than a specified value.
+    AlertDestinationFormData:
       example:
-        condition: GREATER_THAN
-        threshold: 1.4658129805029452
-      properties:
-        condition:
-          description: Threshold condition (greater than, or less than)
-          enum:
-          - GREATER_THAN
-          - LESS_THAN
-          - NOT_EQUAL
-          type: string
-        threshold:
-          description: Threshold value
-          format: double
-          type: number
-      required:
-      - condition
-      - threshold
-      type: object
-    AlertTemplateVariable:
-      description: Alert template variable
-      example:
-        possibleValues:
-        - possibleValues
-        - possibleValues
-        - possibleValues
-        - possibleValues
-        - possibleValues
-        customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        defaultValue: defaultValue
+        channels:
+        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        defaultDestination: true
         name: name
-        uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
-        customerUUID:
-          description: Customer UUID
-          format: uuid
+        channels:
+          items:
+            format: uuid
+            type: string
+          type: array
+        defaultDestination:
+          type: boolean
+        name:
+          type: string
+      required:
+      - channels
+      - defaultDestination
+      - name
+      type: object
+    AlertLabelKey:
+      example:
+        name: name
+      properties:
+        name:
+          type: string
+      required:
+      - name
+      type: object
+    YBPSuccess:
+      example:
+        success: true
+        message: message
+      properties:
+        message:
+          description: API response message.
           readOnly: true
           type: string
-        defaultValue:
-          description: Default value
-          maxLength: 2147483647
-          minLength: 1
-          type: string
-        name:
-          description: Name
-          maxLength: 100
-          minLength: 1
-          type: string
-        possibleValues:
-          description: Possible values
+        success:
+          description: API operation status. A value of true indicates the operation was successful.
+          readOnly: true
+          type: boolean
+      type: object
+    AlertTemplateVariablesFormData:
+      example:
+        variables:
+        - possibleValues:
+          - possibleValues
+          - possibleValues
+          - possibleValues
+          - possibleValues
+          - possibleValues
+          customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          defaultValue: defaultValue
+          name: name
+          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - possibleValues:
+          - possibleValues
+          - possibleValues
+          - possibleValues
+          - possibleValues
+          - possibleValues
+          customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          defaultValue: defaultValue
+          name: name
+          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - possibleValues:
+          - possibleValues
+          - possibleValues
+          - possibleValues
+          - possibleValues
+          - possibleValues
+          customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          defaultValue: defaultValue
+          name: name
+          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - possibleValues:
+          - possibleValues
+          - possibleValues
+          - possibleValues
+          - possibleValues
+          - possibleValues
+          customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          defaultValue: defaultValue
+          name: name
+          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - possibleValues:
+          - possibleValues
+          - possibleValues
+          - possibleValues
+          - possibleValues
+          - possibleValues
+          customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          defaultValue: defaultValue
+          name: name
+          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        variables:
           items:
-            type: string
+            $ref: '#/components/schemas/AlertTemplateVariable'
           maxItems: 2147483647
           minItems: 1
           type: array
-          uniqueItems: true
-        uuid:
-          description: Variable UUID
-          format: uuid
-          readOnly: true
-          type: string
       required:
-      - customerUUID
-      - defaultValue
-      - name
-      - possibleValues
+      - variables
       type: object
-    AlertChannelTemplates:
-      description: Alert channel templates
+    AlertConfigurationApiFilter:
       example:
-        customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        textTemplate: textTemplate
-        type: Email
-        titleTemplate: titleTemplate
+        severity: SEVERE
+        template: REPLICATION_LAG
+        destinationUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        name: name
+        active: true
+        destinationType: NO_DESTINATION
+        targetType: PLATFORM
+        target:
+          all: true
+          uuids:
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        uuids:
+        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
-        customerUUID:
-          description: Customer UUID
-          format: uuid
-          readOnly: true
-          type: string
-        textTemplate:
-          description: Notification text template
-          type: string
-        titleTemplate:
-          description: Notification title template
-          type: string
-        type:
-          description: Channel type
+        active:
+          description: Whether the alert configuration is active.
+          type: boolean
+        destinationType:
+          description: 'The destination type of the alert configuration. '
           enum:
-          - Email
-          - Slack
-          - PagerDuty
-          - WebHook
+          - NO_DESTINATION
+          - DEFAULT_DESTINATION
+          - SELECTED_DESTINATION
           type: string
-      required:
-      - customerUUID
-      - textTemplate
-      - type
+        destinationUuid:
+          description: 'The destination uuid of the alert configuration. '
+          format: uuid
+          type: string
+        name:
+          description: The name of the alert configuration.
+          type: string
+        severity:
+          description: The severity of the alert configuration.
+          enum:
+          - SEVERE
+          - WARNING
+          type: string
+        target:
+          $ref: '#/components/schemas/AlertConfigurationTarget'
+        targetType:
+          description: The target type of the alert configuration.
+          enum:
+          - PLATFORM
+          - UNIVERSE
+          type: string
+        template:
+          description: The template of the alert configuration.
+          enum:
+          - REPLICATION_LAG
+          - CLOCK_SKEW
+          - CLOCK_SYNC_CHECK_FAILED
+          - MEMORY_CONSUMPTION
+          - HEALTH_CHECK_ERROR
+          - HEALTH_CHECK_NOTIFICATION_ERROR
+          - UNIVERSE_METRIC_COLLECTION_FAILURE
+          - BACKUP_FAILURE
+          - BACKUP_DELETION_FAILURE
+          - BACKUP_SCHEDULE_FAILURE
+          - INACTIVE_CRON_NODES
+          - ALERT_QUERY_FAILED
+          - ALERT_CONFIG_WRITING_FAILED
+          - ALERT_NOTIFICATION_ERROR
+          - ALERT_NOTIFICATION_CHANNEL_ERROR
+          - NODE_DOWN
+          - NODE_RESTART
+          - NODE_CPU_USAGE
+          - NODE_DISK_USAGE
+          - NODE_SYSTEM_DISK_USAGE
+          - NODE_FILE_DESCRIPTORS_USAGE
+          - NODE_OOM_KILLS
+          - DB_VERSION_MISMATCH
+          - DB_INSTANCE_DOWN
+          - DB_INSTANCE_RESTART
+          - DB_FATAL_LOGS
+          - DB_ERROR_LOGS
+          - DB_CORE_FILES
+          - DB_YSQL_CONNECTION
+          - DB_YCQL_CONNECTION
+          - DB_REDIS_CONNECTION
+          - DB_MEMORY_OVERLOAD
+          - DB_COMPACTION_OVERLOAD
+          - DB_DRIVE_FAILURE
+          - DB_WRITE_READ_TEST_ERROR
+          - DDL_ATOMICITY_CHECK
+          - NODE_TO_NODE_CA_CERT_EXPIRY
+          - NODE_TO_NODE_CERT_EXPIRY
+          - CLIENT_TO_NODE_CA_CERT_EXPIRY
+          - CLIENT_TO_NODE_CERT_EXPIRY
+          - ENCRYPTION_AT_REST_CONFIG_EXPIRY
+          - UNIVERSE_KMS_KEY_STATUS
+          - UNIVERSE_TSERVER_CONNECTIVITY_ERROR
+          - SSH_KEY_EXPIRY
+          - SSH_KEY_ROTATION_FAILURE
+          - PITR_CONFIG_FAILURE
+          - YSQL_OP_AVG_LATENCY
+          - YCQL_OP_AVG_LATENCY
+          - YSQL_OP_P99_LATENCY
+          - YCQL_OP_P99_LATENCY
+          - HIGH_NUM_YSQL_CONNECTIONS
+          - HIGH_NUM_YCQL_CONNECTIONS
+          - HIGH_NUM_YEDIS_CONNECTIONS
+          - YSQL_THROUGHPUT
+          - YCQL_THROUGHPUT
+          - YCQL_MICROSECOND_TIMESTAMPS_DETECTED
+          - MASTER_LEADER_MISSING
+          - MASTER_UNDER_REPLICATED
+          - LEADERLESS_TABLETS
+          - UNDER_REPLICATED_TABLETS
+          - PRIVATE_ACCESS_KEY_STATUS
+          - UNIVERSE_OS_UPDATE_REQUIRED
+          - DB_YCQL_WEB_SERVER_DOWN
+          - DB_YSQL_WEB_SERVER_DOWN
+          - INCREASED_REMOTE_BOOTSTRAPS
+          - TABLET_SERVER_AVG_READ_LATENCY
+          - TABLET_SERVER_AVG_WRITE_LATENCY
+          - REACTOR_DELAYS
+          - RPC_QUEUE_SIZE
+          - LOG_CACHE_SIZE
+          - CACHE_MISS
+          - HA_STANDBY_SYNC
+          - NODE_AGENT_DOWN
+          - NODE_AGENT_MISSING
+          - UNIVERSE_RELEASE_FILES_STATUS
+          - HA_VERSION_MISMATCH
+          - TABLET_PEERS_GUARDRAIL
+          - XCLUSTER_CONFIG_TABLE_BAD_STATE
+          - NODE_CLOCK_DRIFT
+          - UNIVERSE_UNEXPECTED_MASTERS_RUNNING
+          - UNIVERSE_UNEXPECTED_TSERVERS_RUNNING
+          - SAFETIME_LAG
+          - CONTINUOUS_BACKUPS_STATUS
+          - THP_RSS_ISSUE
+          - THP_INCORRECT_SETTINGS
+          - YNP_VERSION_SKEW
+          - CDCSDK_FLUSH_LAG
+          - CDCSDK_EXPIRY
+          - OTEL_LOG_EXPORT_FAILURE
+          - OTEL_METRIC_EXPORT_FAILURE
+          type: string
+        uuids:
+          description: The uuids of the alert configurations.
+          items:
+            format: uuid
+            type: string
+          type: array
+          uniqueItems: true
+      type: object
+    AlertConfigurationTarget:
+      description: Alert target. Set to `all`, or specify one or more target UUIDs.
+      example:
+        all: true
+        uuids:
+        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        all:
+          description: Alert applicable to all targets
+          type: boolean
+        uuids:
+          description: Alert target UUIDs
+          items:
+            format: uuid
+            type: string
+          type: array
+          uniqueItems: true
       type: object
     AlertConfigurationPagedApiQuery:
       example:
@@ -1349,153 +1526,225 @@ components:
       - offset
       - sortBy
       type: object
-    AlertPagedResponse:
+    AlertConfiguration:
+      description: Alert configuration
       example:
-        entities:
-        - severity: SEVERE
-          nextNotificationTime: 2022-12-12 13:07:18+00:00
-          resolvedTime: 2022-12-12 13:07:18+00:00
-          severityIndex: 6
-          message: message
-          notifiedState: ACTIVE
-          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          definitionUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          labels:
-          - name: name
-            value: value
-            key:
-              name: name
-          - name: name
-            value: value
-            key:
-              name: name
-          customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          createTime: 2022-12-12 13:07:18+00:00
-          sourceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          stateIndex: 1
-          name: name
-          notificationAttemptTime: 2022-12-12 13:07:18+00:00
-          sourceName: sourceName
-          state: ACTIVE
-          configurationType: PLATFORM
-          configurationUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          notificationsFailed: 0
-          acknowledgedTime: 2022-12-12 13:07:18+00:00
-        - severity: SEVERE
-          nextNotificationTime: 2022-12-12 13:07:18+00:00
-          resolvedTime: 2022-12-12 13:07:18+00:00
-          severityIndex: 6
-          message: message
-          notifiedState: ACTIVE
-          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          definitionUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          labels:
-          - name: name
-            value: value
-            key:
-              name: name
-          - name: name
-            value: value
-            key:
-              name: name
-          customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          createTime: 2022-12-12 13:07:18+00:00
-          sourceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          stateIndex: 1
-          name: name
-          notificationAttemptTime: 2022-12-12 13:07:18+00:00
-          sourceName: sourceName
-          state: ACTIVE
-          configurationType: PLATFORM
-          configurationUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          notificationsFailed: 0
-          acknowledgedTime: 2022-12-12 13:07:18+00:00
-        hasPrev: true
-        hasNext: true
-        totalCount: 0
-      properties:
-        entities:
-          items:
-            $ref: '#/components/schemas/Alert'
-          type: array
-        hasNext:
-          type: boolean
-        hasPrev:
-          type: boolean
-        totalCount:
-          format: int32
-          type: integer
-      required:
-      - entities
-      - hasNext
-      - hasPrev
-      - totalCount
-      type: object
-    AlertChannel:
-      description: Alert notification channel
-      example:
-        customer_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        name: name
-        params:
-          channelType: Email
-          textTemplate: textTemplate
-          titleTemplate: titleTemplate
+        template: REPLICATION_LAG
+        active: true
+        description: description
+        targetType: PLATFORM
+        maintenanceWindowUuids:
+        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        labels:
+          key: labels
+        target:
+          all: true
+          uuids:
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        thresholds:
+          key:
+            condition: GREATER_THAN
+            threshold: 1.4658129805029452
+        customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        thresholdUnit: STATUS
+        alertCount: 0.8008281904610115
+        createTime: 2022-12-12 13:07:18+00:00
+        defaultDestination: true
+        destinationUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        name: name
+        durationSec: 0
       properties:
-        customer_uuid:
+        active:
+          description: Is configured alerts raised or not
+          type: boolean
+        alertCount:
+          format: double
+          type: number
+        createTime:
+          description: Creation time
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          readOnly: true
+          type: string
+        customerUUID:
           description: Customer UUID
           format: uuid
           readOnly: true
           type: string
+        defaultDestination:
+          description: Is default destination used for this config
+          type: boolean
+        description:
+          description: Description
+          type: string
+        destinationUUID:
+          description: Alert destination UUID
+          format: uuid
+          type: string
+        durationSec:
+          description: Duration in seconds, while condition is met to raise an alert
+          format: int32
+          minimum: 0
+          type: integer
+        labels:
+          additionalProperties:
+            type: string
+          description: Labels
+          type: object
+        maintenanceWindowUuids:
+          description: Maintenance window UUIDs, applied to this alert config
+          items:
+            format: uuid
+            type: string
+          readOnly: true
+          type: array
+          uniqueItems: true
         name:
           description: Name
-          maxLength: 63
+          maxLength: 1000
           minLength: 1
           type: string
-        params:
-          $ref: '#/components/schemas/AlertChannelParams'
+        target:
+          $ref: '#/components/schemas/AlertConfigurationTarget'
+        targetType:
+          description: Target type
+          enum:
+          - PLATFORM
+          - UNIVERSE
+          type: string
+        template:
+          description: Template name
+          enum:
+          - REPLICATION_LAG
+          - CLOCK_SKEW
+          - CLOCK_SYNC_CHECK_FAILED
+          - MEMORY_CONSUMPTION
+          - HEALTH_CHECK_ERROR
+          - HEALTH_CHECK_NOTIFICATION_ERROR
+          - UNIVERSE_METRIC_COLLECTION_FAILURE
+          - BACKUP_FAILURE
+          - BACKUP_DELETION_FAILURE
+          - BACKUP_SCHEDULE_FAILURE
+          - INACTIVE_CRON_NODES
+          - ALERT_QUERY_FAILED
+          - ALERT_CONFIG_WRITING_FAILED
+          - ALERT_NOTIFICATION_ERROR
+          - ALERT_NOTIFICATION_CHANNEL_ERROR
+          - NODE_DOWN
+          - NODE_RESTART
+          - NODE_CPU_USAGE
+          - NODE_DISK_USAGE
+          - NODE_SYSTEM_DISK_USAGE
+          - NODE_FILE_DESCRIPTORS_USAGE
+          - NODE_OOM_KILLS
+          - DB_VERSION_MISMATCH
+          - DB_INSTANCE_DOWN
+          - DB_INSTANCE_RESTART
+          - DB_FATAL_LOGS
+          - DB_ERROR_LOGS
+          - DB_CORE_FILES
+          - DB_YSQL_CONNECTION
+          - DB_YCQL_CONNECTION
+          - DB_REDIS_CONNECTION
+          - DB_MEMORY_OVERLOAD
+          - DB_COMPACTION_OVERLOAD
+          - DB_DRIVE_FAILURE
+          - DB_WRITE_READ_TEST_ERROR
+          - DDL_ATOMICITY_CHECK
+          - NODE_TO_NODE_CA_CERT_EXPIRY
+          - NODE_TO_NODE_CERT_EXPIRY
+          - CLIENT_TO_NODE_CA_CERT_EXPIRY
+          - CLIENT_TO_NODE_CERT_EXPIRY
+          - ENCRYPTION_AT_REST_CONFIG_EXPIRY
+          - UNIVERSE_KMS_KEY_STATUS
+          - UNIVERSE_TSERVER_CONNECTIVITY_ERROR
+          - SSH_KEY_EXPIRY
+          - SSH_KEY_ROTATION_FAILURE
+          - PITR_CONFIG_FAILURE
+          - YSQL_OP_AVG_LATENCY
+          - YCQL_OP_AVG_LATENCY
+          - YSQL_OP_P99_LATENCY
+          - YCQL_OP_P99_LATENCY
+          - HIGH_NUM_YSQL_CONNECTIONS
+          - HIGH_NUM_YCQL_CONNECTIONS
+          - HIGH_NUM_YEDIS_CONNECTIONS
+          - YSQL_THROUGHPUT
+          - YCQL_THROUGHPUT
+          - YCQL_MICROSECOND_TIMESTAMPS_DETECTED
+          - MASTER_LEADER_MISSING
+          - MASTER_UNDER_REPLICATED
+          - LEADERLESS_TABLETS
+          - UNDER_REPLICATED_TABLETS
+          - PRIVATE_ACCESS_KEY_STATUS
+          - UNIVERSE_OS_UPDATE_REQUIRED
+          - DB_YCQL_WEB_SERVER_DOWN
+          - DB_YSQL_WEB_SERVER_DOWN
+          - INCREASED_REMOTE_BOOTSTRAPS
+          - TABLET_SERVER_AVG_READ_LATENCY
+          - TABLET_SERVER_AVG_WRITE_LATENCY
+          - REACTOR_DELAYS
+          - RPC_QUEUE_SIZE
+          - LOG_CACHE_SIZE
+          - CACHE_MISS
+          - HA_STANDBY_SYNC
+          - NODE_AGENT_DOWN
+          - NODE_AGENT_MISSING
+          - UNIVERSE_RELEASE_FILES_STATUS
+          - HA_VERSION_MISMATCH
+          - TABLET_PEERS_GUARDRAIL
+          - XCLUSTER_CONFIG_TABLE_BAD_STATE
+          - NODE_CLOCK_DRIFT
+          - UNIVERSE_UNEXPECTED_MASTERS_RUNNING
+          - UNIVERSE_UNEXPECTED_TSERVERS_RUNNING
+          - SAFETIME_LAG
+          - CONTINUOUS_BACKUPS_STATUS
+          - THP_RSS_ISSUE
+          - THP_INCORRECT_SETTINGS
+          - YNP_VERSION_SKEW
+          - CDCSDK_FLUSH_LAG
+          - CDCSDK_EXPIRY
+          - OTEL_LOG_EXPORT_FAILURE
+          - OTEL_METRIC_EXPORT_FAILURE
+          type: string
+        thresholdUnit:
+          description: Threshold unit
+          enum:
+          - STATUS
+          - COUNT
+          - PERCENT
+          - MILLISECOND
+          - SECOND
+          - MINUTE
+          - DAY
+          - MEGABYTE
+          type: string
+        thresholds:
+          additionalProperties:
+            $ref: '#/components/schemas/AlertConfigurationThreshold'
+          description: Thresholds
+          type: object
         uuid:
-          description: Channel UUID
+          description: Configuration UUID
           format: uuid
           readOnly: true
           type: string
       required:
-      - customer_uuid
+      - active
+      - alertCount
+      - createTime
+      - customerUUID
+      - defaultDestination
+      - description
+      - durationSec
       - name
-      - params
-      type: object
-    AlertConfigurationTarget:
-      description: Alert target. Set to `all`, or specify one or more target UUIDs.
-      example:
-        all: true
-        uuids:
-        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-      properties:
-        all:
-          description: Alert applicable to all targets
-          type: boolean
-        uuids:
-          description: Alert target UUIDs
-          items:
-            format: uuid
-            type: string
-          type: array
-          uniqueItems: true
-      type: object
-    YBPSuccess:
-      example:
-        success: true
-        message: message
-      properties:
-        message:
-          description: API response message.
-          readOnly: true
-          type: string
-        success:
-          description: API operation status. A value of true indicates the operation was successful.
-          readOnly: true
-          type: boolean
+      - target
+      - targetType
+      - template
+      - thresholdUnit
+      - thresholds
       type: object
     AlertConfigurationPagedResponse:
       example:
@@ -1575,262 +1824,76 @@ components:
       - hasPrev
       - totalCount
       type: object
-    AlertTemplateVariablesFormData:
+    AlertLabel:
       example:
-        variables:
-        - possibleValues:
-          - possibleValues
-          - possibleValues
-          - possibleValues
-          - possibleValues
-          - possibleValues
-          customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          defaultValue: defaultValue
-          name: name
-          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        - possibleValues:
-          - possibleValues
-          - possibleValues
-          - possibleValues
-          - possibleValues
-          - possibleValues
-          customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          defaultValue: defaultValue
-          name: name
-          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        - possibleValues:
-          - possibleValues
-          - possibleValues
-          - possibleValues
-          - possibleValues
-          - possibleValues
-          customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          defaultValue: defaultValue
-          name: name
-          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        - possibleValues:
-          - possibleValues
-          - possibleValues
-          - possibleValues
-          - possibleValues
-          - possibleValues
-          customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          defaultValue: defaultValue
-          name: name
-          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        - possibleValues:
-          - possibleValues
-          - possibleValues
-          - possibleValues
-          - possibleValues
-          - possibleValues
-          customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          defaultValue: defaultValue
-          name: name
-          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-      properties:
-        variables:
-          items:
-            $ref: '#/components/schemas/AlertTemplateVariable'
-          maxItems: 2147483647
-          minItems: 1
-          type: array
-      required:
-      - variables
-      type: object
-    Alert:
-      description: Alert definition. Used to send an alert notification.
-      example:
-        severity: SEVERE
-        nextNotificationTime: 2022-12-12 13:07:18+00:00
-        resolvedTime: 2022-12-12 13:07:18+00:00
-        severityIndex: 6
-        message: message
-        notifiedState: ACTIVE
-        uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        definitionUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        labels:
-        - name: name
-          value: value
-          key:
-            name: name
-        - name: name
-          value: value
-          key:
-            name: name
-        customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        createTime: 2022-12-12 13:07:18+00:00
-        sourceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        stateIndex: 1
         name: name
-        notificationAttemptTime: 2022-12-12 13:07:18+00:00
-        sourceName: sourceName
-        state: ACTIVE
-        configurationType: PLATFORM
-        configurationUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        notificationsFailed: 0
-        acknowledgedTime: 2022-12-12 13:07:18+00:00
+        value: value
+        key:
+          name: name
       properties:
-        acknowledgedTime:
-          description: Timestamp at which the alert was acknowledged
-          example: 2022-12-12 13:07:18+00:00
-          format: date-time
-          readOnly: true
+        key:
+          $ref: '#/components/schemas/AlertLabelKey'
+        name:
           type: string
-        configurationType:
-          description: Alert configuration type
-          enum:
-          - PLATFORM
-          - UNIVERSE
-          readOnly: true
+        value:
           type: string
-        configurationUuid:
-          description: Alert configuration UUID
-          format: uuid
-          readOnly: true
-          type: string
-        createTime:
-          description: Alert creation timestamp
-          example: 2022-12-12 13:07:18+00:00
-          format: date-time
-          readOnly: true
-          type: string
+      required:
+      - key
+      - name
+      - value
+      type: object
+    AlertTemplateVariable:
+      description: Alert template variable
+      example:
+        possibleValues:
+        - possibleValues
+        - possibleValues
+        - possibleValues
+        - possibleValues
+        - possibleValues
+        customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        defaultValue: defaultValue
+        name: name
+        uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
         customerUUID:
           description: Customer UUID
           format: uuid
           readOnly: true
           type: string
-        definitionUuid:
-          description: Alert definition UUID
-          format: uuid
-          readOnly: true
-          type: string
-        labels:
-          items:
-            $ref: '#/components/schemas/AlertLabel'
-          type: array
-        message:
-          description: The alert's message text
+        defaultValue:
+          description: Default value
           maxLength: 2147483647
           minLength: 1
-          readOnly: true
           type: string
         name:
-          description: The alert's name
-          maxLength: 1000
+          description: Name
+          maxLength: 100
           minLength: 1
-          readOnly: true
           type: string
-        nextNotificationTime:
-          description: Time of the next notification attempt
-          example: 2022-12-12 13:07:18+00:00
-          format: date-time
-          readOnly: true
-          type: string
-        notificationAttemptTime:
-          description: Time of the last notification attempt
-          example: 2022-12-12 13:07:18+00:00
-          format: date-time
-          readOnly: true
-          type: string
-        notificationsFailed:
-          description: Count of failures to send a notification
-          format: int32
-          readOnly: true
-          type: integer
-        notifiedState:
-          description: Alert state in the last-sent notification
-          enum:
-          - ACTIVE
-          - ACKNOWLEDGED
-          - SUSPENDED
-          - RESOLVED
-          readOnly: true
-          type: string
-        resolvedTime:
-          description: Timestamp at which the alert was resolved
-          example: 2022-12-12 13:07:18+00:00
-          format: date-time
-          readOnly: true
-          type: string
-        severity:
-          description: Alert configuration severity
-          enum:
-          - SEVERE
-          - WARNING
-          readOnly: true
-          type: string
-        severityIndex:
-          format: int32
-          type: integer
-        sourceName:
-          description: The source of the alert
-          readOnly: true
-          type: string
-        sourceUUID:
-          description: The sourceUUID of the alert
-          format: uuid
-          readOnly: true
-          type: string
-        state:
-          description: The alert's state
-          enum:
-          - ACTIVE
-          - ACKNOWLEDGED
-          - SUSPENDED
-          - RESOLVED
-          readOnly: true
-          type: string
-        stateIndex:
-          format: int32
-          type: integer
+        possibleValues:
+          description: Possible values
+          items:
+            type: string
+          maxItems: 2147483647
+          minItems: 1
+          type: array
+          uniqueItems: true
         uuid:
-          description: Alert UUID
+          description: Variable UUID
           format: uuid
           readOnly: true
           type: string
       required:
-      - configurationType
-      - configurationUuid
-      - createTime
       - customerUUID
-      - definitionUuid
-      - labels
-      - message
+      - defaultValue
       - name
-      - severity
-      - severityIndex
-      - sourceName
-      - sourceUUID
-      - state
-      - stateIndex
+      - possibleValues
       type: object
-    AlertChannelFormData:
-      example:
-        name: name
-        params:
-          channelType: Email
-          textTemplate: textTemplate
-          titleTemplate: titleTemplate
-        alertChannelUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-      properties:
-        alertChannelUUID:
-          format: uuid
-          type: string
-        name:
-          type: string
-        params:
-          $ref: '#/components/schemas/AlertChannelParams'
-      required:
-      - alertChannelUUID
-      - name
-      - params
-      type: object
-    Alert_channel_templates_ext_with_default_values:
+    AlertChannelTemplates:
+      description: Alert channel templates
       example:
         customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        defaultTitleTemplate: defaultTitleTemplate
-        defaultTextTemplate: defaultTextTemplate
         textTemplate: textTemplate
         type: Email
         titleTemplate: titleTemplate
@@ -1839,12 +1902,6 @@ components:
           description: Customer UUID
           format: uuid
           readOnly: true
-          type: string
-        defaultTextTemplate:
-          description: Default text template
-          type: string
-        defaultTitleTemplate:
-          description: Default title template
           type: string
         textTemplate:
           description: Notification text template
@@ -2117,23 +2174,26 @@ components:
       - thresholdUnit
       - thresholds
       type: object
-    AlertLabel:
+    AlertChannelFormData:
       example:
         name: name
-        value: value
-        key:
-          name: name
+        params:
+          channelType: Email
+          textTemplate: textTemplate
+          titleTemplate: titleTemplate
+        alertChannelUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
-        key:
-          $ref: '#/components/schemas/AlertLabelKey'
+        alertChannelUUID:
+          format: uuid
+          type: string
         name:
           type: string
-        value:
-          type: string
+        params:
+          $ref: '#/components/schemas/AlertChannelParams'
       required:
-      - key
+      - alertChannelUUID
       - name
-      - value
+      - params
       type: object
     AlertChannelParams:
       description: Supertype for channel params for different channel types.
@@ -2217,265 +2277,41 @@ components:
       - offset
       - sortBy
       type: object
-    AlertTemplateSettings:
-      description: Alert template settings
+    AlertTemplateApiFilter:
       example:
-        template: template
-        customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        createTime: 2022-12-12 13:07:18+00:00
-        uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        labels:
-          key: labels
-      properties:
-        createTime:
-          description: Creation time
-          example: 2022-12-12 13:07:18+00:00
-          format: date-time
-          readOnly: true
-          type: string
-        customerUUID:
-          description: Customer UUID
-          format: uuid
-          readOnly: true
-          type: string
-        labels:
-          additionalProperties:
-            type: string
-          description: Labels
-          type: object
-        template:
-          description: Template
-          maxLength: 50
-          minLength: 1
-          type: string
-        uuid:
-          format: uuid
-          type: string
-      required:
-      - createTime
-      - customerUUID
-      - template
-      - uuid
-      type: object
-    AlertConfiguration:
-      description: Alert configuration
-      example:
-        template: REPLICATION_LAG
-        active: true
-        description: description
-        targetType: PLATFORM
-        maintenanceWindowUuids:
-        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        labels:
-          key: labels
-        target:
-          all: true
-          uuids:
-          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        thresholds:
-          key:
-            condition: GREATER_THAN
-            threshold: 1.4658129805029452
-        customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        thresholdUnit: STATUS
-        alertCount: 0.8008281904610115
-        createTime: 2022-12-12 13:07:18+00:00
-        defaultDestination: true
-        destinationUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         name: name
-        durationSec: 0
+        targetType: PLATFORM
       properties:
-        active:
-          description: Is configured alerts raised or not
-          type: boolean
-        alertCount:
-          format: double
-          type: number
-        createTime:
-          description: Creation time
-          example: 2022-12-12 13:07:18+00:00
-          format: date-time
-          readOnly: true
-          type: string
-        customerUUID:
-          description: Customer UUID
-          format: uuid
-          readOnly: true
-          type: string
-        defaultDestination:
-          description: Is default destination used for this config
-          type: boolean
-        description:
-          description: Description
-          type: string
-        destinationUUID:
-          description: Alert destination UUID
-          format: uuid
-          type: string
-        durationSec:
-          description: Duration in seconds, while condition is met to raise an alert
-          format: int32
-          minimum: 0
-          type: integer
-        labels:
-          additionalProperties:
-            type: string
-          description: Labels
-          type: object
-        maintenanceWindowUuids:
-          description: Maintenance window UUIDs, applied to this alert config
-          items:
-            format: uuid
-            type: string
-          readOnly: true
-          type: array
-          uniqueItems: true
         name:
-          description: Name
-          maxLength: 1000
-          minLength: 1
+          description: The name of the alert template.
           type: string
-        target:
-          $ref: '#/components/schemas/AlertConfigurationTarget'
         targetType:
-          description: Target type
+          description: The target type of the alert template.
           enum:
           - PLATFORM
           - UNIVERSE
           type: string
-        template:
-          description: Template name
+      type: object
+    AlertConfigurationThreshold:
+      description: Alert configuration threshold. Conditions can be either greater than a specified value, or less than a specified value.
+      example:
+        condition: GREATER_THAN
+        threshold: 1.4658129805029452
+      properties:
+        condition:
+          description: Threshold condition (greater than, or less than)
           enum:
-          - REPLICATION_LAG
-          - CLOCK_SKEW
-          - CLOCK_SYNC_CHECK_FAILED
-          - MEMORY_CONSUMPTION
-          - HEALTH_CHECK_ERROR
-          - HEALTH_CHECK_NOTIFICATION_ERROR
-          - UNIVERSE_METRIC_COLLECTION_FAILURE
-          - BACKUP_FAILURE
-          - BACKUP_DELETION_FAILURE
-          - BACKUP_SCHEDULE_FAILURE
-          - INACTIVE_CRON_NODES
-          - ALERT_QUERY_FAILED
-          - ALERT_CONFIG_WRITING_FAILED
-          - ALERT_NOTIFICATION_ERROR
-          - ALERT_NOTIFICATION_CHANNEL_ERROR
-          - NODE_DOWN
-          - NODE_RESTART
-          - NODE_CPU_USAGE
-          - NODE_DISK_USAGE
-          - NODE_SYSTEM_DISK_USAGE
-          - NODE_FILE_DESCRIPTORS_USAGE
-          - NODE_OOM_KILLS
-          - DB_VERSION_MISMATCH
-          - DB_INSTANCE_DOWN
-          - DB_INSTANCE_RESTART
-          - DB_FATAL_LOGS
-          - DB_ERROR_LOGS
-          - DB_CORE_FILES
-          - DB_YSQL_CONNECTION
-          - DB_YCQL_CONNECTION
-          - DB_REDIS_CONNECTION
-          - DB_MEMORY_OVERLOAD
-          - DB_COMPACTION_OVERLOAD
-          - DB_DRIVE_FAILURE
-          - DB_WRITE_READ_TEST_ERROR
-          - DDL_ATOMICITY_CHECK
-          - NODE_TO_NODE_CA_CERT_EXPIRY
-          - NODE_TO_NODE_CERT_EXPIRY
-          - CLIENT_TO_NODE_CA_CERT_EXPIRY
-          - CLIENT_TO_NODE_CERT_EXPIRY
-          - ENCRYPTION_AT_REST_CONFIG_EXPIRY
-          - UNIVERSE_KMS_KEY_STATUS
-          - UNIVERSE_TSERVER_CONNECTIVITY_ERROR
-          - SSH_KEY_EXPIRY
-          - SSH_KEY_ROTATION_FAILURE
-          - PITR_CONFIG_FAILURE
-          - YSQL_OP_AVG_LATENCY
-          - YCQL_OP_AVG_LATENCY
-          - YSQL_OP_P99_LATENCY
-          - YCQL_OP_P99_LATENCY
-          - HIGH_NUM_YSQL_CONNECTIONS
-          - HIGH_NUM_YCQL_CONNECTIONS
-          - HIGH_NUM_YEDIS_CONNECTIONS
-          - YSQL_THROUGHPUT
-          - YCQL_THROUGHPUT
-          - YCQL_MICROSECOND_TIMESTAMPS_DETECTED
-          - MASTER_LEADER_MISSING
-          - MASTER_UNDER_REPLICATED
-          - LEADERLESS_TABLETS
-          - UNDER_REPLICATED_TABLETS
-          - PRIVATE_ACCESS_KEY_STATUS
-          - UNIVERSE_OS_UPDATE_REQUIRED
-          - DB_YCQL_WEB_SERVER_DOWN
-          - DB_YSQL_WEB_SERVER_DOWN
-          - INCREASED_REMOTE_BOOTSTRAPS
-          - TABLET_SERVER_AVG_READ_LATENCY
-          - TABLET_SERVER_AVG_WRITE_LATENCY
-          - REACTOR_DELAYS
-          - RPC_QUEUE_SIZE
-          - LOG_CACHE_SIZE
-          - CACHE_MISS
-          - HA_STANDBY_SYNC
-          - NODE_AGENT_DOWN
-          - NODE_AGENT_MISSING
-          - UNIVERSE_RELEASE_FILES_STATUS
-          - HA_VERSION_MISMATCH
-          - TABLET_PEERS_GUARDRAIL
-          - XCLUSTER_CONFIG_TABLE_BAD_STATE
-          - NODE_CLOCK_DRIFT
-          - UNIVERSE_UNEXPECTED_MASTERS_RUNNING
-          - UNIVERSE_UNEXPECTED_TSERVERS_RUNNING
-          - SAFETIME_LAG
-          - CONTINUOUS_BACKUPS_STATUS
-          - THP_RSS_ISSUE
-          - THP_INCORRECT_SETTINGS
-          - YNP_VERSION_SKEW
-          - CDCSDK_FLUSH_LAG
-          - CDCSDK_EXPIRY
-          - OTEL_LOG_EXPORT_FAILURE
-          - OTEL_METRIC_EXPORT_FAILURE
+          - GREATER_THAN
+          - LESS_THAN
+          - NOT_EQUAL
           type: string
-        thresholdUnit:
-          description: Threshold unit
-          enum:
-          - STATUS
-          - COUNT
-          - PERCENT
-          - MILLISECOND
-          - SECOND
-          - MINUTE
-          - DAY
-          - MEGABYTE
-          type: string
-        thresholds:
-          additionalProperties:
-            $ref: '#/components/schemas/AlertConfigurationThreshold'
-          description: Thresholds
-          type: object
-        uuid:
-          description: Configuration UUID
-          format: uuid
-          readOnly: true
-          type: string
+        threshold:
+          description: Threshold value
+          format: double
+          type: number
       required:
-      - active
-      - alertCount
-      - createTime
-      - customerUUID
-      - defaultDestination
-      - description
-      - durationSec
-      - name
-      - target
-      - targetType
-      - template
-      - thresholdUnit
-      - thresholds
+      - condition
+      - threshold
       type: object
     AlertApiFilter:
       example:
@@ -2548,242 +2384,84 @@ components:
           type: array
           uniqueItems: true
       type: object
-    AlertTemplateVariablesList:
+    Alert_channel_templates_ext_with_default_values:
       example:
-        customVariables:
-        - possibleValues:
-          - possibleValues
-          - possibleValues
-          - possibleValues
-          - possibleValues
-          - possibleValues
-          customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          defaultValue: defaultValue
-          name: name
-          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        - possibleValues:
-          - possibleValues
-          - possibleValues
-          - possibleValues
-          - possibleValues
-          - possibleValues
-          customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          defaultValue: defaultValue
-          name: name
-          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        systemVariables:
-        - YUGABYTE_ALERT_STATUS
-        - YUGABYTE_ALERT_STATUS
+        customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        defaultTitleTemplate: defaultTitleTemplate
+        defaultTextTemplate: defaultTextTemplate
+        textTemplate: textTemplate
+        type: Email
+        titleTemplate: titleTemplate
       properties:
-        customVariables:
-          items:
-            $ref: '#/components/schemas/AlertTemplateVariable'
-          type: array
-        systemVariables:
-          items:
-            enum:
-            - YUGABYTE_ALERT_STATUS
-            - YUGABYTE_ALERT_SEVERITY
-            - YUGABYTE_ALERT_TYPE
-            - YUGABYTE_ALERT_EXPRESSION
-            - YUGABYTE_ALERT_UUID
-            - YUGABYTE_CUSTOMER_CODE
-            - YUGABYTE_CUSTOMER_NAME
-            - YUGABYTE_CUSTOMER_UUID
-            - YUGABYTE_ALERT_SOURCE_UUID
-            - YUGABYTE_ALERT_SOURCE_TYPE
-            - YUGABYTE_ALERT_SOURCE_NAME
-            - YUGABYTE_ALERT_POLICY_TYPE
-            - YUGABYTE_ALERT_POLICY_NAME
-            - YUGABYTE_ALERT_POLICY_UUID
-            - YUGABYTE_ALERT_MESSAGE
-            - YUGABYTE_ALERT_START_TIME
-            - YUGABYTE_ALERT_END_TIME
-            - YUGABYTE_ALERT_CHANNEL_NAME
-            - YUGABYTE_AFFECTED_NODE_NAMES
-            - YUGABYTE_AFFECTED_NODE_ADDRESSES
-            - YUGABYTE_AFFECTED_NODE_IDENTIFIERS
-            - YUGABYTE_ALERT_LABELS_JSON
-            type: string
-          type: array
+        customerUUID:
+          description: Customer UUID
+          format: uuid
+          readOnly: true
+          type: string
+        defaultTextTemplate:
+          description: Default text template
+          type: string
+        defaultTitleTemplate:
+          description: Default title template
+          type: string
+        textTemplate:
+          description: Notification text template
+          type: string
+        titleTemplate:
+          description: Notification title template
+          type: string
+        type:
+          description: Channel type
+          enum:
+          - Email
+          - Slack
+          - PagerDuty
+          - WebHook
+          type: string
       required:
-      - customVariables
-      - systemVariables
+      - customerUUID
+      - textTemplate
+      - type
       type: object
-    AlertTemplateApiFilter:
+    AlertTemplateSettings:
+      description: Alert template settings
       example:
-        name: name
-        targetType: PLATFORM
+        template: template
+        customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        createTime: 2022-12-12 13:07:18+00:00
+        uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        labels:
+          key: labels
       properties:
-        name:
-          description: The name of the alert template.
+        createTime:
+          description: Creation time
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          readOnly: true
           type: string
-        targetType:
-          description: The target type of the alert template.
-          enum:
-          - PLATFORM
-          - UNIVERSE
+        customerUUID:
+          description: Customer UUID
+          format: uuid
+          readOnly: true
           type: string
-      type: object
-    AlertConfigurationApiFilter:
-      example:
-        severity: SEVERE
-        template: REPLICATION_LAG
-        destinationUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        name: name
-        active: true
-        destinationType: NO_DESTINATION
-        targetType: PLATFORM
-        target:
-          all: true
-          uuids:
-          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        uuids:
-        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-      properties:
-        active:
-          description: Whether the alert configuration is active.
-          type: boolean
-        destinationType:
-          description: 'The destination type of the alert configuration. '
-          enum:
-          - NO_DESTINATION
-          - DEFAULT_DESTINATION
-          - SELECTED_DESTINATION
+        labels:
+          additionalProperties:
+            type: string
+          description: Labels
+          type: object
+        template:
+          description: Template
+          maxLength: 50
+          minLength: 1
           type: string
-        destinationUuid:
-          description: 'The destination uuid of the alert configuration. '
+        uuid:
           format: uuid
           type: string
-        name:
-          description: The name of the alert configuration.
-          type: string
-        severity:
-          description: The severity of the alert configuration.
-          enum:
-          - SEVERE
-          - WARNING
-          type: string
-        target:
-          $ref: '#/components/schemas/AlertConfigurationTarget'
-        targetType:
-          description: The target type of the alert configuration.
-          enum:
-          - PLATFORM
-          - UNIVERSE
-          type: string
-        template:
-          description: The template of the alert configuration.
-          enum:
-          - REPLICATION_LAG
-          - CLOCK_SKEW
-          - CLOCK_SYNC_CHECK_FAILED
-          - MEMORY_CONSUMPTION
-          - HEALTH_CHECK_ERROR
-          - HEALTH_CHECK_NOTIFICATION_ERROR
-          - UNIVERSE_METRIC_COLLECTION_FAILURE
-          - BACKUP_FAILURE
-          - BACKUP_DELETION_FAILURE
-          - BACKUP_SCHEDULE_FAILURE
-          - INACTIVE_CRON_NODES
-          - ALERT_QUERY_FAILED
-          - ALERT_CONFIG_WRITING_FAILED
-          - ALERT_NOTIFICATION_ERROR
-          - ALERT_NOTIFICATION_CHANNEL_ERROR
-          - NODE_DOWN
-          - NODE_RESTART
-          - NODE_CPU_USAGE
-          - NODE_DISK_USAGE
-          - NODE_SYSTEM_DISK_USAGE
-          - NODE_FILE_DESCRIPTORS_USAGE
-          - NODE_OOM_KILLS
-          - DB_VERSION_MISMATCH
-          - DB_INSTANCE_DOWN
-          - DB_INSTANCE_RESTART
-          - DB_FATAL_LOGS
-          - DB_ERROR_LOGS
-          - DB_CORE_FILES
-          - DB_YSQL_CONNECTION
-          - DB_YCQL_CONNECTION
-          - DB_REDIS_CONNECTION
-          - DB_MEMORY_OVERLOAD
-          - DB_COMPACTION_OVERLOAD
-          - DB_DRIVE_FAILURE
-          - DB_WRITE_READ_TEST_ERROR
-          - DDL_ATOMICITY_CHECK
-          - NODE_TO_NODE_CA_CERT_EXPIRY
-          - NODE_TO_NODE_CERT_EXPIRY
-          - CLIENT_TO_NODE_CA_CERT_EXPIRY
-          - CLIENT_TO_NODE_CERT_EXPIRY
-          - ENCRYPTION_AT_REST_CONFIG_EXPIRY
-          - UNIVERSE_KMS_KEY_STATUS
-          - UNIVERSE_TSERVER_CONNECTIVITY_ERROR
-          - SSH_KEY_EXPIRY
-          - SSH_KEY_ROTATION_FAILURE
-          - PITR_CONFIG_FAILURE
-          - YSQL_OP_AVG_LATENCY
-          - YCQL_OP_AVG_LATENCY
-          - YSQL_OP_P99_LATENCY
-          - YCQL_OP_P99_LATENCY
-          - HIGH_NUM_YSQL_CONNECTIONS
-          - HIGH_NUM_YCQL_CONNECTIONS
-          - HIGH_NUM_YEDIS_CONNECTIONS
-          - YSQL_THROUGHPUT
-          - YCQL_THROUGHPUT
-          - YCQL_MICROSECOND_TIMESTAMPS_DETECTED
-          - MASTER_LEADER_MISSING
-          - MASTER_UNDER_REPLICATED
-          - LEADERLESS_TABLETS
-          - UNDER_REPLICATED_TABLETS
-          - PRIVATE_ACCESS_KEY_STATUS
-          - UNIVERSE_OS_UPDATE_REQUIRED
-          - DB_YCQL_WEB_SERVER_DOWN
-          - DB_YSQL_WEB_SERVER_DOWN
-          - INCREASED_REMOTE_BOOTSTRAPS
-          - TABLET_SERVER_AVG_READ_LATENCY
-          - TABLET_SERVER_AVG_WRITE_LATENCY
-          - REACTOR_DELAYS
-          - RPC_QUEUE_SIZE
-          - LOG_CACHE_SIZE
-          - CACHE_MISS
-          - HA_STANDBY_SYNC
-          - NODE_AGENT_DOWN
-          - NODE_AGENT_MISSING
-          - UNIVERSE_RELEASE_FILES_STATUS
-          - HA_VERSION_MISMATCH
-          - TABLET_PEERS_GUARDRAIL
-          - XCLUSTER_CONFIG_TABLE_BAD_STATE
-          - NODE_CLOCK_DRIFT
-          - UNIVERSE_UNEXPECTED_MASTERS_RUNNING
-          - UNIVERSE_UNEXPECTED_TSERVERS_RUNNING
-          - SAFETIME_LAG
-          - CONTINUOUS_BACKUPS_STATUS
-          - THP_RSS_ISSUE
-          - THP_INCORRECT_SETTINGS
-          - YNP_VERSION_SKEW
-          - CDCSDK_FLUSH_LAG
-          - CDCSDK_EXPIRY
-          - OTEL_LOG_EXPORT_FAILURE
-          - OTEL_METRIC_EXPORT_FAILURE
-          type: string
-        uuids:
-          description: The uuids of the alert configurations.
-          items:
-            format: uuid
-            type: string
-          type: array
-          uniqueItems: true
-      type: object
-    AlertLabelKey:
-      example:
-        name: name
-      properties:
-        name:
-          type: string
       required:
-      - name
+      - createTime
+      - customerUUID
+      - template
+      - uuid
       type: object
     AlertTemplateSettingsFormData:
       example:
@@ -2874,27 +2552,349 @@ components:
       - defaultDestination
       - name
       type: object
-    AlertDestinationFormData:
+    Alert:
+      description: Alert definition. Used to send an alert notification.
       example:
-        channels:
-        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        defaultDestination: true
+        severity: SEVERE
+        nextNotificationTime: 2022-12-12 13:07:18+00:00
+        resolvedTime: 2022-12-12 13:07:18+00:00
+        severityIndex: 6
+        message: message
+        notifiedState: ACTIVE
+        uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        definitionUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        labels:
+        - name: name
+          value: value
+          key:
+            name: name
+        - name: name
+          value: value
+          key:
+            name: name
+        customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        createTime: 2022-12-12 13:07:18+00:00
+        sourceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        stateIndex: 1
         name: name
+        notificationAttemptTime: 2022-12-12 13:07:18+00:00
+        sourceName: sourceName
+        state: ACTIVE
+        configurationType: PLATFORM
+        configurationUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        notificationsFailed: 0
+        acknowledgedTime: 2022-12-12 13:07:18+00:00
       properties:
-        channels:
+        acknowledgedTime:
+          description: Timestamp at which the alert was acknowledged
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          readOnly: true
+          type: string
+        configurationType:
+          description: Alert configuration type
+          enum:
+          - PLATFORM
+          - UNIVERSE
+          readOnly: true
+          type: string
+        configurationUuid:
+          description: Alert configuration UUID
+          format: uuid
+          readOnly: true
+          type: string
+        createTime:
+          description: Alert creation timestamp
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          readOnly: true
+          type: string
+        customerUUID:
+          description: Customer UUID
+          format: uuid
+          readOnly: true
+          type: string
+        definitionUuid:
+          description: Alert definition UUID
+          format: uuid
+          readOnly: true
+          type: string
+        labels:
           items:
-            format: uuid
-            type: string
+            $ref: '#/components/schemas/AlertLabel'
           type: array
-        defaultDestination:
-          type: boolean
+        message:
+          description: The alert's message text
+          maxLength: 2147483647
+          minLength: 1
+          readOnly: true
+          type: string
         name:
+          description: The alert's name
+          maxLength: 1000
+          minLength: 1
+          readOnly: true
+          type: string
+        nextNotificationTime:
+          description: Time of the next notification attempt
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          readOnly: true
+          type: string
+        notificationAttemptTime:
+          description: Time of the last notification attempt
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          readOnly: true
+          type: string
+        notificationsFailed:
+          description: Count of failures to send a notification
+          format: int32
+          readOnly: true
+          type: integer
+        notifiedState:
+          description: Alert state in the last-sent notification
+          enum:
+          - ACTIVE
+          - ACKNOWLEDGED
+          - SUSPENDED
+          - RESOLVED
+          readOnly: true
+          type: string
+        resolvedTime:
+          description: Timestamp at which the alert was resolved
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          readOnly: true
+          type: string
+        severity:
+          description: Alert configuration severity
+          enum:
+          - SEVERE
+          - WARNING
+          readOnly: true
+          type: string
+        severityIndex:
+          format: int32
+          type: integer
+        sourceName:
+          description: The source of the alert
+          readOnly: true
+          type: string
+        sourceUUID:
+          description: The sourceUUID of the alert
+          format: uuid
+          readOnly: true
+          type: string
+        state:
+          description: The alert's state
+          enum:
+          - ACTIVE
+          - ACKNOWLEDGED
+          - SUSPENDED
+          - RESOLVED
+          readOnly: true
+          type: string
+        stateIndex:
+          format: int32
+          type: integer
+        uuid:
+          description: Alert UUID
+          format: uuid
+          readOnly: true
           type: string
       required:
-      - channels
-      - defaultDestination
+      - configurationType
+      - configurationUuid
+      - createTime
+      - customerUUID
+      - definitionUuid
+      - labels
+      - message
       - name
+      - severity
+      - severityIndex
+      - sourceName
+      - sourceUUID
+      - state
+      - stateIndex
+      type: object
+    AlertPagedResponse:
+      example:
+        entities:
+        - severity: SEVERE
+          nextNotificationTime: 2022-12-12 13:07:18+00:00
+          resolvedTime: 2022-12-12 13:07:18+00:00
+          severityIndex: 6
+          message: message
+          notifiedState: ACTIVE
+          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          definitionUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          labels:
+          - name: name
+            value: value
+            key:
+              name: name
+          - name: name
+            value: value
+            key:
+              name: name
+          customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          createTime: 2022-12-12 13:07:18+00:00
+          sourceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          stateIndex: 1
+          name: name
+          notificationAttemptTime: 2022-12-12 13:07:18+00:00
+          sourceName: sourceName
+          state: ACTIVE
+          configurationType: PLATFORM
+          configurationUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          notificationsFailed: 0
+          acknowledgedTime: 2022-12-12 13:07:18+00:00
+        - severity: SEVERE
+          nextNotificationTime: 2022-12-12 13:07:18+00:00
+          resolvedTime: 2022-12-12 13:07:18+00:00
+          severityIndex: 6
+          message: message
+          notifiedState: ACTIVE
+          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          definitionUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          labels:
+          - name: name
+            value: value
+            key:
+              name: name
+          - name: name
+            value: value
+            key:
+              name: name
+          customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          createTime: 2022-12-12 13:07:18+00:00
+          sourceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          stateIndex: 1
+          name: name
+          notificationAttemptTime: 2022-12-12 13:07:18+00:00
+          sourceName: sourceName
+          state: ACTIVE
+          configurationType: PLATFORM
+          configurationUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          notificationsFailed: 0
+          acknowledgedTime: 2022-12-12 13:07:18+00:00
+        hasPrev: true
+        hasNext: true
+        totalCount: 0
+      properties:
+        entities:
+          items:
+            $ref: '#/components/schemas/Alert'
+          type: array
+        hasNext:
+          type: boolean
+        hasPrev:
+          type: boolean
+        totalCount:
+          format: int32
+          type: integer
+      required:
+      - entities
+      - hasNext
+      - hasPrev
+      - totalCount
+      type: object
+    AlertTemplateVariablesList:
+      example:
+        customVariables:
+        - possibleValues:
+          - possibleValues
+          - possibleValues
+          - possibleValues
+          - possibleValues
+          - possibleValues
+          customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          defaultValue: defaultValue
+          name: name
+          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - possibleValues:
+          - possibleValues
+          - possibleValues
+          - possibleValues
+          - possibleValues
+          - possibleValues
+          customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          defaultValue: defaultValue
+          name: name
+          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        systemVariables:
+        - YUGABYTE_ALERT_STATUS
+        - YUGABYTE_ALERT_STATUS
+      properties:
+        customVariables:
+          items:
+            $ref: '#/components/schemas/AlertTemplateVariable'
+          type: array
+        systemVariables:
+          items:
+            enum:
+            - YUGABYTE_ALERT_STATUS
+            - YUGABYTE_ALERT_SEVERITY
+            - YUGABYTE_ALERT_TYPE
+            - YUGABYTE_ALERT_EXPRESSION
+            - YUGABYTE_ALERT_UUID
+            - YUGABYTE_CUSTOMER_CODE
+            - YUGABYTE_CUSTOMER_NAME
+            - YUGABYTE_CUSTOMER_UUID
+            - YUGABYTE_ALERT_SOURCE_UUID
+            - YUGABYTE_ALERT_SOURCE_TYPE
+            - YUGABYTE_ALERT_SOURCE_NAME
+            - YUGABYTE_ALERT_POLICY_TYPE
+            - YUGABYTE_ALERT_POLICY_NAME
+            - YUGABYTE_ALERT_POLICY_UUID
+            - YUGABYTE_ALERT_MESSAGE
+            - YUGABYTE_ALERT_START_TIME
+            - YUGABYTE_ALERT_END_TIME
+            - YUGABYTE_ALERT_CHANNEL_NAME
+            - YUGABYTE_AFFECTED_NODE_NAMES
+            - YUGABYTE_AFFECTED_NODE_ADDRESSES
+            - YUGABYTE_AFFECTED_NODE_IDENTIFIERS
+            - YUGABYTE_ALERT_LABELS_JSON
+            type: string
+          type: array
+      required:
+      - customVariables
+      - systemVariables
+      type: object
+    AlertChannel:
+      description: Alert notification channel
+      example:
+        customer_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        name: name
+        params:
+          channelType: Email
+          textTemplate: textTemplate
+          titleTemplate: titleTemplate
+        uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        customer_uuid:
+          description: Customer UUID
+          format: uuid
+          readOnly: true
+          type: string
+        name:
+          description: Name
+          maxLength: 63
+          minLength: 1
+          type: string
+        params:
+          $ref: '#/components/schemas/AlertChannelParams'
+        uuid:
+          description: Channel UUID
+          format: uuid
+          readOnly: true
+          type: string
+      required:
+      - customer_uuid
+      - name
+      - params
       type: object
   securitySchemes:
     apiKeyAuth:

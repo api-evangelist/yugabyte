@@ -402,6 +402,76 @@ paths:
       - Universe information
 components:
   schemas:
+    Metric:
+      example:
+        help: help
+        unit: unit
+        values:
+        - value: 0.8008281904610115
+          labels:
+          - name: name
+            value: value
+          - name: name
+            value: value
+        - value: 0.8008281904610115
+          labels:
+          - name: name
+            value: value
+          - name: name
+            value: value
+        name: name
+      properties:
+        help:
+          type: string
+        name:
+          type: string
+        unit:
+          type: string
+        values:
+          items:
+            $ref: '#/components/schemas/MetricValue'
+          type: array
+      required:
+      - help
+      - name
+      - unit
+      - values
+      type: object
+    MasterInfo:
+      description: Information about master
+      example:
+        port: 0
+        peerRole: FOLLOWER
+        privateIp: privateIp
+        instanceUUID: instanceUUID
+        uptimeSeconds: 6
+      properties:
+        instanceUUID:
+          type: string
+        peerRole:
+          enum:
+          - FOLLOWER
+          - LEADER
+          - LEARNER
+          - NON_PARTICIPANT
+          - READ_REPLICA
+          - UNKNOWN_ROLE
+          type: string
+        port:
+          format: int32
+          type: integer
+        privateIp:
+          type: string
+        uptimeSeconds:
+          format: int64
+          type: integer
+      required:
+      - instanceUUID
+      - peerRole
+      - port
+      - privateIp
+      - uptimeSeconds
+      type: object
     Details:
       example:
         timestamp_iso: 2022-12-12 13:07:18+00:00
@@ -520,73 +590,16 @@ components:
       - has_warning
       - yb_version
       type: object
-    MetricValue:
+    TriggerHealthCheckResult:
+      description: The response type for triggering a health check. Contains the timestamp of when the health check was triggered.
       example:
-        value: 0.8008281904610115
-        labels:
-        - name: name
-          value: value
-        - name: name
-          value: value
+        timestamp: 2022-12-12 13:07:18+00:00
       properties:
-        labels:
-          items:
-            $ref: '#/components/schemas/MetricLabel'
-          type: array
-        value:
-          format: double
-          type: number
-      required:
-      - labels
-      - value
-      type: object
-    MetricLabel:
-      example:
-        name: name
-        value: value
-      properties:
-        name:
+        timestamp:
+          description: The ISO-8601 timestamp when the health check was triggered.
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
           type: string
-        value:
-          type: string
-      required:
-      - name
-      - value
-      type: object
-    Metric:
-      example:
-        help: help
-        unit: unit
-        values:
-        - value: 0.8008281904610115
-          labels:
-          - name: name
-            value: value
-          - name: name
-            value: value
-        - value: 0.8008281904610115
-          labels:
-          - name: name
-            value: value
-          - name: name
-            value: value
-        name: name
-      properties:
-        help:
-          type: string
-        name:
-          type: string
-        unit:
-          type: string
-        values:
-          items:
-            $ref: '#/components/schemas/MetricValue'
-          type: array
-      required:
-      - help
-      - name
-      - unit
-      - values
       type: object
     NodeData:
       example:
@@ -676,52 +689,6 @@ components:
       - node_name
       - process
       type: object
-    MasterInfo:
-      description: Information about master
-      example:
-        port: 0
-        peerRole: FOLLOWER
-        privateIp: privateIp
-        instanceUUID: instanceUUID
-        uptimeSeconds: 6
-      properties:
-        instanceUUID:
-          type: string
-        peerRole:
-          enum:
-          - FOLLOWER
-          - LEADER
-          - LEARNER
-          - NON_PARTICIPANT
-          - READ_REPLICA
-          - UNKNOWN_ROLE
-          type: string
-        port:
-          format: int32
-          type: integer
-        privateIp:
-          type: string
-        uptimeSeconds:
-          format: int64
-          type: integer
-      required:
-      - instanceUUID
-      - peerRole
-      - port
-      - privateIp
-      - uptimeSeconds
-      type: object
-    TriggerHealthCheckResult:
-      description: The response type for triggering a health check. Contains the timestamp of when the health check was triggered.
-      example:
-        timestamp: 2022-12-12 13:07:18+00:00
-      properties:
-        timestamp:
-          description: The ISO-8601 timestamp when the health check was triggered.
-          example: 2022-12-12 13:07:18+00:00
-          format: date-time
-          type: string
-      type: object
     UniverseResourceDetails:
       example:
         numCores: 5.637376656633329
@@ -783,6 +750,39 @@ components:
           description: Volume in GB
           format: int32
           type: integer
+      type: object
+    MetricLabel:
+      example:
+        name: name
+        value: value
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+      required:
+      - name
+      - value
+      type: object
+    MetricValue:
+      example:
+        value: 0.8008281904610115
+        labels:
+        - name: name
+          value: value
+        - name: name
+          value: value
+      properties:
+        labels:
+          items:
+            $ref: '#/components/schemas/MetricLabel'
+          type: array
+        value:
+          format: double
+          type: number
+      required:
+      - labels
+      - value
       type: object
   securitySchemes:
     apiKeyAuth:

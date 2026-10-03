@@ -314,30 +314,57 @@ components:
       - storage_config_uuid
       title: ContinuousRestoreSpec
       type: object
-    YBATask:
-      description: 'YBATask
+    TimeUnitType:
+      description: 'TimeUnitType
 
 
-        YugabyteDB Anywhere Task object is used to represent a task that is being executed on a resource. This Task object can be polled for progress and status of the task. This object is returned as a response to most of the YugabyteDB Anywhere API calls.
+        Time units that correspond to TimeUnit.java enum. Used for variable frequencies.
+
+        '
+      enum:
+      - NANOSECONDS
+      - MICROSECONDS
+      - MILLISECONDS
+      - SECONDS
+      - MINUTES
+      - HOURS
+      - DAYS
+      - MONTHS
+      - YEARS
+      title: TimeUnitType
+      type: string
+    ContinuousBackupInfo:
+      description: 'ContinuousBackupInfo
+
+
+        These are read-only system generated properties of a continuous backup configuration. Returned as part of the Continuous Backup resource.
 
         '
       example:
-        resource_uuid: f33e3c9b-75ab-4c30-80ad-cba85646ea39
-        task_uuid: 89a46d52-4edd-4736-922a-35177a0b990c
+        storage_location: s3://backup_storage_path/YBA_1.2.3.4
+        uuid: f33e3c9b-75ab-4c30-80ad-cba85646ea39
+        last_backup: 2022-12-12 13:07:18+00:00
       properties:
-        resource_uuid:
-          description: UUID of the resource being modified by the task
+        uuid:
+          description: UUID of the Continuous Backup Config
           example: f33e3c9b-75ab-4c30-80ad-cba85646ea39
           format: uuid
           readOnly: true
           type: string
-        task_uuid:
-          description: Task UUID
-          example: 89a46d52-4edd-4736-922a-35177a0b990c
-          format: uuid
+        storage_location:
+          description: bucket or directory where backups are stored
+          example: s3://backup_storage_path/YBA_1.2.3.4
           readOnly: true
           type: string
-      title: YBATask
+        last_backup:
+          description: time of last backup stored
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          readOnly: true
+          type: string
+      required:
+      - uuid
+      title: ContinuousBackupInfo
       type: object
     ContinuousBackup:
       description: 'ContinuousBackup
@@ -364,25 +391,6 @@ components:
           $ref: '#/components/schemas/ContinuousBackupSpec'
       title: ContinuousBackup
       type: object
-    TimeUnitType:
-      description: 'TimeUnitType
-
-
-        Time units that correspond to TimeUnit.java enum. Used for variable frequencies.
-
-        '
-      enum:
-      - NANOSECONDS
-      - MICROSECONDS
-      - MILLISECONDS
-      - SECONDS
-      - MINUTES
-      - HOURS
-      - DAYS
-      - MONTHS
-      - YEARS
-      title: TimeUnitType
-      type: string
     ContinuousBackupSpec:
       description: 'ContinuousBackupSpec
 
@@ -425,38 +433,30 @@ components:
       - storage_config_uuid
       title: ContinuousBackupSpec
       type: object
-    ContinuousBackupInfo:
-      description: 'ContinuousBackupInfo
+    YBATask:
+      description: 'YBATask
 
 
-        These are read-only system generated properties of a continuous backup configuration. Returned as part of the Continuous Backup resource.
+        YugabyteDB Anywhere Task object is used to represent a task that is being executed on a resource. This Task object can be polled for progress and status of the task. This object is returned as a response to most of the YugabyteDB Anywhere API calls.
 
         '
       example:
-        storage_location: s3://backup_storage_path/YBA_1.2.3.4
-        uuid: f33e3c9b-75ab-4c30-80ad-cba85646ea39
-        last_backup: 2022-12-12 13:07:18+00:00
+        resource_uuid: f33e3c9b-75ab-4c30-80ad-cba85646ea39
+        task_uuid: 89a46d52-4edd-4736-922a-35177a0b990c
       properties:
-        uuid:
-          description: UUID of the Continuous Backup Config
+        resource_uuid:
+          description: UUID of the resource being modified by the task
           example: f33e3c9b-75ab-4c30-80ad-cba85646ea39
           format: uuid
           readOnly: true
           type: string
-        storage_location:
-          description: bucket or directory where backups are stored
-          example: s3://backup_storage_path/YBA_1.2.3.4
+        task_uuid:
+          description: Task UUID
+          example: 89a46d52-4edd-4736-922a-35177a0b990c
+          format: uuid
           readOnly: true
           type: string
-        last_backup:
-          description: time of last backup stored
-          example: 2022-12-12 13:07:18+00:00
-          format: date-time
-          readOnly: true
-          type: string
-      required:
-      - uuid
-      title: ContinuousBackupInfo
+      title: YBATask
       type: object
   securitySchemes:
     apiKeyAuth:

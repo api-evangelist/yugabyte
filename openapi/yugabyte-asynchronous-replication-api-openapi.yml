@@ -377,127 +377,44 @@ paths:
       - Asynchronous Replication
 components:
   schemas:
-    XClusterTableConfig:
+    YBPTask:
       example:
-        restoreUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        streamId: a9d2470786694dc4b34e0e58e592da9e
-        backupUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        replicationStatusErrors:
-        - Unknown error
-        - Unknown error
-        sourceTableInfo:
-          relationType: SYSTEM_TABLE_RELATION
-          colocated: true
-          walSizeBytes: 3.616076749251911
-          indexTableIDs:
-          - indexTableIDs
-          - indexTableIDs
-          pgSchemaName: public
-          sizeBytes: 9.301444243932576
-          tableName: tableName
-          tableSpace: tableSpace
-          tableUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          mainTableUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          parentTableUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          tableType: YQL_TABLE_TYPE
-          keySpace: keySpace
-          tableID: tableID
-          nameSpace: nameSpace
-          colocationParentId: colocationParentId
-        replicationSetupDone: true
-        restoreTime: 2022-12-12 13:07:18+00:00
-        bootstrapCreateTime: 2022-12-12 13:07:18+00:00
-        indexTable: true
-        tableId: 000033df000030008000000000004005
-        targetTableInfo:
-          relationType: SYSTEM_TABLE_RELATION
-          colocated: true
-          walSizeBytes: 3.616076749251911
-          indexTableIDs:
-          - indexTableIDs
-          - indexTableIDs
-          pgSchemaName: public
-          sizeBytes: 9.301444243932576
-          tableName: tableName
-          tableSpace: tableSpace
-          tableUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          mainTableUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          parentTableUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          tableType: YQL_TABLE_TYPE
-          keySpace: keySpace
-          tableID: tableID
-          nameSpace: nameSpace
-          colocationParentId: colocationParentId
-        needBootstrap: true
-        status: Validated
+        taskUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        resourceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
-        backupUuid:
+        resourceUUID:
+          description: UUID of the resource being modified by the task
           format: uuid
+          readOnly: true
           type: string
-        bootstrapCreateTime:
-          description: Time of the bootstrap of the table
-          example: 2022-12-12 13:07:18+00:00
-          format: date-time
+        taskUUID:
+          description: Task UUID
+          format: uuid
+          readOnly: true
           type: string
-        indexTable:
-          description: YbaApi Internal. Whether this table is an index table and its main table is in replication
+      type: object
+    XClusterConfigNeedBootstrapFormData:
+      example:
+        targetUniverseUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        isDrConfig: true
+        tables: '["000033df00003000800000000000400b"]'
+      properties:
+        isDrConfig:
+          description: 'WARNING: This is a preview API that could change. Whether this check is being done as part of a DR configuration setup'
           type: boolean
-        needBootstrap:
-          description: YbaApi Internal. Whether this table needs bootstrap process for replication setup
-          type: boolean
-        replicationSetupDone:
-          description: YbaApi Internal. Whether replication is set up for this table
-          type: boolean
-        replicationStatusErrors:
-          description: Short human readable replication status error messages
+        tables:
+          description: Source universe table IDs to check whether they need bootstrap
+          example: '["000033df00003000800000000000400b"]'
           items:
-            enum:
-            - Unknown error
-            - Missing op ID
-            - Schema mismatch
-            - Missing table
-            - Uninitialized
-            - Auto flag config mismatch
-            - Source unreachable
-            - System error
             type: string
           type: array
           uniqueItems: true
-        restoreTime:
-          description: Time of the last try to restore data to the target universe
-          example: 2022-12-12 13:07:18+00:00
-          format: date-time
-          type: string
-        restoreUuid:
+        targetUniverseUUID:
+          description: If specified and tables do not exist on the target universe, bootstrapping is required.
           format: uuid
           type: string
-        sourceTableInfo:
-          $ref: '#/components/schemas/TableInfoResp'
-        status:
-          description: Status
-          enum:
-          - Validated
-          - Running
-          - Updating
-          - Warning
-          - Error
-          - Bootstrapping
-          - Failed
-          - UnableToFetch
-          type: string
-        streamId:
-          description: Stream ID if replication is setup; bootstrap ID if the table is bootstrapped
-          example: a9d2470786694dc4b34e0e58e592da9e
-          type: string
-        tableId:
-          description: Table ID
-          example: 000033df000030008000000000004005
-          type: string
-        targetTableInfo:
-          $ref: '#/components/schemas/TableInfoResp'
       required:
-      - backupUuid
-      - restoreUuid
+      - tables
       type: object
     PitrConfig:
       description: PITR config created on the universe
@@ -598,6 +515,95 @@ components:
       - minRecoverTimeInMillis
       - state
       type: object
+    NamespaceInfoResp:
+      description: Namespace information response
+      example:
+        tableType: YQL_TABLE_TYPE
+        name: name
+        namespaceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        name:
+          description: Namespace name
+          type: string
+        namespaceUUID:
+          description: Namespace UUID
+          format: uuid
+          readOnly: true
+          type: string
+        tableType:
+          description: Table type
+          enum:
+          - YQL_TABLE_TYPE
+          - REDIS_TABLE_TYPE
+          - PGSQL_TABLE_TYPE
+          - TRANSACTION_STATUS_TABLE_TYPE
+          type: string
+      type: object
+    XClusterConfigEditFormData:
+      description: xcluster edit form
+      example:
+        tables: '["000033df000030008000000000004006", "000033df00003000800000000000400b"]'
+        dryRun: true
+        bootstrapParams:
+          tables: '["000033df000030008000000000004006"]'
+          allowBootstrap: true
+          backupRequestParams:
+            storageConfigUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            parallelism: 0
+        dbs: '["000033df000030008000000000004006", "000033df00003000800000000000400b"]'
+        autoIncludeIndexTables: true
+        targetRole: ACTIVE
+        name: Repl-config1
+        sourceRole: ACTIVE
+        status: Running
+      properties:
+        autoIncludeIndexTables:
+          description: Whether or not YBA should also include all index tables from any provided main tables.
+          type: boolean
+        bootstrapParams:
+          $ref: '#/components/schemas/BootstrapParams'
+        dbs:
+          description: 'WARNING: This is a preview API that could change. Source universe database IDs'
+          example: '["000033df000030008000000000004006", "000033df00003000800000000000400b"]'
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+        dryRun:
+          description: Run the pre-checks without actually running the subtasks
+          type: boolean
+        name:
+          description: Name
+          example: Repl-config1
+          type: string
+        sourceRole:
+          description: The role that the source universe should have in the xCluster config
+          enum:
+          - ACTIVE
+          - STANDBY
+          - UNRECOGNIZED
+          type: string
+        status:
+          description: Status
+          enum:
+          - Running
+          - Paused
+          type: string
+        tables:
+          description: Source universe table IDs
+          example: '["000033df000030008000000000004006", "000033df00003000800000000000400b"]'
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+        targetRole:
+          description: The role that the target universe should have in the xCluster config
+          enum:
+          - ACTIVE
+          - STANDBY
+          - UNRECOGNIZED
+          type: string
+      type: object
     RestartBootstrapParams:
       description: Bootstrap parameters for restarting
       example:
@@ -609,104 +615,6 @@ components:
           $ref: '#/components/schemas/BootstrapBackupParams'
       required:
       - backupRequestParams
-      type: object
-    BootstrapParams:
-      description: Bootstrap parameters
-      example:
-        tables: '["000033df000030008000000000004006"]'
-        allowBootstrap: true
-        backupRequestParams:
-          storageConfigUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          parallelism: 0
-      properties:
-        allowBootstrap:
-          description: 'WARNING: This is a preview API that could change. Allow backup on whole database when only set of tables require bootstrap'
-          type: boolean
-        backupRequestParams:
-          $ref: '#/components/schemas/BootstrapBackupParams'
-        tables:
-          description: Source Universe table IDs that need bootstrapping; must be a subset of tables in the main body
-          example: '["000033df000030008000000000004006"]'
-          items:
-            type: string
-          type: array
-          uniqueItems: true
-      required:
-      - backupRequestParams
-      type: object
-    XClusterConfigRestartFormData:
-      description: xcluster restart form
-      example:
-        tables: '["000033df000030008000000000004006", "000033df00003000800000000000400b"]'
-        dryRun: true
-        bootstrapParams:
-          backupRequestParams:
-            storageConfigUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            parallelism: 0
-      properties:
-        bootstrapParams:
-          $ref: '#/components/schemas/RestartBootstrapParams'
-        dryRun:
-          description: Run the pre-checks without actually running the subtasks
-          type: boolean
-        tables:
-          description: Source Universe table IDs; if empty, the whole config will restart
-          example: '["000033df000030008000000000004006", "000033df00003000800000000000400b"]'
-          items:
-            type: string
-          type: array
-          uniqueItems: true
-      required:
-      - tables
-      type: object
-    XClusterNamespaceConfig:
-      example:
-        restoreUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        sourceNamespaceId: sourceNamespaceId
-        backupUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        replicationSetupTime: 2022-12-12 13:07:18+00:00
-        sourceNamespaceInfo:
-          tableType: YQL_TABLE_TYPE
-          name: name
-          namespaceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        targetNamespaceInfo:
-          tableType: YQL_TABLE_TYPE
-          name: name
-          namespaceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        status: Validated
-      properties:
-        backupUuid:
-          format: uuid
-          type: string
-        replicationSetupTime:
-          description: Time of replication setup, ie, table added to the replication group on the target universe
-          example: 2022-12-12 13:07:18+00:00
-          format: date-time
-          type: string
-        restoreUuid:
-          format: uuid
-          type: string
-        sourceNamespaceId:
-          type: string
-        sourceNamespaceInfo:
-          $ref: '#/components/schemas/NamespaceInfoResp'
-        status:
-          description: Status
-          enum:
-          - Validated
-          - Running
-          - Updating
-          - Warning
-          - Error
-          - Bootstrapping
-          - Failed
-          type: string
-        targetNamespaceInfo:
-          $ref: '#/components/schemas/NamespaceInfoResp'
-      required:
-      - backupUuid
-      - restoreUuid
-      - sourceNamespaceId
       type: object
     BootstrapBackupParams:
       description: Backup parameters for bootstrapping
@@ -724,29 +632,6 @@ components:
           type: string
       required:
       - storageConfigUUID
-      type: object
-    XClusterConfigNeedBootstrapFormData:
-      example:
-        targetUniverseUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        isDrConfig: true
-        tables: '["000033df00003000800000000000400b"]'
-      properties:
-        isDrConfig:
-          description: 'WARNING: This is a preview API that could change. Whether this check is being done as part of a DR configuration setup'
-          type: boolean
-        tables:
-          description: Source universe table IDs to check whether they need bootstrap
-          example: '["000033df00003000800000000000400b"]'
-          items:
-            type: string
-          type: array
-          uniqueItems: true
-        targetUniverseUUID:
-          description: If specified and tables do not exist on the target universe, bootstrapping is required.
-          format: uuid
-          type: string
-      required:
-      - tables
       type: object
     XClusterConfigCreateFormData:
       description: xcluster create form
@@ -894,86 +779,54 @@ components:
           readOnly: true
           type: number
       type: object
-    XClusterConfigEditFormData:
-      description: xcluster edit form
+    XClusterNamespaceConfig:
       example:
-        tables: '["000033df000030008000000000004006", "000033df00003000800000000000400b"]'
-        dryRun: true
-        bootstrapParams:
-          tables: '["000033df000030008000000000004006"]'
-          allowBootstrap: true
-          backupRequestParams:
-            storageConfigUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            parallelism: 0
-        dbs: '["000033df000030008000000000004006", "000033df00003000800000000000400b"]'
-        autoIncludeIndexTables: true
-        targetRole: ACTIVE
-        name: Repl-config1
-        sourceRole: ACTIVE
-        status: Running
+        restoreUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        sourceNamespaceId: sourceNamespaceId
+        backupUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        replicationSetupTime: 2022-12-12 13:07:18+00:00
+        sourceNamespaceInfo:
+          tableType: YQL_TABLE_TYPE
+          name: name
+          namespaceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        targetNamespaceInfo:
+          tableType: YQL_TABLE_TYPE
+          name: name
+          namespaceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        status: Validated
       properties:
-        autoIncludeIndexTables:
-          description: Whether or not YBA should also include all index tables from any provided main tables.
-          type: boolean
-        bootstrapParams:
-          $ref: '#/components/schemas/BootstrapParams'
-        dbs:
-          description: 'WARNING: This is a preview API that could change. Source universe database IDs'
-          example: '["000033df000030008000000000004006", "000033df00003000800000000000400b"]'
-          items:
-            type: string
-          type: array
-          uniqueItems: true
-        dryRun:
-          description: Run the pre-checks without actually running the subtasks
-          type: boolean
-        name:
-          description: Name
-          example: Repl-config1
+        backupUuid:
+          format: uuid
           type: string
-        sourceRole:
-          description: The role that the source universe should have in the xCluster config
-          enum:
-          - ACTIVE
-          - STANDBY
-          - UNRECOGNIZED
+        replicationSetupTime:
+          description: Time of replication setup, ie, table added to the replication group on the target universe
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
           type: string
+        restoreUuid:
+          format: uuid
+          type: string
+        sourceNamespaceId:
+          type: string
+        sourceNamespaceInfo:
+          $ref: '#/components/schemas/NamespaceInfoResp'
         status:
           description: Status
           enum:
+          - Validated
           - Running
-          - Paused
+          - Updating
+          - Warning
+          - Error
+          - Bootstrapping
+          - Failed
           type: string
-        tables:
-          description: Source universe table IDs
-          example: '["000033df000030008000000000004006", "000033df00003000800000000000400b"]'
-          items:
-            type: string
-          type: array
-          uniqueItems: true
-        targetRole:
-          description: The role that the target universe should have in the xCluster config
-          enum:
-          - ACTIVE
-          - STANDBY
-          - UNRECOGNIZED
-          type: string
-      type: object
-    YBPTask:
-      example:
-        taskUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        resourceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-      properties:
-        resourceUUID:
-          description: UUID of the resource being modified by the task
-          format: uuid
-          readOnly: true
-          type: string
-        taskUUID:
-          description: Task UUID
-          format: uuid
-          readOnly: true
-          type: string
+        targetNamespaceInfo:
+          $ref: '#/components/schemas/NamespaceInfoResp'
+      required:
+      - backupUuid
+      - restoreUuid
+      - sourceNamespaceId
       type: object
     XClusterConfigGetResp:
       description: xcluster get response
@@ -1337,29 +1190,176 @@ components:
       - lag
       - namespaces
       type: object
-    NamespaceInfoResp:
-      description: Namespace information response
+    XClusterTableConfig:
       example:
-        tableType: YQL_TABLE_TYPE
-        name: name
-        namespaceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        restoreUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        streamId: a9d2470786694dc4b34e0e58e592da9e
+        backupUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        replicationStatusErrors:
+        - Unknown error
+        - Unknown error
+        sourceTableInfo:
+          relationType: SYSTEM_TABLE_RELATION
+          colocated: true
+          walSizeBytes: 3.616076749251911
+          indexTableIDs:
+          - indexTableIDs
+          - indexTableIDs
+          pgSchemaName: public
+          sizeBytes: 9.301444243932576
+          tableName: tableName
+          tableSpace: tableSpace
+          tableUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          mainTableUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          parentTableUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          tableType: YQL_TABLE_TYPE
+          keySpace: keySpace
+          tableID: tableID
+          nameSpace: nameSpace
+          colocationParentId: colocationParentId
+        replicationSetupDone: true
+        restoreTime: 2022-12-12 13:07:18+00:00
+        bootstrapCreateTime: 2022-12-12 13:07:18+00:00
+        indexTable: true
+        tableId: 000033df000030008000000000004005
+        targetTableInfo:
+          relationType: SYSTEM_TABLE_RELATION
+          colocated: true
+          walSizeBytes: 3.616076749251911
+          indexTableIDs:
+          - indexTableIDs
+          - indexTableIDs
+          pgSchemaName: public
+          sizeBytes: 9.301444243932576
+          tableName: tableName
+          tableSpace: tableSpace
+          tableUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          mainTableUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          parentTableUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          tableType: YQL_TABLE_TYPE
+          keySpace: keySpace
+          tableID: tableID
+          nameSpace: nameSpace
+          colocationParentId: colocationParentId
+        needBootstrap: true
+        status: Validated
       properties:
-        name:
-          description: Namespace name
-          type: string
-        namespaceUUID:
-          description: Namespace UUID
+        backupUuid:
           format: uuid
-          readOnly: true
           type: string
-        tableType:
-          description: Table type
+        bootstrapCreateTime:
+          description: Time of the bootstrap of the table
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          type: string
+        indexTable:
+          description: YbaApi Internal. Whether this table is an index table and its main table is in replication
+          type: boolean
+        needBootstrap:
+          description: YbaApi Internal. Whether this table needs bootstrap process for replication setup
+          type: boolean
+        replicationSetupDone:
+          description: YbaApi Internal. Whether replication is set up for this table
+          type: boolean
+        replicationStatusErrors:
+          description: Short human readable replication status error messages
+          items:
+            enum:
+            - Unknown error
+            - Missing op ID
+            - Schema mismatch
+            - Missing table
+            - Uninitialized
+            - Auto flag config mismatch
+            - Source unreachable
+            - System error
+            type: string
+          type: array
+          uniqueItems: true
+        restoreTime:
+          description: Time of the last try to restore data to the target universe
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          type: string
+        restoreUuid:
+          format: uuid
+          type: string
+        sourceTableInfo:
+          $ref: '#/components/schemas/TableInfoResp'
+        status:
+          description: Status
           enum:
-          - YQL_TABLE_TYPE
-          - REDIS_TABLE_TYPE
-          - PGSQL_TABLE_TYPE
-          - TRANSACTION_STATUS_TABLE_TYPE
+          - Validated
+          - Running
+          - Updating
+          - Warning
+          - Error
+          - Bootstrapping
+          - Failed
+          - UnableToFetch
           type: string
+        streamId:
+          description: Stream ID if replication is setup; bootstrap ID if the table is bootstrapped
+          example: a9d2470786694dc4b34e0e58e592da9e
+          type: string
+        tableId:
+          description: Table ID
+          example: 000033df000030008000000000004005
+          type: string
+        targetTableInfo:
+          $ref: '#/components/schemas/TableInfoResp'
+      required:
+      - backupUuid
+      - restoreUuid
+      type: object
+    XClusterConfigRestartFormData:
+      description: xcluster restart form
+      example:
+        tables: '["000033df000030008000000000004006", "000033df00003000800000000000400b"]'
+        dryRun: true
+        bootstrapParams:
+          backupRequestParams:
+            storageConfigUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            parallelism: 0
+      properties:
+        bootstrapParams:
+          $ref: '#/components/schemas/RestartBootstrapParams'
+        dryRun:
+          description: Run the pre-checks without actually running the subtasks
+          type: boolean
+        tables:
+          description: Source Universe table IDs; if empty, the whole config will restart
+          example: '["000033df000030008000000000004006", "000033df00003000800000000000400b"]'
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+      required:
+      - tables
+      type: object
+    BootstrapParams:
+      description: Bootstrap parameters
+      example:
+        tables: '["000033df000030008000000000004006"]'
+        allowBootstrap: true
+        backupRequestParams:
+          storageConfigUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          parallelism: 0
+      properties:
+        allowBootstrap:
+          description: 'WARNING: This is a preview API that could change. Allow backup on whole database when only set of tables require bootstrap'
+          type: boolean
+        backupRequestParams:
+          $ref: '#/components/schemas/BootstrapBackupParams'
+        tables:
+          description: Source Universe table IDs that need bootstrapping; must be a subset of tables in the main body
+          example: '["000033df000030008000000000004006"]'
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+      required:
+      - backupRequestParams
       type: object
   securitySchemes:
     apiKeyAuth:

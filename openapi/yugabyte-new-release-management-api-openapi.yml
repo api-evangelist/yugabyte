@@ -184,26 +184,6 @@ paths:
       x-codegen-request-body-name: Release
 components:
   schemas:
-    Universe:
-      example:
-        name: name
-        creation_date: 2024-07-28 01:02:03+00:00
-        uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-      properties:
-        creation_date:
-          description: Universe creation date
-          example: 2024-07-28 01:02:03+00:00
-          format: date-time
-          type: string
-        name:
-          type: string
-        uuid:
-          format: uuid
-          type: string
-      required:
-      - name
-      - uuid
-      type: object
     Artifact:
       example:
         package_url: package_url
@@ -236,6 +216,16 @@ components:
       - platform
       - sha256
       type: object
+    YBPCreateSuccess:
+      example:
+        resourceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        resourceUUID:
+          description: UUID of the successfully created resource
+          format: uuid
+          readOnly: true
+          type: string
+      type: object
     YBPSuccess:
       example:
         success: true
@@ -249,6 +239,93 @@ components:
           description: API operation status. A value of true indicates the operation was successful.
           readOnly: true
           type: boolean
+      type: object
+    ResponseRelease:
+      example:
+        release_notes: release_notes
+        release_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        universes:
+        - name: name
+          creation_date: 2024-07-28 01:02:03+00:00
+          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - name: name
+          creation_date: 2024-07-28 01:02:03+00:00
+          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        release_type: release_type
+        release_date_msecs: 0
+        state: state
+        version: version
+        release_tag: release_tag
+        yb_type: yb_type
+        artifacts:
+        - package_url: package_url
+          sha256: sha256
+          package_file_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          platform: LINUX
+          architecture: x86_64
+        - package_url: package_url
+          sha256: sha256
+          package_file_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          platform: LINUX
+          architecture: x86_64
+      properties:
+        artifacts:
+          items:
+            $ref: '#/components/schemas/Artifact'
+          type: array
+        release_date_msecs:
+          format: int64
+          type: integer
+        release_notes:
+          type: string
+        release_tag:
+          type: string
+        release_type:
+          type: string
+        release_uuid:
+          format: uuid
+          type: string
+        state:
+          type: string
+        universes:
+          items:
+            $ref: '#/components/schemas/Universe'
+          type: array
+        version:
+          type: string
+        yb_type:
+          type: string
+      required:
+      - artifacts
+      - release_date_msecs
+      - release_notes
+      - release_tag
+      - release_type
+      - release_uuid
+      - state
+      - universes
+      - version
+      - yb_type
+      type: object
+    Universe:
+      example:
+        name: name
+        creation_date: 2024-07-28 01:02:03+00:00
+        uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        creation_date:
+          description: Universe creation date
+          example: 2024-07-28 01:02:03+00:00
+          format: date-time
+          type: string
+        name:
+          type: string
+        uuid:
+          format: uuid
+          type: string
+      required:
+      - name
+      - uuid
       type: object
     UpdateRelease:
       description: Release metadata required to create a new release
@@ -340,83 +417,6 @@ components:
       - release_uuid
       - version
       - yb_type
-      type: object
-    ResponseRelease:
-      example:
-        release_notes: release_notes
-        release_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        universes:
-        - name: name
-          creation_date: 2024-07-28 01:02:03+00:00
-          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        - name: name
-          creation_date: 2024-07-28 01:02:03+00:00
-          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        release_type: release_type
-        release_date_msecs: 0
-        state: state
-        version: version
-        release_tag: release_tag
-        yb_type: yb_type
-        artifacts:
-        - package_url: package_url
-          sha256: sha256
-          package_file_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          platform: LINUX
-          architecture: x86_64
-        - package_url: package_url
-          sha256: sha256
-          package_file_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          platform: LINUX
-          architecture: x86_64
-      properties:
-        artifacts:
-          items:
-            $ref: '#/components/schemas/Artifact'
-          type: array
-        release_date_msecs:
-          format: int64
-          type: integer
-        release_notes:
-          type: string
-        release_tag:
-          type: string
-        release_type:
-          type: string
-        release_uuid:
-          format: uuid
-          type: string
-        state:
-          type: string
-        universes:
-          items:
-            $ref: '#/components/schemas/Universe'
-          type: array
-        version:
-          type: string
-        yb_type:
-          type: string
-      required:
-      - artifacts
-      - release_date_msecs
-      - release_notes
-      - release_tag
-      - release_type
-      - release_uuid
-      - state
-      - universes
-      - version
-      - yb_type
-      type: object
-    YBPCreateSuccess:
-      example:
-        resourceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-      properties:
-        resourceUUID:
-          description: UUID of the successfully created resource
-          format: uuid
-          readOnly: true
-          type: string
       type: object
   securitySchemes:
     apiKeyAuth:

@@ -283,179 +283,31 @@ paths:
       x-codegen-request-body-name: RoleBindingFormData
 components:
   schemas:
-    Permission:
+    RoleResourceDefinition:
+      description: Defines the association of Role to Resource Groups.
       example:
-        action: CREATE
-        resourceType: UNIVERSE
+        resourceGroup:
+          resourceDefinitionSet:
+          - allowAll: true
+            resourceUUIDSet:
+            - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            resourceType: UNIVERSE
+          - allowAll: true
+            resourceUUIDSet:
+            - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            resourceType: UNIVERSE
+        roleUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
-        action:
-          enum:
-          - CREATE
-          - READ
-          - UPDATE
-          - DELETE
-          - PAUSE_RESUME
-          - BACKUP_RESTORE
-          - UPDATE_ROLE_BINDINGS
-          - UPDATE_PROFILE
-          - SUPER_ADMIN_ACTIONS
-          - XCLUSTER
-          - DEBUG
-          - TROUBLESHOOT
-          type: string
-        resourceType:
-          enum:
-          - UNIVERSE
-          - ROLE
-          - USER
-          - OTHER
-          type: string
-      type: object
-    ResourceGroup:
-      example:
-        resourceDefinitionSet:
-        - allowAll: true
-          resourceUUIDSet:
-          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          resourceType: UNIVERSE
-        - allowAll: true
-          resourceUUIDSet:
-          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          resourceType: UNIVERSE
-      properties:
-        resourceDefinitionSet:
-          items:
-            $ref: '#/components/schemas/ResourceDefinition'
-          type: array
-          uniqueItems: true
-      required:
-      - resourceDefinitionSet
-      type: object
-    Users:
-      description: A user associated with a customer
-      example:
-        ldapSpecifiedRole: true
-        customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        role: Admin
-        authTokenIssueDate: 2021-06-17 15:00:05+00:00
-        timezone: timezone
-        oidcJwtAuthToken: oidcJwtAuthToken
-        groupMemberships:
-        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        userType: local
-        creationDate: 2022-12-12 13:07:18+00:00
-        uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        email: username1@example.com
-        primary: true
-      properties:
-        authTokenIssueDate:
-          description: UI session token creation date
-          example: 2021-06-17 15:00:05+00:00
-          format: date-time
-          readOnly: true
-          type: string
-        creationDate:
-          description: User creation date
-          example: 2022-12-12 13:07:18+00:00
-          format: date-time
-          readOnly: true
-          type: string
-        customerUUID:
-          description: Customer UUID
+        resourceGroup:
+          $ref: '#/components/schemas/ResourceGroup'
+        roleUUID:
+          description: UUID of the role to attach resource group to.
           format: uuid
-          readOnly: true
-          type: string
-        email:
-          description: User email address
-          example: username1@example.com
-          type: string
-        groupMemberships:
-          items:
-            format: uuid
-            type: string
-          type: array
-          uniqueItems: true
-        ldapSpecifiedRole:
-          description: LDAP Specified Role
-          type: boolean
-        oidcJwtAuthToken:
-          readOnly: true
-          type: string
-        primary:
-          type: boolean
-        role:
-          description: <b style="color:#ff0000">Deprecated since YBA version 2.19.3.0.</b> Use  getRoleBindings instead.
-          enum:
-          - ConnectOnly
-          - ReadOnly
-          - BackupAdmin
-          - Admin
-          - SuperAdmin
-          example: Admin
-          type: string
-        timezone:
-          description: User timezone
-          type: string
-        userType:
-          description: User Type
-          enum:
-          - local
-          - ldap
-          - oidc
-          type: string
-        uuid:
-          description: User UUID
-          format: uuid
-          readOnly: true
           type: string
       required:
-      - email
-      - groupMemberships
-      - primary
-      type: object
-    ResourceDefinition:
-      example:
-        allowAll: true
-        resourceUUIDSet:
-        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        resourceType: UNIVERSE
-      properties:
-        allowAll:
-          description: Select all resources (including future resources)
-          type: boolean
-        resourceType:
-          description: Resource Type
-          enum:
-          - UNIVERSE
-          - ROLE
-          - USER
-          - OTHER
-          type: string
-        resourceUUIDSet:
-          description: Set of resource uuids
-          items:
-            format: uuid
-            type: string
-          type: array
-          uniqueItems: true
-      type: object
-    YBPSuccess:
-      example:
-        success: true
-        message: message
-      properties:
-        message:
-          description: API response message.
-          readOnly: true
-          type: string
-        success:
-          description: API operation status. A value of true indicates the operation was successful.
-          readOnly: true
-          type: boolean
+      - roleUUID
       type: object
     Role:
       example:
@@ -507,44 +359,20 @@ components:
           format: date-time
           type: string
       type: object
-    RoleBindingFormData:
-      description: Role Binding form metadata
+    PermissionDetails:
       example:
-        roleResourceDefinitions:
-        - resourceGroup:
-            resourceDefinitionSet:
-            - allowAll: true
-              resourceUUIDSet:
-              - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-              - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-              resourceType: UNIVERSE
-            - allowAll: true
-              resourceUUIDSet:
-              - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-              - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-              resourceType: UNIVERSE
-          roleUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        - resourceGroup:
-            resourceDefinitionSet:
-            - allowAll: true
-              resourceUUIDSet:
-              - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-              - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-              resourceType: UNIVERSE
-            - allowAll: true
-              resourceUUIDSet:
-              - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-              - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-              resourceType: UNIVERSE
-          roleUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        permissionList:
+        - action: CREATE
+          resourceType: UNIVERSE
+        - action: CREATE
+          resourceType: UNIVERSE
       properties:
-        roleResourceDefinitions:
-          description: List of roles and resource groups defined.
+        permissionList:
+          description: Set of permissions
           items:
-            $ref: '#/components/schemas/RoleResourceDefinition'
+            $ref: '#/components/schemas/Permission'
           type: array
-      required:
-      - roleResourceDefinitions
+          uniqueItems: true
       type: object
     RoleFormData:
       description: Role form metadata
@@ -573,43 +401,6 @@ components:
       - description
       - name
       - permissionList
-      type: object
-    GroupMappingInfo:
-      example:
-        groupUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        identifier: identifier
-        customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        creationDate: 2022-12-12 13:07:18+00:00
-        type: LDAP
-        roleUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-      properties:
-        creationDate:
-          description: Group mapping creation time
-          example: 2022-12-12 13:07:18+00:00
-          format: date-time
-          type: string
-        customerUUID:
-          format: uuid
-          type: string
-        groupUUID:
-          format: uuid
-          type: string
-        identifier:
-          type: string
-        roleUUID:
-          format: uuid
-          type: string
-        type:
-          enum:
-          - LDAP
-          - OIDC
-          type: string
-      required:
-      - customerUUID
-      - groupUUID
-      - identifier
-      - roleUUID
-      - type
       type: object
     RoleBinding:
       example:
@@ -705,31 +496,130 @@ components:
       required:
       - principal
       type: object
-    RoleResourceDefinition:
-      description: Defines the association of Role to Resource Groups.
+    Permission:
       example:
-        resourceGroup:
-          resourceDefinitionSet:
-          - allowAll: true
-            resourceUUIDSet:
-            - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            resourceType: UNIVERSE
-          - allowAll: true
-            resourceUUIDSet:
-            - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            resourceType: UNIVERSE
-        roleUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        action: CREATE
+        resourceType: UNIVERSE
       properties:
-        resourceGroup:
-          $ref: '#/components/schemas/ResourceGroup'
-        roleUUID:
-          description: UUID of the role to attach resource group to.
+        action:
+          enum:
+          - CREATE
+          - READ
+          - UPDATE
+          - DELETE
+          - PAUSE_RESUME
+          - BACKUP_RESTORE
+          - UPDATE_ROLE_BINDINGS
+          - UPDATE_PROFILE
+          - SUPER_ADMIN_ACTIONS
+          - XCLUSTER
+          - DEBUG
+          - TROUBLESHOOT
+          type: string
+        resourceType:
+          enum:
+          - UNIVERSE
+          - ROLE
+          - USER
+          - OTHER
+          type: string
+      type: object
+    YBPSuccess:
+      example:
+        success: true
+        message: message
+      properties:
+        message:
+          description: API response message.
+          readOnly: true
+          type: string
+        success:
+          description: API operation status. A value of true indicates the operation was successful.
+          readOnly: true
+          type: boolean
+      type: object
+    Users:
+      description: A user associated with a customer
+      example:
+        ldapSpecifiedRole: true
+        customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        role: Admin
+        authTokenIssueDate: 2021-06-17 15:00:05+00:00
+        timezone: timezone
+        oidcJwtAuthToken: oidcJwtAuthToken
+        groupMemberships:
+        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        userType: local
+        creationDate: 2022-12-12 13:07:18+00:00
+        uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        email: username1@example.com
+        primary: true
+      properties:
+        authTokenIssueDate:
+          description: UI session token creation date
+          example: 2021-06-17 15:00:05+00:00
+          format: date-time
+          readOnly: true
+          type: string
+        creationDate:
+          description: User creation date
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          readOnly: true
+          type: string
+        customerUUID:
+          description: Customer UUID
           format: uuid
+          readOnly: true
+          type: string
+        email:
+          description: User email address
+          example: username1@example.com
+          type: string
+        groupMemberships:
+          items:
+            format: uuid
+            type: string
+          type: array
+          uniqueItems: true
+        ldapSpecifiedRole:
+          description: LDAP Specified Role
+          type: boolean
+        oidcJwtAuthToken:
+          readOnly: true
+          type: string
+        primary:
+          type: boolean
+        role:
+          description: <b style="color:#ff0000">Deprecated since YBA version 2.19.3.0.</b> Use  getRoleBindings instead.
+          enum:
+          - ConnectOnly
+          - ReadOnly
+          - BackupAdmin
+          - Admin
+          - SuperAdmin
+          example: Admin
+          type: string
+        timezone:
+          description: User timezone
+          type: string
+        userType:
+          description: User Type
+          enum:
+          - local
+          - ldap
+          - oidc
+          type: string
+        uuid:
+          description: User UUID
+          format: uuid
+          readOnly: true
           type: string
       required:
-      - roleUUID
+      - email
+      - groupMemberships
+      - primary
       type: object
     PermissionInfo:
       example:
@@ -778,6 +668,45 @@ components:
           - OTHER
           type: string
       type: object
+    RoleBindingFormData:
+      description: Role Binding form metadata
+      example:
+        roleResourceDefinitions:
+        - resourceGroup:
+            resourceDefinitionSet:
+            - allowAll: true
+              resourceUUIDSet:
+              - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              resourceType: UNIVERSE
+            - allowAll: true
+              resourceUUIDSet:
+              - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              resourceType: UNIVERSE
+          roleUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - resourceGroup:
+            resourceDefinitionSet:
+            - allowAll: true
+              resourceUUIDSet:
+              - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              resourceType: UNIVERSE
+            - allowAll: true
+              resourceUUIDSet:
+              - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              resourceType: UNIVERSE
+          roleUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        roleResourceDefinitions:
+          description: List of roles and resource groups defined.
+          items:
+            $ref: '#/components/schemas/RoleResourceDefinition'
+          type: array
+      required:
+      - roleResourceDefinitions
+      type: object
     Principal:
       example:
         groupUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -806,20 +735,91 @@ components:
       - userUUID
       - uuid
       type: object
-    PermissionDetails:
+    ResourceGroup:
       example:
-        permissionList:
-        - action: CREATE
+        resourceDefinitionSet:
+        - allowAll: true
+          resourceUUIDSet:
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           resourceType: UNIVERSE
-        - action: CREATE
+        - allowAll: true
+          resourceUUIDSet:
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           resourceType: UNIVERSE
       properties:
-        permissionList:
-          description: Set of permissions
+        resourceDefinitionSet:
           items:
-            $ref: '#/components/schemas/Permission'
+            $ref: '#/components/schemas/ResourceDefinition'
           type: array
           uniqueItems: true
+      required:
+      - resourceDefinitionSet
+      type: object
+    ResourceDefinition:
+      example:
+        allowAll: true
+        resourceUUIDSet:
+        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        resourceType: UNIVERSE
+      properties:
+        allowAll:
+          description: Select all resources (including future resources)
+          type: boolean
+        resourceType:
+          description: Resource Type
+          enum:
+          - UNIVERSE
+          - ROLE
+          - USER
+          - OTHER
+          type: string
+        resourceUUIDSet:
+          description: Set of resource uuids
+          items:
+            format: uuid
+            type: string
+          type: array
+          uniqueItems: true
+      type: object
+    GroupMappingInfo:
+      example:
+        groupUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        identifier: identifier
+        customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        creationDate: 2022-12-12 13:07:18+00:00
+        type: LDAP
+        roleUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        creationDate:
+          description: Group mapping creation time
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          type: string
+        customerUUID:
+          format: uuid
+          type: string
+        groupUUID:
+          format: uuid
+          type: string
+        identifier:
+          type: string
+        roleUUID:
+          format: uuid
+          type: string
+        type:
+          enum:
+          - LDAP
+          - OIDC
+          type: string
+      required:
+      - customerUUID
+      - groupUUID
+      - identifier
+      - roleUUID
+      - type
       type: object
   securitySchemes:
     apiKeyAuth:

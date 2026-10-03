@@ -259,40 +259,36 @@ paths:
       - Runtime configuration
 components:
   schemas:
-    ScopedConfig:
-      description: Scoped configuration
+    RuntimeConfigData:
+      description: Runtime configuration data
       example:
-        configEntries:
-        - inherited: true
-          value: value
-          key: key
-        - inherited: true
-          value: value
-          key: key
-        mutableScope: true
-        type: GLOBAL
-        uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        scopedConfigList:
+        - configEntries:
+          - inherited: true
+            value: value
+            key: key
+          - inherited: true
+            value: value
+            key: key
+          mutableScope: true
+          type: GLOBAL
+          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - configEntries:
+          - inherited: true
+            value: value
+            key: key
+          - inherited: true
+            value: value
+            key: key
+          mutableScope: true
+          type: GLOBAL
+          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
-        configEntries:
-          description: List of configurations
+        scopedConfigList:
+          description: List of scoped configurations
           items:
-            $ref: '#/components/schemas/ConfigEntry'
+            $ref: '#/components/schemas/ScopedConfig'
           type: array
-        mutableScope:
-          description: Mutability of the scope. Only super admin users can change global scope; other scopes are customer-mutable.
-          type: boolean
-        type:
-          description: Scope type
-          enum:
-          - GLOBAL
-          - CUSTOMER
-          - UNIVERSE
-          - PROVIDER
-          type: string
-        uuid:
-          description: Scope UIID
-          format: uuid
-          type: string
       type: object
     ConfigEntry:
       description: Configuration entry
@@ -333,6 +329,41 @@ components:
           description: API operation status. A value of true indicates the operation was successful.
           readOnly: true
           type: boolean
+      type: object
+    ScopedConfig:
+      description: Scoped configuration
+      example:
+        configEntries:
+        - inherited: true
+          value: value
+          key: key
+        - inherited: true
+          value: value
+          key: key
+        mutableScope: true
+        type: GLOBAL
+        uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        configEntries:
+          description: List of configurations
+          items:
+            $ref: '#/components/schemas/ConfigEntry'
+          type: array
+        mutableScope:
+          description: Mutability of the scope. Only super admin users can change global scope; other scopes are customer-mutable.
+          type: boolean
+        type:
+          description: Scope type
+          enum:
+          - GLOBAL
+          - CUSTOMER
+          - UNIVERSE
+          - PROVIDER
+          type: string
+        uuid:
+          description: Scope UIID
+          format: uuid
+          type: string
       type: object
     ConfKeyInfo:
       example:
@@ -376,37 +407,6 @@ components:
       - key
       - scope
       - tags
-      type: object
-    RuntimeConfigData:
-      description: Runtime configuration data
-      example:
-        scopedConfigList:
-        - configEntries:
-          - inherited: true
-            value: value
-            key: key
-          - inherited: true
-            value: value
-            key: key
-          mutableScope: true
-          type: GLOBAL
-          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        - configEntries:
-          - inherited: true
-            value: value
-            key: key
-          - inherited: true
-            value: value
-            key: key
-          mutableScope: true
-          type: GLOBAL
-          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-      properties:
-        scopedConfigList:
-          description: List of scoped configurations
-          items:
-            $ref: '#/components/schemas/ScopedConfig'
-          type: array
       type: object
   securitySchemes:
     apiKeyAuth:

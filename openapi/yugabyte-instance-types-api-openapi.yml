@@ -274,6 +274,43 @@ paths:
       - Instance Types
 components:
   schemas:
+    VolumeDetails:
+      example:
+        volumeSizeGB: 0
+        volumeType: EBS
+        mountPath: mountPath
+      properties:
+        mountPath:
+          type: string
+        volumeSizeGB:
+          format: int32
+          type: integer
+        volumeType:
+          enum:
+          - EBS
+          - SSD
+          - HDD
+          - NVME
+          type: string
+      required:
+      - mountPath
+      - volumeSizeGB
+      - volumeType
+      type: object
+    YBPSuccess:
+      example:
+        success: true
+        message: message
+      properties:
+        message:
+          description: API response message.
+          readOnly: true
+          type: string
+        success:
+          description: API operation status. A value of true indicates the operation was successful.
+          readOnly: true
+          type: boolean
+      type: object
     InstanceTypeDetails:
       example:
         tenancy: Shared
@@ -304,98 +341,6 @@ components:
           items:
             $ref: '#/components/schemas/VolumeDetails'
           type: array
-      type: object
-    YBPSuccess:
-      example:
-        success: true
-        message: message
-      properties:
-        message:
-          description: API response message.
-          readOnly: true
-          type: string
-        success:
-          description: API operation status. A value of true indicates the operation was successful.
-          readOnly: true
-          type: boolean
-      type: object
-    InstanceTypeResp:
-      description: Details of a cloud instance type
-      example:
-        numCores: 1.4658129805029452
-        idKey:
-          instanceTypeCode: instanceTypeCode
-          providerUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        providerCode: providerCode
-        memSizeGB: 6.027456183070403
-        instanceTypeCode: instanceTypeCode
-        instanceTypeDetails:
-          tenancy: Shared
-          arch: x86_64
-          volumeDetailsList:
-          - volumeSizeGB: 0
-            volumeType: EBS
-            mountPath: mountPath
-          - volumeSizeGB: 0
-            volumeType: EBS
-            mountPath: mountPath
-        active: true
-        providerUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-      properties:
-        active:
-          description: True if the instance is active
-          readOnly: true
-          type: boolean
-        idKey:
-          $ref: '#/components/schemas/InstanceTypeKey'
-        instanceTypeCode:
-          description: Instance type code
-          readOnly: true
-          type: string
-        instanceTypeDetails:
-          $ref: '#/components/schemas/InstanceTypeDetails'
-        memSizeGB:
-          description: The instance's memory size, in gigabytes
-          format: double
-          type: number
-        numCores:
-          description: The instance's number of CPU cores
-          format: double
-          type: number
-        providerCode:
-          description: Cloud provider code
-          readOnly: true
-          type: string
-        providerUuid:
-          description: Provider UUID
-          format: uuid
-          readOnly: true
-          type: string
-      required:
-      - idKey
-      type: object
-    VolumeDetails:
-      example:
-        volumeSizeGB: 0
-        volumeType: EBS
-        mountPath: mountPath
-      properties:
-        mountPath:
-          type: string
-        volumeSizeGB:
-          format: int32
-          type: integer
-        volumeType:
-          enum:
-          - EBS
-          - SSD
-          - HDD
-          - NVME
-          type: string
-      required:
-      - mountPath
-      - volumeSizeGB
-      - volumeType
       type: object
     YBPError:
       description: Generic error response from the YugabyteDB Anywhere API
@@ -491,6 +436,61 @@ components:
       required:
       - instanceTypeCode
       - providerUuid
+      type: object
+    InstanceTypeResp:
+      description: Details of a cloud instance type
+      example:
+        numCores: 1.4658129805029452
+        idKey:
+          instanceTypeCode: instanceTypeCode
+          providerUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        providerCode: providerCode
+        memSizeGB: 6.027456183070403
+        instanceTypeCode: instanceTypeCode
+        instanceTypeDetails:
+          tenancy: Shared
+          arch: x86_64
+          volumeDetailsList:
+          - volumeSizeGB: 0
+            volumeType: EBS
+            mountPath: mountPath
+          - volumeSizeGB: 0
+            volumeType: EBS
+            mountPath: mountPath
+        active: true
+        providerUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        active:
+          description: True if the instance is active
+          readOnly: true
+          type: boolean
+        idKey:
+          $ref: '#/components/schemas/InstanceTypeKey'
+        instanceTypeCode:
+          description: Instance type code
+          readOnly: true
+          type: string
+        instanceTypeDetails:
+          $ref: '#/components/schemas/InstanceTypeDetails'
+        memSizeGB:
+          description: The instance's memory size, in gigabytes
+          format: double
+          type: number
+        numCores:
+          description: The instance's number of CPU cores
+          format: double
+          type: number
+        providerCode:
+          description: Cloud provider code
+          readOnly: true
+          type: string
+        providerUuid:
+          description: Provider UUID
+          format: uuid
+          readOnly: true
+          type: string
+      required:
+      - idKey
       type: object
   securitySchemes:
     apiKeyAuth:

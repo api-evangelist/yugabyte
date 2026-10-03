@@ -144,27 +144,6 @@ paths:
       x-codegen-request-body-name: PlatformBackupRestoreRequest
 components:
   schemas:
-    PlatformInstanceFormData:
-      example:
-        address: address
-        cleanAddress: cleanAddress
-        is_local: true
-        is_leader: true
-      properties:
-        address:
-          type: string
-        cleanAddress:
-          type: string
-        is_leader:
-          type: boolean
-        is_local:
-          type: boolean
-      required:
-      - address
-      - cleanAddress
-      - is_leader
-      - is_local
-      type: object
     PlatformInstance:
       example:
         address: address
@@ -223,6 +202,27 @@ components:
           type: string
       required:
       - backup_file
+      type: object
+    PlatformInstanceFormData:
+      example:
+        address: address
+        cleanAddress: cleanAddress
+        is_local: true
+        is_leader: true
+      properties:
+        address:
+          type: string
+        cleanAddress:
+          type: string
+        is_leader:
+          type: boolean
+        is_local:
+          type: boolean
+      required:
+      - address
+      - cleanAddress
+      - is_leader
+      - is_local
       type: object
   securitySchemes:
     apiKeyAuth:

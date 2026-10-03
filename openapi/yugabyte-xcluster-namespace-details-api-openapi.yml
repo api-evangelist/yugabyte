@@ -64,14 +64,65 @@ paths:
       - Xcluster Namespace Details
 components:
   schemas:
-    ApiError_error:
+    ApiError:
       properties:
-        detail:
-          description: Error message
+        error:
+          $ref: '#/components/schemas/ApiError_error'
+      title: API Error
+      type: object
+    xClusterTableInfoInbound:
+      description: Schema for table details in xCluster replication.
+      example:
+        keyspace: keyspace
+        avg_apply_latency_ms: 6.027456183070403
+        namespace_id: namespace_id
+        avg_throughput_KiBps: 1.4658129805029452
+        stream_id: stream_id
+        table_uuid: table_uuid
+        state: state
+        avg_get_changes_latency_ms: 0.8008281904610115
+        table_name: table_name
+      properties:
+        table_uuid:
+          description: Unique identifier for the table.
           type: string
-        status:
-          description: Error code
-          type: integer
+        namespace_id:
+          description: Unique identifier for the namespace.
+          type: string
+        table_name:
+          description: Name of the table.
+          type: string
+        stream_id:
+          description: Stream ID associated with the table for replication.
+          type: string
+        state:
+          description: The current state of the table.
+          type: string
+        keyspace:
+          description: Keyspace to which the table belongs.
+          type: string
+        avg_get_changes_latency_ms:
+          description: The average time taken by the consumer to fetch changes from the producer
+          format: float64
+          type: number
+        avg_apply_latency_ms:
+          description: The average time taken to apply received changes to the consumer table.
+          format: float64
+          type: number
+        avg_throughput_KiBps:
+          description: The average throughput in KiB per second for this replication stream.
+          format: float64
+          type: number
+      required:
+      - avg_apply_latency_ms
+      - avg_get_changes_latency_ms
+      - avg_throughput_KiBps
+      - keyspace
+      - state
+      - stream_id
+      - table_name
+      - table_uuid
+      title: Table information for a namespace in the replication group.
       type: object
     xCluster_Namespace_Metrics:
       example:
@@ -158,6 +209,33 @@ components:
       - replication_group_id
       title: xCluster Namespace Metrics
       type: object
+    xClusterPlacementLocation:
+      description: Get universe's placement location in xCluster replication.
+      example:
+        cloud: cloud
+        zone: zone
+        region: region
+      properties:
+        cloud:
+          description: Cloud name
+          type: string
+        zone:
+          description: Zone name
+          type: string
+        region:
+          description: Region name
+          type: string
+      title: Get xCluster placement location info.
+      type: object
+    ApiError_error:
+      properties:
+        detail:
+          description: Error message
+          type: string
+        status:
+          description: Error code
+          type: integer
+      type: object
     NamespacesInfo:
       description: A single namespace and its corresponding tables participating in the replication
       example:
@@ -193,84 +271,6 @@ components:
       - namespace
       - table_info_list
       title: Namespace and corresponding tables participating in the replication
-      type: object
-    ApiError:
-      properties:
-        error:
-          $ref: '#/components/schemas/ApiError_error'
-      title: API Error
-      type: object
-    xClusterPlacementLocation:
-      description: Get universe's placement location in xCluster replication.
-      example:
-        cloud: cloud
-        zone: zone
-        region: region
-      properties:
-        cloud:
-          description: Cloud name
-          type: string
-        zone:
-          description: Zone name
-          type: string
-        region:
-          description: Region name
-          type: string
-      title: Get xCluster placement location info.
-      type: object
-    xClusterTableInfoInbound:
-      description: Schema for table details in xCluster replication.
-      example:
-        keyspace: keyspace
-        avg_apply_latency_ms: 6.027456183070403
-        namespace_id: namespace_id
-        avg_throughput_KiBps: 1.4658129805029452
-        stream_id: stream_id
-        table_uuid: table_uuid
-        state: state
-        avg_get_changes_latency_ms: 0.8008281904610115
-        table_name: table_name
-      properties:
-        table_uuid:
-          description: Unique identifier for the table.
-          type: string
-        namespace_id:
-          description: Unique identifier for the namespace.
-          type: string
-        table_name:
-          description: Name of the table.
-          type: string
-        stream_id:
-          description: Stream ID associated with the table for replication.
-          type: string
-        state:
-          description: The current state of the table.
-          type: string
-        keyspace:
-          description: Keyspace to which the table belongs.
-          type: string
-        avg_get_changes_latency_ms:
-          description: The average time taken by the consumer to fetch changes from the producer
-          format: float64
-          type: number
-        avg_apply_latency_ms:
-          description: The average time taken to apply received changes to the consumer table.
-          format: float64
-          type: number
-        avg_throughput_KiBps:
-          description: The average throughput in KiB per second for this replication stream.
-          format: float64
-          type: number
-      required:
-      - avg_apply_latency_ms
-      - avg_get_changes_latency_ms
-      - avg_throughput_KiBps
-      - keyspace
-      - state
-      - stream_id
-      - table_name
-      - table_uuid
-      title: Table information for a namespace in the replication group.
       type: object
   securitySchemes:
     BearerAuthToken:

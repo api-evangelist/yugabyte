@@ -74,49 +74,44 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  parameters:
+    clusterId:
+      name: clusterId
+      in: path
+      required: true
+      description: The unique identifier of the cluster.
+      schema:
+        type: string
+        format: uuid
+      example: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+    backupId:
+      name: backupId
+      in: path
+      required: true
+      description: The unique identifier of the backup snapshot.
+      schema:
+        type: string
+        format: uuid
+      example: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+    projectId:
+      name: projectId
+      in: path
+      required: true
+      description: The unique identifier of the project within the account.
+      schema:
+        type: string
+        format: uuid
+      example: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+    accountId:
+      name: accountId
+      in: path
+      required: true
+      description: The unique identifier of the YugabyteDB Aeon account.
+      schema:
+        type: string
+        format: uuid
+      example: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
   schemas:
-    ClusterEndpoint:
-      type: object
-      description: A connection endpoint for a YugabyteDB Aeon cluster.
-      properties:
-        accessibility_type:
-          type: string
-          description: Network accessibility type for the endpoint.
-          enum:
-          - PUBLIC
-          - PRIVATE
-          example: PUBLIC
-        host:
-          type: string
-          description: Hostname for connecting to the cluster endpoint.
-          example: yugabyte.example.com
-        region:
-          type: string
-          description: Cloud region this endpoint serves.
-          example: us-east-1
-    ErrorResponse:
-      type: object
-      description: Standard error response returned by the API on failure.
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-              description: Machine-readable error code.
-              example: OK
-            message:
-              type: string
-              description: Human-readable description of the error.
-              example: Example message
-            status:
-              type: integer
-              description: HTTP status code.
-              example: 100
-          example:
-            code: OK
-            message: Example message
-            status: 100
     Cluster:
       type: object
       description: A YugabyteDB Aeon managed database cluster.
@@ -164,6 +159,80 @@ components:
           format: date-time
           description: Timestamp when the cluster was last updated.
           example: '2026-05-03T12:00:00Z'
+    ErrorResponse:
+      type: object
+      description: Standard error response returned by the API on failure.
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: Machine-readable error code.
+              example: OK
+            message:
+              type: string
+              description: Human-readable description of the error.
+              example: Example message
+            status:
+              type: integer
+              description: HTTP status code.
+              example: 100
+          example:
+            code: OK
+            message: Example message
+            status: 100
+    NodeInfo:
+      type: object
+      description: Per-node compute and storage resource allocation.
+      properties:
+        num_cores:
+          type: integer
+          description: Number of vCPU cores per node.
+          example: 10
+        memory_mb:
+          type: integer
+          description: Memory in megabytes per node.
+          example: 100
+        disk_size_gb:
+          type: integer
+          description: Storage disk size in gigabytes per node.
+          example: 10
+    ClusterEndpoint:
+      type: object
+      description: A connection endpoint for a YugabyteDB Aeon cluster.
+      properties:
+        accessibility_type:
+          type: string
+          description: Network accessibility type for the endpoint.
+          enum:
+          - PUBLIC
+          - PRIVATE
+          example: PUBLIC
+        host:
+          type: string
+          description: Hostname for connecting to the cluster endpoint.
+          example: yugabyte.example.com
+        region:
+          type: string
+          description: Cloud region this endpoint serves.
+          example: us-east-1
+    CloudInfo:
+      type: object
+      description: Cloud provider and region configuration for a cluster.
+      properties:
+        code:
+          type: string
+          description: Cloud provider code.
+          enum:
+          - AWS
+          - GCP
+          - AZURE
+          example: AWS
+        region:
+          type: string
+          description: Cloud provider region identifier (e.g., us-east-1 for AWS, us-east1 for GCP, eastus for Azure).
+          example: us-east-1
     ClusterInfo:
       type: object
       description: Compute and storage configuration for a cluster.
@@ -195,75 +264,6 @@ components:
           type: string
           description: YugabyteDB software version to deploy on the cluster.
           example: 2.20.0.0
-    CloudInfo:
-      type: object
-      description: Cloud provider and region configuration for a cluster.
-      properties:
-        code:
-          type: string
-          description: Cloud provider code.
-          enum:
-          - AWS
-          - GCP
-          - AZURE
-          example: AWS
-        region:
-          type: string
-          description: Cloud provider region identifier (e.g., us-east-1 for AWS, us-east1 for GCP, eastus for Azure).
-          example: us-east-1
-    NodeInfo:
-      type: object
-      description: Per-node compute and storage resource allocation.
-      properties:
-        num_cores:
-          type: integer
-          description: Number of vCPU cores per node.
-          example: 10
-        memory_mb:
-          type: integer
-          description: Memory in megabytes per node.
-          example: 100
-        disk_size_gb:
-          type: integer
-          description: Storage disk size in gigabytes per node.
-          example: 10
-  parameters:
-    backupId:
-      name: backupId
-      in: path
-      required: true
-      description: The unique identifier of the backup snapshot.
-      schema:
-        type: string
-        format: uuid
-      example: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-    projectId:
-      name: projectId
-      in: path
-      required: true
-      description: The unique identifier of the project within the account.
-      schema:
-        type: string
-        format: uuid
-      example: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-    accountId:
-      name: accountId
-      in: path
-      required: true
-      description: The unique identifier of the YugabyteDB Aeon account.
-      schema:
-        type: string
-        format: uuid
-      example: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-    clusterId:
-      name: clusterId
-      in: path
-      required: true
-      description: The unique identifier of the cluster.
-      schema:
-        type: string
-        format: uuid
-      example: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
   responses:
     NotFound:
       description: The requested resource was not found.
@@ -280,21 +280,6 @@ components:
                   code: OK
                   message: Example message
                   status: 100
-    Unauthorized:
-      description: The API key is missing, invalid, or expired.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-          examples:
-            UnauthorizedExample:
-              summary: Default Unauthorized response
-              x-microcks-default: true
-              value:
-                error:
-                  code: OK
-                  message: Example message
-                  status: 100
     BadRequest:
       description: The request was malformed or contained invalid parameters.
       content:
@@ -304,6 +289,21 @@ components:
           examples:
             BadRequestExample:
               summary: Default BadRequest response
+              x-microcks-default: true
+              value:
+                error:
+                  code: OK
+                  message: Example message
+                  status: 100
+    Unauthorized:
+      description: The API key is missing, invalid, or expired.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          examples:
+            UnauthorizedExample:
+              summary: Default Unauthorized response
               x-microcks-default: true
               value:
                 error:

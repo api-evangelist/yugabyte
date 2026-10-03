@@ -56,12 +56,6 @@ paths:
       - Backup Info
 components:
   schemas:
-    ApiError:
-      properties:
-        error:
-          $ref: '#/components/schemas/ApiError_error'
-      title: API Error
-      type: object
     BackupDetails:
       description: Details of backup enabled on databases in YugabyteDB cluster
       example:
@@ -150,6 +144,12 @@ components:
       required:
       - backup
       title: Backup Details
+      type: object
+    ApiError:
+      properties:
+        error:
+          $ref: '#/components/schemas/ApiError_error'
+      title: API Error
       type: object
   securitySchemes:
     BearerAuthToken:

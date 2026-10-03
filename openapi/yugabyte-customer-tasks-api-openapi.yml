@@ -281,6 +281,76 @@ paths:
       x-codegen-request-body-name: PageTasksRequest
 components:
   schemas:
+    YBPTask:
+      example:
+        taskUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        resourceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        resourceUUID:
+          description: UUID of the resource being modified by the task
+          format: uuid
+          readOnly: true
+          type: string
+        taskUUID:
+          description: Task UUID
+          format: uuid
+          readOnly: true
+          type: string
+      type: object
+    TaskPagedApiResponse:
+      example:
+        entities:
+        - retryable: true
+          abortable: true
+          typeName: Software Upgrade
+          percentComplete: 100
+          title: 'Deleted Universe : test-universe'
+          type: Delete
+          targetUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          target: Universe
+          completionTime: 2022-12-12 13:07:18+00:00
+          createTime: 2022-12-12 13:07:18+00:00
+          canRollback: true
+          correlationId: correlationId
+          userEmail: userEmail
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          status: Complete
+        - retryable: true
+          abortable: true
+          typeName: Software Upgrade
+          percentComplete: 100
+          title: 'Deleted Universe : test-universe'
+          type: Delete
+          targetUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          target: Universe
+          completionTime: 2022-12-12 13:07:18+00:00
+          createTime: 2022-12-12 13:07:18+00:00
+          canRollback: true
+          correlationId: correlationId
+          userEmail: userEmail
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          status: Complete
+        hasPrev: true
+        hasNext: true
+        totalCount: 0
+      properties:
+        entities:
+          items:
+            $ref: '#/components/schemas/CustomerTaskData'
+          type: array
+        hasNext:
+          type: boolean
+        hasPrev:
+          type: boolean
+        totalCount:
+          format: int32
+          type: integer
+      required:
+      - entities
+      - hasNext
+      - hasPrev
+      - totalCount
+      type: object
     FailedSubtasks:
       description: Failed Subtasks
       example:
@@ -398,6 +468,104 @@ components:
           description: API operation status. A value of true indicates the operation was successful.
           readOnly: true
           type: boolean
+      type: object
+    SubtaskData:
+      description: Detailed subtask data
+      example:
+        errorString: errorString
+        creationTime: 2022-12-12 13:07:18+00:00
+        subTaskUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        subTaskType: subTaskType
+        errorCode: UNKNOWN_ERROR
+        subTaskGroupType: subTaskGroupType
+        subTaskState: subTaskState
+      properties:
+        creationTime:
+          description: Creation time (unix timestamp) of the task
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          type: string
+        errorCode:
+          description: 'WARNING: This is a preview API that could change. Subtask error code'
+          enum:
+          - UNKNOWN_ERROR
+          - INTERNAL_ERROR
+          - PLATFORM_SHUTDOWN
+          - PLATFORM_RESTARTED
+          - INSTALLATION_ERROR
+          - SERVICE_START_ERROR
+          - CONNECTION_ERROR
+          - TIMED_OUT
+          type: string
+        errorString:
+          description: Failed SubTask Error message
+          type: string
+        subTaskGroupType:
+          description: Failed SubTask Group Type
+          type: string
+        subTaskState:
+          description: Failed SubTask State
+          type: string
+        subTaskType:
+          description: Failed SubTask Type
+          type: string
+        subTaskUUID:
+          description: Failed SubTask UUID
+          format: uuid
+          type: string
+      type: object
+    TaskPagedApiQuery:
+      example:
+        filter:
+          targetUUIDList:
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          targetList:
+          - Universe
+          - Universe
+          dateRangeEnd: 2022-12-12 13:07:18+00:00
+          typeList:
+          - Create
+          - Create
+          typeNameList:
+          - typeNameList
+          - typeNameList
+          dateRangeStart: 2022-12-12 13:07:18+00:00
+          status:
+          - Created
+          - Created
+        offset: 6
+        needTotalCount: true
+        limit: 0
+        sortBy: createTime
+        direction: ASC
+      properties:
+        direction:
+          enum:
+          - ASC
+          - DESC
+          type: string
+        filter:
+          $ref: '#/components/schemas/TaskApiFilter'
+        limit:
+          format: int32
+          type: integer
+        needTotalCount:
+          type: boolean
+        offset:
+          format: int32
+          type: integer
+        sortBy:
+          enum:
+          - createTime
+          type: string
+      required:
+      - direction
+      - filter
+      - limit
+      - needTotalCount
+      - offset
+      - sortBy
       type: object
     TaskApiFilter:
       example:
@@ -588,174 +756,6 @@ components:
       - targetUUIDList
       - typeList
       - typeNameList
-      type: object
-    TaskPagedApiQuery:
-      example:
-        filter:
-          targetUUIDList:
-          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          targetList:
-          - Universe
-          - Universe
-          dateRangeEnd: 2022-12-12 13:07:18+00:00
-          typeList:
-          - Create
-          - Create
-          typeNameList:
-          - typeNameList
-          - typeNameList
-          dateRangeStart: 2022-12-12 13:07:18+00:00
-          status:
-          - Created
-          - Created
-        offset: 6
-        needTotalCount: true
-        limit: 0
-        sortBy: createTime
-        direction: ASC
-      properties:
-        direction:
-          enum:
-          - ASC
-          - DESC
-          type: string
-        filter:
-          $ref: '#/components/schemas/TaskApiFilter'
-        limit:
-          format: int32
-          type: integer
-        needTotalCount:
-          type: boolean
-        offset:
-          format: int32
-          type: integer
-        sortBy:
-          enum:
-          - createTime
-          type: string
-      required:
-      - direction
-      - filter
-      - limit
-      - needTotalCount
-      - offset
-      - sortBy
-      type: object
-    TaskPagedApiResponse:
-      example:
-        entities:
-        - retryable: true
-          abortable: true
-          typeName: Software Upgrade
-          percentComplete: 100
-          title: 'Deleted Universe : test-universe'
-          type: Delete
-          targetUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          target: Universe
-          completionTime: 2022-12-12 13:07:18+00:00
-          createTime: 2022-12-12 13:07:18+00:00
-          canRollback: true
-          correlationId: correlationId
-          userEmail: userEmail
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          status: Complete
-        - retryable: true
-          abortable: true
-          typeName: Software Upgrade
-          percentComplete: 100
-          title: 'Deleted Universe : test-universe'
-          type: Delete
-          targetUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          target: Universe
-          completionTime: 2022-12-12 13:07:18+00:00
-          createTime: 2022-12-12 13:07:18+00:00
-          canRollback: true
-          correlationId: correlationId
-          userEmail: userEmail
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          status: Complete
-        hasPrev: true
-        hasNext: true
-        totalCount: 0
-      properties:
-        entities:
-          items:
-            $ref: '#/components/schemas/CustomerTaskData'
-          type: array
-        hasNext:
-          type: boolean
-        hasPrev:
-          type: boolean
-        totalCount:
-          format: int32
-          type: integer
-      required:
-      - entities
-      - hasNext
-      - hasPrev
-      - totalCount
-      type: object
-    SubtaskData:
-      description: Detailed subtask data
-      example:
-        errorString: errorString
-        creationTime: 2022-12-12 13:07:18+00:00
-        subTaskUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        subTaskType: subTaskType
-        errorCode: UNKNOWN_ERROR
-        subTaskGroupType: subTaskGroupType
-        subTaskState: subTaskState
-      properties:
-        creationTime:
-          description: Creation time (unix timestamp) of the task
-          example: 2022-12-12 13:07:18+00:00
-          format: date-time
-          type: string
-        errorCode:
-          description: 'WARNING: This is a preview API that could change. Subtask error code'
-          enum:
-          - UNKNOWN_ERROR
-          - INTERNAL_ERROR
-          - PLATFORM_SHUTDOWN
-          - PLATFORM_RESTARTED
-          - INSTALLATION_ERROR
-          - SERVICE_START_ERROR
-          - CONNECTION_ERROR
-          - TIMED_OUT
-          type: string
-        errorString:
-          description: Failed SubTask Error message
-          type: string
-        subTaskGroupType:
-          description: Failed SubTask Group Type
-          type: string
-        subTaskState:
-          description: Failed SubTask State
-          type: string
-        subTaskType:
-          description: Failed SubTask Type
-          type: string
-        subTaskUUID:
-          description: Failed SubTask UUID
-          format: uuid
-          type: string
-      type: object
-    YBPTask:
-      example:
-        taskUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        resourceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-      properties:
-        resourceUUID:
-          description: UUID of the resource being modified by the task
-          format: uuid
-          readOnly: true
-          type: string
-        taskUUID:
-          description: Task UUID
-          format: uuid
-          readOnly: true
-          type: string
       type: object
   securitySchemes:
     apiKeyAuth:

@@ -229,107 +229,6 @@ paths:
       x-codegen-request-body-name: accesskey
 components:
   schemas:
-    AccessKeyFormData:
-      example:
-        expirationThresholdDays: 0
-        keyCode: keyCode
-        keyContent: keyContent
-        keyType: PUBLIC
-      properties:
-        expirationThresholdDays:
-          format: int32
-          type: integer
-        keyCode:
-          type: string
-        keyContent:
-          type: string
-        keyType:
-          enum:
-          - PUBLIC
-          - PRIVATE
-          type: string
-      required:
-      - keyCode
-      - keyContent
-      - keyType
-      type: object
-    YBPSuccess:
-      example:
-        success: true
-        message: message
-      properties:
-        message:
-          description: API response message.
-          readOnly: true
-          type: string
-        success:
-          description: API operation status. A value of true indicates the operation was successful.
-          readOnly: true
-          type: boolean
-      type: object
-    AccessKeyId:
-      example:
-        keyCode: keyCode
-        providerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-      properties:
-        keyCode:
-          type: string
-        providerUUID:
-          format: uuid
-          type: string
-      type: object
-    AccessKey:
-      description: Access key for the cloud provider. This helps to authenticate the user and get access to the provider.
-      example:
-        idKey:
-          keyCode: keyCode
-          providerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        creationDate: 2022-12-12 13:07:18+00:00
-        keyInfo:
-          sshPort: 6
-          nodeExporterPort: 0
-          installNodeExporter: true
-          skipProvisioning: true
-          nodeExporterUser: nodeExporterUser
-          provisionInstanceScript: provisionInstanceScript
-          passwordlessSudoAccess: true
-          publicKey: publicKey
-          vaultFile: vaultFile
-          sshPrivateKeyContent: sshPrivateKeyContent
-          privateKey: privateKey
-          setUpChrony: true
-          vaultPasswordFile: vaultPasswordFile
-          ntpServers:
-          - ntpServers
-          - ntpServers
-          skipKeyValidateAndUpload: true
-          sshUser: sshUser
-          deleteRemote: true
-          showSetUpChrony: true
-          airGapInstall: true
-          keyPairName: keyPairName
-          managementState: YBAManaged
-        expirationDate: 2022-12-12 13:07:18+00:00
-      properties:
-        creationDate:
-          description: Creation date of key
-          example: 2022-12-12 13:07:18+00:00
-          format: date-time
-          readOnly: true
-          type: string
-        expirationDate:
-          description: Expiration date of key
-          example: 2022-12-12 13:07:18+00:00
-          format: date-time
-          type: string
-        idKey:
-          $ref: '#/components/schemas/AccessKeyId'
-        keyInfo:
-          $ref: '#/components/schemas/KeyInfo'
-      required:
-      - idKey
-      - keyInfo
-      type: object
     KeyInfo:
       example:
         sshPort: 6
@@ -407,6 +306,107 @@ components:
         vaultFile:
           type: string
         vaultPasswordFile:
+          type: string
+      type: object
+    AccessKeyFormData:
+      example:
+        expirationThresholdDays: 0
+        keyCode: keyCode
+        keyContent: keyContent
+        keyType: PUBLIC
+      properties:
+        expirationThresholdDays:
+          format: int32
+          type: integer
+        keyCode:
+          type: string
+        keyContent:
+          type: string
+        keyType:
+          enum:
+          - PUBLIC
+          - PRIVATE
+          type: string
+      required:
+      - keyCode
+      - keyContent
+      - keyType
+      type: object
+    AccessKey:
+      description: Access key for the cloud provider. This helps to authenticate the user and get access to the provider.
+      example:
+        idKey:
+          keyCode: keyCode
+          providerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        creationDate: 2022-12-12 13:07:18+00:00
+        keyInfo:
+          sshPort: 6
+          nodeExporterPort: 0
+          installNodeExporter: true
+          skipProvisioning: true
+          nodeExporterUser: nodeExporterUser
+          provisionInstanceScript: provisionInstanceScript
+          passwordlessSudoAccess: true
+          publicKey: publicKey
+          vaultFile: vaultFile
+          sshPrivateKeyContent: sshPrivateKeyContent
+          privateKey: privateKey
+          setUpChrony: true
+          vaultPasswordFile: vaultPasswordFile
+          ntpServers:
+          - ntpServers
+          - ntpServers
+          skipKeyValidateAndUpload: true
+          sshUser: sshUser
+          deleteRemote: true
+          showSetUpChrony: true
+          airGapInstall: true
+          keyPairName: keyPairName
+          managementState: YBAManaged
+        expirationDate: 2022-12-12 13:07:18+00:00
+      properties:
+        creationDate:
+          description: Creation date of key
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          readOnly: true
+          type: string
+        expirationDate:
+          description: Expiration date of key
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          type: string
+        idKey:
+          $ref: '#/components/schemas/AccessKeyId'
+        keyInfo:
+          $ref: '#/components/schemas/KeyInfo'
+      required:
+      - idKey
+      - keyInfo
+      type: object
+    YBPSuccess:
+      example:
+        success: true
+        message: message
+      properties:
+        message:
+          description: API response message.
+          readOnly: true
+          type: string
+        success:
+          description: API operation status. A value of true indicates the operation was successful.
+          readOnly: true
+          type: boolean
+      type: object
+    AccessKeyId:
+      example:
+        keyCode: keyCode
+        providerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        keyCode:
+          type: string
+        providerUUID:
+          format: uuid
           type: string
       type: object
   securitySchemes:

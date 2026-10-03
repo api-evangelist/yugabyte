@@ -326,27 +326,179 @@ paths:
       x-codegen-request-body-name: Users
 components:
   schemas:
-    ResourceGroup:
+    RoleResourceDefinition:
+      description: Defines the association of Role to Resource Groups.
       example:
-        resourceDefinitionSet:
-        - allowAll: true
-          resourceUUIDSet:
-          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          resourceType: UNIVERSE
-        - allowAll: true
-          resourceUUIDSet:
-          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          resourceType: UNIVERSE
+        resourceGroup:
+          resourceDefinitionSet:
+          - allowAll: true
+            resourceUUIDSet:
+            - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            resourceType: UNIVERSE
+          - allowAll: true
+            resourceUUIDSet:
+            - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            resourceType: UNIVERSE
+        roleUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
-        resourceDefinitionSet:
-          items:
-            $ref: '#/components/schemas/ResourceDefinition'
-          type: array
-          uniqueItems: true
+        resourceGroup:
+          $ref: '#/components/schemas/ResourceGroup'
+        roleUUID:
+          description: UUID of the role to attach resource group to.
+          format: uuid
+          type: string
       required:
-      - resourceDefinitionSet
+      - roleUUID
+      type: object
+    UserPasswordChangeFormData:
+      description: User registration data. The API and UI use this to validate form data.
+      example:
+        newPassword: Test@1234
+        currentPassword: Test@1234
+      properties:
+        currentPassword:
+          description: Current Password
+          example: Test@1234
+          type: string
+        newPassword:
+          description: New Password
+          example: Test@1234
+          type: string
+      type: object
+    UserProfileData:
+      description: User profile data. The API and UI use this to validate form data.
+      example:
+        password: Test@1234
+        role: Admin
+        timezone: America/Toronto
+        confirmPassword: Test@1234
+      properties:
+        confirmPassword:
+          description: Password confirmation
+          example: Test@1234
+          type: string
+        password:
+          description: Password
+          example: Test@1234
+          type: string
+        role:
+          description: User role
+          enum:
+          - ConnectOnly
+          - ReadOnly
+          - BackupAdmin
+          - Admin
+          - SuperAdmin
+          example: Admin
+          type: string
+        timezone:
+          description: User timezone
+          example: America/Toronto
+          type: string
+      required:
+      - role
+      type: object
+    UserOIDCAuthToken:
+      example:
+        oidcAuthToken: oidcAuthToken
+      properties:
+        oidcAuthToken:
+          description: User OIDC Auth token
+          type: string
+      type: object
+    YBPSuccess:
+      example:
+        success: true
+        message: message
+      properties:
+        message:
+          description: API response message.
+          readOnly: true
+          type: string
+        success:
+          description: API operation status. A value of true indicates the operation was successful.
+          readOnly: true
+          type: boolean
+      type: object
+    UserRegistrationData:
+      description: User registration data. The API and UI use this to validate form data.
+      example:
+        features:
+          key: '{}'
+        password: Test@1234
+        role: Admin
+        timezone: America/Toronto
+        confirmPassword: Test@1234
+        roleResourceDefinitions:
+        - resourceGroup:
+            resourceDefinitionSet:
+            - allowAll: true
+              resourceUUIDSet:
+              - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              resourceType: UNIVERSE
+            - allowAll: true
+              resourceUUIDSet:
+              - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              resourceType: UNIVERSE
+          roleUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - resourceGroup:
+            resourceDefinitionSet:
+            - allowAll: true
+              resourceUUIDSet:
+              - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              resourceType: UNIVERSE
+            - allowAll: true
+              resourceUUIDSet:
+              - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              resourceType: UNIVERSE
+          roleUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        email: test@example.com
+      properties:
+        confirmPassword:
+          description: Password confirmation
+          example: Test@1234
+          type: string
+        email:
+          description: Email address
+          example: test@example.com
+          type: string
+        features:
+          additionalProperties:
+            properties: {}
+            type: object
+          description: User features
+          type: object
+        password:
+          description: Password
+          example: Test@1234
+          type: string
+        role:
+          description: <b style="color:#ff0000">Deprecated since YBA version 2.19.3.0.</b> Use field roleResourceDefinitions instead.
+          enum:
+          - ConnectOnly
+          - ReadOnly
+          - BackupAdmin
+          - Admin
+          - SuperAdmin
+          example: Admin
+          type: string
+        roleResourceDefinitions:
+          description: List of roles and resource groups defined for user.
+          items:
+            $ref: '#/components/schemas/RoleResourceDefinition'
+          type: array
+        timezone:
+          description: User timezone
+          example: America/Toronto
+          type: string
+      required:
+      - email
       type: object
     Users:
       description: A user associated with a customer
@@ -431,179 +583,27 @@ components:
       - groupMemberships
       - primary
       type: object
-    UserProfileData:
-      description: User profile data. The API and UI use this to validate form data.
+    ResourceGroup:
       example:
-        password: Test@1234
-        role: Admin
-        timezone: America/Toronto
-        confirmPassword: Test@1234
+        resourceDefinitionSet:
+        - allowAll: true
+          resourceUUIDSet:
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          resourceType: UNIVERSE
+        - allowAll: true
+          resourceUUIDSet:
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          resourceType: UNIVERSE
       properties:
-        confirmPassword:
-          description: Password confirmation
-          example: Test@1234
-          type: string
-        password:
-          description: Password
-          example: Test@1234
-          type: string
-        role:
-          description: User role
-          enum:
-          - ConnectOnly
-          - ReadOnly
-          - BackupAdmin
-          - Admin
-          - SuperAdmin
-          example: Admin
-          type: string
-        timezone:
-          description: User timezone
-          example: America/Toronto
-          type: string
-      required:
-      - role
-      type: object
-    YBPSuccess:
-      example:
-        success: true
-        message: message
-      properties:
-        message:
-          description: API response message.
-          readOnly: true
-          type: string
-        success:
-          description: API operation status. A value of true indicates the operation was successful.
-          readOnly: true
-          type: boolean
-      type: object
-    UserOIDCAuthToken:
-      example:
-        oidcAuthToken: oidcAuthToken
-      properties:
-        oidcAuthToken:
-          description: User OIDC Auth token
-          type: string
-      type: object
-    UserRegistrationData:
-      description: User registration data. The API and UI use this to validate form data.
-      example:
-        features:
-          key: '{}'
-        password: Test@1234
-        role: Admin
-        timezone: America/Toronto
-        confirmPassword: Test@1234
-        roleResourceDefinitions:
-        - resourceGroup:
-            resourceDefinitionSet:
-            - allowAll: true
-              resourceUUIDSet:
-              - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-              - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-              resourceType: UNIVERSE
-            - allowAll: true
-              resourceUUIDSet:
-              - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-              - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-              resourceType: UNIVERSE
-          roleUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        - resourceGroup:
-            resourceDefinitionSet:
-            - allowAll: true
-              resourceUUIDSet:
-              - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-              - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-              resourceType: UNIVERSE
-            - allowAll: true
-              resourceUUIDSet:
-              - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-              - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-              resourceType: UNIVERSE
-          roleUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        email: test@example.com
-      properties:
-        confirmPassword:
-          description: Password confirmation
-          example: Test@1234
-          type: string
-        email:
-          description: Email address
-          example: test@example.com
-          type: string
-        features:
-          additionalProperties:
-            properties: {}
-            type: object
-          description: User features
-          type: object
-        password:
-          description: Password
-          example: Test@1234
-          type: string
-        role:
-          description: <b style="color:#ff0000">Deprecated since YBA version 2.19.3.0.</b> Use field roleResourceDefinitions instead.
-          enum:
-          - ConnectOnly
-          - ReadOnly
-          - BackupAdmin
-          - Admin
-          - SuperAdmin
-          example: Admin
-          type: string
-        roleResourceDefinitions:
-          description: List of roles and resource groups defined for user.
+        resourceDefinitionSet:
           items:
-            $ref: '#/components/schemas/RoleResourceDefinition'
+            $ref: '#/components/schemas/ResourceDefinition'
           type: array
-        timezone:
-          description: User timezone
-          example: America/Toronto
-          type: string
+          uniqueItems: true
       required:
-      - email
-      type: object
-    UserPasswordChangeFormData:
-      description: User registration data. The API and UI use this to validate form data.
-      example:
-        newPassword: Test@1234
-        currentPassword: Test@1234
-      properties:
-        currentPassword:
-          description: Current Password
-          example: Test@1234
-          type: string
-        newPassword:
-          description: New Password
-          example: Test@1234
-          type: string
-      type: object
-    RoleResourceDefinition:
-      description: Defines the association of Role to Resource Groups.
-      example:
-        resourceGroup:
-          resourceDefinitionSet:
-          - allowAll: true
-            resourceUUIDSet:
-            - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            resourceType: UNIVERSE
-          - allowAll: true
-            resourceUUIDSet:
-            - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            resourceType: UNIVERSE
-        roleUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-      properties:
-        resourceGroup:
-          $ref: '#/components/schemas/ResourceGroup'
-        roleUUID:
-          description: UUID of the role to attach resource group to.
-          format: uuid
-          type: string
-      required:
-      - roleUUID
+      - resourceDefinitionSet
       type: object
     ResourceDefinition:
       example:

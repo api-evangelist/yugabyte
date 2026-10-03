@@ -337,6 +337,79 @@ paths:
         required: true
 components:
   schemas:
+    SessionInfo:
+      description: Session information
+      properties:
+        apiToken:
+          description: API token
+          type: string
+        authToken:
+          description: Auth token
+          type: string
+        customerUUID:
+          description: Customer UUID
+          format: uuid
+          type: string
+        userUUID:
+          description: User UUID
+          format: uuid
+          type: string
+      type: object
+    YBPTask:
+      example:
+        taskUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        resourceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        resourceUUID:
+          description: UUID of the resource being modified by the task
+          format: uuid
+          readOnly: true
+          type: string
+        taskUUID:
+          description: Task UUID
+          format: uuid
+          readOnly: true
+          type: string
+      type: object
+    DummyBody:
+      description: Dummy value to work around platform bug PLAT-2076
+      properties:
+        dummy:
+          format: int32
+          type: integer
+      type: object
+    UniverseDetailSubset:
+      description: A small subset of universe information
+      example:
+        universePaused: true
+        updateSucceeded: true
+        name: name
+        updateInProgress: true
+        creationDate: 1
+        uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        creationDate:
+          format: int64
+          type: integer
+        name:
+          type: string
+        universePaused:
+          type: boolean
+        updateInProgress:
+          type: boolean
+        updateSucceeded:
+          type: boolean
+        uuid:
+          format: uuid
+          type: string
+      required:
+      - creationDate
+      - name
+      - universePaused
+      - updateInProgress
+      - updateSucceeded
+      - uuid
+      type: object
     CustomerConfig:
       description: Customer configuration. Includes storage, alerts, password policy, and call-home level.
       example:
@@ -401,81 +474,6 @@ components:
       - kubernetesOperatorControlled
       - name
       - type
-      type: object
-    SessionInfo:
-      description: Session information
-      properties:
-        apiToken:
-          description: API token
-          type: string
-        authToken:
-          description: Auth token
-          type: string
-        customerUUID:
-          description: Customer UUID
-          format: uuid
-          type: string
-        userUUID:
-          description: User UUID
-          format: uuid
-          type: string
-      type: object
-    CustomerConfigData:
-      type: object
-    DummyBody:
-      description: Dummy value to work around platform bug PLAT-2076
-      properties:
-        dummy:
-          format: int32
-          type: integer
-      type: object
-    UniverseDetailSubset:
-      description: A small subset of universe information
-      example:
-        universePaused: true
-        updateSucceeded: true
-        name: name
-        updateInProgress: true
-        creationDate: 1
-        uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-      properties:
-        creationDate:
-          format: int64
-          type: integer
-        name:
-          type: string
-        universePaused:
-          type: boolean
-        updateInProgress:
-          type: boolean
-        updateSucceeded:
-          type: boolean
-        uuid:
-          format: uuid
-          type: string
-      required:
-      - creationDate
-      - name
-      - universePaused
-      - updateInProgress
-      - updateSucceeded
-      - uuid
-      type: object
-    YBPTask:
-      example:
-        taskUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        resourceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-      properties:
-        resourceUUID:
-          description: UUID of the resource being modified by the task
-          format: uuid
-          readOnly: true
-          type: string
-        taskUUID:
-          description: Task UUID
-          format: uuid
-          readOnly: true
-          type: string
       type: object
     CustomerConfigUI:
       description: Customer configuration with additional information. Includes storage, alerts, password policy, and call-home level.
@@ -553,6 +551,8 @@ components:
       - kubernetesOperatorControlled
       - name
       - type
+      type: object
+    CustomerConfigData:
       type: object
   securitySchemes:
     apiKeyAuth:

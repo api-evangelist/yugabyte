@@ -167,6 +167,33 @@ paths:
       - application/json
 components:
   schemas:
+    RoleResourceDefinition:
+      description: Defines the association of Role to Resource Groups. Part of AuthGroupToRolesMapping.
+      example:
+        resource_group:
+          resource_definition_set:
+          - resource_type: UNIVERSE
+            resource_uuid_set:
+            - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            allow_all: true
+          - resource_type: UNIVERSE
+            resource_uuid_set:
+            - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            allow_all: true
+        role_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        role_uuid:
+          description: UUID of the role to attach resource group to.
+          format: uuid
+          type: string
+        resource_group:
+          $ref: '#/components/schemas/ResourceGroup'
+      required:
+      - role_uuid
+      title: RoleResourceDefinition.
+      type: object
     ResourceGroup:
       description: Resource group definition for the role. Only applicable for custom roles.
       example:
@@ -189,6 +216,38 @@ components:
       required:
       - resource_definition_set
       title: ResourceGroup
+      type: object
+    ResourceDefinition:
+      description: Resource definition containing the resource type and resource set.
+      example:
+        resource_type: UNIVERSE
+        resource_uuid_set:
+        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        allow_all: true
+      properties:
+        resource_type:
+          description: Resource Type
+          enum:
+          - UNIVERSE
+          - ROLE
+          - USER
+          - OTHER
+          type: string
+        allow_all:
+          description: Select all resources (including future resources)
+          type: boolean
+        resource_uuid_set:
+          default: []
+          description: Set of resource UUIDs
+          items:
+            format: uuid
+            type: string
+          type: array
+      required:
+      - allow_all
+      - resource_type
+      title: ResourceDefinition
       type: object
     AuthGroupToRolesMapping:
       description: 'AuthGroupToRolesMapping
@@ -259,65 +318,6 @@ components:
       - role_resource_definitions
       - type
       title: AuthGroupToRolesMapping
-      type: object
-    RoleResourceDefinition:
-      description: Defines the association of Role to Resource Groups. Part of AuthGroupToRolesMapping.
-      example:
-        resource_group:
-          resource_definition_set:
-          - resource_type: UNIVERSE
-            resource_uuid_set:
-            - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            allow_all: true
-          - resource_type: UNIVERSE
-            resource_uuid_set:
-            - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            allow_all: true
-        role_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-      properties:
-        role_uuid:
-          description: UUID of the role to attach resource group to.
-          format: uuid
-          type: string
-        resource_group:
-          $ref: '#/components/schemas/ResourceGroup'
-      required:
-      - role_uuid
-      title: RoleResourceDefinition.
-      type: object
-    ResourceDefinition:
-      description: Resource definition containing the resource type and resource set.
-      example:
-        resource_type: UNIVERSE
-        resource_uuid_set:
-        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        allow_all: true
-      properties:
-        resource_type:
-          description: Resource Type
-          enum:
-          - UNIVERSE
-          - ROLE
-          - USER
-          - OTHER
-          type: string
-        allow_all:
-          description: Select all resources (including future resources)
-          type: boolean
-        resource_uuid_set:
-          default: []
-          description: Set of resource UUIDs
-          items:
-            format: uuid
-            type: string
-          type: array
-      required:
-      - allow_all
-      - resource_type
-      title: ResourceDefinition
       type: object
   requestBodies:
     AuthGroupToRolesMappingReq:
