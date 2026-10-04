@@ -288,6 +288,64 @@ components:
             $ref: '#/components/schemas/ContinuousRestoreSpec'
       required: true
   schemas:
+    ContinuousBackup:
+      description: 'ContinuousBackup
+
+
+        Continuous Backup object which contains the info for a configuration.
+
+        '
+      example:
+        spec:
+          frequency_time_unit: NANOSECONDS
+          backup_dir: yba_backups
+          storage_config_uuid: f33e3c9b-75ab-4c30-80ad-cba85646ea39
+          num_backups: 6
+          frequency: 0
+        info:
+          storage_location: s3://backup_storage_path/YBA_1.2.3.4
+          uuid: f33e3c9b-75ab-4c30-80ad-cba85646ea39
+          last_backup: 2022-12-12 13:07:18+00:00
+      properties:
+        info:
+          $ref: '#/components/schemas/ContinuousBackupInfo'
+        spec:
+          $ref: '#/components/schemas/ContinuousBackupSpec'
+      title: ContinuousBackup
+      type: object
+    ContinuousBackupInfo:
+      description: 'ContinuousBackupInfo
+
+
+        These are read-only system generated properties of a continuous backup configuration. Returned as part of the Continuous Backup resource.
+
+        '
+      example:
+        storage_location: s3://backup_storage_path/YBA_1.2.3.4
+        uuid: f33e3c9b-75ab-4c30-80ad-cba85646ea39
+        last_backup: 2022-12-12 13:07:18+00:00
+      properties:
+        uuid:
+          description: UUID of the Continuous Backup Config
+          example: f33e3c9b-75ab-4c30-80ad-cba85646ea39
+          format: uuid
+          readOnly: true
+          type: string
+        storage_location:
+          description: bucket or directory where backups are stored
+          example: s3://backup_storage_path/YBA_1.2.3.4
+          readOnly: true
+          type: string
+        last_backup:
+          description: time of last backup stored
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          readOnly: true
+          type: string
+      required:
+      - uuid
+      title: ContinuousBackupInfo
+      type: object
     ContinuousRestoreSpec:
       description: 'ContinuousRestoreSpec
 
@@ -333,64 +391,6 @@ components:
       - YEARS
       title: TimeUnitType
       type: string
-    ContinuousBackupInfo:
-      description: 'ContinuousBackupInfo
-
-
-        These are read-only system generated properties of a continuous backup configuration. Returned as part of the Continuous Backup resource.
-
-        '
-      example:
-        storage_location: s3://backup_storage_path/YBA_1.2.3.4
-        uuid: f33e3c9b-75ab-4c30-80ad-cba85646ea39
-        last_backup: 2022-12-12 13:07:18+00:00
-      properties:
-        uuid:
-          description: UUID of the Continuous Backup Config
-          example: f33e3c9b-75ab-4c30-80ad-cba85646ea39
-          format: uuid
-          readOnly: true
-          type: string
-        storage_location:
-          description: bucket or directory where backups are stored
-          example: s3://backup_storage_path/YBA_1.2.3.4
-          readOnly: true
-          type: string
-        last_backup:
-          description: time of last backup stored
-          example: 2022-12-12 13:07:18+00:00
-          format: date-time
-          readOnly: true
-          type: string
-      required:
-      - uuid
-      title: ContinuousBackupInfo
-      type: object
-    ContinuousBackup:
-      description: 'ContinuousBackup
-
-
-        Continuous Backup object which contains the info for a configuration.
-
-        '
-      example:
-        spec:
-          frequency_time_unit: NANOSECONDS
-          backup_dir: yba_backups
-          storage_config_uuid: f33e3c9b-75ab-4c30-80ad-cba85646ea39
-          num_backups: 6
-          frequency: 0
-        info:
-          storage_location: s3://backup_storage_path/YBA_1.2.3.4
-          uuid: f33e3c9b-75ab-4c30-80ad-cba85646ea39
-          last_backup: 2022-12-12 13:07:18+00:00
-      properties:
-        info:
-          $ref: '#/components/schemas/ContinuousBackupInfo'
-        spec:
-          $ref: '#/components/schemas/ContinuousBackupSpec'
-      title: ContinuousBackup
-      type: object
     ContinuousBackupSpec:
       description: 'ContinuousBackupSpec
 

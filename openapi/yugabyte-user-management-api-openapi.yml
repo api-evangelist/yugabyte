@@ -352,75 +352,32 @@ components:
       required:
       - roleUUID
       type: object
-    UserPasswordChangeFormData:
-      description: User registration data. The API and UI use this to validate form data.
+    ResourceDefinition:
       example:
-        newPassword: Test@1234
-        currentPassword: Test@1234
+        allowAll: true
+        resourceUUIDSet:
+        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        resourceType: UNIVERSE
       properties:
-        currentPassword:
-          description: Current Password
-          example: Test@1234
-          type: string
-        newPassword:
-          description: New Password
-          example: Test@1234
-          type: string
-      type: object
-    UserProfileData:
-      description: User profile data. The API and UI use this to validate form data.
-      example:
-        password: Test@1234
-        role: Admin
-        timezone: America/Toronto
-        confirmPassword: Test@1234
-      properties:
-        confirmPassword:
-          description: Password confirmation
-          example: Test@1234
-          type: string
-        password:
-          description: Password
-          example: Test@1234
-          type: string
-        role:
-          description: User role
-          enum:
-          - ConnectOnly
-          - ReadOnly
-          - BackupAdmin
-          - Admin
-          - SuperAdmin
-          example: Admin
-          type: string
-        timezone:
-          description: User timezone
-          example: America/Toronto
-          type: string
-      required:
-      - role
-      type: object
-    UserOIDCAuthToken:
-      example:
-        oidcAuthToken: oidcAuthToken
-      properties:
-        oidcAuthToken:
-          description: User OIDC Auth token
-          type: string
-      type: object
-    YBPSuccess:
-      example:
-        success: true
-        message: message
-      properties:
-        message:
-          description: API response message.
-          readOnly: true
-          type: string
-        success:
-          description: API operation status. A value of true indicates the operation was successful.
-          readOnly: true
+        allowAll:
+          description: Select all resources (including future resources)
           type: boolean
+        resourceType:
+          description: Resource Type
+          enum:
+          - UNIVERSE
+          - ROLE
+          - USER
+          - OTHER
+          type: string
+        resourceUUIDSet:
+          description: Set of resource uuids
+          items:
+            format: uuid
+            type: string
+          type: array
+          uniqueItems: true
       type: object
     UserRegistrationData:
       description: User registration data. The API and UI use this to validate form data.
@@ -499,6 +456,76 @@ components:
           type: string
       required:
       - email
+      type: object
+    UserPasswordChangeFormData:
+      description: User registration data. The API and UI use this to validate form data.
+      example:
+        newPassword: Test@1234
+        currentPassword: Test@1234
+      properties:
+        currentPassword:
+          description: Current Password
+          example: Test@1234
+          type: string
+        newPassword:
+          description: New Password
+          example: Test@1234
+          type: string
+      type: object
+    UserOIDCAuthToken:
+      example:
+        oidcAuthToken: oidcAuthToken
+      properties:
+        oidcAuthToken:
+          description: User OIDC Auth token
+          type: string
+      type: object
+    YBPSuccess:
+      example:
+        success: true
+        message: message
+      properties:
+        message:
+          description: API response message.
+          readOnly: true
+          type: string
+        success:
+          description: API operation status. A value of true indicates the operation was successful.
+          readOnly: true
+          type: boolean
+      type: object
+    UserProfileData:
+      description: User profile data. The API and UI use this to validate form data.
+      example:
+        password: Test@1234
+        role: Admin
+        timezone: America/Toronto
+        confirmPassword: Test@1234
+      properties:
+        confirmPassword:
+          description: Password confirmation
+          example: Test@1234
+          type: string
+        password:
+          description: Password
+          example: Test@1234
+          type: string
+        role:
+          description: User role
+          enum:
+          - ConnectOnly
+          - ReadOnly
+          - BackupAdmin
+          - Admin
+          - SuperAdmin
+          example: Admin
+          type: string
+        timezone:
+          description: User timezone
+          example: America/Toronto
+          type: string
+      required:
+      - role
       type: object
     Users:
       description: A user associated with a customer
@@ -604,33 +631,6 @@ components:
           uniqueItems: true
       required:
       - resourceDefinitionSet
-      type: object
-    ResourceDefinition:
-      example:
-        allowAll: true
-        resourceUUIDSet:
-        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        resourceType: UNIVERSE
-      properties:
-        allowAll:
-          description: Select all resources (including future resources)
-          type: boolean
-        resourceType:
-          description: Resource Type
-          enum:
-          - UNIVERSE
-          - ROLE
-          - USER
-          - OTHER
-          type: string
-        resourceUUIDSet:
-          description: Set of resource uuids
-          items:
-            format: uuid
-            type: string
-          type: array
-          uniqueItems: true
       type: object
     UserWithFeatures:
       description: A user with set of features, associated with a customer

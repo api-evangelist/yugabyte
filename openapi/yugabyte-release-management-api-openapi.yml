@@ -224,7 +224,7 @@ paths:
       x-codegen-request-body-name: Release
 components:
   schemas:
-    GCSLocation:
+    S3Location:
       example:
         paths:
           x86_64: x86_64
@@ -234,6 +234,63 @@ components:
       properties:
         paths:
           $ref: '#/components/schemas/PackagePaths'
+      type: object
+    PackagePaths:
+      example:
+        x86_64: x86_64
+        helmChart: helmChart
+        helmChartChecksum: helmChartChecksum
+        x86_64_checksum: x86_64_checksum
+      properties:
+        helmChart:
+          description: Path to the Helm chart package
+          type: string
+        helmChartChecksum:
+          description: Checksum for the Helm chart package
+          type: string
+        x86_64:
+          description: Path to x86_64 package
+          type: string
+        x86_64_checksum:
+          description: Checksum for x86_64 package
+          type: string
+      type: object
+    ReleaseFormData:
+      description: Specification for release locations
+      example:
+        s3:
+          paths:
+            x86_64: x86_64
+            helmChart: helmChart
+            helmChartChecksum: helmChartChecksum
+            x86_64_checksum: x86_64_checksum
+        gcs:
+          paths:
+            x86_64: x86_64
+            helmChart: helmChart
+            helmChartChecksum: helmChartChecksum
+            x86_64_checksum: x86_64_checksum
+        http:
+          paths:
+            x86_64: x86_64
+            helmChart: helmChart
+            helmChartChecksum: helmChartChecksum
+            x86_64_checksum: x86_64_checksum
+        version: version
+      properties:
+        gcs:
+          $ref: '#/components/schemas/GCSLocation'
+        http:
+          $ref: '#/components/schemas/HttpLocation'
+        s3:
+          $ref: '#/components/schemas/S3Location'
+        version:
+          type: string
+      required:
+      - gcs
+      - http
+      - s3
+      - version
       type: object
     ReleaseMetadata:
       description: Yugabyte release metadata
@@ -303,7 +360,7 @@ components:
           example: ACTIVE
           type: string
       type: object
-    S3Location:
+    GCSLocation:
       example:
         paths:
           x86_64: x86_64
@@ -314,62 +371,19 @@ components:
         paths:
           $ref: '#/components/schemas/PackagePaths'
       type: object
-    ReleaseFormData:
-      description: Specification for release locations
+    YBPSuccess:
       example:
-        s3:
-          paths:
-            x86_64: x86_64
-            helmChart: helmChart
-            helmChartChecksum: helmChartChecksum
-            x86_64_checksum: x86_64_checksum
-        gcs:
-          paths:
-            x86_64: x86_64
-            helmChart: helmChart
-            helmChartChecksum: helmChartChecksum
-            x86_64_checksum: x86_64_checksum
-        http:
-          paths:
-            x86_64: x86_64
-            helmChart: helmChart
-            helmChartChecksum: helmChartChecksum
-            x86_64_checksum: x86_64_checksum
-        version: version
+        success: true
+        message: message
       properties:
-        gcs:
-          $ref: '#/components/schemas/GCSLocation'
-        http:
-          $ref: '#/components/schemas/HttpLocation'
-        s3:
-          $ref: '#/components/schemas/S3Location'
-        version:
+        message:
+          description: API response message.
+          readOnly: true
           type: string
-      required:
-      - gcs
-      - http
-      - s3
-      - version
-      type: object
-    PackagePaths:
-      example:
-        x86_64: x86_64
-        helmChart: helmChart
-        helmChartChecksum: helmChartChecksum
-        x86_64_checksum: x86_64_checksum
-      properties:
-        helmChart:
-          description: Path to the Helm chart package
-          type: string
-        helmChartChecksum:
-          description: Checksum for the Helm chart package
-          type: string
-        x86_64:
-          description: Path to x86_64 package
-          type: string
-        x86_64_checksum:
-          description: Checksum for x86_64 package
-          type: string
+        success:
+          description: API operation status. A value of true indicates the operation was successful.
+          readOnly: true
+          type: boolean
       type: object
     Package:
       example:
@@ -394,20 +408,6 @@ components:
       properties:
         paths:
           $ref: '#/components/schemas/PackagePaths'
-      type: object
-    YBPSuccess:
-      example:
-        success: true
-        message: message
-      properties:
-        message:
-          description: API response message.
-          readOnly: true
-          type: string
-        success:
-          description: API operation status. A value of true indicates the operation was successful.
-          readOnly: true
-          type: boolean
       type: object
   securitySchemes:
     apiKeyAuth:

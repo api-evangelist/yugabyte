@@ -56,29 +56,6 @@ paths:
       - pitr-info
 components:
   schemas:
-    PITR_Schedule_Response:
-      example:
-        schedules:
-        - databaseKeyspace: databaseKeyspace
-          interval: interval
-          id: 0
-          retention: retention
-          earliestRecoverableTime: earliestRecoverableTime
-        - databaseKeyspace: databaseKeyspace
-          interval: interval
-          id: 0
-          retention: retention
-          earliestRecoverableTime: earliestRecoverableTime
-      properties:
-        schedules:
-          items:
-            $ref: '#/components/schemas/PITRSchedule'
-          type: array
-          uniqueItems: true
-      required:
-      - schedules
-      title: PITR Schedule Response
-      type: object
     ApiError_error:
       properties:
         detail:
@@ -120,6 +97,29 @@ components:
         error:
           $ref: '#/components/schemas/ApiError_error'
       title: API Error
+      type: object
+    PITR_Schedule_Response:
+      example:
+        schedules:
+        - databaseKeyspace: databaseKeyspace
+          interval: interval
+          id: 0
+          retention: retention
+          earliestRecoverableTime: earliestRecoverableTime
+        - databaseKeyspace: databaseKeyspace
+          interval: interval
+          id: 0
+          retention: retention
+          earliestRecoverableTime: earliestRecoverableTime
+      properties:
+        schedules:
+          items:
+            $ref: '#/components/schemas/PITRSchedule'
+          type: array
+          uniqueItems: true
+      required:
+      - schedules
+      title: PITR Schedule Response
       type: object
   securitySchemes:
     BearerAuthToken:

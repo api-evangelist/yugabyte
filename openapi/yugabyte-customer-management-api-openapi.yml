@@ -191,6 +191,202 @@ paths:
       x-codegen-request-body-name: Metrics
 components:
   schemas:
+    YBPError:
+      description: Generic error response from the YugabyteDB Anywhere API
+      example:
+        success: false
+        requestUri: /customers/8918921-af3782-633de/universe/8173ab-fd2453/create
+        error: There was a problem creating the universe
+        httpMethod: POST
+        errorJson: '{ "foo" : "bar", "baz" : [1, 2, 3] }'
+        requestJson: '{ "foo" : "bar", "baz" : [1, 2, 3] }'
+      properties:
+        error:
+          description: User-visible unstructured error message
+          example: There was a problem creating the universe
+          type: string
+        errorJson:
+          description: User visible structured error message as json object
+          example: '{ "foo" : "bar", "baz" : [1, 2, 3] }'
+          properties: {}
+          type: object
+        httpMethod:
+          description: Method for HTTP call that resulted in this error
+          example: POST
+          type: string
+        requestJson:
+          description: User request JSON object
+          example: '{ "foo" : "bar", "baz" : [1, 2, 3] }'
+          properties: {}
+          type: object
+        requestUri:
+          description: URI for HTTP request that resulted in this error
+          example: /customers/8918921-af3782-633de/universe/8173ab-fd2453/create
+          type: string
+        success:
+          description: Always set to false to indicate failure
+          example: false
+          type: boolean
+      type: object
+    Customer:
+      description: Customer information, including associated universes
+      example:
+        code: admin
+        customerId: 1
+        name: sridhar
+        creationDate: 2022-12-12 13:07:18+00:00
+        uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        code:
+          description: Customer code
+          example: admin
+          type: string
+        creationDate:
+          description: Creation time
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          readOnly: true
+          type: string
+        customerId:
+          description: Customer ID
+          example: 1
+          format: int64
+          readOnly: true
+          type: integer
+        name:
+          description: Name of customer
+          example: sridhar
+          type: string
+        uuid:
+          description: Customer UUID
+          format: uuid
+          readOnly: true
+          type: string
+      required:
+      - code
+      - name
+      type: object
+    MetricSettings:
+      description: Settings, selected for particular metric
+      example:
+        timeAggregation: DEFAULT
+        metric: metric
+        aggregatedValueFunction: DEFAULT
+        splitCount: 6
+        nodeAggregation: DEFAULT
+        splitMode: NONE
+        returnAggregatedValue: true
+        splitType: NONE
+      properties:
+        aggregatedValueFunction:
+          description: YbaApi Internal. Defines the method of metrics aggregation used to obtain additional aggregate time series. The provided aggregator wraps over the final query. Only applicable if `returnAggregatedValue = true`.
+          enum:
+          - DEFAULT
+          - MIN
+          - MAX
+          - AVG
+          - SUM
+          type: string
+        metric:
+          description: YbaApi Internal. Metric name
+          type: string
+        nodeAggregation:
+          description: YbaApi Internal. Top level aggregation for each metric line.
+          enum:
+          - DEFAULT
+          - MIN
+          - MAX
+          - AVG
+          - SUM
+          type: string
+        returnAggregatedValue:
+          description: YbaApi Internal. Defines if we return additional aggregate time series (ex. avg, min) when we are selecting a subset of time series to return (ex. top K, bottom k).
+          type: boolean
+        splitCount:
+          description: YbaApi Internal. Defines how many node lines we return in case we split by nodes/tables/etc.
+          format: int32
+          type: integer
+        splitMode:
+          description: YbaApi Internal. Controls if we split nodes, tables, etc. into own lines OR aggregate  and how we select lines in case of split query
+          enum:
+          - NONE
+          - TOP
+          - BOTTOM
+          type: string
+        splitType:
+          description: YbaApi Internal. Defines set of labels, which we use for a split query
+          enum:
+          - NONE
+          - NODE
+          - TABLE
+          - NAMESPACE
+          type: string
+        timeAggregation:
+          description: YbaApi Internal. Way of metrics aggregation over time
+          enum:
+          - DEFAULT
+          - MIN
+          - MAX
+          - AVG
+          type: string
+      required:
+      - metric
+      type: object
+    SmtpData:
+      description: SMTP configuration information
+      example:
+        smtpServer: smtp.example.com
+        smtpUsername: testsmtp
+        smtpPort: 465
+        smtpPassword: XurenRknsc
+        emailFrom: test@example.com
+        useTLS: false
+        useSSL: true
+      properties:
+        emailFrom:
+          description: SMTP email 'from' address
+          example: test@example.com
+          type: string
+        smtpPassword:
+          description: SMTP password
+          example: XurenRknsc
+          type: string
+        smtpPort:
+          description: SMTP port number
+          example: 465
+          format: int32
+          type: integer
+        smtpServer:
+          description: SMTP server
+          example: smtp.example.com
+          type: string
+        smtpUsername:
+          description: SMTP email username
+          example: testsmtp
+          type: string
+        useSSL:
+          description: Connect to SMTP server using SSL
+          example: true
+          type: boolean
+        useTLS:
+          description: Connect to SMTP server using TLS
+          example: false
+          type: boolean
+      type: object
+    YBPSuccess:
+      example:
+        success: true
+        message: message
+      properties:
+        message:
+          description: API response message.
+          readOnly: true
+          type: string
+        success:
+          description: API operation status. A value of true indicates the operation was successful.
+          readOnly: true
+          type: boolean
+      type: object
     MetricQueryParams:
       description: Metrics request data
       example:
@@ -308,135 +504,38 @@ components:
       - start
       - xclusterConfigUuid
       type: object
-    Customer:
-      description: Customer information, including associated universes
+    AlertingData:
+      description: Alerting configuration
       example:
-        code: admin
-        customerId: 1
-        name: sridhar
-        creationDate: 2022-12-12 13:07:18+00:00
-        uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        alertingEmail: test@example.com
+        statusUpdateIntervalMs: 1
+        checkIntervalMs: 6
+        reportOnlyErrors: true
+        sendAlertsToYb: true
+        activeAlertNotificationIntervalMs: 0
       properties:
-        code:
-          description: Customer code
-          example: admin
-          type: string
-        creationDate:
-          description: Creation time
-          example: 2022-12-12 13:07:18+00:00
-          format: date-time
-          readOnly: true
-          type: string
-        customerId:
-          description: Customer ID
-          example: 1
+        activeAlertNotificationIntervalMs:
+          description: Period, which is used to send active alert notifications
           format: int64
-          readOnly: true
           type: integer
-        name:
-          description: Name of customer
-          example: sridhar
-          type: string
-        uuid:
-          description: Customer UUID
-          format: uuid
-          readOnly: true
-          type: string
-      required:
-      - code
-      - name
-      type: object
-    YBPSuccess:
-      example:
-        success: true
-        message: message
-      properties:
-        message:
-          description: API response message.
-          readOnly: true
-          type: string
-        success:
-          description: API operation status. A value of true indicates the operation was successful.
-          readOnly: true
-          type: boolean
-      type: object
-    SmtpData:
-      description: SMTP configuration information
-      example:
-        smtpServer: smtp.example.com
-        smtpUsername: testsmtp
-        smtpPort: 465
-        smtpPassword: XurenRknsc
-        emailFrom: test@example.com
-        useTLS: false
-        useSSL: true
-      properties:
-        emailFrom:
-          description: SMTP email 'from' address
+        alertingEmail:
+          description: Alert email address
           example: test@example.com
           type: string
-        smtpPassword:
-          description: SMTP password
-          example: XurenRknsc
-          type: string
-        smtpPort:
-          description: SMTP port number
-          example: 465
-          format: int32
+        checkIntervalMs:
+          description: Alert interval, in milliseconds
+          format: int64
           type: integer
-        smtpServer:
-          description: SMTP server
-          example: smtp.example.com
-          type: string
-        smtpUsername:
-          description: SMTP email username
-          example: testsmtp
-          type: string
-        useSSL:
-          description: Connect to SMTP server using SSL
-          example: true
+        reportOnlyErrors:
+          description: Trigger an alert only for errors
           type: boolean
-        useTLS:
-          description: Connect to SMTP server using TLS
-          example: false
+        sendAlertsToYb:
+          description: Send alerts to YB as well as to customer
           type: boolean
-      type: object
-    YBPError:
-      description: Generic error response from the YugabyteDB Anywhere API
-      example:
-        success: false
-        requestUri: /customers/8918921-af3782-633de/universe/8173ab-fd2453/create
-        error: There was a problem creating the universe
-        httpMethod: POST
-        errorJson: '{ "foo" : "bar", "baz" : [1, 2, 3] }'
-        requestJson: '{ "foo" : "bar", "baz" : [1, 2, 3] }'
-      properties:
-        error:
-          description: User-visible unstructured error message
-          example: There was a problem creating the universe
-          type: string
-        errorJson:
-          description: User visible structured error message as json object
-          example: '{ "foo" : "bar", "baz" : [1, 2, 3] }'
-          properties: {}
-          type: object
-        httpMethod:
-          description: Method for HTTP call that resulted in this error
-          example: POST
-          type: string
-        requestJson:
-          description: User request JSON object
-          example: '{ "foo" : "bar", "baz" : [1, 2, 3] }'
-          properties: {}
-          type: object
-        requestUri:
-          description: URI for HTTP request that resulted in this error
-          example: /customers/8918921-af3782-633de/universe/8173ab-fd2453/create
-          type: string
-        success:
-          description: Always set to false to indicate failure
-          example: false
-          type: boolean
+        statusUpdateIntervalMs:
+          description: Status update of alert interval, in milliseconds
+          format: int64
+          type: integer
       type: object
     CustomerDetailsData:
       description: Customer details, including their universe UUIDs. Only the customer code and name are modifiable.
@@ -507,105 +606,6 @@ components:
       required:
       - code
       - name
-      type: object
-    MetricSettings:
-      description: Settings, selected for particular metric
-      example:
-        timeAggregation: DEFAULT
-        metric: metric
-        aggregatedValueFunction: DEFAULT
-        splitCount: 6
-        nodeAggregation: DEFAULT
-        splitMode: NONE
-        returnAggregatedValue: true
-        splitType: NONE
-      properties:
-        aggregatedValueFunction:
-          description: YbaApi Internal. Defines the method of metrics aggregation used to obtain additional aggregate time series. The provided aggregator wraps over the final query. Only applicable if `returnAggregatedValue = true`.
-          enum:
-          - DEFAULT
-          - MIN
-          - MAX
-          - AVG
-          - SUM
-          type: string
-        metric:
-          description: YbaApi Internal. Metric name
-          type: string
-        nodeAggregation:
-          description: YbaApi Internal. Top level aggregation for each metric line.
-          enum:
-          - DEFAULT
-          - MIN
-          - MAX
-          - AVG
-          - SUM
-          type: string
-        returnAggregatedValue:
-          description: YbaApi Internal. Defines if we return additional aggregate time series (ex. avg, min) when we are selecting a subset of time series to return (ex. top K, bottom k).
-          type: boolean
-        splitCount:
-          description: YbaApi Internal. Defines how many node lines we return in case we split by nodes/tables/etc.
-          format: int32
-          type: integer
-        splitMode:
-          description: YbaApi Internal. Controls if we split nodes, tables, etc. into own lines OR aggregate  and how we select lines in case of split query
-          enum:
-          - NONE
-          - TOP
-          - BOTTOM
-          type: string
-        splitType:
-          description: YbaApi Internal. Defines set of labels, which we use for a split query
-          enum:
-          - NONE
-          - NODE
-          - TABLE
-          - NAMESPACE
-          type: string
-        timeAggregation:
-          description: YbaApi Internal. Way of metrics aggregation over time
-          enum:
-          - DEFAULT
-          - MIN
-          - MAX
-          - AVG
-          type: string
-      required:
-      - metric
-      type: object
-    AlertingData:
-      description: Alerting configuration
-      example:
-        alertingEmail: test@example.com
-        statusUpdateIntervalMs: 1
-        checkIntervalMs: 6
-        reportOnlyErrors: true
-        sendAlertsToYb: true
-        activeAlertNotificationIntervalMs: 0
-      properties:
-        activeAlertNotificationIntervalMs:
-          description: Period, which is used to send active alert notifications
-          format: int64
-          type: integer
-        alertingEmail:
-          description: Alert email address
-          example: test@example.com
-          type: string
-        checkIntervalMs:
-          description: Alert interval, in milliseconds
-          format: int64
-          type: integer
-        reportOnlyErrors:
-          description: Trigger an alert only for errors
-          type: boolean
-        sendAlertsToYb:
-          description: Send alerts to YB as well as to customer
-          type: boolean
-        statusUpdateIntervalMs:
-          description: Status update of alert interval, in milliseconds
-          format: int64
-          type: integer
       type: object
     CustomerAlertData:
       description: Format of an alert, used by the API and UI to validate data against input constraints

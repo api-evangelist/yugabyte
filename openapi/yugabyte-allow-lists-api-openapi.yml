@@ -164,58 +164,53 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  parameters:
-    allowListId:
-      name: allowListId
-      in: path
-      required: true
-      description: The unique identifier of the IP allow list.
-      schema:
-        type: string
-        format: uuid
-      example: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-    projectId:
-      name: projectId
-      in: path
-      required: true
-      description: The unique identifier of the project within the account.
-      schema:
-        type: string
-        format: uuid
-      example: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-    accountId:
-      name: accountId
-      in: path
-      required: true
-      description: The unique identifier of the YugabyteDB Aeon account.
-      schema:
-        type: string
-        format: uuid
-      example: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+  responses:
+    Unauthorized:
+      description: The API key is missing, invalid, or expired.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          examples:
+            UnauthorizedExample:
+              summary: Default Unauthorized response
+              x-microcks-default: true
+              value:
+                error:
+                  code: OK
+                  message: Example message
+                  status: 100
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          examples:
+            NotFoundExample:
+              summary: Default NotFound response
+              x-microcks-default: true
+              value:
+                error:
+                  code: OK
+                  message: Example message
+                  status: 100
+    BadRequest:
+      description: The request was malformed or contained invalid parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          examples:
+            BadRequestExample:
+              summary: Default BadRequest response
+              x-microcks-default: true
+              value:
+                error:
+                  code: OK
+                  message: Example message
+                  status: 100
   schemas:
-    ErrorResponse:
-      type: object
-      description: Standard error response returned by the API on failure.
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-              description: Machine-readable error code.
-              example: OK
-            message:
-              type: string
-              description: Human-readable description of the error.
-              example: Example message
-            status:
-              type: integer
-              description: HTTP status code.
-              example: 100
-          example:
-            code: OK
-            message: Example message
-            status: 100
     AllowListSpec:
       type: object
       description: Specification for creating an IP allow list.
@@ -270,52 +265,57 @@ components:
           format: date-time
           description: Timestamp when the allow list was created.
           example: '2026-05-03T12:00:00Z'
-  responses:
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-          examples:
-            NotFoundExample:
-              summary: Default NotFound response
-              x-microcks-default: true
-              value:
-                error:
-                  code: OK
-                  message: Example message
-                  status: 100
-    BadRequest:
-      description: The request was malformed or contained invalid parameters.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-          examples:
-            BadRequestExample:
-              summary: Default BadRequest response
-              x-microcks-default: true
-              value:
-                error:
-                  code: OK
-                  message: Example message
-                  status: 100
-    Unauthorized:
-      description: The API key is missing, invalid, or expired.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-          examples:
-            UnauthorizedExample:
-              summary: Default Unauthorized response
-              x-microcks-default: true
-              value:
-                error:
-                  code: OK
-                  message: Example message
-                  status: 100
+    ErrorResponse:
+      type: object
+      description: Standard error response returned by the API on failure.
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: Machine-readable error code.
+              example: OK
+            message:
+              type: string
+              description: Human-readable description of the error.
+              example: Example message
+            status:
+              type: integer
+              description: HTTP status code.
+              example: 100
+          example:
+            code: OK
+            message: Example message
+            status: 100
+  parameters:
+    allowListId:
+      name: allowListId
+      in: path
+      required: true
+      description: The unique identifier of the IP allow list.
+      schema:
+        type: string
+        format: uuid
+      example: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+    projectId:
+      name: projectId
+      in: path
+      required: true
+      description: The unique identifier of the project within the account.
+      schema:
+        type: string
+        format: uuid
+      example: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+    accountId:
+      name: accountId
+      in: path
+      required: true
+      description: The unique identifier of the YugabyteDB Aeon account.
+      schema:
+        type: string
+        format: uuid
+      example: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
   securitySchemes:
     bearerAuth:
       type: http

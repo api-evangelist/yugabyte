@@ -594,6 +594,21 @@ paths:
       - Disaster Recovery
 components:
   schemas:
+    DrConfigSwitchoverForm:
+      description: drConfig failover form
+      example:
+        drReplicaUniverseUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        primaryUniverseUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        drReplicaUniverseUuid:
+          description: New dr replica universe UUID
+          format: uuid
+          type: string
+        primaryUniverseUuid:
+          description: New primary universe UUID
+          format: uuid
+          type: string
+      type: object
     YBPTask:
       example:
         taskUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -608,345 +623,6 @@ components:
           description: Task UUID
           format: uuid
           readOnly: true
-          type: string
-      type: object
-    DrConfigEditForm:
-      description: drConfig edit form
-      example:
-        bootstrapParams:
-          backupRequestParams:
-            storageConfigUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            parallelism: 0
-        webhookUrls:
-        - webhookUrls
-        - webhookUrls
-        pitrParams:
-          snapshotIntervalSec: 1
-          retentionPeriodSec: 6
-      properties:
-        bootstrapParams:
-          $ref: '#/components/schemas/RestartBootstrapParams'
-        pitrParams:
-          $ref: '#/components/schemas/PitrParams'
-        webhookUrls:
-          description: List of urls for webhook
-          items:
-            type: string
-          type: array
-      type: object
-    RestartBootstrapParams:
-      description: Bootstrap parameters for restarting
-      example:
-        backupRequestParams:
-          storageConfigUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          parallelism: 0
-      properties:
-        backupRequestParams:
-          $ref: '#/components/schemas/BootstrapBackupParams'
-      required:
-      - backupRequestParams
-      type: object
-    BootstrapBackupParams:
-      description: Backup parameters for bootstrapping
-      example:
-        storageConfigUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        parallelism: 0
-      properties:
-        parallelism:
-          description: Number of concurrent commands used by yb_backup (not ybc) to run on nodes over SSH
-          format: int32
-          type: integer
-        storageConfigUUID:
-          description: Storage configuration UUID
-          format: uuid
-          type: string
-      required:
-      - storageConfigUUID
-      type: object
-    DrConfigRestartForm:
-      description: dr config restart form
-      example:
-        bootstrapParams:
-          backupRequestParams:
-            storageConfigUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            parallelism: 0
-        dbs: '["0000412b000030008000000000000000", "0000412b000030008000000000000001"]'
-      properties:
-        bootstrapParams:
-          $ref: '#/components/schemas/RestartBootstrapParams'
-        dbs:
-          description: Primary Universe DB IDs
-          example: '["0000412b000030008000000000000000", "0000412b000030008000000000000001"]'
-          items:
-            type: string
-          type: array
-          uniqueItems: true
-      required:
-      - dbs
-      type: object
-    NamespaceSafetime:
-      example:
-        namespaceId: namespaceId
-        safetimeLagUs: 1
-        estimatedDataLossMs: 0.8008281904610115
-        safetimeEpochUs: 6
-        namespaceName: namespaceName
-        safetimeSkewUs: 5
-      properties:
-        estimatedDataLossMs:
-          format: double
-          type: number
-        namespaceId:
-          type: string
-        namespaceName:
-          type: string
-        safetimeEpochUs:
-          format: int64
-          type: integer
-        safetimeLagUs:
-          format: int64
-          type: integer
-        safetimeSkewUs:
-          format: int64
-          type: integer
-      required:
-      - estimatedDataLossMs
-      - namespaceId
-      - namespaceName
-      - safetimeEpochUs
-      - safetimeLagUs
-      - safetimeSkewUs
-      type: object
-    DrConfigSetDatabasesForm:
-      description: dr config set databases form
-      example:
-        dbs: '["000033df000030008000000000004006", "000033df00003000800000000000400b"]'
-      properties:
-        dbs:
-          description: 'WARNING: This is a preview API that could change. Source universe database IDs'
-          example: '["000033df000030008000000000004006", "000033df00003000800000000000400b"]'
-          items:
-            type: string
-          type: array
-          uniqueItems: true
-      type: object
-    GetWebhookResponse:
-      description: Webhook get response
-      example:
-        uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        url: url
-      properties:
-        url:
-          description: Webhook url
-          type: string
-        uuid:
-          description: Webhook UUID
-          format: uuid
-          type: string
-      type: object
-    PitrConfig:
-      description: PITR config created on the universe
-      example:
-        dbName: dbName
-        updateTime: 2022-12-12 13:07:18+00:00
-        createdForDr: true
-        uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        minRecoverTimeInMillis: 1
-        scheduleInterval: 5
-        tableType: YQL_TABLE_TYPE
-        customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        createTime: 2022-12-12 13:07:18+00:00
-        intermittentMinRecoverTimeInMillis: 0
-        maxRecoverTimeInMillis: 6
-        name: name
-        disabled: true
-        usedForXCluster: true
-        state: UNKNOWN
-        retentionPeriod: 5
-      properties:
-        createTime:
-          description: Create time of the PITR config
-          example: 2022-12-12 13:07:18+00:00
-          format: date-time
-          readOnly: true
-          type: string
-        createdForDr:
-          description: Created for DR
-          readOnly: true
-          type: boolean
-        customerUUID:
-          description: Customer UUID of this config
-          format: uuid
-          type: string
-        dbName:
-          description: DB Name
-          type: string
-        disabled:
-          description: Whether the PITR config is disabled
-          readOnly: true
-          type: boolean
-        intermittentMinRecoverTimeInMillis:
-          description: Intermittent min recovery time in millis if retention period is increased
-          format: int64
-          type: integer
-        maxRecoverTimeInMillis:
-          format: int64
-          type: integer
-        minRecoverTimeInMillis:
-          format: int64
-          type: integer
-        name:
-          description: PITR config name
-          type: string
-        retentionPeriod:
-          description: Retention Period in seconds
-          format: int64
-          type: integer
-        scheduleInterval:
-          description: Interval between snasphots in seconds
-          format: int64
-          type: integer
-        state:
-          enum:
-          - UNKNOWN
-          - CREATING
-          - COMPLETE
-          - DELETING
-          - DELETED
-          - FAILED
-          - CANCELLED
-          - RESTORING
-          - RESTORED
-          type: string
-        tableType:
-          description: Table Type
-          enum:
-          - YQL_TABLE_TYPE
-          - REDIS_TABLE_TYPE
-          - PGSQL_TABLE_TYPE
-          - TRANSACTION_STATUS_TABLE_TYPE
-          type: string
-        updateTime:
-          description: Update time of the PITR con
-          example: 2022-12-12 13:07:18+00:00
-          format: date-time
-          type: string
-        usedForXCluster:
-          readOnly: true
-          type: boolean
-        uuid:
-          description: PITR config UUID
-          format: uuid
-          type: string
-      required:
-      - maxRecoverTimeInMillis
-      - minRecoverTimeInMillis
-      - state
-      type: object
-    NamespaceInfoResp:
-      description: Namespace information response
-      example:
-        tableType: YQL_TABLE_TYPE
-        name: name
-        namespaceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-      properties:
-        name:
-          description: Namespace name
-          type: string
-        namespaceUUID:
-          description: Namespace UUID
-          format: uuid
-          readOnly: true
-          type: string
-        tableType:
-          description: Table type
-          enum:
-          - YQL_TABLE_TYPE
-          - REDIS_TABLE_TYPE
-          - PGSQL_TABLE_TYPE
-          - TRANSACTION_STATUS_TABLE_TYPE
-          type: string
-      type: object
-    DrConfigReplaceReplicaForm:
-      description: drConfig edit form
-      example:
-        bootstrapParams:
-          backupRequestParams:
-            storageConfigUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            parallelism: 0
-        drReplicaUniverseUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        primaryUniverseUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-      properties:
-        bootstrapParams:
-          $ref: '#/components/schemas/RestartBootstrapParams'
-        drReplicaUniverseUuid:
-          description: New dr replica universe UUID
-          format: uuid
-          type: string
-        primaryUniverseUuid:
-          description: The current primary universe UUID
-          format: uuid
-          type: string
-      type: object
-    DrConfigFailoverForm:
-      description: drConfig failover form
-      example:
-        namespaceIdSafetimeEpochUsMap:
-          key: 0
-        drReplicaUniverseUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        primaryUniverseUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-      properties:
-        drReplicaUniverseUuid:
-          description: New dr replica universe UUID
-          format: uuid
-          type: string
-        namespaceIdSafetimeEpochUsMap:
-          additionalProperties:
-            format: int64
-            type: integer
-          description: A map from database ID to its safetime since epoch in micro-seconds to use during unplanned failover
-          type: object
-        primaryUniverseUuid:
-          description: New primary universe UUID
-          format: uuid
-          type: string
-      type: object
-    DrConfigSafetimeResp:
-      description: Get DR config safetime response
-      example:
-        safetimes:
-        - namespaceId: namespaceId
-          safetimeLagUs: 1
-          estimatedDataLossMs: 0.8008281904610115
-          safetimeEpochUs: 6
-          namespaceName: namespaceName
-          safetimeSkewUs: 5
-        - namespaceId: namespaceId
-          safetimeLagUs: 1
-          estimatedDataLossMs: 0.8008281904610115
-          safetimeEpochUs: 6
-          namespaceName: namespaceName
-          safetimeSkewUs: 5
-      properties:
-        safetimes:
-          description: The list of current safetime for each database
-          items:
-            $ref: '#/components/schemas/NamespaceSafetime'
-          type: array
-      type: object
-    DrConfigSwitchoverForm:
-      description: drConfig failover form
-      example:
-        drReplicaUniverseUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        primaryUniverseUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-      properties:
-        drReplicaUniverseUuid:
-          description: New dr replica universe UUID
-          format: uuid
-          type: string
-        primaryUniverseUuid:
-          description: New primary universe UUID
-          format: uuid
           type: string
       type: object
     DrConfigGetResp:
@@ -1309,6 +985,145 @@ components:
       required:
       - webhooks
       type: object
+    DrConfigEditForm:
+      description: drConfig edit form
+      example:
+        bootstrapParams:
+          backupRequestParams:
+            storageConfigUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            parallelism: 0
+        webhookUrls:
+        - webhookUrls
+        - webhookUrls
+        pitrParams:
+          snapshotIntervalSec: 1
+          retentionPeriodSec: 6
+      properties:
+        bootstrapParams:
+          $ref: '#/components/schemas/RestartBootstrapParams'
+        pitrParams:
+          $ref: '#/components/schemas/PitrParams'
+        webhookUrls:
+          description: List of urls for webhook
+          items:
+            type: string
+          type: array
+      type: object
+    NamespaceSafetime:
+      example:
+        namespaceId: namespaceId
+        safetimeLagUs: 1
+        estimatedDataLossMs: 0.8008281904610115
+        safetimeEpochUs: 6
+        namespaceName: namespaceName
+        safetimeSkewUs: 5
+      properties:
+        estimatedDataLossMs:
+          format: double
+          type: number
+        namespaceId:
+          type: string
+        namespaceName:
+          type: string
+        safetimeEpochUs:
+          format: int64
+          type: integer
+        safetimeLagUs:
+          format: int64
+          type: integer
+        safetimeSkewUs:
+          format: int64
+          type: integer
+      required:
+      - estimatedDataLossMs
+      - namespaceId
+      - namespaceName
+      - safetimeEpochUs
+      - safetimeLagUs
+      - safetimeSkewUs
+      type: object
+    DrConfigSafetimeResp:
+      description: Get DR config safetime response
+      example:
+        safetimes:
+        - namespaceId: namespaceId
+          safetimeLagUs: 1
+          estimatedDataLossMs: 0.8008281904610115
+          safetimeEpochUs: 6
+          namespaceName: namespaceName
+          safetimeSkewUs: 5
+        - namespaceId: namespaceId
+          safetimeLagUs: 1
+          estimatedDataLossMs: 0.8008281904610115
+          safetimeEpochUs: 6
+          namespaceName: namespaceName
+          safetimeSkewUs: 5
+      properties:
+        safetimes:
+          description: The list of current safetime for each database
+          items:
+            $ref: '#/components/schemas/NamespaceSafetime'
+          type: array
+      type: object
+    RestartBootstrapParams:
+      description: Bootstrap parameters for restarting
+      example:
+        backupRequestParams:
+          storageConfigUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          parallelism: 0
+      properties:
+        backupRequestParams:
+          $ref: '#/components/schemas/BootstrapBackupParams'
+      required:
+      - backupRequestParams
+      type: object
+    DrConfigSetTablesForm:
+      description: dr config set tables form
+      example:
+        tables: '["000033df000030008000000000004006", "000033df00003000800000000000400b"]'
+        bootstrapParams:
+          backupRequestParams:
+            storageConfigUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            parallelism: 0
+        autoIncludeIndexTables: true
+      properties:
+        autoIncludeIndexTables:
+          description: Whether or not YBA should also include all index tables from any provided main tables.
+          type: boolean
+        bootstrapParams:
+          $ref: '#/components/schemas/RestartBootstrapParams'
+        tables:
+          description: Source universe table IDs
+          example: '["000033df000030008000000000004006", "000033df00003000800000000000400b"]'
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+      type: object
+    NamespaceInfoResp:
+      description: Namespace information response
+      example:
+        tableType: YQL_TABLE_TYPE
+        name: name
+        namespaceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        name:
+          description: Namespace name
+          type: string
+        namespaceUUID:
+          description: Namespace UUID
+          format: uuid
+          readOnly: true
+          type: string
+        tableType:
+          description: Table type
+          enum:
+          - YQL_TABLE_TYPE
+          - REDIS_TABLE_TYPE
+          - PGSQL_TABLE_TYPE
+          - TRANSACTION_STATUS_TABLE_TYPE
+          type: string
+      type: object
     TableInfoResp:
       description: Table information response
       example:
@@ -1403,54 +1218,36 @@ components:
           readOnly: true
           type: number
       type: object
-    XClusterNamespaceConfig:
+    BootstrapBackupParams:
+      description: Backup parameters for bootstrapping
       example:
-        restoreUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        sourceNamespaceId: sourceNamespaceId
-        backupUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        replicationSetupTime: 2022-12-12 13:07:18+00:00
-        sourceNamespaceInfo:
-          tableType: YQL_TABLE_TYPE
-          name: name
-          namespaceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        targetNamespaceInfo:
-          tableType: YQL_TABLE_TYPE
-          name: name
-          namespaceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        status: Validated
+        storageConfigUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        parallelism: 0
       properties:
-        backupUuid:
+        parallelism:
+          description: Number of concurrent commands used by yb_backup (not ybc) to run on nodes over SSH
+          format: int32
+          type: integer
+        storageConfigUUID:
+          description: Storage configuration UUID
           format: uuid
           type: string
-        replicationSetupTime:
-          description: Time of replication setup, ie, table added to the replication group on the target universe
-          example: 2022-12-12 13:07:18+00:00
-          format: date-time
-          type: string
-        restoreUuid:
-          format: uuid
-          type: string
-        sourceNamespaceId:
-          type: string
-        sourceNamespaceInfo:
-          $ref: '#/components/schemas/NamespaceInfoResp'
-        status:
-          description: Status
-          enum:
-          - Validated
-          - Running
-          - Updating
-          - Warning
-          - Error
-          - Bootstrapping
-          - Failed
-          type: string
-        targetNamespaceInfo:
-          $ref: '#/components/schemas/NamespaceInfoResp'
       required:
-      - backupUuid
-      - restoreUuid
-      - sourceNamespaceId
+      - storageConfigUUID
+      type: object
+    GetWebhookResponse:
+      description: Webhook get response
+      example:
+        uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        url: url
+      properties:
+        url:
+          description: Webhook url
+          type: string
+        uuid:
+          description: Webhook UUID
+          format: uuid
+          type: string
       type: object
     PitrParams:
       description: PITR parameters
@@ -1467,28 +1264,104 @@ components:
           format: int64
           type: integer
       type: object
-    DrConfigSetTablesForm:
-      description: dr config set tables form
+    PitrConfig:
+      description: PITR config created on the universe
       example:
-        tables: '["000033df000030008000000000004006", "000033df00003000800000000000400b"]'
-        bootstrapParams:
-          backupRequestParams:
-            storageConfigUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            parallelism: 0
-        autoIncludeIndexTables: true
+        dbName: dbName
+        updateTime: 2022-12-12 13:07:18+00:00
+        createdForDr: true
+        uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        minRecoverTimeInMillis: 1
+        scheduleInterval: 5
+        tableType: YQL_TABLE_TYPE
+        customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        createTime: 2022-12-12 13:07:18+00:00
+        intermittentMinRecoverTimeInMillis: 0
+        maxRecoverTimeInMillis: 6
+        name: name
+        disabled: true
+        usedForXCluster: true
+        state: UNKNOWN
+        retentionPeriod: 5
       properties:
-        autoIncludeIndexTables:
-          description: Whether or not YBA should also include all index tables from any provided main tables.
+        createTime:
+          description: Create time of the PITR config
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          readOnly: true
+          type: string
+        createdForDr:
+          description: Created for DR
+          readOnly: true
           type: boolean
-        bootstrapParams:
-          $ref: '#/components/schemas/RestartBootstrapParams'
-        tables:
-          description: Source universe table IDs
-          example: '["000033df000030008000000000004006", "000033df00003000800000000000400b"]'
-          items:
-            type: string
-          type: array
-          uniqueItems: true
+        customerUUID:
+          description: Customer UUID of this config
+          format: uuid
+          type: string
+        dbName:
+          description: DB Name
+          type: string
+        disabled:
+          description: Whether the PITR config is disabled
+          readOnly: true
+          type: boolean
+        intermittentMinRecoverTimeInMillis:
+          description: Intermittent min recovery time in millis if retention period is increased
+          format: int64
+          type: integer
+        maxRecoverTimeInMillis:
+          format: int64
+          type: integer
+        minRecoverTimeInMillis:
+          format: int64
+          type: integer
+        name:
+          description: PITR config name
+          type: string
+        retentionPeriod:
+          description: Retention Period in seconds
+          format: int64
+          type: integer
+        scheduleInterval:
+          description: Interval between snasphots in seconds
+          format: int64
+          type: integer
+        state:
+          enum:
+          - UNKNOWN
+          - CREATING
+          - COMPLETE
+          - DELETING
+          - DELETED
+          - FAILED
+          - CANCELLED
+          - RESTORING
+          - RESTORED
+          type: string
+        tableType:
+          description: Table Type
+          enum:
+          - YQL_TABLE_TYPE
+          - REDIS_TABLE_TYPE
+          - PGSQL_TABLE_TYPE
+          - TRANSACTION_STATUS_TABLE_TYPE
+          type: string
+        updateTime:
+          description: Update time of the PITR con
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          type: string
+        usedForXCluster:
+          readOnly: true
+          type: boolean
+        uuid:
+          description: PITR config UUID
+          format: uuid
+          type: string
+      required:
+      - maxRecoverTimeInMillis
+      - minRecoverTimeInMillis
+      - state
       type: object
     XClusterTableConfig:
       example:
@@ -1611,6 +1484,133 @@ components:
       required:
       - backupUuid
       - restoreUuid
+      type: object
+    DrConfigRestartForm:
+      description: dr config restart form
+      example:
+        bootstrapParams:
+          backupRequestParams:
+            storageConfigUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            parallelism: 0
+        dbs: '["0000412b000030008000000000000000", "0000412b000030008000000000000001"]'
+      properties:
+        bootstrapParams:
+          $ref: '#/components/schemas/RestartBootstrapParams'
+        dbs:
+          description: Primary Universe DB IDs
+          example: '["0000412b000030008000000000000000", "0000412b000030008000000000000001"]'
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+      required:
+      - dbs
+      type: object
+    DrConfigSetDatabasesForm:
+      description: dr config set databases form
+      example:
+        dbs: '["000033df000030008000000000004006", "000033df00003000800000000000400b"]'
+      properties:
+        dbs:
+          description: 'WARNING: This is a preview API that could change. Source universe database IDs'
+          example: '["000033df000030008000000000004006", "000033df00003000800000000000400b"]'
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+      type: object
+    XClusterNamespaceConfig:
+      example:
+        restoreUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        sourceNamespaceId: sourceNamespaceId
+        backupUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        replicationSetupTime: 2022-12-12 13:07:18+00:00
+        sourceNamespaceInfo:
+          tableType: YQL_TABLE_TYPE
+          name: name
+          namespaceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        targetNamespaceInfo:
+          tableType: YQL_TABLE_TYPE
+          name: name
+          namespaceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        status: Validated
+      properties:
+        backupUuid:
+          format: uuid
+          type: string
+        replicationSetupTime:
+          description: Time of replication setup, ie, table added to the replication group on the target universe
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          type: string
+        restoreUuid:
+          format: uuid
+          type: string
+        sourceNamespaceId:
+          type: string
+        sourceNamespaceInfo:
+          $ref: '#/components/schemas/NamespaceInfoResp'
+        status:
+          description: Status
+          enum:
+          - Validated
+          - Running
+          - Updating
+          - Warning
+          - Error
+          - Bootstrapping
+          - Failed
+          type: string
+        targetNamespaceInfo:
+          $ref: '#/components/schemas/NamespaceInfoResp'
+      required:
+      - backupUuid
+      - restoreUuid
+      - sourceNamespaceId
+      type: object
+    DrConfigFailoverForm:
+      description: drConfig failover form
+      example:
+        namespaceIdSafetimeEpochUsMap:
+          key: 0
+        drReplicaUniverseUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        primaryUniverseUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        drReplicaUniverseUuid:
+          description: New dr replica universe UUID
+          format: uuid
+          type: string
+        namespaceIdSafetimeEpochUsMap:
+          additionalProperties:
+            format: int64
+            type: integer
+          description: A map from database ID to its safetime since epoch in micro-seconds to use during unplanned failover
+          type: object
+        primaryUniverseUuid:
+          description: New primary universe UUID
+          format: uuid
+          type: string
+      type: object
+    DrConfigReplaceReplicaForm:
+      description: drConfig edit form
+      example:
+        bootstrapParams:
+          backupRequestParams:
+            storageConfigUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            parallelism: 0
+        drReplicaUniverseUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        primaryUniverseUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        bootstrapParams:
+          $ref: '#/components/schemas/RestartBootstrapParams'
+        drReplicaUniverseUuid:
+          description: New dr replica universe UUID
+          format: uuid
+          type: string
+        primaryUniverseUuid:
+          description: The current primary universe UUID
+          format: uuid
+          type: string
       type: object
     DrConfigCreateForm:
       description: drConfig create form

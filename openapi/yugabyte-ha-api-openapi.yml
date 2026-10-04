@@ -165,6 +165,19 @@ components:
       - uuid
       - ybaVersion
       type: object
+    HAConfigFormData:
+      example:
+        cluster_key: cluster_key
+        accept_any_certificate: true
+      properties:
+        accept_any_certificate:
+          type: boolean
+        cluster_key:
+          type: string
+      required:
+      - accept_any_certificate
+      - cluster_key
+      type: object
     HighAvailabilityConfig:
       example:
         cluster_key: cluster_key
@@ -210,19 +223,6 @@ components:
       required:
       - instances
       - uuid
-      type: object
-    HAConfigFormData:
-      example:
-        cluster_key: cluster_key
-        accept_any_certificate: true
-      properties:
-        accept_any_certificate:
-          type: boolean
-        cluster_key:
-          type: string
-      required:
-      - accept_any_certificate
-      - cluster_key
       type: object
     HAConfigGetResp:
       description: HA config response

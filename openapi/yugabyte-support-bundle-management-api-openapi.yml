@@ -280,151 +280,6 @@ paths:
       - Support Bundle management
 components:
   schemas:
-    YBPTask:
-      example:
-        taskUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        resourceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-      properties:
-        resourceUUID:
-          description: UUID of the resource being modified by the task
-          format: uuid
-          readOnly: true
-          type: string
-        taskUUID:
-          description: Task UUID
-          format: uuid
-          readOnly: true
-          type: string
-      type: object
-    BundleDetails:
-      example:
-        maxNumRecentCores: 6
-        components:
-        - UniverseLogs
-        - UniverseLogs
-        paDumpStartDate: 2022-12-12 13:07:18+00:00
-        promDumpEndDate: 2022-12-12 13:07:18+00:00
-        promDumpStartDate: 2022-12-12 13:07:18+00:00
-        promMetricsFormat: PROMQL_JSON
-        paDumpEndDate: 2022-12-12 13:07:18+00:00
-        paMetricsFormat: PROMQL_JSON
-        promMetricsStepSec: 1
-        prometheusMetricsTypes:
-        - MASTER_EXPORT
-        - MASTER_EXPORT
-        maxCoreFileSize: 0
-      properties:
-        components:
-          items:
-            enum:
-            - UniverseLogs
-            - OutputFiles
-            - ErrorFiles
-            - CoreFiles
-            - GFlags
-            - Instance
-            - ConsensusMeta
-            - TabletMeta
-            - YbcLogs
-            - NodeAgent
-            - SystemLogs
-            - TabletReport
-            - K8sInfo
-            - YbaMetadata
-            - PrometheusMetrics
-            - PerfAdvisor
-            - ApplicationLogs
-            type: string
-          type: array
-        maxCoreFileSize:
-          description: Max size of the collected cores (if any)
-          format: int64
-          type: integer
-        maxNumRecentCores:
-          description: Max number of most recent cores to collect (if any)
-          format: int32
-          type: integer
-        paDumpEndDate:
-          description: End date to filter Perf Advisor data
-          example: 2022-12-12 13:07:18+00:00
-          format: date-time
-          type: string
-        paDumpStartDate:
-          description: Start date to filter Perf Advisor data
-          example: 2022-12-12 13:07:18+00:00
-          format: date-time
-          type: string
-        paMetricsFormat:
-          description: Specifies PA Dump metrics format.
-          enum:
-          - PROMQL_JSON
-          - PROM_CHUNK
-          type: string
-        promDumpEndDate:
-          description: End date to filter prometheus metrics till
-          example: 2022-12-12 13:07:18+00:00
-          format: date-time
-          type: string
-        promDumpStartDate:
-          description: Start date to filter prometheus metrics from
-          example: 2022-12-12 13:07:18+00:00
-          format: date-time
-          type: string
-        promMetricsFormat:
-          description: Specifies Prom Dump metrics format.
-          enum:
-          - PROMQL_JSON
-          - PROM_CHUNK
-          type: string
-        promMetricsStepSec:
-          description: Specifies Prom Dump metrics step in seconds.
-          format: int32
-          type: integer
-        prometheusMetricsTypes:
-          description: List of exports to be included in the prometheus dump
-          items:
-            enum:
-            - MASTER_EXPORT
-            - NODE_EXPORT
-            - PLATFORM
-            - PROMETHEUS
-            - TSERVER_EXPORT
-            - CQL_EXPORT
-            - YSQL_EXPORT
-            type: string
-          type: array
-      required:
-      - components
-      type: object
-    YBPSuccess:
-      example:
-        success: true
-        message: message
-      properties:
-        message:
-          description: API response message.
-          readOnly: true
-          type: string
-        success:
-          description: API operation status. A value of true indicates the operation was successful.
-          readOnly: true
-          type: boolean
-      type: object
-    SupportBundleSizeEstimateResponse:
-      example:
-        data:
-          key:
-            key: 0
-      properties:
-        data:
-          additionalProperties:
-            additionalProperties:
-              format: int64
-              type: integer
-            type: object
-          description: A map of universe node names to component sizes for the given support bundle payload. Global component sizes are mapped to "YBA" node.
-          type: object
-      type: object
     SupportBundleFormData:
       description: Support bundle form metadata
       example:
@@ -567,6 +422,151 @@ components:
       - components
       - endDate
       - startDate
+      type: object
+    YBPTask:
+      example:
+        taskUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        resourceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        resourceUUID:
+          description: UUID of the resource being modified by the task
+          format: uuid
+          readOnly: true
+          type: string
+        taskUUID:
+          description: Task UUID
+          format: uuid
+          readOnly: true
+          type: string
+      type: object
+    YBPSuccess:
+      example:
+        success: true
+        message: message
+      properties:
+        message:
+          description: API response message.
+          readOnly: true
+          type: string
+        success:
+          description: API operation status. A value of true indicates the operation was successful.
+          readOnly: true
+          type: boolean
+      type: object
+    BundleDetails:
+      example:
+        maxNumRecentCores: 6
+        components:
+        - UniverseLogs
+        - UniverseLogs
+        paDumpStartDate: 2022-12-12 13:07:18+00:00
+        promDumpEndDate: 2022-12-12 13:07:18+00:00
+        promDumpStartDate: 2022-12-12 13:07:18+00:00
+        promMetricsFormat: PROMQL_JSON
+        paDumpEndDate: 2022-12-12 13:07:18+00:00
+        paMetricsFormat: PROMQL_JSON
+        promMetricsStepSec: 1
+        prometheusMetricsTypes:
+        - MASTER_EXPORT
+        - MASTER_EXPORT
+        maxCoreFileSize: 0
+      properties:
+        components:
+          items:
+            enum:
+            - UniverseLogs
+            - OutputFiles
+            - ErrorFiles
+            - CoreFiles
+            - GFlags
+            - Instance
+            - ConsensusMeta
+            - TabletMeta
+            - YbcLogs
+            - NodeAgent
+            - SystemLogs
+            - TabletReport
+            - K8sInfo
+            - YbaMetadata
+            - PrometheusMetrics
+            - PerfAdvisor
+            - ApplicationLogs
+            type: string
+          type: array
+        maxCoreFileSize:
+          description: Max size of the collected cores (if any)
+          format: int64
+          type: integer
+        maxNumRecentCores:
+          description: Max number of most recent cores to collect (if any)
+          format: int32
+          type: integer
+        paDumpEndDate:
+          description: End date to filter Perf Advisor data
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          type: string
+        paDumpStartDate:
+          description: Start date to filter Perf Advisor data
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          type: string
+        paMetricsFormat:
+          description: Specifies PA Dump metrics format.
+          enum:
+          - PROMQL_JSON
+          - PROM_CHUNK
+          type: string
+        promDumpEndDate:
+          description: End date to filter prometheus metrics till
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          type: string
+        promDumpStartDate:
+          description: Start date to filter prometheus metrics from
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          type: string
+        promMetricsFormat:
+          description: Specifies Prom Dump metrics format.
+          enum:
+          - PROMQL_JSON
+          - PROM_CHUNK
+          type: string
+        promMetricsStepSec:
+          description: Specifies Prom Dump metrics step in seconds.
+          format: int32
+          type: integer
+        prometheusMetricsTypes:
+          description: List of exports to be included in the prometheus dump
+          items:
+            enum:
+            - MASTER_EXPORT
+            - NODE_EXPORT
+            - PLATFORM
+            - PROMETHEUS
+            - TSERVER_EXPORT
+            - CQL_EXPORT
+            - YSQL_EXPORT
+            type: string
+          type: array
+      required:
+      - components
+      type: object
+    SupportBundleSizeEstimateResponse:
+      example:
+        data:
+          key:
+            key: 0
+      properties:
+        data:
+          additionalProperties:
+            additionalProperties:
+              format: int64
+              type: integer
+            type: object
+          description: A map of universe node names to component sizes for the given support bundle payload. Global component sizes are mapped to "YBA" node.
+          type: object
       type: object
     SupportBundle:
       example:

@@ -64,58 +64,6 @@ components:
           description: Error code
           type: integer
       type: object
-    ApiError:
-      properties:
-        error:
-          $ref: '#/components/schemas/ApiError_error'
-      title: API Error
-      type: object
-    xClusterInboundGroup:
-      description: Schema for xCluster replication group details.
-      example:
-        target_universe_uuid: target_universe_uuid
-        target_cluster_node_ips:
-        - target_cluster_node_ips
-        - target_cluster_node_ips
-        source_universe_uuid: source_universe_uuid
-        replication_group_id: replication_group_id
-        state: state
-        source_cluster_node_ips:
-        - source_cluster_node_ips
-        - source_cluster_node_ips
-      properties:
-        replication_group_id:
-          description: Unique identifier for the replication group.
-          type: string
-        state:
-          description: The current status of the replication group.
-          type: string
-        target_cluster_node_ips:
-          description: List of target-side node IPs involved in replication.
-          items:
-            type: string
-          type: array
-          uniqueItems: true
-        source_cluster_node_ips:
-          description: List of source-side node IPs involved in replication.
-          items:
-            type: string
-          type: array
-          uniqueItems: true
-        source_universe_uuid:
-          description: UUID of the source universe for the replication group.
-          type: string
-        target_universe_uuid:
-          description: UUID of the target universe for the replication group.
-          type: string
-      required:
-      - current_cluster_ip_address
-      - namespace
-      - replication_group_id
-      - source_leader_host
-      - state
-      title: Get xCluster replication group ids list.
-      type: object
     xClusterOutboundGroup:
       description: Schema for xCluster replication group details.
       example:
@@ -220,6 +168,12 @@ components:
       - table_uuid
       title: Table information for a namespace in the replication group and per table level lag time.
       type: object
+    ApiError:
+      properties:
+        error:
+          $ref: '#/components/schemas/ApiError_error'
+      title: API Error
+      type: object
     xCluster_Replication_Groups:
       example:
         outbound_replication_groups:
@@ -302,6 +256,52 @@ components:
       required:
       - replication_groups
       title: xCluster Replication Groups
+      type: object
+    xClusterInboundGroup:
+      description: Schema for xCluster replication group details.
+      example:
+        target_universe_uuid: target_universe_uuid
+        target_cluster_node_ips:
+        - target_cluster_node_ips
+        - target_cluster_node_ips
+        source_universe_uuid: source_universe_uuid
+        replication_group_id: replication_group_id
+        state: state
+        source_cluster_node_ips:
+        - source_cluster_node_ips
+        - source_cluster_node_ips
+      properties:
+        replication_group_id:
+          description: Unique identifier for the replication group.
+          type: string
+        state:
+          description: The current status of the replication group.
+          type: string
+        target_cluster_node_ips:
+          description: List of target-side node IPs involved in replication.
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+        source_cluster_node_ips:
+          description: List of source-side node IPs involved in replication.
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+        source_universe_uuid:
+          description: UUID of the source universe for the replication group.
+          type: string
+        target_universe_uuid:
+          description: UUID of the target universe for the replication group.
+          type: string
+      required:
+      - current_cluster_ip_address
+      - namespace
+      - replication_group_id
+      - source_leader_host
+      - state
+      title: Get xCluster replication group ids list.
       type: object
   securitySchemes:
     BearerAuthToken:

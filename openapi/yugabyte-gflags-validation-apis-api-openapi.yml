@@ -123,6 +123,36 @@ paths:
       x-codegen-request-body-name: gflag_validation_form_data
 components:
   schemas:
+    GFlagsValidationResponse:
+      example:
+        MASTER:
+          exist: true
+          error: error
+        TSERVER:
+          exist: true
+          error: error
+        Name: Name
+      properties:
+        MASTER:
+          $ref: '#/components/schemas/GFlagValidationDetails'
+        Name:
+          description: 'WARNING: This is a preview API that could change. Name of the gflag'
+          type: string
+        TSERVER:
+          $ref: '#/components/schemas/GFlagValidationDetails'
+      type: object
+    GFlagValidationDetails:
+      example:
+        exist: true
+        error: error
+      properties:
+        error:
+          description: 'WARNING: This is a preview API that could change. Error message if gflag is invalid'
+          type: string
+        exist:
+          description: 'WARNING: This is a preview API that could change. Flag to indicate if gflag exists'
+          type: boolean
+      type: object
     GFlagDetails:
       example:
         current: current
@@ -163,40 +193,6 @@ components:
           description: 'WARNING: This is a preview API that could change. Type of the gflag'
           type: string
       type: object
-    GFlagsValidationRequest:
-      example:
-        MASTER: MASTER
-        TSERVER: TSERVER
-        Name: Name
-      properties:
-        MASTER:
-          description: 'WARNING: This is a preview API that could change. Value of the gflag for master'
-          type: string
-        Name:
-          description: 'WARNING: This is a preview API that could change. Name of the gflag'
-          type: string
-        TSERVER:
-          description: 'WARNING: This is a preview API that could change. Value of the gflag for tserver'
-          type: string
-      type: object
-    GFlagsValidationResponse:
-      example:
-        MASTER:
-          exist: true
-          error: error
-        TSERVER:
-          exist: true
-          error: error
-        Name: Name
-      properties:
-        MASTER:
-          $ref: '#/components/schemas/GFlagValidationDetails'
-        Name:
-          description: 'WARNING: This is a preview API that could change. Name of the gflag'
-          type: string
-        TSERVER:
-          $ref: '#/components/schemas/GFlagValidationDetails'
-      type: object
     GFlagsValidationFormData:
       example:
         gflags:
@@ -213,17 +209,21 @@ components:
             $ref: '#/components/schemas/GFlagsValidationRequest'
           type: array
       type: object
-    GFlagValidationDetails:
+    GFlagsValidationRequest:
       example:
-        exist: true
-        error: error
+        MASTER: MASTER
+        TSERVER: TSERVER
+        Name: Name
       properties:
-        error:
-          description: 'WARNING: This is a preview API that could change. Error message if gflag is invalid'
+        MASTER:
+          description: 'WARNING: This is a preview API that could change. Value of the gflag for master'
           type: string
-        exist:
-          description: 'WARNING: This is a preview API that could change. Flag to indicate if gflag exists'
-          type: boolean
+        Name:
+          description: 'WARNING: This is a preview API that could change. Name of the gflag'
+          type: string
+        TSERVER:
+          description: 'WARNING: This is a preview API that could change. Value of the gflag for tserver'
+          type: string
       type: object
   securitySchemes:
     apiKeyAuth:

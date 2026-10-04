@@ -342,32 +342,6 @@ components:
       - uuid
       - ybaUrl
       type: object
-    PA_Collector_universe_registration_status:
-      example:
-        success: true
-        advancedObservability: true
-      properties:
-        advancedObservability:
-          description: Whether advanced observability (metrics export to Prometheus) is enabled
-          type: boolean
-        success:
-          description: Whether the universe is registered with PA Collector
-          type: boolean
-      type: object
-    YBPSuccess:
-      example:
-        success: true
-        message: message
-      properties:
-        message:
-          description: API response message.
-          readOnly: true
-          type: string
-        success:
-          description: API operation status. A value of true indicates the operation was successful.
-          readOnly: true
-          type: boolean
-      type: object
     PA_Collector_Details_Model:
       example:
         inUseStatus: IN_USE
@@ -432,6 +406,32 @@ components:
       - paUrl
       - uuid
       - ybaUrl
+      type: object
+    PA_Collector_universe_registration_status:
+      example:
+        success: true
+        advancedObservability: true
+      properties:
+        advancedObservability:
+          description: Whether advanced observability (metrics export to Prometheus) is enabled
+          type: boolean
+        success:
+          description: Whether the universe is registered with PA Collector
+          type: boolean
+      type: object
+    YBPSuccess:
+      example:
+        success: true
+        message: message
+      properties:
+        message:
+          description: API response message.
+          readOnly: true
+          type: string
+        success:
+          description: API operation status. A value of true indicates the operation was successful.
+          readOnly: true
+          type: boolean
       type: object
   securitySchemes:
     apiKeyAuth:

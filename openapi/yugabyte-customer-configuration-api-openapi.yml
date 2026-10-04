@@ -337,6 +337,83 @@ paths:
         required: true
 components:
   schemas:
+    CustomerConfigUI:
+      description: Customer configuration with additional information. Includes storage, alerts, password policy, and call-home level.
+      example:
+        configName: backup20-01-2021
+        configUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        data: '{"AWS_ACCESS_KEY_ID": "AK****************ZD"}'
+        universeDetails: '{"name": "jd-aws-21-6-21-test4"}'
+        inUse: true
+        kubernetesOperatorControlled: true
+        name: S3
+        state: Active
+        type: STORAGE
+      properties:
+        configName:
+          description: Config name
+          example: backup20-01-2021
+          maxLength: 100
+          minLength: 1
+          type: string
+        configUUID:
+          description: Config UUID
+          format: uuid
+          readOnly: true
+          type: string
+        customerUUID:
+          description: Customer UUID
+          format: uuid
+          readOnly: true
+          type: string
+        data:
+          description: Configuration data
+          example: '{"AWS_ACCESS_KEY_ID": "AK****************ZD"}'
+          properties: {}
+          type: object
+        inUse:
+          description: True if there is an in use reference to the object
+          readOnly: true
+          type: boolean
+        kubernetesOperatorControlled:
+          type: boolean
+        name:
+          description: Name
+          example: S3
+          maxLength: 50
+          minLength: 1
+          type: string
+        state:
+          description: state of the customerConfig. Possible values are Active, QueuedForDeletion.
+          enum:
+          - Active
+          - QueuedForDeletion
+          readOnly: true
+          type: string
+        type:
+          description: Config type
+          enum:
+          - STORAGE
+          - ALERTS
+          - CALLHOME
+          - PASSWORD_POLICY
+          example: STORAGE
+          type: string
+        universeDetails:
+          description: Universe details
+          example: '{"name": "jd-aws-21-6-21-test4"}'
+          items:
+            $ref: '#/components/schemas/UniverseDetailSubset'
+          type: array
+      required:
+      - configName
+      - customerUUID
+      - data
+      - kubernetesOperatorControlled
+      - name
+      - type
+      type: object
     SessionInfo:
       description: Session information
       properties:
@@ -370,13 +447,6 @@ components:
           format: uuid
           readOnly: true
           type: string
-      type: object
-    DummyBody:
-      description: Dummy value to work around platform bug PLAT-2076
-      properties:
-        dummy:
-          format: int32
-          type: integer
       type: object
     UniverseDetailSubset:
       description: A small subset of universe information
@@ -475,82 +545,12 @@ components:
       - name
       - type
       type: object
-    CustomerConfigUI:
-      description: Customer configuration with additional information. Includes storage, alerts, password policy, and call-home level.
-      example:
-        configName: backup20-01-2021
-        configUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        data: '{"AWS_ACCESS_KEY_ID": "AK****************ZD"}'
-        universeDetails: '{"name": "jd-aws-21-6-21-test4"}'
-        inUse: true
-        kubernetesOperatorControlled: true
-        name: S3
-        state: Active
-        type: STORAGE
+    DummyBody:
+      description: Dummy value to work around platform bug PLAT-2076
       properties:
-        configName:
-          description: Config name
-          example: backup20-01-2021
-          maxLength: 100
-          minLength: 1
-          type: string
-        configUUID:
-          description: Config UUID
-          format: uuid
-          readOnly: true
-          type: string
-        customerUUID:
-          description: Customer UUID
-          format: uuid
-          readOnly: true
-          type: string
-        data:
-          description: Configuration data
-          example: '{"AWS_ACCESS_KEY_ID": "AK****************ZD"}'
-          properties: {}
-          type: object
-        inUse:
-          description: True if there is an in use reference to the object
-          readOnly: true
-          type: boolean
-        kubernetesOperatorControlled:
-          type: boolean
-        name:
-          description: Name
-          example: S3
-          maxLength: 50
-          minLength: 1
-          type: string
-        state:
-          description: state of the customerConfig. Possible values are Active, QueuedForDeletion.
-          enum:
-          - Active
-          - QueuedForDeletion
-          readOnly: true
-          type: string
-        type:
-          description: Config type
-          enum:
-          - STORAGE
-          - ALERTS
-          - CALLHOME
-          - PASSWORD_POLICY
-          example: STORAGE
-          type: string
-        universeDetails:
-          description: Universe details
-          example: '{"name": "jd-aws-21-6-21-test4"}'
-          items:
-            $ref: '#/components/schemas/UniverseDetailSubset'
-          type: array
-      required:
-      - configName
-      - customerUUID
-      - data
-      - kubernetesOperatorControlled
-      - name
-      - type
+        dummy:
+          format: int32
+          type: integer
       type: object
     CustomerConfigData:
       type: object

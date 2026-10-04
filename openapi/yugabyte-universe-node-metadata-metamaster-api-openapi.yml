@@ -195,115 +195,6 @@ paths:
       - Universe node metadata (metamaster)
 components:
   schemas:
-    MastersList:
-      example:
-        masters:
-        - cloudInfo:
-            mount_roots: mount_roots
-            kubernetesNamespace: kubernetesNamespace
-            public_ip: public_ip
-            secondary_subnet_id: secondary_subnet_id
-            private_dns: private_dns
-            useTimeSync: true
-            kubernetesPodName: kubernetesPodName
-            root_volume: root_volume
-            secondary_private_ip: secondary_private_ip
-            private_ip: private_ip
-            cloud: cloud
-            lun_indexes:
-            - 6
-            - 6
-            assignPublicIP: true
-            az: az
-            subnet_id: subnet_id
-            public_dns: public_dns
-            region: region
-            instance_type: instance_type
-          masterRpcPort: 0
-        - cloudInfo:
-            mount_roots: mount_roots
-            kubernetesNamespace: kubernetesNamespace
-            public_ip: public_ip
-            secondary_subnet_id: secondary_subnet_id
-            private_dns: private_dns
-            useTimeSync: true
-            kubernetesPodName: kubernetesPodName
-            root_volume: root_volume
-            secondary_private_ip: secondary_private_ip
-            private_ip: private_ip
-            cloud: cloud
-            lun_indexes:
-            - 6
-            - 6
-            assignPublicIP: true
-            az: az
-            subnet_id: subnet_id
-            public_dns: public_dns
-            region: region
-            instance_type: instance_type
-          masterRpcPort: 0
-      properties:
-        masters:
-          items:
-            $ref: '#/components/schemas/MasterNode'
-          type: array
-      required:
-      - masters
-      type: object
-    MasterLBStateResponse:
-      description: Master tablet load balancer status
-      example:
-        isEnabled: true
-        isIdle: true
-        estTimeToBalanceSecs: 0
-      properties:
-        estTimeToBalanceSecs:
-          description: YbaApi Internal Estimate of time for which master tablet load balancer will be active
-          format: int64
-          type: integer
-        isEnabled:
-          description: YbaApi Internal Whether master tablet load balancer is enabled
-          type: boolean
-        isIdle:
-          description: YbaApi Internal Whether master tablet load balancer is inactive
-          type: boolean
-      required:
-      - isEnabled
-      type: object
-    MasterNode:
-      example:
-        cloudInfo:
-          mount_roots: mount_roots
-          kubernetesNamespace: kubernetesNamespace
-          public_ip: public_ip
-          secondary_subnet_id: secondary_subnet_id
-          private_dns: private_dns
-          useTimeSync: true
-          kubernetesPodName: kubernetesPodName
-          root_volume: root_volume
-          secondary_private_ip: secondary_private_ip
-          private_ip: private_ip
-          cloud: cloud
-          lun_indexes:
-          - 6
-          - 6
-          assignPublicIP: true
-          az: az
-          subnet_id: subnet_id
-          public_dns: public_dns
-          region: region
-          instance_type: instance_type
-        masterRpcPort: 0
-      properties:
-        cloudInfo:
-          $ref: '#/components/schemas/CloudSpecificInfo'
-        masterRpcPort:
-          format: int32
-          type: integer
-      required:
-      - cloudInfo
-      - masterRpcPort
-      type: object
     CloudSpecificInfo:
       description: Node information reported by the cloud provider
       example:
@@ -385,6 +276,115 @@ components:
         useTimeSync:
           description: True if `use time sync` is enabled
           type: boolean
+      type: object
+    MasterNode:
+      example:
+        cloudInfo:
+          mount_roots: mount_roots
+          kubernetesNamespace: kubernetesNamespace
+          public_ip: public_ip
+          secondary_subnet_id: secondary_subnet_id
+          private_dns: private_dns
+          useTimeSync: true
+          kubernetesPodName: kubernetesPodName
+          root_volume: root_volume
+          secondary_private_ip: secondary_private_ip
+          private_ip: private_ip
+          cloud: cloud
+          lun_indexes:
+          - 6
+          - 6
+          assignPublicIP: true
+          az: az
+          subnet_id: subnet_id
+          public_dns: public_dns
+          region: region
+          instance_type: instance_type
+        masterRpcPort: 0
+      properties:
+        cloudInfo:
+          $ref: '#/components/schemas/CloudSpecificInfo'
+        masterRpcPort:
+          format: int32
+          type: integer
+      required:
+      - cloudInfo
+      - masterRpcPort
+      type: object
+    MastersList:
+      example:
+        masters:
+        - cloudInfo:
+            mount_roots: mount_roots
+            kubernetesNamespace: kubernetesNamespace
+            public_ip: public_ip
+            secondary_subnet_id: secondary_subnet_id
+            private_dns: private_dns
+            useTimeSync: true
+            kubernetesPodName: kubernetesPodName
+            root_volume: root_volume
+            secondary_private_ip: secondary_private_ip
+            private_ip: private_ip
+            cloud: cloud
+            lun_indexes:
+            - 6
+            - 6
+            assignPublicIP: true
+            az: az
+            subnet_id: subnet_id
+            public_dns: public_dns
+            region: region
+            instance_type: instance_type
+          masterRpcPort: 0
+        - cloudInfo:
+            mount_roots: mount_roots
+            kubernetesNamespace: kubernetesNamespace
+            public_ip: public_ip
+            secondary_subnet_id: secondary_subnet_id
+            private_dns: private_dns
+            useTimeSync: true
+            kubernetesPodName: kubernetesPodName
+            root_volume: root_volume
+            secondary_private_ip: secondary_private_ip
+            private_ip: private_ip
+            cloud: cloud
+            lun_indexes:
+            - 6
+            - 6
+            assignPublicIP: true
+            az: az
+            subnet_id: subnet_id
+            public_dns: public_dns
+            region: region
+            instance_type: instance_type
+          masterRpcPort: 0
+      properties:
+        masters:
+          items:
+            $ref: '#/components/schemas/MasterNode'
+          type: array
+      required:
+      - masters
+      type: object
+    MasterLBStateResponse:
+      description: Master tablet load balancer status
+      example:
+        isEnabled: true
+        isIdle: true
+        estTimeToBalanceSecs: 0
+      properties:
+        estTimeToBalanceSecs:
+          description: YbaApi Internal Estimate of time for which master tablet load balancer will be active
+          format: int64
+          type: integer
+        isEnabled:
+          description: YbaApi Internal Whether master tablet load balancer is enabled
+          type: boolean
+        isIdle:
+          description: YbaApi Internal Whether master tablet load balancer is inactive
+          type: boolean
+      required:
+      - isEnabled
       type: object
   securitySchemes:
     apiKeyAuth:

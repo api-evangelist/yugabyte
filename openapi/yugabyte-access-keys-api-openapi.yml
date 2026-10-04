@@ -229,84 +229,30 @@ paths:
       x-codegen-request-body-name: accesskey
 components:
   schemas:
-    KeyInfo:
+    AccessKeyId:
       example:
-        sshPort: 6
-        nodeExporterPort: 0
-        installNodeExporter: true
-        skipProvisioning: true
-        nodeExporterUser: nodeExporterUser
-        provisionInstanceScript: provisionInstanceScript
-        passwordlessSudoAccess: true
-        publicKey: publicKey
-        vaultFile: vaultFile
-        sshPrivateKeyContent: sshPrivateKeyContent
-        privateKey: privateKey
-        setUpChrony: true
-        vaultPasswordFile: vaultPasswordFile
-        ntpServers:
-        - ntpServers
-        - ntpServers
-        skipKeyValidateAndUpload: true
-        sshUser: sshUser
-        deleteRemote: true
-        showSetUpChrony: true
-        airGapInstall: true
-        keyPairName: keyPairName
-        managementState: YBAManaged
+        keyCode: keyCode
+        providerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
-        airGapInstall:
-          type: boolean
-        deleteRemote:
-          type: boolean
-        installNodeExporter:
-          type: boolean
-        keyPairName:
+        keyCode:
           type: string
-        managementState:
-          description: Key Management state
-          enum:
-          - YBAManaged
-          - SelfManaged
-          - Unknown
+        providerUUID:
+          format: uuid
+          type: string
+      type: object
+    YBPSuccess:
+      example:
+        success: true
+        message: message
+      properties:
+        message:
+          description: API response message.
           readOnly: true
           type: string
-        nodeExporterPort:
-          format: int32
-          type: integer
-        nodeExporterUser:
-          type: string
-        ntpServers:
-          items:
-            type: string
-          type: array
-        passwordlessSudoAccess:
+        success:
+          description: API operation status. A value of true indicates the operation was successful.
+          readOnly: true
           type: boolean
-        privateKey:
-          type: string
-        provisionInstanceScript:
-          type: string
-        publicKey:
-          type: string
-        setUpChrony:
-          type: boolean
-        showSetUpChrony:
-          type: boolean
-        skipKeyValidateAndUpload:
-          type: boolean
-        skipProvisioning:
-          type: boolean
-        sshPort:
-          format: int32
-          type: integer
-        sshPrivateKeyContent:
-          type: string
-        sshUser:
-          type: string
-        vaultFile:
-          type: string
-        vaultPasswordFile:
-          type: string
       type: object
     AccessKeyFormData:
       example:
@@ -384,29 +330,83 @@ components:
       - idKey
       - keyInfo
       type: object
-    YBPSuccess:
+    KeyInfo:
       example:
-        success: true
-        message: message
+        sshPort: 6
+        nodeExporterPort: 0
+        installNodeExporter: true
+        skipProvisioning: true
+        nodeExporterUser: nodeExporterUser
+        provisionInstanceScript: provisionInstanceScript
+        passwordlessSudoAccess: true
+        publicKey: publicKey
+        vaultFile: vaultFile
+        sshPrivateKeyContent: sshPrivateKeyContent
+        privateKey: privateKey
+        setUpChrony: true
+        vaultPasswordFile: vaultPasswordFile
+        ntpServers:
+        - ntpServers
+        - ntpServers
+        skipKeyValidateAndUpload: true
+        sshUser: sshUser
+        deleteRemote: true
+        showSetUpChrony: true
+        airGapInstall: true
+        keyPairName: keyPairName
+        managementState: YBAManaged
       properties:
-        message:
-          description: API response message.
-          readOnly: true
-          type: string
-        success:
-          description: API operation status. A value of true indicates the operation was successful.
-          readOnly: true
+        airGapInstall:
           type: boolean
-      type: object
-    AccessKeyId:
-      example:
-        keyCode: keyCode
-        providerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-      properties:
-        keyCode:
+        deleteRemote:
+          type: boolean
+        installNodeExporter:
+          type: boolean
+        keyPairName:
           type: string
-        providerUUID:
-          format: uuid
+        managementState:
+          description: Key Management state
+          enum:
+          - YBAManaged
+          - SelfManaged
+          - Unknown
+          readOnly: true
+          type: string
+        nodeExporterPort:
+          format: int32
+          type: integer
+        nodeExporterUser:
+          type: string
+        ntpServers:
+          items:
+            type: string
+          type: array
+        passwordlessSudoAccess:
+          type: boolean
+        privateKey:
+          type: string
+        provisionInstanceScript:
+          type: string
+        publicKey:
+          type: string
+        setUpChrony:
+          type: boolean
+        showSetUpChrony:
+          type: boolean
+        skipKeyValidateAndUpload:
+          type: boolean
+        skipProvisioning:
+          type: boolean
+        sshPort:
+          format: int32
+          type: integer
+        sshPrivateKeyContent:
+          type: string
+        sshUser:
+          type: string
+        vaultFile:
+          type: string
+        vaultPasswordFile:
           type: string
       type: object
   securitySchemes:

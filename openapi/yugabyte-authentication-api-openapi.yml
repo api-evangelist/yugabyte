@@ -194,29 +194,6 @@ components:
       - role_uuid
       title: RoleResourceDefinition.
       type: object
-    ResourceGroup:
-      description: Resource group definition for the role. Only applicable for custom roles.
-      example:
-        resource_definition_set:
-        - resource_type: UNIVERSE
-          resource_uuid_set:
-          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          allow_all: true
-        - resource_type: UNIVERSE
-          resource_uuid_set:
-          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          allow_all: true
-      properties:
-        resource_definition_set:
-          items:
-            $ref: '#/components/schemas/ResourceDefinition'
-          type: array
-      required:
-      - resource_definition_set
-      title: ResourceGroup
-      type: object
     ResourceDefinition:
       description: Resource definition containing the resource type and resource set.
       example:
@@ -248,6 +225,29 @@ components:
       - allow_all
       - resource_type
       title: ResourceDefinition
+      type: object
+    ResourceGroup:
+      description: Resource group definition for the role. Only applicable for custom roles.
+      example:
+        resource_definition_set:
+        - resource_type: UNIVERSE
+          resource_uuid_set:
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          allow_all: true
+        - resource_type: UNIVERSE
+          resource_uuid_set:
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          allow_all: true
+      properties:
+        resource_definition_set:
+          items:
+            $ref: '#/components/schemas/ResourceDefinition'
+          type: array
+      required:
+      - resource_definition_set
+      title: ResourceGroup
       type: object
     AuthGroupToRolesMapping:
       description: 'AuthGroupToRolesMapping

@@ -180,7 +180,69 @@ components:
         type: string
         format: uuid
       example: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+  responses:
+    Unauthorized:
+      description: The API key is missing, invalid, or expired.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          examples:
+            UnauthorizedExample:
+              summary: Default Unauthorized response
+              x-microcks-default: true
+              value:
+                error:
+                  code: OK
+                  message: Example message
+                  status: 100
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          examples:
+            NotFoundExample:
+              summary: Default NotFound response
+              x-microcks-default: true
+              value:
+                error:
+                  code: OK
+                  message: Example message
+                  status: 100
+    BadRequest:
+      description: The request was malformed or contained invalid parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          examples:
+            BadRequestExample:
+              summary: Default BadRequest response
+              x-microcks-default: true
+              value:
+                error:
+                  code: OK
+                  message: Example message
+                  status: 100
   schemas:
+    CloudInfo:
+      type: object
+      description: Cloud provider and region configuration for a cluster.
+      properties:
+        code:
+          type: string
+          description: Cloud provider code.
+          enum:
+          - AWS
+          - GCP
+          - AZURE
+          example: AWS
+        region:
+          type: string
+          description: Cloud provider region identifier (e.g., us-east-1 for AWS, us-east1 for GCP, eastus for Azure).
+          example: us-east-1
     ErrorResponse:
       type: object
       description: Standard error response returned by the API on failure.
@@ -204,22 +266,6 @@ components:
             code: OK
             message: Example message
             status: 100
-    NodeInfo:
-      type: object
-      description: Per-node compute and storage resource allocation.
-      properties:
-        num_cores:
-          type: integer
-          description: Number of vCPU cores per node.
-          example: 10
-        memory_mb:
-          type: integer
-          description: Memory in megabytes per node.
-          example: 100
-        disk_size_gb:
-          type: integer
-          description: Storage disk size in gigabytes per node.
-          example: 10
     ReadReplicaSpec:
       type: object
       description: Specification for creating a read replica on a cluster.
@@ -253,22 +299,22 @@ components:
           - DELETING
           - FAILED
           example: ACTIVE
-    CloudInfo:
+    NodeInfo:
       type: object
-      description: Cloud provider and region configuration for a cluster.
+      description: Per-node compute and storage resource allocation.
       properties:
-        code:
-          type: string
-          description: Cloud provider code.
-          enum:
-          - AWS
-          - GCP
-          - AZURE
-          example: AWS
-        region:
-          type: string
-          description: Cloud provider region identifier (e.g., us-east-1 for AWS, us-east1 for GCP, eastus for Azure).
-          example: us-east-1
+        num_cores:
+          type: integer
+          description: Number of vCPU cores per node.
+          example: 10
+        memory_mb:
+          type: integer
+          description: Memory in megabytes per node.
+          example: 100
+        disk_size_gb:
+          type: integer
+          description: Storage disk size in gigabytes per node.
+          example: 10
     ClusterInfo:
       type: object
       description: Compute and storage configuration for a cluster.
@@ -300,52 +346,6 @@ components:
           type: string
           description: YugabyteDB software version to deploy on the cluster.
           example: 2.20.0.0
-  responses:
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-          examples:
-            NotFoundExample:
-              summary: Default NotFound response
-              x-microcks-default: true
-              value:
-                error:
-                  code: OK
-                  message: Example message
-                  status: 100
-    BadRequest:
-      description: The request was malformed or contained invalid parameters.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-          examples:
-            BadRequestExample:
-              summary: Default BadRequest response
-              x-microcks-default: true
-              value:
-                error:
-                  code: OK
-                  message: Example message
-                  status: 100
-    Unauthorized:
-      description: The API key is missing, invalid, or expired.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-          examples:
-            UnauthorizedExample:
-              summary: Default Unauthorized response
-              x-microcks-default: true
-              value:
-                error:
-                  code: OK
-                  message: Example message
-                  status: 100
   securitySchemes:
     bearerAuth:
       type: http

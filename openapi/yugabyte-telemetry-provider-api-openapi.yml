@@ -212,6 +212,26 @@ paths:
       - Telemetry Provider
 components:
   schemas:
+    TelemetryProviderConfig:
+      description: Telemetry Provider Configuration
+      discriminator:
+        propertyName: type
+      example:
+        type: DATA_DOG
+      properties:
+        type:
+          description: Telemetry Provider Type
+          enum:
+          - DATA_DOG
+          - SPLUNK
+          - AWS_CLOUDWATCH
+          - GCP_CLOUD_MONITORING
+          - LOKI
+          - DYNATRACE
+          - S3
+          - OTLP
+          type: string
+      type: object
     TelemetryProvider:
       description: Telemetry Provider Model
       example:
@@ -263,26 +283,6 @@ components:
       - name
       - tags
       - uuid
-      type: object
-    TelemetryProviderConfig:
-      description: Telemetry Provider Configuration
-      discriminator:
-        propertyName: type
-      example:
-        type: DATA_DOG
-      properties:
-        type:
-          description: Telemetry Provider Type
-          enum:
-          - DATA_DOG
-          - SPLUNK
-          - AWS_CLOUDWATCH
-          - GCP_CLOUD_MONITORING
-          - LOKI
-          - DYNATRACE
-          - S3
-          - OTLP
-          type: string
       type: object
     TelemetryProviderTypeInfo:
       description: Telemetry Provider Type Information

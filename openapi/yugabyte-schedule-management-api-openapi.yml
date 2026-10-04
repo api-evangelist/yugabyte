@@ -356,459 +356,56 @@ paths:
       x-codegen-request-body-name: body
 components:
   schemas:
-    YBPTask:
+    BackupScheduleEditParams:
       example:
-        taskUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        resourceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        cronExpression: cronExpression
+        frequencyTimeUnit: NANOSECONDS
+        incrementalBackupFrequencyTimeUnit: NANOSECONDS
+        timeBeforeDelete: 1
+        schedulingFrequency: 6
+        incrementalBackupFrequency: 0
       properties:
-        resourceUUID:
-          description: UUID of the resource being modified by the task
-          format: uuid
-          readOnly: true
+        cronExpression:
+          description: Cron expression for scheduling
           type: string
-        taskUUID:
-          description: Task UUID
-          format: uuid
-          readOnly: true
-          type: string
-      type: object
-    BackupScheduleToggleParams:
-      example:
-        runImmediateBackupOnResume: true
-        status: Deleting
-      properties:
-        runImmediateBackupOnResume:
-          description: Run a full or incremental backup if required when resuming a stopped schedule. When false (default), the full backup will instead run at its normally scheduled time.
-          type: boolean
-        status:
-          description: State of the schedule
+        frequencyTimeUnit:
+          description: Time Unit for frequency
           enum:
-          - Deleting
-          - Error
-          - Active
-          - Creating
-          - Paused
-          - Stopped
-          - Editing
+          - NANOSECONDS
+          - MICROSECONDS
+          - MILLISECONDS
+          - SECONDS
+          - MINUTES
+          - HOURS
+          - DAYS
+          - MONTHS
+          - YEARS
           type: string
-      required:
-      - status
-      type: object
-    ScheduleApiFilter:
-      example:
-        taskTypes:
-        - CloudBootstrap
-        - CloudBootstrap
-        universeUUIDList:
-        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        status:
-        - Deleting
-        - Deleting
-      properties:
-        status:
-          items:
-            enum:
-            - Deleting
-            - Error
-            - Active
-            - Creating
-            - Paused
-            - Stopped
-            - Editing
-            type: string
-          type: array
-          uniqueItems: true
-        taskTypes:
-          items:
-            enum:
-            - CloudBootstrap
-            - CloudCleanup
-            - CreateCassandraTable
-            - CreateUniverse
-            - ReadOnlyClusterCreate
-            - ReadOnlyKubernetesClusterDelete
-            - ReadOnlyClusterDelete
-            - CreateKubernetesUniverse
-            - ReadOnlyKubernetesClusterCreate
-            - DestroyUniverse
-            - PauseUniverse
-            - ResumeUniverse
-            - PauseKubernetesUniverse
-            - ResumeKubernetesUniverse
-            - DestroyKubernetesUniverse
-            - DeleteTable
-            - BackupUniverse
-            - RestoreBackup
-            - MultiTableBackup
-            - CreateBackup
-            - ConfigureDBApis
-            - ConfigureDBApisKubernetes
-            - CreatePitrConfig
-            - UpdatePitrConfig
-            - DeletePitrConfig
-            - RestoreSnapshotSchedule
-            - EditUniverse
-            - EditKubernetesUniverse
-            - ExternalScript
-            - ImportIntoTable
-            - RunApiTriggeredHooks
-            - AddOnClusterCreate
-            - AddOnClusterDelete
-            - UpgradeUniverse
-            - UpdateLoadBalancerConfig
-            - RestartUniverse
-            - RestartUniverseKubernetesUpgrade
-            - SoftwareUpgrade
-            - SoftwareKubernetesUpgrade
-            - KubernetesOverridesUpgrade
-            - GFlagsUpgrade
-            - GFlagsKubernetesUpgrade
-            - CertsRotate
-            - CertsRotateKubernetesUpgrade
-            - TlsToggle
-            - VMImageUpgrade
-            - SystemdUpgrade
-            - RebootUniverse
-            - UpgradeKubernetesUniverse
-            - DeleteNodeFromUniverse
-            - StopNodeInUniverse
-            - StartNodeInUniverse
-            - AddNodeToUniverse
-            - RemoveNodeFromUniverse
-            - RebootNodeInUniverse
-            - ReleaseInstanceFromUniverse
-            - RotateAccessKey
-            - SetUniverseKey
-            - CreateAndRotateAccessKey
-            - CreateKMSConfig
-            - EditKMSConfig
-            - DeleteKMSConfig
-            - UpdateDiskSize
-            - UpdateKubernetesDiskSize
-            - StartMasterOnNode
-            - DeleteXClusterConfig
-            - SyncXClusterConfig
-            - CreateSupportBundle
-            - CreateXClusterConfig
-            - EditXClusterConfig
-            - RestartXClusterConfig
-            - RestartDrConfig
-            - SyncDrConfig
-            - SetDatabasesDrConfig
-            - SetTablesDrConfig
-            - CreateDrConfig
-            - DeleteDrConfig
-            - FailoverDrConfig
-            - SwitchoverDrConfig
-            - SwitchoverDrConfigRollback
-            - EditDrConfig
-            - EditDrConfigParams
-            - PauseXClusterUniverses
-            - ResumeXClusterUniverses
-            - ReinstallNodeAgent
-            - ProvisionUniverseNodes
-            - DeleteCustomerConfig
-            - DeleteCustomerStorageConfig
-            - ResizeNode
-            - CreateTableSpacesInUniverse
-            - ThirdpartySoftwareUpgrade
-            - ModifyAuditLoggingConfig
-            - ModifyKubernetesAuditLoggingConfig
-            - ModifyQueryLoggingConfig
-            - ModifyMetricsExportConfig
-            - InstallYbcSoftware
-            - UpgradeUniverseYbc
-            - UpgradeYbcGFlags
-            - UpgradeKubernetesYbcGFlags
-            - UpdateYbcThrottleFlags
-            - UpdateK8sYbcThrottleFlags
-            - DisableYbc
-            - AddGFlagMetadata
-            - CloudProviderDelete
-            - CreateBackupSchedule
-            - CreateBackupScheduleKubernetes
-            - DeleteBackupSchedule
-            - DeleteBackupScheduleKubernetes
-            - EditBackupSchedule
-            - EditBackupScheduleKubernetes
-            - CloudProviderEdit
-            - SoftwareUpgradeYB
-            - SoftwareKubernetesUpgradeYB
-            - FinalizeUpgrade
-            - FinalizeKubernetesUpgrade
-            - RollbackUpgrade
-            - RollbackKubernetesUpgrade
-            - LdapUniverseSync
-            - ReprovisionNode
-            - ReplaceNodeInUniverse
-            - UpdateProxyConfig
-            - RecommissionNodeInstance
-            - DecommissionNodeInstance
-            - MasterFailover
-            - SyncMasterAddresses
-            - CreateContinuousBackup
-            - CreateYbaBackup
-            - RestoreYbaBackup
-            - RestoreContinuousBackup
-            - EnableNodeAgentInUniverse
-            - DecommissionNode
-            - CloneNamespace
-            - TlsToggleKubernetes
-            - UpdateOOMServiceState
-            - SendUserNotification
-            - ImportUniverse
-            - MigrateUniverse
-            - KubernetesToggleImmutableYbc
-            - OperatorImportUniverse
-            - KubernetesCheckVolumeExpansion
-            - KubernetesPostExpansionCheckVolume
-            - NodeCertReloadTask
-            - UpdateUniverseConfig
-            - CreateRootVolumes
-            - ReplaceRootVolume
-            - ChangeInstanceType
-            - PersistResizeNode
-            - PersistSystemdUpgrade
-            - PersistUseClockbound
-            - UpdateNodeDetails
-            - AddAuthorizedKey
-            - AnsibleClusterServerCtl
-            - AnsibleConfigureServers
-            - AnsibleDestroyServer
-            - PauseServer
-            - ResumeServer
-            - AnsibleSetupServer
-            - AnsibleCreateServer
-            - PrecheckNodeDetached
-            - AnsibleUpdateNodeInfo
-            - BulkImport
-            - ChangeMasterConfig
-            - ChangeAdminPassword
-            - DropTable
-            - CreateTable
-            - DeleteNode
-            - DeleteBackup
-            - DeleteBackupYb
-            - UpdateNodeProcess
-            - DeleteTableFromUniverse
-            - DeleteTablesFromUniverse
-            - DeleteKeyspace
-            - LoadBalancerStateChange
-            - ModifyBlackList
-            - CheckUnderReplicatedTablets
-            - CheckFollowerLag
-            - CheckNodeSafeToDelete
-            - ManipulateDnsRecordTask
-            - RemoveUniverseEntry
-            - SetFlagInMemory
-            - SetNodeState
-            - SwamperTargetsFileUpdate
-            - UniverseUpdateSucceeded
-            - RegisterUniverseWithPaCollector
-            - UnregisterUniverseFromPaCollector
-            - UpdateAndPersistGFlags
-            - UpdateAndPersistKubernetesOverrides
-            - HandleKubernetesNamespacedServices
-            - UpdatePlacementInfo
-            - UpdateSoftwareVersion
-            - UpdateUniverseYbcDetails
-            - YBCBackupSucceeded
-            - UpdateUniverseYbcGflagsDetails
-            - SetYbcThrottleParamsInMemory
-            - VerifyNodeSSHAccess
-            - WaitForDataMove
-            - WaitForLeaderBlacklistCompletion
-            - WaitForFollowerLag
-            - WaitForLoadBalance
-            - WaitForMasterLeader
-            - WaitForServer
-            - WaitForYbcServer
-            - WaitForTServerHeartBeats
-            - DeleteClusterFromUniverse
-            - InstanceActions
-            - WaitForServerReady
-            - WaitForClockSync
-            - WaitForDuration
-            - RunExternalScript
-            - RemoveAuthorizedKey
-            - UpdateUniverseAccessKey
-            - ManageLoadBalancerGroup
-            - BootstrapProducer
-            - CheckBootstrapRequired
-            - DeleteBootstrapIds
-            - XClusterNetworkConnectivityCheck
-            - DeleteReplication
-            - DeleteXClusterConfigEntry
-            - DeleteXClusterTableConfigEntry
-            - DeleteDrConfigEntry
-            - WaitForReplicationDrain
-            - ResetXClusterConfigEntry
-            - SetReplicationPaused
-            - ChangeXClusterRole
-            - SetDrStates
-            - UpdateDrConfigParams
-            - XClusterAddNamespaceToOutboundReplicationGroup
-            - AddNamespaceToXClusterReplication
-            - XClusterRemoveNamespaceFromTargetUniverse
-            - XClusterRemoveNamespaceFromOutboundReplication
-            - SetRestoreTime
-            - XClusterConfigSetup
-            - XClusterConfigSetStatus
-            - XClusterConfigSetStatusForTables
-            - XClusterConfigSetStatusForNamespaces
-            - XClusterConfigModifyTables
-            - XClusterConfigRename
-            - XClusterConfigSync
-            - XClusterConfigUpdateMasterAddresses
-            - XClusterInfoPersist
-            - ReplicateNamespaces
-            - CheckXUniverseAutoFlags
-            - PromoteSecondaryConfigToMainConfig
-            - DeleteRemnantStreams
-            - CreateOutboundReplicationGroup
-            - XClusterDbReplicationSetup
-            - DeleteReplicationOnSource
-            - DeleteXClusterBackupRestoreEntries
-            - AddExistingPitrToXClusterConfig
-            - DrConfigWebhookCall
-            - SetRestoreState
-            - CloudAccessKeyCleanup
-            - CloudAccessKeySetup
-            - CloudInitializer
-            - CloudProviderCleanup
-            - CloudRegionCleanup
-            - CloudRegionSetup
-            - CloudSetup
-            - BackupTable
-            - BackupTableYb
-            - BackupTableYbc
-            - BackupUniverseKeys
-            - RestoreBackupYb
-            - RestoreBackupYbc
-            - RestoreUniverseKeys
-            - RestoreUniverseKeysYb
-            - RestoreUniverseKeysYbc
-            - SetBackupHiddenState
-            - SetRestoreHiddenState
-            - RestorePreflightValidate
-            - BackupPreflightValidate
-            - WaitForLeadersOnPreferredOnly
-            - EnableEncryptionAtRest
-            - DisableEncryptionAtRest
-            - DestroyEncryptionAtRest
-            - KubernetesCommandExecutor
-            - KubernetesWaitForPod
-            - KubernetesCheckNumPod
-            - PodDisruptionBudgetPolicy
-            - SetActiveUniverseKeys
-            - WaitForEncryptionKeyInMemory
-            - UnivSetCertificate
-            - CreateAlertDefinitions
-            - ManageAlertDefinitions
-            - ManageCatalogUpgradeSuperUser
-            - UpdatePitrConfigIntermittentMinRecoverTime
-            - MarkSourceMetric
-            - UniverseSetTlsParams
-            - UniverseUpdateRootCert
-            - ResetUniverseVersion
-            - DeleteCertificate
-            - SetNodeStatus
-            - CheckMasterLeader
-            - CheckMasters
-            - CheckTServers
-            - WaitForTServerHBs
-            - CreatePrometheusSwamperConfig
-            - PreflightNodeCheck
-            - RunYsqlUpgrade
-            - PromoteAutoFlags
-            - UpdateSoftwareUpdatePrevConfig
-            - RollbackAutoFlags
-            - StoreAutoFlagConfigVersion
-            - CheckUpgrade
-            - CheckCertificateConfig
-            - CheckMemory
-            - CheckLocale
-            - CheckShellConnectivity
-            - CheckGlibc
-            - CheckOpentelemetryOperator
-            - PGUpgradeTServerCheck
-            - CleanUpPGUpgradeDataDir
-            - RunYsqlMajorVersionCatalogUpgrade
-            - RollbackYsqlMajorVersionCatalogUpgrade
-            - FinalizeYsqlMajorCatalogUpgrade
-            - ValidateGFlags
-            - CheckSoftwareVersion
-            - UpdateMountedDisks
-            - TransferXClusterCerts
-            - CreateTableSpaces
-            - ManageOtelCollector
-            - UpdateAndPersistAuditLoggingConfig
-            - UpdateAndPersistQueryLoggingConfig
-            - UpdateAndPersistMetricsExportConfig
-            - MarkUniverseForHealthScriptReUpload
-            - RebootServer
-            - HardRebootServer
-            - RunHooks
-            - UpdateUniverseTags
-            - UpgradeYbc
-            - InstallYbcSoftwareOnK8s
-            - InstanceExistCheck
-            - DeleteRootVolumes
-            - InstallingThirdPartySoftware
-            - InstallNodeAgent
-            - WaitForNodeAgent
-            - CloudImageBundleSetup
-            - UpdateClusterUserIntent
-            - UpdateClusterAPIDetails
-            - UpdateUniverseState
-            - UpdateUniverseCommunicationPorts
-            - UpdateUniverseIntent
-            - UpdateConsistencyCheck
-            - FreezeUniverse
-            - QueryLdapServer
-            - DbLdapSync
-            - CheckForClusterServers
-            - CheckLeaderlessTablets
-            - CheckNodesAreSafeToTakeDown
-            - ValidateNodeDiskSize
-            - CheckNodeReachable
-            - CheckDbNodePortConnectivity
-            - SupportBundleComponentDownload
-            - WaitStartingFromTime
-            - RemoveNodeAgent
-            - UpdateUniverseFields
-            - RunNodeCommand
-            - MasterLeaderStepdown
-            - SetupYNP
-            - YNPProvisioning
-            - ConfigureOOMServiceOnNode
-            - CheckSshConnection
-            - FetchServerConf
-            - DoCapacityReservation
-            - DeleteCapacityReservation
-            - DisablePitrConfig
-            - EnablePitrConfig
-            - UpdateAndPersistKubernetesImmutableYbc
-            - TablespaceValidationOnRemove
-            - CheckServiceLiveness
-            - CheckNodeCommandExecution
-            - CheckNodeDataDirDiskSpace
-            - OperatorImportResource
-            - UpdateParentTaskParams
-            type: string
-          type: array
-          uniqueItems: true
-        universeUUIDList:
-          items:
-            format: uuid
-            type: string
-          type: array
-          uniqueItems: true
-      required:
-      - status
-      - taskTypes
-      - universeUUIDList
+        incrementalBackupFrequency:
+          description: Frequency of incremental backup schedule
+          format: int64
+          type: integer
+        incrementalBackupFrequencyTimeUnit:
+          description: TimeUnit for incremental Backup Schedule frequency
+          enum:
+          - NANOSECONDS
+          - MICROSECONDS
+          - MILLISECONDS
+          - SECONDS
+          - MINUTES
+          - HOURS
+          - DAYS
+          - MONTHS
+          - YEARS
+          type: string
+        schedulingFrequency:
+          description: Frequency of the schedule
+          format: int64
+          type: integer
+        timeBeforeDelete:
+          description: Time before deleting the backup from storage, in milliseconds
+          format: int64
+          type: integer
       type: object
     SchedulePagedApiResponse:
       example:
@@ -974,6 +571,22 @@ components:
       - hasPrev
       - totalCount
       type: object
+    YBPTask:
+      example:
+        taskUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        resourceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        resourceUUID:
+          description: UUID of the resource being modified by the task
+          format: uuid
+          readOnly: true
+          type: string
+        taskUUID:
+          description: Task UUID
+          format: uuid
+          readOnly: true
+          type: string
+      type: object
     SchedulePagedApiQuery:
       example:
         filter:
@@ -1020,20 +633,6 @@ components:
       - needTotalCount
       - offset
       - sortBy
-      type: object
-    YBPSuccess:
-      example:
-        success: true
-        message: message
-      properties:
-        message:
-          description: API response message.
-          readOnly: true
-          type: string
-        success:
-          description: API operation status. A value of true indicates the operation was successful.
-          readOnly: true
-          type: boolean
       type: object
     KeyspaceTablesList:
       example:
@@ -1091,6 +690,116 @@ components:
       - perRegionLocations
       - tableUUIDList
       - tablesList
+      type: object
+    BackupInfo:
+      example:
+        storageConfigUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        universeUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        useRoles: true
+        expiryTimeUnit: NANOSECONDS
+        timeBeforeDelete: 6
+        keyspaceList:
+        - backupPointInTimeRestoreWindow:
+            timestampRetentionWindowEndMillis: 0
+            timestampRetentionWindowStartMillis: 6
+          backupSizeInBytes: 1
+          keyspace: keyspace
+          tableUUIDList:
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          tablesList:
+          - tablesList
+          - tablesList
+          perRegionLocations:
+          - LOCATION: LOCATION
+            HOST_BASE: HOST_BASE
+            REGION: REGION
+          - LOCATION: LOCATION
+            HOST_BASE: HOST_BASE
+            REGION: REGION
+          allTables: true
+          defaultLocation: defaultLocation
+        - backupPointInTimeRestoreWindow:
+            timestampRetentionWindowEndMillis: 0
+            timestampRetentionWindowStartMillis: 6
+          backupSizeInBytes: 1
+          keyspace: keyspace
+          tableUUIDList:
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          tablesList:
+          - tablesList
+          - tablesList
+          perRegionLocations:
+          - LOCATION: LOCATION
+            HOST_BASE: HOST_BASE
+            REGION: REGION
+          - LOCATION: LOCATION
+            HOST_BASE: HOST_BASE
+            REGION: REGION
+          allTables: true
+          defaultLocation: defaultLocation
+        parallelism: 0
+        pointInTimeRestoreEnabled: true
+        useTablespaces: true
+        fullBackup: true
+        backupType: YQL_TABLE_TYPE
+      properties:
+        backupType:
+          enum:
+          - YQL_TABLE_TYPE
+          - REDIS_TABLE_TYPE
+          - PGSQL_TABLE_TYPE
+          - TRANSACTION_STATUS_TABLE_TYPE
+          type: string
+        expiryTimeUnit:
+          enum:
+          - NANOSECONDS
+          - MICROSECONDS
+          - MILLISECONDS
+          - SECONDS
+          - MINUTES
+          - HOURS
+          - DAYS
+          - MONTHS
+          - YEARS
+          type: string
+        fullBackup:
+          type: boolean
+        keyspaceList:
+          items:
+            $ref: '#/components/schemas/KeyspaceTablesList'
+          type: array
+        parallelism:
+          format: int64
+          type: integer
+        pointInTimeRestoreEnabled:
+          type: boolean
+        storageConfigUUID:
+          format: uuid
+          type: string
+        timeBeforeDelete:
+          format: int64
+          type: integer
+        universeUUID:
+          format: uuid
+          type: string
+        useRoles:
+          type: boolean
+        useTablespaces:
+          type: boolean
+      required:
+      - backupType
+      - expiryTimeUnit
+      - fullBackup
+      - keyspaceList
+      - parallelism
+      - pointInTimeRestoreEnabled
+      - storageConfigUUID
+      - timeBeforeDelete
+      - universeUUID
+      - useRoles
+      - useTablespaces
       type: object
     Schedule:
       description: Backup schedule
@@ -1577,6 +1286,490 @@ components:
       required:
       - kubernetesOperatorControlled
       type: object
+    YBPSuccess:
+      example:
+        success: true
+        message: message
+      properties:
+        message:
+          description: API response message.
+          readOnly: true
+          type: string
+        success:
+          description: API operation status. A value of true indicates the operation was successful.
+          readOnly: true
+          type: boolean
+      type: object
+    ScheduleApiFilter:
+      example:
+        taskTypes:
+        - CloudBootstrap
+        - CloudBootstrap
+        universeUUIDList:
+        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        status:
+        - Deleting
+        - Deleting
+      properties:
+        status:
+          items:
+            enum:
+            - Deleting
+            - Error
+            - Active
+            - Creating
+            - Paused
+            - Stopped
+            - Editing
+            type: string
+          type: array
+          uniqueItems: true
+        taskTypes:
+          items:
+            enum:
+            - CloudBootstrap
+            - CloudCleanup
+            - CreateCassandraTable
+            - CreateUniverse
+            - ReadOnlyClusterCreate
+            - ReadOnlyKubernetesClusterDelete
+            - ReadOnlyClusterDelete
+            - CreateKubernetesUniverse
+            - ReadOnlyKubernetesClusterCreate
+            - DestroyUniverse
+            - PauseUniverse
+            - ResumeUniverse
+            - PauseKubernetesUniverse
+            - ResumeKubernetesUniverse
+            - DestroyKubernetesUniverse
+            - DeleteTable
+            - BackupUniverse
+            - RestoreBackup
+            - MultiTableBackup
+            - CreateBackup
+            - ConfigureDBApis
+            - ConfigureDBApisKubernetes
+            - CreatePitrConfig
+            - UpdatePitrConfig
+            - DeletePitrConfig
+            - RestoreSnapshotSchedule
+            - EditUniverse
+            - EditKubernetesUniverse
+            - ExternalScript
+            - ImportIntoTable
+            - RunApiTriggeredHooks
+            - AddOnClusterCreate
+            - AddOnClusterDelete
+            - UpgradeUniverse
+            - UpdateLoadBalancerConfig
+            - RestartUniverse
+            - RestartUniverseKubernetesUpgrade
+            - SoftwareUpgrade
+            - SoftwareKubernetesUpgrade
+            - KubernetesOverridesUpgrade
+            - GFlagsUpgrade
+            - GFlagsKubernetesUpgrade
+            - CertsRotate
+            - CertsRotateKubernetesUpgrade
+            - TlsToggle
+            - VMImageUpgrade
+            - SystemdUpgrade
+            - RebootUniverse
+            - UpgradeKubernetesUniverse
+            - DeleteNodeFromUniverse
+            - StopNodeInUniverse
+            - StartNodeInUniverse
+            - AddNodeToUniverse
+            - RemoveNodeFromUniverse
+            - RebootNodeInUniverse
+            - ReleaseInstanceFromUniverse
+            - RotateAccessKey
+            - SetUniverseKey
+            - CreateAndRotateAccessKey
+            - CreateKMSConfig
+            - EditKMSConfig
+            - DeleteKMSConfig
+            - UpdateDiskSize
+            - UpdateKubernetesDiskSize
+            - StartMasterOnNode
+            - DeleteXClusterConfig
+            - SyncXClusterConfig
+            - CreateSupportBundle
+            - CreateXClusterConfig
+            - EditXClusterConfig
+            - RestartXClusterConfig
+            - RestartDrConfig
+            - SyncDrConfig
+            - SetDatabasesDrConfig
+            - SetTablesDrConfig
+            - CreateDrConfig
+            - DeleteDrConfig
+            - FailoverDrConfig
+            - SwitchoverDrConfig
+            - SwitchoverDrConfigRollback
+            - EditDrConfig
+            - EditDrConfigParams
+            - PauseXClusterUniverses
+            - ResumeXClusterUniverses
+            - ReinstallNodeAgent
+            - ProvisionUniverseNodes
+            - DeleteCustomerConfig
+            - DeleteCustomerStorageConfig
+            - ResizeNode
+            - CreateTableSpacesInUniverse
+            - ThirdpartySoftwareUpgrade
+            - ModifyAuditLoggingConfig
+            - ModifyKubernetesAuditLoggingConfig
+            - ModifyQueryLoggingConfig
+            - ModifyMetricsExportConfig
+            - InstallYbcSoftware
+            - UpgradeUniverseYbc
+            - UpgradeYbcGFlags
+            - UpgradeKubernetesYbcGFlags
+            - UpdateYbcThrottleFlags
+            - UpdateK8sYbcThrottleFlags
+            - DisableYbc
+            - AddGFlagMetadata
+            - CloudProviderDelete
+            - CreateBackupSchedule
+            - CreateBackupScheduleKubernetes
+            - DeleteBackupSchedule
+            - DeleteBackupScheduleKubernetes
+            - EditBackupSchedule
+            - EditBackupScheduleKubernetes
+            - CloudProviderEdit
+            - SoftwareUpgradeYB
+            - SoftwareKubernetesUpgradeYB
+            - FinalizeUpgrade
+            - FinalizeKubernetesUpgrade
+            - RollbackUpgrade
+            - RollbackKubernetesUpgrade
+            - LdapUniverseSync
+            - ReprovisionNode
+            - ReplaceNodeInUniverse
+            - UpdateProxyConfig
+            - RecommissionNodeInstance
+            - DecommissionNodeInstance
+            - MasterFailover
+            - SyncMasterAddresses
+            - CreateContinuousBackup
+            - CreateYbaBackup
+            - RestoreYbaBackup
+            - RestoreContinuousBackup
+            - EnableNodeAgentInUniverse
+            - DecommissionNode
+            - CloneNamespace
+            - TlsToggleKubernetes
+            - UpdateOOMServiceState
+            - SendUserNotification
+            - ImportUniverse
+            - MigrateUniverse
+            - KubernetesToggleImmutableYbc
+            - OperatorImportUniverse
+            - KubernetesCheckVolumeExpansion
+            - KubernetesPostExpansionCheckVolume
+            - NodeCertReloadTask
+            - UpdateUniverseConfig
+            - CreateRootVolumes
+            - ReplaceRootVolume
+            - ChangeInstanceType
+            - PersistResizeNode
+            - PersistSystemdUpgrade
+            - PersistUseClockbound
+            - UpdateNodeDetails
+            - AddAuthorizedKey
+            - AnsibleClusterServerCtl
+            - AnsibleConfigureServers
+            - AnsibleDestroyServer
+            - PauseServer
+            - ResumeServer
+            - AnsibleSetupServer
+            - AnsibleCreateServer
+            - PrecheckNodeDetached
+            - AnsibleUpdateNodeInfo
+            - BulkImport
+            - ChangeMasterConfig
+            - ChangeAdminPassword
+            - DropTable
+            - CreateTable
+            - DeleteNode
+            - DeleteBackup
+            - DeleteBackupYb
+            - UpdateNodeProcess
+            - DeleteTableFromUniverse
+            - DeleteTablesFromUniverse
+            - DeleteKeyspace
+            - LoadBalancerStateChange
+            - ModifyBlackList
+            - CheckUnderReplicatedTablets
+            - CheckFollowerLag
+            - CheckNodeSafeToDelete
+            - ManipulateDnsRecordTask
+            - RemoveUniverseEntry
+            - SetFlagInMemory
+            - SetNodeState
+            - SwamperTargetsFileUpdate
+            - UniverseUpdateSucceeded
+            - RegisterUniverseWithPaCollector
+            - UnregisterUniverseFromPaCollector
+            - UpdateAndPersistGFlags
+            - UpdateAndPersistKubernetesOverrides
+            - HandleKubernetesNamespacedServices
+            - UpdatePlacementInfo
+            - UpdateSoftwareVersion
+            - UpdateUniverseYbcDetails
+            - YBCBackupSucceeded
+            - UpdateUniverseYbcGflagsDetails
+            - SetYbcThrottleParamsInMemory
+            - VerifyNodeSSHAccess
+            - WaitForDataMove
+            - WaitForLeaderBlacklistCompletion
+            - WaitForFollowerLag
+            - WaitForLoadBalance
+            - WaitForMasterLeader
+            - WaitForServer
+            - WaitForYbcServer
+            - WaitForTServerHeartBeats
+            - DeleteClusterFromUniverse
+            - InstanceActions
+            - WaitForServerReady
+            - WaitForClockSync
+            - WaitForDuration
+            - RunExternalScript
+            - RemoveAuthorizedKey
+            - UpdateUniverseAccessKey
+            - ManageLoadBalancerGroup
+            - BootstrapProducer
+            - CheckBootstrapRequired
+            - DeleteBootstrapIds
+            - XClusterNetworkConnectivityCheck
+            - DeleteReplication
+            - DeleteXClusterConfigEntry
+            - DeleteXClusterTableConfigEntry
+            - DeleteDrConfigEntry
+            - WaitForReplicationDrain
+            - ResetXClusterConfigEntry
+            - SetReplicationPaused
+            - ChangeXClusterRole
+            - SetDrStates
+            - UpdateDrConfigParams
+            - XClusterAddNamespaceToOutboundReplicationGroup
+            - AddNamespaceToXClusterReplication
+            - XClusterRemoveNamespaceFromTargetUniverse
+            - XClusterRemoveNamespaceFromOutboundReplication
+            - SetRestoreTime
+            - XClusterConfigSetup
+            - XClusterConfigSetStatus
+            - XClusterConfigSetStatusForTables
+            - XClusterConfigSetStatusForNamespaces
+            - XClusterConfigModifyTables
+            - XClusterConfigRename
+            - XClusterConfigSync
+            - XClusterConfigUpdateMasterAddresses
+            - XClusterInfoPersist
+            - ReplicateNamespaces
+            - CheckXUniverseAutoFlags
+            - PromoteSecondaryConfigToMainConfig
+            - DeleteRemnantStreams
+            - CreateOutboundReplicationGroup
+            - XClusterDbReplicationSetup
+            - DeleteReplicationOnSource
+            - DeleteXClusterBackupRestoreEntries
+            - AddExistingPitrToXClusterConfig
+            - DrConfigWebhookCall
+            - SetRestoreState
+            - CloudAccessKeyCleanup
+            - CloudAccessKeySetup
+            - CloudInitializer
+            - CloudProviderCleanup
+            - CloudRegionCleanup
+            - CloudRegionSetup
+            - CloudSetup
+            - BackupTable
+            - BackupTableYb
+            - BackupTableYbc
+            - BackupUniverseKeys
+            - RestoreBackupYb
+            - RestoreBackupYbc
+            - RestoreUniverseKeys
+            - RestoreUniverseKeysYb
+            - RestoreUniverseKeysYbc
+            - SetBackupHiddenState
+            - SetRestoreHiddenState
+            - RestorePreflightValidate
+            - BackupPreflightValidate
+            - WaitForLeadersOnPreferredOnly
+            - EnableEncryptionAtRest
+            - DisableEncryptionAtRest
+            - DestroyEncryptionAtRest
+            - KubernetesCommandExecutor
+            - KubernetesWaitForPod
+            - KubernetesCheckNumPod
+            - PodDisruptionBudgetPolicy
+            - SetActiveUniverseKeys
+            - WaitForEncryptionKeyInMemory
+            - UnivSetCertificate
+            - CreateAlertDefinitions
+            - ManageAlertDefinitions
+            - ManageCatalogUpgradeSuperUser
+            - UpdatePitrConfigIntermittentMinRecoverTime
+            - MarkSourceMetric
+            - UniverseSetTlsParams
+            - UniverseUpdateRootCert
+            - ResetUniverseVersion
+            - DeleteCertificate
+            - SetNodeStatus
+            - CheckMasterLeader
+            - CheckMasters
+            - CheckTServers
+            - WaitForTServerHBs
+            - CreatePrometheusSwamperConfig
+            - PreflightNodeCheck
+            - RunYsqlUpgrade
+            - PromoteAutoFlags
+            - UpdateSoftwareUpdatePrevConfig
+            - RollbackAutoFlags
+            - StoreAutoFlagConfigVersion
+            - CheckUpgrade
+            - CheckCertificateConfig
+            - CheckMemory
+            - CheckLocale
+            - CheckShellConnectivity
+            - CheckGlibc
+            - CheckOpentelemetryOperator
+            - PGUpgradeTServerCheck
+            - CleanUpPGUpgradeDataDir
+            - RunYsqlMajorVersionCatalogUpgrade
+            - RollbackYsqlMajorVersionCatalogUpgrade
+            - FinalizeYsqlMajorCatalogUpgrade
+            - ValidateGFlags
+            - CheckSoftwareVersion
+            - UpdateMountedDisks
+            - TransferXClusterCerts
+            - CreateTableSpaces
+            - ManageOtelCollector
+            - UpdateAndPersistAuditLoggingConfig
+            - UpdateAndPersistQueryLoggingConfig
+            - UpdateAndPersistMetricsExportConfig
+            - MarkUniverseForHealthScriptReUpload
+            - RebootServer
+            - HardRebootServer
+            - RunHooks
+            - UpdateUniverseTags
+            - UpgradeYbc
+            - InstallYbcSoftwareOnK8s
+            - InstanceExistCheck
+            - DeleteRootVolumes
+            - InstallingThirdPartySoftware
+            - InstallNodeAgent
+            - WaitForNodeAgent
+            - CloudImageBundleSetup
+            - UpdateClusterUserIntent
+            - UpdateClusterAPIDetails
+            - UpdateUniverseState
+            - UpdateUniverseCommunicationPorts
+            - UpdateUniverseIntent
+            - UpdateConsistencyCheck
+            - FreezeUniverse
+            - QueryLdapServer
+            - DbLdapSync
+            - CheckForClusterServers
+            - CheckLeaderlessTablets
+            - CheckNodesAreSafeToTakeDown
+            - ValidateNodeDiskSize
+            - CheckNodeReachable
+            - CheckDbNodePortConnectivity
+            - SupportBundleComponentDownload
+            - WaitStartingFromTime
+            - RemoveNodeAgent
+            - UpdateUniverseFields
+            - RunNodeCommand
+            - MasterLeaderStepdown
+            - SetupYNP
+            - YNPProvisioning
+            - ConfigureOOMServiceOnNode
+            - CheckSshConnection
+            - FetchServerConf
+            - DoCapacityReservation
+            - DeleteCapacityReservation
+            - DisablePitrConfig
+            - EnablePitrConfig
+            - UpdateAndPersistKubernetesImmutableYbc
+            - TablespaceValidationOnRemove
+            - CheckServiceLiveness
+            - CheckNodeCommandExecution
+            - CheckNodeDataDirDiskSpace
+            - OperatorImportResource
+            - UpdateParentTaskParams
+            type: string
+          type: array
+          uniqueItems: true
+        universeUUIDList:
+          items:
+            format: uuid
+            type: string
+          type: array
+          uniqueItems: true
+      required:
+      - status
+      - taskTypes
+      - universeUUIDList
+      type: object
+    RegionLocations:
+      example:
+        LOCATION: LOCATION
+        HOST_BASE: HOST_BASE
+        REGION: REGION
+      properties:
+        HOST_BASE:
+          type: string
+        LOCATION:
+          type: string
+        REGION:
+          type: string
+      required:
+      - HOST_BASE
+      - LOCATION
+      - REGION
+      type: object
+    BackupScheduleToggleParams:
+      example:
+        runImmediateBackupOnResume: true
+        status: Deleting
+      properties:
+        runImmediateBackupOnResume:
+          description: Run a full or incremental backup if required when resuming a stopped schedule. When false (default), the full backup will instead run at its normally scheduled time.
+          type: boolean
+        status:
+          description: State of the schedule
+          enum:
+          - Deleting
+          - Error
+          - Active
+          - Creating
+          - Paused
+          - Stopped
+          - Editing
+          type: string
+      required:
+      - status
+      type: object
+    BackupPointInTimeRestoreWindow:
+      example:
+        timestampRetentionWindowEndMillis: 0
+        timestampRetentionWindowStartMillis: 6
+      properties:
+        timestampRetentionWindowEndMillis:
+          format: int64
+          type: integer
+        timestampRetentionWindowStartMillis:
+          format: int64
+          type: integer
+      required:
+      - timestampRetentionWindowEndMillis
+      - timestampRetentionWindowStartMillis
+      type: object
     EditBackupScheduleParams:
       description: Info to edit the schedule params for backups
       example:
@@ -1640,57 +1833,6 @@ components:
           - Stopped
           - Editing
           type: string
-        timeBeforeDelete:
-          description: Time before deleting the backup from storage, in milliseconds
-          format: int64
-          type: integer
-      type: object
-    BackupScheduleEditParams:
-      example:
-        cronExpression: cronExpression
-        frequencyTimeUnit: NANOSECONDS
-        incrementalBackupFrequencyTimeUnit: NANOSECONDS
-        timeBeforeDelete: 1
-        schedulingFrequency: 6
-        incrementalBackupFrequency: 0
-      properties:
-        cronExpression:
-          description: Cron expression for scheduling
-          type: string
-        frequencyTimeUnit:
-          description: Time Unit for frequency
-          enum:
-          - NANOSECONDS
-          - MICROSECONDS
-          - MILLISECONDS
-          - SECONDS
-          - MINUTES
-          - HOURS
-          - DAYS
-          - MONTHS
-          - YEARS
-          type: string
-        incrementalBackupFrequency:
-          description: Frequency of incremental backup schedule
-          format: int64
-          type: integer
-        incrementalBackupFrequencyTimeUnit:
-          description: TimeUnit for incremental Backup Schedule frequency
-          enum:
-          - NANOSECONDS
-          - MICROSECONDS
-          - MILLISECONDS
-          - SECONDS
-          - MINUTES
-          - HOURS
-          - DAYS
-          - MONTHS
-          - YEARS
-          type: string
-        schedulingFrequency:
-          description: Frequency of the schedule
-          format: int64
-          type: integer
         timeBeforeDelete:
           description: Time before deleting the backup from storage, in milliseconds
           format: int64
@@ -2239,148 +2381,6 @@ components:
       - tableByTableBackup
       - taskType
       - useLocalTimezone
-      type: object
-    BackupInfo:
-      example:
-        storageConfigUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        universeUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        useRoles: true
-        expiryTimeUnit: NANOSECONDS
-        timeBeforeDelete: 6
-        keyspaceList:
-        - backupPointInTimeRestoreWindow:
-            timestampRetentionWindowEndMillis: 0
-            timestampRetentionWindowStartMillis: 6
-          backupSizeInBytes: 1
-          keyspace: keyspace
-          tableUUIDList:
-          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          tablesList:
-          - tablesList
-          - tablesList
-          perRegionLocations:
-          - LOCATION: LOCATION
-            HOST_BASE: HOST_BASE
-            REGION: REGION
-          - LOCATION: LOCATION
-            HOST_BASE: HOST_BASE
-            REGION: REGION
-          allTables: true
-          defaultLocation: defaultLocation
-        - backupPointInTimeRestoreWindow:
-            timestampRetentionWindowEndMillis: 0
-            timestampRetentionWindowStartMillis: 6
-          backupSizeInBytes: 1
-          keyspace: keyspace
-          tableUUIDList:
-          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          tablesList:
-          - tablesList
-          - tablesList
-          perRegionLocations:
-          - LOCATION: LOCATION
-            HOST_BASE: HOST_BASE
-            REGION: REGION
-          - LOCATION: LOCATION
-            HOST_BASE: HOST_BASE
-            REGION: REGION
-          allTables: true
-          defaultLocation: defaultLocation
-        parallelism: 0
-        pointInTimeRestoreEnabled: true
-        useTablespaces: true
-        fullBackup: true
-        backupType: YQL_TABLE_TYPE
-      properties:
-        backupType:
-          enum:
-          - YQL_TABLE_TYPE
-          - REDIS_TABLE_TYPE
-          - PGSQL_TABLE_TYPE
-          - TRANSACTION_STATUS_TABLE_TYPE
-          type: string
-        expiryTimeUnit:
-          enum:
-          - NANOSECONDS
-          - MICROSECONDS
-          - MILLISECONDS
-          - SECONDS
-          - MINUTES
-          - HOURS
-          - DAYS
-          - MONTHS
-          - YEARS
-          type: string
-        fullBackup:
-          type: boolean
-        keyspaceList:
-          items:
-            $ref: '#/components/schemas/KeyspaceTablesList'
-          type: array
-        parallelism:
-          format: int64
-          type: integer
-        pointInTimeRestoreEnabled:
-          type: boolean
-        storageConfigUUID:
-          format: uuid
-          type: string
-        timeBeforeDelete:
-          format: int64
-          type: integer
-        universeUUID:
-          format: uuid
-          type: string
-        useRoles:
-          type: boolean
-        useTablespaces:
-          type: boolean
-      required:
-      - backupType
-      - expiryTimeUnit
-      - fullBackup
-      - keyspaceList
-      - parallelism
-      - pointInTimeRestoreEnabled
-      - storageConfigUUID
-      - timeBeforeDelete
-      - universeUUID
-      - useRoles
-      - useTablespaces
-      type: object
-    RegionLocations:
-      example:
-        LOCATION: LOCATION
-        HOST_BASE: HOST_BASE
-        REGION: REGION
-      properties:
-        HOST_BASE:
-          type: string
-        LOCATION:
-          type: string
-        REGION:
-          type: string
-      required:
-      - HOST_BASE
-      - LOCATION
-      - REGION
-      type: object
-    BackupPointInTimeRestoreWindow:
-      example:
-        timestampRetentionWindowEndMillis: 0
-        timestampRetentionWindowStartMillis: 6
-      properties:
-        timestampRetentionWindowEndMillis:
-          format: int64
-          type: integer
-        timestampRetentionWindowStartMillis:
-          format: int64
-          type: integer
-      required:
-      - timestampRetentionWindowEndMillis
-      - timestampRetentionWindowStartMillis
       type: object
   securitySchemes:
     apiKeyAuth:

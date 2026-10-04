@@ -56,6 +56,32 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  responses:
+    Unauthorized:
+      description: The API key is missing, invalid, or expired.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          examples:
+            UnauthorizedExample:
+              summary: Default Unauthorized response
+              x-microcks-default: true
+              value:
+                error:
+                  code: OK
+                  message: Example message
+                  status: 100
+  parameters:
+    accountId:
+      name: accountId
+      in: path
+      required: true
+      description: The unique identifier of the YugabyteDB Aeon account.
+      schema:
+        type: string
+        format: uuid
+      example: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
   schemas:
     Project:
       type: object
@@ -103,32 +129,6 @@ components:
             code: OK
             message: Example message
             status: 100
-  responses:
-    Unauthorized:
-      description: The API key is missing, invalid, or expired.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-          examples:
-            UnauthorizedExample:
-              summary: Default Unauthorized response
-              x-microcks-default: true
-              value:
-                error:
-                  code: OK
-                  message: Example message
-                  status: 100
-  parameters:
-    accountId:
-      name: accountId
-      in: path
-      required: true
-      description: The unique identifier of the YugabyteDB Aeon account.
-      schema:
-        type: string
-        format: uuid
-      example: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
   securitySchemes:
     bearerAuth:
       type: http

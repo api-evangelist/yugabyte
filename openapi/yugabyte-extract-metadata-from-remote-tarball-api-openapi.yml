@@ -84,16 +84,6 @@ paths:
       x-operation-id-original: extractMetadata
 components:
   schemas:
-    YBPCreateSuccess:
-      example:
-        resourceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-      properties:
-        resourceUUID:
-          description: UUID of the successfully created resource
-          format: uuid
-          readOnly: true
-          type: string
-      type: object
     ExtractMetadata:
       description: url to release TGZ to extract metadata from
       example:
@@ -108,6 +98,16 @@ components:
       required:
       - url
       - uuid
+      type: object
+    YBPCreateSuccess:
+      example:
+        resourceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        resourceUUID:
+          description: UUID of the successfully created resource
+          format: uuid
+          readOnly: true
+          type: string
       type: object
     ResponseExtractMetadata:
       example:

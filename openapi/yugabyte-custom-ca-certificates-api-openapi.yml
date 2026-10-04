@@ -182,19 +182,6 @@ paths:
       - Custom CA Certificates
 components:
   schemas:
-    CustomCACertParams:
-      example:
-        contents: contents
-        name: name
-      properties:
-        contents:
-          type: string
-        name:
-          type: string
-      required:
-      - contents
-      - name
-      type: object
     CustomCaCertificateInfo:
       description: Custom CA certificate
       example:
@@ -240,6 +227,19 @@ components:
       - active
       - customerId
       - id
+      - name
+      type: object
+    CustomCACertParams:
+      example:
+        contents: contents
+        name: name
+      properties:
+        contents:
+          type: string
+        name:
+          type: string
+      required:
+      - contents
       - name
       type: object
     YBPSuccess:

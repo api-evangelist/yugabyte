@@ -363,22 +363,6 @@ paths:
       - Encryption at rest
 components:
   schemas:
-    YBPTask:
-      example:
-        taskUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        resourceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-      properties:
-        resourceUUID:
-          description: UUID of the resource being modified by the task
-          format: uuid
-          readOnly: true
-          type: string
-        taskUUID:
-          description: Task UUID
-          format: uuid
-          readOnly: true
-          type: string
-      type: object
     YBPError:
       description: Generic error response from the YugabyteDB Anywhere API
       example:
@@ -415,6 +399,22 @@ components:
           description: Always set to false to indicate failure
           example: false
           type: boolean
+      type: object
+    YBPTask:
+      example:
+        taskUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        resourceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        resourceUUID:
+          description: UUID of the resource being modified by the task
+          format: uuid
+          readOnly: true
+          type: string
+        taskUUID:
+          description: Task UUID
+          format: uuid
+          readOnly: true
+          type: string
       type: object
     YBPSuccess:
       example:

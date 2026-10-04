@@ -56,15 +56,6 @@ paths:
       - restore-info
 components:
   schemas:
-    ApiError_error:
-      properties:
-        detail:
-          description: Error message
-          type: string
-        status:
-          description: Error code
-          type: integer
-      type: object
     Restore_Details:
       example:
         restore:
@@ -97,6 +88,15 @@ components:
       required:
       - restore
       title: Restore Details
+      type: object
+    ApiError_error:
+      properties:
+        detail:
+          description: Error message
+          type: string
+        status:
+          description: Error code
+          type: integer
       type: object
     RestoreDetails:
       description: Details of databases in YugabyteDB cluster on which restore operation in run

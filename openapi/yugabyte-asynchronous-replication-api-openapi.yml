@@ -377,408 +377,6 @@ paths:
       - Asynchronous Replication
 components:
   schemas:
-    YBPTask:
-      example:
-        taskUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        resourceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-      properties:
-        resourceUUID:
-          description: UUID of the resource being modified by the task
-          format: uuid
-          readOnly: true
-          type: string
-        taskUUID:
-          description: Task UUID
-          format: uuid
-          readOnly: true
-          type: string
-      type: object
-    XClusterConfigNeedBootstrapFormData:
-      example:
-        targetUniverseUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        isDrConfig: true
-        tables: '["000033df00003000800000000000400b"]'
-      properties:
-        isDrConfig:
-          description: 'WARNING: This is a preview API that could change. Whether this check is being done as part of a DR configuration setup'
-          type: boolean
-        tables:
-          description: Source universe table IDs to check whether they need bootstrap
-          example: '["000033df00003000800000000000400b"]'
-          items:
-            type: string
-          type: array
-          uniqueItems: true
-        targetUniverseUUID:
-          description: If specified and tables do not exist on the target universe, bootstrapping is required.
-          format: uuid
-          type: string
-      required:
-      - tables
-      type: object
-    PitrConfig:
-      description: PITR config created on the universe
-      example:
-        dbName: dbName
-        updateTime: 2022-12-12 13:07:18+00:00
-        createdForDr: true
-        uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        minRecoverTimeInMillis: 1
-        scheduleInterval: 5
-        tableType: YQL_TABLE_TYPE
-        customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        createTime: 2022-12-12 13:07:18+00:00
-        intermittentMinRecoverTimeInMillis: 0
-        maxRecoverTimeInMillis: 6
-        name: name
-        disabled: true
-        usedForXCluster: true
-        state: UNKNOWN
-        retentionPeriod: 5
-      properties:
-        createTime:
-          description: Create time of the PITR config
-          example: 2022-12-12 13:07:18+00:00
-          format: date-time
-          readOnly: true
-          type: string
-        createdForDr:
-          description: Created for DR
-          readOnly: true
-          type: boolean
-        customerUUID:
-          description: Customer UUID of this config
-          format: uuid
-          type: string
-        dbName:
-          description: DB Name
-          type: string
-        disabled:
-          description: Whether the PITR config is disabled
-          readOnly: true
-          type: boolean
-        intermittentMinRecoverTimeInMillis:
-          description: Intermittent min recovery time in millis if retention period is increased
-          format: int64
-          type: integer
-        maxRecoverTimeInMillis:
-          format: int64
-          type: integer
-        minRecoverTimeInMillis:
-          format: int64
-          type: integer
-        name:
-          description: PITR config name
-          type: string
-        retentionPeriod:
-          description: Retention Period in seconds
-          format: int64
-          type: integer
-        scheduleInterval:
-          description: Interval between snasphots in seconds
-          format: int64
-          type: integer
-        state:
-          enum:
-          - UNKNOWN
-          - CREATING
-          - COMPLETE
-          - DELETING
-          - DELETED
-          - FAILED
-          - CANCELLED
-          - RESTORING
-          - RESTORED
-          type: string
-        tableType:
-          description: Table Type
-          enum:
-          - YQL_TABLE_TYPE
-          - REDIS_TABLE_TYPE
-          - PGSQL_TABLE_TYPE
-          - TRANSACTION_STATUS_TABLE_TYPE
-          type: string
-        updateTime:
-          description: Update time of the PITR con
-          example: 2022-12-12 13:07:18+00:00
-          format: date-time
-          type: string
-        usedForXCluster:
-          readOnly: true
-          type: boolean
-        uuid:
-          description: PITR config UUID
-          format: uuid
-          type: string
-      required:
-      - maxRecoverTimeInMillis
-      - minRecoverTimeInMillis
-      - state
-      type: object
-    NamespaceInfoResp:
-      description: Namespace information response
-      example:
-        tableType: YQL_TABLE_TYPE
-        name: name
-        namespaceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-      properties:
-        name:
-          description: Namespace name
-          type: string
-        namespaceUUID:
-          description: Namespace UUID
-          format: uuid
-          readOnly: true
-          type: string
-        tableType:
-          description: Table type
-          enum:
-          - YQL_TABLE_TYPE
-          - REDIS_TABLE_TYPE
-          - PGSQL_TABLE_TYPE
-          - TRANSACTION_STATUS_TABLE_TYPE
-          type: string
-      type: object
-    XClusterConfigEditFormData:
-      description: xcluster edit form
-      example:
-        tables: '["000033df000030008000000000004006", "000033df00003000800000000000400b"]'
-        dryRun: true
-        bootstrapParams:
-          tables: '["000033df000030008000000000004006"]'
-          allowBootstrap: true
-          backupRequestParams:
-            storageConfigUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            parallelism: 0
-        dbs: '["000033df000030008000000000004006", "000033df00003000800000000000400b"]'
-        autoIncludeIndexTables: true
-        targetRole: ACTIVE
-        name: Repl-config1
-        sourceRole: ACTIVE
-        status: Running
-      properties:
-        autoIncludeIndexTables:
-          description: Whether or not YBA should also include all index tables from any provided main tables.
-          type: boolean
-        bootstrapParams:
-          $ref: '#/components/schemas/BootstrapParams'
-        dbs:
-          description: 'WARNING: This is a preview API that could change. Source universe database IDs'
-          example: '["000033df000030008000000000004006", "000033df00003000800000000000400b"]'
-          items:
-            type: string
-          type: array
-          uniqueItems: true
-        dryRun:
-          description: Run the pre-checks without actually running the subtasks
-          type: boolean
-        name:
-          description: Name
-          example: Repl-config1
-          type: string
-        sourceRole:
-          description: The role that the source universe should have in the xCluster config
-          enum:
-          - ACTIVE
-          - STANDBY
-          - UNRECOGNIZED
-          type: string
-        status:
-          description: Status
-          enum:
-          - Running
-          - Paused
-          type: string
-        tables:
-          description: Source universe table IDs
-          example: '["000033df000030008000000000004006", "000033df00003000800000000000400b"]'
-          items:
-            type: string
-          type: array
-          uniqueItems: true
-        targetRole:
-          description: The role that the target universe should have in the xCluster config
-          enum:
-          - ACTIVE
-          - STANDBY
-          - UNRECOGNIZED
-          type: string
-      type: object
-    RestartBootstrapParams:
-      description: Bootstrap parameters for restarting
-      example:
-        backupRequestParams:
-          storageConfigUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          parallelism: 0
-      properties:
-        backupRequestParams:
-          $ref: '#/components/schemas/BootstrapBackupParams'
-      required:
-      - backupRequestParams
-      type: object
-    BootstrapBackupParams:
-      description: Backup parameters for bootstrapping
-      example:
-        storageConfigUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        parallelism: 0
-      properties:
-        parallelism:
-          description: Number of concurrent commands used by yb_backup (not ybc) to run on nodes over SSH
-          format: int32
-          type: integer
-        storageConfigUUID:
-          description: Storage configuration UUID
-          format: uuid
-          type: string
-      required:
-      - storageConfigUUID
-      type: object
-    XClusterConfigCreateFormData:
-      description: xcluster create form
-      example:
-        targetUniverseUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        tables: '["000033df000030008000000000004006", "000033df00003000800000000000400b"]'
-        dryRun: true
-        bootstrapParams:
-          tables: '["000033df000030008000000000004006"]'
-          allowBootstrap: true
-          backupRequestParams:
-            storageConfigUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            parallelism: 0
-        name: Repl-config1
-        sourceUniverseUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        configType: Basic
-      properties:
-        bootstrapParams:
-          $ref: '#/components/schemas/BootstrapParams'
-        configType:
-          description: configType
-          enum:
-          - Basic
-          - Txn
-          type: string
-        dryRun:
-          description: Run the pre-checks without actually running the subtasks
-          type: boolean
-        name:
-          description: Name
-          example: Repl-config1
-          type: string
-        sourceUniverseUUID:
-          description: Source Universe UUID
-          format: uuid
-          type: string
-        tables:
-          description: Source Universe table IDs
-          example: '["000033df000030008000000000004006", "000033df00003000800000000000400b"]'
-          items:
-            type: string
-          type: array
-          uniqueItems: true
-        targetUniverseUUID:
-          description: Target Universe UUID
-          format: uuid
-          type: string
-      required:
-      - name
-      - sourceUniverseUUID
-      - tables
-      - targetUniverseUUID
-      type: object
-    TableInfoResp:
-      description: Table information response
-      example:
-        relationType: SYSTEM_TABLE_RELATION
-        colocated: true
-        walSizeBytes: 3.616076749251911
-        indexTableIDs:
-        - indexTableIDs
-        - indexTableIDs
-        pgSchemaName: public
-        sizeBytes: 9.301444243932576
-        tableName: tableName
-        tableSpace: tableSpace
-        tableUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        mainTableUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        parentTableUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        tableType: YQL_TABLE_TYPE
-        keySpace: keySpace
-        tableID: tableID
-        nameSpace: nameSpace
-        colocationParentId: colocationParentId
-      properties:
-        colocated:
-          description: Flag, indicating colocated table
-          type: boolean
-        colocationParentId:
-          description: Colocation parent id
-          type: string
-        indexTableIDs:
-          description: Index Table IDs of main table
-          items:
-            type: string
-          type: array
-        keySpace:
-          description: Keyspace
-          type: string
-        mainTableUUID:
-          description: Main Table UUID of index tables
-          format: uuid
-          type: string
-        nameSpace:
-          description: Namespace or Schema
-          type: string
-        parentTableUUID:
-          description: Parent Table UUID
-          format: uuid
-          type: string
-        pgSchemaName:
-          description: Postgres schema name of the table
-          example: public
-          type: string
-        relationType:
-          description: Relation type
-          enum:
-          - SYSTEM_TABLE_RELATION
-          - USER_TABLE_RELATION
-          - INDEX_TABLE_RELATION
-          - MATVIEW_TABLE_RELATION
-          - COLOCATED_PARENT_TABLE_RELATION
-          type: string
-        sizeBytes:
-          description: SST size in bytes
-          format: double
-          readOnly: true
-          type: number
-        tableID:
-          description: Table ID
-          readOnly: true
-          type: string
-        tableName:
-          description: Table name
-          type: string
-        tableSpace:
-          description: Table space
-          type: string
-        tableType:
-          description: Table type
-          enum:
-          - YQL_TABLE_TYPE
-          - REDIS_TABLE_TYPE
-          - PGSQL_TABLE_TYPE
-          - TRANSACTION_STATUS_TABLE_TYPE
-          type: string
-        tableUUID:
-          description: Table UUID
-          format: uuid
-          readOnly: true
-          type: string
-        walSizeBytes:
-          description: WAL size in bytes
-          format: double
-          readOnly: true
-          type: number
-      type: object
     XClusterNamespaceConfig:
       example:
         restoreUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -827,6 +425,22 @@ components:
       - backupUuid
       - restoreUuid
       - sourceNamespaceId
+      type: object
+    YBPTask:
+      example:
+        taskUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        resourceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        resourceUUID:
+          description: UUID of the resource being modified by the task
+          format: uuid
+          readOnly: true
+          type: string
+        taskUUID:
+          description: Task UUID
+          format: uuid
+          readOnly: true
+          type: string
       type: object
     XClusterConfigGetResp:
       description: xcluster get response
@@ -1190,6 +804,340 @@ components:
       - lag
       - namespaces
       type: object
+    XClusterConfigRestartFormData:
+      description: xcluster restart form
+      example:
+        tables: '["000033df000030008000000000004006", "000033df00003000800000000000400b"]'
+        dryRun: true
+        bootstrapParams:
+          backupRequestParams:
+            storageConfigUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            parallelism: 0
+      properties:
+        bootstrapParams:
+          $ref: '#/components/schemas/RestartBootstrapParams'
+        dryRun:
+          description: Run the pre-checks without actually running the subtasks
+          type: boolean
+        tables:
+          description: Source Universe table IDs; if empty, the whole config will restart
+          example: '["000033df000030008000000000004006", "000033df00003000800000000000400b"]'
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+      required:
+      - tables
+      type: object
+    NamespaceInfoResp:
+      description: Namespace information response
+      example:
+        tableType: YQL_TABLE_TYPE
+        name: name
+        namespaceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        name:
+          description: Namespace name
+          type: string
+        namespaceUUID:
+          description: Namespace UUID
+          format: uuid
+          readOnly: true
+          type: string
+        tableType:
+          description: Table type
+          enum:
+          - YQL_TABLE_TYPE
+          - REDIS_TABLE_TYPE
+          - PGSQL_TABLE_TYPE
+          - TRANSACTION_STATUS_TABLE_TYPE
+          type: string
+      type: object
+    XClusterConfigNeedBootstrapFormData:
+      example:
+        targetUniverseUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        isDrConfig: true
+        tables: '["000033df00003000800000000000400b"]'
+      properties:
+        isDrConfig:
+          description: 'WARNING: This is a preview API that could change. Whether this check is being done as part of a DR configuration setup'
+          type: boolean
+        tables:
+          description: Source universe table IDs to check whether they need bootstrap
+          example: '["000033df00003000800000000000400b"]'
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+        targetUniverseUUID:
+          description: If specified and tables do not exist on the target universe, bootstrapping is required.
+          format: uuid
+          type: string
+      required:
+      - tables
+      type: object
+    XClusterConfigCreateFormData:
+      description: xcluster create form
+      example:
+        targetUniverseUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        tables: '["000033df000030008000000000004006", "000033df00003000800000000000400b"]'
+        dryRun: true
+        bootstrapParams:
+          tables: '["000033df000030008000000000004006"]'
+          allowBootstrap: true
+          backupRequestParams:
+            storageConfigUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            parallelism: 0
+        name: Repl-config1
+        sourceUniverseUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        configType: Basic
+      properties:
+        bootstrapParams:
+          $ref: '#/components/schemas/BootstrapParams'
+        configType:
+          description: configType
+          enum:
+          - Basic
+          - Txn
+          type: string
+        dryRun:
+          description: Run the pre-checks without actually running the subtasks
+          type: boolean
+        name:
+          description: Name
+          example: Repl-config1
+          type: string
+        sourceUniverseUUID:
+          description: Source Universe UUID
+          format: uuid
+          type: string
+        tables:
+          description: Source Universe table IDs
+          example: '["000033df000030008000000000004006", "000033df00003000800000000000400b"]'
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+        targetUniverseUUID:
+          description: Target Universe UUID
+          format: uuid
+          type: string
+      required:
+      - name
+      - sourceUniverseUUID
+      - tables
+      - targetUniverseUUID
+      type: object
+    TableInfoResp:
+      description: Table information response
+      example:
+        relationType: SYSTEM_TABLE_RELATION
+        colocated: true
+        walSizeBytes: 3.616076749251911
+        indexTableIDs:
+        - indexTableIDs
+        - indexTableIDs
+        pgSchemaName: public
+        sizeBytes: 9.301444243932576
+        tableName: tableName
+        tableSpace: tableSpace
+        tableUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        mainTableUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        parentTableUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        tableType: YQL_TABLE_TYPE
+        keySpace: keySpace
+        tableID: tableID
+        nameSpace: nameSpace
+        colocationParentId: colocationParentId
+      properties:
+        colocated:
+          description: Flag, indicating colocated table
+          type: boolean
+        colocationParentId:
+          description: Colocation parent id
+          type: string
+        indexTableIDs:
+          description: Index Table IDs of main table
+          items:
+            type: string
+          type: array
+        keySpace:
+          description: Keyspace
+          type: string
+        mainTableUUID:
+          description: Main Table UUID of index tables
+          format: uuid
+          type: string
+        nameSpace:
+          description: Namespace or Schema
+          type: string
+        parentTableUUID:
+          description: Parent Table UUID
+          format: uuid
+          type: string
+        pgSchemaName:
+          description: Postgres schema name of the table
+          example: public
+          type: string
+        relationType:
+          description: Relation type
+          enum:
+          - SYSTEM_TABLE_RELATION
+          - USER_TABLE_RELATION
+          - INDEX_TABLE_RELATION
+          - MATVIEW_TABLE_RELATION
+          - COLOCATED_PARENT_TABLE_RELATION
+          type: string
+        sizeBytes:
+          description: SST size in bytes
+          format: double
+          readOnly: true
+          type: number
+        tableID:
+          description: Table ID
+          readOnly: true
+          type: string
+        tableName:
+          description: Table name
+          type: string
+        tableSpace:
+          description: Table space
+          type: string
+        tableType:
+          description: Table type
+          enum:
+          - YQL_TABLE_TYPE
+          - REDIS_TABLE_TYPE
+          - PGSQL_TABLE_TYPE
+          - TRANSACTION_STATUS_TABLE_TYPE
+          type: string
+        tableUUID:
+          description: Table UUID
+          format: uuid
+          readOnly: true
+          type: string
+        walSizeBytes:
+          description: WAL size in bytes
+          format: double
+          readOnly: true
+          type: number
+      type: object
+    PitrConfig:
+      description: PITR config created on the universe
+      example:
+        dbName: dbName
+        updateTime: 2022-12-12 13:07:18+00:00
+        createdForDr: true
+        uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        minRecoverTimeInMillis: 1
+        scheduleInterval: 5
+        tableType: YQL_TABLE_TYPE
+        customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        createTime: 2022-12-12 13:07:18+00:00
+        intermittentMinRecoverTimeInMillis: 0
+        maxRecoverTimeInMillis: 6
+        name: name
+        disabled: true
+        usedForXCluster: true
+        state: UNKNOWN
+        retentionPeriod: 5
+      properties:
+        createTime:
+          description: Create time of the PITR config
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          readOnly: true
+          type: string
+        createdForDr:
+          description: Created for DR
+          readOnly: true
+          type: boolean
+        customerUUID:
+          description: Customer UUID of this config
+          format: uuid
+          type: string
+        dbName:
+          description: DB Name
+          type: string
+        disabled:
+          description: Whether the PITR config is disabled
+          readOnly: true
+          type: boolean
+        intermittentMinRecoverTimeInMillis:
+          description: Intermittent min recovery time in millis if retention period is increased
+          format: int64
+          type: integer
+        maxRecoverTimeInMillis:
+          format: int64
+          type: integer
+        minRecoverTimeInMillis:
+          format: int64
+          type: integer
+        name:
+          description: PITR config name
+          type: string
+        retentionPeriod:
+          description: Retention Period in seconds
+          format: int64
+          type: integer
+        scheduleInterval:
+          description: Interval between snasphots in seconds
+          format: int64
+          type: integer
+        state:
+          enum:
+          - UNKNOWN
+          - CREATING
+          - COMPLETE
+          - DELETING
+          - DELETED
+          - FAILED
+          - CANCELLED
+          - RESTORING
+          - RESTORED
+          type: string
+        tableType:
+          description: Table Type
+          enum:
+          - YQL_TABLE_TYPE
+          - REDIS_TABLE_TYPE
+          - PGSQL_TABLE_TYPE
+          - TRANSACTION_STATUS_TABLE_TYPE
+          type: string
+        updateTime:
+          description: Update time of the PITR con
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          type: string
+        usedForXCluster:
+          readOnly: true
+          type: boolean
+        uuid:
+          description: PITR config UUID
+          format: uuid
+          type: string
+      required:
+      - maxRecoverTimeInMillis
+      - minRecoverTimeInMillis
+      - state
+      type: object
+    BootstrapBackupParams:
+      description: Backup parameters for bootstrapping
+      example:
+        storageConfigUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        parallelism: 0
+      properties:
+        parallelism:
+          description: Number of concurrent commands used by yb_backup (not ybc) to run on nodes over SSH
+          format: int32
+          type: integer
+        storageConfigUUID:
+          description: Storage configuration UUID
+          format: uuid
+          type: string
+      required:
+      - storageConfigUUID
+      type: object
     XClusterTableConfig:
       example:
         restoreUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -1312,31 +1260,6 @@ components:
       - backupUuid
       - restoreUuid
       type: object
-    XClusterConfigRestartFormData:
-      description: xcluster restart form
-      example:
-        tables: '["000033df000030008000000000004006", "000033df00003000800000000000400b"]'
-        dryRun: true
-        bootstrapParams:
-          backupRequestParams:
-            storageConfigUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            parallelism: 0
-      properties:
-        bootstrapParams:
-          $ref: '#/components/schemas/RestartBootstrapParams'
-        dryRun:
-          description: Run the pre-checks without actually running the subtasks
-          type: boolean
-        tables:
-          description: Source Universe table IDs; if empty, the whole config will restart
-          example: '["000033df000030008000000000004006", "000033df00003000800000000000400b"]'
-          items:
-            type: string
-          type: array
-          uniqueItems: true
-      required:
-      - tables
-      type: object
     BootstrapParams:
       description: Bootstrap parameters
       example:
@@ -1358,6 +1281,83 @@ components:
             type: string
           type: array
           uniqueItems: true
+      required:
+      - backupRequestParams
+      type: object
+    XClusterConfigEditFormData:
+      description: xcluster edit form
+      example:
+        tables: '["000033df000030008000000000004006", "000033df00003000800000000000400b"]'
+        dryRun: true
+        bootstrapParams:
+          tables: '["000033df000030008000000000004006"]'
+          allowBootstrap: true
+          backupRequestParams:
+            storageConfigUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            parallelism: 0
+        dbs: '["000033df000030008000000000004006", "000033df00003000800000000000400b"]'
+        autoIncludeIndexTables: true
+        targetRole: ACTIVE
+        name: Repl-config1
+        sourceRole: ACTIVE
+        status: Running
+      properties:
+        autoIncludeIndexTables:
+          description: Whether or not YBA should also include all index tables from any provided main tables.
+          type: boolean
+        bootstrapParams:
+          $ref: '#/components/schemas/BootstrapParams'
+        dbs:
+          description: 'WARNING: This is a preview API that could change. Source universe database IDs'
+          example: '["000033df000030008000000000004006", "000033df00003000800000000000400b"]'
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+        dryRun:
+          description: Run the pre-checks without actually running the subtasks
+          type: boolean
+        name:
+          description: Name
+          example: Repl-config1
+          type: string
+        sourceRole:
+          description: The role that the source universe should have in the xCluster config
+          enum:
+          - ACTIVE
+          - STANDBY
+          - UNRECOGNIZED
+          type: string
+        status:
+          description: Status
+          enum:
+          - Running
+          - Paused
+          type: string
+        tables:
+          description: Source universe table IDs
+          example: '["000033df000030008000000000004006", "000033df00003000800000000000400b"]'
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+        targetRole:
+          description: The role that the target universe should have in the xCluster config
+          enum:
+          - ACTIVE
+          - STANDBY
+          - UNRECOGNIZED
+          type: string
+      type: object
+    RestartBootstrapParams:
+      description: Bootstrap parameters for restarting
+      example:
+        backupRequestParams:
+          storageConfigUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          parallelism: 0
+      properties:
+        backupRequestParams:
+          $ref: '#/components/schemas/BootstrapBackupParams'
       required:
       - backupRequestParams
       type: object

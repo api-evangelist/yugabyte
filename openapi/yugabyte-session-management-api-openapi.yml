@@ -246,20 +246,6 @@ paths:
       - Session Management
 components:
   schemas:
-    Admin_notification:
-      example:
-        code: code
-        htmlMessage: htmlMessage
-      properties:
-        code:
-          description: Notification code
-          readOnly: true
-          type: string
-        htmlMessage:
-          description: Notification message with HTML markup
-          readOnly: true
-          type: string
-      type: object
     SessionInfo:
       description: Session information
       example:
@@ -288,6 +274,40 @@ components:
           format: uuid
           type: string
       type: object
+    CustomerLoginFormData:
+      example:
+        password: password
+        email: email
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      required:
+      - email
+      - password
+      type: object
+    CustomerRegisterFormData:
+      example:
+        password: password
+        code: code
+        name: name
+        email: email
+      properties:
+        code:
+          type: string
+        email:
+          type: string
+        name:
+          type: string
+        password:
+          type: string
+      required:
+      - code
+      - email
+      - name
+      - password
+      type: object
     LogData:
       example:
         lines:
@@ -300,6 +320,20 @@ components:
           type: array
       required:
       - lines
+      type: object
+    Admin_notification:
+      example:
+        code: code
+        htmlMessage: htmlMessage
+      properties:
+        code:
+          description: Notification code
+          readOnly: true
+          type: string
+        htmlMessage:
+          description: Notification message with HTML markup
+          readOnly: true
+          type: string
       type: object
     Current_admin_notification_messages:
       example:
@@ -325,40 +359,6 @@ components:
           type: integer
       required:
       - count
-      type: object
-    CustomerRegisterFormData:
-      example:
-        password: password
-        code: code
-        name: name
-        email: email
-      properties:
-        code:
-          type: string
-        email:
-          type: string
-        name:
-          type: string
-        password:
-          type: string
-      required:
-      - code
-      - email
-      - name
-      - password
-      type: object
-    CustomerLoginFormData:
-      example:
-        password: password
-        email: email
-      properties:
-        email:
-          type: string
-        password:
-          type: string
-      required:
-      - email
-      - password
       type: object
   securitySchemes:
     apiKeyAuth:

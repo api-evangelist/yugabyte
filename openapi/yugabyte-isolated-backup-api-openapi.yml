@@ -123,6 +123,24 @@ paths:
       - application/json
 components:
   schemas:
+    IsolatedBackupRestoreSpec:
+      description: 'IsolatedBackupRestoreSpec
+
+
+        User provided details to trigger a restore of YBA from a local filepath.
+
+        '
+      example:
+        local_path: /opt/yba_backups/yba_backup.tar.gz
+      properties:
+        local_path:
+          description: full path to YBA backup file on host
+          example: /opt/yba_backups/yba_backup.tar.gz
+          type: string
+      required:
+      - local_path
+      title: IsolatedBackupRestoreSpec
+      type: object
     IsolatedBackupCreateSpec:
       description: 'IsolatedBackupCreateSpec
 
@@ -184,24 +202,6 @@ components:
           readOnly: true
           type: string
       title: YBATask
-      type: object
-    IsolatedBackupRestoreSpec:
-      description: 'IsolatedBackupRestoreSpec
-
-
-        User provided details to trigger a restore of YBA from a local filepath.
-
-        '
-      example:
-        local_path: /opt/yba_backups/yba_backup.tar.gz
-      properties:
-        local_path:
-          description: full path to YBA backup file on host
-          example: /opt/yba_backups/yba_backup.tar.gz
-          type: string
-      required:
-      - local_path
-      title: IsolatedBackupRestoreSpec
       type: object
   requestBodies:
     IsolatedBackupCreateReq:

@@ -274,74 +274,6 @@ paths:
       - Instance Types
 components:
   schemas:
-    VolumeDetails:
-      example:
-        volumeSizeGB: 0
-        volumeType: EBS
-        mountPath: mountPath
-      properties:
-        mountPath:
-          type: string
-        volumeSizeGB:
-          format: int32
-          type: integer
-        volumeType:
-          enum:
-          - EBS
-          - SSD
-          - HDD
-          - NVME
-          type: string
-      required:
-      - mountPath
-      - volumeSizeGB
-      - volumeType
-      type: object
-    YBPSuccess:
-      example:
-        success: true
-        message: message
-      properties:
-        message:
-          description: API response message.
-          readOnly: true
-          type: string
-        success:
-          description: API operation status. A value of true indicates the operation was successful.
-          readOnly: true
-          type: boolean
-      type: object
-    InstanceTypeDetails:
-      example:
-        tenancy: Shared
-        arch: x86_64
-        volumeDetailsList:
-        - volumeSizeGB: 0
-          volumeType: EBS
-          mountPath: mountPath
-        - volumeSizeGB: 0
-          volumeType: EBS
-          mountPath: mountPath
-      properties:
-        arch:
-          description: Architecture for the instance.
-          enum:
-          - x86_64
-          - aarch64
-          type: string
-        tenancy:
-          description: Tenancy for the instance.
-          enum:
-          - Shared
-          - Dedicated
-          - Host
-          type: string
-        volumeDetailsList:
-          description: Volume Details for the instance.
-          items:
-            $ref: '#/components/schemas/VolumeDetails'
-          type: array
-      type: object
     YBPError:
       description: Generic error response from the YugabyteDB Anywhere API
       example:
@@ -436,6 +368,74 @@ components:
       required:
       - instanceTypeCode
       - providerUuid
+      type: object
+    YBPSuccess:
+      example:
+        success: true
+        message: message
+      properties:
+        message:
+          description: API response message.
+          readOnly: true
+          type: string
+        success:
+          description: API operation status. A value of true indicates the operation was successful.
+          readOnly: true
+          type: boolean
+      type: object
+    InstanceTypeDetails:
+      example:
+        tenancy: Shared
+        arch: x86_64
+        volumeDetailsList:
+        - volumeSizeGB: 0
+          volumeType: EBS
+          mountPath: mountPath
+        - volumeSizeGB: 0
+          volumeType: EBS
+          mountPath: mountPath
+      properties:
+        arch:
+          description: Architecture for the instance.
+          enum:
+          - x86_64
+          - aarch64
+          type: string
+        tenancy:
+          description: Tenancy for the instance.
+          enum:
+          - Shared
+          - Dedicated
+          - Host
+          type: string
+        volumeDetailsList:
+          description: Volume Details for the instance.
+          items:
+            $ref: '#/components/schemas/VolumeDetails'
+          type: array
+      type: object
+    VolumeDetails:
+      example:
+        volumeSizeGB: 0
+        volumeType: EBS
+        mountPath: mountPath
+      properties:
+        mountPath:
+          type: string
+        volumeSizeGB:
+          format: int32
+          type: integer
+        volumeType:
+          enum:
+          - EBS
+          - SSD
+          - HDD
+          - NVME
+          type: string
+      required:
+      - mountPath
+      - volumeSizeGB
+      - volumeType
       type: object
     InstanceTypeResp:
       description: Details of a cloud instance type

@@ -307,6 +307,172 @@ paths:
       x-codegen-request-body-name: azFormData
 components:
   schemas:
+    AvailabilityZoneDetails:
+      example:
+        cloudInfo:
+          kubernetes:
+            kubeNamespace: kubeNamespace
+            kubernetesImagePullSecretName: kubernetesImagePullSecretName
+            kubernetesPullSecretContent: kubernetesPullSecretContent
+            certManagerIssuer: certManagerIssuer
+            isKubernetesOperatorControlled: true
+            kubernetesOperatorControlled: true
+            kubeConfig: kubeConfig
+            kubeDomain: kubeDomain
+            overrides: overrides
+            certManagerIssuerName: certManagerIssuerName
+            kubernetesPullSecret: kubernetesPullSecret
+            kubeConfigName: kubeConfigName
+            certManagerIssuerKind: certManagerIssuerKind
+            kubePodAddressTemplate: kubePodAddressTemplate
+            kubernetesProvider: kubernetesProvider
+            kubeConfigContent: kubeConfigContent
+            kubernetesPullSecretName: kubernetesPullSecretName
+            certManagerIssuerGroup: certManagerIssuerGroup
+            kubernetesImageRegistry: kubernetesImageRegistry
+            certManagerClusterIssuer: certManagerClusterIssuer
+            kubernetesStorageClass: kubernetesStorageClass
+            kubernetesServiceAccount: kubernetesServiceAccount
+      properties:
+        cloudInfo:
+          $ref: '#/components/schemas/AZCloudInfo'
+      type: object
+    YBPSuccess:
+      example:
+        success: true
+        message: message
+      properties:
+        message:
+          description: API response message.
+          readOnly: true
+          type: string
+        success:
+          description: API operation status. A value of true indicates the operation was successful.
+          readOnly: true
+          type: boolean
+      type: object
+    AvailabilityZoneFormData:
+      example:
+        availabilityZones:
+        - subnet: subnet
+          code: code
+          name: name
+          secondarySubnet: secondarySubnet
+        - subnet: subnet
+          code: code
+          name: name
+          secondarySubnet: secondarySubnet
+      properties:
+        availabilityZones:
+          description: List of availability zones
+          items:
+            $ref: '#/components/schemas/AvailabilityZoneData'
+          type: array
+      required:
+      - availabilityZones
+      type: object
+    AvailabilityZoneData:
+      description: Details of an availability zone, used by the API and UI to validate data against input constraints
+      example:
+        subnet: subnet
+        code: code
+        name: name
+        secondarySubnet: secondarySubnet
+      properties:
+        code:
+          description: AZ code
+          type: string
+        name:
+          description: AZ name
+          type: string
+        secondarySubnet:
+          description: AZ secondary subnet
+          type: string
+        subnet:
+          description: AZ subnet
+          type: string
+      required:
+      - code
+      - name
+      type: object
+    KubernetesRegionInfo:
+      example:
+        kubeNamespace: kubeNamespace
+        kubernetesImagePullSecretName: kubernetesImagePullSecretName
+        kubernetesPullSecretContent: kubernetesPullSecretContent
+        certManagerIssuer: certManagerIssuer
+        isKubernetesOperatorControlled: true
+        kubernetesOperatorControlled: true
+        kubeConfig: kubeConfig
+        kubeDomain: kubeDomain
+        overrides: overrides
+        certManagerIssuerName: certManagerIssuerName
+        kubernetesPullSecret: kubernetesPullSecret
+        kubeConfigName: kubeConfigName
+        certManagerIssuerKind: certManagerIssuerKind
+        kubePodAddressTemplate: kubePodAddressTemplate
+        kubernetesProvider: kubernetesProvider
+        kubeConfigContent: kubeConfigContent
+        kubernetesPullSecretName: kubernetesPullSecretName
+        certManagerIssuerGroup: certManagerIssuerGroup
+        kubernetesImageRegistry: kubernetesImageRegistry
+        certManagerClusterIssuer: certManagerClusterIssuer
+        kubernetesStorageClass: kubernetesStorageClass
+        kubernetesServiceAccount: kubernetesServiceAccount
+      properties:
+        certManagerClusterIssuer:
+          description: <b style="color:#ff0000">Deprecated since YBA version 2024.2.3.0.</b>. Use certManagerIssuerKind and certManagerIssuerName instead
+          type: string
+        certManagerIssuer:
+          description: <b style="color:#ff0000">Deprecated since YBA version 2024.2.3.0.</b>. Use certManagerIssuerKind and certManagerIssuerName instead
+          type: string
+        certManagerIssuerGroup:
+          type: string
+        certManagerIssuerKind:
+          type: string
+        certManagerIssuerName:
+          type: string
+        isKubernetesOperatorControlled:
+          readOnly: true
+          type: boolean
+        kubeConfig:
+          readOnly: true
+          type: string
+        kubeConfigContent:
+          type: string
+        kubeConfigName:
+          type: string
+        kubeDomain:
+          type: string
+        kubeNamespace:
+          type: string
+        kubePodAddressTemplate:
+          type: string
+        kubernetesImagePullSecretName:
+          type: string
+        kubernetesImageRegistry:
+          type: string
+        kubernetesOperatorControlled:
+          type: boolean
+        kubernetesProvider:
+          type: string
+        kubernetesPullSecret:
+          readOnly: true
+          type: string
+        kubernetesPullSecretContent:
+          type: string
+        kubernetesPullSecretName:
+          type: string
+        kubernetesServiceAccount:
+          description: <b style="color:#ff0000">Deprecated since YBA version 2.17.3.0.</b> kubernetes service account is not needed.
+          type: string
+        kubernetesStorageClass:
+          type: string
+        overrides:
+          type: string
+      required:
+      - kubernetesOperatorControlled
+      type: object
     AZCloudInfo:
       example:
         kubernetes:
@@ -411,172 +577,6 @@ components:
           type: string
       required:
       - name
-      type: object
-    KubernetesRegionInfo:
-      example:
-        kubeNamespace: kubeNamespace
-        kubernetesImagePullSecretName: kubernetesImagePullSecretName
-        kubernetesPullSecretContent: kubernetesPullSecretContent
-        certManagerIssuer: certManagerIssuer
-        isKubernetesOperatorControlled: true
-        kubernetesOperatorControlled: true
-        kubeConfig: kubeConfig
-        kubeDomain: kubeDomain
-        overrides: overrides
-        certManagerIssuerName: certManagerIssuerName
-        kubernetesPullSecret: kubernetesPullSecret
-        kubeConfigName: kubeConfigName
-        certManagerIssuerKind: certManagerIssuerKind
-        kubePodAddressTemplate: kubePodAddressTemplate
-        kubernetesProvider: kubernetesProvider
-        kubeConfigContent: kubeConfigContent
-        kubernetesPullSecretName: kubernetesPullSecretName
-        certManagerIssuerGroup: certManagerIssuerGroup
-        kubernetesImageRegistry: kubernetesImageRegistry
-        certManagerClusterIssuer: certManagerClusterIssuer
-        kubernetesStorageClass: kubernetesStorageClass
-        kubernetesServiceAccount: kubernetesServiceAccount
-      properties:
-        certManagerClusterIssuer:
-          description: <b style="color:#ff0000">Deprecated since YBA version 2024.2.3.0.</b>. Use certManagerIssuerKind and certManagerIssuerName instead
-          type: string
-        certManagerIssuer:
-          description: <b style="color:#ff0000">Deprecated since YBA version 2024.2.3.0.</b>. Use certManagerIssuerKind and certManagerIssuerName instead
-          type: string
-        certManagerIssuerGroup:
-          type: string
-        certManagerIssuerKind:
-          type: string
-        certManagerIssuerName:
-          type: string
-        isKubernetesOperatorControlled:
-          readOnly: true
-          type: boolean
-        kubeConfig:
-          readOnly: true
-          type: string
-        kubeConfigContent:
-          type: string
-        kubeConfigName:
-          type: string
-        kubeDomain:
-          type: string
-        kubeNamespace:
-          type: string
-        kubePodAddressTemplate:
-          type: string
-        kubernetesImagePullSecretName:
-          type: string
-        kubernetesImageRegistry:
-          type: string
-        kubernetesOperatorControlled:
-          type: boolean
-        kubernetesProvider:
-          type: string
-        kubernetesPullSecret:
-          readOnly: true
-          type: string
-        kubernetesPullSecretContent:
-          type: string
-        kubernetesPullSecretName:
-          type: string
-        kubernetesServiceAccount:
-          description: <b style="color:#ff0000">Deprecated since YBA version 2.17.3.0.</b> kubernetes service account is not needed.
-          type: string
-        kubernetesStorageClass:
-          type: string
-        overrides:
-          type: string
-      required:
-      - kubernetesOperatorControlled
-      type: object
-    YBPSuccess:
-      example:
-        success: true
-        message: message
-      properties:
-        message:
-          description: API response message.
-          readOnly: true
-          type: string
-        success:
-          description: API operation status. A value of true indicates the operation was successful.
-          readOnly: true
-          type: boolean
-      type: object
-    AvailabilityZoneData:
-      description: Details of an availability zone, used by the API and UI to validate data against input constraints
-      example:
-        subnet: subnet
-        code: code
-        name: name
-        secondarySubnet: secondarySubnet
-      properties:
-        code:
-          description: AZ code
-          type: string
-        name:
-          description: AZ name
-          type: string
-        secondarySubnet:
-          description: AZ secondary subnet
-          type: string
-        subnet:
-          description: AZ subnet
-          type: string
-      required:
-      - code
-      - name
-      type: object
-    AvailabilityZoneDetails:
-      example:
-        cloudInfo:
-          kubernetes:
-            kubeNamespace: kubeNamespace
-            kubernetesImagePullSecretName: kubernetesImagePullSecretName
-            kubernetesPullSecretContent: kubernetesPullSecretContent
-            certManagerIssuer: certManagerIssuer
-            isKubernetesOperatorControlled: true
-            kubernetesOperatorControlled: true
-            kubeConfig: kubeConfig
-            kubeDomain: kubeDomain
-            overrides: overrides
-            certManagerIssuerName: certManagerIssuerName
-            kubernetesPullSecret: kubernetesPullSecret
-            kubeConfigName: kubeConfigName
-            certManagerIssuerKind: certManagerIssuerKind
-            kubePodAddressTemplate: kubePodAddressTemplate
-            kubernetesProvider: kubernetesProvider
-            kubeConfigContent: kubeConfigContent
-            kubernetesPullSecretName: kubernetesPullSecretName
-            certManagerIssuerGroup: certManagerIssuerGroup
-            kubernetesImageRegistry: kubernetesImageRegistry
-            certManagerClusterIssuer: certManagerClusterIssuer
-            kubernetesStorageClass: kubernetesStorageClass
-            kubernetesServiceAccount: kubernetesServiceAccount
-      properties:
-        cloudInfo:
-          $ref: '#/components/schemas/AZCloudInfo'
-      type: object
-    AvailabilityZoneFormData:
-      example:
-        availabilityZones:
-        - subnet: subnet
-          code: code
-          name: name
-          secondarySubnet: secondarySubnet
-        - subnet: subnet
-          code: code
-          name: name
-          secondarySubnet: secondarySubnet
-      properties:
-        availabilityZones:
-          description: List of availability zones
-          items:
-            $ref: '#/components/schemas/AvailabilityZoneData'
-          type: array
-      required:
-      - availabilityZones
       type: object
   securitySchemes:
     apiKeyAuth:

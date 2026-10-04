@@ -56,6 +56,48 @@ paths:
       - Backup Info
 components:
   schemas:
+    Backup_Details:
+      example:
+        backup:
+        - bytes_transferred: bytes_transferred
+          actual_size: actual_size
+          user_operation: user_operation
+          task_status: task_status
+          database_keyspace: database_keyspace
+          ybdb_api: ybdb_api
+          ybc_task_id: ybc_task_id
+          tserver_ip: tserver_ip
+          time_taken: time_taken
+          task_start_time: task_start_time
+        - bytes_transferred: bytes_transferred
+          actual_size: actual_size
+          user_operation: user_operation
+          task_status: task_status
+          database_keyspace: database_keyspace
+          ybdb_api: ybdb_api
+          ybc_task_id: ybc_task_id
+          tserver_ip: tserver_ip
+          time_taken: time_taken
+          task_start_time: task_start_time
+      properties:
+        backup:
+          items:
+            $ref: '#/components/schemas/BackupDetails'
+          type: array
+          uniqueItems: true
+      required:
+      - backup
+      title: Backup Details
+      type: object
+    ApiError_error:
+      properties:
+        detail:
+          description: Error message
+          type: string
+        status:
+          description: Error code
+          type: integer
+      type: object
     BackupDetails:
       description: Details of backup enabled on databases in YugabyteDB cluster
       example:
@@ -102,48 +144,6 @@ components:
       - ybc_task_id
       - ybdb_api
       title: Get Backup Details
-      type: object
-    ApiError_error:
-      properties:
-        detail:
-          description: Error message
-          type: string
-        status:
-          description: Error code
-          type: integer
-      type: object
-    Backup_Details:
-      example:
-        backup:
-        - bytes_transferred: bytes_transferred
-          actual_size: actual_size
-          user_operation: user_operation
-          task_status: task_status
-          database_keyspace: database_keyspace
-          ybdb_api: ybdb_api
-          ybc_task_id: ybc_task_id
-          tserver_ip: tserver_ip
-          time_taken: time_taken
-          task_start_time: task_start_time
-        - bytes_transferred: bytes_transferred
-          actual_size: actual_size
-          user_operation: user_operation
-          task_status: task_status
-          database_keyspace: database_keyspace
-          ybdb_api: ybdb_api
-          ybc_task_id: ybc_task_id
-          tserver_ip: tserver_ip
-          time_taken: time_taken
-          task_start_time: task_start_time
-      properties:
-        backup:
-          items:
-            $ref: '#/components/schemas/BackupDetails'
-          type: array
-          uniqueItems: true
-      required:
-      - backup
-      title: Backup Details
       type: object
     ApiError:
       properties:

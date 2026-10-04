@@ -207,6 +207,20 @@ components:
           readOnly: true
           type: string
       type: object
+    YBPSuccess:
+      example:
+        success: true
+        message: message
+      properties:
+        message:
+          description: API response message.
+          readOnly: true
+          type: string
+        success:
+          description: API operation status. A value of true indicates the operation was successful.
+          readOnly: true
+          type: boolean
+      type: object
     YbcThrottleParameters:
       description: YB-Controller throttle parameters
       example:
@@ -244,20 +258,6 @@ components:
           type: integer
         resetDefaults:
           description: Unset Throttle parameters in YB-Controller
-          type: boolean
-      type: object
-    YBPSuccess:
-      example:
-        success: true
-        message: message
-      properties:
-        message:
-          description: API response message.
-          readOnly: true
-          type: string
-        success:
-          description: API operation status. A value of true indicates the operation was successful.
-          readOnly: true
           type: boolean
       type: object
   securitySchemes:

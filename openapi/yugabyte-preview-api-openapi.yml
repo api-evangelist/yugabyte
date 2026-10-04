@@ -225,6 +225,36 @@ components:
       - type
       - version
       type: object
+    YBPSuccess:
+      example:
+        success: true
+        message: message
+      properties:
+        message:
+          description: API response message.
+          readOnly: true
+          type: string
+        success:
+          description: API operation status. A value of true indicates the operation was successful.
+          readOnly: true
+          type: boolean
+      type: object
+    BundleInfo:
+      example:
+        sshUserOverride: sshUserOverride
+        ybImage: ybImage
+        sshPortOverride: 1
+      properties:
+        sshPortOverride:
+          description: sshPortOverride for the bundle. <b style="color:#ff0000">Deprecated since YBA version 2.20.3.0.</b> Use imageBundles.details.sshUser instead.
+          format: int32
+          type: integer
+        sshUserOverride:
+          description: sshUserOverride for the bundle. <b style="color:#ff0000">Deprecated since YBA version 2.20.3.0.</b> Use imageBundles.details.sshUser instead.
+          type: string
+        ybImage:
+          type: string
+      type: object
     ImageBundleDetails:
       example:
         sshPort: 5
@@ -258,20 +288,6 @@ components:
         sshUser:
           type: string
         useIMDSv2:
-          type: boolean
-      type: object
-    YBPSuccess:
-      example:
-        success: true
-        message: message
-      properties:
-        message:
-          description: API response message.
-          readOnly: true
-          type: string
-        success:
-          description: API operation status. A value of true indicates the operation was successful.
-          readOnly: true
           type: boolean
       type: object
     ImageBundle:
@@ -312,22 +328,6 @@ components:
           description: Image Bundle UUID
           format: uuid
           readOnly: true
-          type: string
-      type: object
-    BundleInfo:
-      example:
-        sshUserOverride: sshUserOverride
-        ybImage: ybImage
-        sshPortOverride: 1
-      properties:
-        sshPortOverride:
-          description: sshPortOverride for the bundle. <b style="color:#ff0000">Deprecated since YBA version 2.20.3.0.</b> Use imageBundles.details.sshUser instead.
-          format: int32
-          type: integer
-        sshUserOverride:
-          description: sshUserOverride for the bundle. <b style="color:#ff0000">Deprecated since YBA version 2.20.3.0.</b> Use imageBundles.details.sshUser instead.
-          type: string
-        ybImage:
           type: string
       type: object
   securitySchemes:

@@ -328,15 +328,42 @@ paths:
       - Certificate Info
 components:
   schemas:
-    CertificateDetails:
+    YBPError:
+      description: Generic error response from the YugabyteDB Anywhere API
       example:
-        yugabytedb.key: yugabytedb.key
-        yugabytedb.crt: yugabytedb.crt
+        success: false
+        requestUri: /customers/8918921-af3782-633de/universe/8173ab-fd2453/create
+        error: There was a problem creating the universe
+        httpMethod: POST
+        errorJson: '{ "foo" : "bar", "baz" : [1, 2, 3] }'
+        requestJson: '{ "foo" : "bar", "baz" : [1, 2, 3] }'
       properties:
-        yugabytedb.crt:
+        error:
+          description: User-visible unstructured error message
+          example: There was a problem creating the universe
           type: string
-        yugabytedb.key:
+        errorJson:
+          description: User visible structured error message as json object
+          example: '{ "foo" : "bar", "baz" : [1, 2, 3] }'
+          properties: {}
+          type: object
+        httpMethod:
+          description: Method for HTTP call that resulted in this error
+          example: POST
           type: string
+        requestJson:
+          description: User request JSON object
+          example: '{ "foo" : "bar", "baz" : [1, 2, 3] }'
+          properties: {}
+          type: object
+        requestUri:
+          description: URI for HTTP request that resulted in this error
+          example: /customers/8918921-af3782-633de/universe/8173ab-fd2453/create
+          type: string
+        success:
+          description: Always set to false to indicate failure
+          example: false
+          type: boolean
       type: object
     CustomServerCertInfo:
       example:
@@ -350,6 +377,19 @@ components:
       required:
       - serverCert
       - serverKey
+      type: object
+    CustomServerCertData:
+      example:
+        serverCertContent: serverCertContent
+        serverKeyContent: serverKeyContent
+      properties:
+        serverCertContent:
+          type: string
+        serverKeyContent:
+          type: string
+      required:
+      - serverCertContent
+      - serverKeyContent
       type: object
     UniverseDetailSubset:
       description: A small subset of universe information
@@ -383,6 +423,94 @@ components:
       - updateSucceeded
       - uuid
       type: object
+    CertificateParams:
+      description: Certificate Params is used to validate constraints for the custom certificate Data
+      example:
+        certStart: 6
+        customCertInfo:
+          nodeCertPath: nodeCertPath
+          nodeKeyPath: nodeKeyPath
+          clientKeyPath: clientKeyPath
+          clientCertPath: clientCertPath
+          rootCertPath: rootCertPath
+        customServerCertData:
+          serverCertContent: serverCertContent
+          serverKeyContent: serverKeyContent
+        certType: SelfSigned
+        certContent: certContent
+        certExpiry: 0
+        keyContent: keyContent
+        label: label
+        hcVaultCertParams:
+          vaultAddr: vaultAddr
+          vaultRoleID: vaultRoleID
+          mountPath: mountPath
+          role: role
+          engine: engine
+          ttlExpiry: 6
+          vaultAuthNamespace: vaultAuthNamespace
+          vaultSecretID: vaultSecretID
+          ttl: 0
+          vaultToken: vaultToken
+      properties:
+        certContent:
+          type: string
+        certExpiry:
+          format: int64
+          type: integer
+        certStart:
+          format: int64
+          type: integer
+        certType:
+          enum:
+          - SelfSigned
+          - CustomCertHostPath
+          - CustomServerCert
+          - HashicorpVault
+          - K8SCertManager
+          type: string
+        customCertInfo:
+          $ref: '#/components/schemas/CustomCertInfo'
+        customServerCertData:
+          $ref: '#/components/schemas/CustomServerCertData'
+        hcVaultCertParams:
+          $ref: '#/components/schemas/HashicorpVaultConfigParams'
+        keyContent:
+          type: string
+        label:
+          type: string
+      required:
+      - certContent
+      - certExpiry
+      - certStart
+      - certType
+      - label
+      type: object
+    CustomCertInfo:
+      example:
+        nodeCertPath: nodeCertPath
+        nodeKeyPath: nodeKeyPath
+        clientKeyPath: clientKeyPath
+        clientCertPath: clientCertPath
+        rootCertPath: rootCertPath
+      properties:
+        clientCertPath:
+          type: string
+        clientKeyPath:
+          type: string
+        nodeCertPath:
+          type: string
+        nodeKeyPath:
+          type: string
+        rootCertPath:
+          type: string
+      required:
+      - clientCertPath
+      - clientKeyPath
+      - nodeCertPath
+      - nodeKeyPath
+      - rootCertPath
+      type: object
     YBPSuccess:
       example:
         success: true
@@ -397,24 +525,15 @@ components:
           readOnly: true
           type: boolean
       type: object
-    ClientCertParams:
+    CertificateDetails:
       example:
-        certStart: 6
-        certExpiry: 0
-        username: username
+        yugabytedb.key: yugabytedb.key
+        yugabytedb.crt: yugabytedb.crt
       properties:
-        certExpiry:
-          format: int64
-          type: integer
-        certStart:
-          format: int64
-          type: integer
-        username:
+        yugabytedb.crt:
           type: string
-      required:
-      - certExpiry
-      - certStart
-      - username
+        yugabytedb.key:
+          type: string
       type: object
     CertificateInfoExt:
       description: SSL certificate used by the universe
@@ -557,144 +676,6 @@ components:
       - customServerCertInfo
       - universeDetailSubsets
       type: object
-    CustomServerCertData:
-      example:
-        serverCertContent: serverCertContent
-        serverKeyContent: serverKeyContent
-      properties:
-        serverCertContent:
-          type: string
-        serverKeyContent:
-          type: string
-      required:
-      - serverCertContent
-      - serverKeyContent
-      type: object
-    CertificateParams:
-      description: Certificate Params is used to validate constraints for the custom certificate Data
-      example:
-        certStart: 6
-        customCertInfo:
-          nodeCertPath: nodeCertPath
-          nodeKeyPath: nodeKeyPath
-          clientKeyPath: clientKeyPath
-          clientCertPath: clientCertPath
-          rootCertPath: rootCertPath
-        customServerCertData:
-          serverCertContent: serverCertContent
-          serverKeyContent: serverKeyContent
-        certType: SelfSigned
-        certContent: certContent
-        certExpiry: 0
-        keyContent: keyContent
-        label: label
-        hcVaultCertParams:
-          vaultAddr: vaultAddr
-          vaultRoleID: vaultRoleID
-          mountPath: mountPath
-          role: role
-          engine: engine
-          ttlExpiry: 6
-          vaultAuthNamespace: vaultAuthNamespace
-          vaultSecretID: vaultSecretID
-          ttl: 0
-          vaultToken: vaultToken
-      properties:
-        certContent:
-          type: string
-        certExpiry:
-          format: int64
-          type: integer
-        certStart:
-          format: int64
-          type: integer
-        certType:
-          enum:
-          - SelfSigned
-          - CustomCertHostPath
-          - CustomServerCert
-          - HashicorpVault
-          - K8SCertManager
-          type: string
-        customCertInfo:
-          $ref: '#/components/schemas/CustomCertInfo'
-        customServerCertData:
-          $ref: '#/components/schemas/CustomServerCertData'
-        hcVaultCertParams:
-          $ref: '#/components/schemas/HashicorpVaultConfigParams'
-        keyContent:
-          type: string
-        label:
-          type: string
-      required:
-      - certContent
-      - certExpiry
-      - certStart
-      - certType
-      - label
-      type: object
-    YBPError:
-      description: Generic error response from the YugabyteDB Anywhere API
-      example:
-        success: false
-        requestUri: /customers/8918921-af3782-633de/universe/8173ab-fd2453/create
-        error: There was a problem creating the universe
-        httpMethod: POST
-        errorJson: '{ "foo" : "bar", "baz" : [1, 2, 3] }'
-        requestJson: '{ "foo" : "bar", "baz" : [1, 2, 3] }'
-      properties:
-        error:
-          description: User-visible unstructured error message
-          example: There was a problem creating the universe
-          type: string
-        errorJson:
-          description: User visible structured error message as json object
-          example: '{ "foo" : "bar", "baz" : [1, 2, 3] }'
-          properties: {}
-          type: object
-        httpMethod:
-          description: Method for HTTP call that resulted in this error
-          example: POST
-          type: string
-        requestJson:
-          description: User request JSON object
-          example: '{ "foo" : "bar", "baz" : [1, 2, 3] }'
-          properties: {}
-          type: object
-        requestUri:
-          description: URI for HTTP request that resulted in this error
-          example: /customers/8918921-af3782-633de/universe/8173ab-fd2453/create
-          type: string
-        success:
-          description: Always set to false to indicate failure
-          example: false
-          type: boolean
-      type: object
-    CustomCertInfo:
-      example:
-        nodeCertPath: nodeCertPath
-        nodeKeyPath: nodeKeyPath
-        clientKeyPath: clientKeyPath
-        clientCertPath: clientCertPath
-        rootCertPath: rootCertPath
-      properties:
-        clientCertPath:
-          type: string
-        clientKeyPath:
-          type: string
-        nodeCertPath:
-          type: string
-        nodeKeyPath:
-          type: string
-        rootCertPath:
-          type: string
-      required:
-      - clientCertPath
-      - clientKeyPath
-      - nodeCertPath
-      - nodeKeyPath
-      - rootCertPath
-      type: object
     HashicorpVaultConfigParams:
       example:
         vaultAddr: vaultAddr
@@ -735,6 +716,25 @@ components:
       - mountPath
       - role
       - vaultAddr
+      type: object
+    ClientCertParams:
+      example:
+        certStart: 6
+        certExpiry: 0
+        username: username
+      properties:
+        certExpiry:
+          format: int64
+          type: integer
+        certStart:
+          format: int64
+          type: integer
+        username:
+          type: string
+      required:
+      - certExpiry
+      - certStart
+      - username
       type: object
   securitySchemes:
     apiKeyAuth:
