@@ -39,23 +39,6 @@ edges:
   seller_name: Yugabyte Inc
   detected_by: sweep-cloud-marketplaces.py
   detected: '2026-10-13'
-- partner_name: PostgreSQL
-  partner: postgresql
-  partner_match: shape-anchor
-  channel: provider-built
-  relationship: compatible
-  direction: provider-built
-  shape: postgres-wire
-  type: docs
-  degree: full
-  evidence: https://docs.yugabyte.com/stable/api/ysql/
-  evidence_kind: own-docs
-  evidence_file: https://github.com/api-evangelist/yugabyte/blob/main/evidence/compatibility/yugabyte-postgres-wire-1.md
-  quote: Yugabyte Structured Query Language (YSQL) is an ANSI SQL, fully-relational API that is best fit for scale-out
-    RDBMS applications that need ultra resilience, massive write scalability, and geographic data distribution.
-    The YugabyteDB SQL pro
-  detected_by: sweep-shape-compat.py
-  first_seen: '2026-10-13'
 - partner_name: Datadog (own)
   partner: datadog
   partner_match: mirror
@@ -73,6 +56,23 @@ edges:
   detected: '2026-10-14'
   detected_by: mirror-platform-listings.py
   category: Data Stores
+- partner_name: PostgreSQL
+  partner: postgresql
+  partner_match: shape-anchor
+  channel: provider-built
+  relationship: compatible
+  direction: provider-built
+  shape: postgres-wire
+  type: docs
+  degree: full
+  evidence: https://docs.yugabyte.com/stable/api/ysql/
+  evidence_kind: own-docs
+  evidence_file: https://github.com/api-evangelist/yugabyte/blob/main/evidence/compatibility/yugabyte-postgres-wire-1.md
+  quote: Yugabyte Structured Query Language (YSQL) is an ANSI SQL, fully-relational API that is best fit for scale-out
+    RDBMS applications that need ultra resilience, massive write scalability, and geographic data distribution.
+    The YugabyteDB SQL pro
+  detected_by: sweep-shape-compat.py
+  first_seen: '2026-10-13'
 - partner_name: LlamaIndex
   partner: llamaindex
   partner_match: framework
