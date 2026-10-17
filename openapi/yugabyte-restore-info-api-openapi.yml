@@ -56,6 +56,12 @@ paths:
       - restore-info
 components:
   schemas:
+    ApiError:
+      properties:
+        error:
+          $ref: '#/components/schemas/ApiError_error'
+      title: API Error
+      type: object
     Restore_Details:
       example:
         restore:
@@ -144,12 +150,6 @@ components:
       - ybc_task_id
       - ybdb_api
       title: Get Restore Details
-      type: object
-    ApiError:
-      properties:
-        error:
-          $ref: '#/components/schemas/ApiError_error'
-      title: API Error
       type: object
   securitySchemes:
     BearerAuthToken:

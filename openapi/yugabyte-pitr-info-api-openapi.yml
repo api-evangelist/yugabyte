@@ -56,15 +56,6 @@ paths:
       - pitr-info
 components:
   schemas:
-    ApiError_error:
-      properties:
-        detail:
-          description: Error message
-          type: string
-        status:
-          description: Error code
-          type: integer
-      type: object
     PITRSchedule:
       description: Details of a Point-in-Time Recovery (PITR) schedule
       example:
@@ -92,11 +83,14 @@ components:
       - retention
       title: List of PITR Schedules in the cluster
       type: object
-    ApiError:
+    ApiError_error:
       properties:
-        error:
-          $ref: '#/components/schemas/ApiError_error'
-      title: API Error
+        detail:
+          description: Error message
+          type: string
+        status:
+          description: Error code
+          type: integer
       type: object
     PITR_Schedule_Response:
       example:
@@ -120,6 +114,12 @@ components:
       required:
       - schedules
       title: PITR Schedule Response
+      type: object
+    ApiError:
+      properties:
+        error:
+          $ref: '#/components/schemas/ApiError_error'
+      title: API Error
       type: object
   securitySchemes:
     BearerAuthToken:

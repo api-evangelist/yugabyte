@@ -182,6 +182,20 @@ paths:
       - Custom CA Certificates
 components:
   schemas:
+    YBPSuccess:
+      example:
+        success: true
+        message: message
+      properties:
+        message:
+          description: API response message.
+          readOnly: true
+          type: string
+        success:
+          description: API operation status. A value of true indicates the operation was successful.
+          readOnly: true
+          type: boolean
+      type: object
     CustomCaCertificateInfo:
       description: Custom CA certificate
       example:
@@ -241,20 +255,6 @@ components:
       required:
       - contents
       - name
-      type: object
-    YBPSuccess:
-      example:
-        success: true
-        message: message
-      properties:
-        message:
-          description: API response message.
-          readOnly: true
-          type: string
-        success:
-          description: API operation status. A value of true indicates the operation was successful.
-          readOnly: true
-          type: boolean
       type: object
   securitySchemes:
     apiKeyAuth:

@@ -166,6 +166,15 @@ paths:
       x-accepts:
       - application/json
 components:
+  requestBodies:
+    AuthGroupToRolesMappingReq:
+      content:
+        application/json:
+          schema:
+            items:
+              $ref: '#/components/schemas/AuthGroupToRolesMapping'
+            type: array
+      required: true
   schemas:
     RoleResourceDefinition:
       description: Defines the association of Role to Resource Groups. Part of AuthGroupToRolesMapping.
@@ -193,61 +202,6 @@ components:
       required:
       - role_uuid
       title: RoleResourceDefinition.
-      type: object
-    ResourceDefinition:
-      description: Resource definition containing the resource type and resource set.
-      example:
-        resource_type: UNIVERSE
-        resource_uuid_set:
-        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        allow_all: true
-      properties:
-        resource_type:
-          description: Resource Type
-          enum:
-          - UNIVERSE
-          - ROLE
-          - USER
-          - OTHER
-          type: string
-        allow_all:
-          description: Select all resources (including future resources)
-          type: boolean
-        resource_uuid_set:
-          default: []
-          description: Set of resource UUIDs
-          items:
-            format: uuid
-            type: string
-          type: array
-      required:
-      - allow_all
-      - resource_type
-      title: ResourceDefinition
-      type: object
-    ResourceGroup:
-      description: Resource group definition for the role. Only applicable for custom roles.
-      example:
-        resource_definition_set:
-        - resource_type: UNIVERSE
-          resource_uuid_set:
-          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          allow_all: true
-        - resource_type: UNIVERSE
-          resource_uuid_set:
-          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          allow_all: true
-      properties:
-        resource_definition_set:
-          items:
-            $ref: '#/components/schemas/ResourceDefinition'
-          type: array
-      required:
-      - resource_definition_set
-      title: ResourceGroup
       type: object
     AuthGroupToRolesMapping:
       description: 'AuthGroupToRolesMapping
@@ -319,15 +273,61 @@ components:
       - type
       title: AuthGroupToRolesMapping
       type: object
-  requestBodies:
-    AuthGroupToRolesMappingReq:
-      content:
-        application/json:
-          schema:
-            items:
-              $ref: '#/components/schemas/AuthGroupToRolesMapping'
-            type: array
-      required: true
+    ResourceGroup:
+      description: Resource group definition for the role. Only applicable for custom roles.
+      example:
+        resource_definition_set:
+        - resource_type: UNIVERSE
+          resource_uuid_set:
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          allow_all: true
+        - resource_type: UNIVERSE
+          resource_uuid_set:
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          allow_all: true
+      properties:
+        resource_definition_set:
+          items:
+            $ref: '#/components/schemas/ResourceDefinition'
+          type: array
+      required:
+      - resource_definition_set
+      title: ResourceGroup
+      type: object
+    ResourceDefinition:
+      description: Resource definition containing the resource type and resource set.
+      example:
+        resource_type: UNIVERSE
+        resource_uuid_set:
+        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        allow_all: true
+      properties:
+        resource_type:
+          description: Resource Type
+          enum:
+          - UNIVERSE
+          - ROLE
+          - USER
+          - OTHER
+          type: string
+        allow_all:
+          description: Select all resources (including future resources)
+          type: boolean
+        resource_uuid_set:
+          default: []
+          description: Set of resource UUIDs
+          items:
+            format: uuid
+            type: string
+          type: array
+      required:
+      - allow_all
+      - resource_type
+      title: ResourceDefinition
+      type: object
   securitySchemes:
     apiKeyAuth:
       in: header

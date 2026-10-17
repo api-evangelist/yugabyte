@@ -307,6 +307,20 @@ paths:
       x-codegen-request-body-name: azFormData
 components:
   schemas:
+    YBPSuccess:
+      example:
+        success: true
+        message: message
+      properties:
+        message:
+          description: API response message.
+          readOnly: true
+          type: string
+        success:
+          description: API operation status. A value of true indicates the operation was successful.
+          readOnly: true
+          type: boolean
+      type: object
     AvailabilityZoneDetails:
       example:
         cloudInfo:
@@ -336,64 +350,6 @@ components:
       properties:
         cloudInfo:
           $ref: '#/components/schemas/AZCloudInfo'
-      type: object
-    YBPSuccess:
-      example:
-        success: true
-        message: message
-      properties:
-        message:
-          description: API response message.
-          readOnly: true
-          type: string
-        success:
-          description: API operation status. A value of true indicates the operation was successful.
-          readOnly: true
-          type: boolean
-      type: object
-    AvailabilityZoneFormData:
-      example:
-        availabilityZones:
-        - subnet: subnet
-          code: code
-          name: name
-          secondarySubnet: secondarySubnet
-        - subnet: subnet
-          code: code
-          name: name
-          secondarySubnet: secondarySubnet
-      properties:
-        availabilityZones:
-          description: List of availability zones
-          items:
-            $ref: '#/components/schemas/AvailabilityZoneData'
-          type: array
-      required:
-      - availabilityZones
-      type: object
-    AvailabilityZoneData:
-      description: Details of an availability zone, used by the API and UI to validate data against input constraints
-      example:
-        subnet: subnet
-        code: code
-        name: name
-        secondarySubnet: secondarySubnet
-      properties:
-        code:
-          description: AZ code
-          type: string
-        name:
-          description: AZ name
-          type: string
-        secondarySubnet:
-          description: AZ secondary subnet
-          type: string
-        subnet:
-          description: AZ subnet
-          type: string
-      required:
-      - code
-      - name
       type: object
     KubernetesRegionInfo:
       example:
@@ -577,6 +533,50 @@ components:
           type: string
       required:
       - name
+      type: object
+    AvailabilityZoneData:
+      description: Details of an availability zone, used by the API and UI to validate data against input constraints
+      example:
+        subnet: subnet
+        code: code
+        name: name
+        secondarySubnet: secondarySubnet
+      properties:
+        code:
+          description: AZ code
+          type: string
+        name:
+          description: AZ name
+          type: string
+        secondarySubnet:
+          description: AZ secondary subnet
+          type: string
+        subnet:
+          description: AZ subnet
+          type: string
+      required:
+      - code
+      - name
+      type: object
+    AvailabilityZoneFormData:
+      example:
+        availabilityZones:
+        - subnet: subnet
+          code: code
+          name: name
+          secondarySubnet: secondarySubnet
+        - subnet: subnet
+          code: code
+          name: name
+          secondarySubnet: secondarySubnet
+      properties:
+        availabilityZones:
+          description: List of availability zones
+          items:
+            $ref: '#/components/schemas/AvailabilityZoneData'
+          type: array
+      required:
+      - availabilityZones
       type: object
   securitySchemes:
     apiKeyAuth:

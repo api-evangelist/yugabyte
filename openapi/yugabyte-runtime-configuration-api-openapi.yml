@@ -259,22 +259,19 @@ paths:
       - Runtime configuration
 components:
   schemas:
-    ConfigEntry:
-      description: Configuration entry
+    YBPSuccess:
       example:
-        inherited: true
-        value: value
-        key: key
+        success: true
+        message: message
       properties:
-        inherited:
-          description: Is this configuration inherited?
+        message:
+          description: API response message.
+          readOnly: true
+          type: string
+        success:
+          description: API operation status. A value of true indicates the operation was successful.
+          readOnly: true
           type: boolean
-        key:
-          description: Configuration key
-          type: string
-        value:
-          description: Configuration value
-          type: string
       type: object
     ScopedConfig:
       description: Scoped configuration
@@ -310,60 +307,6 @@ components:
           description: Scope UIID
           format: uuid
           type: string
-      type: object
-    YBPSuccess:
-      example:
-        success: true
-        message: message
-      properties:
-        message:
-          description: API response message.
-          readOnly: true
-          type: string
-        success:
-          description: API operation status. A value of true indicates the operation was successful.
-          readOnly: true
-          type: boolean
-      type: object
-    ConfDataTypeObject:
-      example:
-        name: name
-      properties:
-        name:
-          type: string
-      required:
-      - name
-      type: object
-    RuntimeConfigData:
-      description: Runtime configuration data
-      example:
-        scopedConfigList:
-        - configEntries:
-          - inherited: true
-            value: value
-            key: key
-          - inherited: true
-            value: value
-            key: key
-          mutableScope: true
-          type: GLOBAL
-          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        - configEntries:
-          - inherited: true
-            value: value
-            key: key
-          - inherited: true
-            value: value
-            key: key
-          mutableScope: true
-          type: GLOBAL
-          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-      properties:
-        scopedConfigList:
-          description: List of scoped configurations
-          items:
-            $ref: '#/components/schemas/ScopedConfig'
-          type: array
       type: object
     ConfKeyInfo:
       example:
@@ -407,6 +350,63 @@ components:
       - key
       - scope
       - tags
+      type: object
+    ConfigEntry:
+      description: Configuration entry
+      example:
+        inherited: true
+        value: value
+        key: key
+      properties:
+        inherited:
+          description: Is this configuration inherited?
+          type: boolean
+        key:
+          description: Configuration key
+          type: string
+        value:
+          description: Configuration value
+          type: string
+      type: object
+    ConfDataTypeObject:
+      example:
+        name: name
+      properties:
+        name:
+          type: string
+      required:
+      - name
+      type: object
+    RuntimeConfigData:
+      description: Runtime configuration data
+      example:
+        scopedConfigList:
+        - configEntries:
+          - inherited: true
+            value: value
+            key: key
+          - inherited: true
+            value: value
+            key: key
+          mutableScope: true
+          type: GLOBAL
+          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - configEntries:
+          - inherited: true
+            value: value
+            key: key
+          - inherited: true
+            value: value
+            key: key
+          mutableScope: true
+          type: GLOBAL
+          uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        scopedConfigList:
+          description: List of scoped configurations
+          items:
+            $ref: '#/components/schemas/ScopedConfig'
+          type: array
       type: object
   securitySchemes:
     apiKeyAuth:

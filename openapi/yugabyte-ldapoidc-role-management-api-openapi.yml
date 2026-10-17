@@ -158,23 +158,19 @@ paths:
       - LDAPOIDC Role management
 components:
   schemas:
-    OidcGroupToYbaRolesData:
+    YBPSuccess:
       example:
-        oidcGroupToYbaRolesPairs:
-        - groupName: groupName
-          roles:
-          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        - groupName: groupName
-          roles:
-          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        success: true
+        message: message
       properties:
-        oidcGroupToYbaRolesPairs:
-          description: ' list of pairs of groupName and roles'
-          items:
-            $ref: '#/components/schemas/OidcGroupToYbaRolesPair'
-          type: array
+        message:
+          description: API response message.
+          readOnly: true
+          type: string
+        success:
+          description: API operation status. A value of true indicates the operation was successful.
+          readOnly: true
+          type: boolean
       type: object
     LdapDnYbaRoleDataPair:
       example:
@@ -195,35 +191,6 @@ components:
       - distinguishedName
       - ybaRole
       type: object
-    LdapDnToYbaRoleData:
-      description: A list of LDAP DN, YBA role pairs
-      example:
-        ldapDnToYbaRolePairs:
-        - ybaRole: ConnectOnly
-          distinguishedName: distinguishedName
-        - ybaRole: ConnectOnly
-          distinguishedName: distinguishedName
-      properties:
-        ldapDnToYbaRolePairs:
-          description: ' list of pairs of distinguishedName and ybaRole'
-          items:
-            $ref: '#/components/schemas/LdapDnYbaRoleDataPair'
-          type: array
-      type: object
-    YBPSuccess:
-      example:
-        success: true
-        message: message
-      properties:
-        message:
-          description: API response message.
-          readOnly: true
-          type: string
-        success:
-          description: API operation status. A value of true indicates the operation was successful.
-          readOnly: true
-          type: boolean
-      type: object
     OidcGroupToYbaRolesPair:
       example:
         groupName: groupName
@@ -241,6 +208,39 @@ components:
       required:
       - groupName
       - roles
+      type: object
+    OidcGroupToYbaRolesData:
+      example:
+        oidcGroupToYbaRolesPairs:
+        - groupName: groupName
+          roles:
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - groupName: groupName
+          roles:
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        oidcGroupToYbaRolesPairs:
+          description: ' list of pairs of groupName and roles'
+          items:
+            $ref: '#/components/schemas/OidcGroupToYbaRolesPair'
+          type: array
+      type: object
+    LdapDnToYbaRoleData:
+      description: A list of LDAP DN, YBA role pairs
+      example:
+        ldapDnToYbaRolePairs:
+        - ybaRole: ConnectOnly
+          distinguishedName: distinguishedName
+        - ybaRole: ConnectOnly
+          distinguishedName: distinguishedName
+      properties:
+        ldapDnToYbaRolePairs:
+          description: ' list of pairs of distinguishedName and ybaRole'
+          items:
+            $ref: '#/components/schemas/LdapDnYbaRoleDataPair'
+          type: array
       type: object
   securitySchemes:
     apiKeyAuth:

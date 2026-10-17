@@ -280,6 +280,112 @@ paths:
       - Support Bundle management
 components:
   schemas:
+    SupportBundle:
+      example:
+        path: path
+        sizeInBytes: 5
+        scopeUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        bundleDetails:
+          maxNumRecentCores: 6
+          components:
+          - UniverseLogs
+          - UniverseLogs
+          paDumpStartDate: 2022-12-12 13:07:18+00:00
+          promDumpEndDate: 2022-12-12 13:07:18+00:00
+          promDumpStartDate: 2022-12-12 13:07:18+00:00
+          promMetricsFormat: PROMQL_JSON
+          paDumpEndDate: 2022-12-12 13:07:18+00:00
+          paMetricsFormat: PROMQL_JSON
+          promMetricsStepSec: 1
+          prometheusMetricsTypes:
+          - MASTER_EXPORT
+          - MASTER_EXPORT
+          maxCoreFileSize: 0
+        endDate: 2022-12-12 13:07:18+00:00
+        bundleUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        creationDate: 2022-12-12 13:07:18+00:00
+        startDate: 2022-12-12 13:07:18+00:00
+        expirationDate: 2022-12-12 13:07:18+00:00
+        status: Running
+      properties:
+        bundleDetails:
+          $ref: '#/components/schemas/BundleDetails'
+        bundleUUID:
+          format: uuid
+          type: string
+        creationDate:
+          description: Support bundle creation date.
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          type: string
+        endDate:
+          description: Support bundle end date.
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          type: string
+        expirationDate:
+          description: Support bundle expiration date.
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          type: string
+        path:
+          type: string
+        scopeUUID:
+          format: uuid
+          type: string
+        sizeInBytes:
+          description: Size in bytes of the support bundle
+          format: int64
+          type: integer
+        startDate:
+          description: Support bundle start date.
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          type: string
+        status:
+          enum:
+          - Running
+          - Success
+          - Failed
+          - Aborted
+          type: string
+      required:
+      - bundleDetails
+      - bundleUUID
+      - path
+      - scopeUUID
+      - status
+      type: object
+    YBPSuccess:
+      example:
+        success: true
+        message: message
+      properties:
+        message:
+          description: API response message.
+          readOnly: true
+          type: string
+        success:
+          description: API operation status. A value of true indicates the operation was successful.
+          readOnly: true
+          type: boolean
+      type: object
+    YBPTask:
+      example:
+        taskUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        resourceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        resourceUUID:
+          description: UUID of the resource being modified by the task
+          format: uuid
+          readOnly: true
+          type: string
+        taskUUID:
+          description: Task UUID
+          format: uuid
+          readOnly: true
+          type: string
+      type: object
     SupportBundleFormData:
       description: Support bundle form metadata
       example:
@@ -423,35 +529,20 @@ components:
       - endDate
       - startDate
       type: object
-    YBPTask:
+    SupportBundleSizeEstimateResponse:
       example:
-        taskUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        resourceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        data:
+          key:
+            key: 0
       properties:
-        resourceUUID:
-          description: UUID of the resource being modified by the task
-          format: uuid
-          readOnly: true
-          type: string
-        taskUUID:
-          description: Task UUID
-          format: uuid
-          readOnly: true
-          type: string
-      type: object
-    YBPSuccess:
-      example:
-        success: true
-        message: message
-      properties:
-        message:
-          description: API response message.
-          readOnly: true
-          type: string
-        success:
-          description: API operation status. A value of true indicates the operation was successful.
-          readOnly: true
-          type: boolean
+        data:
+          additionalProperties:
+            additionalProperties:
+              format: int64
+              type: integer
+            type: object
+          description: A map of universe node names to component sizes for the given support bundle payload. Global component sizes are mapped to "YBA" node.
+          type: object
       type: object
     BundleDetails:
       example:
@@ -552,97 +643,6 @@ components:
           type: array
       required:
       - components
-      type: object
-    SupportBundleSizeEstimateResponse:
-      example:
-        data:
-          key:
-            key: 0
-      properties:
-        data:
-          additionalProperties:
-            additionalProperties:
-              format: int64
-              type: integer
-            type: object
-          description: A map of universe node names to component sizes for the given support bundle payload. Global component sizes are mapped to "YBA" node.
-          type: object
-      type: object
-    SupportBundle:
-      example:
-        path: path
-        sizeInBytes: 5
-        scopeUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        bundleDetails:
-          maxNumRecentCores: 6
-          components:
-          - UniverseLogs
-          - UniverseLogs
-          paDumpStartDate: 2022-12-12 13:07:18+00:00
-          promDumpEndDate: 2022-12-12 13:07:18+00:00
-          promDumpStartDate: 2022-12-12 13:07:18+00:00
-          promMetricsFormat: PROMQL_JSON
-          paDumpEndDate: 2022-12-12 13:07:18+00:00
-          paMetricsFormat: PROMQL_JSON
-          promMetricsStepSec: 1
-          prometheusMetricsTypes:
-          - MASTER_EXPORT
-          - MASTER_EXPORT
-          maxCoreFileSize: 0
-        endDate: 2022-12-12 13:07:18+00:00
-        bundleUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        creationDate: 2022-12-12 13:07:18+00:00
-        startDate: 2022-12-12 13:07:18+00:00
-        expirationDate: 2022-12-12 13:07:18+00:00
-        status: Running
-      properties:
-        bundleDetails:
-          $ref: '#/components/schemas/BundleDetails'
-        bundleUUID:
-          format: uuid
-          type: string
-        creationDate:
-          description: Support bundle creation date.
-          example: 2022-12-12 13:07:18+00:00
-          format: date-time
-          type: string
-        endDate:
-          description: Support bundle end date.
-          example: 2022-12-12 13:07:18+00:00
-          format: date-time
-          type: string
-        expirationDate:
-          description: Support bundle expiration date.
-          example: 2022-12-12 13:07:18+00:00
-          format: date-time
-          type: string
-        path:
-          type: string
-        scopeUUID:
-          format: uuid
-          type: string
-        sizeInBytes:
-          description: Size in bytes of the support bundle
-          format: int64
-          type: integer
-        startDate:
-          description: Support bundle start date.
-          example: 2022-12-12 13:07:18+00:00
-          format: date-time
-          type: string
-        status:
-          enum:
-          - Running
-          - Success
-          - Failed
-          - Aborted
-          type: string
-      required:
-      - bundleDetails
-      - bundleUUID
-      - path
-      - scopeUUID
-      - status
       type: object
   securitySchemes:
     apiKeyAuth:

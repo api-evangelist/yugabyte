@@ -274,169 +274,6 @@ paths:
       - Instance Types
 components:
   schemas:
-    YBPError:
-      description: Generic error response from the YugabyteDB Anywhere API
-      example:
-        success: false
-        requestUri: /customers/8918921-af3782-633de/universe/8173ab-fd2453/create
-        error: There was a problem creating the universe
-        httpMethod: POST
-        errorJson: '{ "foo" : "bar", "baz" : [1, 2, 3] }'
-        requestJson: '{ "foo" : "bar", "baz" : [1, 2, 3] }'
-      properties:
-        error:
-          description: User-visible unstructured error message
-          example: There was a problem creating the universe
-          type: string
-        errorJson:
-          description: User visible structured error message as json object
-          example: '{ "foo" : "bar", "baz" : [1, 2, 3] }'
-          properties: {}
-          type: object
-        httpMethod:
-          description: Method for HTTP call that resulted in this error
-          example: POST
-          type: string
-        requestJson:
-          description: User request JSON object
-          example: '{ "foo" : "bar", "baz" : [1, 2, 3] }'
-          properties: {}
-          type: object
-        requestUri:
-          description: URI for HTTP request that resulted in this error
-          example: /customers/8918921-af3782-633de/universe/8173ab-fd2453/create
-          type: string
-        success:
-          description: Always set to false to indicate failure
-          example: false
-          type: boolean
-      type: object
-    InstanceType:
-      description: Information about an instance
-      example:
-        numCores: 6.027456183070403
-        idKey:
-          instanceTypeCode: instanceTypeCode
-          providerUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        memSizeGB: 0.8008281904610115
-        instanceTypeCode: instanceTypeCode
-        instanceTypeDetails:
-          tenancy: Shared
-          arch: x86_64
-          volumeDetailsList:
-          - volumeSizeGB: 0
-            volumeType: EBS
-            mountPath: mountPath
-          - volumeSizeGB: 0
-            volumeType: EBS
-            mountPath: mountPath
-        active: true
-      properties:
-        active:
-          description: True if the instance is active
-          readOnly: true
-          type: boolean
-        idKey:
-          $ref: '#/components/schemas/InstanceTypeKey'
-        instanceTypeCode:
-          description: Instance type code
-          readOnly: true
-          type: string
-        instanceTypeDetails:
-          $ref: '#/components/schemas/InstanceTypeDetails'
-        memSizeGB:
-          description: The instance's memory size, in gigabytes
-          format: double
-          type: number
-        numCores:
-          description: The instance's number of CPU cores
-          format: double
-          type: number
-      required:
-      - idKey
-      type: object
-    InstanceTypeKey:
-      example:
-        instanceTypeCode: instanceTypeCode
-        providerUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-      properties:
-        instanceTypeCode:
-          type: string
-        providerUuid:
-          format: uuid
-          type: string
-      required:
-      - instanceTypeCode
-      - providerUuid
-      type: object
-    YBPSuccess:
-      example:
-        success: true
-        message: message
-      properties:
-        message:
-          description: API response message.
-          readOnly: true
-          type: string
-        success:
-          description: API operation status. A value of true indicates the operation was successful.
-          readOnly: true
-          type: boolean
-      type: object
-    InstanceTypeDetails:
-      example:
-        tenancy: Shared
-        arch: x86_64
-        volumeDetailsList:
-        - volumeSizeGB: 0
-          volumeType: EBS
-          mountPath: mountPath
-        - volumeSizeGB: 0
-          volumeType: EBS
-          mountPath: mountPath
-      properties:
-        arch:
-          description: Architecture for the instance.
-          enum:
-          - x86_64
-          - aarch64
-          type: string
-        tenancy:
-          description: Tenancy for the instance.
-          enum:
-          - Shared
-          - Dedicated
-          - Host
-          type: string
-        volumeDetailsList:
-          description: Volume Details for the instance.
-          items:
-            $ref: '#/components/schemas/VolumeDetails'
-          type: array
-      type: object
-    VolumeDetails:
-      example:
-        volumeSizeGB: 0
-        volumeType: EBS
-        mountPath: mountPath
-      properties:
-        mountPath:
-          type: string
-        volumeSizeGB:
-          format: int32
-          type: integer
-        volumeType:
-          enum:
-          - EBS
-          - SSD
-          - HDD
-          - NVME
-          type: string
-      required:
-      - mountPath
-      - volumeSizeGB
-      - volumeType
-      type: object
     InstanceTypeResp:
       description: Details of a cloud instance type
       example:
@@ -489,6 +326,169 @@ components:
           format: uuid
           readOnly: true
           type: string
+      required:
+      - idKey
+      type: object
+    YBPSuccess:
+      example:
+        success: true
+        message: message
+      properties:
+        message:
+          description: API response message.
+          readOnly: true
+          type: string
+        success:
+          description: API operation status. A value of true indicates the operation was successful.
+          readOnly: true
+          type: boolean
+      type: object
+    YBPError:
+      description: Generic error response from the YugabyteDB Anywhere API
+      example:
+        success: false
+        requestUri: /customers/8918921-af3782-633de/universe/8173ab-fd2453/create
+        error: There was a problem creating the universe
+        httpMethod: POST
+        errorJson: '{ "foo" : "bar", "baz" : [1, 2, 3] }'
+        requestJson: '{ "foo" : "bar", "baz" : [1, 2, 3] }'
+      properties:
+        error:
+          description: User-visible unstructured error message
+          example: There was a problem creating the universe
+          type: string
+        errorJson:
+          description: User visible structured error message as json object
+          example: '{ "foo" : "bar", "baz" : [1, 2, 3] }'
+          properties: {}
+          type: object
+        httpMethod:
+          description: Method for HTTP call that resulted in this error
+          example: POST
+          type: string
+        requestJson:
+          description: User request JSON object
+          example: '{ "foo" : "bar", "baz" : [1, 2, 3] }'
+          properties: {}
+          type: object
+        requestUri:
+          description: URI for HTTP request that resulted in this error
+          example: /customers/8918921-af3782-633de/universe/8173ab-fd2453/create
+          type: string
+        success:
+          description: Always set to false to indicate failure
+          example: false
+          type: boolean
+      type: object
+    InstanceTypeKey:
+      example:
+        instanceTypeCode: instanceTypeCode
+        providerUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        instanceTypeCode:
+          type: string
+        providerUuid:
+          format: uuid
+          type: string
+      required:
+      - instanceTypeCode
+      - providerUuid
+      type: object
+    VolumeDetails:
+      example:
+        volumeSizeGB: 0
+        volumeType: EBS
+        mountPath: mountPath
+      properties:
+        mountPath:
+          type: string
+        volumeSizeGB:
+          format: int32
+          type: integer
+        volumeType:
+          enum:
+          - EBS
+          - SSD
+          - HDD
+          - NVME
+          type: string
+      required:
+      - mountPath
+      - volumeSizeGB
+      - volumeType
+      type: object
+    InstanceTypeDetails:
+      example:
+        tenancy: Shared
+        arch: x86_64
+        volumeDetailsList:
+        - volumeSizeGB: 0
+          volumeType: EBS
+          mountPath: mountPath
+        - volumeSizeGB: 0
+          volumeType: EBS
+          mountPath: mountPath
+      properties:
+        arch:
+          description: Architecture for the instance.
+          enum:
+          - x86_64
+          - aarch64
+          type: string
+        tenancy:
+          description: Tenancy for the instance.
+          enum:
+          - Shared
+          - Dedicated
+          - Host
+          type: string
+        volumeDetailsList:
+          description: Volume Details for the instance.
+          items:
+            $ref: '#/components/schemas/VolumeDetails'
+          type: array
+      type: object
+    InstanceType:
+      description: Information about an instance
+      example:
+        numCores: 6.027456183070403
+        idKey:
+          instanceTypeCode: instanceTypeCode
+          providerUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        memSizeGB: 0.8008281904610115
+        instanceTypeCode: instanceTypeCode
+        instanceTypeDetails:
+          tenancy: Shared
+          arch: x86_64
+          volumeDetailsList:
+          - volumeSizeGB: 0
+            volumeType: EBS
+            mountPath: mountPath
+          - volumeSizeGB: 0
+            volumeType: EBS
+            mountPath: mountPath
+        active: true
+      properties:
+        active:
+          description: True if the instance is active
+          readOnly: true
+          type: boolean
+        idKey:
+          $ref: '#/components/schemas/InstanceTypeKey'
+        instanceTypeCode:
+          description: Instance type code
+          readOnly: true
+          type: string
+        instanceTypeDetails:
+          $ref: '#/components/schemas/InstanceTypeDetails'
+        memSizeGB:
+          description: The instance's memory size, in gigabytes
+          format: double
+          type: number
+        numCores:
+          description: The instance's number of CPU cores
+          format: double
+          type: number
       required:
       - idKey
       type: object

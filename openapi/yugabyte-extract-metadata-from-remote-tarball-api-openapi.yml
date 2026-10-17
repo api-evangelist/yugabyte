@@ -84,21 +84,6 @@ paths:
       x-operation-id-original: extractMetadata
 components:
   schemas:
-    ExtractMetadata:
-      description: url to release TGZ to extract metadata from
-      example:
-        uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        url: url
-      properties:
-        url:
-          type: string
-        uuid:
-          format: uuid
-          type: string
-      required:
-      - url
-      - uuid
-      type: object
     YBPCreateSuccess:
       example:
         resourceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -168,6 +153,21 @@ components:
       - status
       - version
       - yb_type
+      type: object
+    ExtractMetadata:
+      description: url to release TGZ to extract metadata from
+      example:
+        uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        url: url
+      properties:
+        url:
+          type: string
+        uuid:
+          format: uuid
+          type: string
+      required:
+      - url
+      - uuid
       type: object
   securitySchemes:
     apiKeyAuth:

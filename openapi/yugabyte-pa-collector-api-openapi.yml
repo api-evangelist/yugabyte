@@ -284,64 +284,6 @@ paths:
       - PA Collector
 components:
   schemas:
-    PACollector:
-      description: Performance Advisor Collector Model
-      example:
-        apiToken: apiToken
-        customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        metricsPassword: metricsPassword
-        metricsUsername: metricsUsername
-        metricsUrl: metricsUrl
-        paApiToken: paApiToken
-        paUrl: paUrl
-        ybaUrl: ybaUrl
-        metricsScrapePeriodSecs: 0
-        uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-      properties:
-        apiToken:
-          description: YBA API Token
-          type: string
-        customerUUID:
-          description: Customer UUID
-          format: uuid
-          readOnly: true
-          type: string
-        metricsPassword:
-          description: Metrics API Password
-          type: string
-        metricsScrapePeriodSecs:
-          description: Metrics Scrape Period Seconds
-          format: int64
-          type: integer
-        metricsUrl:
-          description: Metrics URL
-          type: string
-        metricsUsername:
-          description: Metrics API Username
-          type: string
-        paApiToken:
-          description: PA Collector API Token
-          type: string
-        paUrl:
-          description: PA Collector URL
-          type: string
-        uuid:
-          description: PA Collector UUID
-          format: uuid
-          readOnly: true
-          type: string
-        ybaUrl:
-          description: YBA URL
-          type: string
-      required:
-      - apiToken
-      - customerUUID
-      - metricsScrapePeriodSecs
-      - metricsUrl
-      - paUrl
-      - uuid
-      - ybaUrl
-      type: object
     PA_Collector_Details_Model:
       example:
         inUseStatus: IN_USE
@@ -407,17 +349,63 @@ components:
       - uuid
       - ybaUrl
       type: object
-    PA_Collector_universe_registration_status:
+    PACollector:
+      description: Performance Advisor Collector Model
       example:
-        success: true
-        advancedObservability: true
+        apiToken: apiToken
+        customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        metricsPassword: metricsPassword
+        metricsUsername: metricsUsername
+        metricsUrl: metricsUrl
+        paApiToken: paApiToken
+        paUrl: paUrl
+        ybaUrl: ybaUrl
+        metricsScrapePeriodSecs: 0
+        uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
-        advancedObservability:
-          description: Whether advanced observability (metrics export to Prometheus) is enabled
-          type: boolean
-        success:
-          description: Whether the universe is registered with PA Collector
-          type: boolean
+        apiToken:
+          description: YBA API Token
+          type: string
+        customerUUID:
+          description: Customer UUID
+          format: uuid
+          readOnly: true
+          type: string
+        metricsPassword:
+          description: Metrics API Password
+          type: string
+        metricsScrapePeriodSecs:
+          description: Metrics Scrape Period Seconds
+          format: int64
+          type: integer
+        metricsUrl:
+          description: Metrics URL
+          type: string
+        metricsUsername:
+          description: Metrics API Username
+          type: string
+        paApiToken:
+          description: PA Collector API Token
+          type: string
+        paUrl:
+          description: PA Collector URL
+          type: string
+        uuid:
+          description: PA Collector UUID
+          format: uuid
+          readOnly: true
+          type: string
+        ybaUrl:
+          description: YBA URL
+          type: string
+      required:
+      - apiToken
+      - customerUUID
+      - metricsScrapePeriodSecs
+      - metricsUrl
+      - paUrl
+      - uuid
+      - ybaUrl
       type: object
     YBPSuccess:
       example:
@@ -431,6 +419,18 @@ components:
         success:
           description: API operation status. A value of true indicates the operation was successful.
           readOnly: true
+          type: boolean
+      type: object
+    PA_Collector_universe_registration_status:
+      example:
+        success: true
+        advancedObservability: true
+      properties:
+        advancedObservability:
+          description: Whether advanced observability (metrics export to Prometheus) is enabled
+          type: boolean
+        success:
+          description: Whether the universe is registered with PA Collector
           type: boolean
       type: object
   securitySchemes:

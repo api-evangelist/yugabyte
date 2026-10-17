@@ -74,16 +74,6 @@ paths:
       - Upload Release packages
 components:
   schemas:
-    YBPCreateSuccess:
-      example:
-        resourceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-      properties:
-        resourceUUID:
-          description: UUID of the successfully created resource
-          format: uuid
-          readOnly: true
-          type: string
-      type: object
     ResponseExtractMetadata:
       example:
         release_notes: release_notes
@@ -143,6 +133,16 @@ components:
       - status
       - version
       - yb_type
+      type: object
+    YBPCreateSuccess:
+      example:
+        resourceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        resourceUUID:
+          description: UUID of the successfully created resource
+          format: uuid
+          readOnly: true
+          type: string
       type: object
   securitySchemes:
     apiKeyAuth:

@@ -208,6 +208,46 @@ paths:
       x-codegen-request-body-name: body
 components:
   schemas:
+    ImageBundle:
+      example:
+        metadata:
+          type: YBA_ACTIVE
+          version: version
+        useAsDefault: true
+        name: name
+        active: true
+        details:
+          sshPort: 5
+          regions:
+            key:
+              sshUserOverride: sshUserOverride
+              ybImage: ybImage
+              sshPortOverride: 1
+          useIMDSv2: true
+          globalYbImage: globalYbImage
+          sshUser: sshUser
+          arch: x86_64
+        uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        active:
+          description: Is the ImageBundle Active
+          type: boolean
+        details:
+          $ref: '#/components/schemas/ImageBundleDetails'
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+        name:
+          description: Image Bundle Name
+          type: string
+        useAsDefault:
+          description: Default Image Bundle. A provider can have two defaults, one per architecture
+          type: boolean
+        uuid:
+          description: Image Bundle UUID
+          format: uuid
+          readOnly: true
+          type: string
+      type: object
     Metadata:
       example:
         type: YBA_ACTIVE
@@ -289,46 +329,6 @@ components:
           type: string
         useIMDSv2:
           type: boolean
-      type: object
-    ImageBundle:
-      example:
-        metadata:
-          type: YBA_ACTIVE
-          version: version
-        useAsDefault: true
-        name: name
-        active: true
-        details:
-          sshPort: 5
-          regions:
-            key:
-              sshUserOverride: sshUserOverride
-              ybImage: ybImage
-              sshPortOverride: 1
-          useIMDSv2: true
-          globalYbImage: globalYbImage
-          sshUser: sshUser
-          arch: x86_64
-        uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-      properties:
-        active:
-          description: Is the ImageBundle Active
-          type: boolean
-        details:
-          $ref: '#/components/schemas/ImageBundleDetails'
-        metadata:
-          $ref: '#/components/schemas/Metadata'
-        name:
-          description: Image Bundle Name
-          type: string
-        useAsDefault:
-          description: Default Image Bundle. A provider can have two defaults, one per architecture
-          type: boolean
-        uuid:
-          description: Image Bundle UUID
-          format: uuid
-          readOnly: true
-          type: string
       type: object
   securitySchemes:
     apiKeyAuth:

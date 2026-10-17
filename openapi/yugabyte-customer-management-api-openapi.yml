@@ -191,6 +191,20 @@ paths:
       x-codegen-request-body-name: Metrics
 components:
   schemas:
+    YBPSuccess:
+      example:
+        success: true
+        message: message
+      properties:
+        message:
+          description: API response message.
+          readOnly: true
+          type: string
+        success:
+          description: API operation status. A value of true indicates the operation was successful.
+          readOnly: true
+          type: boolean
+      type: object
     YBPError:
       description: Generic error response from the YugabyteDB Anywhere API
       example:
@@ -266,6 +280,80 @@ components:
       - code
       - name
       type: object
+    AlertingData:
+      description: Alerting configuration
+      example:
+        alertingEmail: test@example.com
+        statusUpdateIntervalMs: 1
+        checkIntervalMs: 6
+        reportOnlyErrors: true
+        sendAlertsToYb: true
+        activeAlertNotificationIntervalMs: 0
+      properties:
+        activeAlertNotificationIntervalMs:
+          description: Period, which is used to send active alert notifications
+          format: int64
+          type: integer
+        alertingEmail:
+          description: Alert email address
+          example: test@example.com
+          type: string
+        checkIntervalMs:
+          description: Alert interval, in milliseconds
+          format: int64
+          type: integer
+        reportOnlyErrors:
+          description: Trigger an alert only for errors
+          type: boolean
+        sendAlertsToYb:
+          description: Send alerts to YB as well as to customer
+          type: boolean
+        statusUpdateIntervalMs:
+          description: Status update of alert interval, in milliseconds
+          format: int64
+          type: integer
+      type: object
+    SmtpData:
+      description: SMTP configuration information
+      example:
+        smtpServer: smtp.example.com
+        smtpUsername: testsmtp
+        smtpPort: 465
+        smtpPassword: XurenRknsc
+        emailFrom: test@example.com
+        useTLS: false
+        useSSL: true
+      properties:
+        emailFrom:
+          description: SMTP email 'from' address
+          example: test@example.com
+          type: string
+        smtpPassword:
+          description: SMTP password
+          example: XurenRknsc
+          type: string
+        smtpPort:
+          description: SMTP port number
+          example: 465
+          format: int32
+          type: integer
+        smtpServer:
+          description: SMTP server
+          example: smtp.example.com
+          type: string
+        smtpUsername:
+          description: SMTP email username
+          example: testsmtp
+          type: string
+        useSSL:
+          description: Connect to SMTP server using SSL
+          example: true
+          type: boolean
+        useTLS:
+          description: Connect to SMTP server using TLS
+          example: false
+          type: boolean
+      type: object
     MetricSettings:
       description: Settings, selected for particular metric
       example:
@@ -332,60 +420,75 @@ components:
       required:
       - metric
       type: object
-    SmtpData:
-      description: SMTP configuration information
+    CustomerDetailsData:
+      description: Customer details, including their universe UUIDs. Only the customer code and name are modifiable.
       example:
-        smtpServer: smtp.example.com
-        smtpUsername: testsmtp
-        smtpPort: 465
-        smtpPassword: XurenRknsc
-        emailFrom: test@example.com
-        useTLS: false
-        useSSL: true
+        code: admin
+        alertingData:
+          alertingEmail: test@example.com
+          statusUpdateIntervalMs: 1
+          checkIntervalMs: 6
+          reportOnlyErrors: true
+          sendAlertsToYb: true
+          activeAlertNotificationIntervalMs: 0
+        callhomeLevel: MEDIUM
+        customerId: 5
+        name: Sridhar
+        smtpData:
+          smtpServer: smtp.example.com
+          smtpUsername: testsmtp
+          smtpPort: 465
+          smtpPassword: XurenRknsc
+          emailFrom: test@example.com
+          useTLS: false
+          useSSL: true
+        creationDate: 2022-12-12 13:07:18+00:00
+        universeUUIDs: '["c3595ca7-68a3-47f0-b1b2-1725886d5ed5", "9e0bb733-556c-4935-83dd-6b742a2c32e6"]'
+        uuid: uuid
       properties:
-        emailFrom:
-          description: SMTP email 'from' address
-          example: test@example.com
+        alertingData:
+          $ref: '#/components/schemas/AlertingData'
+        callhomeLevel:
+          description: Call-home level
+          example: MEDIUM
+          readOnly: true
           type: string
-        smtpPassword:
-          description: SMTP password
-          example: XurenRknsc
+        code:
+          description: Customer code
+          example: admin
           type: string
-        smtpPort:
-          description: SMTP port number
-          example: 465
+        creationDate:
+          description: Creation timestamp
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          readOnly: true
+          type: string
+        customerId:
+          description: Customer ID
           format: int32
+          readOnly: true
           type: integer
-        smtpServer:
-          description: SMTP server
-          example: smtp.example.com
+        name:
+          description: Customer name
+          example: Sridhar
           type: string
-        smtpUsername:
-          description: SMTP email username
-          example: testsmtp
-          type: string
-        useSSL:
-          description: Connect to SMTP server using SSL
-          example: true
-          type: boolean
-        useTLS:
-          description: Connect to SMTP server using TLS
-          example: false
-          type: boolean
-      type: object
-    YBPSuccess:
-      example:
-        success: true
-        message: message
-      properties:
-        message:
-          description: API response message.
+        smtpData:
+          $ref: '#/components/schemas/SmtpData'
+        universeUUIDs:
+          description: Associated universe IDs
+          example: '["c3595ca7-68a3-47f0-b1b2-1725886d5ed5", "9e0bb733-556c-4935-83dd-6b742a2c32e6"]'
+          items:
+            format: uuid
+            type: string
+          readOnly: true
+          type: array
+        uuid:
+          description: User UUID
           readOnly: true
           type: string
-        success:
-          description: API operation status. A value of true indicates the operation was successful.
-          readOnly: true
-          type: boolean
+      required:
+      - code
+      - name
       type: object
     MetricQueryParams:
       description: Metrics request data
@@ -503,109 +606,6 @@ components:
       - recharts
       - start
       - xclusterConfigUuid
-      type: object
-    AlertingData:
-      description: Alerting configuration
-      example:
-        alertingEmail: test@example.com
-        statusUpdateIntervalMs: 1
-        checkIntervalMs: 6
-        reportOnlyErrors: true
-        sendAlertsToYb: true
-        activeAlertNotificationIntervalMs: 0
-      properties:
-        activeAlertNotificationIntervalMs:
-          description: Period, which is used to send active alert notifications
-          format: int64
-          type: integer
-        alertingEmail:
-          description: Alert email address
-          example: test@example.com
-          type: string
-        checkIntervalMs:
-          description: Alert interval, in milliseconds
-          format: int64
-          type: integer
-        reportOnlyErrors:
-          description: Trigger an alert only for errors
-          type: boolean
-        sendAlertsToYb:
-          description: Send alerts to YB as well as to customer
-          type: boolean
-        statusUpdateIntervalMs:
-          description: Status update of alert interval, in milliseconds
-          format: int64
-          type: integer
-      type: object
-    CustomerDetailsData:
-      description: Customer details, including their universe UUIDs. Only the customer code and name are modifiable.
-      example:
-        code: admin
-        alertingData:
-          alertingEmail: test@example.com
-          statusUpdateIntervalMs: 1
-          checkIntervalMs: 6
-          reportOnlyErrors: true
-          sendAlertsToYb: true
-          activeAlertNotificationIntervalMs: 0
-        callhomeLevel: MEDIUM
-        customerId: 5
-        name: Sridhar
-        smtpData:
-          smtpServer: smtp.example.com
-          smtpUsername: testsmtp
-          smtpPort: 465
-          smtpPassword: XurenRknsc
-          emailFrom: test@example.com
-          useTLS: false
-          useSSL: true
-        creationDate: 2022-12-12 13:07:18+00:00
-        universeUUIDs: '["c3595ca7-68a3-47f0-b1b2-1725886d5ed5", "9e0bb733-556c-4935-83dd-6b742a2c32e6"]'
-        uuid: uuid
-      properties:
-        alertingData:
-          $ref: '#/components/schemas/AlertingData'
-        callhomeLevel:
-          description: Call-home level
-          example: MEDIUM
-          readOnly: true
-          type: string
-        code:
-          description: Customer code
-          example: admin
-          type: string
-        creationDate:
-          description: Creation timestamp
-          example: 2022-12-12 13:07:18+00:00
-          format: date-time
-          readOnly: true
-          type: string
-        customerId:
-          description: Customer ID
-          format: int32
-          readOnly: true
-          type: integer
-        name:
-          description: Customer name
-          example: Sridhar
-          type: string
-        smtpData:
-          $ref: '#/components/schemas/SmtpData'
-        universeUUIDs:
-          description: Associated universe IDs
-          example: '["c3595ca7-68a3-47f0-b1b2-1725886d5ed5", "9e0bb733-556c-4935-83dd-6b742a2c32e6"]'
-          items:
-            format: uuid
-            type: string
-          readOnly: true
-          type: array
-        uuid:
-          description: User UUID
-          readOnly: true
-          type: string
-      required:
-      - code
-      - name
       type: object
     CustomerAlertData:
       description: Format of an alert, used by the API and UI to validate data against input constraints

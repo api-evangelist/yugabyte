@@ -122,7 +122,55 @@ paths:
       x-accepts:
       - application/json
 components:
+  requestBodies:
+    IsolatedBackupCreateReq:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/IsolatedBackupCreateSpec'
+      required: true
+    IsolatedBackupRestoreReq:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/IsolatedBackupRestoreSpec'
+      required: true
   schemas:
+    YbaComponent:
+      description: 'Individual YBA components to be backed up
+
+        '
+      enum:
+      - YBA
+      - PROMETHEUS
+      - RELEASES
+      title: YbaComponent
+      type: string
+    YBATask:
+      description: 'YBATask
+
+
+        YugabyteDB Anywhere Task object is used to represent a task that is being executed on a resource. This Task object can be polled for progress and status of the task. This object is returned as a response to most of the YugabyteDB Anywhere API calls.
+
+        '
+      example:
+        resource_uuid: f33e3c9b-75ab-4c30-80ad-cba85646ea39
+        task_uuid: 89a46d52-4edd-4736-922a-35177a0b990c
+      properties:
+        resource_uuid:
+          description: UUID of the resource being modified by the task
+          example: f33e3c9b-75ab-4c30-80ad-cba85646ea39
+          format: uuid
+          readOnly: true
+          type: string
+        task_uuid:
+          description: Task UUID
+          example: 89a46d52-4edd-4736-922a-35177a0b990c
+          format: uuid
+          readOnly: true
+          type: string
+      title: YBATask
+      type: object
     IsolatedBackupRestoreSpec:
       description: 'IsolatedBackupRestoreSpec
 
@@ -168,54 +216,6 @@ components:
       - local_dir
       title: IsolatedBackupCreateSpec
       type: object
-    YbaComponent:
-      description: 'Individual YBA components to be backed up
-
-        '
-      enum:
-      - YBA
-      - PROMETHEUS
-      - RELEASES
-      title: YbaComponent
-      type: string
-    YBATask:
-      description: 'YBATask
-
-
-        YugabyteDB Anywhere Task object is used to represent a task that is being executed on a resource. This Task object can be polled for progress and status of the task. This object is returned as a response to most of the YugabyteDB Anywhere API calls.
-
-        '
-      example:
-        resource_uuid: f33e3c9b-75ab-4c30-80ad-cba85646ea39
-        task_uuid: 89a46d52-4edd-4736-922a-35177a0b990c
-      properties:
-        resource_uuid:
-          description: UUID of the resource being modified by the task
-          example: f33e3c9b-75ab-4c30-80ad-cba85646ea39
-          format: uuid
-          readOnly: true
-          type: string
-        task_uuid:
-          description: Task UUID
-          example: 89a46d52-4edd-4736-922a-35177a0b990c
-          format: uuid
-          readOnly: true
-          type: string
-      title: YBATask
-      type: object
-  requestBodies:
-    IsolatedBackupCreateReq:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/IsolatedBackupCreateSpec'
-      required: true
-    IsolatedBackupRestoreReq:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/IsolatedBackupRestoreSpec'
-      required: true
   securitySchemes:
     apiKeyAuth:
       in: header

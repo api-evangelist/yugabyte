@@ -246,6 +246,50 @@ paths:
       - Session Management
 components:
   schemas:
+    CustomerLoginFormData:
+      example:
+        password: password
+        email: email
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      required:
+      - email
+      - password
+      type: object
+    CustomerCountResp:
+      example:
+        count: 0
+      properties:
+        count:
+          format: int32
+          type: integer
+      required:
+      - count
+      type: object
+    CustomerRegisterFormData:
+      example:
+        password: password
+        code: code
+        name: name
+        email: email
+      properties:
+        code:
+          type: string
+        email:
+          type: string
+        name:
+          type: string
+        password:
+          type: string
+      required:
+      - code
+      - email
+      - name
+      - password
+      type: object
     SessionInfo:
       description: Session information
       example:
@@ -273,53 +317,6 @@ components:
           description: User UUID
           format: uuid
           type: string
-      type: object
-    CustomerLoginFormData:
-      example:
-        password: password
-        email: email
-      properties:
-        email:
-          type: string
-        password:
-          type: string
-      required:
-      - email
-      - password
-      type: object
-    CustomerRegisterFormData:
-      example:
-        password: password
-        code: code
-        name: name
-        email: email
-      properties:
-        code:
-          type: string
-        email:
-          type: string
-        name:
-          type: string
-        password:
-          type: string
-      required:
-      - code
-      - email
-      - name
-      - password
-      type: object
-    LogData:
-      example:
-        lines:
-        - lines
-        - lines
-      properties:
-        lines:
-          items:
-            type: string
-          type: array
-      required:
-      - lines
       type: object
     Admin_notification:
       example:
@@ -350,15 +347,18 @@ components:
           readOnly: true
           type: array
       type: object
-    CustomerCountResp:
+    LogData:
       example:
-        count: 0
+        lines:
+        - lines
+        - lines
       properties:
-        count:
-          format: int32
-          type: integer
+        lines:
+          items:
+            type: string
+          type: array
       required:
-      - count
+      - lines
       type: object
   securitySchemes:
     apiKeyAuth:

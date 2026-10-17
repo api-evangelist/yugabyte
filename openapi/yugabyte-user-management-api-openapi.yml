@@ -352,32 +352,110 @@ components:
       required:
       - roleUUID
       type: object
-    ResourceDefinition:
+    UserOIDCAuthToken:
       example:
-        allowAll: true
-        resourceUUIDSet:
-        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        resourceType: UNIVERSE
+        oidcAuthToken: oidcAuthToken
       properties:
-        allowAll:
-          description: Select all resources (including future resources)
-          type: boolean
-        resourceType:
-          description: Resource Type
-          enum:
-          - UNIVERSE
-          - ROLE
-          - USER
-          - OTHER
+        oidcAuthToken:
+          description: User OIDC Auth token
           type: string
-        resourceUUIDSet:
-          description: Set of resource uuids
+      type: object
+    YBPSuccess:
+      example:
+        success: true
+        message: message
+      properties:
+        message:
+          description: API response message.
+          readOnly: true
+          type: string
+        success:
+          description: API operation status. A value of true indicates the operation was successful.
+          readOnly: true
+          type: boolean
+      type: object
+    UserWithFeatures:
+      description: A user with set of features, associated with a customer
+      example:
+        ldapSpecifiedRole: true
+        customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        role: Admin
+        authTokenIssueDate: 2021-06-17 15:00:05+00:00
+        timezone: timezone
+        oidcJwtAuthToken: oidcJwtAuthToken
+        groupMemberships:
+        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        userType: local
+        creationDate: 2022-12-12 13:07:18+00:00
+        uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        email: username1@example.com
+        primary: true
+      properties:
+        authTokenIssueDate:
+          description: UI session token creation date
+          example: 2021-06-17 15:00:05+00:00
+          format: date-time
+          readOnly: true
+          type: string
+        creationDate:
+          description: User creation date
+          example: 2022-12-12 13:07:18+00:00
+          format: date-time
+          readOnly: true
+          type: string
+        customerUUID:
+          description: Customer UUID
+          format: uuid
+          readOnly: true
+          type: string
+        email:
+          description: User email address
+          example: username1@example.com
+          type: string
+        groupMemberships:
           items:
             format: uuid
             type: string
           type: array
           uniqueItems: true
+        ldapSpecifiedRole:
+          description: LDAP Specified Role
+          type: boolean
+        oidcJwtAuthToken:
+          readOnly: true
+          type: string
+        primary:
+          type: boolean
+        role:
+          description: <b style="color:#ff0000">Deprecated since YBA version 2.19.3.0.</b> Use  getRoleBindings instead.
+          enum:
+          - ConnectOnly
+          - ReadOnly
+          - BackupAdmin
+          - Admin
+          - SuperAdmin
+          example: Admin
+          type: string
+        timezone:
+          description: User timezone
+          type: string
+        userType:
+          description: User Type
+          enum:
+          - local
+          - ldap
+          - oidc
+          type: string
+        uuid:
+          description: User UUID
+          format: uuid
+          readOnly: true
+          type: string
+      required:
+      - email
+      - groupMemberships
+      - primary
       type: object
     UserRegistrationData:
       description: User registration data. The API and UI use this to validate form data.
@@ -457,75 +535,27 @@ components:
       required:
       - email
       type: object
-    UserPasswordChangeFormData:
-      description: User registration data. The API and UI use this to validate form data.
+    ResourceGroup:
       example:
-        newPassword: Test@1234
-        currentPassword: Test@1234
+        resourceDefinitionSet:
+        - allowAll: true
+          resourceUUIDSet:
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          resourceType: UNIVERSE
+        - allowAll: true
+          resourceUUIDSet:
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          resourceType: UNIVERSE
       properties:
-        currentPassword:
-          description: Current Password
-          example: Test@1234
-          type: string
-        newPassword:
-          description: New Password
-          example: Test@1234
-          type: string
-      type: object
-    UserOIDCAuthToken:
-      example:
-        oidcAuthToken: oidcAuthToken
-      properties:
-        oidcAuthToken:
-          description: User OIDC Auth token
-          type: string
-      type: object
-    YBPSuccess:
-      example:
-        success: true
-        message: message
-      properties:
-        message:
-          description: API response message.
-          readOnly: true
-          type: string
-        success:
-          description: API operation status. A value of true indicates the operation was successful.
-          readOnly: true
-          type: boolean
-      type: object
-    UserProfileData:
-      description: User profile data. The API and UI use this to validate form data.
-      example:
-        password: Test@1234
-        role: Admin
-        timezone: America/Toronto
-        confirmPassword: Test@1234
-      properties:
-        confirmPassword:
-          description: Password confirmation
-          example: Test@1234
-          type: string
-        password:
-          description: Password
-          example: Test@1234
-          type: string
-        role:
-          description: User role
-          enum:
-          - ConnectOnly
-          - ReadOnly
-          - BackupAdmin
-          - Admin
-          - SuperAdmin
-          example: Admin
-          type: string
-        timezone:
-          description: User timezone
-          example: America/Toronto
-          type: string
+        resourceDefinitionSet:
+          items:
+            $ref: '#/components/schemas/ResourceDefinition'
+          type: array
+          uniqueItems: true
       required:
-      - role
+      - resourceDefinitionSet
       type: object
     Users:
       description: A user associated with a customer
@@ -610,83 +640,66 @@ components:
       - groupMemberships
       - primary
       type: object
-    ResourceGroup:
+    UserPasswordChangeFormData:
+      description: User registration data. The API and UI use this to validate form data.
       example:
-        resourceDefinitionSet:
-        - allowAll: true
-          resourceUUIDSet:
-          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          resourceType: UNIVERSE
-        - allowAll: true
-          resourceUUIDSet:
-          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          resourceType: UNIVERSE
+        newPassword: Test@1234
+        currentPassword: Test@1234
       properties:
-        resourceDefinitionSet:
-          items:
-            $ref: '#/components/schemas/ResourceDefinition'
-          type: array
-          uniqueItems: true
-      required:
-      - resourceDefinitionSet
+        currentPassword:
+          description: Current Password
+          example: Test@1234
+          type: string
+        newPassword:
+          description: New Password
+          example: Test@1234
+          type: string
       type: object
-    UserWithFeatures:
-      description: A user with set of features, associated with a customer
+    ResourceDefinition:
       example:
-        ldapSpecifiedRole: true
-        customerUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        role: Admin
-        authTokenIssueDate: 2021-06-17 15:00:05+00:00
-        timezone: timezone
-        oidcJwtAuthToken: oidcJwtAuthToken
-        groupMemberships:
+        allowAll: true
+        resourceUUIDSet:
         - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        userType: local
-        creationDate: 2022-12-12 13:07:18+00:00
-        uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        email: username1@example.com
-        primary: true
+        resourceType: UNIVERSE
       properties:
-        authTokenIssueDate:
-          description: UI session token creation date
-          example: 2021-06-17 15:00:05+00:00
-          format: date-time
-          readOnly: true
+        allowAll:
+          description: Select all resources (including future resources)
+          type: boolean
+        resourceType:
+          description: Resource Type
+          enum:
+          - UNIVERSE
+          - ROLE
+          - USER
+          - OTHER
           type: string
-        creationDate:
-          description: User creation date
-          example: 2022-12-12 13:07:18+00:00
-          format: date-time
-          readOnly: true
-          type: string
-        customerUUID:
-          description: Customer UUID
-          format: uuid
-          readOnly: true
-          type: string
-        email:
-          description: User email address
-          example: username1@example.com
-          type: string
-        groupMemberships:
+        resourceUUIDSet:
+          description: Set of resource uuids
           items:
             format: uuid
             type: string
           type: array
           uniqueItems: true
-        ldapSpecifiedRole:
-          description: LDAP Specified Role
-          type: boolean
-        oidcJwtAuthToken:
-          readOnly: true
+      type: object
+    UserProfileData:
+      description: User profile data. The API and UI use this to validate form data.
+      example:
+        password: Test@1234
+        role: Admin
+        timezone: America/Toronto
+        confirmPassword: Test@1234
+      properties:
+        confirmPassword:
+          description: Password confirmation
+          example: Test@1234
           type: string
-        primary:
-          type: boolean
+        password:
+          description: Password
+          example: Test@1234
+          type: string
         role:
-          description: <b style="color:#ff0000">Deprecated since YBA version 2.19.3.0.</b> Use  getRoleBindings instead.
+          description: User role
           enum:
           - ConnectOnly
           - ReadOnly
@@ -697,23 +710,10 @@ components:
           type: string
         timezone:
           description: User timezone
-          type: string
-        userType:
-          description: User Type
-          enum:
-          - local
-          - ldap
-          - oidc
-          type: string
-        uuid:
-          description: User UUID
-          format: uuid
-          readOnly: true
+          example: America/Toronto
           type: string
       required:
-      - email
-      - groupMemberships
-      - primary
+      - role
       type: object
   securitySchemes:
     apiKeyAuth:

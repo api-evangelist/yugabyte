@@ -426,6 +426,309 @@ paths:
       - Node instances
 components:
   schemas:
+    NodeInstanceData:
+      description: Details of a node instance. Used by the API to validate data against input constraints.
+      example:
+        nodeName: universe_node1
+        instanceName: Mumbai instance
+        zone: south-east
+        instanceType: c5large
+        ip: 1.1.1.1
+        sshUser: centos
+        region: south-east
+      properties:
+        instanceName:
+          description: Node instance name
+          example: Mumbai instance
+          type: string
+        instanceType:
+          description: Node instance type
+          example: c5large
+          type: string
+        ip:
+          description: IP address
+          example: 1.1.1.1
+          type: string
+        nodeName:
+          description: Node name in a universe
+          example: universe_node1
+          readOnly: true
+          type: string
+        region:
+          description: Region
+          example: south-east
+          type: string
+        sshUser:
+          description: SSH user
+          example: centos
+          type: string
+        zone:
+          description: Zone
+          example: south-east
+          type: string
+      required:
+      - instanceName
+      - instanceType
+      - ip
+      - region
+      - zone
+      type: object
+    ValidationResult:
+      description: Validation result of a node config
+      properties:
+        description:
+          type: string
+        required:
+          type: boolean
+        type:
+          enum:
+          - NTP_SERVICE_STATUS
+          - PROMETHEUS_SPACE
+          - MOUNT_POINTS_WRITABLE
+          - USER
+          - USER_GROUP
+          - HOME_DIR_SPACE
+          - HOME_DIR_EXISTS
+          - HOME_DIR_MATCHES
+          - RAM_SIZE
+          - INTERNET_CONNECTION
+          - CPU_CORES
+          - PROMETHEUS_NO_NODE_EXPORTER
+          - TMP_DIR_SPACE
+          - PAM_LIMITS_WRITABLE
+          - PYTHON_VERSION
+          - MOUNT_POINTS_VOLUME
+          - CHRONYD_RUNNING
+          - LOCALE_PRESENT
+          - SSH_PORT
+          - SUDO_ACCESS
+          - OPENSSL
+          - POLICYCOREUTILS
+          - RSYNC
+          - XXHASH
+          - LIBATOMIC1
+          - LIBNCURSES6
+          - LIBATOMIC
+          - AZCOPY
+          - CHRONYC
+          - GSUTIL
+          - S3CMD
+          - NODE_EXPORTER_RUNNING
+          - NODE_EXPORTER_PORT
+          - SWAPPINESS
+          - ULIMIT_CORE
+          - ULIMIT_OPEN_FILES
+          - ULIMIT_USER_PROCESSES
+          - SSH_ACCESS
+          - NODE_AGENT_ACCESS
+          - MASTER_HTTP_PORT
+          - MASTER_RPC_PORT
+          - TSERVER_HTTP_PORT
+          - TSERVER_RPC_PORT
+          - YB_CONTROLLER_HTTP_PORT
+          - YB_CONTROLLER_RPC_PORT
+          - REDIS_SERVER_HTTP_PORT
+          - REDIS_SERVER_RPC_PORT
+          - YB_HOME_DIR_CLEAN
+          - DATA_DIR_CLEAN
+          - YCQL_SERVER_HTTP_PORT
+          - YCQL_SERVER_RPC_PORT
+          - YSQL_SERVER_HTTP_PORT
+          - YSQL_SERVER_RPC_PORT
+          - VM_MAX_MAP_COUNT
+          - NTP_SKEW
+          type: string
+        valid:
+          type: boolean
+        value:
+          type: string
+      required:
+      - description
+      - required
+      - type
+      - valid
+      - value
+      type: object
+    YBPSuccess:
+      example:
+        success: true
+        message: message
+      properties:
+        message:
+          description: API response message.
+          readOnly: true
+          type: string
+        success:
+          description: API operation status. A value of true indicates the operation was successful.
+          readOnly: true
+          type: boolean
+      type: object
+    NodeInstance:
+      description: A single node instance, attached to a provider and availability zone
+      example:
+        manuallyDecommissioned: true
+        nodeName: universe_node1
+        instanceName: Mumbai instance
+        instanceTypeCode: c5large
+        inUse: true
+        zoneUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        details:
+          nodeName: universe_node1
+          instanceName: Mumbai instance
+          zone: south-east
+          instanceType: c5large
+          ip: 1.1.1.1
+          sshUser: centos
+          region: south-east
+        state: DECOMMISSIONED
+        nodeUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        detailsJson: '{"ip":"1.1.1.1","sshUser":"centos"}'
+      properties:
+        details:
+          $ref: '#/components/schemas/NodeInstanceData'
+        detailsJson:
+          description: Node details (as a JSON object)
+          example: '{"ip":"1.1.1.1","sshUser":"centos"}'
+          readOnly: true
+          type: string
+        inUse:
+          description: True if the node is in use  <b style="color:#ff0000">Deprecated since YBA version 2024.1.0.0.</b> Use NodeInstance.state instead
+          type: boolean
+        instanceName:
+          description: The node instance's name
+          example: Mumbai instance
+          type: string
+        instanceTypeCode:
+          description: The node's type code
+          example: c5large
+          type: string
+        manuallyDecommissioned:
+          description: Manually set to decommissioned state by user
+          readOnly: true
+          type: boolean
+        nodeName:
+          description: The node's name in a universe
+          example: universe_node1
+          readOnly: true
+          type: string
+        nodeUuid:
+          description: The node's UUID
+          format: uuid
+          readOnly: true
+          type: string
+        state:
+          description: State of on-prem node
+          enum:
+          - DECOMMISSIONED
+          - USED
+          - FREE
+          readOnly: true
+          type: string
+        zoneUuid:
+          description: The availability zone's UUID
+          format: uuid
+          type: string
+      required:
+      - details
+      type: object
+    YBPTask:
+      example:
+        taskUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        resourceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        resourceUUID:
+          description: UUID of the resource being modified by the task
+          format: uuid
+          readOnly: true
+          type: string
+        taskUUID:
+          description: Task UUID
+          format: uuid
+          readOnly: true
+          type: string
+      type: object
+    NodeActionFormData:
+      example:
+        nodeAction: ADD
+        runOnlyPrechecks: true
+        force: true
+      properties:
+        force:
+          description: Should ignore master unavailability and proceed with the node action
+          type: boolean
+        nodeAction:
+          description: Action to perform on the node.
+          enum:
+          - ADD
+          - REMOVE
+          - START
+          - STOP
+          - DELETE
+          - QUERY
+          - RELEASE
+          - REBOOT
+          - START_MASTER
+          - PRECHECK_DETACHED
+          - HARD_REBOOT
+          - REPROVISION
+          - REPLACE
+          - DECOMMISSION
+          type: string
+        runOnlyPrechecks:
+          description: YbaApi Internal. Run only prechecks during task run
+          type: boolean
+      required:
+      - nodeAction
+      type: object
+    NodeInstanceFormData:
+      example:
+        nodes:
+        - nodeName: universe_node1
+          instanceName: Mumbai instance
+          zone: south-east
+          instanceType: c5large
+          ip: 1.1.1.1
+          sshUser: centos
+          region: south-east
+        - nodeName: universe_node1
+          instanceName: Mumbai instance
+          zone: south-east
+          instanceType: c5large
+          ip: 1.1.1.1
+          sshUser: centos
+          region: south-east
+        - nodeName: universe_node1
+          instanceName: Mumbai instance
+          zone: south-east
+          instanceType: c5large
+          ip: 1.1.1.1
+          sshUser: centos
+          region: south-east
+        - nodeName: universe_node1
+          instanceName: Mumbai instance
+          zone: south-east
+          instanceType: c5large
+          ip: 1.1.1.1
+          sshUser: centos
+          region: south-east
+        - nodeName: universe_node1
+          instanceName: Mumbai instance
+          zone: south-east
+          instanceType: c5large
+          ip: 1.1.1.1
+          sshUser: centos
+          region: south-east
+      properties:
+        nodes:
+          description: Node instances
+          items:
+            $ref: '#/components/schemas/NodeInstanceData'
+          maxItems: 2147483647
+          minItems: 1
+          type: array
+      required:
+      - nodes
+      type: object
     CloudSpecificInfo:
       description: Node information reported by the cloud provider
       example:
@@ -507,233 +810,6 @@ components:
         useTimeSync:
           description: True if `use time sync` is enabled
           type: boolean
-      type: object
-    YBPTask:
-      example:
-        taskUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        resourceUUID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-      properties:
-        resourceUUID:
-          description: UUID of the resource being modified by the task
-          format: uuid
-          readOnly: true
-          type: string
-        taskUUID:
-          description: Task UUID
-          format: uuid
-          readOnly: true
-          type: string
-      type: object
-    NodeInstanceData:
-      description: Details of a node instance. Used by the API to validate data against input constraints.
-      example:
-        nodeName: universe_node1
-        instanceName: Mumbai instance
-        zone: south-east
-        instanceType: c5large
-        ip: 1.1.1.1
-        sshUser: centos
-        region: south-east
-      properties:
-        instanceName:
-          description: Node instance name
-          example: Mumbai instance
-          type: string
-        instanceType:
-          description: Node instance type
-          example: c5large
-          type: string
-        ip:
-          description: IP address
-          example: 1.1.1.1
-          type: string
-        nodeName:
-          description: Node name in a universe
-          example: universe_node1
-          readOnly: true
-          type: string
-        region:
-          description: Region
-          example: south-east
-          type: string
-        sshUser:
-          description: SSH user
-          example: centos
-          type: string
-        zone:
-          description: Zone
-          example: south-east
-          type: string
-      required:
-      - instanceName
-      - instanceType
-      - ip
-      - region
-      - zone
-      type: object
-    YBPSuccess:
-      example:
-        success: true
-        message: message
-      properties:
-        message:
-          description: API response message.
-          readOnly: true
-          type: string
-        success:
-          description: API operation status. A value of true indicates the operation was successful.
-          readOnly: true
-          type: boolean
-      type: object
-    NodeInstanceFormData:
-      example:
-        nodes:
-        - nodeName: universe_node1
-          instanceName: Mumbai instance
-          zone: south-east
-          instanceType: c5large
-          ip: 1.1.1.1
-          sshUser: centos
-          region: south-east
-        - nodeName: universe_node1
-          instanceName: Mumbai instance
-          zone: south-east
-          instanceType: c5large
-          ip: 1.1.1.1
-          sshUser: centos
-          region: south-east
-        - nodeName: universe_node1
-          instanceName: Mumbai instance
-          zone: south-east
-          instanceType: c5large
-          ip: 1.1.1.1
-          sshUser: centos
-          region: south-east
-        - nodeName: universe_node1
-          instanceName: Mumbai instance
-          zone: south-east
-          instanceType: c5large
-          ip: 1.1.1.1
-          sshUser: centos
-          region: south-east
-        - nodeName: universe_node1
-          instanceName: Mumbai instance
-          zone: south-east
-          instanceType: c5large
-          ip: 1.1.1.1
-          sshUser: centos
-          region: south-east
-      properties:
-        nodes:
-          description: Node instances
-          items:
-            $ref: '#/components/schemas/NodeInstanceData'
-          maxItems: 2147483647
-          minItems: 1
-          type: array
-      required:
-      - nodes
-      type: object
-    NodeActionFormData:
-      example:
-        nodeAction: ADD
-        runOnlyPrechecks: true
-        force: true
-      properties:
-        force:
-          description: Should ignore master unavailability and proceed with the node action
-          type: boolean
-        nodeAction:
-          description: Action to perform on the node.
-          enum:
-          - ADD
-          - REMOVE
-          - START
-          - STOP
-          - DELETE
-          - QUERY
-          - RELEASE
-          - REBOOT
-          - START_MASTER
-          - PRECHECK_DETACHED
-          - HARD_REBOOT
-          - REPROVISION
-          - REPLACE
-          - DECOMMISSION
-          type: string
-        runOnlyPrechecks:
-          description: YbaApi Internal. Run only prechecks during task run
-          type: boolean
-      required:
-      - nodeAction
-      type: object
-    NodeInstance:
-      description: A single node instance, attached to a provider and availability zone
-      example:
-        manuallyDecommissioned: true
-        nodeName: universe_node1
-        instanceName: Mumbai instance
-        instanceTypeCode: c5large
-        inUse: true
-        zoneUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        details:
-          nodeName: universe_node1
-          instanceName: Mumbai instance
-          zone: south-east
-          instanceType: c5large
-          ip: 1.1.1.1
-          sshUser: centos
-          region: south-east
-        state: DECOMMISSIONED
-        nodeUuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        detailsJson: '{"ip":"1.1.1.1","sshUser":"centos"}'
-      properties:
-        details:
-          $ref: '#/components/schemas/NodeInstanceData'
-        detailsJson:
-          description: Node details (as a JSON object)
-          example: '{"ip":"1.1.1.1","sshUser":"centos"}'
-          readOnly: true
-          type: string
-        inUse:
-          description: True if the node is in use  <b style="color:#ff0000">Deprecated since YBA version 2024.1.0.0.</b> Use NodeInstance.state instead
-          type: boolean
-        instanceName:
-          description: The node instance's name
-          example: Mumbai instance
-          type: string
-        instanceTypeCode:
-          description: The node's type code
-          example: c5large
-          type: string
-        manuallyDecommissioned:
-          description: Manually set to decommissioned state by user
-          readOnly: true
-          type: boolean
-        nodeName:
-          description: The node's name in a universe
-          example: universe_node1
-          readOnly: true
-          type: string
-        nodeUuid:
-          description: The node's UUID
-          format: uuid
-          readOnly: true
-          type: string
-        state:
-          description: State of on-prem node
-          enum:
-          - DECOMMISSIONED
-          - USED
-          - FREE
-          readOnly: true
-          type: string
-        zoneUuid:
-          description: The availability zone's UUID
-          format: uuid
-          type: string
-      required:
-      - details
       type: object
     NodeDetailsResp:
       example:
@@ -1022,82 +1098,6 @@ components:
           - USED
           - FREE
           type: string
-      type: object
-    ValidationResult:
-      description: Validation result of a node config
-      properties:
-        description:
-          type: string
-        required:
-          type: boolean
-        type:
-          enum:
-          - NTP_SERVICE_STATUS
-          - PROMETHEUS_SPACE
-          - MOUNT_POINTS_WRITABLE
-          - USER
-          - USER_GROUP
-          - HOME_DIR_SPACE
-          - HOME_DIR_EXISTS
-          - HOME_DIR_MATCHES
-          - RAM_SIZE
-          - INTERNET_CONNECTION
-          - CPU_CORES
-          - PROMETHEUS_NO_NODE_EXPORTER
-          - TMP_DIR_SPACE
-          - PAM_LIMITS_WRITABLE
-          - PYTHON_VERSION
-          - MOUNT_POINTS_VOLUME
-          - CHRONYD_RUNNING
-          - LOCALE_PRESENT
-          - SSH_PORT
-          - SUDO_ACCESS
-          - OPENSSL
-          - POLICYCOREUTILS
-          - RSYNC
-          - XXHASH
-          - LIBATOMIC1
-          - LIBNCURSES6
-          - LIBATOMIC
-          - AZCOPY
-          - CHRONYC
-          - GSUTIL
-          - S3CMD
-          - NODE_EXPORTER_RUNNING
-          - NODE_EXPORTER_PORT
-          - SWAPPINESS
-          - ULIMIT_CORE
-          - ULIMIT_OPEN_FILES
-          - ULIMIT_USER_PROCESSES
-          - SSH_ACCESS
-          - NODE_AGENT_ACCESS
-          - MASTER_HTTP_PORT
-          - MASTER_RPC_PORT
-          - TSERVER_HTTP_PORT
-          - TSERVER_RPC_PORT
-          - YB_CONTROLLER_HTTP_PORT
-          - YB_CONTROLLER_RPC_PORT
-          - REDIS_SERVER_HTTP_PORT
-          - REDIS_SERVER_RPC_PORT
-          - YB_HOME_DIR_CLEAN
-          - DATA_DIR_CLEAN
-          - YCQL_SERVER_HTTP_PORT
-          - YCQL_SERVER_RPC_PORT
-          - YSQL_SERVER_HTTP_PORT
-          - YSQL_SERVER_RPC_PORT
-          - VM_MAX_MAP_COUNT
-          - NTP_SKEW
-          type: string
-        valid:
-          type: boolean
-        value:
-          type: string
-      required:
-      - description
-      - required
-      - type
-      - valid
-      - value
       type: object
   securitySchemes:
     apiKeyAuth:

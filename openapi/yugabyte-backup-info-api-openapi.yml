@@ -56,6 +56,12 @@ paths:
       - Backup Info
 components:
   schemas:
+    ApiError:
+      properties:
+        error:
+          $ref: '#/components/schemas/ApiError_error'
+      title: API Error
+      type: object
     Backup_Details:
       example:
         backup:
@@ -144,12 +150,6 @@ components:
       - ybc_task_id
       - ybdb_api
       title: Get Backup Details
-      type: object
-    ApiError:
-      properties:
-        error:
-          $ref: '#/components/schemas/ApiError_error'
-      title: API Error
       type: object
   securitySchemes:
     BearerAuthToken:
