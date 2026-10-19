@@ -96,3 +96,135 @@
     detected: '2026-10-15'
   status: not-a-workflow
   arazzo: null
+- slug: yugabyte-go-module-proxy
+  label: Go module proxy
+  partner_name: Go module proxy
+  category: official SDK (Go)
+  type: register
+  channel: package-registry
+  evidence: https://pkg.go.dev/github.com/yugabyte/gocql
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: Go module proxy (public registry JSON)
+    spec_file: null
+    language: Go
+    packages:
+    - name: github.com/yugabyte/gocql
+      version: v1.6.0-yb-1
+      released: '2024-01-03'
+      released_field: Time
+      lapsed: true
+      page: https://pkg.go.dev/github.com/yugabyte/gocql
+      repo_leg: github-org:yugabyte
+      publisher_leg: org:yugabyte
+      matched_by: github-org
+    - name: github.com/yugabyte/pgx/v5
+      version: v5.7.6-yb-1
+      released: '2025-11-17'
+      released_field: Time
+      lapsed: false
+      page: https://pkg.go.dev/github.com/yugabyte/pgx/v5
+      repo_leg: github-org:yugabyte
+      publisher_leg: org:yugabyte
+      matched_by: github-org
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
+- slug: yugabyte-maven-central
+  label: Maven Central
+  partner: maven-central
+  partner_name: Maven Central
+  category: official SDK (Java/JVM)
+  type: register
+  channel: package-registry
+  evidence: https://central.sonatype.com/artifact/com.yugabyte/jdbc-yugabytedb
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: Maven Central (public registry JSON)
+    spec_file: null
+    language: Java/JVM
+    packages:
+    - name: com.yugabyte:jdbc-yugabytedb
+      version: 42.7.3-yb-7
+      released: '2026-09-28'
+      released_field: lastUpdated
+      lapsed: false
+      page: https://central.sonatype.com/artifact/com.yugabyte/jdbc-yugabytedb
+      repo_leg: domain:yugabyte.com
+      publisher_leg: groupId:yugabyte.com
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
+- slug: yugabyte-npm-registry
+  label: npm registry
+  partner: npm
+  partner_name: npm registry
+  category: official SDK (JavaScript/TypeScript)
+  type: register
+  channel: package-registry
+  evidence: https://www.npmjs.com/package/@yugabytedb/pg
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: npm registry (public registry JSON)
+    spec_file: null
+    language: JavaScript/TypeScript
+    packages:
+    - name: '@yugabytedb/pg'
+      version: 8.7.3-yb-11
+      released: '2026-07-09'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/@yugabytedb/pg
+      repo_leg: github-org:yugabyte
+      publisher_leg: email:yugabyte.com
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
+- slug: yugabyte-pypi
+  label: PyPI
+  partner: pypi
+  partner_name: PyPI
+  category: official SDK (Python)
+  type: register
+  channel: package-registry
+  evidence: https://pypi.org/project/psycopg2-yugabytedb/
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: PyPI (public registry JSON)
+    spec_file: null
+    language: Python
+    packages:
+    - name: psycopg2-yugabytedb
+      version: 2.9.3.5
+      released: '2025-01-31'
+      released_field: upload_time
+      lapsed: false
+      page: https://pypi.org/project/psycopg2-yugabytedb/
+      repo_leg: github-org:yugabyte
+      publisher_leg: email:yugabyte.com
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
