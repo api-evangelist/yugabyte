@@ -27,19 +27,6 @@
   relationship: distribution-channel
   status: not-a-workflow
   arazzo: null
-- slug: yugabyte-datadog-own
-  label: Datadog (own)
-  partner: datadog
-  partner_name: Datadog (own)
-  category: Data Stores
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://github.com/DataDog/integrations-extras/tree/master/yugabytedb_managed
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
 - slug: yugabyte-postgresql
   label: PostgreSQL
   partner: postgresql
@@ -368,5 +355,31 @@
       and package counts are context, never counted'
     detected_by: sweep-red-hat-certified-ecosystem.py
     detected: '2026-10-22'
+  status: not-a-workflow
+  arazzo: null
+- slug: yugabyte-datadog-own
+  label: Datadog (own)
+  partner: datadog
+  partner_name: Datadog (own)
+  category: Data Stores
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://github.com/DataDog/integrations-extras/tree/master/yugabytedb_managed
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: yugabyte-artifact-hub-artifact-hub
+  label: Artifact Hub (artifact-hub)
+  partner: artifact-hub
+  partner_name: Artifact Hub (artifact-hub)
+  category: Artifact Hub listing (Helm chart)
+  type: marketplace
+  marketplace: artifact-hub
+  channel: partner-built
+  evidence: https://artifacthub.io/packages/search?repo=yugabyte
+  source: edge
+  relationship: platform-app
   status: not-a-workflow
   arazzo: null

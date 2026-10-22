@@ -30,6 +30,7 @@ checked:
 - https://catalog.redhat.com/api/containers/v1/repositories?page_size=100
 - https://catalog.redhat.com/api/containers/v1/vendors/label/
 - https://catalog.redhat.com/software/partners
+- artifact-hub/integrations/artifact-hub-integration-edges.yml
 marketplace_apps: []
 edges:
 - partner_name: AWS Marketplace
@@ -64,23 +65,6 @@ edges:
   seller_name: Yugabyte Inc
   detected_by: sweep-cloud-marketplaces.py
   detected: '2026-10-13'
-- partner_name: Datadog (own)
-  partner: datadog
-  partner_match: mirror
-  mirror_match: domain
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://github.com/DataDog/integrations-extras/tree/master/yugabytedb_managed
-  mirror_of: datadog/integrations/datadog-integration-edges.yml
-  apps:
-  - YugabyteDB Managed
-  listing_count: 1
-  detected: '2026-10-14'
-  detected_by: mirror-platform-listings.py
-  category: Data Stores
 - partner_name: PostgreSQL
   partner: postgresql
   partner_match: shape-anchor
@@ -429,5 +413,43 @@ edges:
     detected: '2026-10-22'
   detected_by: sweep-red-hat-certified-ecosystem.py
   first_seen: '2026-10-22'
+- partner_name: Datadog (own)
+  partner: datadog
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://github.com/DataDog/integrations-extras/tree/master/yugabytedb_managed
+  mirror_of: datadog/integrations/datadog-integration-edges.yml
+  apps:
+  - YugabyteDB Managed
+  listing_count: 1
+  detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
+  category: Data Stores
+- partner_name: Artifact Hub (artifact-hub)
+  partner: artifact-hub
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: artifact-hub
+  evidence: https://artifacthub.io/packages/search?repo=yugabyte
+  mirror_of: artifact-hub/integrations/artifact-hub-integration-edges.yml
+  apps:
+  - yugabyte
+  - yugaware
+  - yugaware-openshift
+  listing_count: 1
+  detected: '2026-10-22'
+  detected_by: mirror-platform-listings.py
+  category: Artifact Hub listing (Helm chart)
+  badges:
+  - 'Verified publisher (Artifact Hub verified publisher: repository ownership proven)'
 source:
 - datadog/integrations/datadog-integration-edges.yml
