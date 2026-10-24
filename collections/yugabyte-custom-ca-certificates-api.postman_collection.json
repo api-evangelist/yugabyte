@@ -1,0 +1,751 @@
+{
+  "info": {
+    "_postman_id": "034a3925-b3f1-4f22-adbe-f2a95ba2948e",
+    "name": "YugabyteDB Anywhere Custom CA Certificates API",
+    "description": "ALPHA - NOT FOR EXTERNAL USE\n\nContact Support:\n Name: https://docs.yugabyte.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:07:47.000Z",
+    "updatedAt": "2026-10-22T01:07:47.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-034a3925-b3f1-4f22-adbe-f2a95ba2948e"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "customers",
+              "item": [
+                {
+                  "name": "{cUUID}",
+                  "item": [
+                    {
+                      "name": "customCAStore",
+                      "item": [
+                        {
+                          "name": "{certUUID}",
+                          "item": [
+                            {
+                              "name": "Update a named custom CA certificate",
+                              "id": "6bd98fba-42a6-4c39-9dd2-29019691e1dd",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "apikey",
+                                  "apikey": [
+                                    {
+                                      "key": "key",
+                                      "value": "X-AUTH-YW-API-TOKEN",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "value",
+                                      "value": "{{apiKey}}",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "in",
+                                      "value": "header",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"contents\": \"<string>\",\n  \"name\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/customCAStore/:certUUID",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "customCAStore",
+                                    ":certUUID"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "9842bc46-61f3-4512-9714-46aeede590d9",
+                                      "key": "cUUID",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    },
+                                    {
+                                      "id": "e676722a-0b32-41ab-9c52-2b8caa9bf89e",
+                                      "key": "certUUID",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "WARNING: This is a preview API that could change."
+                              },
+                              "response": [
+                                {
+                                  "id": "0ebcf313-b4cd-408f-af37-01ec3da2aee7",
+                                  "name": "successful operation",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-AUTH-YW-API-TOKEN",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"contents\": \"<string>\",\n  \"name\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/customCAStore/:certUUID",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "customCAStore",
+                                        ":certUUID"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "cUUID"
+                                        },
+                                        {
+                                          "key": "certUUID"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "<uuid>",
+                                  "createdAt": "2026-10-22T01:07:47.000Z",
+                                  "updatedAt": "2026-10-22T01:07:47.000Z",
+                                  "uid": "35240-0ebcf313-b4cd-408f-af37-01ec3da2aee7"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T01:07:47.000Z",
+                              "updatedAt": "2026-10-22T01:07:47.000Z",
+                              "uid": "35240-6bd98fba-42a6-4c39-9dd2-29019691e1dd"
+                            }
+                          ],
+                          "id": "e013f910-bdd2-4694-bcce-6d5155b9688f",
+                          "createdAt": "2026-10-22T01:07:47.000Z",
+                          "updatedAt": "2026-10-22T01:07:47.000Z",
+                          "uid": "35240-e013f910-bdd2-4694-bcce-6d5155b9688f"
+                        },
+                        {
+                          "name": "Add a named custom CA certificate",
+                          "id": "a23c1479-dd8d-4c9e-9498-57c4f48684e5",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "apikey",
+                              "apikey": [
+                                {
+                                  "key": "key",
+                                  "value": "X-AUTH-YW-API-TOKEN",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "value",
+                                  "value": "{{apiKey}}",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "in",
+                                  "value": "header",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"contents\": \"<string>\",\n  \"name\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/customers/:cUUID/customCAStore",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "customers",
+                                ":cUUID",
+                                "customCAStore"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "4f52d6f2-2b09-4eea-b817-5e97ee227386",
+                                  "key": "cUUID",
+                                  "value": "<uuid>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "WARNING: This is a preview API that could change."
+                          },
+                          "response": [
+                            {
+                              "id": "61b3b6ae-2af8-4513-b39a-9e149e46e2b4",
+                              "name": "successful operation",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-AUTH-YW-API-TOKEN",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"contents\": \"<string>\",\n  \"name\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/customCAStore",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "customCAStore"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "cUUID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "<uuid>",
+                              "createdAt": "2026-10-22T01:07:47.000Z",
+                              "updatedAt": "2026-10-22T01:07:47.000Z",
+                              "uid": "35240-61b3b6ae-2af8-4513-b39a-9e149e46e2b4"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T01:07:47.000Z",
+                          "updatedAt": "2026-10-22T01:07:47.000Z",
+                          "uid": "35240-a23c1479-dd8d-4c9e-9498-57c4f48684e5"
+                        }
+                      ],
+                      "id": "7933ae5d-29de-4c4b-bf45-9d26a6c731a7",
+                      "createdAt": "2026-10-22T01:07:47.000Z",
+                      "updatedAt": "2026-10-22T01:07:47.000Z",
+                      "uid": "35240-7933ae5d-29de-4c4b-bf45-9d26a6c731a7"
+                    },
+                    {
+                      "name": "customCAStoreCertificates",
+                      "item": [
+                        {
+                          "name": "{certUUID}",
+                          "item": [
+                            {
+                              "name": "Delete a named custom CA certificate",
+                              "id": "37ab9b77-9996-44f9-add6-31eb9346aa07",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "apikey",
+                                  "apikey": [
+                                    {
+                                      "key": "key",
+                                      "value": "X-AUTH-YW-API-TOKEN",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "value",
+                                      "value": "{{apiKey}}",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "in",
+                                      "value": "header",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/customCAStoreCertificates/:certUUID",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "customCAStoreCertificates",
+                                    ":certUUID"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "2a05a55e-55fe-4607-bb37-e14865c75a87",
+                                      "key": "cUUID",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    },
+                                    {
+                                      "id": "41e685b7-d9c8-4b8e-89c6-9ea63801362f",
+                                      "key": "certUUID",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "WARNING: This is a preview API that could change."
+                              },
+                              "response": [
+                                {
+                                  "id": "d07e69a3-7bef-4ef8-88ab-dbb601fe244f",
+                                  "name": "successful operation",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-AUTH-YW-API-TOKEN",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/customCAStoreCertificates/:certUUID",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "customCAStoreCertificates",
+                                        ":certUUID"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "cUUID"
+                                        },
+                                        {
+                                          "key": "certUUID"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"message\": \"<string>\",\n  \"success\": \"<boolean>\"\n}",
+                                  "createdAt": "2026-10-22T01:07:47.000Z",
+                                  "updatedAt": "2026-10-22T01:07:47.000Z",
+                                  "uid": "35240-d07e69a3-7bef-4ef8-88ab-dbb601fe244f"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T01:07:47.000Z",
+                              "updatedAt": "2026-10-22T01:07:47.000Z",
+                              "uid": "35240-37ab9b77-9996-44f9-add6-31eb9346aa07"
+                            },
+                            {
+                              "name": "Download a custom CA certificates of a customer",
+                              "id": "09759ea8-b19d-482f-9c84-36a140416db6",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "apikey",
+                                  "apikey": [
+                                    {
+                                      "key": "key",
+                                      "value": "X-AUTH-YW-API-TOKEN",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "value",
+                                      "value": "{{apiKey}}",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "in",
+                                      "value": "header",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/customCAStoreCertificates/:certUUID",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "customCAStoreCertificates",
+                                    ":certUUID"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "11dc970b-ef84-45f2-acca-c1f57ee38d03",
+                                      "key": "cUUID",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    },
+                                    {
+                                      "id": "f0f5fe1e-8d94-4961-8fa0-330b7cf9195d",
+                                      "key": "certUUID",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "WARNING: This is a preview API that could change."
+                              },
+                              "response": [
+                                {
+                                  "id": "a7f13cea-99ec-4229-96bd-07de918b275b",
+                                  "name": "successful operation",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-AUTH-YW-API-TOKEN",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/customCAStoreCertificates/:certUUID",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "customCAStoreCertificates",
+                                        ":certUUID"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "cUUID"
+                                        },
+                                        {
+                                          "key": "certUUID"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"active\": \"<boolean>\",\n  \"customerId\": \"<uuid>\",\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"contents\": \"<string>\",\n  \"createdTime\": \"<dateTime>\",\n  \"expiryDate\": \"<dateTime>\",\n  \"startDate\": \"<dateTime>\"\n}",
+                                  "createdAt": "2026-10-22T01:07:47.000Z",
+                                  "updatedAt": "2026-10-22T01:07:47.000Z",
+                                  "uid": "35240-a7f13cea-99ec-4229-96bd-07de918b275b"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T01:07:47.000Z",
+                              "updatedAt": "2026-10-22T01:07:47.000Z",
+                              "uid": "35240-09759ea8-b19d-482f-9c84-36a140416db6"
+                            }
+                          ],
+                          "id": "4738d300-cb35-4315-a036-e2b0a8ac1b37",
+                          "createdAt": "2026-10-22T01:07:47.000Z",
+                          "updatedAt": "2026-10-22T01:07:47.000Z",
+                          "uid": "35240-4738d300-cb35-4315-a036-e2b0a8ac1b37"
+                        },
+                        {
+                          "name": "List all custom CA certificates of a customer",
+                          "id": "20b9f65a-31d6-4b9b-a76c-6c85e4e927ee",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "apikey",
+                              "apikey": [
+                                {
+                                  "key": "key",
+                                  "value": "X-AUTH-YW-API-TOKEN",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "value",
+                                  "value": "{{apiKey}}",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "in",
+                                  "value": "header",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/customers/:cUUID/customCAStoreCertificates",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "customers",
+                                ":cUUID",
+                                "customCAStoreCertificates"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "52943020-e9d4-47e1-bb02-827446c1f7a8",
+                                  "key": "cUUID",
+                                  "value": "<uuid>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "WARNING: This is a preview API that could change."
+                          },
+                          "response": [
+                            {
+                              "id": "4b67545b-a98b-4a56-9778-94d03f4d0b35",
+                              "name": "successful operation",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-AUTH-YW-API-TOKEN",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/customCAStoreCertificates",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "customCAStoreCertificates"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "cUUID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "[\n  {\n    \"active\": \"<boolean>\",\n    \"customerId\": \"<uuid>\",\n    \"id\": \"<uuid>\",\n    \"name\": \"<string>\",\n    \"contents\": \"<string>\",\n    \"createdTime\": \"<dateTime>\",\n    \"expiryDate\": \"<dateTime>\",\n    \"startDate\": \"<dateTime>\"\n  },\n  {\n    \"active\": \"<boolean>\",\n    \"customerId\": \"<uuid>\",\n    \"id\": \"<uuid>\",\n    \"name\": \"<string>\",\n    \"contents\": \"<string>\",\n    \"createdTime\": \"<dateTime>\",\n    \"expiryDate\": \"<dateTime>\",\n    \"startDate\": \"<dateTime>\"\n  }\n]",
+                              "createdAt": "2026-10-22T01:07:47.000Z",
+                              "updatedAt": "2026-10-22T01:07:47.000Z",
+                              "uid": "35240-4b67545b-a98b-4a56-9778-94d03f4d0b35"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T01:07:47.000Z",
+                          "updatedAt": "2026-10-22T01:07:47.000Z",
+                          "uid": "35240-20b9f65a-31d6-4b9b-a76c-6c85e4e927ee"
+                        }
+                      ],
+                      "id": "e8109eb4-b21b-40d4-956f-3870e504a34a",
+                      "createdAt": "2026-10-22T01:07:47.000Z",
+                      "updatedAt": "2026-10-22T01:07:47.000Z",
+                      "uid": "35240-e8109eb4-b21b-40d4-956f-3870e504a34a"
+                    }
+                  ],
+                  "id": "eaf6844d-44a7-454d-b13b-f0c6de2a8d02",
+                  "createdAt": "2026-10-22T01:07:47.000Z",
+                  "updatedAt": "2026-10-22T01:07:47.000Z",
+                  "uid": "35240-eaf6844d-44a7-454d-b13b-f0c6de2a8d02"
+                }
+              ],
+              "id": "ca640e6b-10bc-4421-9d20-47c8958983ff",
+              "createdAt": "2026-10-22T01:07:47.000Z",
+              "updatedAt": "2026-10-22T01:07:47.000Z",
+              "uid": "35240-ca640e6b-10bc-4421-9d20-47c8958983ff"
+            }
+          ],
+          "id": "75717a4b-79ac-406b-8df2-cc987f660f01",
+          "createdAt": "2026-10-22T01:07:47.000Z",
+          "updatedAt": "2026-10-22T01:07:47.000Z",
+          "uid": "35240-75717a4b-79ac-406b-8df2-cc987f660f01"
+        }
+      ],
+      "id": "d32553f4-cbe6-41c7-b1cc-e6f1d05af797",
+      "createdAt": "2026-10-22T01:07:47.000Z",
+      "updatedAt": "2026-10-22T01:07:47.000Z",
+      "uid": "35240-d32553f4-cbe6-41c7-b1cc-e6f1d05af797"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

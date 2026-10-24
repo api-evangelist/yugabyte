@@ -1,301 +1,216 @@
 {
+  "info": {
+    "_postman_id": "3b6fb6b6-f736-467b-8159-29c126704b6a",
+    "name": "Yugabyte Cloud Xcluster Namespace Details API",
+    "description": "YugabyteDB as a Service\n\nContact Support:\n Name: Yugabyte Cloud Support\n Email: support@yugabyte.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:05:48.000Z",
+    "updatedAt": "2026-10-22T01:05:48.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-3b6fb6b6-f736-467b-8159-29c126704b6a"
+  },
   "item": [
     {
-      "id": "4a1c6ebb-0bdf-4f31-b56c-b07baadb1dc1",
-      "name": "Xcluster Namespace Details",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "xcluster_namespace_details",
       "item": [
         {
-          "id": "51d152f2-27ff-4de7-8f68-6847e1f506a0",
-          "name": "Get list of all xCluster replication group namespace and table details",
-          "request": {
-            "name": "Get list of all xCluster replication group namespace and table details",
-            "description": {
-              "content": "Retrieve the list of namespaces and tables involved in the replication group identified by the given replication ID.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "xcluster_namespace_details",
-                ":replication_id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "replication_id",
-                  "description": "(Required) Unique identifier for the replication group"
-                },
-                {
-                  "description": " (This can only be one of http,https)",
-                  "type": "any",
-                  "value": "{{protocol}}",
-                  "key": "protocol"
-                },
-                {
-                  "description": {
-                    "content": "",
-                    "type": "text/plain"
-                  },
-                  "type": "any",
-                  "value": "{{host_port}}",
-                  "key": "host_port"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "{replication_id}",
+          "item": [
             {
-              "id": "7a7dca18-088d-49a5-8b25-e7d00a131fa8",
-              "name": "List of all namespaces and tables present in a replication group.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "xcluster_namespace_details",
-                    ":replication_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "replication_id",
-                      "description": "(Required) Unique identifier for the replication group"
-                    },
-                    {
-                      "description": " (This can only be one of http,https)",
-                      "type": "any",
-                      "value": "{{protocol}}",
-                      "key": "protocol"
-                    },
-                    {
-                      "description": {
-                        "content": "",
-                        "type": "text/plain"
-                      },
-                      "type": "any",
-                      "value": "{{host_port}}",
-                      "key": "host_port"
-                    }
-                  ]
-                },
+              "name": "Get list of all xCluster replication group namespace and table details",
+              "id": "c79f8619-0b7f-40a3-8e42-353947925493",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
                 "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"namespace_list\": [\n    {\n      \"namespace\": \"namespace\",\n      \"table_info_list\": [\n        {\n          \"keyspace\": \"keyspace\",\n          \"avg_apply_latency_ms\": 6.027456183070403,\n          \"namespace_id\": \"namespace_id\",\n          \"avg_throughput_KiBps\": 1.4658129805029452,\n          \"stream_id\": \"stream_id\",\n          \"table_uuid\": \"table_uuid\",\n          \"state\": \"state\",\n          \"avg_get_changes_latency_ms\": 0.8008281904610115,\n          \"table_name\": \"table_name\"\n        },\n        {\n          \"keyspace\": \"keyspace\",\n          \"avg_apply_latency_ms\": 6.027456183070403,\n          \"namespace_id\": \"namespace_id\",\n          \"avg_throughput_KiBps\": 1.4658129805029452,\n          \"stream_id\": \"stream_id\",\n          \"table_uuid\": \"table_uuid\",\n          \"state\": \"state\",\n          \"avg_get_changes_latency_ms\": 0.8008281904610115,\n          \"table_name\": \"table_name\"\n        }\n      ]\n    },\n    {\n      \"namespace\": \"namespace\",\n      \"table_info_list\": [\n        {\n          \"keyspace\": \"keyspace\",\n          \"avg_apply_latency_ms\": 6.027456183070403,\n          \"namespace_id\": \"namespace_id\",\n          \"avg_throughput_KiBps\": 1.4658129805029452,\n          \"stream_id\": \"stream_id\",\n          \"table_uuid\": \"table_uuid\",\n          \"state\": \"state\",\n          \"avg_get_changes_latency_ms\": 0.8008281904610115,\n          \"table_name\": \"table_name\"\n        },\n        {\n          \"keyspace\": \"keyspace\",\n          \"avg_apply_latency_ms\": 6.027456183070403,\n          \"namespace_id\": \"namespace_id\",\n          \"avg_throughput_KiBps\": 1.4658129805029452,\n          \"stream_id\": \"stream_id\",\n          \"table_uuid\": \"table_uuid\",\n          \"state\": \"state\",\n          \"avg_get_changes_latency_ms\": 0.8008281904610115,\n          \"table_name\": \"table_name\"\n        }\n      ]\n    }\n  ],\n  \"target_universe_uuid\": \"target_universe_uuid\",\n  \"source_universe_uuid\": \"source_universe_uuid\",\n  \"replication_group_id\": \"replication_group_id\",\n  \"source_placement_location\": [\n    {\n      \"cloud\": \"cloud\",\n      \"zone\": \"zone\",\n      \"region\": \"region\"\n    },\n    {\n      \"cloud\": \"cloud\",\n      \"zone\": \"zone\",\n      \"region\": \"region\"\n    }\n  ],\n  \"target_placement_location\": [\n    {\n      \"cloud\": \"cloud\",\n      \"zone\": \"zone\",\n      \"region\": \"region\"\n    },\n    {\n      \"cloud\": \"cloud\",\n      \"zone\": \"zone\",\n      \"region\": \"region\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "638dc337-05bf-435f-82c3-1293a416d807",
-              "name": "API Error",
-              "originalRequest": {
                 "url": {
+                  "raw": "{{baseUrl}}/xcluster_namespace_details/:replication_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "xcluster_namespace_details",
                     ":replication_id"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
                   "variable": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
+                      "id": "3da83305-e1f7-4347-93b5-bffa7c33caca",
                       "key": "replication_id",
+                      "value": "<string>",
                       "description": "(Required) Unique identifier for the replication group"
-                    },
-                    {
-                      "description": " (This can only be one of http,https)",
-                      "type": "any",
-                      "value": "{{protocol}}",
-                      "key": "protocol"
-                    },
-                    {
-                      "description": {
-                        "content": "",
-                        "type": "text/plain"
-                      },
-                      "type": "any",
-                      "value": "{{host_port}}",
-                      "key": "host_port"
                     }
                   ]
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                "description": "Retrieve the list of namespaces and tables involved in the replication group identified by the given replication ID."
               },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": {\n    \"detail\": \"string\",\n    \"status\": 3353\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "c91c4220-1f07-4e88-818c-cd55f3d89bf7",
-              "name": "API Error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "xcluster_namespace_details",
-                    ":replication_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "replication_id",
-                      "description": "(Required) Unique identifier for the replication group"
-                    },
-                    {
-                      "description": " (This can only be one of http,https)",
-                      "type": "any",
-                      "value": "{{protocol}}",
-                      "key": "protocol"
-                    },
-                    {
-                      "description": {
-                        "content": "",
-                        "type": "text/plain"
+                  "id": "f76e67bf-d371-4058-ad14-5c166493b219",
+                  "name": "List of all namespaces and tables present in a replication group.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
                       },
-                      "type": "any",
-                      "value": "{{host_port}}",
-                      "key": "host_port"
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/xcluster_namespace_details/:replication_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "xcluster_namespace_details",
+                        ":replication_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "replication_id"
+                        }
+                      ]
                     }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"namespace_list\": [\n    {\n      \"namespace\": \"<string>\",\n      \"table_info_list\": [\n        {\n          \"avg_apply_latency_ms\": \"<number>\",\n          \"avg_get_changes_latency_ms\": \"<number>\",\n          \"avg_throughput_KiBps\": \"<number>\",\n          \"keyspace\": \"<string>\",\n          \"state\": \"<string>\",\n          \"stream_id\": \"<string>\",\n          \"table_name\": \"<string>\",\n          \"table_uuid\": \"<string>\",\n          \"namespace_id\": \"<string>\"\n        },\n        {\n          \"avg_apply_latency_ms\": \"<number>\",\n          \"avg_get_changes_latency_ms\": \"<number>\",\n          \"avg_throughput_KiBps\": \"<number>\",\n          \"keyspace\": \"<string>\",\n          \"state\": \"<string>\",\n          \"stream_id\": \"<string>\",\n          \"table_name\": \"<string>\",\n          \"table_uuid\": \"<string>\",\n          \"namespace_id\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"namespace\": \"<string>\",\n      \"table_info_list\": [\n        {\n          \"avg_apply_latency_ms\": \"<number>\",\n          \"avg_get_changes_latency_ms\": \"<number>\",\n          \"avg_throughput_KiBps\": \"<number>\",\n          \"keyspace\": \"<string>\",\n          \"state\": \"<string>\",\n          \"stream_id\": \"<string>\",\n          \"table_name\": \"<string>\",\n          \"table_uuid\": \"<string>\",\n          \"namespace_id\": \"<string>\"\n        },\n        {\n          \"avg_apply_latency_ms\": \"<number>\",\n          \"avg_get_changes_latency_ms\": \"<number>\",\n          \"avg_throughput_KiBps\": \"<number>\",\n          \"keyspace\": \"<string>\",\n          \"state\": \"<string>\",\n          \"stream_id\": \"<string>\",\n          \"table_name\": \"<string>\",\n          \"table_uuid\": \"<string>\",\n          \"namespace_id\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"replication_group_id\": \"<string>\",\n  \"source_placement_location\": [\n    {\n      \"cloud\": \"<string>\",\n      \"zone\": \"<string>\",\n      \"region\": \"<string>\"\n    },\n    {\n      \"cloud\": \"<string>\",\n      \"zone\": \"<string>\",\n      \"region\": \"<string>\"\n    }\n  ],\n  \"target_placement_location\": [\n    {\n      \"cloud\": \"<string>\",\n      \"zone\": \"<string>\",\n      \"region\": \"<string>\"\n    },\n    {\n      \"cloud\": \"<string>\",\n      \"zone\": \"<string>\",\n      \"region\": \"<string>\"\n    }\n  ],\n  \"source_universe_uuid\": \"<string>\",\n  \"target_universe_uuid\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:05:48.000Z",
+                  "updatedAt": "2026-10-22T01:05:48.000Z",
+                  "uid": "35240-f76e67bf-d371-4058-ad14-5c166493b219"
+                },
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "6cd5c7ac-9978-4a9e-b8cc-b9f5f44fd15f",
+                  "name": "API Error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/xcluster_namespace_details/:replication_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "xcluster_namespace_details",
+                        ":replication_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "replication_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"detail\": \"<string>\",\n    \"status\": \"<integer>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:05:48.000Z",
+                  "updatedAt": "2026-10-22T01:05:48.000Z",
+                  "uid": "35240-6cd5c7ac-9978-4a9e-b8cc-b9f5f44fd15f"
+                },
+                {
+                  "id": "feba357b-3df6-4f00-9d42-54f174dd206d",
+                  "name": "API Error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/xcluster_namespace_details/:replication_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "xcluster_namespace_details",
+                        ":replication_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "replication_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"detail\": \"<string>\",\n    \"status\": \"<integer>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:05:48.000Z",
+                  "updatedAt": "2026-10-22T01:05:48.000Z",
+                  "uid": "35240-feba357b-3df6-4f00-9d42-54f174dd206d"
                 }
               ],
-              "body": "{\n  \"error\": {\n    \"detail\": \"string\",\n    \"status\": 3353\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-22T01:05:48.000Z",
+              "updatedAt": "2026-10-22T01:05:48.000Z",
+              "uid": "35240-c79f8619-0b7f-40a3-8e42-353947925493"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "2c36f519-6ac5-41e1-829a-b63bc6c228ee",
+          "createdAt": "2026-10-22T01:05:48.000Z",
+          "updatedAt": "2026-10-22T01:05:48.000Z",
+          "uid": "35240-2c36f519-6ac5-41e1-829a-b63bc6c228ee"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "description": {
-        "content": " (This can only be one of http,https)",
-        "type": "text/plain"
-      },
-      "type": "any",
-      "value": "http",
-      "key": "protocol"
-    },
-    {
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
-      "type": "any",
-      "value": "localhost:1323",
-      "key": "host_port"
-    },
-    {
-      "type": "string",
-      "value": "{{protocol}}://{{host_port}}/api",
-      "key": "baseUrl"
+      "id": "c4950168-2eaa-4df6-9d65-c8ae76e468b0",
+      "createdAt": "2026-10-22T01:05:48.000Z",
+      "updatedAt": "2026-10-22T01:05:48.000Z",
+      "uid": "35240-c4950168-2eaa-4df6-9d65-c8ae76e468b0"
     }
   ],
   "auth": {
@@ -303,17 +218,23 @@
     "bearer": [
       {
         "key": "token",
-        "value": "{{bearerToken}}"
+        "value": "{{bearerToken}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "f20e45cd-f66d-4eb1-85a7-da2091b78b69",
-    "name": "Yugabyte Cloud backup-info Xcluster Namespace Details API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "YugabyteDB as a Service\n\nContact Support:\n Name: Yugabyte Cloud Support\n Email: support@yugabyte.com",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "protocol",
+      "value": "http"
+    },
+    {
+      "key": "host_port",
+      "value": "localhost:1323"
+    },
+    {
+      "key": "baseUrl",
+      "value": "{{protocol}}://{{host_port}}/api"
     }
-  }
+  ]
 }

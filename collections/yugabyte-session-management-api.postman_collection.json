@@ -1,0 +1,977 @@
+{
+  "info": {
+    "_postman_id": "088e3c47-fe64-4e03-bea2-240adfab7ce7",
+    "name": "Yugabytedb Session Management API",
+    "description": "Operations tagged Session management across 2 of this provider's published API definitions: openapi_2.yaml, platform.swagger.json. Each path carries the servers of the definition it was published in.\n\nContact Support:\n Name: https://docs.yugabyte.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:12:42.000Z",
+    "updatedAt": "2026-10-22T01:12:42.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-088e3c47-fe64-4e03-bea2-240adfab7ce7"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "api_login",
+              "item": [
+                {
+                  "name": "Authenticate user using email and password",
+                  "id": "05e97653-212c-4ef1-a44e-6f173bfca612",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"email\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v1/api_login",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v1",
+                        "api_login"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "0a3749fa-f976-4479-a74e-163893a1c935",
+                      "name": "successful operation",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"email\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/api_login",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "api_login"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"apiToken\": \"<string>\",\n  \"apiTokenVersion\": \"<long>\",\n  \"authToken\": \"<string>\",\n  \"customerUUID\": \"<uuid>\",\n  \"userUUID\": \"<uuid>\"\n}",
+                      "createdAt": "2026-10-22T01:12:43.000Z",
+                      "updatedAt": "2026-10-22T01:12:43.000Z",
+                      "uid": "35240-0a3749fa-f976-4479-a74e-163893a1c935"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:12:43.000Z",
+                  "updatedAt": "2026-10-22T01:12:43.000Z",
+                  "uid": "35240-05e97653-212c-4ef1-a44e-6f173bfca612"
+                }
+              ],
+              "id": "948178ff-d825-414e-bbc2-4ab5ccc39df7",
+              "createdAt": "2026-10-22T01:12:43.000Z",
+              "updatedAt": "2026-10-22T01:12:43.000Z",
+              "uid": "35240-948178ff-d825-414e-bbc2-4ab5ccc39df7"
+            },
+            {
+              "name": "app_version",
+              "item": [
+                {
+                  "name": "appVersion",
+                  "id": "968a937c-b14f-4e48-a629-5033af8a58f1",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v1/app_version",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v1",
+                        "app_version"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "f1cb28ab-885a-4b9b-8f7e-151a0251b349",
+                      "name": "successful operation",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/app_version",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "app_version"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"veniame6\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:12:43.000Z",
+                      "updatedAt": "2026-10-22T01:12:43.000Z",
+                      "uid": "35240-f1cb28ab-885a-4b9b-8f7e-151a0251b349"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:12:43.000Z",
+                  "updatedAt": "2026-10-22T01:12:43.000Z",
+                  "uid": "35240-968a937c-b14f-4e48-a629-5033af8a58f1"
+                }
+              ],
+              "id": "56dc377f-5d07-462a-9528-be9c1b350a87",
+              "createdAt": "2026-10-22T01:12:43.000Z",
+              "updatedAt": "2026-10-22T01:12:43.000Z",
+              "uid": "35240-56dc377f-5d07-462a-9528-be9c1b350a87"
+            },
+            {
+              "name": "customer_count",
+              "item": [
+                {
+                  "name": "customerCount",
+                  "id": "79f4c79f-0d49-4f68-ac39-5013bf791672",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v1/customer_count",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v1",
+                        "customer_count"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "d87378de-17dc-4d84-9980-3eb8f8c54b41",
+                      "name": "successful operation",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/customer_count",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "customer_count"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"count\": \"<integer>\"\n}",
+                      "createdAt": "2026-10-22T01:12:43.000Z",
+                      "updatedAt": "2026-10-22T01:12:43.000Z",
+                      "uid": "35240-d87378de-17dc-4d84-9980-3eb8f8c54b41"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:12:43.000Z",
+                  "updatedAt": "2026-10-22T01:12:43.000Z",
+                  "uid": "35240-79f4c79f-0d49-4f68-ac39-5013bf791672"
+                }
+              ],
+              "id": "4e5b3501-c587-496b-b883-7e5501c654dd",
+              "createdAt": "2026-10-22T01:12:43.000Z",
+              "updatedAt": "2026-10-22T01:12:43.000Z",
+              "uid": "35240-4e5b3501-c587-496b-b883-7e5501c654dd"
+            },
+            {
+              "name": "customers",
+              "item": [
+                {
+                  "name": "{cUUID}",
+                  "item": [
+                    {
+                      "name": "admin_notifications",
+                      "item": [
+                        {
+                          "name": "Current list of notifications for admin",
+                          "id": "f31bbaad-b91b-4c68-af27-ac1b0cc2d788",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/customers/:cUUID/admin_notifications",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "customers",
+                                ":cUUID",
+                                "admin_notifications"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "f29813b3-3557-460b-bf98-2128027f9c15",
+                                  "key": "cUUID",
+                                  "value": "<uuid>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "WARNING: This is a preview API that could change."
+                          },
+                          "response": [
+                            {
+                              "id": "43fd38ec-ddc1-4511-9969-73cb4ac68cd6",
+                              "name": "successful operation",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/admin_notifications",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "admin_notifications"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "cUUID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"messages\": [\n    {\n      \"code\": \"<string>\",\n      \"htmlMessage\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"htmlMessage\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-10-22T01:12:43.000Z",
+                              "updatedAt": "2026-10-22T01:12:43.000Z",
+                              "uid": "35240-43fd38ec-ddc1-4511-9969-73cb4ac68cd6"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T01:12:43.000Z",
+                          "updatedAt": "2026-10-22T01:12:43.000Z",
+                          "uid": "35240-f31bbaad-b91b-4c68-af27-ac1b0cc2d788"
+                        }
+                      ],
+                      "id": "6b9ee3fc-3f6b-4557-a3e5-9ed2ecf5e66a",
+                      "createdAt": "2026-10-22T01:12:43.000Z",
+                      "updatedAt": "2026-10-22T01:12:43.000Z",
+                      "uid": "35240-6b9ee3fc-3f6b-4557-a3e5-9ed2ecf5e66a"
+                    },
+                    {
+                      "name": "api_token",
+                      "item": [
+                        {
+                          "name": "Regenerate and fetch API token",
+                          "id": "9e842416-a5d5-46d2-8e11-ea2b80096580",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/customers/:cUUID/api_token?apiTokenVersion=-1",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "customers",
+                                ":cUUID",
+                                "api_token"
+                              ],
+                              "query": [
+                                {
+                                  "key": "apiTokenVersion",
+                                  "value": "-1"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "5126c9be-19b3-49de-9bec-9d0d8358b5ea",
+                                  "key": "cUUID",
+                                  "value": "<uuid>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "c4763086-4b9e-41bd-8406-a9539c85e09b",
+                              "name": "successful operation",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/api_token?apiTokenVersion=-1",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "api_token"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "apiTokenVersion",
+                                      "value": "-1"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "cUUID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"apiToken\": \"<string>\",\n  \"apiTokenVersion\": \"<long>\",\n  \"authToken\": \"<string>\",\n  \"customerUUID\": \"<uuid>\",\n  \"userUUID\": \"<uuid>\"\n}",
+                              "createdAt": "2026-10-22T01:12:43.000Z",
+                              "updatedAt": "2026-10-22T01:12:43.000Z",
+                              "uid": "35240-c4763086-4b9e-41bd-8406-a9539c85e09b"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T01:12:43.000Z",
+                          "updatedAt": "2026-10-22T01:12:43.000Z",
+                          "uid": "35240-9e842416-a5d5-46d2-8e11-ea2b80096580"
+                        }
+                      ],
+                      "id": "39b61b7e-d6ef-4857-85d9-8e7a9815d653",
+                      "createdAt": "2026-10-22T01:12:43.000Z",
+                      "updatedAt": "2026-10-22T01:12:43.000Z",
+                      "uid": "35240-39b61b7e-d6ef-4857-85d9-8e7a9815d653"
+                    }
+                  ],
+                  "id": "ee6e370a-d682-42d8-85ad-f90e5bd249f2",
+                  "createdAt": "2026-10-22T01:12:43.000Z",
+                  "updatedAt": "2026-10-22T01:12:43.000Z",
+                  "uid": "35240-ee6e370a-d682-42d8-85ad-f90e5bd249f2"
+                }
+              ],
+              "id": "97581c86-65b9-40da-bd71-d37dbce3a4cf",
+              "createdAt": "2026-10-22T01:12:43.000Z",
+              "updatedAt": "2026-10-22T01:12:43.000Z",
+              "uid": "35240-97581c86-65b9-40da-bd71-d37dbce3a4cf"
+            },
+            {
+              "name": "logs",
+              "item": [
+                {
+                  "name": "{maxLines}",
+                  "item": [
+                    {
+                      "name": "getLogs",
+                      "id": "aec20899-768d-4761-980a-ecd2d9d51506",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/logs/:maxLines",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "logs",
+                            ":maxLines"
+                          ],
+                          "variable": [
+                            {
+                              "id": "8be1032f-9cc3-4178-adbc-1a58d3ee1384",
+                              "key": "maxLines",
+                              "value": "<integer>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "5f19f2d8-c424-4d7a-95cb-026533998d64",
+                          "name": "successful operation",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/logs/:maxLines",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "logs",
+                                ":maxLines"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "maxLines"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"lines\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "createdAt": "2026-10-22T01:12:43.000Z",
+                          "updatedAt": "2026-10-22T01:12:43.000Z",
+                          "uid": "35240-5f19f2d8-c424-4d7a-95cb-026533998d64"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T01:12:43.000Z",
+                      "updatedAt": "2026-10-22T01:12:43.000Z",
+                      "uid": "35240-aec20899-768d-4761-980a-ecd2d9d51506"
+                    }
+                  ],
+                  "id": "5d3db030-4960-46ac-9740-2046faf9df81",
+                  "createdAt": "2026-10-22T01:12:43.000Z",
+                  "updatedAt": "2026-10-22T01:12:43.000Z",
+                  "uid": "35240-5d3db030-4960-46ac-9740-2046faf9df81"
+                },
+                {
+                  "name": "getFilteredLogs",
+                  "id": "36ade87c-1bd1-4f4b-b728-786e07c4e6b6",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "text/plain"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v1/logs?maxLines=10000&universeName=null&queryRegex=null&startDate=null&endDate=null",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v1",
+                        "logs"
+                      ],
+                      "query": [
+                        {
+                          "key": "maxLines",
+                          "value": "10000"
+                        },
+                        {
+                          "key": "universeName",
+                          "value": "null"
+                        },
+                        {
+                          "key": "queryRegex",
+                          "value": "null"
+                        },
+                        {
+                          "key": "startDate",
+                          "value": "null"
+                        },
+                        {
+                          "key": "endDate",
+                          "value": "null"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "b77f16c1-a7c9-4a50-8f24-c4d68b72343a",
+                      "name": "successful operation",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "text/plain"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/logs?maxLines=10000&universeName=null&queryRegex=null&startDate=null&endDate=null",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "logs"
+                          ],
+                          "query": [
+                            {
+                              "key": "maxLines",
+                              "value": "10000"
+                            },
+                            {
+                              "key": "universeName",
+                              "value": "null"
+                            },
+                            {
+                              "key": "queryRegex",
+                              "value": "null"
+                            },
+                            {
+                              "key": "startDate",
+                              "value": "null"
+                            },
+                            {
+                              "key": "endDate",
+                              "value": "null"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "text/plain"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "<string>",
+                      "createdAt": "2026-10-22T01:12:43.000Z",
+                      "updatedAt": "2026-10-22T01:12:43.000Z",
+                      "uid": "35240-b77f16c1-a7c9-4a50-8f24-c4d68b72343a"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:12:43.000Z",
+                  "updatedAt": "2026-10-22T01:12:43.000Z",
+                  "uid": "35240-36ade87c-1bd1-4f4b-b728-786e07c4e6b6"
+                }
+              ],
+              "id": "df2f86f5-840b-4bd0-8302-91158b67a0b9",
+              "createdAt": "2026-10-22T01:12:43.000Z",
+              "updatedAt": "2026-10-22T01:12:43.000Z",
+              "uid": "35240-df2f86f5-840b-4bd0-8302-91158b67a0b9"
+            },
+            {
+              "name": "register",
+              "item": [
+                {
+                  "name": "Register a customer",
+                  "id": "349397ac-1dec-4387-95e2-e3ff3381c2af",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"code\": \"<string>\",\n  \"email\": \"<string>\",\n  \"name\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v1/register?generateApiToken=false",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v1",
+                        "register"
+                      ],
+                      "query": [
+                        {
+                          "key": "generateApiToken",
+                          "value": "false"
+                        }
+                      ]
+                    },
+                    "description": "Creates new customer and user"
+                  },
+                  "response": [
+                    {
+                      "id": "0d2c35fc-3a38-45b0-8e7e-c7b66452b6a5",
+                      "name": "successful operation",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"code\": \"<string>\",\n  \"email\": \"<string>\",\n  \"name\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/register?generateApiToken=false",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "register"
+                          ],
+                          "query": [
+                            {
+                              "key": "generateApiToken",
+                              "value": "false"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"apiToken\": \"<string>\",\n  \"apiTokenVersion\": \"<long>\",\n  \"authToken\": \"<string>\",\n  \"customerUUID\": \"<uuid>\",\n  \"userUUID\": \"<uuid>\"\n}",
+                      "createdAt": "2026-10-22T01:12:43.000Z",
+                      "updatedAt": "2026-10-22T01:12:43.000Z",
+                      "uid": "35240-0d2c35fc-3a38-45b0-8e7e-c7b66452b6a5"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:12:43.000Z",
+                  "updatedAt": "2026-10-22T01:12:43.000Z",
+                  "uid": "35240-349397ac-1dec-4387-95e2-e3ff3381c2af"
+                }
+              ],
+              "id": "7eeca046-7616-45ef-9013-61dbfda1781f",
+              "createdAt": "2026-10-22T01:12:43.000Z",
+              "updatedAt": "2026-10-22T01:12:43.000Z",
+              "uid": "35240-7eeca046-7616-45ef-9013-61dbfda1781f"
+            },
+            {
+              "name": "session_info",
+              "item": [
+                {
+                  "name": "Get current user and customer uuid",
+                  "id": "147725d3-dec1-4316-a873-a735a996b60d",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "X-AUTH-YW-API-TOKEN",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v1/session_info",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v1",
+                        "session_info"
+                      ]
+                    },
+                    "description": "Available since YBA version 2.20.0."
+                  },
+                  "response": [
+                    {
+                      "id": "b8937fb4-f525-4a5d-ac6d-9a0241a1b263",
+                      "name": "successful operation",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-AUTH-YW-API-TOKEN",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/session_info",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "session_info"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"apiToken\": \"<string>\",\n  \"apiTokenVersion\": \"<long>\",\n  \"authToken\": \"<string>\",\n  \"customerUUID\": \"<uuid>\",\n  \"userUUID\": \"<uuid>\"\n}",
+                      "createdAt": "2026-10-22T01:12:43.000Z",
+                      "updatedAt": "2026-10-22T01:12:43.000Z",
+                      "uid": "35240-b8937fb4-f525-4a5d-ac6d-9a0241a1b263"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:12:43.000Z",
+                  "updatedAt": "2026-10-22T01:12:43.000Z",
+                  "uid": "35240-147725d3-dec1-4316-a873-a735a996b60d"
+                }
+              ],
+              "id": "a86b65c0-8ed8-45f0-a2b2-bb3544a2d83d",
+              "createdAt": "2026-10-22T01:12:43.000Z",
+              "updatedAt": "2026-10-22T01:12:43.000Z",
+              "uid": "35240-a86b65c0-8ed8-45f0-a2b2-bb3544a2d83d"
+            }
+          ],
+          "id": "a9a48151-061b-47ce-94a8-6ee47d77ae40",
+          "createdAt": "2026-10-22T01:12:43.000Z",
+          "updatedAt": "2026-10-22T01:12:43.000Z",
+          "uid": "35240-a9a48151-061b-47ce-94a8-6ee47d77ae40"
+        }
+      ],
+      "id": "01e3f7b5-91aa-477a-b965-be0276064cd3",
+      "createdAt": "2026-10-22T01:12:43.000Z",
+      "updatedAt": "2026-10-22T01:12:43.000Z",
+      "uid": "35240-01e3f7b5-91aa-477a-b965-be0276064cd3"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

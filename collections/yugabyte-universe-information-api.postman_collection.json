@@ -1,0 +1,1704 @@
+{
+  "info": {
+    "_postman_id": "cad510db-751a-4d76-b7b0-af44797fa541",
+    "name": "Yugabytedb Universe information API",
+    "description": "Operations tagged Universe information across 2 of this provider's published API definitions: openapi_2.yaml, platform.swagger.json. Each path carries the servers of the definition it was published in.\n\nContact Support:\n Name: https://docs.yugabyte.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:13:48.000Z",
+    "updatedAt": "2026-10-22T01:13:49.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-cad510db-751a-4d76-b7b0-af44797fa541"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "customers",
+              "item": [
+                {
+                  "name": "{cUUID}",
+                  "item": [
+                    {
+                      "name": "cost",
+                      "item": [
+                        {
+                          "name": "Get a cost estimate for all universes",
+                          "id": "fa404f0b-7e2a-4e51-987f-3e9345f357c0",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "apikey",
+                              "apikey": [
+                                {
+                                  "key": "key",
+                                  "value": "X-AUTH-YW-API-TOKEN",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "value",
+                                  "value": "{{apiKey}}",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "in",
+                                  "value": "header",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/customers/:cUUID/cost",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "customers",
+                                ":cUUID",
+                                "cost"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "783a6489-36de-4335-9420-f1336f9e330d",
+                                  "key": "cUUID",
+                                  "value": "<uuid>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "YbaApi Internal. (Will be removed in next iteration)"
+                          },
+                          "response": [
+                            {
+                              "id": "eb6247ae-abbd-4417-b742-9e379c492602",
+                              "name": "successful operation",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-AUTH-YW-API-TOKEN",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/cost",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "cost"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "cUUID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "[\n  {\n    \"azList\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"ebsPricePerHour\": \"<double>\",\n    \"gp3FreePiops\": \"<integer>\",\n    \"gp3FreeThroughput\": \"<integer>\",\n    \"memSizeGB\": \"<double>\",\n    \"numCores\": \"<double>\",\n    \"numNodes\": \"<integer>\",\n    \"pricePerHour\": \"<double>\",\n    \"pricingKnown\": \"<boolean>\",\n    \"volumeCount\": \"<integer>\",\n    \"volumeSizeGB\": \"<integer>\"\n  },\n  {\n    \"azList\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"ebsPricePerHour\": \"<double>\",\n    \"gp3FreePiops\": \"<integer>\",\n    \"gp3FreeThroughput\": \"<integer>\",\n    \"memSizeGB\": \"<double>\",\n    \"numCores\": \"<double>\",\n    \"numNodes\": \"<integer>\",\n    \"pricePerHour\": \"<double>\",\n    \"pricingKnown\": \"<boolean>\",\n    \"volumeCount\": \"<integer>\",\n    \"volumeSizeGB\": \"<integer>\"\n  }\n]",
+                              "createdAt": "2026-10-22T01:13:49.000Z",
+                              "updatedAt": "2026-10-22T01:13:49.000Z",
+                              "uid": "35240-eb6247ae-abbd-4417-b742-9e379c492602"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T01:13:49.000Z",
+                          "updatedAt": "2026-10-22T01:13:49.000Z",
+                          "uid": "35240-fa404f0b-7e2a-4e51-987f-3e9345f357c0"
+                        }
+                      ],
+                      "id": "bbd44468-7be3-44e5-9bcc-53a81e17fc49",
+                      "createdAt": "2026-10-22T01:13:49.000Z",
+                      "updatedAt": "2026-10-22T01:13:49.000Z",
+                      "uid": "35240-bbd44468-7be3-44e5-9bcc-53a81e17fc49"
+                    },
+                    {
+                      "name": "universes",
+                      "item": [
+                        {
+                          "name": "{uniUUID}",
+                          "item": [
+                            {
+                              "name": "cost",
+                              "item": [
+                                {
+                                  "name": "Get a cost estimate for a universe - deprecated",
+                                  "id": "5d987b5c-dad6-4451-acfa-49b6ed4601f8",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "apikey",
+                                      "apikey": [
+                                        {
+                                          "key": "key",
+                                          "value": "X-AUTH-YW-API-TOKEN",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "value",
+                                          "value": "{{apiKey}}",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "in",
+                                          "value": "header",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/cost",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "universes",
+                                        ":uniUUID",
+                                        "cost"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "c277be9a-a008-4229-af90-9ab02bc97b1f",
+                                          "key": "cUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "ce0cdc1c-0a2a-4e40-9259-ec57ddec365d",
+                                          "key": "uniUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    },
+                                    "description": "Deprecated since YBA version 2.20.0.0.\nUse /universe_resources"
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "e390e01f-ffe7-4908-96ce-ef61bb5cc0dd",
+                                      "name": "successful operation",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "X-AUTH-YW-API-TOKEN",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/cost",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "universes",
+                                            ":uniUUID",
+                                            "cost"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "cUUID"
+                                            },
+                                            {
+                                              "key": "uniUUID"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"azList\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"ebsPricePerHour\": \"<double>\",\n  \"gp3FreePiops\": \"<integer>\",\n  \"gp3FreeThroughput\": \"<integer>\",\n  \"memSizeGB\": \"<double>\",\n  \"numCores\": \"<double>\",\n  \"numNodes\": \"<integer>\",\n  \"pricePerHour\": \"<double>\",\n  \"pricingKnown\": \"<boolean>\",\n  \"volumeCount\": \"<integer>\",\n  \"volumeSizeGB\": \"<integer>\"\n}",
+                                      "createdAt": "2026-10-22T01:13:49.000Z",
+                                      "updatedAt": "2026-10-22T01:13:49.000Z",
+                                      "uid": "35240-e390e01f-ffe7-4908-96ce-ef61bb5cc0dd"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:13:49.000Z",
+                                  "updatedAt": "2026-10-22T01:13:49.000Z",
+                                  "uid": "35240-5d987b5c-dad6-4451-acfa-49b6ed4601f8"
+                                }
+                              ],
+                              "id": "1b578275-5264-40f7-81c7-7822db5fe6f5",
+                              "createdAt": "2026-10-22T01:13:49.000Z",
+                              "updatedAt": "2026-10-22T01:13:49.000Z",
+                              "uid": "35240-1b578275-5264-40f7-81c7-7822db5fe6f5"
+                            },
+                            {
+                              "name": "health_check",
+                              "item": [
+                                {
+                                  "name": "Return results for the last health check",
+                                  "id": "25c7b566-9dd6-45e8-81b0-b68301bc6ed0",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "apikey",
+                                      "apikey": [
+                                        {
+                                          "key": "key",
+                                          "value": "X-AUTH-YW-API-TOKEN",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "value",
+                                          "value": "{{apiKey}}",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "in",
+                                          "value": "header",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/health_check",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "universes",
+                                        ":uniUUID",
+                                        "health_check"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "cd47b86d-1393-4fc1-b886-1059dc80803b",
+                                          "key": "cUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "8c133d3d-8ca3-4c51-8682-834caf472677",
+                                          "key": "uniUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    },
+                                    "description": "Available since YBA version 2.2.0.0. Checks the health of all tablet servers and masters in the universe, as well as certain conditions on the machines themselves, including disk utilization, presence of FATAL or core files, and more."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "ee1eceb9-baa7-453a-9d8e-62d57af42249",
+                                      "name": "successful operation",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "X-AUTH-YW-API-TOKEN",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/health_check",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "universes",
+                                            ":uniUUID",
+                                            "health_check"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "cUUID"
+                                            },
+                                            {
+                                              "key": "uniUUID"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "[\n  {\n    \"data\": [\n      {\n        \"details\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"has_error\": \"<boolean>\",\n        \"has_warning\": \"<boolean>\",\n        \"message\": \"<string>\",\n        \"metrics\": [\n          {\n            \"help\": \"<string>\",\n            \"name\": \"<string>\",\n            \"unit\": \"<string>\",\n            \"values\": [\n              {\n                \"labels\": [\n                  {\n                    \"name\": \"<string>\",\n                    \"value\": \"<string>\"\n                  },\n                  {\n                    \"name\": \"<string>\",\n                    \"value\": \"<string>\"\n                  }\n                ],\n                \"value\": \"<double>\"\n              },\n              {\n                \"labels\": [\n                  {\n                    \"name\": \"<string>\",\n                    \"value\": \"<string>\"\n                  },\n                  {\n                    \"name\": \"<string>\",\n                    \"value\": \"<string>\"\n                  }\n                ],\n                \"value\": \"<double>\"\n              }\n            ]\n          },\n          {\n            \"help\": \"<string>\",\n            \"name\": \"<string>\",\n            \"unit\": \"<string>\",\n            \"values\": [\n              {\n                \"labels\": [\n                  {\n                    \"name\": \"<string>\",\n                    \"value\": \"<string>\"\n                  },\n                  {\n                    \"name\": \"<string>\",\n                    \"value\": \"<string>\"\n                  }\n                ],\n                \"value\": \"<double>\"\n              },\n              {\n                \"labels\": [\n                  {\n                    \"name\": \"<string>\",\n                    \"value\": \"<string>\"\n                  },\n                  {\n                    \"name\": \"<string>\",\n                    \"value\": \"<string>\"\n                  }\n                ],\n                \"value\": \"<double>\"\n              }\n            ]\n          }\n        ],\n        \"metrics_only\": \"<boolean>\",\n        \"node\": \"<string>\",\n        \"node_identifier\": \"<string>\",\n        \"node_name\": \"<string>\",\n        \"process\": \"<string>\",\n        \"timestamp_iso\": \"<dateTime>\"\n      },\n      {\n        \"details\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"has_error\": \"<boolean>\",\n        \"has_warning\": \"<boolean>\",\n        \"message\": \"<string>\",\n        \"metrics\": [\n          {\n            \"help\": \"<string>\",\n            \"name\": \"<string>\",\n            \"unit\": \"<string>\",\n            \"values\": [\n              {\n                \"labels\": [\n                  {\n                    \"name\": \"<string>\",\n                    \"value\": \"<string>\"\n                  },\n                  {\n                    \"name\": \"<string>\",\n                    \"value\": \"<string>\"\n                  }\n                ],\n                \"value\": \"<double>\"\n              },\n              {\n                \"labels\": [\n                  {\n                    \"name\": \"<string>\",\n                    \"value\": \"<string>\"\n                  },\n                  {\n                    \"name\": \"<string>\",\n                    \"value\": \"<string>\"\n                  }\n                ],\n                \"value\": \"<double>\"\n              }\n            ]\n          },\n          {\n            \"help\": \"<string>\",\n            \"name\": \"<string>\",\n            \"unit\": \"<string>\",\n            \"values\": [\n              {\n                \"labels\": [\n                  {\n                    \"name\": \"<string>\",\n                    \"value\": \"<string>\"\n                  },\n                  {\n                    \"name\": \"<string>\",\n                    \"value\": \"<string>\"\n                  }\n                ],\n                \"value\": \"<double>\"\n              },\n              {\n                \"labels\": [\n                  {\n                    \"name\": \"<string>\",\n                    \"value\": \"<string>\"\n                  },\n                  {\n                    \"name\": \"<string>\",\n                    \"value\": \"<string>\"\n                  }\n                ],\n                \"value\": \"<double>\"\n              }\n            ]\n          }\n        ],\n        \"metrics_only\": \"<boolean>\",\n        \"node\": \"<string>\",\n        \"node_identifier\": \"<string>\",\n        \"node_name\": \"<string>\",\n        \"process\": \"<string>\",\n        \"timestamp_iso\": \"<dateTime>\"\n      }\n    ],\n    \"has_error\": \"<boolean>\",\n    \"has_warning\": \"<boolean>\",\n    \"yb_version\": \"<string>\",\n    \"timestamp_iso\": \"<dateTime>\"\n  },\n  {\n    \"data\": [\n      {\n        \"details\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"has_error\": \"<boolean>\",\n        \"has_warning\": \"<boolean>\",\n        \"message\": \"<string>\",\n        \"metrics\": [\n          {\n            \"help\": \"<string>\",\n            \"name\": \"<string>\",\n            \"unit\": \"<string>\",\n            \"values\": [\n              {\n                \"labels\": [\n                  {\n                    \"name\": \"<string>\",\n                    \"value\": \"<string>\"\n                  },\n                  {\n                    \"name\": \"<string>\",\n                    \"value\": \"<string>\"\n                  }\n                ],\n                \"value\": \"<double>\"\n              },\n              {\n                \"labels\": [\n                  {\n                    \"name\": \"<string>\",\n                    \"value\": \"<string>\"\n                  },\n                  {\n                    \"name\": \"<string>\",\n                    \"value\": \"<string>\"\n                  }\n                ],\n                \"value\": \"<double>\"\n              }\n            ]\n          },\n          {\n            \"help\": \"<string>\",\n            \"name\": \"<string>\",\n            \"unit\": \"<string>\",\n            \"values\": [\n              {\n                \"labels\": [\n                  {\n                    \"name\": \"<string>\",\n                    \"value\": \"<string>\"\n                  },\n                  {\n                    \"name\": \"<string>\",\n                    \"value\": \"<string>\"\n                  }\n                ],\n                \"value\": \"<double>\"\n              },\n              {\n                \"labels\": [\n                  {\n                    \"name\": \"<string>\",\n                    \"value\": \"<string>\"\n                  },\n                  {\n                    \"name\": \"<string>\",\n                    \"value\": \"<string>\"\n                  }\n                ],\n                \"value\": \"<double>\"\n              }\n            ]\n          }\n        ],\n        \"metrics_only\": \"<boolean>\",\n        \"node\": \"<string>\",\n        \"node_identifier\": \"<string>\",\n        \"node_name\": \"<string>\",\n        \"process\": \"<string>\",\n        \"timestamp_iso\": \"<dateTime>\"\n      },\n      {\n        \"details\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"has_error\": \"<boolean>\",\n        \"has_warning\": \"<boolean>\",\n        \"message\": \"<string>\",\n        \"metrics\": [\n          {\n            \"help\": \"<string>\",\n            \"name\": \"<string>\",\n            \"unit\": \"<string>\",\n            \"values\": [\n              {\n                \"labels\": [\n                  {\n                    \"name\": \"<string>\",\n                    \"value\": \"<string>\"\n                  },\n                  {\n                    \"name\": \"<string>\",\n                    \"value\": \"<string>\"\n                  }\n                ],\n                \"value\": \"<double>\"\n              },\n              {\n                \"labels\": [\n                  {\n                    \"name\": \"<string>\",\n                    \"value\": \"<string>\"\n                  },\n                  {\n                    \"name\": \"<string>\",\n                    \"value\": \"<string>\"\n                  }\n                ],\n                \"value\": \"<double>\"\n              }\n            ]\n          },\n          {\n            \"help\": \"<string>\",\n            \"name\": \"<string>\",\n            \"unit\": \"<string>\",\n            \"values\": [\n              {\n                \"labels\": [\n                  {\n                    \"name\": \"<string>\",\n                    \"value\": \"<string>\"\n                  },\n                  {\n                    \"name\": \"<string>\",\n                    \"value\": \"<string>\"\n                  }\n                ],\n                \"value\": \"<double>\"\n              },\n              {\n                \"labels\": [\n                  {\n                    \"name\": \"<string>\",\n                    \"value\": \"<string>\"\n                  },\n                  {\n                    \"name\": \"<string>\",\n                    \"value\": \"<string>\"\n                  }\n                ],\n                \"value\": \"<double>\"\n              }\n            ]\n          }\n        ],\n        \"metrics_only\": \"<boolean>\",\n        \"node\": \"<string>\",\n        \"node_identifier\": \"<string>\",\n        \"node_name\": \"<string>\",\n        \"process\": \"<string>\",\n        \"timestamp_iso\": \"<dateTime>\"\n      }\n    ],\n    \"has_error\": \"<boolean>\",\n    \"has_warning\": \"<boolean>\",\n    \"yb_version\": \"<string>\",\n    \"timestamp_iso\": \"<dateTime>\"\n  }\n]",
+                                      "createdAt": "2026-10-22T01:13:49.000Z",
+                                      "updatedAt": "2026-10-22T01:13:49.000Z",
+                                      "uid": "35240-ee1eceb9-baa7-453a-9d8e-62d57af42249"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:13:49.000Z",
+                                  "updatedAt": "2026-10-22T01:13:49.000Z",
+                                  "uid": "35240-25c7b566-9dd6-45e8-81b0-b68301bc6ed0"
+                                }
+                              ],
+                              "id": "3e24a568-73b8-4399-aceb-162670b68bc7",
+                              "createdAt": "2026-10-22T01:13:49.000Z",
+                              "updatedAt": "2026-10-22T01:13:49.000Z",
+                              "uid": "35240-3e24a568-73b8-4399-aceb-162670b68bc7"
+                            },
+                            {
+                              "name": "leader",
+                              "item": [
+                                {
+                                  "name": "Get IP address of a universe's master leader",
+                                  "id": "0691c265-8af3-4345-bc17-3eacc868fc3e",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "apikey",
+                                      "apikey": [
+                                        {
+                                          "key": "key",
+                                          "value": "X-AUTH-YW-API-TOKEN",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "value",
+                                          "value": "{{apiKey}}",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "in",
+                                          "value": "header",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/leader",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "universes",
+                                        ":uniUUID",
+                                        "leader"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "a7f14dc9-443c-4a23-8501-48d4bf1d825d",
+                                          "key": "cUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "a933d563-3120-422a-a32b-ba4e26500a97",
+                                          "key": "uniUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    },
+                                    "description": "Available since YBA version 2.2.0.0."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "549931f0-54e8-4cda-a546-02c0479f6592",
+                                      "name": "successful operation",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "X-AUTH-YW-API-TOKEN",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/leader",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "universes",
+                                            ":uniUUID",
+                                            "leader"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "cUUID"
+                                            },
+                                            {
+                                              "key": "uniUUID"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{}",
+                                      "createdAt": "2026-10-22T01:13:49.000Z",
+                                      "updatedAt": "2026-10-22T01:13:49.000Z",
+                                      "uid": "35240-549931f0-54e8-4cda-a546-02c0479f6592"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:13:49.000Z",
+                                  "updatedAt": "2026-10-22T01:13:49.000Z",
+                                  "uid": "35240-0691c265-8af3-4345-bc17-3eacc868fc3e"
+                                }
+                              ],
+                              "id": "f8ae7dc8-50ea-4d37-8df3-59ac5ed7736e",
+                              "createdAt": "2026-10-22T01:13:49.000Z",
+                              "updatedAt": "2026-10-22T01:13:49.000Z",
+                              "uid": "35240-f8ae7dc8-50ea-4d37-8df3-59ac5ed7736e"
+                            },
+                            {
+                              "name": "live_queries",
+                              "item": [
+                                {
+                                  "name": "Get live queries for a universe",
+                                  "id": "8fcd6ee8-ec02-4afe-9424-1be44d189952",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "apikey",
+                                      "apikey": [
+                                        {
+                                          "key": "key",
+                                          "value": "X-AUTH-YW-API-TOKEN",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "value",
+                                          "value": "{{apiKey}}",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "in",
+                                          "value": "header",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/live_queries",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "universes",
+                                        ":uniUUID",
+                                        "live_queries"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "4088d2a4-c3a1-42df-b442-0b79a723ed98",
+                                          "key": "cUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "e290fefd-0fb4-46eb-be7c-cc08dd472a0e",
+                                          "key": "uniUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    },
+                                    "description": "Available since YBA version 2.4.0.0."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "db46de9d-75ec-4f6a-be7e-7cb84fe09a2c",
+                                      "name": "successful operation",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "X-AUTH-YW-API-TOKEN",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/live_queries",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "universes",
+                                            ":uniUUID",
+                                            "live_queries"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "cUUID"
+                                            },
+                                            {
+                                              "key": "uniUUID"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{}",
+                                      "createdAt": "2026-10-22T01:13:49.000Z",
+                                      "updatedAt": "2026-10-22T01:13:49.000Z",
+                                      "uid": "35240-db46de9d-75ec-4f6a-be7e-7cb84fe09a2c"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:13:49.000Z",
+                                  "updatedAt": "2026-10-22T01:13:49.000Z",
+                                  "uid": "35240-8fcd6ee8-ec02-4afe-9424-1be44d189952"
+                                }
+                              ],
+                              "id": "2d1065f2-b14c-4d0a-8ed2-b92c28718969",
+                              "createdAt": "2026-10-22T01:13:49.000Z",
+                              "updatedAt": "2026-10-22T01:13:49.000Z",
+                              "uid": "35240-2d1065f2-b14c-4d0a-8ed2-b92c28718969"
+                            },
+                            {
+                              "name": "master_infos",
+                              "item": [
+                                {
+                                  "name": "Get master information list",
+                                  "id": "97a6d672-56bd-49dc-b56a-5ddc33148524",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "apikey",
+                                      "apikey": [
+                                        {
+                                          "key": "key",
+                                          "value": "X-AUTH-YW-API-TOKEN",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "value",
+                                          "value": "{{apiKey}}",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "in",
+                                          "value": "header",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/master_infos",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "universes",
+                                        ":uniUUID",
+                                        "master_infos"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "dc3f465a-d37a-4ebe-b647-1fb93d0a3799",
+                                          "key": "cUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "39f19bdd-5cda-476e-b36d-06a07c67a656",
+                                          "key": "uniUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    },
+                                    "description": "YbaApi Internal."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "85583d22-4271-4082-9f5e-6b4dad0d2e02",
+                                      "name": "successful operation",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "X-AUTH-YW-API-TOKEN",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/master_infos",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "universes",
+                                            ":uniUUID",
+                                            "master_infos"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "cUUID"
+                                            },
+                                            {
+                                              "key": "uniUUID"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "[\n  {\n    \"instanceUUID\": \"<string>\",\n    \"peerRole\": \"FOLLOWER\",\n    \"port\": \"<integer>\",\n    \"privateIp\": \"<string>\",\n    \"uptimeSeconds\": \"<long>\"\n  },\n  {\n    \"instanceUUID\": \"<string>\",\n    \"peerRole\": \"NON_PARTICIPANT\",\n    \"port\": \"<integer>\",\n    \"privateIp\": \"<string>\",\n    \"uptimeSeconds\": \"<long>\"\n  }\n]",
+                                      "createdAt": "2026-10-22T01:13:49.000Z",
+                                      "updatedAt": "2026-10-22T01:13:49.000Z",
+                                      "uid": "35240-85583d22-4271-4082-9f5e-6b4dad0d2e02"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:13:49.000Z",
+                                  "updatedAt": "2026-10-22T01:13:49.000Z",
+                                  "uid": "35240-97a6d672-56bd-49dc-b56a-5ddc33148524"
+                                }
+                              ],
+                              "id": "636dd586-dace-451c-aac3-e9ce9b8fb3c1",
+                              "createdAt": "2026-10-22T01:13:49.000Z",
+                              "updatedAt": "2026-10-22T01:13:49.000Z",
+                              "uid": "35240-636dd586-dace-451c-aac3-e9ce9b8fb3c1"
+                            },
+                            {
+                              "name": "slow_queries",
+                              "item": [
+                                {
+                                  "name": "Reset slow queries for a universe",
+                                  "id": "9d35386c-ed2f-47be-80a5-ce94a9ac8938",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "apikey",
+                                      "apikey": [
+                                        {
+                                          "key": "key",
+                                          "value": "X-AUTH-YW-API-TOKEN",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "value",
+                                          "value": "{{apiKey}}",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "in",
+                                          "value": "header",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/slow_queries",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "universes",
+                                        ":uniUUID",
+                                        "slow_queries"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "ba1b7803-ee77-4e31-9d8e-4adbd4b1faed",
+                                          "key": "cUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "d36f6fce-7162-484b-9391-b4a8aba58b2d",
+                                          "key": "uniUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    },
+                                    "description": "Available since YBA version 2.6.0.0."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "45360f24-c268-431b-85b2-36ae395c53ec",
+                                      "name": "successful operation",
+                                      "originalRequest": {
+                                        "method": "DELETE",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "X-AUTH-YW-API-TOKEN",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/slow_queries",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "universes",
+                                            ":uniUUID",
+                                            "slow_queries"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "cUUID"
+                                            },
+                                            {
+                                              "key": "uniUUID"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{}",
+                                      "createdAt": "2026-10-22T01:13:49.000Z",
+                                      "updatedAt": "2026-10-22T01:13:49.000Z",
+                                      "uid": "35240-45360f24-c268-431b-85b2-36ae395c53ec"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:13:49.000Z",
+                                  "updatedAt": "2026-10-22T01:13:49.000Z",
+                                  "uid": "35240-9d35386c-ed2f-47be-80a5-ce94a9ac8938"
+                                },
+                                {
+                                  "name": "Get slow queries for a universe",
+                                  "id": "6b2a85d6-c94b-4bf0-ac63-e2ed30a354a2",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "apikey",
+                                      "apikey": [
+                                        {
+                                          "key": "key",
+                                          "value": "X-AUTH-YW-API-TOKEN",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "value",
+                                          "value": "{{apiKey}}",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "in",
+                                          "value": "header",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/slow_queries",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "universes",
+                                        ":uniUUID",
+                                        "slow_queries"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "fbcb8857-fa8b-462d-b7eb-abe88f2112a4",
+                                          "key": "cUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "84c1ad80-4fa3-4762-921b-4b23025ce6a3",
+                                          "key": "uniUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    },
+                                    "description": "Available since YBA version 2.6.0.0."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "0b07a54d-f6bc-400c-ae9e-0591498bff98",
+                                      "name": "successful operation",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "X-AUTH-YW-API-TOKEN",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/slow_queries",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "universes",
+                                            ":uniUUID",
+                                            "slow_queries"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "cUUID"
+                                            },
+                                            {
+                                              "key": "uniUUID"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{}",
+                                      "createdAt": "2026-10-22T01:13:49.000Z",
+                                      "updatedAt": "2026-10-22T01:13:49.000Z",
+                                      "uid": "35240-0b07a54d-f6bc-400c-ae9e-0591498bff98"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:13:49.000Z",
+                                  "updatedAt": "2026-10-22T01:13:49.000Z",
+                                  "uid": "35240-6b2a85d6-c94b-4bf0-ac63-e2ed30a354a2"
+                                }
+                              ],
+                              "id": "d5df628a-00a7-4a7e-b147-422e0c6c2be5",
+                              "createdAt": "2026-10-22T01:13:49.000Z",
+                              "updatedAt": "2026-10-22T01:13:49.000Z",
+                              "uid": "35240-d5df628a-00a7-4a7e-b147-422e0c6c2be5"
+                            },
+                            {
+                              "name": "status",
+                              "item": [
+                                {
+                                  "name": "Get a universe's status",
+                                  "id": "775691ba-ae7d-49ac-aabc-b589a9dee15c",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "apikey",
+                                      "apikey": [
+                                        {
+                                          "key": "key",
+                                          "value": "X-AUTH-YW-API-TOKEN",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "value",
+                                          "value": "{{apiKey}}",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "in",
+                                          "value": "header",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/status",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "universes",
+                                        ":uniUUID",
+                                        "status"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "59156bcf-77f7-4dde-b232-81e3055551fd",
+                                          "key": "cUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "a766dc0f-c1e2-4a49-b525-dbf32df58a9a",
+                                          "key": "uniUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    },
+                                    "description": "Available since YBA version 2.2.0.0. This will return a Map of node name to its status in json format."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "72b86e48-16df-4ea1-9d6e-78751926857f",
+                                      "name": "successful operation",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "X-AUTH-YW-API-TOKEN",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/status",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "universes",
+                                            ":uniUUID",
+                                            "status"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "cUUID"
+                                            },
+                                            {
+                                              "key": "uniUUID"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"mollitb_2\": {},\n  \"deserunte\": {}\n}",
+                                      "createdAt": "2026-10-22T01:13:49.000Z",
+                                      "updatedAt": "2026-10-22T01:13:49.000Z",
+                                      "uid": "35240-72b86e48-16df-4ea1-9d6e-78751926857f"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:13:49.000Z",
+                                  "updatedAt": "2026-10-22T01:13:49.000Z",
+                                  "uid": "35240-775691ba-ae7d-49ac-aabc-b589a9dee15c"
+                                }
+                              ],
+                              "id": "19c112ce-0e95-43ee-afc4-cb056aa03b4b",
+                              "createdAt": "2026-10-22T01:13:49.000Z",
+                              "updatedAt": "2026-10-22T01:13:49.000Z",
+                              "uid": "35240-19c112ce-0e95-43ee-afc4-cb056aa03b4b"
+                            },
+                            {
+                              "name": "trigger_health_check",
+                              "item": [
+                                {
+                                  "name": "Trigger a universe health check",
+                                  "id": "6cb01e2a-35a0-4f34-8a7f-9a724a2a8f94",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "apikey",
+                                      "apikey": [
+                                        {
+                                          "key": "key",
+                                          "value": "X-AUTH-YW-API-TOKEN",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "value",
+                                          "value": "{{apiKey}}",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "in",
+                                          "value": "header",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/trigger_health_check",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "universes",
+                                        ":uniUUID",
+                                        "trigger_health_check"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "eec49c33-d8d1-4810-acfc-127d1dfc9857",
+                                          "key": "cUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "94e9eb6e-3bdb-4ec7-af65-50494d3c81b7",
+                                          "key": "uniUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    },
+                                    "description": "YbaApi Internal. Trigger a universe health check and return the trigger time."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "aeeb23b3-d926-45d1-97dd-4b4f5ec4f04d",
+                                      "name": "successful operation",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "X-AUTH-YW-API-TOKEN",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/trigger_health_check",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "universes",
+                                            ":uniUUID",
+                                            "trigger_health_check"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "cUUID"
+                                            },
+                                            {
+                                              "key": "uniUUID"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"timestamp\": \"<dateTime>\"\n}",
+                                      "createdAt": "2026-10-22T01:13:49.000Z",
+                                      "updatedAt": "2026-10-22T01:13:49.000Z",
+                                      "uid": "35240-aeeb23b3-d926-45d1-97dd-4b4f5ec4f04d"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:13:49.000Z",
+                                  "updatedAt": "2026-10-22T01:13:49.000Z",
+                                  "uid": "35240-6cb01e2a-35a0-4f34-8a7f-9a724a2a8f94"
+                                }
+                              ],
+                              "id": "d22006d8-2076-4552-8303-930028e05589",
+                              "createdAt": "2026-10-22T01:13:49.000Z",
+                              "updatedAt": "2026-10-22T01:13:49.000Z",
+                              "uid": "35240-d22006d8-2076-4552-8303-930028e05589"
+                            },
+                            {
+                              "name": "universe_resources",
+                              "item": [
+                                {
+                                  "name": "Get a resource usage estimate for a universe",
+                                  "id": "eadd12ce-c98c-44a3-9752-eb4c86533cdd",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "apikey",
+                                      "apikey": [
+                                        {
+                                          "key": "key",
+                                          "value": "X-AUTH-YW-API-TOKEN",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "value",
+                                          "value": "{{apiKey}}",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "in",
+                                          "value": "header",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/universe_resources",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "universes",
+                                        ":uniUUID",
+                                        "universe_resources"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "466ef786-352b-42a3-a3b1-178b9bf8b705",
+                                          "key": "cUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "95d77af5-a551-4acf-a619-690a50453f22",
+                                          "key": "uniUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    },
+                                    "description": "Available since YBA version 2.20.0.0. Expects UniverseDefinitionTaskParams in request body and calculates the resource estimate for NodeDetailsSet in that."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "429db582-4d4a-49c3-8a75-346fd8ba0f83",
+                                      "name": "successful operation",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "X-AUTH-YW-API-TOKEN",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/universe_resources",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "universes",
+                                            ":uniUUID",
+                                            "universe_resources"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "cUUID"
+                                            },
+                                            {
+                                              "key": "uniUUID"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"azList\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"ebsPricePerHour\": \"<double>\",\n  \"gp3FreePiops\": \"<integer>\",\n  \"gp3FreeThroughput\": \"<integer>\",\n  \"memSizeGB\": \"<double>\",\n  \"numCores\": \"<double>\",\n  \"numNodes\": \"<integer>\",\n  \"pricePerHour\": \"<double>\",\n  \"pricingKnown\": \"<boolean>\",\n  \"volumeCount\": \"<integer>\",\n  \"volumeSizeGB\": \"<integer>\"\n}",
+                                      "createdAt": "2026-10-22T01:13:49.000Z",
+                                      "updatedAt": "2026-10-22T01:13:49.000Z",
+                                      "uid": "35240-429db582-4d4a-49c3-8a75-346fd8ba0f83"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:13:49.000Z",
+                                  "updatedAt": "2026-10-22T01:13:49.000Z",
+                                  "uid": "35240-eadd12ce-c98c-44a3-9752-eb4c86533cdd"
+                                }
+                              ],
+                              "id": "01c39d77-8810-4721-91e0-cf2f2495469c",
+                              "createdAt": "2026-10-22T01:13:49.000Z",
+                              "updatedAt": "2026-10-22T01:13:49.000Z",
+                              "uid": "35240-01c39d77-8810-4721-91e0-cf2f2495469c"
+                            },
+                            {
+                              "name": "{nodeName}",
+                              "item": [
+                                {
+                                  "name": "download_logs",
+                                  "item": [
+                                    {
+                                      "name": "Download a node's logs - deprecated",
+                                      "id": "ed3a4dc8-03a9-47d2-912b-42624de48ddb",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "auth": {
+                                          "type": "apikey",
+                                          "apikey": [
+                                            {
+                                              "key": "key",
+                                              "value": "X-AUTH-YW-API-TOKEN",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "value",
+                                              "value": "{{apiKey}}",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "in",
+                                              "value": "header",
+                                              "type": "string"
+                                            }
+                                          ]
+                                        },
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/x-compressed"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/:nodeName/download_logs",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "universes",
+                                            ":uniUUID",
+                                            ":nodeName",
+                                            "download_logs"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "c700baae-85e1-4d41-8d69-6f0b03eda2c5",
+                                              "key": "cUUID",
+                                              "value": "<uuid>",
+                                              "description": "(Required) "
+                                            },
+                                            {
+                                              "id": "da056b61-776b-44b8-b984-d148745ae9a3",
+                                              "key": "uniUUID",
+                                              "value": "<uuid>",
+                                              "description": "(Required) "
+                                            },
+                                            {
+                                              "id": "82a9be9a-a5bd-4a8e-a0e1-2cb169d80758",
+                                              "key": "nodeName",
+                                              "value": "<string>",
+                                              "description": "(Required) "
+                                            }
+                                          ]
+                                        },
+                                        "description": "Deprecated since YBA version 2.20.0.0.\nUser Support bundle. Downloads the log files from a given node."
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "1aa9fdca-c6ea-4075-b3d4-dc7d69ac5829",
+                                          "name": "successful operation",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/x-compressed"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: apikey",
+                                                "key": "X-AUTH-YW-API-TOKEN",
+                                                "value": "<API Key>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/:nodeName/download_logs",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v1",
+                                                "customers",
+                                                ":cUUID",
+                                                "universes",
+                                                ":uniUUID",
+                                                ":nodeName",
+                                                "download_logs"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "cUUID"
+                                                },
+                                                {
+                                                  "key": "uniUUID"
+                                                },
+                                                {
+                                                  "key": "nodeName"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/x-compressed"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "<string>",
+                                          "createdAt": "2026-10-22T01:13:49.000Z",
+                                          "updatedAt": "2026-10-22T01:13:49.000Z",
+                                          "uid": "35240-1aa9fdca-c6ea-4075-b3d4-dc7d69ac5829"
+                                        }
+                                      ],
+                                      "createdAt": "2026-10-22T01:13:49.000Z",
+                                      "updatedAt": "2026-10-22T01:13:49.000Z",
+                                      "uid": "35240-ed3a4dc8-03a9-47d2-912b-42624de48ddb"
+                                    }
+                                  ],
+                                  "id": "a799297c-c156-4553-ba01-2ef50e2b17cb",
+                                  "createdAt": "2026-10-22T01:13:49.000Z",
+                                  "updatedAt": "2026-10-22T01:13:49.000Z",
+                                  "uid": "35240-a799297c-c156-4553-ba01-2ef50e2b17cb"
+                                }
+                              ],
+                              "id": "7574948d-b639-4216-ad84-c59ea7beb9d7",
+                              "createdAt": "2026-10-22T01:13:49.000Z",
+                              "updatedAt": "2026-10-22T01:13:49.000Z",
+                              "uid": "35240-7574948d-b639-4216-ad84-c59ea7beb9d7"
+                            }
+                          ],
+                          "id": "7cf0203b-fc13-47d4-aed3-317d8b9cc571",
+                          "createdAt": "2026-10-22T01:13:49.000Z",
+                          "updatedAt": "2026-10-22T01:13:49.000Z",
+                          "uid": "35240-7cf0203b-fc13-47d4-aed3-317d8b9cc571"
+                        }
+                      ],
+                      "id": "8e08b69e-e27d-4e86-b0c8-1c59999819aa",
+                      "createdAt": "2026-10-22T01:13:49.000Z",
+                      "updatedAt": "2026-10-22T01:13:49.000Z",
+                      "uid": "35240-8e08b69e-e27d-4e86-b0c8-1c59999819aa"
+                    }
+                  ],
+                  "id": "a673c875-c42a-447c-a97c-979b52cac796",
+                  "createdAt": "2026-10-22T01:13:49.000Z",
+                  "updatedAt": "2026-10-22T01:13:49.000Z",
+                  "uid": "35240-a673c875-c42a-447c-a97c-979b52cac796"
+                }
+              ],
+              "id": "6710a797-4155-41d0-ac08-4e5c905c62be",
+              "createdAt": "2026-10-22T01:13:49.000Z",
+              "updatedAt": "2026-10-22T01:13:49.000Z",
+              "uid": "35240-6710a797-4155-41d0-ac08-4e5c905c62be"
+            }
+          ],
+          "id": "65d4088b-675b-4bc4-a48c-353807c1b7dc",
+          "createdAt": "2026-10-22T01:13:49.000Z",
+          "updatedAt": "2026-10-22T01:13:49.000Z",
+          "uid": "35240-65d4088b-675b-4bc4-a48c-353807c1b7dc"
+        }
+      ],
+      "id": "0fe63d5d-56c8-417c-a66e-db2c28f3c8bf",
+      "createdAt": "2026-10-22T01:13:49.000Z",
+      "updatedAt": "2026-10-22T01:13:49.000Z",
+      "uid": "35240-0fe63d5d-56c8-417c-a66e-db2c28f3c8bf"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

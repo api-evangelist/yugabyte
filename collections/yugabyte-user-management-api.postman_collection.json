@@ -1,0 +1,1327 @@
+{
+  "info": {
+    "_postman_id": "25859520-0901-4730-8f2f-1fdf173b94b8",
+    "name": "Yugabytedb User Management API",
+    "description": "Operations tagged User management across 2 of this provider's published API definitions: openapi_2.yaml, platform.swagger.json. Each path carries the servers of the definition it was published in.\n\nContact Support:\n Name: https://docs.yugabyte.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:14:52.000Z",
+    "updatedAt": "2026-10-22T01:14:53.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-25859520-0901-4730-8f2f-1fdf173b94b8"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "customers",
+              "item": [
+                {
+                  "name": "{cUUID}",
+                  "item": [
+                    {
+                      "name": "reset_password",
+                      "item": [
+                        {
+                          "name": "Reset the user's password",
+                          "id": "780ea542-5bdc-47f3-8f2c-ed2280517b5f",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "apikey",
+                              "apikey": [
+                                {
+                                  "key": "key",
+                                  "value": "X-AUTH-YW-API-TOKEN",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "value",
+                                  "value": "{{apiKey}}",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "in",
+                                  "value": "header",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"currentPassword\": \"<string>\",\n  \"newPassword\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/customers/:cUUID/reset_password",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "customers",
+                                ":cUUID",
+                                "reset_password"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "6084dacb-043c-48c7-abac-b12163269523",
+                                  "key": "cUUID",
+                                  "value": "<uuid>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "6a583680-f853-401d-944e-42e90421ba1b",
+                              "name": "successful operation",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-AUTH-YW-API-TOKEN",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"currentPassword\": \"<string>\",\n  \"newPassword\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/reset_password",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "reset_password"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "cUUID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"success\": \"<boolean>\"\n}",
+                              "createdAt": "2026-10-22T01:14:53.000Z",
+                              "updatedAt": "2026-10-22T01:14:53.000Z",
+                              "uid": "35240-6a583680-f853-401d-944e-42e90421ba1b"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T01:14:53.000Z",
+                          "updatedAt": "2026-10-22T01:14:53.000Z",
+                          "uid": "35240-780ea542-5bdc-47f3-8f2c-ed2280517b5f"
+                        }
+                      ],
+                      "id": "7bac23bf-27bf-4b97-b91d-184d3669f345",
+                      "createdAt": "2026-10-22T01:14:53.000Z",
+                      "updatedAt": "2026-10-22T01:14:53.000Z",
+                      "uid": "35240-7bac23bf-27bf-4b97-b91d-184d3669f345"
+                    },
+                    {
+                      "name": "users",
+                      "item": [
+                        {
+                          "name": "{uUUID}",
+                          "item": [
+                            {
+                              "name": "change_password",
+                              "item": [
+                                {
+                                  "name": "Change password - deprecated",
+                                  "id": "73d41a39-0494-471b-94d2-3d17aa7ec7b2",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "apikey",
+                                      "apikey": [
+                                        {
+                                          "key": "key",
+                                          "value": "X-AUTH-YW-API-TOKEN",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "value",
+                                          "value": "{{apiKey}}",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "in",
+                                          "value": "header",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"email\": \"<string>\",\n  \"confirmPassword\": \"<string>\",\n  \"features\": {\n    \"none87\": {},\n    \"cillum7d2\": {}\n  },\n  \"password\": \"<string>\",\n  \"role\": \"BackupAdmin\",\n  \"roleResourceDefinitions\": [\n    {\n      \"roleUUID\": \"<uuid>\",\n      \"resourceGroup\": {\n        \"resourceDefinitionSet\": [\n          {\n            \"allowAll\": \"<boolean>\",\n            \"resourceType\": \"ROLE\",\n            \"resourceUUIDSet\": [\n              \"<uuid>\",\n              \"<uuid>\"\n            ]\n          },\n          {\n            \"allowAll\": \"<boolean>\",\n            \"resourceType\": \"UNIVERSE\",\n            \"resourceUUIDSet\": [\n              \"<uuid>\",\n              \"<uuid>\"\n            ]\n          }\n        ]\n      }\n    },\n    {\n      \"roleUUID\": \"<uuid>\",\n      \"resourceGroup\": {\n        \"resourceDefinitionSet\": [\n          {\n            \"allowAll\": \"<boolean>\",\n            \"resourceType\": \"OTHER\",\n            \"resourceUUIDSet\": [\n              \"<uuid>\",\n              \"<uuid>\"\n            ]\n          },\n          {\n            \"allowAll\": \"<boolean>\",\n            \"resourceType\": \"ROLE\",\n            \"resourceUUIDSet\": [\n              \"<uuid>\",\n              \"<uuid>\"\n            ]\n          }\n        ]\n      }\n    }\n  ],\n  \"timezone\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/users/:uUUID/change_password",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "users",
+                                        ":uUUID",
+                                        "change_password"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "c12ff5fa-cd0e-4b7e-896c-acb9a2925280",
+                                          "key": "cUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "05c1a801-5b04-4946-acae-bd0fb5f70780",
+                                          "key": "uUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    },
+                                    "description": "Deprecated since YBA version 2024.1.0.0."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "b4502131-da54-4fba-aa8a-68501122c22e",
+                                      "name": "successful operation",
+                                      "originalRequest": {
+                                        "method": "PUT",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "X-AUTH-YW-API-TOKEN",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"email\": \"<string>\",\n  \"confirmPassword\": \"<string>\",\n  \"features\": {\n    \"none87\": {},\n    \"cillum7d2\": {}\n  },\n  \"password\": \"<string>\",\n  \"role\": \"BackupAdmin\",\n  \"roleResourceDefinitions\": [\n    {\n      \"roleUUID\": \"<uuid>\",\n      \"resourceGroup\": {\n        \"resourceDefinitionSet\": [\n          {\n            \"allowAll\": \"<boolean>\",\n            \"resourceType\": \"ROLE\",\n            \"resourceUUIDSet\": [\n              \"<uuid>\",\n              \"<uuid>\"\n            ]\n          },\n          {\n            \"allowAll\": \"<boolean>\",\n            \"resourceType\": \"UNIVERSE\",\n            \"resourceUUIDSet\": [\n              \"<uuid>\",\n              \"<uuid>\"\n            ]\n          }\n        ]\n      }\n    },\n    {\n      \"roleUUID\": \"<uuid>\",\n      \"resourceGroup\": {\n        \"resourceDefinitionSet\": [\n          {\n            \"allowAll\": \"<boolean>\",\n            \"resourceType\": \"OTHER\",\n            \"resourceUUIDSet\": [\n              \"<uuid>\",\n              \"<uuid>\"\n            ]\n          },\n          {\n            \"allowAll\": \"<boolean>\",\n            \"resourceType\": \"ROLE\",\n            \"resourceUUIDSet\": [\n              \"<uuid>\",\n              \"<uuid>\"\n            ]\n          }\n        ]\n      }\n    }\n  ],\n  \"timezone\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/users/:uUUID/change_password",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "users",
+                                            ":uUUID",
+                                            "change_password"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "cUUID"
+                                            },
+                                            {
+                                              "key": "uUUID"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Internal Server Error",
+                                      "code": 500,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-10-22T01:14:53.000Z",
+                                      "updatedAt": "2026-10-22T01:14:53.000Z",
+                                      "uid": "35240-b4502131-da54-4fba-aa8a-68501122c22e"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:14:53.000Z",
+                                  "updatedAt": "2026-10-22T01:14:53.000Z",
+                                  "uid": "35240-73d41a39-0494-471b-94d2-3d17aa7ec7b2"
+                                }
+                              ],
+                              "id": "5bed04e7-193f-48cf-82d9-d8d4cac97f0e",
+                              "createdAt": "2026-10-22T01:14:53.000Z",
+                              "updatedAt": "2026-10-22T01:14:53.000Z",
+                              "uid": "35240-5bed04e7-193f-48cf-82d9-d8d4cac97f0e"
+                            },
+                            {
+                              "name": "oidc_auth_token",
+                              "item": [
+                                {
+                                  "name": "Retrieve OIDC auth token",
+                                  "id": "3f2a248d-6d47-4513-8ea0-e5c6f7222fbb",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "apikey",
+                                      "apikey": [
+                                        {
+                                          "key": "key",
+                                          "value": "X-AUTH-YW-API-TOKEN",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "value",
+                                          "value": "{{apiKey}}",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "in",
+                                          "value": "header",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/users/:uUUID/oidc_auth_token",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "users",
+                                        ":uUUID",
+                                        "oidc_auth_token"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "a6407da4-7133-47c6-8ce2-d2565452a70c",
+                                          "key": "cUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "3bbf58fb-9ddf-42d4-a6ad-cad7dfd2562f",
+                                          "key": "uUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "4329cc1e-ef97-4fc8-8c47-2c0a0e6838ae",
+                                      "name": "successful operation",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "X-AUTH-YW-API-TOKEN",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/users/:uUUID/oidc_auth_token",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "users",
+                                            ":uUUID",
+                                            "oidc_auth_token"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "cUUID"
+                                            },
+                                            {
+                                              "key": "uUUID"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"oidcAuthToken\": \"<string>\"\n}",
+                                      "createdAt": "2026-10-22T01:14:53.000Z",
+                                      "updatedAt": "2026-10-22T01:14:53.000Z",
+                                      "uid": "35240-4329cc1e-ef97-4fc8-8c47-2c0a0e6838ae"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:14:53.000Z",
+                                  "updatedAt": "2026-10-22T01:14:53.000Z",
+                                  "uid": "35240-3f2a248d-6d47-4513-8ea0-e5c6f7222fbb"
+                                }
+                              ],
+                              "id": "cb0914b3-d22d-4433-b619-bf4ec6fe6233",
+                              "createdAt": "2026-10-22T01:14:53.000Z",
+                              "updatedAt": "2026-10-22T01:14:53.000Z",
+                              "uid": "35240-cb0914b3-d22d-4433-b619-bf4ec6fe6233"
+                            },
+                            {
+                              "name": "update_profile",
+                              "item": [
+                                {
+                                  "name": "Update a user's profile",
+                                  "id": "49e66316-7ec4-412e-aa96-0e4f2d48db16",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "apikey",
+                                      "apikey": [
+                                        {
+                                          "key": "key",
+                                          "value": "X-AUTH-YW-API-TOKEN",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "value",
+                                          "value": "{{apiKey}}",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "in",
+                                          "value": "header",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"role\": \"ConnectOnly\",\n  \"confirmPassword\": \"<string>\",\n  \"password\": \"<string>\",\n  \"timezone\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/users/:uUUID/update_profile",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "users",
+                                        ":uUUID",
+                                        "update_profile"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "75f632d5-de46-4a81-af9d-5d84eb8f71e0",
+                                          "key": "cUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "b4c99165-38f4-482e-92d7-c83ed1375905",
+                                          "key": "uUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "4822b63e-6b2f-4cc7-8bfd-9cf88a42b81b",
+                                      "name": "successful operation",
+                                      "originalRequest": {
+                                        "method": "PUT",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "X-AUTH-YW-API-TOKEN",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"role\": \"ConnectOnly\",\n  \"confirmPassword\": \"<string>\",\n  \"password\": \"<string>\",\n  \"timezone\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/users/:uUUID/update_profile",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "users",
+                                            ":uUUID",
+                                            "update_profile"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "cUUID"
+                                            },
+                                            {
+                                              "key": "uUUID"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"email\": \"<string>\",\n  \"groupMemberships\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"primary\": \"<boolean>\",\n  \"authTokenIssueDate\": \"<dateTime>\",\n  \"creationDate\": \"<dateTime>\",\n  \"customerUUID\": \"<uuid>\",\n  \"ldapSpecifiedRole\": \"<boolean>\",\n  \"oidcJwtAuthToken\": \"<string>\",\n  \"role\": \"ConnectOnly\",\n  \"timezone\": \"<string>\",\n  \"userType\": \"oidc\",\n  \"uuid\": \"<uuid>\"\n}",
+                                      "createdAt": "2026-10-22T01:14:53.000Z",
+                                      "updatedAt": "2026-10-22T01:14:53.000Z",
+                                      "uid": "35240-4822b63e-6b2f-4cc7-8bfd-9cf88a42b81b"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:14:53.000Z",
+                                  "updatedAt": "2026-10-22T01:14:53.000Z",
+                                  "uid": "35240-49e66316-7ec4-412e-aa96-0e4f2d48db16"
+                                }
+                              ],
+                              "id": "96d7a099-fbb5-4705-aa49-d6e104979d69",
+                              "createdAt": "2026-10-22T01:14:53.000Z",
+                              "updatedAt": "2026-10-22T01:14:53.000Z",
+                              "uid": "35240-96d7a099-fbb5-4705-aa49-d6e104979d69"
+                            },
+                            {
+                              "name": "Delete a user",
+                              "id": "1089d64c-0cb2-46f5-bdf5-90bab9ec76b6",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "apikey",
+                                  "apikey": [
+                                    {
+                                      "key": "key",
+                                      "value": "X-AUTH-YW-API-TOKEN",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "value",
+                                      "value": "{{apiKey}}",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "in",
+                                      "value": "header",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/users/:uUUID",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "users",
+                                    ":uUUID"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "4f662b43-22ce-450a-b9f3-3b58fcb9d175",
+                                      "key": "cUUID",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    },
+                                    {
+                                      "id": "aa37aba6-f551-4754-acaf-cc50320f5003",
+                                      "key": "uUUID",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Deletes the specified user. Note that you can't delete a customer's primary user."
+                              },
+                              "response": [
+                                {
+                                  "id": "19f5e5f2-7197-472a-933a-0a80631d0958",
+                                  "name": "successful operation",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-AUTH-YW-API-TOKEN",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/users/:uUUID",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "users",
+                                        ":uUUID"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "cUUID"
+                                        },
+                                        {
+                                          "key": "uUUID"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"message\": \"<string>\",\n  \"success\": \"<boolean>\"\n}",
+                                  "createdAt": "2026-10-22T01:14:53.000Z",
+                                  "updatedAt": "2026-10-22T01:14:53.000Z",
+                                  "uid": "35240-19f5e5f2-7197-472a-933a-0a80631d0958"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T01:14:53.000Z",
+                              "updatedAt": "2026-10-22T01:14:53.000Z",
+                              "uid": "35240-1089d64c-0cb2-46f5-bdf5-90bab9ec76b6"
+                            },
+                            {
+                              "name": "Get a user's details",
+                              "id": "210b3e8a-6d45-4b80-b126-e3f0bb6b715c",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "apikey",
+                                  "apikey": [
+                                    {
+                                      "key": "key",
+                                      "value": "X-AUTH-YW-API-TOKEN",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "value",
+                                      "value": "{{apiKey}}",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "in",
+                                      "value": "header",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/users/:uUUID",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "users",
+                                    ":uUUID"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "22ba381c-0f05-457e-8ac3-858f48962d8b",
+                                      "key": "cUUID",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    },
+                                    {
+                                      "id": "b59857dc-5836-4006-8468-fb86fdb6534b",
+                                      "key": "uUUID",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                }
+                              },
+                              "response": [
+                                {
+                                  "id": "54594d42-86f7-4f55-8b16-f8c0e67188a0",
+                                  "name": "successful operation",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-AUTH-YW-API-TOKEN",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/users/:uUUID",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "users",
+                                        ":uUUID"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "cUUID"
+                                        },
+                                        {
+                                          "key": "uUUID"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"email\": \"<string>\",\n  \"groupMemberships\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"primary\": \"<boolean>\",\n  \"authTokenIssueDate\": \"<dateTime>\",\n  \"creationDate\": \"<dateTime>\",\n  \"customerUUID\": \"<uuid>\",\n  \"ldapSpecifiedRole\": \"<boolean>\",\n  \"oidcJwtAuthToken\": \"<string>\",\n  \"role\": \"ConnectOnly\",\n  \"timezone\": \"<string>\",\n  \"userType\": \"local\",\n  \"uuid\": \"<uuid>\"\n}",
+                                  "createdAt": "2026-10-22T01:14:53.000Z",
+                                  "updatedAt": "2026-10-22T01:14:53.000Z",
+                                  "uid": "35240-54594d42-86f7-4f55-8b16-f8c0e67188a0"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T01:14:53.000Z",
+                              "updatedAt": "2026-10-22T01:14:53.000Z",
+                              "uid": "35240-210b3e8a-6d45-4b80-b126-e3f0bb6b715c"
+                            },
+                            {
+                              "name": "Change a user's role",
+                              "id": "1f4f599d-dae3-4c31-bdc4-35c763899aee",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "apikey",
+                                  "apikey": [
+                                    {
+                                      "key": "key",
+                                      "value": "X-AUTH-YW-API-TOKEN",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "value",
+                                      "value": "{{apiKey}}",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "in",
+                                      "value": "header",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/users/:uUUID?role=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "users",
+                                    ":uUUID"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "role",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "1547577b-7b53-4b2d-89af-0d3cd364d474",
+                                      "key": "cUUID",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    },
+                                    {
+                                      "id": "b831d614-8930-4a36-8c05-8f74f0c153af",
+                                      "key": "uUUID",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Deprecated. Use this method instead: setRoleBinding."
+                              },
+                              "response": [
+                                {
+                                  "id": "f4955eb2-01ba-43e5-8e9d-c499c18080d4",
+                                  "name": "successful operation",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-AUTH-YW-API-TOKEN",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/users/:uUUID?role=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "users",
+                                        ":uUUID"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "role",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "cUUID"
+                                        },
+                                        {
+                                          "key": "uUUID"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"message\": \"<string>\",\n  \"success\": \"<boolean>\"\n}",
+                                  "createdAt": "2026-10-22T01:14:53.000Z",
+                                  "updatedAt": "2026-10-22T01:14:53.000Z",
+                                  "uid": "35240-f4955eb2-01ba-43e5-8e9d-c499c18080d4"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T01:14:53.000Z",
+                              "updatedAt": "2026-10-22T01:14:53.000Z",
+                              "uid": "35240-1f4f599d-dae3-4c31-bdc4-35c763899aee"
+                            }
+                          ],
+                          "id": "57ccd046-c1cb-4e24-946b-e2b0ebcb3af2",
+                          "createdAt": "2026-10-22T01:14:53.000Z",
+                          "updatedAt": "2026-10-22T01:14:53.000Z",
+                          "uid": "35240-57ccd046-c1cb-4e24-946b-e2b0ebcb3af2"
+                        },
+                        {
+                          "name": "List all users",
+                          "id": "ad2c4a18-4961-4dfe-b3b3-d7ae900260dc",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "apikey",
+                              "apikey": [
+                                {
+                                  "key": "key",
+                                  "value": "X-AUTH-YW-API-TOKEN",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "value",
+                                  "value": "{{apiKey}}",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "in",
+                                  "value": "header",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/customers/:cUUID/users?email=null",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "customers",
+                                ":cUUID",
+                                "users"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Optional email to filter user list",
+                                  "key": "email",
+                                  "value": "null"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "18665e5e-ec32-4516-8ee0-8b1e5f6b7332",
+                                  "key": "cUUID",
+                                  "value": "<uuid>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "edd2c00a-db6f-4444-9be1-be23d004e070",
+                              "name": "successful operation",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-AUTH-YW-API-TOKEN",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/users?email=null",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "users"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Optional email to filter user list",
+                                      "key": "email",
+                                      "value": "null"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "cUUID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "[\n  {\n    \"email\": \"<string>\",\n    \"groupMemberships\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ],\n    \"primary\": \"<boolean>\",\n    \"authTokenIssueDate\": \"<dateTime>\",\n    \"creationDate\": \"<dateTime>\",\n    \"customerUUID\": \"<uuid>\",\n    \"ldapSpecifiedRole\": \"<boolean>\",\n    \"oidcJwtAuthToken\": \"<string>\",\n    \"role\": \"ConnectOnly\",\n    \"timezone\": \"<string>\",\n    \"userType\": \"oidc\",\n    \"uuid\": \"<uuid>\"\n  },\n  {\n    \"email\": \"<string>\",\n    \"groupMemberships\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ],\n    \"primary\": \"<boolean>\",\n    \"authTokenIssueDate\": \"<dateTime>\",\n    \"creationDate\": \"<dateTime>\",\n    \"customerUUID\": \"<uuid>\",\n    \"ldapSpecifiedRole\": \"<boolean>\",\n    \"oidcJwtAuthToken\": \"<string>\",\n    \"role\": \"SuperAdmin\",\n    \"timezone\": \"<string>\",\n    \"userType\": \"ldap\",\n    \"uuid\": \"<uuid>\"\n  }\n]",
+                              "createdAt": "2026-10-22T01:14:53.000Z",
+                              "updatedAt": "2026-10-22T01:14:53.000Z",
+                              "uid": "35240-edd2c00a-db6f-4444-9be1-be23d004e070"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T01:14:53.000Z",
+                          "updatedAt": "2026-10-22T01:14:53.000Z",
+                          "uid": "35240-ad2c4a18-4961-4dfe-b3b3-d7ae900260dc"
+                        },
+                        {
+                          "name": "Create a user",
+                          "id": "68027453-4df8-42b4-9666-53a72f873aad",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "apikey",
+                              "apikey": [
+                                {
+                                  "key": "key",
+                                  "value": "X-AUTH-YW-API-TOKEN",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "value",
+                                  "value": "{{apiKey}}",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "in",
+                                  "value": "header",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"email\": \"<string>\",\n  \"confirmPassword\": \"<string>\",\n  \"features\": {\n    \"none87\": {},\n    \"cillum7d2\": {}\n  },\n  \"password\": \"<string>\",\n  \"role\": \"BackupAdmin\",\n  \"roleResourceDefinitions\": [\n    {\n      \"roleUUID\": \"<uuid>\",\n      \"resourceGroup\": {\n        \"resourceDefinitionSet\": [\n          {\n            \"allowAll\": \"<boolean>\",\n            \"resourceType\": \"ROLE\",\n            \"resourceUUIDSet\": [\n              \"<uuid>\",\n              \"<uuid>\"\n            ]\n          },\n          {\n            \"allowAll\": \"<boolean>\",\n            \"resourceType\": \"UNIVERSE\",\n            \"resourceUUIDSet\": [\n              \"<uuid>\",\n              \"<uuid>\"\n            ]\n          }\n        ]\n      }\n    },\n    {\n      \"roleUUID\": \"<uuid>\",\n      \"resourceGroup\": {\n        \"resourceDefinitionSet\": [\n          {\n            \"allowAll\": \"<boolean>\",\n            \"resourceType\": \"OTHER\",\n            \"resourceUUIDSet\": [\n              \"<uuid>\",\n              \"<uuid>\"\n            ]\n          },\n          {\n            \"allowAll\": \"<boolean>\",\n            \"resourceType\": \"ROLE\",\n            \"resourceUUIDSet\": [\n              \"<uuid>\",\n              \"<uuid>\"\n            ]\n          }\n        ]\n      }\n    }\n  ],\n  \"timezone\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/customers/:cUUID/users",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "customers",
+                                ":cUUID",
+                                "users"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "2c5e0800-b79d-49f5-bc63-11b21aca5e34",
+                                  "key": "cUUID",
+                                  "value": "<uuid>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "6f754fd9-0de9-4eb2-a4ed-8bd9ef8688e3",
+                              "name": "successful operation",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-AUTH-YW-API-TOKEN",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"email\": \"<string>\",\n  \"confirmPassword\": \"<string>\",\n  \"features\": {\n    \"none87\": {},\n    \"cillum7d2\": {}\n  },\n  \"password\": \"<string>\",\n  \"role\": \"BackupAdmin\",\n  \"roleResourceDefinitions\": [\n    {\n      \"roleUUID\": \"<uuid>\",\n      \"resourceGroup\": {\n        \"resourceDefinitionSet\": [\n          {\n            \"allowAll\": \"<boolean>\",\n            \"resourceType\": \"ROLE\",\n            \"resourceUUIDSet\": [\n              \"<uuid>\",\n              \"<uuid>\"\n            ]\n          },\n          {\n            \"allowAll\": \"<boolean>\",\n            \"resourceType\": \"UNIVERSE\",\n            \"resourceUUIDSet\": [\n              \"<uuid>\",\n              \"<uuid>\"\n            ]\n          }\n        ]\n      }\n    },\n    {\n      \"roleUUID\": \"<uuid>\",\n      \"resourceGroup\": {\n        \"resourceDefinitionSet\": [\n          {\n            \"allowAll\": \"<boolean>\",\n            \"resourceType\": \"OTHER\",\n            \"resourceUUIDSet\": [\n              \"<uuid>\",\n              \"<uuid>\"\n            ]\n          },\n          {\n            \"allowAll\": \"<boolean>\",\n            \"resourceType\": \"ROLE\",\n            \"resourceUUIDSet\": [\n              \"<uuid>\",\n              \"<uuid>\"\n            ]\n          }\n        ]\n      }\n    }\n  ],\n  \"timezone\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/users",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "users"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "cUUID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"email\": \"<string>\",\n  \"groupMemberships\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"primary\": \"<boolean>\",\n  \"authTokenIssueDate\": \"<dateTime>\",\n  \"creationDate\": \"<dateTime>\",\n  \"customerUUID\": \"<uuid>\",\n  \"ldapSpecifiedRole\": \"<boolean>\",\n  \"oidcJwtAuthToken\": \"<string>\",\n  \"role\": \"ConnectOnly\",\n  \"timezone\": \"<string>\",\n  \"userType\": \"local\",\n  \"uuid\": \"<uuid>\"\n}",
+                              "createdAt": "2026-10-22T01:14:53.000Z",
+                              "updatedAt": "2026-10-22T01:14:53.000Z",
+                              "uid": "35240-6f754fd9-0de9-4eb2-a4ed-8bd9ef8688e3"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T01:14:53.000Z",
+                          "updatedAt": "2026-10-22T01:14:53.000Z",
+                          "uid": "35240-68027453-4df8-42b4-9666-53a72f873aad"
+                        }
+                      ],
+                      "id": "7e1a625e-2ff5-4853-a41c-fb2a8083f357",
+                      "createdAt": "2026-10-22T01:14:53.000Z",
+                      "updatedAt": "2026-10-22T01:14:53.000Z",
+                      "uid": "35240-7e1a625e-2ff5-4853-a41c-fb2a8083f357"
+                    }
+                  ],
+                  "id": "4480b8ea-6404-4951-b93d-6fafe0bdbaf5",
+                  "createdAt": "2026-10-22T01:14:53.000Z",
+                  "updatedAt": "2026-10-22T01:14:53.000Z",
+                  "uid": "35240-4480b8ea-6404-4951-b93d-6fafe0bdbaf5"
+                }
+              ],
+              "id": "edf8a78c-c36c-4620-b1fe-838e80b49bdb",
+              "createdAt": "2026-10-22T01:14:53.000Z",
+              "updatedAt": "2026-10-22T01:14:53.000Z",
+              "uid": "35240-edf8a78c-c36c-4620-b1fe-838e80b49bdb"
+            }
+          ],
+          "id": "6a1a8546-cee5-4fbf-832f-0dad450992fd",
+          "createdAt": "2026-10-22T01:14:53.000Z",
+          "updatedAt": "2026-10-22T01:14:53.000Z",
+          "uid": "35240-6a1a8546-cee5-4fbf-832f-0dad450992fd"
+        }
+      ],
+      "id": "2a172a34-58e3-45b2-92ae-8eb29462d498",
+      "createdAt": "2026-10-22T01:14:53.000Z",
+      "updatedAt": "2026-10-22T01:14:53.000Z",
+      "uid": "35240-2a172a34-58e3-45b2-92ae-8eb29462d498"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

@@ -1,0 +1,238 @@
+{
+  "info": {
+    "_postman_id": "4f4f8853-d5f1-4528-927f-0eee37ec6acb",
+    "name": "YugabyteDB Anywhere LDAP Role management API",
+    "description": "ALPHA - NOT FOR EXTERNAL USE\n\nContact Support:\n Name: https://docs.yugabyte.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:09:27.000Z",
+    "updatedAt": "2026-10-22T01:09:27.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-4f4f8853-d5f1-4528-927f-0eee37ec6acb"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "customers",
+              "item": [
+                {
+                  "name": "{cUUID}",
+                  "item": [
+                    {
+                      "name": "universes",
+                      "item": [
+                        {
+                          "name": "{univUUID}",
+                          "item": [
+                            {
+                              "name": "ldap_roles_sync",
+                              "item": [
+                                {
+                                  "name": "Perform an LDAP users sync on the universe",
+                                  "id": "66d13756-45b8-4cc8-8824-8cb98c1c9a8e",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "apikey",
+                                      "apikey": [
+                                        {
+                                          "key": "key",
+                                          "value": "X-AUTH-YW-API-TOKEN",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "value",
+                                          "value": "{{apiKey}}",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "in",
+                                          "value": "header",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"dbuserPassword\": \"<string>\",\n  \"ldapGroupfield\": \"<string>\",\n  \"ldapUserfield\": \"<string>\",\n  \"targetApi\": \"ycql\",\n  \"createGroups\": \"<boolean>\",\n  \"dbUser\": \"<string>\",\n  \"excludeUsers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"groupsToSync\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"ldapBasedn\": \"<string>\",\n  \"ldapBindDn\": \"<string>\",\n  \"ldapBindPassword\": \"<string>\",\n  \"ldapGroupMemberOfAttribute\": \"<string>\",\n  \"ldapPort\": \"<integer>\",\n  \"ldapSearchFilter\": \"<string>\",\n  \"ldapServer\": \"<string>\",\n  \"ldapTlsProtocol\": \"TLSv1_2\",\n  \"useLdapSsl\": \"<boolean>\",\n  \"useLdapTls\": \"<boolean>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:univUUID/ldap_roles_sync",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "universes",
+                                        ":univUUID",
+                                        "ldap_roles_sync"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "18080fcb-d971-444b-ae66-0f23c6416238",
+                                          "key": "cUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "f8273b01-c9a1-417e-8a2a-ebbc12f82e35",
+                                          "key": "univUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    },
+                                    "description": "WARNING: This is a preview API that could change."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "93da31c3-3a30-446a-83a0-15303299c6fd",
+                                      "name": "successful operation",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "X-AUTH-YW-API-TOKEN",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"dbuserPassword\": \"<string>\",\n  \"ldapGroupfield\": \"<string>\",\n  \"ldapUserfield\": \"<string>\",\n  \"targetApi\": \"ycql\",\n  \"createGroups\": \"<boolean>\",\n  \"dbUser\": \"<string>\",\n  \"excludeUsers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"groupsToSync\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"ldapBasedn\": \"<string>\",\n  \"ldapBindDn\": \"<string>\",\n  \"ldapBindPassword\": \"<string>\",\n  \"ldapGroupMemberOfAttribute\": \"<string>\",\n  \"ldapPort\": \"<integer>\",\n  \"ldapSearchFilter\": \"<string>\",\n  \"ldapServer\": \"<string>\",\n  \"ldapTlsProtocol\": \"TLSv1_2\",\n  \"useLdapSsl\": \"<boolean>\",\n  \"useLdapTls\": \"<boolean>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:univUUID/ldap_roles_sync",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "universes",
+                                            ":univUUID",
+                                            "ldap_roles_sync"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "cUUID"
+                                            },
+                                            {
+                                              "key": "univUUID"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"resourceUUID\": \"<uuid>\",\n  \"taskUUID\": \"<uuid>\"\n}",
+                                      "createdAt": "2026-10-22T01:09:28.000Z",
+                                      "updatedAt": "2026-10-22T01:09:28.000Z",
+                                      "uid": "35240-93da31c3-3a30-446a-83a0-15303299c6fd"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:09:28.000Z",
+                                  "updatedAt": "2026-10-22T01:09:28.000Z",
+                                  "uid": "35240-66d13756-45b8-4cc8-8824-8cb98c1c9a8e"
+                                }
+                              ],
+                              "id": "7f8c376b-4d9c-4e5f-a9f7-50f34978b1db",
+                              "createdAt": "2026-10-22T01:09:28.000Z",
+                              "updatedAt": "2026-10-22T01:09:28.000Z",
+                              "uid": "35240-7f8c376b-4d9c-4e5f-a9f7-50f34978b1db"
+                            }
+                          ],
+                          "id": "e8beead1-fb2a-4c87-9fcd-bf1225e2e52e",
+                          "createdAt": "2026-10-22T01:09:28.000Z",
+                          "updatedAt": "2026-10-22T01:09:28.000Z",
+                          "uid": "35240-e8beead1-fb2a-4c87-9fcd-bf1225e2e52e"
+                        }
+                      ],
+                      "id": "47d48666-4984-46fd-9793-930293126d60",
+                      "createdAt": "2026-10-22T01:09:28.000Z",
+                      "updatedAt": "2026-10-22T01:09:28.000Z",
+                      "uid": "35240-47d48666-4984-46fd-9793-930293126d60"
+                    }
+                  ],
+                  "id": "60c4b33b-8419-40a3-a4bc-64792a73dc14",
+                  "createdAt": "2026-10-22T01:09:28.000Z",
+                  "updatedAt": "2026-10-22T01:09:28.000Z",
+                  "uid": "35240-60c4b33b-8419-40a3-a4bc-64792a73dc14"
+                }
+              ],
+              "id": "016a2c79-a9fc-43bd-a318-9fed86d23a6a",
+              "createdAt": "2026-10-22T01:09:28.000Z",
+              "updatedAt": "2026-10-22T01:09:28.000Z",
+              "uid": "35240-016a2c79-a9fc-43bd-a318-9fed86d23a6a"
+            }
+          ],
+          "id": "60027107-b90a-4ef2-9f21-a98d0578e840",
+          "createdAt": "2026-10-22T01:09:28.000Z",
+          "updatedAt": "2026-10-22T01:09:28.000Z",
+          "uid": "35240-60027107-b90a-4ef2-9f21-a98d0578e840"
+        }
+      ],
+      "id": "4fbc1048-19de-4faf-b010-4a0a49db24e1",
+      "createdAt": "2026-10-22T01:09:28.000Z",
+      "updatedAt": "2026-10-22T01:09:28.000Z",
+      "uid": "35240-4fbc1048-19de-4faf-b010-4a0a49db24e1"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

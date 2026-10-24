@@ -1,0 +1,1233 @@
+{
+  "info": {
+    "_postman_id": "98bbd4c6-1ead-4aa7-bcb3-078537f93240",
+    "name": "YugabyteDB Anywhere V2 Continuous Backup API",
+    "description": "An improved set of APIs for managing YugabyteDB Anywhere\n\nContact Support:\n Name: YugabyteDB Anywhere Support\n Email: support@yugabyte.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:07:42.000Z",
+    "updatedAt": "2026-10-22T01:07:43.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-98bbd4c6-1ead-4aa7-bcb3-078537f93240"
+  },
+  "item": [
+    {
+      "name": "customers",
+      "item": [
+        {
+          "name": "{cUUID}",
+          "item": [
+            {
+              "name": "auto-yba-backups",
+              "item": [
+                {
+                  "name": "restore",
+                  "item": [
+                    {
+                      "name": "Restore Continuous Backup",
+                      "id": "2fe14ab3-279d-4645-af44-9484eb28877b",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "X-AUTH-YW-API-TOKEN",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"backup_dir\": \"<string>\",\n  \"storage_config_uuid\": \"<uuid>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:cUUID/auto-yba-backups/restore",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":cUUID",
+                            "auto-yba-backups",
+                            "restore"
+                          ],
+                          "variable": [
+                            {
+                              "id": "b606d3e7-0bdc-43ff-b928-7cf06d43631e",
+                              "key": "cUUID",
+                              "value": "<uuid>",
+                              "description": "(Required) Customer UUID"
+                            }
+                          ]
+                        },
+                        "description": "Restore a backup from a continuous backup configuration"
+                      },
+                      "response": [
+                        {
+                          "id": "84230a31-3be7-476a-a2df-c8e48e465e09",
+                          "name": "task accepted",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-AUTH-YW-API-TOKEN",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"backup_dir\": \"<string>\",\n  \"storage_config_uuid\": \"<uuid>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/customers/:cUUID/auto-yba-backups/restore",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "customers",
+                                ":cUUID",
+                                "auto-yba-backups",
+                                "restore"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "cUUID"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Accepted",
+                          "code": 202,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"resource_uuid\": \"<uuid>\",\n  \"task_uuid\": \"<uuid>\"\n}",
+                          "createdAt": "2026-10-22T01:07:43.000Z",
+                          "updatedAt": "2026-10-22T01:07:43.000Z",
+                          "uid": "35240-84230a31-3be7-476a-a2df-c8e48e465e09"
+                        },
+                        {
+                          "id": "36d52038-69cf-4d09-82b1-a6d9c452efc5",
+                          "name": "Invalid input",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-AUTH-YW-API-TOKEN",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"backup_dir\": \"<string>\",\n  \"storage_config_uuid\": \"<uuid>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/customers/:cUUID/auto-yba-backups/restore",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "customers",
+                                ":cUUID",
+                                "auto-yba-backups",
+                                "restore"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "cUUID"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T01:07:43.000Z",
+                          "updatedAt": "2026-10-22T01:07:43.000Z",
+                          "uid": "35240-36d52038-69cf-4d09-82b1-a6d9c452efc5"
+                        },
+                        {
+                          "id": "50ffeeae-3362-4c3f-9a1e-2df99894a23f",
+                          "name": "Server error",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-AUTH-YW-API-TOKEN",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"backup_dir\": \"<string>\",\n  \"storage_config_uuid\": \"<uuid>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/customers/:cUUID/auto-yba-backups/restore",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "customers",
+                                ":cUUID",
+                                "auto-yba-backups",
+                                "restore"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "cUUID"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T01:07:43.000Z",
+                          "updatedAt": "2026-10-22T01:07:43.000Z",
+                          "uid": "35240-50ffeeae-3362-4c3f-9a1e-2df99894a23f"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T01:07:43.000Z",
+                      "updatedAt": "2026-10-22T01:07:43.000Z",
+                      "uid": "35240-2fe14ab3-279d-4645-af44-9484eb28877b"
+                    }
+                  ],
+                  "id": "8f3c4f60-1514-4ba9-826c-1534f39e3fc4",
+                  "createdAt": "2026-10-22T01:07:43.000Z",
+                  "updatedAt": "2026-10-22T01:07:43.000Z",
+                  "uid": "35240-8f3c4f60-1514-4ba9-826c-1534f39e3fc4"
+                },
+                {
+                  "name": "{bUUID}",
+                  "item": [
+                    {
+                      "name": "Delete Continuous Backup config",
+                      "id": "eece397f-503d-4ca9-b2b2-eb4dc11cb367",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "X-AUTH-YW-API-TOKEN",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:cUUID/auto-yba-backups/:bUUID",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":cUUID",
+                            "auto-yba-backups",
+                            ":bUUID"
+                          ],
+                          "variable": [
+                            {
+                              "id": "add3467f-90d2-4ecf-a6e7-0471b419e3d4",
+                              "key": "cUUID",
+                              "value": "<uuid>",
+                              "description": "(Required) Customer UUID"
+                            },
+                            {
+                              "id": "ecaa1daa-cede-4558-a178-30d05914ab8c",
+                              "key": "bUUID",
+                              "value": "<uuid>",
+                              "description": "(Required) Continuous Backup UUID"
+                            }
+                          ]
+                        },
+                        "description": "Delete continuous backup config"
+                      },
+                      "response": [
+                        {
+                          "id": "d9c9c9af-f14f-49db-9787-3ac7745fc8c4",
+                          "name": "Continuous Backup Config",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-AUTH-YW-API-TOKEN",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/customers/:cUUID/auto-yba-backups/:bUUID",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "customers",
+                                ":cUUID",
+                                "auto-yba-backups",
+                                ":bUUID"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "cUUID"
+                                },
+                                {
+                                  "key": "bUUID"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"info\": {\n    \"uuid\": \"<uuid>\",\n    \"storage_location\": \"<string>\",\n    \"last_backup\": \"<dateTime>\"\n  },\n  \"spec\": {\n    \"backup_dir\": \"<string>\",\n    \"frequency\": \"<long>\",\n    \"frequency_time_unit\": \"MICROSECONDS\",\n    \"storage_config_uuid\": \"<uuid>\",\n    \"num_backups\": 5\n  }\n}",
+                          "createdAt": "2026-10-22T01:07:43.000Z",
+                          "updatedAt": "2026-10-22T01:07:43.000Z",
+                          "uid": "35240-d9c9c9af-f14f-49db-9787-3ac7745fc8c4"
+                        },
+                        {
+                          "id": "0b2b5f5d-e082-48ce-bf22-33bf46c4ff17",
+                          "name": "Invalid input",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-AUTH-YW-API-TOKEN",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/customers/:cUUID/auto-yba-backups/:bUUID",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "customers",
+                                ":cUUID",
+                                "auto-yba-backups",
+                                ":bUUID"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "cUUID"
+                                },
+                                {
+                                  "key": "bUUID"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T01:07:43.000Z",
+                          "updatedAt": "2026-10-22T01:07:43.000Z",
+                          "uid": "35240-0b2b5f5d-e082-48ce-bf22-33bf46c4ff17"
+                        },
+                        {
+                          "id": "a16c287d-9143-44b2-9e72-2cc0afbd24f7",
+                          "name": "Server error",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-AUTH-YW-API-TOKEN",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/customers/:cUUID/auto-yba-backups/:bUUID",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "customers",
+                                ":cUUID",
+                                "auto-yba-backups",
+                                ":bUUID"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "cUUID"
+                                },
+                                {
+                                  "key": "bUUID"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T01:07:43.000Z",
+                          "updatedAt": "2026-10-22T01:07:43.000Z",
+                          "uid": "35240-a16c287d-9143-44b2-9e72-2cc0afbd24f7"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T01:07:43.000Z",
+                      "updatedAt": "2026-10-22T01:07:43.000Z",
+                      "uid": "35240-eece397f-503d-4ca9-b2b2-eb4dc11cb367"
+                    },
+                    {
+                      "name": "Edit Continuous Backup config",
+                      "id": "fb1afe78-4a8f-452e-bf33-027a706b569e",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "X-AUTH-YW-API-TOKEN",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"backup_dir\": \"<string>\",\n  \"frequency\": \"<long>\",\n  \"frequency_time_unit\": \"NANOSECONDS\",\n  \"storage_config_uuid\": \"<uuid>\",\n  \"num_backups\": 5\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:cUUID/auto-yba-backups/:bUUID",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":cUUID",
+                            "auto-yba-backups",
+                            ":bUUID"
+                          ],
+                          "variable": [
+                            {
+                              "id": "06a7704c-5f22-46b5-a293-9efa61c4874b",
+                              "key": "cUUID",
+                              "value": "<uuid>",
+                              "description": "(Required) Customer UUID"
+                            },
+                            {
+                              "id": "a354c06a-9e59-4ca1-86c1-481f537f5b98",
+                              "key": "bUUID",
+                              "value": "<uuid>",
+                              "description": "(Required) Continuous Backup UUID"
+                            }
+                          ]
+                        },
+                        "description": "Edit continuous backup config"
+                      },
+                      "response": [
+                        {
+                          "id": "fb5de21e-4c73-4558-9bba-7d7606528076",
+                          "name": "Continuous Backup Config",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-AUTH-YW-API-TOKEN",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"backup_dir\": \"<string>\",\n  \"frequency\": \"<long>\",\n  \"frequency_time_unit\": \"NANOSECONDS\",\n  \"storage_config_uuid\": \"<uuid>\",\n  \"num_backups\": 5\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/customers/:cUUID/auto-yba-backups/:bUUID",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "customers",
+                                ":cUUID",
+                                "auto-yba-backups",
+                                ":bUUID"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "cUUID"
+                                },
+                                {
+                                  "key": "bUUID"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"info\": {\n    \"uuid\": \"<uuid>\",\n    \"storage_location\": \"<string>\",\n    \"last_backup\": \"<dateTime>\"\n  },\n  \"spec\": {\n    \"backup_dir\": \"<string>\",\n    \"frequency\": \"<long>\",\n    \"frequency_time_unit\": \"MICROSECONDS\",\n    \"storage_config_uuid\": \"<uuid>\",\n    \"num_backups\": 5\n  }\n}",
+                          "createdAt": "2026-10-22T01:07:43.000Z",
+                          "updatedAt": "2026-10-22T01:07:43.000Z",
+                          "uid": "35240-fb5de21e-4c73-4558-9bba-7d7606528076"
+                        },
+                        {
+                          "id": "9fbcae08-3958-41fa-abbb-0470b8589b2e",
+                          "name": "Invalid input",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-AUTH-YW-API-TOKEN",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"backup_dir\": \"<string>\",\n  \"frequency\": \"<long>\",\n  \"frequency_time_unit\": \"NANOSECONDS\",\n  \"storage_config_uuid\": \"<uuid>\",\n  \"num_backups\": 5\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/customers/:cUUID/auto-yba-backups/:bUUID",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "customers",
+                                ":cUUID",
+                                "auto-yba-backups",
+                                ":bUUID"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "cUUID"
+                                },
+                                {
+                                  "key": "bUUID"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T01:07:43.000Z",
+                          "updatedAt": "2026-10-22T01:07:43.000Z",
+                          "uid": "35240-9fbcae08-3958-41fa-abbb-0470b8589b2e"
+                        },
+                        {
+                          "id": "dab54c5d-fdd9-4f92-be30-a73eca93f274",
+                          "name": "Server error",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-AUTH-YW-API-TOKEN",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"backup_dir\": \"<string>\",\n  \"frequency\": \"<long>\",\n  \"frequency_time_unit\": \"NANOSECONDS\",\n  \"storage_config_uuid\": \"<uuid>\",\n  \"num_backups\": 5\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/customers/:cUUID/auto-yba-backups/:bUUID",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "customers",
+                                ":cUUID",
+                                "auto-yba-backups",
+                                ":bUUID"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "cUUID"
+                                },
+                                {
+                                  "key": "bUUID"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T01:07:43.000Z",
+                          "updatedAt": "2026-10-22T01:07:43.000Z",
+                          "uid": "35240-dab54c5d-fdd9-4f92-be30-a73eca93f274"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T01:07:43.000Z",
+                      "updatedAt": "2026-10-22T01:07:43.000Z",
+                      "uid": "35240-fb1afe78-4a8f-452e-bf33-027a706b569e"
+                    }
+                  ],
+                  "id": "1edaa757-c2fa-41d8-bcfb-d34a4621f451",
+                  "createdAt": "2026-10-22T01:07:43.000Z",
+                  "updatedAt": "2026-10-22T01:07:43.000Z",
+                  "uid": "35240-1edaa757-c2fa-41d8-bcfb-d34a4621f451"
+                },
+                {
+                  "name": "Get Continuous Backup",
+                  "id": "b3c30ad4-8997-4d93-8644-1041c01c940a",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "X-AUTH-YW-API-TOKEN",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/customers/:cUUID/auto-yba-backups",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customers",
+                        ":cUUID",
+                        "auto-yba-backups"
+                      ],
+                      "variable": [
+                        {
+                          "id": "20695f0c-bd7b-48ba-8cf9-89a5af38c220",
+                          "key": "cUUID",
+                          "value": "<uuid>",
+                          "description": "(Required) Customer UUID"
+                        }
+                      ]
+                    },
+                    "description": "Get details of the continuous backup configuration"
+                  },
+                  "response": [
+                    {
+                      "id": "5fd3aec2-eab2-4bbd-996a-400bb5d8a9a0",
+                      "name": "Continuous Backup Config",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-AUTH-YW-API-TOKEN",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:cUUID/auto-yba-backups",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":cUUID",
+                            "auto-yba-backups"
+                          ],
+                          "variable": [
+                            {
+                              "key": "cUUID"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"info\": {\n    \"uuid\": \"<uuid>\",\n    \"storage_location\": \"<string>\",\n    \"last_backup\": \"<dateTime>\"\n  },\n  \"spec\": {\n    \"backup_dir\": \"<string>\",\n    \"frequency\": \"<long>\",\n    \"frequency_time_unit\": \"MICROSECONDS\",\n    \"storage_config_uuid\": \"<uuid>\",\n    \"num_backups\": 5\n  }\n}",
+                      "createdAt": "2026-10-22T01:07:43.000Z",
+                      "updatedAt": "2026-10-22T01:07:43.000Z",
+                      "uid": "35240-5fd3aec2-eab2-4bbd-996a-400bb5d8a9a0"
+                    },
+                    {
+                      "id": "01ec158b-9a60-407b-8f11-8f512ddfcab1",
+                      "name": "Invalid input",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-AUTH-YW-API-TOKEN",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:cUUID/auto-yba-backups",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":cUUID",
+                            "auto-yba-backups"
+                          ],
+                          "variable": [
+                            {
+                              "key": "cUUID"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:07:43.000Z",
+                      "updatedAt": "2026-10-22T01:07:43.000Z",
+                      "uid": "35240-01ec158b-9a60-407b-8f11-8f512ddfcab1"
+                    },
+                    {
+                      "id": "72d57b5f-edaa-43cb-ad38-0541b2f6d408",
+                      "name": "Server error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-AUTH-YW-API-TOKEN",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:cUUID/auto-yba-backups",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":cUUID",
+                            "auto-yba-backups"
+                          ],
+                          "variable": [
+                            {
+                              "key": "cUUID"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:07:43.000Z",
+                      "updatedAt": "2026-10-22T01:07:43.000Z",
+                      "uid": "35240-72d57b5f-edaa-43cb-ad38-0541b2f6d408"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:07:43.000Z",
+                  "updatedAt": "2026-10-22T01:07:43.000Z",
+                  "uid": "35240-b3c30ad4-8997-4d93-8644-1041c01c940a"
+                },
+                {
+                  "name": "Create Continous Backup",
+                  "id": "ad066990-9701-4b7b-a16f-36c92b58d9c0",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "X-AUTH-YW-API-TOKEN",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"backup_dir\": \"<string>\",\n  \"frequency\": \"<long>\",\n  \"frequency_time_unit\": \"NANOSECONDS\",\n  \"storage_config_uuid\": \"<uuid>\",\n  \"num_backups\": 5\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/customers/:cUUID/auto-yba-backups",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customers",
+                        ":cUUID",
+                        "auto-yba-backups"
+                      ],
+                      "variable": [
+                        {
+                          "id": "cd9d8230-b141-481a-a415-b9bd425badba",
+                          "key": "cUUID",
+                          "value": "<uuid>",
+                          "description": "(Required) Customer UUID"
+                        }
+                      ]
+                    },
+                    "description": "Create a continuous backup configuration"
+                  },
+                  "response": [
+                    {
+                      "id": "70d8442e-f57e-4dad-a79a-f67fbb64d842",
+                      "name": "Continuous Backup Config",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-AUTH-YW-API-TOKEN",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"backup_dir\": \"<string>\",\n  \"frequency\": \"<long>\",\n  \"frequency_time_unit\": \"NANOSECONDS\",\n  \"storage_config_uuid\": \"<uuid>\",\n  \"num_backups\": 5\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:cUUID/auto-yba-backups",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":cUUID",
+                            "auto-yba-backups"
+                          ],
+                          "variable": [
+                            {
+                              "key": "cUUID"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"info\": {\n    \"uuid\": \"<uuid>\",\n    \"storage_location\": \"<string>\",\n    \"last_backup\": \"<dateTime>\"\n  },\n  \"spec\": {\n    \"backup_dir\": \"<string>\",\n    \"frequency\": \"<long>\",\n    \"frequency_time_unit\": \"MICROSECONDS\",\n    \"storage_config_uuid\": \"<uuid>\",\n    \"num_backups\": 5\n  }\n}",
+                      "createdAt": "2026-10-22T01:07:43.000Z",
+                      "updatedAt": "2026-10-22T01:07:43.000Z",
+                      "uid": "35240-70d8442e-f57e-4dad-a79a-f67fbb64d842"
+                    },
+                    {
+                      "id": "dabb2196-9133-4928-989c-6819849f86b9",
+                      "name": "Invalid input",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-AUTH-YW-API-TOKEN",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"backup_dir\": \"<string>\",\n  \"frequency\": \"<long>\",\n  \"frequency_time_unit\": \"NANOSECONDS\",\n  \"storage_config_uuid\": \"<uuid>\",\n  \"num_backups\": 5\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:cUUID/auto-yba-backups",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":cUUID",
+                            "auto-yba-backups"
+                          ],
+                          "variable": [
+                            {
+                              "key": "cUUID"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:07:43.000Z",
+                      "updatedAt": "2026-10-22T01:07:43.000Z",
+                      "uid": "35240-dabb2196-9133-4928-989c-6819849f86b9"
+                    },
+                    {
+                      "id": "764dd005-7cb1-4bbc-a68e-f85e9cc2b898",
+                      "name": "Server error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-AUTH-YW-API-TOKEN",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"backup_dir\": \"<string>\",\n  \"frequency\": \"<long>\",\n  \"frequency_time_unit\": \"NANOSECONDS\",\n  \"storage_config_uuid\": \"<uuid>\",\n  \"num_backups\": 5\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:cUUID/auto-yba-backups",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":cUUID",
+                            "auto-yba-backups"
+                          ],
+                          "variable": [
+                            {
+                              "key": "cUUID"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:07:43.000Z",
+                      "updatedAt": "2026-10-22T01:07:43.000Z",
+                      "uid": "35240-764dd005-7cb1-4bbc-a68e-f85e9cc2b898"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:07:43.000Z",
+                  "updatedAt": "2026-10-22T01:07:43.000Z",
+                  "uid": "35240-ad066990-9701-4b7b-a16f-36c92b58d9c0"
+                }
+              ],
+              "id": "b6f76d5f-a916-422b-b4c1-b06a29768eae",
+              "createdAt": "2026-10-22T01:07:43.000Z",
+              "updatedAt": "2026-10-22T01:07:43.000Z",
+              "uid": "35240-b6f76d5f-a916-422b-b4c1-b06a29768eae"
+            }
+          ],
+          "id": "d62f4a32-8227-45eb-bd06-1c83c8c827b1",
+          "createdAt": "2026-10-22T01:07:43.000Z",
+          "updatedAt": "2026-10-22T01:07:43.000Z",
+          "uid": "35240-d62f4a32-8227-45eb-bd06-1c83c8c827b1"
+        }
+      ],
+      "id": "877ea8f2-fc81-4b50-9064-9ca078ffbc7d",
+      "createdAt": "2026-10-22T01:07:43.000Z",
+      "updatedAt": "2026-10-22T01:07:43.000Z",
+      "uid": "35240-877ea8f2-fc81-4b50-9064-9ca078ffbc7d"
+    }
+  ],
+  "variable": [
+    {
+      "key": "protocol",
+      "value": "http"
+    },
+    {
+      "key": "host_port",
+      "value": "localhost:9000"
+    },
+    {
+      "key": "baseUrl",
+      "value": "{{protocol}}://{{host_port}}/api/v2"
+    }
+  ]
+}

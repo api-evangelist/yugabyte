@@ -1,0 +1,1093 @@
+{
+  "info": {
+    "_postman_id": "f2f765ea-3dea-4232-a9a0-859c9256d885",
+    "name": "Yugabytedb Support Bundle management API",
+    "description": "Operations tagged Support Bundle management across 2 of this provider's published API definitions: openapi_2.yaml, platform.swagger.json. Each path carries the servers of the definition it was published in.\n\nContact Support:\n Name: https://docs.yugabyte.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:12:45.000Z",
+    "updatedAt": "2026-10-22T01:12:46.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f2f765ea-3dea-4232-a9a0-859c9256d885"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "customers",
+              "item": [
+                {
+                  "name": "{cUUID}",
+                  "item": [
+                    {
+                      "name": "support_bundle",
+                      "item": [
+                        {
+                          "name": "components",
+                          "item": [
+                            {
+                              "name": "List all components available in support bundle",
+                              "id": "ed9121c9-3178-4ded-b0e9-481d2855fe07",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "apikey",
+                                  "apikey": [
+                                    {
+                                      "key": "key",
+                                      "value": "X-AUTH-YW-API-TOKEN",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "value",
+                                      "value": "{{apiKey}}",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "in",
+                                      "value": "header",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/support_bundle/components",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "support_bundle",
+                                    "components"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "64921ea3-73bb-44d0-95ad-e57768977b51",
+                                      "key": "cUUID",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                }
+                              },
+                              "response": [
+                                {
+                                  "id": "0244b619-366f-4b36-8eb8-c28c2162a803",
+                                  "name": "successful operation",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-AUTH-YW-API-TOKEN",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/support_bundle/components",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "support_bundle",
+                                        "components"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "cUUID"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "[\n  \"TabletReport\",\n  \"OutputFiles\"\n]",
+                                  "createdAt": "2026-10-22T01:12:46.000Z",
+                                  "updatedAt": "2026-10-22T01:12:46.000Z",
+                                  "uid": "35240-0244b619-366f-4b36-8eb8-c28c2162a803"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T01:12:46.000Z",
+                              "updatedAt": "2026-10-22T01:12:46.000Z",
+                              "uid": "35240-ed9121c9-3178-4ded-b0e9-481d2855fe07"
+                            }
+                          ],
+                          "id": "59938148-9731-4c46-bd0b-1cf561393e24",
+                          "createdAt": "2026-10-22T01:12:46.000Z",
+                          "updatedAt": "2026-10-22T01:12:46.000Z",
+                          "uid": "35240-59938148-9731-4c46-bd0b-1cf561393e24"
+                        }
+                      ],
+                      "id": "eec962fe-e093-4556-8557-75ec69bef3ff",
+                      "createdAt": "2026-10-22T01:12:46.000Z",
+                      "updatedAt": "2026-10-22T01:12:46.000Z",
+                      "uid": "35240-eec962fe-e093-4556-8557-75ec69bef3ff"
+                    },
+                    {
+                      "name": "universes",
+                      "item": [
+                        {
+                          "name": "{uniUUID}",
+                          "item": [
+                            {
+                              "name": "support_bundle",
+                              "item": [
+                                {
+                                  "name": "estimate_size",
+                                  "item": [
+                                    {
+                                      "name": "Estimate support bundle size for specific universe",
+                                      "id": "58e5c3ac-e38d-4a3c-af93-ba158dbd8537",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "auth": {
+                                          "type": "apikey",
+                                          "apikey": [
+                                            {
+                                              "key": "key",
+                                              "value": "X-AUTH-YW-API-TOKEN",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "value",
+                                              "value": "{{apiKey}}",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "in",
+                                              "value": "header",
+                                              "type": "string"
+                                            }
+                                          ]
+                                        },
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"components\": [\n    \"NodeAgent\",\n    \"K8sInfo\"\n  ],\n  \"endDate\": \"<dateTime>\",\n  \"startDate\": \"<dateTime>\",\n  \"batchDurationPromDumpMins\": \"<integer>\",\n  \"filterPgAuditLogs\": \"<boolean>\",\n  \"maxCoreFileSize\": \"<long>\",\n  \"maxNumRecentCores\": \"<integer>\",\n  \"paDumpEndDate\": \"<dateTime>\",\n  \"paDumpStartDate\": \"<dateTime>\",\n  \"paMetricsFormat\": \"PROMQL_JSON\",\n  \"promDumpDownSample\": \"<boolean>\",\n  \"promDumpEndDate\": \"<dateTime>\",\n  \"promDumpStartDate\": \"<dateTime>\",\n  \"promExportType\": \"REMOTE_READ\",\n  \"promMetricsFormat\": \"PROM_CHUNK\",\n  \"promQueries\": {\n    \"ullamco_1\": \"<string>\",\n    \"sed6\": \"<string>\",\n    \"laborum_e\": \"<string>\"\n  },\n  \"prometheusMetricsTypes\": [\n    \"TSERVER_EXPORT\",\n    \"CQL_EXPORT\"\n  ],\n  \"stepPromDumpSecs\": \"<integer>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/support_bundle/estimate_size",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "universes",
+                                            ":uniUUID",
+                                            "support_bundle",
+                                            "estimate_size"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "b8aa5364-452c-4a08-844d-bc3cf5a5868b",
+                                              "key": "cUUID",
+                                              "value": "<uuid>",
+                                              "description": "(Required) "
+                                            },
+                                            {
+                                              "id": "3e0b5459-9a0c-4cfb-975b-22bd6122c734",
+                                              "key": "uniUUID",
+                                              "value": "<uuid>",
+                                              "description": "(Required) "
+                                            }
+                                          ]
+                                        },
+                                        "description": "YbaApi Internal."
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "b9aeef5c-dbac-451a-98c3-4fa55e6d8ed9",
+                                          "name": "successful operation",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: apikey",
+                                                "key": "X-AUTH-YW-API-TOKEN",
+                                                "value": "<API Key>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "{\n  \"components\": [\n    \"NodeAgent\",\n    \"K8sInfo\"\n  ],\n  \"endDate\": \"<dateTime>\",\n  \"startDate\": \"<dateTime>\",\n  \"batchDurationPromDumpMins\": \"<integer>\",\n  \"filterPgAuditLogs\": \"<boolean>\",\n  \"maxCoreFileSize\": \"<long>\",\n  \"maxNumRecentCores\": \"<integer>\",\n  \"paDumpEndDate\": \"<dateTime>\",\n  \"paDumpStartDate\": \"<dateTime>\",\n  \"paMetricsFormat\": \"PROMQL_JSON\",\n  \"promDumpDownSample\": \"<boolean>\",\n  \"promDumpEndDate\": \"<dateTime>\",\n  \"promDumpStartDate\": \"<dateTime>\",\n  \"promExportType\": \"REMOTE_READ\",\n  \"promMetricsFormat\": \"PROM_CHUNK\",\n  \"promQueries\": {\n    \"ullamco_1\": \"<string>\",\n    \"sed6\": \"<string>\",\n    \"laborum_e\": \"<string>\"\n  },\n  \"prometheusMetricsTypes\": [\n    \"TSERVER_EXPORT\",\n    \"CQL_EXPORT\"\n  ],\n  \"stepPromDumpSecs\": \"<integer>\"\n}",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/support_bundle/estimate_size",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v1",
+                                                "customers",
+                                                ":cUUID",
+                                                "universes",
+                                                ":uniUUID",
+                                                "support_bundle",
+                                                "estimate_size"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "cUUID"
+                                                },
+                                                {
+                                                  "key": "uniUUID"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"data\": {\n    \"exercitation_9\": {\n      \"occaecat66b\": \"<long>\"\n    },\n    \"sint4c\": {\n      \"doa\": \"<long>\",\n      \"qui3\": \"<long>\"\n    }\n  }\n}",
+                                          "createdAt": "2026-10-22T01:12:46.000Z",
+                                          "updatedAt": "2026-10-22T01:12:46.000Z",
+                                          "uid": "35240-b9aeef5c-dbac-451a-98c3-4fa55e6d8ed9"
+                                        }
+                                      ],
+                                      "createdAt": "2026-10-22T01:12:46.000Z",
+                                      "updatedAt": "2026-10-22T01:12:46.000Z",
+                                      "uid": "35240-58e5c3ac-e38d-4a3c-af93-ba158dbd8537"
+                                    }
+                                  ],
+                                  "id": "57587622-406e-444e-8e17-3c772cd664f3",
+                                  "createdAt": "2026-10-22T01:12:46.000Z",
+                                  "updatedAt": "2026-10-22T01:12:46.000Z",
+                                  "uid": "35240-57587622-406e-444e-8e17-3c772cd664f3"
+                                },
+                                {
+                                  "name": "{sbUUID}",
+                                  "item": [
+                                    {
+                                      "name": "download",
+                                      "item": [
+                                        {
+                                          "name": "Download support bundle",
+                                          "id": "de2ca848-552a-4839-aaa0-8a24578f6c97",
+                                          "protocolProfileBehavior": {
+                                            "disableBodyPruning": true
+                                          },
+                                          "request": {
+                                            "auth": {
+                                              "type": "apikey",
+                                              "apikey": [
+                                                {
+                                                  "key": "key",
+                                                  "value": "X-AUTH-YW-API-TOKEN",
+                                                  "type": "string"
+                                                },
+                                                {
+                                                  "key": "value",
+                                                  "value": "{{apiKey}}",
+                                                  "type": "string"
+                                                },
+                                                {
+                                                  "key": "in",
+                                                  "value": "header",
+                                                  "type": "string"
+                                                }
+                                              ]
+                                            },
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/x-compressed"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/support_bundle/:sbUUID/download",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v1",
+                                                "customers",
+                                                ":cUUID",
+                                                "universes",
+                                                ":uniUUID",
+                                                "support_bundle",
+                                                ":sbUUID",
+                                                "download"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "id": "85297a90-f413-4ecb-85bc-bb5510a454a2",
+                                                  "key": "cUUID",
+                                                  "value": "<uuid>",
+                                                  "description": "(Required) "
+                                                },
+                                                {
+                                                  "id": "de32ed78-cf28-4136-91f5-e3b7c659d343",
+                                                  "key": "uniUUID",
+                                                  "value": "<uuid>",
+                                                  "description": "(Required) "
+                                                },
+                                                {
+                                                  "id": "26e6d10a-e084-4ea3-99a0-4b3fd342c6b9",
+                                                  "key": "sbUUID",
+                                                  "value": "<uuid>",
+                                                  "description": "(Required) "
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "response": [
+                                            {
+                                              "id": "777a3dde-8155-4849-8309-cb90821ccc55",
+                                              "name": "successful operation",
+                                              "originalRequest": {
+                                                "method": "GET",
+                                                "header": [
+                                                  {
+                                                    "key": "Accept",
+                                                    "value": "application/x-compressed"
+                                                  },
+                                                  {
+                                                    "description": "Added as a part of security scheme: apikey",
+                                                    "key": "X-AUTH-YW-API-TOKEN",
+                                                    "value": "<API Key>"
+                                                  }
+                                                ],
+                                                "url": {
+                                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/support_bundle/:sbUUID/download",
+                                                  "host": [
+                                                    "{{baseUrl}}"
+                                                  ],
+                                                  "path": [
+                                                    "api",
+                                                    "v1",
+                                                    "customers",
+                                                    ":cUUID",
+                                                    "universes",
+                                                    ":uniUUID",
+                                                    "support_bundle",
+                                                    ":sbUUID",
+                                                    "download"
+                                                  ],
+                                                  "variable": [
+                                                    {
+                                                      "key": "cUUID"
+                                                    },
+                                                    {
+                                                      "key": "uniUUID"
+                                                    },
+                                                    {
+                                                      "key": "sbUUID"
+                                                    }
+                                                  ]
+                                                }
+                                              },
+                                              "status": "OK",
+                                              "code": 200,
+                                              "_postman_previewlanguage": "text",
+                                              "header": [
+                                                {
+                                                  "key": "Content-Type",
+                                                  "value": "application/x-compressed"
+                                                }
+                                              ],
+                                              "cookie": [],
+                                              "responseTime": null,
+                                              "body": "<string>",
+                                              "createdAt": "2026-10-22T01:12:46.000Z",
+                                              "updatedAt": "2026-10-22T01:12:46.000Z",
+                                              "uid": "35240-777a3dde-8155-4849-8309-cb90821ccc55"
+                                            }
+                                          ],
+                                          "createdAt": "2026-10-22T01:12:46.000Z",
+                                          "updatedAt": "2026-10-22T01:12:46.000Z",
+                                          "uid": "35240-de2ca848-552a-4839-aaa0-8a24578f6c97"
+                                        }
+                                      ],
+                                      "id": "291e6b9d-8f1e-461d-a91e-c3c3822c091f",
+                                      "createdAt": "2026-10-22T01:12:46.000Z",
+                                      "updatedAt": "2026-10-22T01:12:46.000Z",
+                                      "uid": "35240-291e6b9d-8f1e-461d-a91e-c3c3822c091f"
+                                    },
+                                    {
+                                      "name": "Delete a support bundle",
+                                      "id": "b5746988-c50c-42bb-ad42-99ba6b9a489e",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "auth": {
+                                          "type": "apikey",
+                                          "apikey": [
+                                            {
+                                              "key": "key",
+                                              "value": "X-AUTH-YW-API-TOKEN",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "value",
+                                              "value": "{{apiKey}}",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "in",
+                                              "value": "header",
+                                              "type": "string"
+                                            }
+                                          ]
+                                        },
+                                        "method": "DELETE",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/support_bundle/:sbUUID",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "universes",
+                                            ":uniUUID",
+                                            "support_bundle",
+                                            ":sbUUID"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "6ed16d3c-58e1-4140-a29a-3d5415e7bcdc",
+                                              "key": "cUUID",
+                                              "value": "<uuid>",
+                                              "description": "(Required) "
+                                            },
+                                            {
+                                              "id": "7c4d8847-bac3-4621-8aa2-f438fad5cf06",
+                                              "key": "uniUUID",
+                                              "value": "<uuid>",
+                                              "description": "(Required) "
+                                            },
+                                            {
+                                              "id": "60d37e41-4add-4d2b-bb1a-ab2f376f7c75",
+                                              "key": "sbUUID",
+                                              "value": "<uuid>",
+                                              "description": "(Required) "
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "39468768-211d-499a-8251-0392a419f043",
+                                          "name": "successful operation",
+                                          "originalRequest": {
+                                            "method": "DELETE",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: apikey",
+                                                "key": "X-AUTH-YW-API-TOKEN",
+                                                "value": "<API Key>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/support_bundle/:sbUUID",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v1",
+                                                "customers",
+                                                ":cUUID",
+                                                "universes",
+                                                ":uniUUID",
+                                                "support_bundle",
+                                                ":sbUUID"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "cUUID"
+                                                },
+                                                {
+                                                  "key": "uniUUID"
+                                                },
+                                                {
+                                                  "key": "sbUUID"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"message\": \"<string>\",\n  \"success\": \"<boolean>\"\n}",
+                                          "createdAt": "2026-10-22T01:12:46.000Z",
+                                          "updatedAt": "2026-10-22T01:12:46.000Z",
+                                          "uid": "35240-39468768-211d-499a-8251-0392a419f043"
+                                        }
+                                      ],
+                                      "createdAt": "2026-10-22T01:12:46.000Z",
+                                      "updatedAt": "2026-10-22T01:12:46.000Z",
+                                      "uid": "35240-b5746988-c50c-42bb-ad42-99ba6b9a489e"
+                                    },
+                                    {
+                                      "name": "Get a support bundle from a universe",
+                                      "id": "dc784690-d175-4789-bafb-83ca43c738c3",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "auth": {
+                                          "type": "apikey",
+                                          "apikey": [
+                                            {
+                                              "key": "key",
+                                              "value": "X-AUTH-YW-API-TOKEN",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "value",
+                                              "value": "{{apiKey}}",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "in",
+                                              "value": "header",
+                                              "type": "string"
+                                            }
+                                          ]
+                                        },
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/support_bundle/:sbUUID",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "universes",
+                                            ":uniUUID",
+                                            "support_bundle",
+                                            ":sbUUID"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "ef12f1b4-073e-45d6-be69-429c04a284f4",
+                                              "key": "cUUID",
+                                              "value": "<uuid>",
+                                              "description": "(Required) "
+                                            },
+                                            {
+                                              "id": "392da65c-fbcd-4974-a1f4-bbb3b55f1e76",
+                                              "key": "uniUUID",
+                                              "value": "<uuid>",
+                                              "description": "(Required) "
+                                            },
+                                            {
+                                              "id": "f83602ba-194d-4dee-987a-b4ce8d6642f4",
+                                              "key": "sbUUID",
+                                              "value": "<uuid>",
+                                              "description": "(Required) "
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "040a8fcf-8cdb-4e77-a85b-c7bff5775206",
+                                          "name": "successful operation",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: apikey",
+                                                "key": "X-AUTH-YW-API-TOKEN",
+                                                "value": "<API Key>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/support_bundle/:sbUUID",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v1",
+                                                "customers",
+                                                ":cUUID",
+                                                "universes",
+                                                ":uniUUID",
+                                                "support_bundle",
+                                                ":sbUUID"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "cUUID"
+                                                },
+                                                {
+                                                  "key": "uniUUID"
+                                                },
+                                                {
+                                                  "key": "sbUUID"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"bundleDetails\": {\n    \"components\": [\n      \"SystemLogs\",\n      \"TabletReport\"\n    ],\n    \"maxCoreFileSize\": \"<long>\",\n    \"maxNumRecentCores\": \"<integer>\",\n    \"paDumpEndDate\": \"<dateTime>\",\n    \"paDumpStartDate\": \"<dateTime>\",\n    \"paMetricsFormat\": \"PROMQL_JSON\",\n    \"promDumpEndDate\": \"<dateTime>\",\n    \"promDumpStartDate\": \"<dateTime>\",\n    \"promMetricsFormat\": \"PROM_CHUNK\",\n    \"promMetricsStepSec\": \"<integer>\",\n    \"prometheusMetricsTypes\": [\n      \"PLATFORM\",\n      \"PROMETHEUS\"\n    ]\n  },\n  \"bundleUUID\": \"<uuid>\",\n  \"path\": \"<string>\",\n  \"scopeUUID\": \"<uuid>\",\n  \"status\": \"Failed\",\n  \"creationDate\": \"<dateTime>\",\n  \"endDate\": \"<dateTime>\",\n  \"expirationDate\": \"<dateTime>\",\n  \"sizeInBytes\": \"<long>\",\n  \"startDate\": \"<dateTime>\"\n}",
+                                          "createdAt": "2026-10-22T01:12:46.000Z",
+                                          "updatedAt": "2026-10-22T01:12:46.000Z",
+                                          "uid": "35240-040a8fcf-8cdb-4e77-a85b-c7bff5775206"
+                                        }
+                                      ],
+                                      "createdAt": "2026-10-22T01:12:46.000Z",
+                                      "updatedAt": "2026-10-22T01:12:46.000Z",
+                                      "uid": "35240-dc784690-d175-4789-bafb-83ca43c738c3"
+                                    }
+                                  ],
+                                  "id": "eec2a682-690d-4708-a81a-248f331309b3",
+                                  "createdAt": "2026-10-22T01:12:46.000Z",
+                                  "updatedAt": "2026-10-22T01:12:46.000Z",
+                                  "uid": "35240-eec2a682-690d-4708-a81a-248f331309b3"
+                                },
+                                {
+                                  "name": "List all support bundles from a universe",
+                                  "id": "de24a88a-d3dd-4d4b-beea-675371bf7b86",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "apikey",
+                                      "apikey": [
+                                        {
+                                          "key": "key",
+                                          "value": "X-AUTH-YW-API-TOKEN",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "value",
+                                          "value": "{{apiKey}}",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "in",
+                                          "value": "header",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/support_bundle",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "universes",
+                                        ":uniUUID",
+                                        "support_bundle"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "bdb7a3f9-e132-4815-b3c6-ee5ea79d0254",
+                                          "key": "cUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "15dd97bc-028d-4fe3-8f06-5b08aabb291e",
+                                          "key": "uniUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "1dc0b0db-0c50-42da-b6d9-9c09963f4902",
+                                      "name": "successful operation",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "X-AUTH-YW-API-TOKEN",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/support_bundle",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "universes",
+                                            ":uniUUID",
+                                            "support_bundle"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "cUUID"
+                                            },
+                                            {
+                                              "key": "uniUUID"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "[\n  {\n    \"bundleDetails\": {\n      \"components\": [\n        \"K8sInfo\",\n        \"ApplicationLogs\"\n      ],\n      \"maxCoreFileSize\": \"<long>\",\n      \"maxNumRecentCores\": \"<integer>\",\n      \"paDumpEndDate\": \"<dateTime>\",\n      \"paDumpStartDate\": \"<dateTime>\",\n      \"paMetricsFormat\": \"PROM_CHUNK\",\n      \"promDumpEndDate\": \"<dateTime>\",\n      \"promDumpStartDate\": \"<dateTime>\",\n      \"promMetricsFormat\": \"PROM_CHUNK\",\n      \"promMetricsStepSec\": \"<integer>\",\n      \"prometheusMetricsTypes\": [\n        \"NODE_EXPORT\",\n        \"NODE_EXPORT\"\n      ]\n    },\n    \"bundleUUID\": \"<uuid>\",\n    \"path\": \"<string>\",\n    \"scopeUUID\": \"<uuid>\",\n    \"status\": \"Aborted\",\n    \"creationDate\": \"<dateTime>\",\n    \"endDate\": \"<dateTime>\",\n    \"expirationDate\": \"<dateTime>\",\n    \"sizeInBytes\": \"<long>\",\n    \"startDate\": \"<dateTime>\"\n  },\n  {\n    \"bundleDetails\": {\n      \"components\": [\n        \"PerfAdvisor\",\n        \"UniverseLogs\"\n      ],\n      \"maxCoreFileSize\": \"<long>\",\n      \"maxNumRecentCores\": \"<integer>\",\n      \"paDumpEndDate\": \"<dateTime>\",\n      \"paDumpStartDate\": \"<dateTime>\",\n      \"paMetricsFormat\": \"PROM_CHUNK\",\n      \"promDumpEndDate\": \"<dateTime>\",\n      \"promDumpStartDate\": \"<dateTime>\",\n      \"promMetricsFormat\": \"PROMQL_JSON\",\n      \"promMetricsStepSec\": \"<integer>\",\n      \"prometheusMetricsTypes\": [\n        \"YSQL_EXPORT\",\n        \"MASTER_EXPORT\"\n      ]\n    },\n    \"bundleUUID\": \"<uuid>\",\n    \"path\": \"<string>\",\n    \"scopeUUID\": \"<uuid>\",\n    \"status\": \"Running\",\n    \"creationDate\": \"<dateTime>\",\n    \"endDate\": \"<dateTime>\",\n    \"expirationDate\": \"<dateTime>\",\n    \"sizeInBytes\": \"<long>\",\n    \"startDate\": \"<dateTime>\"\n  }\n]",
+                                      "createdAt": "2026-10-22T01:12:46.000Z",
+                                      "updatedAt": "2026-10-22T01:12:46.000Z",
+                                      "uid": "35240-1dc0b0db-0c50-42da-b6d9-9c09963f4902"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:12:46.000Z",
+                                  "updatedAt": "2026-10-22T01:12:46.000Z",
+                                  "uid": "35240-de24a88a-d3dd-4d4b-beea-675371bf7b86"
+                                },
+                                {
+                                  "name": "Create support bundle for specific universe",
+                                  "id": "abb50321-f426-4ef3-8606-2f5ea870e559",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "apikey",
+                                      "apikey": [
+                                        {
+                                          "key": "key",
+                                          "value": "X-AUTH-YW-API-TOKEN",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "value",
+                                          "value": "{{apiKey}}",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "in",
+                                          "value": "header",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"components\": [\n    \"NodeAgent\",\n    \"K8sInfo\"\n  ],\n  \"endDate\": \"<dateTime>\",\n  \"startDate\": \"<dateTime>\",\n  \"batchDurationPromDumpMins\": \"<integer>\",\n  \"filterPgAuditLogs\": \"<boolean>\",\n  \"maxCoreFileSize\": \"<long>\",\n  \"maxNumRecentCores\": \"<integer>\",\n  \"paDumpEndDate\": \"<dateTime>\",\n  \"paDumpStartDate\": \"<dateTime>\",\n  \"paMetricsFormat\": \"PROMQL_JSON\",\n  \"promDumpDownSample\": \"<boolean>\",\n  \"promDumpEndDate\": \"<dateTime>\",\n  \"promDumpStartDate\": \"<dateTime>\",\n  \"promExportType\": \"REMOTE_READ\",\n  \"promMetricsFormat\": \"PROM_CHUNK\",\n  \"promQueries\": {\n    \"ullamco_1\": \"<string>\",\n    \"sed6\": \"<string>\",\n    \"laborum_e\": \"<string>\"\n  },\n  \"prometheusMetricsTypes\": [\n    \"TSERVER_EXPORT\",\n    \"CQL_EXPORT\"\n  ],\n  \"stepPromDumpSecs\": \"<integer>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/support_bundle",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "universes",
+                                        ":uniUUID",
+                                        "support_bundle"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "e52a0743-4179-44e7-a813-14382e1a7f5a",
+                                          "key": "cUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "92005268-112f-4baf-b6f4-a393a7a1514f",
+                                          "key": "uniUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "cb41205b-114e-4ee2-a577-f9b19f4dbdf5",
+                                      "name": "successful operation",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "X-AUTH-YW-API-TOKEN",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"components\": [\n    \"NodeAgent\",\n    \"K8sInfo\"\n  ],\n  \"endDate\": \"<dateTime>\",\n  \"startDate\": \"<dateTime>\",\n  \"batchDurationPromDumpMins\": \"<integer>\",\n  \"filterPgAuditLogs\": \"<boolean>\",\n  \"maxCoreFileSize\": \"<long>\",\n  \"maxNumRecentCores\": \"<integer>\",\n  \"paDumpEndDate\": \"<dateTime>\",\n  \"paDumpStartDate\": \"<dateTime>\",\n  \"paMetricsFormat\": \"PROMQL_JSON\",\n  \"promDumpDownSample\": \"<boolean>\",\n  \"promDumpEndDate\": \"<dateTime>\",\n  \"promDumpStartDate\": \"<dateTime>\",\n  \"promExportType\": \"REMOTE_READ\",\n  \"promMetricsFormat\": \"PROM_CHUNK\",\n  \"promQueries\": {\n    \"ullamco_1\": \"<string>\",\n    \"sed6\": \"<string>\",\n    \"laborum_e\": \"<string>\"\n  },\n  \"prometheusMetricsTypes\": [\n    \"TSERVER_EXPORT\",\n    \"CQL_EXPORT\"\n  ],\n  \"stepPromDumpSecs\": \"<integer>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/support_bundle",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "universes",
+                                            ":uniUUID",
+                                            "support_bundle"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "cUUID"
+                                            },
+                                            {
+                                              "key": "uniUUID"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"resourceUUID\": \"<uuid>\",\n  \"taskUUID\": \"<uuid>\"\n}",
+                                      "createdAt": "2026-10-22T01:12:46.000Z",
+                                      "updatedAt": "2026-10-22T01:12:46.000Z",
+                                      "uid": "35240-cb41205b-114e-4ee2-a577-f9b19f4dbdf5"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:12:46.000Z",
+                                  "updatedAt": "2026-10-22T01:12:46.000Z",
+                                  "uid": "35240-abb50321-f426-4ef3-8606-2f5ea870e559"
+                                }
+                              ],
+                              "id": "c899c8ad-dc9b-4cec-8664-d578165e0985",
+                              "createdAt": "2026-10-22T01:12:46.000Z",
+                              "updatedAt": "2026-10-22T01:12:46.000Z",
+                              "uid": "35240-c899c8ad-dc9b-4cec-8664-d578165e0985"
+                            }
+                          ],
+                          "id": "c50785f1-8e98-4973-bc47-368f157c9abf",
+                          "createdAt": "2026-10-22T01:12:46.000Z",
+                          "updatedAt": "2026-10-22T01:12:46.000Z",
+                          "uid": "35240-c50785f1-8e98-4973-bc47-368f157c9abf"
+                        }
+                      ],
+                      "id": "c91021ee-fc88-43d2-b651-d38562908601",
+                      "createdAt": "2026-10-22T01:12:46.000Z",
+                      "updatedAt": "2026-10-22T01:12:46.000Z",
+                      "uid": "35240-c91021ee-fc88-43d2-b651-d38562908601"
+                    }
+                  ],
+                  "id": "f4a30175-79d7-4e11-bc16-0241c7613df1",
+                  "createdAt": "2026-10-22T01:12:46.000Z",
+                  "updatedAt": "2026-10-22T01:12:46.000Z",
+                  "uid": "35240-f4a30175-79d7-4e11-bc16-0241c7613df1"
+                }
+              ],
+              "id": "e646d6cc-db21-47bc-8790-135c33d201e7",
+              "createdAt": "2026-10-22T01:12:46.000Z",
+              "updatedAt": "2026-10-22T01:12:46.000Z",
+              "uid": "35240-e646d6cc-db21-47bc-8790-135c33d201e7"
+            }
+          ],
+          "id": "ea09fa4d-dc57-4c95-9ed0-04b5245f0d31",
+          "createdAt": "2026-10-22T01:12:46.000Z",
+          "updatedAt": "2026-10-22T01:12:46.000Z",
+          "uid": "35240-ea09fa4d-dc57-4c95-9ed0-04b5245f0d31"
+        }
+      ],
+      "id": "f40faec7-bfef-4a2e-aa6e-04aca2ab2be3",
+      "createdAt": "2026-10-22T01:12:46.000Z",
+      "updatedAt": "2026-10-22T01:12:46.000Z",
+      "uid": "35240-f40faec7-bfef-4a2e-aa6e-04aca2ab2be3"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

@@ -1,0 +1,347 @@
+{
+  "info": {
+    "_postman_id": "74ced60d-ba45-43f3-a59e-527ff4acbc3a",
+    "name": "YugabyteDB Aeon REST Accounts API",
+    "description": "The YugabyteDB Aeon REST API provides programmatic access to YugabyteDB's fully managed cloud database service.\n\nContact Support:\n Name: Yugabyte Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:06:04.000Z",
+    "updatedAt": "2026-10-22T01:06:04.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-74ced60d-ba45-43f3-a59e-527ff4acbc3a"
+  },
+  "item": [
+    {
+      "name": "accounts",
+      "item": [
+        {
+          "name": "{accountId}",
+          "item": [
+            {
+              "name": "YugabyteDB Aeon Get Account",
+              "id": "10ce91d1-127f-4fa6-bb1c-6c8ed89dc266",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/accounts/:accountId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "accounts",
+                    ":accountId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "73a20ef2-b6b5-422a-a073-e1a49f42e2bb",
+                      "key": "accountId",
+                      "value": "<uuid>",
+                      "description": "(Required) The unique identifier of the YugabyteDB Aeon account."
+                    }
+                  ]
+                },
+                "description": "Returns metadata for a specific YugabyteDB Aeon account, including the account ID used to scope project and cluster API calls."
+              },
+              "response": [
+                {
+                  "id": "d270794c-fd1a-4d88-b037-4d57a649f926",
+                  "name": "Account details returned successfully",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/:accountId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        ":accountId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "accountId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"created_at\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-10-22T01:06:04.000Z",
+                  "updatedAt": "2026-10-22T01:06:04.000Z",
+                  "uid": "35240-d270794c-fd1a-4d88-b037-4d57a649f926"
+                },
+                {
+                  "id": "30fabba4-bbb4-429f-940b-a170ce84372d",
+                  "name": "The API key is missing, invalid, or expired.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/:accountId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        ":accountId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "accountId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"status\": \"<integer>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:06:04.000Z",
+                  "updatedAt": "2026-10-22T01:06:04.000Z",
+                  "uid": "35240-30fabba4-bbb4-429f-940b-a170ce84372d"
+                },
+                {
+                  "id": "29446338-d459-4aa9-bf22-9858d6703eee",
+                  "name": "The requested resource was not found.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/:accountId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        ":accountId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "accountId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"status\": \"<integer>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:06:04.000Z",
+                  "updatedAt": "2026-10-22T01:06:04.000Z",
+                  "uid": "35240-29446338-d459-4aa9-bf22-9858d6703eee"
+                }
+              ],
+              "createdAt": "2026-10-22T01:06:04.000Z",
+              "updatedAt": "2026-10-22T01:06:04.000Z",
+              "uid": "35240-10ce91d1-127f-4fa6-bb1c-6c8ed89dc266"
+            }
+          ],
+          "id": "1115f772-f9f7-4ccf-ba46-5189e65e5106",
+          "createdAt": "2026-10-22T01:06:04.000Z",
+          "updatedAt": "2026-10-22T01:06:04.000Z",
+          "uid": "35240-1115f772-f9f7-4ccf-ba46-5189e65e5106"
+        },
+        {
+          "name": "YugabyteDB Aeon List Accounts",
+          "id": "3024af55-048f-4872-9379-f44d3c73035f",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/accounts",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "accounts"
+              ]
+            },
+            "description": "Returns a list of YugabyteDB Aeon accounts accessible to the authenticated API key holder. Most users have a single account."
+          },
+          "response": [
+            {
+              "id": "35e22582-aa0d-4f65-b3f8-f27071d53cf3",
+              "name": "List of accounts returned successfully",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/accounts",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "accounts"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"created_at\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"created_at\": \"<dateTime>\"\n    }\n  ]\n}",
+              "createdAt": "2026-10-22T01:06:04.000Z",
+              "updatedAt": "2026-10-22T01:06:04.000Z",
+              "uid": "35240-35e22582-aa0d-4f65-b3f8-f27071d53cf3"
+            },
+            {
+              "id": "11b62293-a208-43e1-a91b-b8fdfc7841a4",
+              "name": "The API key is missing, invalid, or expired.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/accounts",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "accounts"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"status\": \"<integer>\"\n  }\n}",
+              "createdAt": "2026-10-22T01:06:04.000Z",
+              "updatedAt": "2026-10-22T01:06:04.000Z",
+              "uid": "35240-11b62293-a208-43e1-a91b-b8fdfc7841a4"
+            }
+          ],
+          "createdAt": "2026-10-22T01:06:04.000Z",
+          "updatedAt": "2026-10-22T01:06:04.000Z",
+          "uid": "35240-3024af55-048f-4872-9379-f44d3c73035f"
+        }
+      ],
+      "id": "65ed55b3-f5cb-4267-bed6-6ffc738b146c",
+      "createdAt": "2026-10-22T01:06:04.000Z",
+      "updatedAt": "2026-10-22T01:06:04.000Z",
+      "uid": "35240-65ed55b3-f5cb-4267-bed6-6ffc738b146c"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://cloud.yugabyte.com/api/public/v1"
+    }
+  ]
+}

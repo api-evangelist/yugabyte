@@ -1,0 +1,748 @@
+{
+  "info": {
+    "_postman_id": "7c9c7686-5b5c-4461-8efc-573834547861",
+    "name": "YugabyteDB Anywhere V2 Authentication API",
+    "description": "An improved set of APIs for managing YugabyteDB Anywhere\n\nContact Support:\n Name: YugabyteDB Anywhere Support\n Email: support@yugabyte.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:06:33.000Z",
+    "updatedAt": "2026-10-22T01:06:33.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-7c9c7686-5b5c-4461-8efc-573834547861"
+  },
+  "item": [
+    {
+      "name": "customers",
+      "item": [
+        {
+          "name": "{cUUID}",
+          "item": [
+            {
+              "name": "auth",
+              "item": [
+                {
+                  "name": "group-mappings",
+                  "item": [
+                    {
+                      "name": "{gUUID}",
+                      "item": [
+                        {
+                          "name": "Delete Group Mappings",
+                          "id": "f0042e6e-26bb-4415-9397-93337b8d9f4a",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "apikey",
+                              "apikey": [
+                                {
+                                  "key": "key",
+                                  "value": "X-AUTH-YW-API-TOKEN",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "value",
+                                  "value": "{{apiKey}}",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "in",
+                                  "value": "header",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/customers/:cUUID/auth/group-mappings/:gUUID",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "customers",
+                                ":cUUID",
+                                "auth",
+                                "group-mappings",
+                                ":gUUID"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "5a1da3b0-e96d-48de-8faf-28a310ed0d47",
+                                  "key": "cUUID",
+                                  "value": "<uuid>",
+                                  "description": "(Required) Customer UUID"
+                                },
+                                {
+                                  "id": "ee1eae16-2302-4fa3-a6c1-759751c25a69",
+                                  "key": "gUUID",
+                                  "value": "<uuid>",
+                                  "description": "(Required) Group UUID"
+                                }
+                              ]
+                            },
+                            "description": "Delete LDAP and OIDC group mapping"
+                          },
+                          "response": [
+                            {
+                              "id": "433fcb8a-22b2-432b-8338-c4e62e89335d",
+                              "name": "OK",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-AUTH-YW-API-TOKEN",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/customers/:cUUID/auth/group-mappings/:gUUID",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "customers",
+                                    ":cUUID",
+                                    "auth",
+                                    "group-mappings",
+                                    ":gUUID"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "cUUID"
+                                    },
+                                    {
+                                      "key": "gUUID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-10-22T01:06:34.000Z",
+                              "updatedAt": "2026-10-22T01:06:34.000Z",
+                              "uid": "35240-433fcb8a-22b2-432b-8338-c4e62e89335d"
+                            },
+                            {
+                              "id": "f36d3f37-473f-4384-b580-694784463203",
+                              "name": "Invalid input",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-AUTH-YW-API-TOKEN",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/customers/:cUUID/auth/group-mappings/:gUUID",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "customers",
+                                    ":cUUID",
+                                    "auth",
+                                    "group-mappings",
+                                    ":gUUID"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "cUUID"
+                                    },
+                                    {
+                                      "key": "gUUID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-10-22T01:06:34.000Z",
+                              "updatedAt": "2026-10-22T01:06:34.000Z",
+                              "uid": "35240-f36d3f37-473f-4384-b580-694784463203"
+                            },
+                            {
+                              "id": "7e50e677-8eb3-48c5-8600-b55263a8c8bc",
+                              "name": "Not found",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-AUTH-YW-API-TOKEN",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/customers/:cUUID/auth/group-mappings/:gUUID",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "customers",
+                                    ":cUUID",
+                                    "auth",
+                                    "group-mappings",
+                                    ":gUUID"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "cUUID"
+                                    },
+                                    {
+                                      "key": "gUUID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-10-22T01:06:34.000Z",
+                              "updatedAt": "2026-10-22T01:06:34.000Z",
+                              "uid": "35240-7e50e677-8eb3-48c5-8600-b55263a8c8bc"
+                            },
+                            {
+                              "id": "6be51a35-b35e-4d7a-b4f9-a53970c2c092",
+                              "name": "Server error",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-AUTH-YW-API-TOKEN",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/customers/:cUUID/auth/group-mappings/:gUUID",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "customers",
+                                    ":cUUID",
+                                    "auth",
+                                    "group-mappings",
+                                    ":gUUID"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "cUUID"
+                                    },
+                                    {
+                                      "key": "gUUID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-10-22T01:06:34.000Z",
+                              "updatedAt": "2026-10-22T01:06:34.000Z",
+                              "uid": "35240-6be51a35-b35e-4d7a-b4f9-a53970c2c092"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T01:06:33.000Z",
+                          "updatedAt": "2026-10-22T01:06:33.000Z",
+                          "uid": "35240-f0042e6e-26bb-4415-9397-93337b8d9f4a"
+                        }
+                      ],
+                      "id": "7c623b46-19c6-4376-a3c1-5f9a5ee82059",
+                      "createdAt": "2026-10-22T01:06:33.000Z",
+                      "updatedAt": "2026-10-22T01:06:33.000Z",
+                      "uid": "35240-7c623b46-19c6-4376-a3c1-5f9a5ee82059"
+                    },
+                    {
+                      "name": "List Group Mappings",
+                      "id": "1f806cb9-e4ce-4639-9cad-bada42af4021",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "X-AUTH-YW-API-TOKEN",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:cUUID/auth/group-mappings",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":cUUID",
+                            "auth",
+                            "group-mappings"
+                          ],
+                          "variable": [
+                            {
+                              "id": "700296dc-50b1-473d-85c7-90d0a696768e",
+                              "key": "cUUID",
+                              "value": "<uuid>",
+                              "description": "(Required) Customer UUID"
+                            }
+                          ]
+                        },
+                        "description": "Get list of all OIDC and LDAP Group Mappings."
+                      },
+                      "response": [
+                        {
+                          "id": "e950d4d7-372f-4b97-b96d-265ef14d489d",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-AUTH-YW-API-TOKEN",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/customers/:cUUID/auth/group-mappings",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "customers",
+                                ":cUUID",
+                                "auth",
+                                "group-mappings"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "cUUID"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "[\n  {\n    \"group_identifier\": \"<string>\",\n    \"role_resource_definitions\": [\n      {\n        \"role_uuid\": \"<uuid>\",\n        \"resource_group\": {\n          \"resource_definition_set\": [\n            {\n              \"allow_all\": \"<boolean>\",\n              \"resource_type\": \"OTHER\"\n            },\n            {\n              \"allow_all\": \"<boolean>\",\n              \"resource_type\": \"USER\"\n            }\n          ]\n        }\n      },\n      {\n        \"role_uuid\": \"<uuid>\",\n        \"resource_group\": {\n          \"resource_definition_set\": [\n            {\n              \"allow_all\": \"<boolean>\",\n              \"resource_type\": \"USER\"\n            },\n            {\n              \"allow_all\": \"<boolean>\",\n              \"resource_type\": \"UNIVERSE\"\n            }\n          ]\n        }\n      }\n    ],\n    \"type\": \"LDAP\",\n    \"uuid\": \"<uuid>\",\n    \"creation_date\": \"<dateTime>\"\n  },\n  {\n    \"group_identifier\": \"<string>\",\n    \"role_resource_definitions\": [\n      {\n        \"role_uuid\": \"<uuid>\",\n        \"resource_group\": {\n          \"resource_definition_set\": [\n            {\n              \"allow_all\": \"<boolean>\",\n              \"resource_type\": \"UNIVERSE\"\n            },\n            {\n              \"allow_all\": \"<boolean>\",\n              \"resource_type\": \"UNIVERSE\"\n            }\n          ]\n        }\n      },\n      {\n        \"role_uuid\": \"<uuid>\",\n        \"resource_group\": {\n          \"resource_definition_set\": [\n            {\n              \"allow_all\": \"<boolean>\",\n              \"resource_type\": \"OTHER\"\n            },\n            {\n              \"allow_all\": \"<boolean>\",\n              \"resource_type\": \"USER\"\n            }\n          ]\n        }\n      }\n    ],\n    \"type\": \"LDAP\",\n    \"uuid\": \"<uuid>\",\n    \"creation_date\": \"<dateTime>\"\n  }\n]",
+                          "createdAt": "2026-10-22T01:06:34.000Z",
+                          "updatedAt": "2026-10-22T01:06:34.000Z",
+                          "uid": "35240-e950d4d7-372f-4b97-b96d-265ef14d489d"
+                        },
+                        {
+                          "id": "c9e43e18-e98b-4e7e-a3af-3f2a782075e9",
+                          "name": "Invalid input",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-AUTH-YW-API-TOKEN",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/customers/:cUUID/auth/group-mappings",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "customers",
+                                ":cUUID",
+                                "auth",
+                                "group-mappings"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "cUUID"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T01:06:34.000Z",
+                          "updatedAt": "2026-10-22T01:06:34.000Z",
+                          "uid": "35240-c9e43e18-e98b-4e7e-a3af-3f2a782075e9"
+                        },
+                        {
+                          "id": "9cfe196b-35fe-4f93-9155-f23ae8d13399",
+                          "name": "Server error",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-AUTH-YW-API-TOKEN",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/customers/:cUUID/auth/group-mappings",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "customers",
+                                ":cUUID",
+                                "auth",
+                                "group-mappings"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "cUUID"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T01:06:34.000Z",
+                          "updatedAt": "2026-10-22T01:06:34.000Z",
+                          "uid": "35240-9cfe196b-35fe-4f93-9155-f23ae8d13399"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T01:06:33.000Z",
+                      "updatedAt": "2026-10-22T01:06:33.000Z",
+                      "uid": "35240-1f806cb9-e4ce-4639-9cad-bada42af4021"
+                    },
+                    {
+                      "name": "Create Group Mappings",
+                      "id": "26a3db20-7ba1-4dd6-8313-1948579e38a4",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "X-AUTH-YW-API-TOKEN",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "[\n  {\n    \"group_identifier\": \"<string>\",\n    \"role_resource_definitions\": [\n      {\n        \"role_uuid\": \"<uuid>\",\n        \"resource_group\": {\n          \"resource_definition_set\": [\n            {\n              \"allow_all\": \"<boolean>\",\n              \"resource_type\": \"OTHER\"\n            },\n            {\n              \"allow_all\": \"<boolean>\",\n              \"resource_type\": \"USER\"\n            }\n          ]\n        }\n      },\n      {\n        \"role_uuid\": \"<uuid>\",\n        \"resource_group\": {\n          \"resource_definition_set\": [\n            {\n              \"allow_all\": \"<boolean>\",\n              \"resource_type\": \"USER\"\n            },\n            {\n              \"allow_all\": \"<boolean>\",\n              \"resource_type\": \"UNIVERSE\"\n            }\n          ]\n        }\n      }\n    ],\n    \"type\": \"LDAP\",\n    \"uuid\": \"<uuid>\",\n    \"creation_date\": \"<dateTime>\"\n  },\n  {\n    \"group_identifier\": \"<string>\",\n    \"role_resource_definitions\": [\n      {\n        \"role_uuid\": \"<uuid>\",\n        \"resource_group\": {\n          \"resource_definition_set\": [\n            {\n              \"allow_all\": \"<boolean>\",\n              \"resource_type\": \"UNIVERSE\"\n            },\n            {\n              \"allow_all\": \"<boolean>\",\n              \"resource_type\": \"UNIVERSE\"\n            }\n          ]\n        }\n      },\n      {\n        \"role_uuid\": \"<uuid>\",\n        \"resource_group\": {\n          \"resource_definition_set\": [\n            {\n              \"allow_all\": \"<boolean>\",\n              \"resource_type\": \"OTHER\"\n            },\n            {\n              \"allow_all\": \"<boolean>\",\n              \"resource_type\": \"USER\"\n            }\n          ]\n        }\n      }\n    ],\n    \"type\": \"LDAP\",\n    \"uuid\": \"<uuid>\",\n    \"creation_date\": \"<dateTime>\"\n  }\n]",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:cUUID/auth/group-mappings",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":cUUID",
+                            "auth",
+                            "group-mappings"
+                          ],
+                          "variable": [
+                            {
+                              "id": "290ef1b5-1d90-468e-b3b8-60ee18507b05",
+                              "key": "cUUID",
+                              "value": "<uuid>",
+                              "description": "(Required) Customer UUID"
+                            }
+                          ]
+                        },
+                        "description": "Map LDAP and OIDC groups to YBA roles"
+                      },
+                      "response": [
+                        {
+                          "id": "5d2e2e90-3eaa-41c3-89bf-2282d25fa07e",
+                          "name": "Operation Successfull",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-AUTH-YW-API-TOKEN",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "[\n  {\n    \"group_identifier\": \"<string>\",\n    \"role_resource_definitions\": [\n      {\n        \"role_uuid\": \"<uuid>\",\n        \"resource_group\": {\n          \"resource_definition_set\": [\n            {\n              \"allow_all\": \"<boolean>\",\n              \"resource_type\": \"OTHER\"\n            },\n            {\n              \"allow_all\": \"<boolean>\",\n              \"resource_type\": \"USER\"\n            }\n          ]\n        }\n      },\n      {\n        \"role_uuid\": \"<uuid>\",\n        \"resource_group\": {\n          \"resource_definition_set\": [\n            {\n              \"allow_all\": \"<boolean>\",\n              \"resource_type\": \"USER\"\n            },\n            {\n              \"allow_all\": \"<boolean>\",\n              \"resource_type\": \"UNIVERSE\"\n            }\n          ]\n        }\n      }\n    ],\n    \"type\": \"LDAP\",\n    \"uuid\": \"<uuid>\",\n    \"creation_date\": \"<dateTime>\"\n  },\n  {\n    \"group_identifier\": \"<string>\",\n    \"role_resource_definitions\": [\n      {\n        \"role_uuid\": \"<uuid>\",\n        \"resource_group\": {\n          \"resource_definition_set\": [\n            {\n              \"allow_all\": \"<boolean>\",\n              \"resource_type\": \"UNIVERSE\"\n            },\n            {\n              \"allow_all\": \"<boolean>\",\n              \"resource_type\": \"UNIVERSE\"\n            }\n          ]\n        }\n      },\n      {\n        \"role_uuid\": \"<uuid>\",\n        \"resource_group\": {\n          \"resource_definition_set\": [\n            {\n              \"allow_all\": \"<boolean>\",\n              \"resource_type\": \"OTHER\"\n            },\n            {\n              \"allow_all\": \"<boolean>\",\n              \"resource_type\": \"USER\"\n            }\n          ]\n        }\n      }\n    ],\n    \"type\": \"LDAP\",\n    \"uuid\": \"<uuid>\",\n    \"creation_date\": \"<dateTime>\"\n  }\n]",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/customers/:cUUID/auth/group-mappings",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "customers",
+                                ":cUUID",
+                                "auth",
+                                "group-mappings"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "cUUID"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T01:06:34.000Z",
+                          "updatedAt": "2026-10-22T01:06:34.000Z",
+                          "uid": "35240-5d2e2e90-3eaa-41c3-89bf-2282d25fa07e"
+                        },
+                        {
+                          "id": "9bb92e09-641a-41ee-8935-e890c34548b3",
+                          "name": "Invalid input",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-AUTH-YW-API-TOKEN",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "[\n  {\n    \"group_identifier\": \"<string>\",\n    \"role_resource_definitions\": [\n      {\n        \"role_uuid\": \"<uuid>\",\n        \"resource_group\": {\n          \"resource_definition_set\": [\n            {\n              \"allow_all\": \"<boolean>\",\n              \"resource_type\": \"OTHER\"\n            },\n            {\n              \"allow_all\": \"<boolean>\",\n              \"resource_type\": \"USER\"\n            }\n          ]\n        }\n      },\n      {\n        \"role_uuid\": \"<uuid>\",\n        \"resource_group\": {\n          \"resource_definition_set\": [\n            {\n              \"allow_all\": \"<boolean>\",\n              \"resource_type\": \"USER\"\n            },\n            {\n              \"allow_all\": \"<boolean>\",\n              \"resource_type\": \"UNIVERSE\"\n            }\n          ]\n        }\n      }\n    ],\n    \"type\": \"LDAP\",\n    \"uuid\": \"<uuid>\",\n    \"creation_date\": \"<dateTime>\"\n  },\n  {\n    \"group_identifier\": \"<string>\",\n    \"role_resource_definitions\": [\n      {\n        \"role_uuid\": \"<uuid>\",\n        \"resource_group\": {\n          \"resource_definition_set\": [\n            {\n              \"allow_all\": \"<boolean>\",\n              \"resource_type\": \"UNIVERSE\"\n            },\n            {\n              \"allow_all\": \"<boolean>\",\n              \"resource_type\": \"UNIVERSE\"\n            }\n          ]\n        }\n      },\n      {\n        \"role_uuid\": \"<uuid>\",\n        \"resource_group\": {\n          \"resource_definition_set\": [\n            {\n              \"allow_all\": \"<boolean>\",\n              \"resource_type\": \"OTHER\"\n            },\n            {\n              \"allow_all\": \"<boolean>\",\n              \"resource_type\": \"USER\"\n            }\n          ]\n        }\n      }\n    ],\n    \"type\": \"LDAP\",\n    \"uuid\": \"<uuid>\",\n    \"creation_date\": \"<dateTime>\"\n  }\n]",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/customers/:cUUID/auth/group-mappings",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "customers",
+                                ":cUUID",
+                                "auth",
+                                "group-mappings"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "cUUID"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T01:06:34.000Z",
+                          "updatedAt": "2026-10-22T01:06:34.000Z",
+                          "uid": "35240-9bb92e09-641a-41ee-8935-e890c34548b3"
+                        },
+                        {
+                          "id": "b01fabb7-7289-4998-8fa4-96902ee33c8a",
+                          "name": "Server error",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-AUTH-YW-API-TOKEN",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "[\n  {\n    \"group_identifier\": \"<string>\",\n    \"role_resource_definitions\": [\n      {\n        \"role_uuid\": \"<uuid>\",\n        \"resource_group\": {\n          \"resource_definition_set\": [\n            {\n              \"allow_all\": \"<boolean>\",\n              \"resource_type\": \"OTHER\"\n            },\n            {\n              \"allow_all\": \"<boolean>\",\n              \"resource_type\": \"USER\"\n            }\n          ]\n        }\n      },\n      {\n        \"role_uuid\": \"<uuid>\",\n        \"resource_group\": {\n          \"resource_definition_set\": [\n            {\n              \"allow_all\": \"<boolean>\",\n              \"resource_type\": \"USER\"\n            },\n            {\n              \"allow_all\": \"<boolean>\",\n              \"resource_type\": \"UNIVERSE\"\n            }\n          ]\n        }\n      }\n    ],\n    \"type\": \"LDAP\",\n    \"uuid\": \"<uuid>\",\n    \"creation_date\": \"<dateTime>\"\n  },\n  {\n    \"group_identifier\": \"<string>\",\n    \"role_resource_definitions\": [\n      {\n        \"role_uuid\": \"<uuid>\",\n        \"resource_group\": {\n          \"resource_definition_set\": [\n            {\n              \"allow_all\": \"<boolean>\",\n              \"resource_type\": \"UNIVERSE\"\n            },\n            {\n              \"allow_all\": \"<boolean>\",\n              \"resource_type\": \"UNIVERSE\"\n            }\n          ]\n        }\n      },\n      {\n        \"role_uuid\": \"<uuid>\",\n        \"resource_group\": {\n          \"resource_definition_set\": [\n            {\n              \"allow_all\": \"<boolean>\",\n              \"resource_type\": \"OTHER\"\n            },\n            {\n              \"allow_all\": \"<boolean>\",\n              \"resource_type\": \"USER\"\n            }\n          ]\n        }\n      }\n    ],\n    \"type\": \"LDAP\",\n    \"uuid\": \"<uuid>\",\n    \"creation_date\": \"<dateTime>\"\n  }\n]",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/customers/:cUUID/auth/group-mappings",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "customers",
+                                ":cUUID",
+                                "auth",
+                                "group-mappings"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "cUUID"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T01:06:34.000Z",
+                          "updatedAt": "2026-10-22T01:06:34.000Z",
+                          "uid": "35240-b01fabb7-7289-4998-8fa4-96902ee33c8a"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T01:06:33.000Z",
+                      "updatedAt": "2026-10-22T01:06:33.000Z",
+                      "uid": "35240-26a3db20-7ba1-4dd6-8313-1948579e38a4"
+                    }
+                  ],
+                  "id": "54000cae-a5f7-4c85-8c82-5edc302cd361",
+                  "createdAt": "2026-10-22T01:06:33.000Z",
+                  "updatedAt": "2026-10-22T01:06:33.000Z",
+                  "uid": "35240-54000cae-a5f7-4c85-8c82-5edc302cd361"
+                }
+              ],
+              "id": "8bde8cf5-5add-4f54-94d2-23341ab5c856",
+              "createdAt": "2026-10-22T01:06:33.000Z",
+              "updatedAt": "2026-10-22T01:06:33.000Z",
+              "uid": "35240-8bde8cf5-5add-4f54-94d2-23341ab5c856"
+            }
+          ],
+          "id": "8b346538-ce33-49bd-a1ca-ca8fd3d03d1a",
+          "createdAt": "2026-10-22T01:06:33.000Z",
+          "updatedAt": "2026-10-22T01:06:33.000Z",
+          "uid": "35240-8b346538-ce33-49bd-a1ca-ca8fd3d03d1a"
+        }
+      ],
+      "id": "c9662e67-7482-42c0-9399-4ee3d784ab59",
+      "createdAt": "2026-10-22T01:06:33.000Z",
+      "updatedAt": "2026-10-22T01:06:33.000Z",
+      "uid": "35240-c9662e67-7482-42c0-9399-4ee3d784ab59"
+    }
+  ],
+  "variable": [
+    {
+      "key": "protocol",
+      "value": "http"
+    },
+    {
+      "key": "host_port",
+      "value": "localhost:9000"
+    },
+    {
+      "key": "baseUrl",
+      "value": "{{protocol}}://{{host_port}}/api/v2"
+    }
+  ]
+}

@@ -1,0 +1,1197 @@
+{
+  "info": {
+    "_postman_id": "10cd549c-2219-4461-b29a-adfb899d41c1",
+    "name": "YugabyteDB Anywhere PA Collector API",
+    "description": "ALPHA - NOT FOR EXTERNAL USE\n\nContact Support:\n Name: https://docs.yugabyte.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:10:47.000Z",
+    "updatedAt": "2026-10-22T01:10:47.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-10cd549c-2219-4461-b29a-adfb899d41c1"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "customers",
+              "item": [
+                {
+                  "name": "{cUUID}",
+                  "item": [
+                    {
+                      "name": "pa_collector",
+                      "item": [
+                        {
+                          "name": "{paUUID}",
+                          "item": [
+                            {
+                              "name": "Delete PA Collector",
+                              "id": "1096fea4-01b8-48dc-bcf0-4e8c0068e234",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "apikey",
+                                  "apikey": [
+                                    {
+                                      "key": "key",
+                                      "value": "X-AUTH-YW-API-TOKEN",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "value",
+                                      "value": "{{apiKey}}",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "in",
+                                      "value": "header",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/pa_collector/:paUUID?force=false",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "pa_collector",
+                                    ":paUUID"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "force",
+                                      "value": "false"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "80f95d32-0c02-4b1c-8b26-8d0d34194db5",
+                                      "key": "cUUID",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    },
+                                    {
+                                      "id": "e6bc5a0b-b958-4e7b-ab72-a9f6c67327cd",
+                                      "key": "paUUID",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "YbaApi Internal."
+                              },
+                              "response": [
+                                {
+                                  "id": "24947d3d-0b84-4557-b637-be0d2df1791f",
+                                  "name": "successful operation",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-AUTH-YW-API-TOKEN",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/pa_collector/:paUUID?force=false",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "pa_collector",
+                                        ":paUUID"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "force",
+                                          "value": "false"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "cUUID"
+                                        },
+                                        {
+                                          "key": "paUUID"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "<boolean>",
+                                  "createdAt": "2026-10-22T01:10:47.000Z",
+                                  "updatedAt": "2026-10-22T01:10:47.000Z",
+                                  "uid": "35240-24947d3d-0b84-4557-b637-be0d2df1791f"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T01:10:47.000Z",
+                              "updatedAt": "2026-10-22T01:10:47.000Z",
+                              "uid": "35240-1096fea4-01b8-48dc-bcf0-4e8c0068e234"
+                            },
+                            {
+                              "name": "Get PA Collector",
+                              "id": "bc82c430-6486-4c53-811d-b02829fe96fd",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "apikey",
+                                  "apikey": [
+                                    {
+                                      "key": "key",
+                                      "value": "X-AUTH-YW-API-TOKEN",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "value",
+                                      "value": "{{apiKey}}",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "in",
+                                      "value": "header",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/pa_collector/:paUUID",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "pa_collector",
+                                    ":paUUID"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "2eac92fc-a935-4f00-be56-7539232158e6",
+                                      "key": "cUUID",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    },
+                                    {
+                                      "id": "4a26c53f-dd88-4033-a105-eaa2e2fd50fd",
+                                      "key": "paUUID",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "YbaApi Internal."
+                              },
+                              "response": [
+                                {
+                                  "id": "c3c0e475-eb8e-4de1-87d3-550b2c6221bc",
+                                  "name": "successful operation",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-AUTH-YW-API-TOKEN",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/pa_collector/:paUUID",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "pa_collector",
+                                        ":paUUID"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "cUUID"
+                                        },
+                                        {
+                                          "key": "paUUID"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"apiToken\": \"<string>\",\n  \"customerUUID\": \"<uuid>\",\n  \"metricsScrapePeriodSecs\": \"<long>\",\n  \"metricsUrl\": \"<string>\",\n  \"paUrl\": \"<string>\",\n  \"uuid\": \"<uuid>\",\n  \"ybaUrl\": \"<string>\",\n  \"inUseStatus\": \"IN_USE\",\n  \"metricsPassword\": \"<string>\",\n  \"metricsUsername\": \"<string>\",\n  \"paApiToken\": \"<string>\"\n}",
+                                  "createdAt": "2026-10-22T01:10:47.000Z",
+                                  "updatedAt": "2026-10-22T01:10:47.000Z",
+                                  "uid": "35240-c3c0e475-eb8e-4de1-87d3-550b2c6221bc"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T01:10:47.000Z",
+                              "updatedAt": "2026-10-22T01:10:47.000Z",
+                              "uid": "35240-bc82c430-6486-4c53-811d-b02829fe96fd"
+                            },
+                            {
+                              "name": "Edit PA Collector",
+                              "id": "d8736c32-241d-4df6-ab2e-df3b36a985d5",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "apikey",
+                                  "apikey": [
+                                    {
+                                      "key": "key",
+                                      "value": "X-AUTH-YW-API-TOKEN",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "value",
+                                      "value": "{{apiKey}}",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "in",
+                                      "value": "header",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"apiToken\": \"<string>\",\n  \"customerUUID\": \"<uuid>\",\n  \"metricsScrapePeriodSecs\": \"<long>\",\n  \"metricsUrl\": \"<string>\",\n  \"paUrl\": \"<string>\",\n  \"uuid\": \"<uuid>\",\n  \"ybaUrl\": \"<string>\",\n  \"metricsPassword\": \"<string>\",\n  \"metricsUsername\": \"<string>\",\n  \"paApiToken\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/pa_collector/:paUUID?force=false",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "pa_collector",
+                                    ":paUUID"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "force",
+                                      "value": "false"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "dd50a115-d7a3-4280-b39f-8f45d6a54a1a",
+                                      "key": "cUUID",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    },
+                                    {
+                                      "id": "a51a73ba-0d3c-4813-92e4-e0465674e37b",
+                                      "key": "paUUID",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "YbaApi Internal."
+                              },
+                              "response": [
+                                {
+                                  "id": "48b39d6b-6d54-4d56-a003-fa4244b7e8f8",
+                                  "name": "successful operation",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-AUTH-YW-API-TOKEN",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"apiToken\": \"<string>\",\n  \"customerUUID\": \"<uuid>\",\n  \"metricsScrapePeriodSecs\": \"<long>\",\n  \"metricsUrl\": \"<string>\",\n  \"paUrl\": \"<string>\",\n  \"uuid\": \"<uuid>\",\n  \"ybaUrl\": \"<string>\",\n  \"metricsPassword\": \"<string>\",\n  \"metricsUsername\": \"<string>\",\n  \"paApiToken\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/pa_collector/:paUUID?force=false",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "pa_collector",
+                                        ":paUUID"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "force",
+                                          "value": "false"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "cUUID"
+                                        },
+                                        {
+                                          "key": "paUUID"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"apiToken\": \"<string>\",\n  \"customerUUID\": \"<uuid>\",\n  \"metricsScrapePeriodSecs\": \"<long>\",\n  \"metricsUrl\": \"<string>\",\n  \"paUrl\": \"<string>\",\n  \"uuid\": \"<uuid>\",\n  \"ybaUrl\": \"<string>\",\n  \"metricsPassword\": \"<string>\",\n  \"metricsUsername\": \"<string>\",\n  \"paApiToken\": \"<string>\"\n}",
+                                  "createdAt": "2026-10-22T01:10:47.000Z",
+                                  "updatedAt": "2026-10-22T01:10:47.000Z",
+                                  "uid": "35240-48b39d6b-6d54-4d56-a003-fa4244b7e8f8"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T01:10:47.000Z",
+                              "updatedAt": "2026-10-22T01:10:47.000Z",
+                              "uid": "35240-d8736c32-241d-4df6-ab2e-df3b36a985d5"
+                            }
+                          ],
+                          "id": "2e760a3e-692d-46d4-82f3-00abdb4fe88f",
+                          "createdAt": "2026-10-22T01:10:47.000Z",
+                          "updatedAt": "2026-10-22T01:10:47.000Z",
+                          "uid": "35240-2e760a3e-692d-46d4-82f3-00abdb4fe88f"
+                        },
+                        {
+                          "name": "List All PA Collectors",
+                          "id": "95ee9a73-0d5a-4a02-945c-11cca1a61b2f",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "apikey",
+                              "apikey": [
+                                {
+                                  "key": "key",
+                                  "value": "X-AUTH-YW-API-TOKEN",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "value",
+                                  "value": "{{apiKey}}",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "in",
+                                  "value": "header",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/customers/:cUUID/pa_collector",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "customers",
+                                ":cUUID",
+                                "pa_collector"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "0be1a47c-742d-4ebb-a8e3-5bd9026ef017",
+                                  "key": "cUUID",
+                                  "value": "<uuid>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "YbaApi Internal."
+                          },
+                          "response": [
+                            {
+                              "id": "1530e17a-9dd0-4a28-a342-54067a5e3000",
+                              "name": "successful operation",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-AUTH-YW-API-TOKEN",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/pa_collector",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "pa_collector"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "cUUID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "[\n  {\n    \"apiToken\": \"<string>\",\n    \"customerUUID\": \"<uuid>\",\n    \"metricsScrapePeriodSecs\": \"<long>\",\n    \"metricsUrl\": \"<string>\",\n    \"paUrl\": \"<string>\",\n    \"uuid\": \"<uuid>\",\n    \"ybaUrl\": \"<string>\",\n    \"inUseStatus\": \"IN_USE\",\n    \"metricsPassword\": \"<string>\",\n    \"metricsUsername\": \"<string>\",\n    \"paApiToken\": \"<string>\"\n  },\n  {\n    \"apiToken\": \"<string>\",\n    \"customerUUID\": \"<uuid>\",\n    \"metricsScrapePeriodSecs\": \"<long>\",\n    \"metricsUrl\": \"<string>\",\n    \"paUrl\": \"<string>\",\n    \"uuid\": \"<uuid>\",\n    \"ybaUrl\": \"<string>\",\n    \"inUseStatus\": \"IN_USE\",\n    \"metricsPassword\": \"<string>\",\n    \"metricsUsername\": \"<string>\",\n    \"paApiToken\": \"<string>\"\n  }\n]",
+                              "createdAt": "2026-10-22T01:10:47.000Z",
+                              "updatedAt": "2026-10-22T01:10:47.000Z",
+                              "uid": "35240-1530e17a-9dd0-4a28-a342-54067a5e3000"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T01:10:47.000Z",
+                          "updatedAt": "2026-10-22T01:10:47.000Z",
+                          "uid": "35240-95ee9a73-0d5a-4a02-945c-11cca1a61b2f"
+                        },
+                        {
+                          "name": "Create PA Collector",
+                          "id": "5b20b704-65b6-4c5f-8caa-a2783ee71895",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "apikey",
+                              "apikey": [
+                                {
+                                  "key": "key",
+                                  "value": "X-AUTH-YW-API-TOKEN",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "value",
+                                  "value": "{{apiKey}}",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "in",
+                                  "value": "header",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"apiToken\": \"<string>\",\n  \"customerUUID\": \"<uuid>\",\n  \"metricsScrapePeriodSecs\": \"<long>\",\n  \"metricsUrl\": \"<string>\",\n  \"paUrl\": \"<string>\",\n  \"uuid\": \"<uuid>\",\n  \"ybaUrl\": \"<string>\",\n  \"metricsPassword\": \"<string>\",\n  \"metricsUsername\": \"<string>\",\n  \"paApiToken\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/customers/:cUUID/pa_collector",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "customers",
+                                ":cUUID",
+                                "pa_collector"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "b276fbf4-fd7d-41cc-b616-443fe329905b",
+                                  "key": "cUUID",
+                                  "value": "<uuid>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "YbaApi Internal."
+                          },
+                          "response": [
+                            {
+                              "id": "1efca42f-46d4-4bb4-99cf-2662981cd423",
+                              "name": "successful operation",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-AUTH-YW-API-TOKEN",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"apiToken\": \"<string>\",\n  \"customerUUID\": \"<uuid>\",\n  \"metricsScrapePeriodSecs\": \"<long>\",\n  \"metricsUrl\": \"<string>\",\n  \"paUrl\": \"<string>\",\n  \"uuid\": \"<uuid>\",\n  \"ybaUrl\": \"<string>\",\n  \"metricsPassword\": \"<string>\",\n  \"metricsUsername\": \"<string>\",\n  \"paApiToken\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/pa_collector",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "pa_collector"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "cUUID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"apiToken\": \"<string>\",\n  \"customerUUID\": \"<uuid>\",\n  \"metricsScrapePeriodSecs\": \"<long>\",\n  \"metricsUrl\": \"<string>\",\n  \"paUrl\": \"<string>\",\n  \"uuid\": \"<uuid>\",\n  \"ybaUrl\": \"<string>\",\n  \"metricsPassword\": \"<string>\",\n  \"metricsUsername\": \"<string>\",\n  \"paApiToken\": \"<string>\"\n}",
+                              "createdAt": "2026-10-22T01:10:47.000Z",
+                              "updatedAt": "2026-10-22T01:10:47.000Z",
+                              "uid": "35240-1efca42f-46d4-4bb4-99cf-2662981cd423"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T01:10:47.000Z",
+                          "updatedAt": "2026-10-22T01:10:47.000Z",
+                          "uid": "35240-5b20b704-65b6-4c5f-8caa-a2783ee71895"
+                        }
+                      ],
+                      "id": "7c8fb416-6f9d-494e-9b36-d5f56c19e9a3",
+                      "createdAt": "2026-10-22T01:10:47.000Z",
+                      "updatedAt": "2026-10-22T01:10:47.000Z",
+                      "uid": "35240-7c8fb416-6f9d-494e-9b36-d5f56c19e9a3"
+                    },
+                    {
+                      "name": "universes",
+                      "item": [
+                        {
+                          "name": "{uUUID}",
+                          "item": [
+                            {
+                              "name": "pa_collector",
+                              "item": [
+                                {
+                                  "name": "{paUUID}",
+                                  "item": [
+                                    {
+                                      "name": "Register universe with PA Collector",
+                                      "id": "50146fe9-1371-4772-8862-2ce0aeb45376",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "auth": {
+                                          "type": "apikey",
+                                          "apikey": [
+                                            {
+                                              "key": "key",
+                                              "value": "X-AUTH-YW-API-TOKEN",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "value",
+                                              "value": "{{apiKey}}",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "in",
+                                              "value": "header",
+                                              "type": "string"
+                                            }
+                                          ]
+                                        },
+                                        "method": "PUT",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uUUID/pa_collector/:paUUID?advancedObservability=false",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "universes",
+                                            ":uUUID",
+                                            "pa_collector",
+                                            ":paUUID"
+                                          ],
+                                          "query": [
+                                            {
+                                              "key": "advancedObservability",
+                                              "value": "false"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "ffa105ce-cc5d-4ab9-8b2a-ad0f665b8d40",
+                                              "key": "cUUID",
+                                              "value": "<uuid>",
+                                              "description": "(Required) "
+                                            },
+                                            {
+                                              "id": "a699a983-2074-4e7b-98c3-f459dbabb0a5",
+                                              "key": "uUUID",
+                                              "value": "<uuid>",
+                                              "description": "(Required) "
+                                            },
+                                            {
+                                              "id": "10ec952a-db2e-4e72-a4c9-b025aa35d121",
+                                              "key": "paUUID",
+                                              "value": "<uuid>",
+                                              "description": "(Required) "
+                                            }
+                                          ]
+                                        },
+                                        "description": "YbaApi Internal."
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "09e66566-02d8-403a-8a87-f9203eeafd45",
+                                          "name": "successful operation",
+                                          "originalRequest": {
+                                            "method": "PUT",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: apikey",
+                                                "key": "X-AUTH-YW-API-TOKEN",
+                                                "value": "<API Key>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uUUID/pa_collector/:paUUID?advancedObservability=false",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v1",
+                                                "customers",
+                                                ":cUUID",
+                                                "universes",
+                                                ":uUUID",
+                                                "pa_collector",
+                                                ":paUUID"
+                                              ],
+                                              "query": [
+                                                {
+                                                  "key": "advancedObservability",
+                                                  "value": "false"
+                                                }
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "cUUID"
+                                                },
+                                                {
+                                                  "key": "uUUID"
+                                                },
+                                                {
+                                                  "key": "paUUID"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"message\": \"<string>\",\n  \"success\": \"<boolean>\"\n}",
+                                          "createdAt": "2026-10-22T01:10:47.000Z",
+                                          "updatedAt": "2026-10-22T01:10:47.000Z",
+                                          "uid": "35240-09e66566-02d8-403a-8a87-f9203eeafd45"
+                                        }
+                                      ],
+                                      "createdAt": "2026-10-22T01:10:47.000Z",
+                                      "updatedAt": "2026-10-22T01:10:47.000Z",
+                                      "uid": "35240-50146fe9-1371-4772-8862-2ce0aeb45376"
+                                    }
+                                  ],
+                                  "id": "4ebf51bf-0342-46c9-88f6-3d132ec9647d",
+                                  "createdAt": "2026-10-22T01:10:47.000Z",
+                                  "updatedAt": "2026-10-22T01:10:47.000Z",
+                                  "uid": "35240-4ebf51bf-0342-46c9-88f6-3d132ec9647d"
+                                },
+                                {
+                                  "name": "Unregister universe from PA Collector",
+                                  "id": "f93ad295-f5f5-47eb-aa53-b6ce1cd68070",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "apikey",
+                                      "apikey": [
+                                        {
+                                          "key": "key",
+                                          "value": "X-AUTH-YW-API-TOKEN",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "value",
+                                          "value": "{{apiKey}}",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "in",
+                                          "value": "header",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uUUID/pa_collector",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "universes",
+                                        ":uUUID",
+                                        "pa_collector"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "208b9f2b-c1bc-4cc0-9f40-4d7508efe19a",
+                                          "key": "cUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "656d3576-2372-4f26-889d-701b3d8945fc",
+                                          "key": "uUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    },
+                                    "description": "YbaApi Internal."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "7cfbcc07-369d-4c55-8b82-da708a21023b",
+                                      "name": "successful operation",
+                                      "originalRequest": {
+                                        "method": "DELETE",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "X-AUTH-YW-API-TOKEN",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uUUID/pa_collector",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "universes",
+                                            ":uUUID",
+                                            "pa_collector"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "cUUID"
+                                            },
+                                            {
+                                              "key": "uUUID"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"message\": \"<string>\",\n  \"success\": \"<boolean>\"\n}",
+                                      "createdAt": "2026-10-22T01:10:47.000Z",
+                                      "updatedAt": "2026-10-22T01:10:47.000Z",
+                                      "uid": "35240-7cfbcc07-369d-4c55-8b82-da708a21023b"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:10:47.000Z",
+                                  "updatedAt": "2026-10-22T01:10:47.000Z",
+                                  "uid": "35240-f93ad295-f5f5-47eb-aa53-b6ce1cd68070"
+                                },
+                                {
+                                  "name": "Check if universe is registered with PA Collector",
+                                  "id": "bd0c5782-ad2f-46d9-8e77-c4f617426de5",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "apikey",
+                                      "apikey": [
+                                        {
+                                          "key": "key",
+                                          "value": "X-AUTH-YW-API-TOKEN",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "value",
+                                          "value": "{{apiKey}}",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "in",
+                                          "value": "header",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uUUID/pa_collector",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "universes",
+                                        ":uUUID",
+                                        "pa_collector"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "dd1d515f-db5e-477b-8fbc-58b0ac157c64",
+                                          "key": "cUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "29aa0c00-9c1d-4f23-93d6-a25bc982ab32",
+                                          "key": "uUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    },
+                                    "description": "YbaApi Internal."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "90d4f872-13f6-405e-bca8-61f53ab003a6",
+                                      "name": "successful operation",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "X-AUTH-YW-API-TOKEN",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uUUID/pa_collector",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "universes",
+                                            ":uUUID",
+                                            "pa_collector"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "cUUID"
+                                            },
+                                            {
+                                              "key": "uUUID"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"advancedObservability\": \"<boolean>\",\n  \"success\": \"<boolean>\"\n}",
+                                      "createdAt": "2026-10-22T01:10:47.000Z",
+                                      "updatedAt": "2026-10-22T01:10:47.000Z",
+                                      "uid": "35240-90d4f872-13f6-405e-bca8-61f53ab003a6"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:10:47.000Z",
+                                  "updatedAt": "2026-10-22T01:10:47.000Z",
+                                  "uid": "35240-bd0c5782-ad2f-46d9-8e77-c4f617426de5"
+                                }
+                              ],
+                              "id": "f2cd9763-f198-41ff-a35c-683aab07111d",
+                              "createdAt": "2026-10-22T01:10:47.000Z",
+                              "updatedAt": "2026-10-22T01:10:47.000Z",
+                              "uid": "35240-f2cd9763-f198-41ff-a35c-683aab07111d"
+                            }
+                          ],
+                          "id": "2dc6542b-a0a7-4447-ba2d-1a2c96f3ee5c",
+                          "createdAt": "2026-10-22T01:10:47.000Z",
+                          "updatedAt": "2026-10-22T01:10:47.000Z",
+                          "uid": "35240-2dc6542b-a0a7-4447-ba2d-1a2c96f3ee5c"
+                        }
+                      ],
+                      "id": "ce501da0-d8a8-490c-b206-0d2afe9add9e",
+                      "createdAt": "2026-10-22T01:10:47.000Z",
+                      "updatedAt": "2026-10-22T01:10:47.000Z",
+                      "uid": "35240-ce501da0-d8a8-490c-b206-0d2afe9add9e"
+                    }
+                  ],
+                  "id": "e6d43759-4f59-4fe5-be94-a3c15b209f52",
+                  "createdAt": "2026-10-22T01:10:47.000Z",
+                  "updatedAt": "2026-10-22T01:10:47.000Z",
+                  "uid": "35240-e6d43759-4f59-4fe5-be94-a3c15b209f52"
+                }
+              ],
+              "id": "5660dd49-f1a1-42fc-989d-22dbf3bdf7ca",
+              "createdAt": "2026-10-22T01:10:47.000Z",
+              "updatedAt": "2026-10-22T01:10:47.000Z",
+              "uid": "35240-5660dd49-f1a1-42fc-989d-22dbf3bdf7ca"
+            }
+          ],
+          "id": "f3936b55-2d32-4f31-a9f5-8c955529855c",
+          "createdAt": "2026-10-22T01:10:47.000Z",
+          "updatedAt": "2026-10-22T01:10:47.000Z",
+          "uid": "35240-f3936b55-2d32-4f31-a9f5-8c955529855c"
+        }
+      ],
+      "id": "32db64c0-fcb2-497b-8e9f-8f8e0c9be828",
+      "createdAt": "2026-10-22T01:10:47.000Z",
+      "updatedAt": "2026-10-22T01:10:47.000Z",
+      "uid": "35240-32db64c0-fcb2-497b-8e9f-8f8e0c9be828"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

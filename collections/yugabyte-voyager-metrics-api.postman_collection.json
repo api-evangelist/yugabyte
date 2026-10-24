@@ -1,291 +1,207 @@
 {
+  "info": {
+    "_postman_id": "acc737bf-8b63-477c-9acf-e2584f4b5d72",
+    "name": "Yugabyte Cloud Voyager Metrics API",
+    "description": "YugabyteDB as a Service\n\nContact Support:\n Name: Yugabyte Cloud Support\n Email: support@yugabyte.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:05:32.000Z",
+    "updatedAt": "2026-10-22T01:05:32.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-acc737bf-8b63-477c-9acf-e2584f4b5d72"
+  },
   "item": [
     {
-      "id": "50d6c617-f8cb-430e-aa4a-3512212683c1",
-      "name": "voyager-metrics",
-      "description": {
-        "content": "APIs for getting Voyager data migrations metrics",
-        "type": "text/plain"
-      },
+      "name": "migration_metrics",
       "item": [
         {
-          "id": "512b2033-c60f-48f2-ac2f-b163d703948a",
           "name": "Get Voyager data migration metrics",
+          "id": "0c1e2822-145f-4d95-bbf5-c01689ee8d02",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "Get Voyager data migration metrics",
-            "description": {
-              "content": "Get Voyager data migration metrics",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "migration_metrics"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "uuid",
-                  "value": "<uuid>",
-                  "description": "(Required) uuid of the voyager migration task"
-                }
-              ],
-              "variable": [
-                {
-                  "description": " (This can only be one of http,https)",
-                  "type": "any",
-                  "value": "{{protocol}}",
-                  "key": "protocol"
-                },
-                {
-                  "description": {
-                    "content": "",
-                    "type": "text/plain"
-                  },
-                  "type": "any",
-                  "value": "{{host_port}}",
-                  "key": "host_port"
-                }
-              ]
-            },
+            "method": "GET",
             "header": [
               {
                 "key": "Accept",
                 "value": "application/json"
               }
             ],
-            "method": "GET",
-            "auth": null
+            "url": {
+              "raw": "{{baseUrl}}/migration_metrics?uuid=<uuid>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "migration_metrics"
+              ],
+              "query": [
+                {
+                  "description": "(Required) uuid of the voyager migration task",
+                  "key": "uuid",
+                  "value": "<uuid>"
+                }
+              ]
+            }
           },
           "response": [
             {
-              "id": "9e3c5f8d-1d5e-43fd-847a-6395323e5876",
+              "id": "2cf47322-3a62-4d8e-a3f3-766bbd4af486",
               "name": "Voyager data migration metrics response",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "migration_metrics"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "uuid",
-                      "value": "<uuid>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "description": " (This can only be one of http,https)",
-                      "type": "any",
-                      "value": "{{protocol}}",
-                      "key": "protocol"
-                    },
-                    {
-                      "description": {
-                        "content": "",
-                        "type": "text/plain"
-                      },
-                      "type": "any",
-                      "value": "{{host_port}}",
-                      "key": "host_port"
-                    }
-                  ]
-                },
+                "method": "GET",
                 "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/migration_metrics?uuid=<uuid>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "migration_metrics"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) uuid of the voyager migration task",
+                      "key": "uuid",
+                      "value": "<uuid>"
+                    }
+                  ]
+                }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"metrics\": [\n    {\n      \"count_total_rows\": 5,\n      \"migration_uuid\": \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\",\n      \"migration_phase\": 0,\n      \"schema_name\": \"schema_name\",\n      \"count_live_rows\": 1,\n      \"invocation_timestamp\": \"invocation_timestamp\",\n      \"table_name\": \"table_name\",\n      \"status\": 6\n    },\n    {\n      \"count_total_rows\": 5,\n      \"migration_uuid\": \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\",\n      \"migration_phase\": 0,\n      \"schema_name\": \"schema_name\",\n      \"count_live_rows\": 1,\n      \"invocation_timestamp\": \"invocation_timestamp\",\n      \"table_name\": \"table_name\",\n      \"status\": 6\n    }\n  ]\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"metrics\": [\n    {\n      \"migration_uuid\": \"<uuid>\",\n      \"table_name\": \"<string>\",\n      \"schema_name\": \"<string>\",\n      \"migration_phase\": \"<integer>\",\n      \"status\": \"<integer>\",\n      \"count_live_rows\": \"<long>\",\n      \"count_total_rows\": \"<long>\",\n      \"invocation_timestamp\": \"<string>\"\n    },\n    {\n      \"migration_uuid\": \"<uuid>\",\n      \"table_name\": \"<string>\",\n      \"schema_name\": \"<string>\",\n      \"migration_phase\": \"<integer>\",\n      \"status\": \"<integer>\",\n      \"count_live_rows\": \"<long>\",\n      \"count_total_rows\": \"<long>\",\n      \"invocation_timestamp\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-10-22T01:05:33.000Z",
+              "updatedAt": "2026-10-22T01:05:33.000Z",
+              "uid": "35240-2cf47322-3a62-4d8e-a3f3-766bbd4af486"
             },
             {
-              "id": "af5c6e15-51bf-4500-af84-3e8cf9094e91",
+              "id": "390310da-4c41-4c0b-b588-defda958d1b9",
               "name": "API Error",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "migration_metrics"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "uuid",
-                      "value": "<uuid>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "description": " (This can only be one of http,https)",
-                      "type": "any",
-                      "value": "{{protocol}}",
-                      "key": "protocol"
-                    },
-                    {
-                      "description": {
-                        "content": "",
-                        "type": "text/plain"
-                      },
-                      "type": "any",
-                      "value": "{{host_port}}",
-                      "key": "host_port"
-                    }
-                  ]
-                },
+                "method": "GET",
                 "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/migration_metrics?uuid=<uuid>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "migration_metrics"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) uuid of the voyager migration task",
+                      "key": "uuid",
+                      "value": "<uuid>"
+                    }
+                  ]
+                }
               },
               "status": "Bad Request",
               "code": 400,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"error\": {\n    \"detail\": \"string\",\n    \"status\": 3299\n  }\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"detail\": \"<string>\",\n    \"status\": \"<integer>\"\n  }\n}",
+              "createdAt": "2026-10-22T01:05:33.000Z",
+              "updatedAt": "2026-10-22T01:05:33.000Z",
+              "uid": "35240-390310da-4c41-4c0b-b588-defda958d1b9"
             },
             {
-              "id": "d00eb09d-b5f6-4663-8a11-7c021f2868a5",
+              "id": "bafaa41d-b7a8-45fa-a9b9-722762063af9",
               "name": "API Error",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "migration_metrics"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "uuid",
-                      "value": "<uuid>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "description": " (This can only be one of http,https)",
-                      "type": "any",
-                      "value": "{{protocol}}",
-                      "key": "protocol"
-                    },
-                    {
-                      "description": {
-                        "content": "",
-                        "type": "text/plain"
-                      },
-                      "type": "any",
-                      "value": "{{host_port}}",
-                      "key": "host_port"
-                    }
-                  ]
-                },
+                "method": "GET",
                 "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/migration_metrics?uuid=<uuid>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "migration_metrics"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) uuid of the voyager migration task",
+                      "key": "uuid",
+                      "value": "<uuid>"
+                    }
+                  ]
+                }
               },
               "status": "Internal Server Error",
               "code": 500,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"error\": {\n    \"detail\": \"string\",\n    \"status\": 3299\n  }\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"detail\": \"<string>\",\n    \"status\": \"<integer>\"\n  }\n}",
+              "createdAt": "2026-10-22T01:05:33.000Z",
+              "updatedAt": "2026-10-22T01:05:33.000Z",
+              "uid": "35240-bafaa41d-b7a8-45fa-a9b9-722762063af9"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T01:05:33.000Z",
+          "updatedAt": "2026-10-22T01:05:33.000Z",
+          "uid": "35240-0c1e2822-145f-4d95-bbf5-c01689ee8d02"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "description": {
-        "content": " (This can only be one of http,https)",
-        "type": "text/plain"
-      },
-      "type": "any",
-      "value": "http",
-      "key": "protocol"
-    },
-    {
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
-      "type": "any",
-      "value": "localhost:1323",
-      "key": "host_port"
-    },
-    {
-      "type": "string",
-      "value": "{{protocol}}://{{host_port}}/api",
-      "key": "baseUrl"
+      "id": "6264e6fe-598a-4720-8365-4e3850d1608a",
+      "createdAt": "2026-10-22T01:05:33.000Z",
+      "updatedAt": "2026-10-22T01:05:33.000Z",
+      "uid": "35240-6264e6fe-598a-4720-8365-4e3850d1608a"
     }
   ],
   "auth": {
@@ -293,17 +209,23 @@
     "bearer": [
       {
         "key": "token",
-        "value": "{{bearerToken}}"
+        "value": "{{bearerToken}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "5c80db9c-f790-4b09-b72c-06c057d04c9d",
-    "name": "Yugabyte Cloud backup-info voyager-metrics API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "YugabyteDB as a Service\n\nContact Support:\n Name: Yugabyte Cloud Support\n Email: support@yugabyte.com",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "protocol",
+      "value": "http"
+    },
+    {
+      "key": "host_port",
+      "value": "localhost:1323"
+    },
+    {
+      "key": "baseUrl",
+      "value": "{{protocol}}://{{host_port}}/api"
     }
-  }
+  ]
 }

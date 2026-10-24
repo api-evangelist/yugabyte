@@ -1,0 +1,1376 @@
+{
+  "info": {
+    "_postman_id": "828a3df2-8796-4064-bce3-a200dd12b954",
+    "name": "Yugabytedb Certificate Info API",
+    "description": "Operations tagged Certificate Info across 2 of this provider's published API definitions: openapi_2.yaml, platform.swagger.json. Each path carries the servers of the definition it was published in.\n\nContact Support:\n Name: https://docs.yugabyte.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:07:07.000Z",
+    "updatedAt": "2026-10-22T01:07:07.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-828a3df2-8796-4064-bce3-a200dd12b954"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "customers",
+              "item": [
+                {
+                  "name": "{cUUID}",
+                  "item": [
+                    {
+                      "name": "certificates",
+                      "item": [
+                        {
+                          "name": "create_self_signed_cert",
+                          "item": [
+                            {
+                              "name": "Create a self signed certificate",
+                              "id": "697a1336-a9fe-4a78-951d-a168e38a2785",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "apikey",
+                                  "apikey": [
+                                    {
+                                      "key": "key",
+                                      "value": "X-AUTH-YW-API-TOKEN",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "value",
+                                      "value": "{{apiKey}}",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "in",
+                                      "value": "header",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "<string>",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/certificates/create_self_signed_cert",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "certificates",
+                                    "create_self_signed_cert"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "e37c408c-1771-4d4e-a697-9c595df873e8",
+                                      "key": "cUUID",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "YbaApi Internal."
+                              },
+                              "response": [
+                                {
+                                  "id": "7d0c7cb4-c484-4519-8586-e140b7600f03",
+                                  "name": "successful operation",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-AUTH-YW-API-TOKEN",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "<string>",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/certificates/create_self_signed_cert",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "certificates",
+                                        "create_self_signed_cert"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "cUUID"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "<uuid>",
+                                  "createdAt": "2026-10-22T01:07:08.000Z",
+                                  "updatedAt": "2026-10-22T01:07:08.000Z",
+                                  "uid": "35240-7d0c7cb4-c484-4519-8586-e140b7600f03"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T01:07:08.000Z",
+                              "updatedAt": "2026-10-22T01:07:08.000Z",
+                              "uid": "35240-697a1336-a9fe-4a78-951d-a168e38a2785"
+                            }
+                          ],
+                          "id": "fc58c588-4864-4df7-856c-a1253431e6d1",
+                          "createdAt": "2026-10-22T01:07:08.000Z",
+                          "updatedAt": "2026-10-22T01:07:08.000Z",
+                          "uid": "35240-fc58c588-4864-4df7-856c-a1253431e6d1"
+                        },
+                        {
+                          "name": "{name}",
+                          "item": [
+                            {
+                              "name": "Get a certificate's UUID",
+                              "id": "2edf7fee-e97a-4666-b080-517c97cca918",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "apikey",
+                                  "apikey": [
+                                    {
+                                      "key": "key",
+                                      "value": "X-AUTH-YW-API-TOKEN",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "value",
+                                      "value": "{{apiKey}}",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "in",
+                                      "value": "header",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/certificates/:name",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "certificates",
+                                    ":name"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "c7248103-4f5a-4f51-9c39-25e87587b522",
+                                      "key": "cUUID",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    },
+                                    {
+                                      "id": "795c906a-3d84-4d8c-b0f1-07dd059e22b4",
+                                      "key": "name",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "YbaApi Internal."
+                              },
+                              "response": [
+                                {
+                                  "id": "15599664-6bd9-4177-8058-01f6482acbe1",
+                                  "name": "successful operation",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-AUTH-YW-API-TOKEN",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/certificates/:name",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "certificates",
+                                        ":name"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "cUUID"
+                                        },
+                                        {
+                                          "key": "name"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "<uuid>",
+                                  "createdAt": "2026-10-22T01:07:08.000Z",
+                                  "updatedAt": "2026-10-22T01:07:08.000Z",
+                                  "uid": "35240-15599664-6bd9-4177-8058-01f6482acbe1"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T01:07:08.000Z",
+                              "updatedAt": "2026-10-22T01:07:08.000Z",
+                              "uid": "35240-2edf7fee-e97a-4666-b080-517c97cca918"
+                            }
+                          ],
+                          "id": "c7681060-35b4-4eea-853f-51deb660cc10",
+                          "createdAt": "2026-10-22T01:07:08.000Z",
+                          "updatedAt": "2026-10-22T01:07:08.000Z",
+                          "uid": "35240-c7681060-35b4-4eea-853f-51deb660cc10"
+                        },
+                        {
+                          "name": "{rUUID}",
+                          "item": [
+                            {
+                              "name": "download",
+                              "item": [
+                                {
+                                  "name": "Get a customer's root certificate",
+                                  "id": "50c4ad5c-0ef2-4252-bdd6-94a4e63bbfa1",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "apikey",
+                                      "apikey": [
+                                        {
+                                          "key": "key",
+                                          "value": "X-AUTH-YW-API-TOKEN",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "value",
+                                          "value": "{{apiKey}}",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "in",
+                                          "value": "header",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/certificates/:rUUID/download",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "certificates",
+                                        ":rUUID",
+                                        "download"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "d4b9e04e-7b4e-4854-bd01-89459810b1d8",
+                                          "key": "cUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "7daa9d58-7628-4b82-ab2d-a3173a15a20f",
+                                          "key": "rUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "364b9da4-eaae-4812-9f9c-e37849a48775",
+                                      "name": "successful operation",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "X-AUTH-YW-API-TOKEN",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/certificates/:rUUID/download",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "certificates",
+                                            ":rUUID",
+                                            "download"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "cUUID"
+                                            },
+                                            {
+                                              "key": "rUUID"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{}",
+                                      "createdAt": "2026-10-22T01:07:08.000Z",
+                                      "updatedAt": "2026-10-22T01:07:08.000Z",
+                                      "uid": "35240-364b9da4-eaae-4812-9f9c-e37849a48775"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:07:08.000Z",
+                                  "updatedAt": "2026-10-22T01:07:08.000Z",
+                                  "uid": "35240-50c4ad5c-0ef2-4252-bdd6-94a4e63bbfa1"
+                                }
+                              ],
+                              "id": "60f80f39-efa0-4990-ae4b-bd4c763e5d0f",
+                              "createdAt": "2026-10-22T01:07:08.000Z",
+                              "updatedAt": "2026-10-22T01:07:08.000Z",
+                              "uid": "35240-60f80f39-efa0-4990-ae4b-bd4c763e5d0f"
+                            },
+                            {
+                              "name": "edit",
+                              "item": [
+                                {
+                                  "name": "Edit TLS certificate config details",
+                                  "id": "e04dde20-eddb-4cd5-80f9-fc62bf513743",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "apikey",
+                                      "apikey": [
+                                        {
+                                          "key": "key",
+                                          "value": "X-AUTH-YW-API-TOKEN",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "value",
+                                          "value": "{{apiKey}}",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "in",
+                                          "value": "header",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"certContent\": \"<string>\",\n  \"certExpiry\": \"<long>\",\n  \"certStart\": \"<long>\",\n  \"certType\": \"CustomCertHostPath\",\n  \"label\": \"<string>\",\n  \"customCertInfo\": {\n    \"clientCertPath\": \"<string>\",\n    \"clientKeyPath\": \"<string>\",\n    \"nodeCertPath\": \"<string>\",\n    \"nodeKeyPath\": \"<string>\",\n    \"rootCertPath\": \"<string>\"\n  },\n  \"customServerCertData\": {\n    \"serverCertContent\": \"<string>\",\n    \"serverKeyContent\": \"<string>\"\n  },\n  \"hcVaultCertParams\": {\n    \"engine\": \"<string>\",\n    \"mountPath\": \"<string>\",\n    \"role\": \"<string>\",\n    \"vaultAddr\": \"<string>\",\n    \"ttl\": \"<long>\",\n    \"ttlExpiry\": \"<long>\",\n    \"vaultAuthNamespace\": \"<string>\",\n    \"vaultRoleID\": \"<string>\",\n    \"vaultSecretID\": \"<string>\",\n    \"vaultToken\": \"<string>\"\n  },\n  \"keyContent\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/certificates/:rUUID/edit",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "certificates",
+                                        ":rUUID",
+                                        "edit"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "edaa8672-c9de-4e83-85a2-cded374986f8",
+                                          "key": "cUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "70dd0054-28de-47bb-9d0f-bd3ce913e904",
+                                          "key": "rUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "c52756d2-d5bd-452d-a9d3-a52377c694b3",
+                                      "name": "successful operation",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "X-AUTH-YW-API-TOKEN",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"certContent\": \"<string>\",\n  \"certExpiry\": \"<long>\",\n  \"certStart\": \"<long>\",\n  \"certType\": \"CustomCertHostPath\",\n  \"label\": \"<string>\",\n  \"customCertInfo\": {\n    \"clientCertPath\": \"<string>\",\n    \"clientKeyPath\": \"<string>\",\n    \"nodeCertPath\": \"<string>\",\n    \"nodeKeyPath\": \"<string>\",\n    \"rootCertPath\": \"<string>\"\n  },\n  \"customServerCertData\": {\n    \"serverCertContent\": \"<string>\",\n    \"serverKeyContent\": \"<string>\"\n  },\n  \"hcVaultCertParams\": {\n    \"engine\": \"<string>\",\n    \"mountPath\": \"<string>\",\n    \"role\": \"<string>\",\n    \"vaultAddr\": \"<string>\",\n    \"ttl\": \"<long>\",\n    \"ttlExpiry\": \"<long>\",\n    \"vaultAuthNamespace\": \"<string>\",\n    \"vaultRoleID\": \"<string>\",\n    \"vaultSecretID\": \"<string>\",\n    \"vaultToken\": \"<string>\"\n  },\n  \"keyContent\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/certificates/:rUUID/edit",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "certificates",
+                                            ":rUUID",
+                                            "edit"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "cUUID"
+                                            },
+                                            {
+                                              "key": "rUUID"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"message\": \"<string>\",\n  \"success\": \"<boolean>\"\n}",
+                                      "createdAt": "2026-10-22T01:07:08.000Z",
+                                      "updatedAt": "2026-10-22T01:07:08.000Z",
+                                      "uid": "35240-c52756d2-d5bd-452d-a9d3-a52377c694b3"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:07:08.000Z",
+                                  "updatedAt": "2026-10-22T01:07:08.000Z",
+                                  "uid": "35240-e04dde20-eddb-4cd5-80f9-fc62bf513743"
+                                }
+                              ],
+                              "id": "ab447eda-1678-4e5f-b4b8-2645e65f40bd",
+                              "createdAt": "2026-10-22T01:07:08.000Z",
+                              "updatedAt": "2026-10-22T01:07:08.000Z",
+                              "uid": "35240-ab447eda-1678-4e5f-b4b8-2645e65f40bd"
+                            },
+                            {
+                              "name": "update_empty_cert",
+                              "item": [
+                                {
+                                  "name": "Update an empty certificate",
+                                  "id": "8ae9aaf5-6d60-407b-9556-339d0d9f115a",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "apikey",
+                                      "apikey": [
+                                        {
+                                          "key": "key",
+                                          "value": "X-AUTH-YW-API-TOKEN",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "value",
+                                          "value": "{{apiKey}}",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "in",
+                                          "value": "header",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/certificates/:rUUID/update_empty_cert",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "certificates",
+                                        ":rUUID",
+                                        "update_empty_cert"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "ef05edfe-2631-42c6-899e-6628a6cc6634",
+                                          "key": "cUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "b2e02fde-4a64-426c-9cdc-e9fa99a132b4",
+                                          "key": "rUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    },
+                                    "description": "YbaApi Internal."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "f9775cb0-9998-4144-bb48-472abc8fe351",
+                                      "name": "successful operation",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "X-AUTH-YW-API-TOKEN",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/certificates/:rUUID/update_empty_cert",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "certificates",
+                                            ":rUUID",
+                                            "update_empty_cert"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "cUUID"
+                                            },
+                                            {
+                                              "key": "rUUID"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"customCertPathParams\": {\n    \"clientCertPath\": \"<string>\",\n    \"clientKeyPath\": \"<string>\",\n    \"nodeCertPath\": \"<string>\",\n    \"nodeKeyPath\": \"<string>\",\n    \"rootCertPath\": \"<string>\"\n  },\n  \"customHCPKICertInfo\": {\n    \"engine\": \"<string>\",\n    \"mountPath\": \"<string>\",\n    \"role\": \"<string>\",\n    \"vaultAddr\": \"<string>\",\n    \"ttl\": \"<long>\",\n    \"ttlExpiry\": \"<long>\",\n    \"vaultAuthNamespace\": \"<string>\",\n    \"vaultRoleID\": \"<string>\",\n    \"vaultSecretID\": \"<string>\",\n    \"vaultToken\": \"<string>\"\n  },\n  \"customServerCertInfo\": {\n    \"serverCert\": \"<string>\",\n    \"serverKey\": \"<string>\"\n  },\n  \"universeDetailSubsets\": [\n    {\n      \"creationDate\": \"<long>\",\n      \"name\": \"<string>\",\n      \"universePaused\": \"<boolean>\",\n      \"updateInProgress\": \"<boolean>\",\n      \"updateSucceeded\": \"<boolean>\",\n      \"uuid\": \"<uuid>\"\n    },\n    {\n      \"creationDate\": \"<long>\",\n      \"name\": \"<string>\",\n      \"universePaused\": \"<boolean>\",\n      \"updateInProgress\": \"<boolean>\",\n      \"updateSucceeded\": \"<boolean>\",\n      \"uuid\": \"<uuid>\"\n    }\n  ],\n  \"certType\": \"SelfSigned\",\n  \"certificate\": \"<string>\",\n  \"checksum\": \"<string>\",\n  \"customerUUID\": \"<uuid>\",\n  \"expiryDate\": \"<dateTime>\",\n  \"expiryDateIso\": \"<dateTime>\",\n  \"inUse\": \"<boolean>\",\n  \"label\": \"<string>\",\n  \"privateKey\": \"<string>\",\n  \"startDate\": \"<dateTime>\",\n  \"startDateIso\": \"<dateTime>\",\n  \"universeDetails\": [\n    {\n      \"creationDate\": \"<long>\",\n      \"name\": \"<string>\",\n      \"universePaused\": \"<boolean>\",\n      \"updateInProgress\": \"<boolean>\",\n      \"updateSucceeded\": \"<boolean>\",\n      \"uuid\": \"<uuid>\"\n    },\n    {\n      \"creationDate\": \"<long>\",\n      \"name\": \"<string>\",\n      \"universePaused\": \"<boolean>\",\n      \"updateInProgress\": \"<boolean>\",\n      \"updateSucceeded\": \"<boolean>\",\n      \"uuid\": \"<uuid>\"\n    }\n  ],\n  \"uuid\": \"<uuid>\"\n}",
+                                      "createdAt": "2026-10-22T01:07:08.000Z",
+                                      "updatedAt": "2026-10-22T01:07:08.000Z",
+                                      "uid": "35240-f9775cb0-9998-4144-bb48-472abc8fe351"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:07:08.000Z",
+                                  "updatedAt": "2026-10-22T01:07:08.000Z",
+                                  "uid": "35240-8ae9aaf5-6d60-407b-9556-339d0d9f115a"
+                                }
+                              ],
+                              "id": "8de0394a-d637-48ae-be73-83239ea51b29",
+                              "createdAt": "2026-10-22T01:07:08.000Z",
+                              "updatedAt": "2026-10-22T01:07:08.000Z",
+                              "uid": "35240-8de0394a-d637-48ae-be73-83239ea51b29"
+                            },
+                            {
+                              "name": "Delete a certificate",
+                              "id": "7dc92dac-a244-4ea3-b9f5-802d01354ce6",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "apikey",
+                                  "apikey": [
+                                    {
+                                      "key": "key",
+                                      "value": "X-AUTH-YW-API-TOKEN",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "value",
+                                      "value": "{{apiKey}}",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "in",
+                                      "value": "header",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/certificates/:rUUID",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "certificates",
+                                    ":rUUID"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "0f87cc74-a2d3-4ff3-90cf-8ca963fbd610",
+                                      "key": "cUUID",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    },
+                                    {
+                                      "id": "c6398232-1681-4b17-9c5e-069d620c188c",
+                                      "key": "rUUID",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                }
+                              },
+                              "response": [
+                                {
+                                  "id": "b50ba8c3-170d-4189-ad7f-e5c3fedae176",
+                                  "name": "successful operation",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-AUTH-YW-API-TOKEN",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/certificates/:rUUID",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "certificates",
+                                        ":rUUID"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "cUUID"
+                                        },
+                                        {
+                                          "key": "rUUID"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"message\": \"<string>\",\n  \"success\": \"<boolean>\"\n}",
+                                  "createdAt": "2026-10-22T01:07:08.000Z",
+                                  "updatedAt": "2026-10-22T01:07:08.000Z",
+                                  "uid": "35240-b50ba8c3-170d-4189-ad7f-e5c3fedae176"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T01:07:08.000Z",
+                              "updatedAt": "2026-10-22T01:07:08.000Z",
+                              "uid": "35240-7dc92dac-a244-4ea3-b9f5-802d01354ce6"
+                            },
+                            {
+                              "name": "Add a client certificate",
+                              "id": "2e7c452e-f5fe-4f57-a640-6f61166563a5",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "apikey",
+                                  "apikey": [
+                                    {
+                                      "key": "key",
+                                      "value": "X-AUTH-YW-API-TOKEN",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "value",
+                                      "value": "{{apiKey}}",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "in",
+                                      "value": "header",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"certExpiry\": \"<long>\",\n  \"certStart\": \"<long>\",\n  \"username\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/certificates/:rUUID",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "certificates",
+                                    ":rUUID"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "10cd82b0-9261-4c36-86b9-83f8c22efa7f",
+                                      "key": "cUUID",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    },
+                                    {
+                                      "id": "2bc2cf77-5074-4126-88f0-c32c00ebf1b8",
+                                      "key": "rUUID",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                }
+                              },
+                              "response": [
+                                {
+                                  "id": "80e14bfd-d2d7-43ed-86d3-01adf151feb5",
+                                  "name": "successful operation",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-AUTH-YW-API-TOKEN",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"certExpiry\": \"<long>\",\n  \"certStart\": \"<long>\",\n  \"username\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/certificates/:rUUID",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "certificates",
+                                        ":rUUID"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "cUUID"
+                                        },
+                                        {
+                                          "key": "rUUID"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"yugabytedb.crt\": \"<string>\",\n  \"yugabytedb.key\": \"<string>\"\n}",
+                                  "createdAt": "2026-10-22T01:07:08.000Z",
+                                  "updatedAt": "2026-10-22T01:07:08.000Z",
+                                  "uid": "35240-80e14bfd-d2d7-43ed-86d3-01adf151feb5"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T01:07:08.000Z",
+                              "updatedAt": "2026-10-22T01:07:08.000Z",
+                              "uid": "35240-2e7c452e-f5fe-4f57-a640-6f61166563a5"
+                            }
+                          ],
+                          "id": "cd8d92f9-feff-45ad-8d74-5800e9a65b7e",
+                          "createdAt": "2026-10-22T01:07:08.000Z",
+                          "updatedAt": "2026-10-22T01:07:08.000Z",
+                          "uid": "35240-cd8d92f9-feff-45ad-8d74-5800e9a65b7e"
+                        },
+                        {
+                          "name": "List a customer's certificates",
+                          "id": "9de9c42c-5cff-44e7-b7cc-025d17c69df6",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "apikey",
+                              "apikey": [
+                                {
+                                  "key": "key",
+                                  "value": "X-AUTH-YW-API-TOKEN",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "value",
+                                  "value": "{{apiKey}}",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "in",
+                                  "value": "header",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/customers/:cUUID/certificates",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "customers",
+                                ":cUUID",
+                                "certificates"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "85ff9d83-56e6-47a0-b886-ddb8c8219f8b",
+                                  "key": "cUUID",
+                                  "value": "<uuid>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "f25a55dc-74bd-4e18-b185-27717535843b",
+                              "name": "successful operation",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-AUTH-YW-API-TOKEN",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/certificates",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "certificates"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "cUUID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "[\n  {\n    \"customCertPathParams\": {\n      \"clientCertPath\": \"<string>\",\n      \"clientKeyPath\": \"<string>\",\n      \"nodeCertPath\": \"<string>\",\n      \"nodeKeyPath\": \"<string>\",\n      \"rootCertPath\": \"<string>\"\n    },\n    \"customHCPKICertInfo\": {\n      \"engine\": \"<string>\",\n      \"mountPath\": \"<string>\",\n      \"role\": \"<string>\",\n      \"vaultAddr\": \"<string>\",\n      \"ttl\": \"<long>\",\n      \"ttlExpiry\": \"<long>\",\n      \"vaultAuthNamespace\": \"<string>\",\n      \"vaultRoleID\": \"<string>\",\n      \"vaultSecretID\": \"<string>\",\n      \"vaultToken\": \"<string>\"\n    },\n    \"customServerCertInfo\": {\n      \"serverCert\": \"<string>\",\n      \"serverKey\": \"<string>\"\n    },\n    \"universeDetailSubsets\": [\n      {\n        \"creationDate\": \"<long>\",\n        \"name\": \"<string>\",\n        \"universePaused\": \"<boolean>\",\n        \"updateInProgress\": \"<boolean>\",\n        \"updateSucceeded\": \"<boolean>\",\n        \"uuid\": \"<uuid>\"\n      },\n      {\n        \"creationDate\": \"<long>\",\n        \"name\": \"<string>\",\n        \"universePaused\": \"<boolean>\",\n        \"updateInProgress\": \"<boolean>\",\n        \"updateSucceeded\": \"<boolean>\",\n        \"uuid\": \"<uuid>\"\n      }\n    ],\n    \"certType\": \"CustomCertHostPath\",\n    \"certificate\": \"<string>\",\n    \"checksum\": \"<string>\",\n    \"customerUUID\": \"<uuid>\",\n    \"expiryDate\": \"<dateTime>\",\n    \"expiryDateIso\": \"<dateTime>\",\n    \"inUse\": \"<boolean>\",\n    \"label\": \"<string>\",\n    \"privateKey\": \"<string>\",\n    \"startDate\": \"<dateTime>\",\n    \"startDateIso\": \"<dateTime>\",\n    \"universeDetails\": [\n      {\n        \"creationDate\": \"<long>\",\n        \"name\": \"<string>\",\n        \"universePaused\": \"<boolean>\",\n        \"updateInProgress\": \"<boolean>\",\n        \"updateSucceeded\": \"<boolean>\",\n        \"uuid\": \"<uuid>\"\n      },\n      {\n        \"creationDate\": \"<long>\",\n        \"name\": \"<string>\",\n        \"universePaused\": \"<boolean>\",\n        \"updateInProgress\": \"<boolean>\",\n        \"updateSucceeded\": \"<boolean>\",\n        \"uuid\": \"<uuid>\"\n      }\n    ],\n    \"uuid\": \"<uuid>\"\n  },\n  {\n    \"customCertPathParams\": {\n      \"clientCertPath\": \"<string>\",\n      \"clientKeyPath\": \"<string>\",\n      \"nodeCertPath\": \"<string>\",\n      \"nodeKeyPath\": \"<string>\",\n      \"rootCertPath\": \"<string>\"\n    },\n    \"customHCPKICertInfo\": {\n      \"engine\": \"<string>\",\n      \"mountPath\": \"<string>\",\n      \"role\": \"<string>\",\n      \"vaultAddr\": \"<string>\",\n      \"ttl\": \"<long>\",\n      \"ttlExpiry\": \"<long>\",\n      \"vaultAuthNamespace\": \"<string>\",\n      \"vaultRoleID\": \"<string>\",\n      \"vaultSecretID\": \"<string>\",\n      \"vaultToken\": \"<string>\"\n    },\n    \"customServerCertInfo\": {\n      \"serverCert\": \"<string>\",\n      \"serverKey\": \"<string>\"\n    },\n    \"universeDetailSubsets\": [\n      {\n        \"creationDate\": \"<long>\",\n        \"name\": \"<string>\",\n        \"universePaused\": \"<boolean>\",\n        \"updateInProgress\": \"<boolean>\",\n        \"updateSucceeded\": \"<boolean>\",\n        \"uuid\": \"<uuid>\"\n      },\n      {\n        \"creationDate\": \"<long>\",\n        \"name\": \"<string>\",\n        \"universePaused\": \"<boolean>\",\n        \"updateInProgress\": \"<boolean>\",\n        \"updateSucceeded\": \"<boolean>\",\n        \"uuid\": \"<uuid>\"\n      }\n    ],\n    \"certType\": \"HashicorpVault\",\n    \"certificate\": \"<string>\",\n    \"checksum\": \"<string>\",\n    \"customerUUID\": \"<uuid>\",\n    \"expiryDate\": \"<dateTime>\",\n    \"expiryDateIso\": \"<dateTime>\",\n    \"inUse\": \"<boolean>\",\n    \"label\": \"<string>\",\n    \"privateKey\": \"<string>\",\n    \"startDate\": \"<dateTime>\",\n    \"startDateIso\": \"<dateTime>\",\n    \"universeDetails\": [\n      {\n        \"creationDate\": \"<long>\",\n        \"name\": \"<string>\",\n        \"universePaused\": \"<boolean>\",\n        \"updateInProgress\": \"<boolean>\",\n        \"updateSucceeded\": \"<boolean>\",\n        \"uuid\": \"<uuid>\"\n      },\n      {\n        \"creationDate\": \"<long>\",\n        \"name\": \"<string>\",\n        \"universePaused\": \"<boolean>\",\n        \"updateInProgress\": \"<boolean>\",\n        \"updateSucceeded\": \"<boolean>\",\n        \"uuid\": \"<uuid>\"\n      }\n    ],\n    \"uuid\": \"<uuid>\"\n  }\n]",
+                              "createdAt": "2026-10-22T01:07:08.000Z",
+                              "updatedAt": "2026-10-22T01:07:08.000Z",
+                              "uid": "35240-f25a55dc-74bd-4e18-b185-27717535843b"
+                            },
+                            {
+                              "id": "d5ae422d-b9c4-4be7-95f5-e11c9eb57876",
+                              "name": "If there was a server or database issue when listing the regions",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-AUTH-YW-API-TOKEN",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/certificates",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "certificates"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "cUUID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\",\n  \"errorJson\": {},\n  \"httpMethod\": \"<string>\",\n  \"requestJson\": {},\n  \"requestUri\": \"<string>\",\n  \"success\": \"<boolean>\"\n}",
+                              "createdAt": "2026-10-22T01:07:08.000Z",
+                              "updatedAt": "2026-10-22T01:07:08.000Z",
+                              "uid": "35240-d5ae422d-b9c4-4be7-95f5-e11c9eb57876"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T01:07:08.000Z",
+                          "updatedAt": "2026-10-22T01:07:08.000Z",
+                          "uid": "35240-9de9c42c-5cff-44e7-b7cc-025d17c69df6"
+                        },
+                        {
+                          "name": "Restore a certificate from backup",
+                          "id": "4bedbb75-902b-4632-8726-ed2058ad8acd",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "apikey",
+                              "apikey": [
+                                {
+                                  "key": "key",
+                                  "value": "X-AUTH-YW-API-TOKEN",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "value",
+                                  "value": "{{apiKey}}",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "in",
+                                  "value": "header",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"certContent\": \"<string>\",\n  \"certExpiry\": \"<long>\",\n  \"certStart\": \"<long>\",\n  \"certType\": \"CustomCertHostPath\",\n  \"label\": \"<string>\",\n  \"customCertInfo\": {\n    \"clientCertPath\": \"<string>\",\n    \"clientKeyPath\": \"<string>\",\n    \"nodeCertPath\": \"<string>\",\n    \"nodeKeyPath\": \"<string>\",\n    \"rootCertPath\": \"<string>\"\n  },\n  \"customServerCertData\": {\n    \"serverCertContent\": \"<string>\",\n    \"serverKeyContent\": \"<string>\"\n  },\n  \"hcVaultCertParams\": {\n    \"engine\": \"<string>\",\n    \"mountPath\": \"<string>\",\n    \"role\": \"<string>\",\n    \"vaultAddr\": \"<string>\",\n    \"ttl\": \"<long>\",\n    \"ttlExpiry\": \"<long>\",\n    \"vaultAuthNamespace\": \"<string>\",\n    \"vaultRoleID\": \"<string>\",\n    \"vaultSecretID\": \"<string>\",\n    \"vaultToken\": \"<string>\"\n  },\n  \"keyContent\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/customers/:cUUID/certificates",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "customers",
+                                ":cUUID",
+                                "certificates"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "9295a638-6615-4411-9938-a6ee2c004d19",
+                                  "key": "cUUID",
+                                  "value": "<uuid>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "1029e68f-6896-4ae6-998d-3c56cd2852df",
+                              "name": "successful operation",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-AUTH-YW-API-TOKEN",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"certContent\": \"<string>\",\n  \"certExpiry\": \"<long>\",\n  \"certStart\": \"<long>\",\n  \"certType\": \"CustomCertHostPath\",\n  \"label\": \"<string>\",\n  \"customCertInfo\": {\n    \"clientCertPath\": \"<string>\",\n    \"clientKeyPath\": \"<string>\",\n    \"nodeCertPath\": \"<string>\",\n    \"nodeKeyPath\": \"<string>\",\n    \"rootCertPath\": \"<string>\"\n  },\n  \"customServerCertData\": {\n    \"serverCertContent\": \"<string>\",\n    \"serverKeyContent\": \"<string>\"\n  },\n  \"hcVaultCertParams\": {\n    \"engine\": \"<string>\",\n    \"mountPath\": \"<string>\",\n    \"role\": \"<string>\",\n    \"vaultAddr\": \"<string>\",\n    \"ttl\": \"<long>\",\n    \"ttlExpiry\": \"<long>\",\n    \"vaultAuthNamespace\": \"<string>\",\n    \"vaultRoleID\": \"<string>\",\n    \"vaultSecretID\": \"<string>\",\n    \"vaultToken\": \"<string>\"\n  },\n  \"keyContent\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/certificates",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "certificates"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "cUUID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "<uuid>",
+                              "createdAt": "2026-10-22T01:07:08.000Z",
+                              "updatedAt": "2026-10-22T01:07:08.000Z",
+                              "uid": "35240-1029e68f-6896-4ae6-998d-3c56cd2852df"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T01:07:08.000Z",
+                          "updatedAt": "2026-10-22T01:07:08.000Z",
+                          "uid": "35240-4bedbb75-902b-4632-8726-ed2058ad8acd"
+                        }
+                      ],
+                      "id": "27f62165-4d7e-4716-b558-0503881209bd",
+                      "createdAt": "2026-10-22T01:07:08.000Z",
+                      "updatedAt": "2026-10-22T01:07:08.000Z",
+                      "uid": "35240-27f62165-4d7e-4716-b558-0503881209bd"
+                    }
+                  ],
+                  "id": "404d2360-7d01-4848-a09c-7312f4c1694e",
+                  "createdAt": "2026-10-22T01:07:08.000Z",
+                  "updatedAt": "2026-10-22T01:07:08.000Z",
+                  "uid": "35240-404d2360-7d01-4848-a09c-7312f4c1694e"
+                }
+              ],
+              "id": "46231136-d80e-4926-abd3-247d0bcacccd",
+              "createdAt": "2026-10-22T01:07:08.000Z",
+              "updatedAt": "2026-10-22T01:07:08.000Z",
+              "uid": "35240-46231136-d80e-4926-abd3-247d0bcacccd"
+            }
+          ],
+          "id": "76c291a9-5587-4e9b-8810-3ee037df11df",
+          "createdAt": "2026-10-22T01:07:08.000Z",
+          "updatedAt": "2026-10-22T01:07:08.000Z",
+          "uid": "35240-76c291a9-5587-4e9b-8810-3ee037df11df"
+        }
+      ],
+      "id": "2fb63fc3-0581-49b7-830f-822d5419a394",
+      "createdAt": "2026-10-22T01:07:08.000Z",
+      "updatedAt": "2026-10-22T01:07:08.000Z",
+      "uid": "35240-2fb63fc3-0581-49b7-830f-822d5419a394"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

@@ -1,0 +1,828 @@
+{
+  "info": {
+    "_postman_id": "519180cc-0cda-4e93-935c-baccbbeee27e",
+    "name": "YugabyteDB Anywhere Preview API",
+    "description": "ALPHA - NOT FOR EXTERNAL USE\n\nContact Support:\n Name: https://docs.yugabyte.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:11:27.000Z",
+    "updatedAt": "2026-10-22T01:11:27.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-519180cc-0cda-4e93-935c-baccbbeee27e"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "customers",
+              "item": [
+                {
+                  "name": "{cUUID}",
+                  "item": [
+                    {
+                      "name": "providers",
+                      "item": [
+                        {
+                          "name": "{pUUID}",
+                          "item": [
+                            {
+                              "name": "image_bundle",
+                              "item": [
+                                {
+                                  "name": "{iBUUID}",
+                                  "item": [
+                                    {
+                                      "name": "Delete a image bundle",
+                                      "id": "dac5f379-6c06-4fd8-b88f-cf933173108e",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "auth": {
+                                          "type": "apikey",
+                                          "apikey": [
+                                            {
+                                              "key": "key",
+                                              "value": "X-AUTH-YW-API-TOKEN",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "value",
+                                              "value": "{{apiKey}}",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "in",
+                                              "value": "header",
+                                              "type": "string"
+                                            }
+                                          ]
+                                        },
+                                        "method": "DELETE",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/providers/:pUUID/image_bundle/:iBUUID",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "providers",
+                                            ":pUUID",
+                                            "image_bundle",
+                                            ":iBUUID"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "8425a30c-b820-41fb-899f-8bca84478850",
+                                              "key": "cUUID",
+                                              "value": "<uuid>",
+                                              "description": "(Required) "
+                                            },
+                                            {
+                                              "id": "897e226a-f2be-4142-9ea2-2df138669241",
+                                              "key": "pUUID",
+                                              "value": "<uuid>",
+                                              "description": "(Required) "
+                                            },
+                                            {
+                                              "id": "a3e90729-fb39-4341-82d4-692f9e08f273",
+                                              "key": "iBUUID",
+                                              "value": "<uuid>",
+                                              "description": "(Required) "
+                                            }
+                                          ]
+                                        },
+                                        "description": "WARNING: This is a preview API that could change."
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "7c1820e4-96ad-4a61-abe1-25827547133f",
+                                          "name": "successful operation",
+                                          "originalRequest": {
+                                            "method": "DELETE",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: apikey",
+                                                "key": "X-AUTH-YW-API-TOKEN",
+                                                "value": "<API Key>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v1/customers/:cUUID/providers/:pUUID/image_bundle/:iBUUID",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v1",
+                                                "customers",
+                                                ":cUUID",
+                                                "providers",
+                                                ":pUUID",
+                                                "image_bundle",
+                                                ":iBUUID"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "cUUID"
+                                                },
+                                                {
+                                                  "key": "pUUID"
+                                                },
+                                                {
+                                                  "key": "iBUUID"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"message\": \"<string>\",\n  \"success\": \"<boolean>\"\n}",
+                                          "createdAt": "2026-10-22T01:11:28.000Z",
+                                          "updatedAt": "2026-10-22T01:11:28.000Z",
+                                          "uid": "35240-7c1820e4-96ad-4a61-abe1-25827547133f"
+                                        }
+                                      ],
+                                      "createdAt": "2026-10-22T01:11:28.000Z",
+                                      "updatedAt": "2026-10-22T01:11:28.000Z",
+                                      "uid": "35240-dac5f379-6c06-4fd8-b88f-cf933173108e"
+                                    },
+                                    {
+                                      "name": "Get a image bundle",
+                                      "id": "d1e874c7-7683-4024-bd2f-21b5e02f242f",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "auth": {
+                                          "type": "apikey",
+                                          "apikey": [
+                                            {
+                                              "key": "key",
+                                              "value": "X-AUTH-YW-API-TOKEN",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "value",
+                                              "value": "{{apiKey}}",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "in",
+                                              "value": "header",
+                                              "type": "string"
+                                            }
+                                          ]
+                                        },
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/providers/:pUUID/image_bundle/:iBUUID",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "providers",
+                                            ":pUUID",
+                                            "image_bundle",
+                                            ":iBUUID"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "4756d161-05c6-46d0-8394-8cc6dae7ad28",
+                                              "key": "cUUID",
+                                              "value": "<uuid>",
+                                              "description": "(Required) "
+                                            },
+                                            {
+                                              "id": "a04731c8-b17f-4e8d-81db-c78af99ca491",
+                                              "key": "pUUID",
+                                              "value": "<uuid>",
+                                              "description": "(Required) "
+                                            },
+                                            {
+                                              "id": "11c96fe6-96e6-4062-bfa2-6f482c645759",
+                                              "key": "iBUUID",
+                                              "value": "<uuid>",
+                                              "description": "(Required) "
+                                            }
+                                          ]
+                                        },
+                                        "description": "WARNING: This is a preview API that could change."
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "a76c6ad7-644a-4c1c-b12d-7a42b48937ba",
+                                          "name": "successful operation",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: apikey",
+                                                "key": "X-AUTH-YW-API-TOKEN",
+                                                "value": "<API Key>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v1/customers/:cUUID/providers/:pUUID/image_bundle/:iBUUID",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v1",
+                                                "customers",
+                                                ":cUUID",
+                                                "providers",
+                                                ":pUUID",
+                                                "image_bundle",
+                                                ":iBUUID"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "cUUID"
+                                                },
+                                                {
+                                                  "key": "pUUID"
+                                                },
+                                                {
+                                                  "key": "iBUUID"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"active\": \"<boolean>\",\n  \"details\": {\n    \"arch\": \"aarch64\",\n    \"globalYbImage\": \"<string>\",\n    \"regions\": {\n      \"cillum_3_\": {\n        \"sshPortOverride\": \"<integer>\",\n        \"sshUserOverride\": \"<string>\",\n        \"ybImage\": \"<string>\"\n      },\n      \"dolor4\": {\n        \"sshPortOverride\": \"<integer>\",\n        \"sshUserOverride\": \"<string>\",\n        \"ybImage\": \"<string>\"\n      },\n      \"ut__3\": {\n        \"sshPortOverride\": \"<integer>\",\n        \"sshUserOverride\": \"<string>\",\n        \"ybImage\": \"<string>\"\n      }\n    },\n    \"sshPort\": \"<integer>\",\n    \"sshUser\": \"<string>\",\n    \"useIMDSv2\": \"<boolean>\"\n  },\n  \"metadata\": {\n    \"type\": \"YBA_DEPRECATED\",\n    \"version\": \"<string>\"\n  },\n  \"name\": \"<string>\",\n  \"useAsDefault\": \"<boolean>\",\n  \"uuid\": \"<uuid>\"\n}",
+                                          "createdAt": "2026-10-22T01:11:28.000Z",
+                                          "updatedAt": "2026-10-22T01:11:28.000Z",
+                                          "uid": "35240-a76c6ad7-644a-4c1c-b12d-7a42b48937ba"
+                                        }
+                                      ],
+                                      "createdAt": "2026-10-22T01:11:28.000Z",
+                                      "updatedAt": "2026-10-22T01:11:28.000Z",
+                                      "uid": "35240-d1e874c7-7683-4024-bd2f-21b5e02f242f"
+                                    },
+                                    {
+                                      "name": "Update a image bundle",
+                                      "id": "ee40e8a4-f40d-43b4-91d0-6fb83d69f126",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "auth": {
+                                          "type": "apikey",
+                                          "apikey": [
+                                            {
+                                              "key": "key",
+                                              "value": "X-AUTH-YW-API-TOKEN",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "value",
+                                              "value": "{{apiKey}}",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "in",
+                                              "value": "header",
+                                              "type": "string"
+                                            }
+                                          ]
+                                        },
+                                        "method": "PUT",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"active\": \"<boolean>\",\n  \"details\": {\n    \"arch\": \"aarch64\",\n    \"globalYbImage\": \"<string>\",\n    \"regions\": {\n      \"cillum_3_\": {\n        \"sshPortOverride\": \"<integer>\",\n        \"sshUserOverride\": \"<string>\",\n        \"ybImage\": \"<string>\"\n      },\n      \"dolor4\": {\n        \"sshPortOverride\": \"<integer>\",\n        \"sshUserOverride\": \"<string>\",\n        \"ybImage\": \"<string>\"\n      },\n      \"ut__3\": {\n        \"sshPortOverride\": \"<integer>\",\n        \"sshUserOverride\": \"<string>\",\n        \"ybImage\": \"<string>\"\n      }\n    },\n    \"sshPort\": \"<integer>\",\n    \"sshUser\": \"<string>\",\n    \"useIMDSv2\": \"<boolean>\"\n  },\n  \"metadata\": {\n    \"type\": \"YBA_DEPRECATED\",\n    \"version\": \"<string>\"\n  },\n  \"name\": \"<string>\",\n  \"useAsDefault\": \"<boolean>\",\n  \"uuid\": \"<uuid>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/providers/:pUUID/image_bundle/:iBUUID",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "providers",
+                                            ":pUUID",
+                                            "image_bundle",
+                                            ":iBUUID"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "d2009b2b-c3e8-4644-913e-739818e9df81",
+                                              "key": "cUUID",
+                                              "value": "<uuid>",
+                                              "description": "(Required) "
+                                            },
+                                            {
+                                              "id": "146066bf-de00-4b45-b5bc-411a8674bcf2",
+                                              "key": "pUUID",
+                                              "value": "<uuid>",
+                                              "description": "(Required) "
+                                            },
+                                            {
+                                              "id": "485ff8cd-35e5-4cd1-9fd5-71988b2b8fa1",
+                                              "key": "iBUUID",
+                                              "value": "<uuid>",
+                                              "description": "(Required) "
+                                            }
+                                          ]
+                                        },
+                                        "description": "WARNING: This is a preview API that could change."
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "d21cc6c4-2b66-4c78-b9cb-60e1bb7e72cb",
+                                          "name": "successful operation",
+                                          "originalRequest": {
+                                            "method": "PUT",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: apikey",
+                                                "key": "X-AUTH-YW-API-TOKEN",
+                                                "value": "<API Key>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "{\n  \"active\": \"<boolean>\",\n  \"details\": {\n    \"arch\": \"aarch64\",\n    \"globalYbImage\": \"<string>\",\n    \"regions\": {\n      \"cillum_3_\": {\n        \"sshPortOverride\": \"<integer>\",\n        \"sshUserOverride\": \"<string>\",\n        \"ybImage\": \"<string>\"\n      },\n      \"dolor4\": {\n        \"sshPortOverride\": \"<integer>\",\n        \"sshUserOverride\": \"<string>\",\n        \"ybImage\": \"<string>\"\n      },\n      \"ut__3\": {\n        \"sshPortOverride\": \"<integer>\",\n        \"sshUserOverride\": \"<string>\",\n        \"ybImage\": \"<string>\"\n      }\n    },\n    \"sshPort\": \"<integer>\",\n    \"sshUser\": \"<string>\",\n    \"useIMDSv2\": \"<boolean>\"\n  },\n  \"metadata\": {\n    \"type\": \"YBA_DEPRECATED\",\n    \"version\": \"<string>\"\n  },\n  \"name\": \"<string>\",\n  \"useAsDefault\": \"<boolean>\",\n  \"uuid\": \"<uuid>\"\n}",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v1/customers/:cUUID/providers/:pUUID/image_bundle/:iBUUID",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v1",
+                                                "customers",
+                                                ":cUUID",
+                                                "providers",
+                                                ":pUUID",
+                                                "image_bundle",
+                                                ":iBUUID"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "cUUID"
+                                                },
+                                                {
+                                                  "key": "pUUID"
+                                                },
+                                                {
+                                                  "key": "iBUUID"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"active\": \"<boolean>\",\n  \"details\": {\n    \"arch\": \"aarch64\",\n    \"globalYbImage\": \"<string>\",\n    \"regions\": {\n      \"cillum_3_\": {\n        \"sshPortOverride\": \"<integer>\",\n        \"sshUserOverride\": \"<string>\",\n        \"ybImage\": \"<string>\"\n      },\n      \"dolor4\": {\n        \"sshPortOverride\": \"<integer>\",\n        \"sshUserOverride\": \"<string>\",\n        \"ybImage\": \"<string>\"\n      },\n      \"ut__3\": {\n        \"sshPortOverride\": \"<integer>\",\n        \"sshUserOverride\": \"<string>\",\n        \"ybImage\": \"<string>\"\n      }\n    },\n    \"sshPort\": \"<integer>\",\n    \"sshUser\": \"<string>\",\n    \"useIMDSv2\": \"<boolean>\"\n  },\n  \"metadata\": {\n    \"type\": \"YBA_DEPRECATED\",\n    \"version\": \"<string>\"\n  },\n  \"name\": \"<string>\",\n  \"useAsDefault\": \"<boolean>\",\n  \"uuid\": \"<uuid>\"\n}",
+                                          "createdAt": "2026-10-22T01:11:28.000Z",
+                                          "updatedAt": "2026-10-22T01:11:28.000Z",
+                                          "uid": "35240-d21cc6c4-2b66-4c78-b9cb-60e1bb7e72cb"
+                                        }
+                                      ],
+                                      "createdAt": "2026-10-22T01:11:28.000Z",
+                                      "updatedAt": "2026-10-22T01:11:28.000Z",
+                                      "uid": "35240-ee40e8a4-f40d-43b4-91d0-6fb83d69f126"
+                                    }
+                                  ],
+                                  "id": "1315b100-9455-4d6b-b3ae-0e50694db07d",
+                                  "createdAt": "2026-10-22T01:11:28.000Z",
+                                  "updatedAt": "2026-10-22T01:11:28.000Z",
+                                  "uid": "35240-1315b100-9455-4d6b-b3ae-0e50694db07d"
+                                },
+                                {
+                                  "name": "List image bundles",
+                                  "id": "01aef793-48b3-472d-8d20-94983fde2310",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "apikey",
+                                      "apikey": [
+                                        {
+                                          "key": "key",
+                                          "value": "X-AUTH-YW-API-TOKEN",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "value",
+                                          "value": "{{apiKey}}",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "in",
+                                          "value": "header",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/providers/:pUUID/image_bundle?arch=null",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "providers",
+                                        ":pUUID",
+                                        "image_bundle"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "arch",
+                                          "value": "null"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "07f5f674-f5e9-4523-ab2a-4643adbf7f04",
+                                          "key": "cUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "72daaf2e-3550-4bdf-b3bb-86927edd7c24",
+                                          "key": "pUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    },
+                                    "description": "WARNING: This is a preview API that could change."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "d9cfc26b-e025-4303-86cf-4d657ab90040",
+                                      "name": "successful operation",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "X-AUTH-YW-API-TOKEN",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/providers/:pUUID/image_bundle?arch=null",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "providers",
+                                            ":pUUID",
+                                            "image_bundle"
+                                          ],
+                                          "query": [
+                                            {
+                                              "key": "arch",
+                                              "value": "null"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "cUUID"
+                                            },
+                                            {
+                                              "key": "pUUID"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "[\n  {\n    \"active\": \"<boolean>\",\n    \"details\": {\n      \"arch\": \"aarch64\",\n      \"globalYbImage\": \"<string>\",\n      \"regions\": {\n        \"Duis_9_f\": {\n          \"sshPortOverride\": \"<integer>\",\n          \"sshUserOverride\": \"<string>\",\n          \"ybImage\": \"<string>\"\n        },\n        \"elit77\": {\n          \"sshPortOverride\": \"<integer>\",\n          \"sshUserOverride\": \"<string>\",\n          \"ybImage\": \"<string>\"\n        }\n      },\n      \"sshPort\": \"<integer>\",\n      \"sshUser\": \"<string>\",\n      \"useIMDSv2\": \"<boolean>\"\n    },\n    \"metadata\": {\n      \"type\": \"YBA_DEPRECATED\",\n      \"version\": \"<string>\"\n    },\n    \"name\": \"<string>\",\n    \"useAsDefault\": \"<boolean>\",\n    \"uuid\": \"<uuid>\"\n  },\n  {\n    \"active\": \"<boolean>\",\n    \"details\": {\n      \"arch\": \"x86_64\",\n      \"globalYbImage\": \"<string>\",\n      \"regions\": {\n        \"laborum_6b1\": {\n          \"sshPortOverride\": \"<integer>\",\n          \"sshUserOverride\": \"<string>\",\n          \"ybImage\": \"<string>\"\n        }\n      },\n      \"sshPort\": \"<integer>\",\n      \"sshUser\": \"<string>\",\n      \"useIMDSv2\": \"<boolean>\"\n    },\n    \"metadata\": {\n      \"type\": \"CUSTOM\",\n      \"version\": \"<string>\"\n    },\n    \"name\": \"<string>\",\n    \"useAsDefault\": \"<boolean>\",\n    \"uuid\": \"<uuid>\"\n  }\n]",
+                                      "createdAt": "2026-10-22T01:11:28.000Z",
+                                      "updatedAt": "2026-10-22T01:11:28.000Z",
+                                      "uid": "35240-d9cfc26b-e025-4303-86cf-4d657ab90040"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:11:28.000Z",
+                                  "updatedAt": "2026-10-22T01:11:28.000Z",
+                                  "uid": "35240-01aef793-48b3-472d-8d20-94983fde2310"
+                                },
+                                {
+                                  "name": "Create a image bundle",
+                                  "id": "2da3bcdb-15ac-4f45-9601-ab88f7abc002",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "apikey",
+                                      "apikey": [
+                                        {
+                                          "key": "key",
+                                          "value": "X-AUTH-YW-API-TOKEN",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "value",
+                                          "value": "{{apiKey}}",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "in",
+                                          "value": "header",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"active\": \"<boolean>\",\n  \"details\": {\n    \"arch\": \"aarch64\",\n    \"globalYbImage\": \"<string>\",\n    \"regions\": {\n      \"cillum_3_\": {\n        \"sshPortOverride\": \"<integer>\",\n        \"sshUserOverride\": \"<string>\",\n        \"ybImage\": \"<string>\"\n      },\n      \"dolor4\": {\n        \"sshPortOverride\": \"<integer>\",\n        \"sshUserOverride\": \"<string>\",\n        \"ybImage\": \"<string>\"\n      },\n      \"ut__3\": {\n        \"sshPortOverride\": \"<integer>\",\n        \"sshUserOverride\": \"<string>\",\n        \"ybImage\": \"<string>\"\n      }\n    },\n    \"sshPort\": \"<integer>\",\n    \"sshUser\": \"<string>\",\n    \"useIMDSv2\": \"<boolean>\"\n  },\n  \"metadata\": {\n    \"type\": \"YBA_DEPRECATED\",\n    \"version\": \"<string>\"\n  },\n  \"name\": \"<string>\",\n  \"useAsDefault\": \"<boolean>\",\n  \"uuid\": \"<uuid>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/providers/:pUUID/image_bundle",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "providers",
+                                        ":pUUID",
+                                        "image_bundle"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "ed5206fc-e226-4086-a223-119ada7da342",
+                                          "key": "cUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "261a990b-3688-4bf0-bf8c-530cba475e6f",
+                                          "key": "pUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    },
+                                    "description": "WARNING: This is a preview API that could change."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "a528d85d-126f-46bc-b0a4-5844f0da0a5d",
+                                      "name": "successful operation",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "X-AUTH-YW-API-TOKEN",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"active\": \"<boolean>\",\n  \"details\": {\n    \"arch\": \"aarch64\",\n    \"globalYbImage\": \"<string>\",\n    \"regions\": {\n      \"cillum_3_\": {\n        \"sshPortOverride\": \"<integer>\",\n        \"sshUserOverride\": \"<string>\",\n        \"ybImage\": \"<string>\"\n      },\n      \"dolor4\": {\n        \"sshPortOverride\": \"<integer>\",\n        \"sshUserOverride\": \"<string>\",\n        \"ybImage\": \"<string>\"\n      },\n      \"ut__3\": {\n        \"sshPortOverride\": \"<integer>\",\n        \"sshUserOverride\": \"<string>\",\n        \"ybImage\": \"<string>\"\n      }\n    },\n    \"sshPort\": \"<integer>\",\n    \"sshUser\": \"<string>\",\n    \"useIMDSv2\": \"<boolean>\"\n  },\n  \"metadata\": {\n    \"type\": \"YBA_DEPRECATED\",\n    \"version\": \"<string>\"\n  },\n  \"name\": \"<string>\",\n  \"useAsDefault\": \"<boolean>\",\n  \"uuid\": \"<uuid>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/providers/:pUUID/image_bundle",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "providers",
+                                            ":pUUID",
+                                            "image_bundle"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "cUUID"
+                                            },
+                                            {
+                                              "key": "pUUID"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"active\": \"<boolean>\",\n  \"details\": {\n    \"arch\": \"aarch64\",\n    \"globalYbImage\": \"<string>\",\n    \"regions\": {\n      \"cillum_3_\": {\n        \"sshPortOverride\": \"<integer>\",\n        \"sshUserOverride\": \"<string>\",\n        \"ybImage\": \"<string>\"\n      },\n      \"dolor4\": {\n        \"sshPortOverride\": \"<integer>\",\n        \"sshUserOverride\": \"<string>\",\n        \"ybImage\": \"<string>\"\n      },\n      \"ut__3\": {\n        \"sshPortOverride\": \"<integer>\",\n        \"sshUserOverride\": \"<string>\",\n        \"ybImage\": \"<string>\"\n      }\n    },\n    \"sshPort\": \"<integer>\",\n    \"sshUser\": \"<string>\",\n    \"useIMDSv2\": \"<boolean>\"\n  },\n  \"metadata\": {\n    \"type\": \"YBA_DEPRECATED\",\n    \"version\": \"<string>\"\n  },\n  \"name\": \"<string>\",\n  \"useAsDefault\": \"<boolean>\",\n  \"uuid\": \"<uuid>\"\n}",
+                                      "createdAt": "2026-10-22T01:11:28.000Z",
+                                      "updatedAt": "2026-10-22T01:11:28.000Z",
+                                      "uid": "35240-a528d85d-126f-46bc-b0a4-5844f0da0a5d"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:11:28.000Z",
+                                  "updatedAt": "2026-10-22T01:11:28.000Z",
+                                  "uid": "35240-2da3bcdb-15ac-4f45-9601-ab88f7abc002"
+                                }
+                              ],
+                              "id": "8cd495ab-4c2d-4bbb-b449-ad20acac4553",
+                              "createdAt": "2026-10-22T01:11:28.000Z",
+                              "updatedAt": "2026-10-22T01:11:28.000Z",
+                              "uid": "35240-8cd495ab-4c2d-4bbb-b449-ad20acac4553"
+                            }
+                          ],
+                          "id": "ce39a3b4-4498-4937-aa10-3856d7730805",
+                          "createdAt": "2026-10-22T01:11:28.000Z",
+                          "updatedAt": "2026-10-22T01:11:28.000Z",
+                          "uid": "35240-ce39a3b4-4498-4937-aa10-3856d7730805"
+                        }
+                      ],
+                      "id": "b9a9aa07-21a2-47d4-8421-26bb599007ee",
+                      "createdAt": "2026-10-22T01:11:28.000Z",
+                      "updatedAt": "2026-10-22T01:11:28.000Z",
+                      "uid": "35240-b9a9aa07-21a2-47d4-8421-26bb599007ee"
+                    }
+                  ],
+                  "id": "9d3a6ed6-c08d-4f9d-b2d8-b4f875c3da72",
+                  "createdAt": "2026-10-22T01:11:28.000Z",
+                  "updatedAt": "2026-10-22T01:11:28.000Z",
+                  "uid": "35240-9d3a6ed6-c08d-4f9d-b2d8-b4f875c3da72"
+                }
+              ],
+              "id": "ac03d68a-49df-4061-9206-482d41450188",
+              "createdAt": "2026-10-22T01:11:28.000Z",
+              "updatedAt": "2026-10-22T01:11:28.000Z",
+              "uid": "35240-ac03d68a-49df-4061-9206-482d41450188"
+            }
+          ],
+          "id": "a6b97fa3-ff46-4abd-81dd-5a38c35b23de",
+          "createdAt": "2026-10-22T01:11:28.000Z",
+          "updatedAt": "2026-10-22T01:11:28.000Z",
+          "uid": "35240-a6b97fa3-ff46-4abd-81dd-5a38c35b23de"
+        }
+      ],
+      "id": "674462ac-6b78-4fbd-a34c-0b7ff3623300",
+      "createdAt": "2026-10-22T01:11:28.000Z",
+      "updatedAt": "2026-10-22T01:11:28.000Z",
+      "uid": "35240-674462ac-6b78-4fbd-a34c-0b7ff3623300"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

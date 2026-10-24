@@ -1,0 +1,846 @@
+{
+  "info": {
+    "_postman_id": "9ffea08f-01dc-486a-8a7e-c75be575b084",
+    "name": "Yugabytedb Telemetry Provider API",
+    "description": "Operations tagged Telemetry Provider across 2 of this provider's published API definitions: openapi.yaml, openapi_2.yaml. Each path carries the servers of the definition it was published in.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:13:07.000Z",
+    "updatedAt": "2026-10-22T01:13:07.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-9ffea08f-01dc-486a-8a7e-c75be575b084"
+  },
+  "item": [
+    {
+      "name": "customers",
+      "item": [
+        {
+          "name": "{cUUID}",
+          "item": [
+            {
+              "name": "telemetry-provider",
+              "item": [
+                {
+                  "name": "types",
+                  "item": [
+                    {
+                      "name": "List Available Telemetry Provider Types",
+                      "id": "3493c4a2-16b5-4cda-ab47-0d9229fcb826",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "X-AUTH-YW-API-TOKEN",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:cUUID/telemetry-provider/types?exportType=logs",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":cUUID",
+                            "telemetry-provider",
+                            "types"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter by export type (logs or metrics)",
+                              "key": "exportType",
+                              "value": "logs"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "1221b9bd-c8f9-47a8-a300-77ba6ac4aab4",
+                              "key": "cUUID",
+                              "value": "<uuid>",
+                              "description": "(Required) Customer UUID"
+                            }
+                          ]
+                        },
+                        "description": "Get list of all available telemetry provider types with their capabilities"
+                      },
+                      "response": [
+                        {
+                          "id": "32bd79ad-be4d-4453-be2a-c8a9cfb99204",
+                          "name": "successful operation",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-AUTH-YW-API-TOKEN",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/customers/:cUUID/telemetry-provider/types?exportType=logs",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "customers",
+                                ":cUUID",
+                                "telemetry-provider",
+                                "types"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Filter by export type (logs or metrics)",
+                                  "key": "exportType",
+                                  "value": "logs"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "cUUID"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "[\n  {\n    \"provider_type\": \"DATA_DOG\",\n    \"is_allowed_for_logs\": \"<boolean>\",\n    \"is_allowed_for_metrics\": \"<boolean>\"\n  },\n  {\n    \"provider_type\": \"S3\",\n    \"is_allowed_for_logs\": \"<boolean>\",\n    \"is_allowed_for_metrics\": \"<boolean>\"\n  }\n]",
+                          "createdAt": "2026-10-22T01:13:08.000Z",
+                          "updatedAt": "2026-10-22T01:13:08.000Z",
+                          "uid": "35240-32bd79ad-be4d-4453-be2a-c8a9cfb99204"
+                        },
+                        {
+                          "id": "e72c65be-376a-4a0c-aae1-6e976e49984e",
+                          "name": "Invalid input",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-AUTH-YW-API-TOKEN",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/customers/:cUUID/telemetry-provider/types?exportType=logs",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "customers",
+                                ":cUUID",
+                                "telemetry-provider",
+                                "types"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Filter by export type (logs or metrics)",
+                                  "key": "exportType",
+                                  "value": "logs"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "cUUID"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T01:13:08.000Z",
+                          "updatedAt": "2026-10-22T01:13:08.000Z",
+                          "uid": "35240-e72c65be-376a-4a0c-aae1-6e976e49984e"
+                        },
+                        {
+                          "id": "37ebe949-4bf3-4952-82dd-2d2185470bb3",
+                          "name": "Server error",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-AUTH-YW-API-TOKEN",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/customers/:cUUID/telemetry-provider/types?exportType=logs",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "customers",
+                                ":cUUID",
+                                "telemetry-provider",
+                                "types"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Filter by export type (logs or metrics)",
+                                  "key": "exportType",
+                                  "value": "logs"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "cUUID"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T01:13:08.000Z",
+                          "updatedAt": "2026-10-22T01:13:08.000Z",
+                          "uid": "35240-37ebe949-4bf3-4952-82dd-2d2185470bb3"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T01:13:07.000Z",
+                      "updatedAt": "2026-10-22T01:13:07.000Z",
+                      "uid": "35240-3493c4a2-16b5-4cda-ab47-0d9229fcb826"
+                    }
+                  ],
+                  "id": "e75016e1-8221-4ebb-b32e-6f1208bbcb3e",
+                  "createdAt": "2026-10-22T01:13:07.000Z",
+                  "updatedAt": "2026-10-22T01:13:07.000Z",
+                  "uid": "35240-e75016e1-8221-4ebb-b32e-6f1208bbcb3e"
+                }
+              ],
+              "id": "73f44334-a88a-4032-9d60-2029d34ca8cb",
+              "createdAt": "2026-10-22T01:13:07.000Z",
+              "updatedAt": "2026-10-22T01:13:07.000Z",
+              "uid": "35240-73f44334-a88a-4032-9d60-2029d34ca8cb"
+            }
+          ],
+          "id": "8bb6d6d1-95e9-416a-a488-2929c7762fcb",
+          "createdAt": "2026-10-22T01:13:07.000Z",
+          "updatedAt": "2026-10-22T01:13:07.000Z",
+          "uid": "35240-8bb6d6d1-95e9-416a-a488-2929c7762fcb"
+        }
+      ],
+      "id": "d5088bd8-aff0-4ba8-9bdb-11c71ee5a288",
+      "createdAt": "2026-10-22T01:13:07.000Z",
+      "updatedAt": "2026-10-22T01:13:07.000Z",
+      "uid": "35240-d5088bd8-aff0-4ba8-9bdb-11c71ee5a288"
+    },
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "customers",
+              "item": [
+                {
+                  "name": "{cUUID}",
+                  "item": [
+                    {
+                      "name": "telemetry_provider",
+                      "item": [
+                        {
+                          "name": "{intUUID}",
+                          "item": [
+                            {
+                              "name": "Delete a telemetry provider",
+                              "id": "62abc2ea-66e5-4c9c-90c9-398cea2e5505",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "apikey",
+                                  "apikey": [
+                                    {
+                                      "key": "key",
+                                      "value": "X-AUTH-YW-API-TOKEN",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "value",
+                                      "value": "{{apiKey}}",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "in",
+                                      "value": "header",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/telemetry_provider/:intUUID",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "telemetry_provider",
+                                    ":intUUID"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "6eaf26d8-b0b7-40ee-a156-fc5d9f9e9d80",
+                                      "key": "cUUID",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    },
+                                    {
+                                      "id": "42f7dc9f-7719-4b2f-b9ef-fd19f1fe70b5",
+                                      "key": "intUUID",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "WARNING: This is a preview API that could change. Delete a Telemetry Provider"
+                              },
+                              "response": [
+                                {
+                                  "id": "6b148d63-98ae-45a4-8b63-9c53dea7a765",
+                                  "name": "successful operation",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-AUTH-YW-API-TOKEN",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/telemetry_provider/:intUUID",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "telemetry_provider",
+                                        ":intUUID"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "cUUID"
+                                        },
+                                        {
+                                          "key": "intUUID"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"message\": \"<string>\",\n  \"success\": \"<boolean>\"\n}",
+                                  "createdAt": "2026-10-22T01:13:08.000Z",
+                                  "updatedAt": "2026-10-22T01:13:08.000Z",
+                                  "uid": "35240-6b148d63-98ae-45a4-8b63-9c53dea7a765"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T01:13:07.000Z",
+                              "updatedAt": "2026-10-22T01:13:07.000Z",
+                              "uid": "35240-62abc2ea-66e5-4c9c-90c9-398cea2e5505"
+                            },
+                            {
+                              "name": "Get Telemetry Provider",
+                              "id": "bc423e7d-11b8-418b-b864-31bc10202e4a",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "apikey",
+                                  "apikey": [
+                                    {
+                                      "key": "key",
+                                      "value": "X-AUTH-YW-API-TOKEN",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "value",
+                                      "value": "{{apiKey}}",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "in",
+                                      "value": "header",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/telemetry_provider/:intUUID",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "telemetry_provider",
+                                    ":intUUID"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "d4742a63-b100-4d6a-bc4c-20ed4a944e30",
+                                      "key": "cUUID",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    },
+                                    {
+                                      "id": "86e5a8ce-cd4a-41d8-842c-e07ed81cd9c7",
+                                      "key": "intUUID",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "WARNING: This is a preview API that could change. Get Telemetry Provider"
+                              },
+                              "response": [
+                                {
+                                  "id": "b588317e-85f1-4016-9896-67d849ab0bec",
+                                  "name": "successful operation",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-AUTH-YW-API-TOKEN",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/telemetry_provider/:intUUID",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "telemetry_provider",
+                                        ":intUUID"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "cUUID"
+                                        },
+                                        {
+                                          "key": "intUUID"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"config\": {\n    \"type\": \"GCP_CLOUD_MONITORING\"\n  },\n  \"customerUUID\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"tags\": {\n    \"ipsum_d\": \"<string>\",\n    \"ut3c9\": \"<string>\",\n    \"dolor4d\": \"<string>\"\n  },\n  \"uuid\": \"<uuid>\",\n  \"createTime\": \"<dateTime>\",\n  \"updateTime\": \"<dateTime>\"\n}",
+                                  "createdAt": "2026-10-22T01:13:08.000Z",
+                                  "updatedAt": "2026-10-22T01:13:08.000Z",
+                                  "uid": "35240-b588317e-85f1-4016-9896-67d849ab0bec"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T01:13:07.000Z",
+                              "updatedAt": "2026-10-22T01:13:07.000Z",
+                              "uid": "35240-bc423e7d-11b8-418b-b864-31bc10202e4a"
+                            }
+                          ],
+                          "id": "a4cb4532-f196-43a8-b004-a62b98750ba7",
+                          "createdAt": "2026-10-22T01:13:07.000Z",
+                          "updatedAt": "2026-10-22T01:13:07.000Z",
+                          "uid": "35240-a4cb4532-f196-43a8-b004-a62b98750ba7"
+                        },
+                        {
+                          "name": "List All Telemetry Providers",
+                          "id": "c2778c08-a125-4c15-94d3-2a6293d8ff1f",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "apikey",
+                              "apikey": [
+                                {
+                                  "key": "key",
+                                  "value": "X-AUTH-YW-API-TOKEN",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "value",
+                                  "value": "{{apiKey}}",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "in",
+                                  "value": "header",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/customers/:cUUID/telemetry_provider",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "customers",
+                                ":cUUID",
+                                "telemetry_provider"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "38b75a04-f218-4643-ae95-86addde25682",
+                                  "key": "cUUID",
+                                  "value": "<uuid>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "WARNING: This is a preview API that could change. List All Telemetry Providers"
+                          },
+                          "response": [
+                            {
+                              "id": "c70ea865-c4ae-46fe-8f0a-407681e9ff6a",
+                              "name": "successful operation",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-AUTH-YW-API-TOKEN",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/telemetry_provider",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "telemetry_provider"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "cUUID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "[\n  {\n    \"config\": {\n      \"type\": \"AWS_CLOUDWATCH\"\n    },\n    \"customerUUID\": \"<uuid>\",\n    \"name\": \"<string>\",\n    \"tags\": {\n      \"adipisicing5\": \"<string>\",\n      \"Duis_a87\": \"<string>\"\n    },\n    \"uuid\": \"<uuid>\",\n    \"createTime\": \"<dateTime>\",\n    \"updateTime\": \"<dateTime>\"\n  },\n  {\n    \"config\": {\n      \"type\": \"AWS_CLOUDWATCH\"\n    },\n    \"customerUUID\": \"<uuid>\",\n    \"name\": \"<string>\",\n    \"tags\": {\n      \"do66\": \"<string>\"\n    },\n    \"uuid\": \"<uuid>\",\n    \"createTime\": \"<dateTime>\",\n    \"updateTime\": \"<dateTime>\"\n  }\n]",
+                              "createdAt": "2026-10-22T01:13:08.000Z",
+                              "updatedAt": "2026-10-22T01:13:08.000Z",
+                              "uid": "35240-c70ea865-c4ae-46fe-8f0a-407681e9ff6a"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T01:13:07.000Z",
+                          "updatedAt": "2026-10-22T01:13:07.000Z",
+                          "uid": "35240-c2778c08-a125-4c15-94d3-2a6293d8ff1f"
+                        },
+                        {
+                          "name": "Create Telemetry Provider",
+                          "id": "c923b59a-a0ab-4ad7-8a73-e96c5414b665",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "apikey",
+                              "apikey": [
+                                {
+                                  "key": "key",
+                                  "value": "X-AUTH-YW-API-TOKEN",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "value",
+                                  "value": "{{apiKey}}",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "in",
+                                  "value": "header",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"config\": {\n    \"type\": \"GCP_CLOUD_MONITORING\"\n  },\n  \"customerUUID\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"tags\": {\n    \"ipsum_d\": \"<string>\",\n    \"ut3c9\": \"<string>\",\n    \"dolor4d\": \"<string>\"\n  },\n  \"uuid\": \"<uuid>\",\n  \"createTime\": \"<dateTime>\",\n  \"updateTime\": \"<dateTime>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/customers/:cUUID/telemetry_provider",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "customers",
+                                ":cUUID",
+                                "telemetry_provider"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "483978db-87a4-4f99-a216-7e9d348ddd49",
+                                  "key": "cUUID",
+                                  "value": "<uuid>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "WARNING: This is a preview API that could change. Create Telemetry Provider"
+                          },
+                          "response": [
+                            {
+                              "id": "484711ca-9bae-4ee6-9994-0242a853d4e6",
+                              "name": "successful operation",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-AUTH-YW-API-TOKEN",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"config\": {\n    \"type\": \"GCP_CLOUD_MONITORING\"\n  },\n  \"customerUUID\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"tags\": {\n    \"ipsum_d\": \"<string>\",\n    \"ut3c9\": \"<string>\",\n    \"dolor4d\": \"<string>\"\n  },\n  \"uuid\": \"<uuid>\",\n  \"createTime\": \"<dateTime>\",\n  \"updateTime\": \"<dateTime>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/telemetry_provider",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "telemetry_provider"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "cUUID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"config\": {\n    \"type\": \"GCP_CLOUD_MONITORING\"\n  },\n  \"customerUUID\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"tags\": {\n    \"ipsum_d\": \"<string>\",\n    \"ut3c9\": \"<string>\",\n    \"dolor4d\": \"<string>\"\n  },\n  \"uuid\": \"<uuid>\",\n  \"createTime\": \"<dateTime>\",\n  \"updateTime\": \"<dateTime>\"\n}",
+                              "createdAt": "2026-10-22T01:13:08.000Z",
+                              "updatedAt": "2026-10-22T01:13:08.000Z",
+                              "uid": "35240-484711ca-9bae-4ee6-9994-0242a853d4e6"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T01:13:07.000Z",
+                          "updatedAt": "2026-10-22T01:13:07.000Z",
+                          "uid": "35240-c923b59a-a0ab-4ad7-8a73-e96c5414b665"
+                        }
+                      ],
+                      "id": "68e82982-abbd-46d4-abd9-7f3b6d582d9a",
+                      "createdAt": "2026-10-22T01:13:07.000Z",
+                      "updatedAt": "2026-10-22T01:13:07.000Z",
+                      "uid": "35240-68e82982-abbd-46d4-abd9-7f3b6d582d9a"
+                    }
+                  ],
+                  "id": "fbc30508-1eff-4493-8d7b-730fedf99441",
+                  "createdAt": "2026-10-22T01:13:07.000Z",
+                  "updatedAt": "2026-10-22T01:13:07.000Z",
+                  "uid": "35240-fbc30508-1eff-4493-8d7b-730fedf99441"
+                }
+              ],
+              "id": "9f44b1db-5f89-4572-9e67-fa138c3da4b4",
+              "createdAt": "2026-10-22T01:13:07.000Z",
+              "updatedAt": "2026-10-22T01:13:07.000Z",
+              "uid": "35240-9f44b1db-5f89-4572-9e67-fa138c3da4b4"
+            }
+          ],
+          "id": "f8b5bbe3-6bea-463d-b6f7-983134d7cefa",
+          "createdAt": "2026-10-22T01:13:07.000Z",
+          "updatedAt": "2026-10-22T01:13:07.000Z",
+          "uid": "35240-f8b5bbe3-6bea-463d-b6f7-983134d7cefa"
+        }
+      ],
+      "id": "885a8511-e330-487e-a002-327192d3cf3b",
+      "createdAt": "2026-10-22T01:13:07.000Z",
+      "updatedAt": "2026-10-22T01:13:07.000Z",
+      "uid": "35240-885a8511-e330-487e-a002-327192d3cf3b"
+    }
+  ],
+  "variable": [
+    {
+      "key": "protocol",
+      "value": "http"
+    },
+    {
+      "key": "host_port",
+      "value": "localhost:9000"
+    },
+    {
+      "key": "baseUrl",
+      "value": "{{protocol}}://{{host_port}}/api/v2"
+    }
+  ]
+}

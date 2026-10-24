@@ -1,0 +1,1447 @@
+{
+  "info": {
+    "_postman_id": "c09a018d-3a15-4164-863f-aa375c47c2ea",
+    "name": "Yugabytedb Asynchronous Replication API",
+    "description": "Operations tagged Asynchronous Replication across 2 of this provider's published API definitions: openapi_2.yaml, platform.swagger.json. Each path carries the servers of the definition it was published in.\n\nContact Support:\n Name: https://docs.yugabyte.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:06:22.000Z",
+    "updatedAt": "2026-10-22T01:06:23.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-c09a018d-3a15-4164-863f-aa375c47c2ea"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "customers",
+              "item": [
+                {
+                  "name": "{cUUID}",
+                  "item": [
+                    {
+                      "name": "universes",
+                      "item": [
+                        {
+                          "name": "{uniUUID}",
+                          "item": [
+                            {
+                              "name": "need_bootstrap",
+                              "item": [
+                                {
+                                  "name": "Whether tables need bootstrap before setting up cross cluster replication",
+                                  "id": "34bcc42f-254f-4297-897a-b1fad3c8ea4b",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "apikey",
+                                      "apikey": [
+                                        {
+                                          "key": "key",
+                                          "value": "X-AUTH-YW-API-TOKEN",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "value",
+                                          "value": "{{apiKey}}",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "in",
+                                          "value": "header",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"tables\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"isDrConfig\": \"<boolean>\",\n  \"targetUniverseUUID\": \"<uuid>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/need_bootstrap?configType=null&includeDetails=false",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "universes",
+                                        ":uniUUID",
+                                        "need_bootstrap"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "configType",
+                                          "value": "null"
+                                        },
+                                        {
+                                          "key": "includeDetails",
+                                          "value": "false"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "85c4ed53-6b51-428e-bb68-d025d1e13542",
+                                          "key": "cUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "237d1709-49c3-4dfc-8996-5bf8ec4ea05b",
+                                          "key": "uniUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    },
+                                    "description": "WARNING: This is a preview API that could change."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "ece950d5-1ea9-4584-b729-b5fdca8fdc70",
+                                      "name": "successful operation",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "X-AUTH-YW-API-TOKEN",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"tables\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"isDrConfig\": \"<boolean>\",\n  \"targetUniverseUUID\": \"<uuid>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/need_bootstrap?configType=null&includeDetails=false",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "universes",
+                                            ":uniUUID",
+                                            "need_bootstrap"
+                                          ],
+                                          "query": [
+                                            {
+                                              "key": "configType",
+                                              "value": "null"
+                                            },
+                                            {
+                                              "key": "includeDetails",
+                                              "value": "false"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "cUUID"
+                                            },
+                                            {
+                                              "key": "uniUUID"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"deserunt__9\": {}\n}",
+                                      "createdAt": "2026-10-22T01:06:23.000Z",
+                                      "updatedAt": "2026-10-22T01:06:23.000Z",
+                                      "uid": "35240-ece950d5-1ea9-4584-b729-b5fdca8fdc70"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:06:23.000Z",
+                                  "updatedAt": "2026-10-22T01:06:23.000Z",
+                                  "uid": "35240-34bcc42f-254f-4297-897a-b1fad3c8ea4b"
+                                }
+                              ],
+                              "id": "57921777-41cf-48e6-9dbc-c02f91758979",
+                              "createdAt": "2026-10-22T01:06:23.000Z",
+                              "updatedAt": "2026-10-22T01:06:23.000Z",
+                              "uid": "35240-57921777-41cf-48e6-9dbc-c02f91758979"
+                            }
+                          ],
+                          "id": "45985fb0-617f-4129-9303-28daaef7fd67",
+                          "createdAt": "2026-10-22T01:06:23.000Z",
+                          "updatedAt": "2026-10-22T01:06:23.000Z",
+                          "uid": "35240-45985fb0-617f-4129-9303-28daaef7fd67"
+                        }
+                      ],
+                      "id": "1bb2161c-ad2c-4e0f-930b-2c273e6416e4",
+                      "createdAt": "2026-10-22T01:06:23.000Z",
+                      "updatedAt": "2026-10-22T01:06:23.000Z",
+                      "uid": "35240-1bb2161c-ad2c-4e0f-930b-2c273e6416e4"
+                    },
+                    {
+                      "name": "xcluster_configs",
+                      "item": [
+                        {
+                          "name": "sync",
+                          "item": [
+                            {
+                              "name": "Sync xcluster config - deprecated",
+                              "id": "fd8403f9-5fc5-4844-a5d5-0dd16707868c",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "apikey",
+                                  "apikey": [
+                                    {
+                                      "key": "key",
+                                      "value": "X-AUTH-YW-API-TOKEN",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "value",
+                                      "value": "{{apiKey}}",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "in",
+                                      "value": "header",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/xcluster_configs/sync?targetUniverseUUID=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "xcluster_configs",
+                                    "sync"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "targetUniverseUUID",
+                                      "value": "<uuid>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "37257fec-4ae5-41f5-83aa-e352758e999a",
+                                      "key": "cUUID",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Deprecated since YBA version 2.23.0.0.\nSync xcluster config (V2) instead."
+                              },
+                              "response": [
+                                {
+                                  "id": "ac68c84a-82fb-4de2-a4d6-af97cd05c55a",
+                                  "name": "successful operation",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-AUTH-YW-API-TOKEN",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/xcluster_configs/sync?targetUniverseUUID=<uuid>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "xcluster_configs",
+                                        "sync"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "targetUniverseUUID",
+                                          "value": "<uuid>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "cUUID"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"resourceUUID\": \"<uuid>\",\n  \"taskUUID\": \"<uuid>\"\n}",
+                                  "createdAt": "2026-10-22T01:06:23.000Z",
+                                  "updatedAt": "2026-10-22T01:06:23.000Z",
+                                  "uid": "35240-ac68c84a-82fb-4de2-a4d6-af97cd05c55a"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T01:06:23.000Z",
+                              "updatedAt": "2026-10-22T01:06:23.000Z",
+                              "uid": "35240-fd8403f9-5fc5-4844-a5d5-0dd16707868c"
+                            }
+                          ],
+                          "id": "cdca05cf-940c-4598-93f2-10d50f8f9986",
+                          "createdAt": "2026-10-22T01:06:23.000Z",
+                          "updatedAt": "2026-10-22T01:06:23.000Z",
+                          "uid": "35240-cdca05cf-940c-4598-93f2-10d50f8f9986"
+                        },
+                        {
+                          "name": "{xccUUID}",
+                          "item": [
+                            {
+                              "name": "need_bootstrap",
+                              "item": [
+                                {
+                                  "name": "Whether tables in an xCluster replication config have fallen far behind and\u2026",
+                                  "id": "94e26ad4-dd7b-4e4c-83a9-0bcc0eeaf6a5",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "apikey",
+                                      "apikey": [
+                                        {
+                                          "key": "key",
+                                          "value": "X-AUTH-YW-API-TOKEN",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "value",
+                                          "value": "{{apiKey}}",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "in",
+                                          "value": "header",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"tables\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"isDrConfig\": \"<boolean>\",\n  \"targetUniverseUUID\": \"<uuid>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/xcluster_configs/:xccUUID/need_bootstrap",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "xcluster_configs",
+                                        ":xccUUID",
+                                        "need_bootstrap"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "ace8312c-9ddc-4a79-ac2d-3943f8b18eff",
+                                          "key": "cUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "6642c328-699b-42f3-a8e3-14007acb3a5b",
+                                          "key": "xccUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    },
+                                    "description": "YbaApi Internal."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "4cd0c757-b906-4678-a333-2f8cb45f834a",
+                                      "name": "successful operation",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "X-AUTH-YW-API-TOKEN",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"tables\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"isDrConfig\": \"<boolean>\",\n  \"targetUniverseUUID\": \"<uuid>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/xcluster_configs/:xccUUID/need_bootstrap",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "xcluster_configs",
+                                            ":xccUUID",
+                                            "need_bootstrap"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "cUUID"
+                                            },
+                                            {
+                                              "key": "xccUUID"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"deserunt__9\": {}\n}",
+                                      "createdAt": "2026-10-22T01:06:23.000Z",
+                                      "updatedAt": "2026-10-22T01:06:23.000Z",
+                                      "uid": "35240-4cd0c757-b906-4678-a333-2f8cb45f834a"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:06:23.000Z",
+                                  "updatedAt": "2026-10-22T01:06:23.000Z",
+                                  "uid": "35240-94e26ad4-dd7b-4e4c-83a9-0bcc0eeaf6a5"
+                                }
+                              ],
+                              "id": "6b52fdb6-8000-4a49-8fdc-01014131fc49",
+                              "createdAt": "2026-10-22T01:06:23.000Z",
+                              "updatedAt": "2026-10-22T01:06:23.000Z",
+                              "uid": "35240-6b52fdb6-8000-4a49-8fdc-01014131fc49"
+                            },
+                            {
+                              "name": "sync",
+                              "item": [
+                                {
+                                  "name": "Sync xcluster config (V2)",
+                                  "id": "c8bcd790-ab4a-4ae0-8c39-3d739e7ddafc",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "apikey",
+                                      "apikey": [
+                                        {
+                                          "key": "key",
+                                          "value": "X-AUTH-YW-API-TOKEN",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "value",
+                                          "value": "{{apiKey}}",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "in",
+                                          "value": "header",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/xcluster_configs/:xccUUID/sync",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "xcluster_configs",
+                                        ":xccUUID",
+                                        "sync"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "ae02774e-db55-4549-b07f-30fbacfe318c",
+                                          "key": "cUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "c41f4c6e-be82-4bf7-83d9-e45be9c83f58",
+                                          "key": "xccUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    },
+                                    "description": "Available since YBA version 2.23.0.0"
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "194aacc4-51e6-439b-9bac-c7f955ee03f8",
+                                      "name": "successful operation",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "X-AUTH-YW-API-TOKEN",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/xcluster_configs/:xccUUID/sync",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "xcluster_configs",
+                                            ":xccUUID",
+                                            "sync"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "cUUID"
+                                            },
+                                            {
+                                              "key": "xccUUID"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"resourceUUID\": \"<uuid>\",\n  \"taskUUID\": \"<uuid>\"\n}",
+                                      "createdAt": "2026-10-22T01:06:23.000Z",
+                                      "updatedAt": "2026-10-22T01:06:23.000Z",
+                                      "uid": "35240-194aacc4-51e6-439b-9bac-c7f955ee03f8"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:06:23.000Z",
+                                  "updatedAt": "2026-10-22T01:06:23.000Z",
+                                  "uid": "35240-c8bcd790-ab4a-4ae0-8c39-3d739e7ddafc"
+                                }
+                              ],
+                              "id": "243cb9fd-a20e-4617-ad34-450c5a6f0434",
+                              "createdAt": "2026-10-22T01:06:23.000Z",
+                              "updatedAt": "2026-10-22T01:06:23.000Z",
+                              "uid": "35240-243cb9fd-a20e-4617-ad34-450c5a6f0434"
+                            },
+                            {
+                              "name": "Delete xcluster config",
+                              "id": "ce27fca1-c764-48ba-8196-ff4c0b74c4b1",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "apikey",
+                                  "apikey": [
+                                    {
+                                      "key": "key",
+                                      "value": "X-AUTH-YW-API-TOKEN",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "value",
+                                      "value": "{{apiKey}}",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "in",
+                                      "value": "header",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/xcluster_configs/:xccUUID?isForceDelete=false",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "xcluster_configs",
+                                    ":xccUUID"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "isForceDelete",
+                                      "value": "false"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "d2f3a489-86c6-475e-9454-033d036a982a",
+                                      "key": "cUUID",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    },
+                                    {
+                                      "id": "cf2787dd-d836-455b-8996-dfe40b640517",
+                                      "key": "xccUUID",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Available since YBA version 2.16.0.0."
+                              },
+                              "response": [
+                                {
+                                  "id": "9d954b73-13ba-4840-9965-e95551e0a0d7",
+                                  "name": "successful operation",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-AUTH-YW-API-TOKEN",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/xcluster_configs/:xccUUID?isForceDelete=false",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "xcluster_configs",
+                                        ":xccUUID"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "isForceDelete",
+                                          "value": "false"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "cUUID"
+                                        },
+                                        {
+                                          "key": "xccUUID"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"resourceUUID\": \"<uuid>\",\n  \"taskUUID\": \"<uuid>\"\n}",
+                                  "createdAt": "2026-10-22T01:06:23.000Z",
+                                  "updatedAt": "2026-10-22T01:06:23.000Z",
+                                  "uid": "35240-9d954b73-13ba-4840-9965-e95551e0a0d7"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T01:06:23.000Z",
+                              "updatedAt": "2026-10-22T01:06:23.000Z",
+                              "uid": "35240-ce27fca1-c764-48ba-8196-ff4c0b74c4b1"
+                            },
+                            {
+                              "name": "Get xcluster config",
+                              "id": "6f1e110f-cf99-4891-a11e-c521b56ac834",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "apikey",
+                                  "apikey": [
+                                    {
+                                      "key": "key",
+                                      "value": "X-AUTH-YW-API-TOKEN",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "value",
+                                      "value": "{{apiKey}}",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "in",
+                                      "value": "header",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/xcluster_configs/:xccUUID?syncWithDB=true",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "xcluster_configs",
+                                    ":xccUUID"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "syncWithDB",
+                                      "value": "true"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "cf784b01-f6a3-445a-9f29-32f6e8463696",
+                                      "key": "cUUID",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    },
+                                    {
+                                      "id": "7bd1a29a-a820-4ff6-b6e2-ffae4bd42ee5",
+                                      "key": "xccUUID",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Available since YBA version 2.16.0.0."
+                              },
+                              "response": [
+                                {
+                                  "id": "9cd4eb30-b10c-44e8-8455-d674d77895e2",
+                                  "name": "successful operation",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-AUTH-YW-API-TOKEN",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/xcluster_configs/:xccUUID?syncWithDB=true",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "xcluster_configs",
+                                        ":xccUUID"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "syncWithDB",
+                                          "value": "true"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "cUUID"
+                                        },
+                                        {
+                                          "key": "xccUUID"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"lag\": {},\n  \"namespaces\": [\n    {\n      \"backupUuid\": \"<uuid>\",\n      \"restoreUuid\": \"<uuid>\",\n      \"sourceNamespaceId\": \"<string>\",\n      \"replicationSetupTime\": \"<dateTime>\",\n      \"sourceNamespaceInfo\": {\n        \"name\": \"<string>\",\n        \"namespaceUUID\": \"<uuid>\",\n        \"tableType\": \"REDIS_TABLE_TYPE\"\n      },\n      \"status\": \"Warning\",\n      \"targetNamespaceInfo\": {\n        \"name\": \"<string>\",\n        \"namespaceUUID\": \"<uuid>\",\n        \"tableType\": \"YQL_TABLE_TYPE\"\n      }\n    },\n    {\n      \"backupUuid\": \"<uuid>\",\n      \"restoreUuid\": \"<uuid>\",\n      \"sourceNamespaceId\": \"<string>\",\n      \"replicationSetupTime\": \"<dateTime>\",\n      \"sourceNamespaceInfo\": {\n        \"name\": \"<string>\",\n        \"namespaceUUID\": \"<uuid>\",\n        \"tableType\": \"YQL_TABLE_TYPE\"\n      },\n      \"status\": \"Failed\",\n      \"targetNamespaceInfo\": {\n        \"name\": \"<string>\",\n        \"namespaceUUID\": \"<uuid>\",\n        \"tableType\": \"TRANSACTION_STATUS_TABLE_TYPE\"\n      }\n    }\n  ],\n  \"automaticDdlMode\": \"<boolean>\",\n  \"createTime\": \"<dateTime>\",\n  \"dbs\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"imported\": \"<boolean>\",\n  \"keyspacePending\": \"<string>\",\n  \"modifyTime\": \"<dateTime>\",\n  \"name\": \"<string>\",\n  \"namespaceDetails\": [\n    {\n      \"backupUuid\": \"<uuid>\",\n      \"restoreUuid\": \"<uuid>\",\n      \"sourceNamespaceId\": \"<string>\",\n      \"replicationSetupTime\": \"<dateTime>\",\n      \"sourceNamespaceInfo\": {\n        \"name\": \"<string>\",\n        \"namespaceUUID\": \"<uuid>\",\n        \"tableType\": \"REDIS_TABLE_TYPE\"\n      },\n      \"status\": \"Warning\",\n      \"targetNamespaceInfo\": {\n        \"name\": \"<string>\",\n        \"namespaceUUID\": \"<uuid>\",\n        \"tableType\": \"PGSQL_TABLE_TYPE\"\n      }\n    },\n    {\n      \"backupUuid\": \"<uuid>\",\n      \"restoreUuid\": \"<uuid>\",\n      \"sourceNamespaceId\": \"<string>\",\n      \"replicationSetupTime\": \"<dateTime>\",\n      \"sourceNamespaceInfo\": {\n        \"name\": \"<string>\",\n        \"namespaceUUID\": \"<uuid>\",\n        \"tableType\": \"PGSQL_TABLE_TYPE\"\n      },\n      \"status\": \"Bootstrapping\",\n      \"targetNamespaceInfo\": {\n        \"name\": \"<string>\",\n        \"namespaceUUID\": \"<uuid>\",\n        \"tableType\": \"YQL_TABLE_TYPE\"\n      }\n    }\n  ],\n  \"paused\": \"<boolean>\",\n  \"pitrConfigs\": [\n    {\n      \"maxRecoverTimeInMillis\": \"<long>\",\n      \"minRecoverTimeInMillis\": \"<long>\",\n      \"state\": \"COMPLETE\",\n      \"createTime\": \"<dateTime>\",\n      \"createdForDr\": \"<boolean>\",\n      \"customerUUID\": \"<uuid>\",\n      \"dbName\": \"<string>\",\n      \"disabled\": \"<boolean>\",\n      \"intermittentMinRecoverTimeInMillis\": \"<long>\",\n      \"name\": \"<string>\",\n      \"retentionPeriod\": \"<long>\",\n      \"scheduleInterval\": \"<long>\",\n      \"tableType\": \"REDIS_TABLE_TYPE\",\n      \"updateTime\": \"<dateTime>\",\n      \"usedForXCluster\": \"<boolean>\",\n      \"uuid\": \"<uuid>\"\n    },\n    {\n      \"maxRecoverTimeInMillis\": \"<long>\",\n      \"minRecoverTimeInMillis\": \"<long>\",\n      \"state\": \"UNKNOWN\",\n      \"createTime\": \"<dateTime>\",\n      \"createdForDr\": \"<boolean>\",\n      \"customerUUID\": \"<uuid>\",\n      \"dbName\": \"<string>\",\n      \"disabled\": \"<boolean>\",\n      \"intermittentMinRecoverTimeInMillis\": \"<long>\",\n      \"name\": \"<string>\",\n      \"retentionPeriod\": \"<long>\",\n      \"scheduleInterval\": \"<long>\",\n      \"tableType\": \"TRANSACTION_STATUS_TABLE_TYPE\",\n      \"updateTime\": \"<dateTime>\",\n      \"usedForXCluster\": \"<boolean>\",\n      \"uuid\": \"<uuid>\"\n    }\n  ],\n  \"replicationGroupName\": \"<string>\",\n  \"secondary\": \"<boolean>\",\n  \"sourceActive\": \"<boolean>\",\n  \"sourceUniverseState\": \"Switching to DR replica\",\n  \"sourceUniverseUUID\": \"<uuid>\",\n  \"status\": \"DeletionFailed\",\n  \"tableDetails\": [\n    {\n      \"backupUuid\": \"<uuid>\",\n      \"restoreUuid\": \"<uuid>\",\n      \"bootstrapCreateTime\": \"<dateTime>\",\n      \"indexTable\": \"<boolean>\",\n      \"needBootstrap\": \"<boolean>\",\n      \"replicationSetupDone\": \"<boolean>\",\n      \"replicationStatusErrors\": [\n        \"Uninitialized\",\n        \"Schema mismatch\"\n      ],\n      \"restoreTime\": \"<dateTime>\",\n      \"sourceTableInfo\": {\n        \"colocated\": \"<boolean>\",\n        \"colocationParentId\": \"<string>\",\n        \"indexTableIDs\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"keySpace\": \"<string>\",\n        \"mainTableUUID\": \"<uuid>\",\n        \"nameSpace\": \"<string>\",\n        \"parentTableUUID\": \"<uuid>\",\n        \"pgSchemaName\": \"<string>\",\n        \"relationType\": \"USER_TABLE_RELATION\",\n        \"sizeBytes\": \"<double>\",\n        \"tableID\": \"<string>\",\n        \"tableName\": \"<string>\",\n        \"tableSpace\": \"<string>\",\n        \"tableType\": \"TRANSACTION_STATUS_TABLE_TYPE\",\n        \"tableUUID\": \"<uuid>\",\n        \"walSizeBytes\": \"<double>\"\n      },\n      \"status\": \"Validated\",\n      \"streamId\": \"<string>\",\n      \"tableId\": \"<string>\",\n      \"targetTableInfo\": {\n        \"colocated\": \"<boolean>\",\n        \"colocationParentId\": \"<string>\",\n        \"indexTableIDs\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"keySpace\": \"<string>\",\n        \"mainTableUUID\": \"<uuid>\",\n        \"nameSpace\": \"<string>\",\n        \"parentTableUUID\": \"<uuid>\",\n        \"pgSchemaName\": \"<string>\",\n        \"relationType\": \"USER_TABLE_RELATION\",\n        \"sizeBytes\": \"<double>\",\n        \"tableID\": \"<string>\",\n        \"tableName\": \"<string>\",\n        \"tableSpace\": \"<string>\",\n        \"tableType\": \"PGSQL_TABLE_TYPE\",\n        \"tableUUID\": \"<uuid>\",\n        \"walSizeBytes\": \"<double>\"\n      }\n    },\n    {\n      \"backupUuid\": \"<uuid>\",\n      \"restoreUuid\": \"<uuid>\",\n      \"bootstrapCreateTime\": \"<dateTime>\",\n      \"indexTable\": \"<boolean>\",\n      \"needBootstrap\": \"<boolean>\",\n      \"replicationSetupDone\": \"<boolean>\",\n      \"replicationStatusErrors\": [\n        \"Uninitialized\",\n        \"System error\"\n      ],\n      \"restoreTime\": \"<dateTime>\",\n      \"sourceTableInfo\": {\n        \"colocated\": \"<boolean>\",\n        \"colocationParentId\": \"<string>\",\n        \"indexTableIDs\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"keySpace\": \"<string>\",\n        \"mainTableUUID\": \"<uuid>\",\n        \"nameSpace\": \"<string>\",\n        \"parentTableUUID\": \"<uuid>\",\n        \"pgSchemaName\": \"<string>\",\n        \"relationType\": \"MATVIEW_TABLE_RELATION\",\n        \"sizeBytes\": \"<double>\",\n        \"tableID\": \"<string>\",\n        \"tableName\": \"<string>\",\n        \"tableSpace\": \"<string>\",\n        \"tableType\": \"TRANSACTION_STATUS_TABLE_TYPE\",\n        \"tableUUID\": \"<uuid>\",\n        \"walSizeBytes\": \"<double>\"\n      },\n      \"status\": \"Bootstrapping\",\n      \"streamId\": \"<string>\",\n      \"tableId\": \"<string>\",\n      \"targetTableInfo\": {\n        \"colocated\": \"<boolean>\",\n        \"colocationParentId\": \"<string>\",\n        \"indexTableIDs\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"keySpace\": \"<string>\",\n        \"mainTableUUID\": \"<uuid>\",\n        \"nameSpace\": \"<string>\",\n        \"parentTableUUID\": \"<uuid>\",\n        \"pgSchemaName\": \"<string>\",\n        \"relationType\": \"MATVIEW_TABLE_RELATION\",\n        \"sizeBytes\": \"<double>\",\n        \"tableID\": \"<string>\",\n        \"tableName\": \"<string>\",\n        \"tableSpace\": \"<string>\",\n        \"tableType\": \"YQL_TABLE_TYPE\",\n        \"tableUUID\": \"<uuid>\",\n        \"walSizeBytes\": \"<double>\"\n      }\n    }\n  ],\n  \"tableType\": \"YSQL\",\n  \"tables\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"targetActive\": \"<boolean>\",\n  \"targetUniverseState\": \"Universe marked as DR failed\",\n  \"targetUniverseUUID\": \"<uuid>\",\n  \"type\": \"Txn\",\n  \"usedForDr\": \"<boolean>\",\n  \"uuid\": \"<uuid>\"\n}",
+                                  "createdAt": "2026-10-22T01:06:23.000Z",
+                                  "updatedAt": "2026-10-22T01:06:23.000Z",
+                                  "uid": "35240-9cd4eb30-b10c-44e8-8455-d674d77895e2"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T01:06:23.000Z",
+                              "updatedAt": "2026-10-22T01:06:23.000Z",
+                              "uid": "35240-6f1e110f-cf99-4891-a11e-c521b56ac834"
+                            },
+                            {
+                              "name": "Restart xcluster config",
+                              "id": "931fbe56-1003-498a-b5fe-51bdd8d1be33",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "apikey",
+                                  "apikey": [
+                                    {
+                                      "key": "key",
+                                      "value": "X-AUTH-YW-API-TOKEN",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "value",
+                                      "value": "{{apiKey}}",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "in",
+                                      "value": "header",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"tables\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"bootstrapParams\": {\n    \"backupRequestParams\": {\n      \"storageConfigUUID\": \"<uuid>\",\n      \"parallelism\": \"<integer>\"\n    }\n  },\n  \"dryRun\": \"<boolean>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/xcluster_configs/:xccUUID?isForceDelete=false",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "xcluster_configs",
+                                    ":xccUUID"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "isForceDelete",
+                                      "value": "false"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "53f8c85d-fb5b-430b-a62c-91a3252b2f2e",
+                                      "key": "cUUID",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    },
+                                    {
+                                      "id": "6e28b469-5e0d-4162-b1d2-d514d8dbd6bd",
+                                      "key": "xccUUID",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Available since YBA version 2.16.0.0."
+                              },
+                              "response": [
+                                {
+                                  "id": "f5616dce-f729-4067-8aa4-c63392117d90",
+                                  "name": "successful operation",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-AUTH-YW-API-TOKEN",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"tables\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"bootstrapParams\": {\n    \"backupRequestParams\": {\n      \"storageConfigUUID\": \"<uuid>\",\n      \"parallelism\": \"<integer>\"\n    }\n  },\n  \"dryRun\": \"<boolean>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/xcluster_configs/:xccUUID?isForceDelete=false",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "xcluster_configs",
+                                        ":xccUUID"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "isForceDelete",
+                                          "value": "false"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "cUUID"
+                                        },
+                                        {
+                                          "key": "xccUUID"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"resourceUUID\": \"<uuid>\",\n  \"taskUUID\": \"<uuid>\"\n}",
+                                  "createdAt": "2026-10-22T01:06:23.000Z",
+                                  "updatedAt": "2026-10-22T01:06:23.000Z",
+                                  "uid": "35240-f5616dce-f729-4067-8aa4-c63392117d90"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T01:06:23.000Z",
+                              "updatedAt": "2026-10-22T01:06:23.000Z",
+                              "uid": "35240-931fbe56-1003-498a-b5fe-51bdd8d1be33"
+                            },
+                            {
+                              "name": "Edit xcluster config",
+                              "id": "f44db53e-f003-41a2-b560-85fce5c524ac",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "apikey",
+                                  "apikey": [
+                                    {
+                                      "key": "key",
+                                      "value": "X-AUTH-YW-API-TOKEN",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "value",
+                                      "value": "{{apiKey}}",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "in",
+                                      "value": "header",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"autoIncludeIndexTables\": \"<boolean>\",\n  \"bootstrapParams\": {\n    \"backupRequestParams\": {\n      \"storageConfigUUID\": \"<uuid>\",\n      \"parallelism\": \"<integer>\"\n    },\n    \"allowBootstrap\": \"<boolean>\",\n    \"tables\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"dbs\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"dryRun\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"sourceRole\": \"STANDBY\",\n  \"status\": \"Running\",\n  \"tables\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"targetRole\": \"UNRECOGNIZED\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/xcluster_configs/:xccUUID",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "xcluster_configs",
+                                    ":xccUUID"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "9fa7d882-5510-4b34-9dfe-a1f3d5e213f0",
+                                      "key": "cUUID",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    },
+                                    {
+                                      "id": "395a131f-a260-4b48-b98c-e2a56fa4fd32",
+                                      "key": "xccUUID",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Available since YBA version 2.16.0.0."
+                              },
+                              "response": [
+                                {
+                                  "id": "4646ff4e-8374-4422-b165-488a1a573fa3",
+                                  "name": "successful operation",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-AUTH-YW-API-TOKEN",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"autoIncludeIndexTables\": \"<boolean>\",\n  \"bootstrapParams\": {\n    \"backupRequestParams\": {\n      \"storageConfigUUID\": \"<uuid>\",\n      \"parallelism\": \"<integer>\"\n    },\n    \"allowBootstrap\": \"<boolean>\",\n    \"tables\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"dbs\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"dryRun\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"sourceRole\": \"STANDBY\",\n  \"status\": \"Running\",\n  \"tables\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"targetRole\": \"UNRECOGNIZED\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/xcluster_configs/:xccUUID",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "xcluster_configs",
+                                        ":xccUUID"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "cUUID"
+                                        },
+                                        {
+                                          "key": "xccUUID"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"resourceUUID\": \"<uuid>\",\n  \"taskUUID\": \"<uuid>\"\n}",
+                                  "createdAt": "2026-10-22T01:06:23.000Z",
+                                  "updatedAt": "2026-10-22T01:06:23.000Z",
+                                  "uid": "35240-4646ff4e-8374-4422-b165-488a1a573fa3"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T01:06:23.000Z",
+                              "updatedAt": "2026-10-22T01:06:23.000Z",
+                              "uid": "35240-f44db53e-f003-41a2-b560-85fce5c524ac"
+                            }
+                          ],
+                          "id": "5abd8024-1644-406b-8e2a-c77187f47d67",
+                          "createdAt": "2026-10-22T01:06:23.000Z",
+                          "updatedAt": "2026-10-22T01:06:23.000Z",
+                          "uid": "35240-5abd8024-1644-406b-8e2a-c77187f47d67"
+                        },
+                        {
+                          "name": "Create xcluster config",
+                          "id": "25c93548-0c6d-4301-b14e-c38826dae174",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "apikey",
+                              "apikey": [
+                                {
+                                  "key": "key",
+                                  "value": "X-AUTH-YW-API-TOKEN",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "value",
+                                  "value": "{{apiKey}}",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "in",
+                                  "value": "header",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"sourceUniverseUUID\": \"<uuid>\",\n  \"tables\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"targetUniverseUUID\": \"<uuid>\",\n  \"bootstrapParams\": {\n    \"backupRequestParams\": {\n      \"storageConfigUUID\": \"<uuid>\",\n      \"parallelism\": \"<integer>\"\n    },\n    \"allowBootstrap\": \"<boolean>\",\n    \"tables\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"configType\": \"Basic\",\n  \"dryRun\": \"<boolean>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/customers/:cUUID/xcluster_configs",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "customers",
+                                ":cUUID",
+                                "xcluster_configs"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "e3a95e35-41c5-45d7-9731-574e52e7c1c6",
+                                  "key": "cUUID",
+                                  "value": "<uuid>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Available since YBA version 2.16.0.0."
+                          },
+                          "response": [
+                            {
+                              "id": "300ca137-9c59-47be-8e8e-b069392605d3",
+                              "name": "successful operation",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-AUTH-YW-API-TOKEN",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"name\": \"<string>\",\n  \"sourceUniverseUUID\": \"<uuid>\",\n  \"tables\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"targetUniverseUUID\": \"<uuid>\",\n  \"bootstrapParams\": {\n    \"backupRequestParams\": {\n      \"storageConfigUUID\": \"<uuid>\",\n      \"parallelism\": \"<integer>\"\n    },\n    \"allowBootstrap\": \"<boolean>\",\n    \"tables\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"configType\": \"Basic\",\n  \"dryRun\": \"<boolean>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/xcluster_configs",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "xcluster_configs"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "cUUID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"resourceUUID\": \"<uuid>\",\n  \"taskUUID\": \"<uuid>\"\n}",
+                              "createdAt": "2026-10-22T01:06:23.000Z",
+                              "updatedAt": "2026-10-22T01:06:23.000Z",
+                              "uid": "35240-300ca137-9c59-47be-8e8e-b069392605d3"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T01:06:23.000Z",
+                          "updatedAt": "2026-10-22T01:06:23.000Z",
+                          "uid": "35240-25c93548-0c6d-4301-b14e-c38826dae174"
+                        }
+                      ],
+                      "id": "5ca8d05a-bc2d-4c88-8fc4-2aabb21b3da9",
+                      "createdAt": "2026-10-22T01:06:23.000Z",
+                      "updatedAt": "2026-10-22T01:06:23.000Z",
+                      "uid": "35240-5ca8d05a-bc2d-4c88-8fc4-2aabb21b3da9"
+                    }
+                  ],
+                  "id": "b0274278-a86c-4e89-aa74-0de458e66abe",
+                  "createdAt": "2026-10-22T01:06:23.000Z",
+                  "updatedAt": "2026-10-22T01:06:23.000Z",
+                  "uid": "35240-b0274278-a86c-4e89-aa74-0de458e66abe"
+                }
+              ],
+              "id": "191be08b-e709-4e3a-8cc0-df7f91168a94",
+              "createdAt": "2026-10-22T01:06:23.000Z",
+              "updatedAt": "2026-10-22T01:06:23.000Z",
+              "uid": "35240-191be08b-e709-4e3a-8cc0-df7f91168a94"
+            }
+          ],
+          "id": "874454fb-83e9-4bfb-83a8-08c1dc637159",
+          "createdAt": "2026-10-22T01:06:23.000Z",
+          "updatedAt": "2026-10-22T01:06:23.000Z",
+          "uid": "35240-874454fb-83e9-4bfb-83a8-08c1dc637159"
+        }
+      ],
+      "id": "0e4c7950-5270-4f8a-a908-067b47246baa",
+      "createdAt": "2026-10-22T01:06:23.000Z",
+      "updatedAt": "2026-10-22T01:06:23.000Z",
+      "uid": "35240-0e4c7950-5270-4f8a-a908-067b47246baa"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

@@ -1,0 +1,304 @@
+{
+  "info": {
+    "_postman_id": "04280b4f-da5b-4bfe-8300-b9beb78ca935",
+    "name": "Yugabytedb Logging Config API",
+    "description": "Operations tagged LoggingConfig across 2 of this provider's published API definitions: openapi_2.yaml, platform.swagger.json. Each path carries the servers of the definition it was published in.\n\nContact Support:\n Name: https://docs.yugabyte.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:10:10.000Z",
+    "updatedAt": "2026-10-22T01:10:10.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-04280b4f-da5b-4bfe-8300-b9beb78ca935"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "audit_logging_config",
+              "item": [
+                {
+                  "name": "Set Audit Logging Level",
+                  "id": "8b87dd43-9654-4722-aa34-896d96d777ec",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "X-AUTH-YW-API-TOKEN",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"outputToFile\": \"<boolean>\",\n  \"outputToStdout\": \"<boolean>\",\n  \"fileNamePrefix\": \"<string>\",\n  \"maxHistory\": \"<integer>\",\n  \"rolloverPattern\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v1/audit_logging_config",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v1",
+                        "audit_logging_config"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "f07e4a4f-ab35-4049-bcec-592bcf66e901",
+                      "name": "successful operation",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-AUTH-YW-API-TOKEN",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"outputToFile\": \"<boolean>\",\n  \"outputToStdout\": \"<boolean>\",\n  \"fileNamePrefix\": \"<string>\",\n  \"maxHistory\": \"<integer>\",\n  \"rolloverPattern\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/audit_logging_config",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "audit_logging_config"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"outputToFile\": \"<boolean>\",\n  \"outputToStdout\": \"<boolean>\",\n  \"fileNamePrefix\": \"<string>\",\n  \"maxHistory\": \"<integer>\",\n  \"rolloverPattern\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:10:11.000Z",
+                      "updatedAt": "2026-10-22T01:10:11.000Z",
+                      "uid": "35240-f07e4a4f-ab35-4049-bcec-592bcf66e901"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:10:11.000Z",
+                  "updatedAt": "2026-10-22T01:10:11.000Z",
+                  "uid": "35240-8b87dd43-9654-4722-aa34-896d96d777ec"
+                }
+              ],
+              "id": "7f5b11ab-82f6-4a59-8481-742eb8dd505f",
+              "createdAt": "2026-10-22T01:10:11.000Z",
+              "updatedAt": "2026-10-22T01:10:11.000Z",
+              "uid": "35240-7f5b11ab-82f6-4a59-8481-742eb8dd505f"
+            },
+            {
+              "name": "logging_config",
+              "item": [
+                {
+                  "name": "Set Logging Level",
+                  "id": "924c1f77-685c-4158-931c-fc5a9547520e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "X-AUTH-YW-API-TOKEN",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"level\": \"TRACE\",\n  \"maxHistory\": \"<integer>\",\n  \"rolloverPattern\": \"<string>\",\n  \"fileNamePrefix\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v1/logging_config",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v1",
+                        "logging_config"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "70c75d33-fda1-4e1c-b8c1-8095ef51147f",
+                      "name": "successful operation",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-AUTH-YW-API-TOKEN",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"level\": \"TRACE\",\n  \"maxHistory\": \"<integer>\",\n  \"rolloverPattern\": \"<string>\",\n  \"fileNamePrefix\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/logging_config",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "logging_config"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"level\": \"TRACE\",\n  \"maxHistory\": \"<integer>\",\n  \"rolloverPattern\": \"<string>\",\n  \"fileNamePrefix\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:10:11.000Z",
+                      "updatedAt": "2026-10-22T01:10:11.000Z",
+                      "uid": "35240-70c75d33-fda1-4e1c-b8c1-8095ef51147f"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:10:11.000Z",
+                  "updatedAt": "2026-10-22T01:10:11.000Z",
+                  "uid": "35240-924c1f77-685c-4158-931c-fc5a9547520e"
+                }
+              ],
+              "id": "e0184fba-f76e-4ef3-8564-dd7d64450850",
+              "createdAt": "2026-10-22T01:10:11.000Z",
+              "updatedAt": "2026-10-22T01:10:11.000Z",
+              "uid": "35240-e0184fba-f76e-4ef3-8564-dd7d64450850"
+            }
+          ],
+          "id": "bd773c24-2e86-4b0e-b36b-af871b3c2d43",
+          "createdAt": "2026-10-22T01:10:11.000Z",
+          "updatedAt": "2026-10-22T01:10:11.000Z",
+          "uid": "35240-bd773c24-2e86-4b0e-b36b-af871b3c2d43"
+        }
+      ],
+      "id": "7c2fb639-2f84-4c3f-b248-161506da928b",
+      "createdAt": "2026-10-22T01:10:11.000Z",
+      "updatedAt": "2026-10-22T01:10:11.000Z",
+      "uid": "35240-7c2fb639-2f84-4c3f-b248-161506da928b"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

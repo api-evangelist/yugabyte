@@ -1,0 +1,842 @@
+{
+  "info": {
+    "_postman_id": "169dd864-7c5c-4843-a3ec-3912faa1ae52",
+    "name": "YugabyteDB Aeon REST Read Replicas API",
+    "description": "The YugabyteDB Aeon REST API provides programmatic access to YugabyteDB's fully managed cloud database service.\n\nContact Support:\n Name: Yugabyte Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:11:48.000Z",
+    "updatedAt": "2026-10-22T01:11:48.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-169dd864-7c5c-4843-a3ec-3912faa1ae52"
+  },
+  "item": [
+    {
+      "name": "accounts",
+      "item": [
+        {
+          "name": "{accountId}",
+          "item": [
+            {
+              "name": "projects",
+              "item": [
+                {
+                  "name": "{projectId}",
+                  "item": [
+                    {
+                      "name": "clusters",
+                      "item": [
+                        {
+                          "name": "{clusterId}",
+                          "item": [
+                            {
+                              "name": "read-replicas",
+                              "item": [
+                                {
+                                  "name": "YugabyteDB Aeon List Read Replicas",
+                                  "id": "10a8ea37-8567-4b81-a13a-21740a341649",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/accounts/:accountId/projects/:projectId/clusters/:clusterId/read-replicas",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "accounts",
+                                        ":accountId",
+                                        "projects",
+                                        ":projectId",
+                                        "clusters",
+                                        ":clusterId",
+                                        "read-replicas"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "a435389a-2357-4a02-a2bd-bd64d8990078",
+                                          "key": "accountId",
+                                          "value": "<uuid>",
+                                          "description": "(Required) The unique identifier of the YugabyteDB Aeon account."
+                                        },
+                                        {
+                                          "id": "6fff0cbe-55a0-468b-bb92-a338f968f3be",
+                                          "key": "projectId",
+                                          "value": "<uuid>",
+                                          "description": "(Required) The unique identifier of the project within the account."
+                                        },
+                                        {
+                                          "id": "879325a1-6ee3-4d94-813e-d2fa27a090fb",
+                                          "key": "clusterId",
+                                          "value": "<uuid>",
+                                          "description": "(Required) The unique identifier of the cluster."
+                                        }
+                                      ]
+                                    },
+                                    "description": "Returns all read replicas configured for the specified cluster. Read replicas allow routing read traffic to geographically distributed nodes to reduce latency for remote clients."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "84683dc8-d219-4341-8396-aaa6ca530ba5",
+                                      "name": "List of read replicas returned successfully",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/accounts/:accountId/projects/:projectId/clusters/:clusterId/read-replicas",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "accounts",
+                                            ":accountId",
+                                            "projects",
+                                            ":projectId",
+                                            "clusters",
+                                            ":clusterId",
+                                            "read-replicas"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "accountId"
+                                            },
+                                            {
+                                              "key": "projectId"
+                                            },
+                                            {
+                                              "key": "clusterId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"data\": [\n    {\n      \"id\": \"<uuid>\",\n      \"cloud_info\": {\n        \"code\": \"AWS\",\n        \"region\": \"<string>\"\n      },\n      \"cluster_info\": {\n        \"num_nodes\": \"<integer>\",\n        \"fault_tolerance\": \"REGION\",\n        \"cluster_tier\": \"DEDICATED\",\n        \"node_info\": {\n          \"num_cores\": \"<integer>\",\n          \"memory_mb\": \"<integer>\",\n          \"disk_size_gb\": \"<integer>\"\n        },\n        \"yugabytedb_version\": \"<string>\"\n      },\n      \"state\": \"DELETING\"\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"cloud_info\": {\n        \"code\": \"AZURE\",\n        \"region\": \"<string>\"\n      },\n      \"cluster_info\": {\n        \"num_nodes\": \"<integer>\",\n        \"fault_tolerance\": \"NONE\",\n        \"cluster_tier\": \"FREE\",\n        \"node_info\": {\n          \"num_cores\": \"<integer>\",\n          \"memory_mb\": \"<integer>\",\n          \"disk_size_gb\": \"<integer>\"\n        },\n        \"yugabytedb_version\": \"<string>\"\n      },\n      \"state\": \"CREATING\"\n    }\n  ]\n}",
+                                      "createdAt": "2026-10-22T01:11:48.000Z",
+                                      "updatedAt": "2026-10-22T01:11:48.000Z",
+                                      "uid": "35240-84683dc8-d219-4341-8396-aaa6ca530ba5"
+                                    },
+                                    {
+                                      "id": "f9832448-d5a4-46e0-882a-7983539e13ba",
+                                      "name": "The API key is missing, invalid, or expired.",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/accounts/:accountId/projects/:projectId/clusters/:clusterId/read-replicas",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "accounts",
+                                            ":accountId",
+                                            "projects",
+                                            ":projectId",
+                                            "clusters",
+                                            ":clusterId",
+                                            "read-replicas"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "accountId"
+                                            },
+                                            {
+                                              "key": "projectId"
+                                            },
+                                            {
+                                              "key": "clusterId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Unauthorized",
+                                      "code": 401,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"status\": \"<integer>\"\n  }\n}",
+                                      "createdAt": "2026-10-22T01:11:48.000Z",
+                                      "updatedAt": "2026-10-22T01:11:48.000Z",
+                                      "uid": "35240-f9832448-d5a4-46e0-882a-7983539e13ba"
+                                    },
+                                    {
+                                      "id": "d03cec16-d8e3-45b4-a5f5-ba9570eee65f",
+                                      "name": "The requested resource was not found.",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/accounts/:accountId/projects/:projectId/clusters/:clusterId/read-replicas",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "accounts",
+                                            ":accountId",
+                                            "projects",
+                                            ":projectId",
+                                            "clusters",
+                                            ":clusterId",
+                                            "read-replicas"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "accountId"
+                                            },
+                                            {
+                                              "key": "projectId"
+                                            },
+                                            {
+                                              "key": "clusterId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Not Found",
+                                      "code": 404,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"status\": \"<integer>\"\n  }\n}",
+                                      "createdAt": "2026-10-22T01:11:48.000Z",
+                                      "updatedAt": "2026-10-22T01:11:48.000Z",
+                                      "uid": "35240-d03cec16-d8e3-45b4-a5f5-ba9570eee65f"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:11:48.000Z",
+                                  "updatedAt": "2026-10-22T01:11:48.000Z",
+                                  "uid": "35240-10a8ea37-8567-4b81-a13a-21740a341649"
+                                },
+                                {
+                                  "name": "YugabyteDB Aeon Create Read Replica",
+                                  "id": "b07297bb-e1ad-42ff-8631-4c7fda6845dc",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"cloud_info\": {\n    \"code\": \"GCP\",\n    \"region\": \"<string>\"\n  },\n  \"cluster_info\": {\n    \"num_nodes\": \"<integer>\",\n    \"fault_tolerance\": \"ZONE\",\n    \"cluster_tier\": \"FREE\",\n    \"node_info\": {\n      \"num_cores\": \"<integer>\",\n      \"memory_mb\": \"<integer>\",\n      \"disk_size_gb\": \"<integer>\"\n    },\n    \"yugabytedb_version\": \"<string>\"\n  }\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/accounts/:accountId/projects/:projectId/clusters/:clusterId/read-replicas",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "accounts",
+                                        ":accountId",
+                                        "projects",
+                                        ":projectId",
+                                        "clusters",
+                                        ":clusterId",
+                                        "read-replicas"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "9868ac0b-6963-430e-a03c-aebd9755ba76",
+                                          "key": "accountId",
+                                          "value": "<uuid>",
+                                          "description": "(Required) The unique identifier of the YugabyteDB Aeon account."
+                                        },
+                                        {
+                                          "id": "bf3e2d26-d3f6-4f22-8969-63dfa6cdf49c",
+                                          "key": "projectId",
+                                          "value": "<uuid>",
+                                          "description": "(Required) The unique identifier of the project within the account."
+                                        },
+                                        {
+                                          "id": "f00038b4-d6f3-4aa6-a12b-6932ce4b3b21",
+                                          "key": "clusterId",
+                                          "value": "<uuid>",
+                                          "description": "(Required) The unique identifier of the cluster."
+                                        }
+                                      ]
+                                    },
+                                    "description": "Adds a read replica to the specified cluster in the configured cloud region. Read replicas serve read-only traffic and are asynchronously replicated from the primary cluster."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "c3c412c4-fc60-4d2c-a7ee-dcfc2b2b579d",
+                                      "name": "Read replica creation initiated successfully",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"cloud_info\": {\n    \"code\": \"GCP\",\n    \"region\": \"<string>\"\n  },\n  \"cluster_info\": {\n    \"num_nodes\": \"<integer>\",\n    \"fault_tolerance\": \"ZONE\",\n    \"cluster_tier\": \"FREE\",\n    \"node_info\": {\n      \"num_cores\": \"<integer>\",\n      \"memory_mb\": \"<integer>\",\n      \"disk_size_gb\": \"<integer>\"\n    },\n    \"yugabytedb_version\": \"<string>\"\n  }\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/accounts/:accountId/projects/:projectId/clusters/:clusterId/read-replicas",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "accounts",
+                                            ":accountId",
+                                            "projects",
+                                            ":projectId",
+                                            "clusters",
+                                            ":clusterId",
+                                            "read-replicas"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "accountId"
+                                            },
+                                            {
+                                              "key": "projectId"
+                                            },
+                                            {
+                                              "key": "clusterId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"id\": \"<uuid>\",\n  \"cloud_info\": {\n    \"code\": \"GCP\",\n    \"region\": \"<string>\"\n  },\n  \"cluster_info\": {\n    \"num_nodes\": \"<integer>\",\n    \"fault_tolerance\": \"NODE\",\n    \"cluster_tier\": \"DEDICATED\",\n    \"node_info\": {\n      \"num_cores\": \"<integer>\",\n      \"memory_mb\": \"<integer>\",\n      \"disk_size_gb\": \"<integer>\"\n    },\n    \"yugabytedb_version\": \"<string>\"\n  },\n  \"state\": \"ACTIVE\"\n}",
+                                      "createdAt": "2026-10-22T01:11:48.000Z",
+                                      "updatedAt": "2026-10-22T01:11:48.000Z",
+                                      "uid": "35240-c3c412c4-fc60-4d2c-a7ee-dcfc2b2b579d"
+                                    },
+                                    {
+                                      "id": "55db56d5-eaf5-40a8-8050-bab517881f1f",
+                                      "name": "The request was malformed or contained invalid parameters.",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"cloud_info\": {\n    \"code\": \"GCP\",\n    \"region\": \"<string>\"\n  },\n  \"cluster_info\": {\n    \"num_nodes\": \"<integer>\",\n    \"fault_tolerance\": \"ZONE\",\n    \"cluster_tier\": \"FREE\",\n    \"node_info\": {\n      \"num_cores\": \"<integer>\",\n      \"memory_mb\": \"<integer>\",\n      \"disk_size_gb\": \"<integer>\"\n    },\n    \"yugabytedb_version\": \"<string>\"\n  }\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/accounts/:accountId/projects/:projectId/clusters/:clusterId/read-replicas",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "accounts",
+                                            ":accountId",
+                                            "projects",
+                                            ":projectId",
+                                            "clusters",
+                                            ":clusterId",
+                                            "read-replicas"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "accountId"
+                                            },
+                                            {
+                                              "key": "projectId"
+                                            },
+                                            {
+                                              "key": "clusterId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Bad Request",
+                                      "code": 400,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"status\": \"<integer>\"\n  }\n}",
+                                      "createdAt": "2026-10-22T01:11:48.000Z",
+                                      "updatedAt": "2026-10-22T01:11:48.000Z",
+                                      "uid": "35240-55db56d5-eaf5-40a8-8050-bab517881f1f"
+                                    },
+                                    {
+                                      "id": "af75276b-2d94-4907-9c9e-4d3c23c4ab2e",
+                                      "name": "The API key is missing, invalid, or expired.",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"cloud_info\": {\n    \"code\": \"GCP\",\n    \"region\": \"<string>\"\n  },\n  \"cluster_info\": {\n    \"num_nodes\": \"<integer>\",\n    \"fault_tolerance\": \"ZONE\",\n    \"cluster_tier\": \"FREE\",\n    \"node_info\": {\n      \"num_cores\": \"<integer>\",\n      \"memory_mb\": \"<integer>\",\n      \"disk_size_gb\": \"<integer>\"\n    },\n    \"yugabytedb_version\": \"<string>\"\n  }\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/accounts/:accountId/projects/:projectId/clusters/:clusterId/read-replicas",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "accounts",
+                                            ":accountId",
+                                            "projects",
+                                            ":projectId",
+                                            "clusters",
+                                            ":clusterId",
+                                            "read-replicas"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "accountId"
+                                            },
+                                            {
+                                              "key": "projectId"
+                                            },
+                                            {
+                                              "key": "clusterId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Unauthorized",
+                                      "code": 401,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"status\": \"<integer>\"\n  }\n}",
+                                      "createdAt": "2026-10-22T01:11:48.000Z",
+                                      "updatedAt": "2026-10-22T01:11:48.000Z",
+                                      "uid": "35240-af75276b-2d94-4907-9c9e-4d3c23c4ab2e"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:11:48.000Z",
+                                  "updatedAt": "2026-10-22T01:11:48.000Z",
+                                  "uid": "35240-b07297bb-e1ad-42ff-8631-4c7fda6845dc"
+                                },
+                                {
+                                  "name": "YugabyteDB Aeon Delete Read Replica",
+                                  "id": "e2765c75-44b0-494d-82cb-1ddadf0da6d6",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/accounts/:accountId/projects/:projectId/clusters/:clusterId/read-replicas",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "accounts",
+                                        ":accountId",
+                                        "projects",
+                                        ":projectId",
+                                        "clusters",
+                                        ":clusterId",
+                                        "read-replicas"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "99b486b1-8ff6-4af5-a80e-4719841d16de",
+                                          "key": "accountId",
+                                          "value": "<uuid>",
+                                          "description": "(Required) The unique identifier of the YugabyteDB Aeon account."
+                                        },
+                                        {
+                                          "id": "19c5d72a-6ad4-4b50-8109-2f45c1380b4d",
+                                          "key": "projectId",
+                                          "value": "<uuid>",
+                                          "description": "(Required) The unique identifier of the project within the account."
+                                        },
+                                        {
+                                          "id": "016f9803-9e43-4bbf-9166-88508bb36257",
+                                          "key": "clusterId",
+                                          "value": "<uuid>",
+                                          "description": "(Required) The unique identifier of the cluster."
+                                        }
+                                      ]
+                                    },
+                                    "description": "Removes all read replicas from the specified cluster. This operation is irreversible and immediately terminates read replica nodes."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "d4979a06-5f63-4984-b01d-dbbaab60a8f2",
+                                      "name": "Read replica deletion initiated successfully",
+                                      "originalRequest": {
+                                        "method": "DELETE",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/accounts/:accountId/projects/:projectId/clusters/:clusterId/read-replicas",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "accounts",
+                                            ":accountId",
+                                            "projects",
+                                            ":projectId",
+                                            "clusters",
+                                            ":clusterId",
+                                            "read-replicas"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "accountId"
+                                            },
+                                            {
+                                              "key": "projectId"
+                                            },
+                                            {
+                                              "key": "clusterId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-10-22T01:11:48.000Z",
+                                      "updatedAt": "2026-10-22T01:11:48.000Z",
+                                      "uid": "35240-d4979a06-5f63-4984-b01d-dbbaab60a8f2"
+                                    },
+                                    {
+                                      "id": "ef318829-b0e7-4154-8420-f8ce21f875ec",
+                                      "name": "The API key is missing, invalid, or expired.",
+                                      "originalRequest": {
+                                        "method": "DELETE",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/accounts/:accountId/projects/:projectId/clusters/:clusterId/read-replicas",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "accounts",
+                                            ":accountId",
+                                            "projects",
+                                            ":projectId",
+                                            "clusters",
+                                            ":clusterId",
+                                            "read-replicas"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "accountId"
+                                            },
+                                            {
+                                              "key": "projectId"
+                                            },
+                                            {
+                                              "key": "clusterId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Unauthorized",
+                                      "code": 401,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"status\": \"<integer>\"\n  }\n}",
+                                      "createdAt": "2026-10-22T01:11:48.000Z",
+                                      "updatedAt": "2026-10-22T01:11:48.000Z",
+                                      "uid": "35240-ef318829-b0e7-4154-8420-f8ce21f875ec"
+                                    },
+                                    {
+                                      "id": "fd4623b9-6ee8-45ce-8562-9f0c6a62a381",
+                                      "name": "The requested resource was not found.",
+                                      "originalRequest": {
+                                        "method": "DELETE",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/accounts/:accountId/projects/:projectId/clusters/:clusterId/read-replicas",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "accounts",
+                                            ":accountId",
+                                            "projects",
+                                            ":projectId",
+                                            "clusters",
+                                            ":clusterId",
+                                            "read-replicas"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "accountId"
+                                            },
+                                            {
+                                              "key": "projectId"
+                                            },
+                                            {
+                                              "key": "clusterId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Not Found",
+                                      "code": 404,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"status\": \"<integer>\"\n  }\n}",
+                                      "createdAt": "2026-10-22T01:11:48.000Z",
+                                      "updatedAt": "2026-10-22T01:11:48.000Z",
+                                      "uid": "35240-fd4623b9-6ee8-45ce-8562-9f0c6a62a381"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:11:48.000Z",
+                                  "updatedAt": "2026-10-22T01:11:48.000Z",
+                                  "uid": "35240-e2765c75-44b0-494d-82cb-1ddadf0da6d6"
+                                }
+                              ],
+                              "id": "2e5e41ec-f6dd-4fe1-9ba7-ae20a8da5531",
+                              "createdAt": "2026-10-22T01:11:48.000Z",
+                              "updatedAt": "2026-10-22T01:11:48.000Z",
+                              "uid": "35240-2e5e41ec-f6dd-4fe1-9ba7-ae20a8da5531"
+                            }
+                          ],
+                          "id": "08c0f44d-8051-4e24-9e91-f84f60c466a7",
+                          "createdAt": "2026-10-22T01:11:48.000Z",
+                          "updatedAt": "2026-10-22T01:11:48.000Z",
+                          "uid": "35240-08c0f44d-8051-4e24-9e91-f84f60c466a7"
+                        }
+                      ],
+                      "id": "5d8ca7e9-da45-4646-bcee-5b9e9d26bdbc",
+                      "createdAt": "2026-10-22T01:11:48.000Z",
+                      "updatedAt": "2026-10-22T01:11:48.000Z",
+                      "uid": "35240-5d8ca7e9-da45-4646-bcee-5b9e9d26bdbc"
+                    }
+                  ],
+                  "id": "6888b7f3-391b-4e63-9415-d10aaae3ef22",
+                  "createdAt": "2026-10-22T01:11:48.000Z",
+                  "updatedAt": "2026-10-22T01:11:48.000Z",
+                  "uid": "35240-6888b7f3-391b-4e63-9415-d10aaae3ef22"
+                }
+              ],
+              "id": "b97703c9-1ec8-4685-92ac-28ec5508121a",
+              "createdAt": "2026-10-22T01:11:48.000Z",
+              "updatedAt": "2026-10-22T01:11:48.000Z",
+              "uid": "35240-b97703c9-1ec8-4685-92ac-28ec5508121a"
+            }
+          ],
+          "id": "120db059-9ff3-46c9-bbb2-24de22db4bef",
+          "createdAt": "2026-10-22T01:11:48.000Z",
+          "updatedAt": "2026-10-22T01:11:48.000Z",
+          "uid": "35240-120db059-9ff3-46c9-bbb2-24de22db4bef"
+        }
+      ],
+      "id": "b047d5b1-98c0-4e3f-b3ed-569bd687b7f1",
+      "createdAt": "2026-10-22T01:11:48.000Z",
+      "updatedAt": "2026-10-22T01:11:48.000Z",
+      "uid": "35240-b047d5b1-98c0-4e3f-b3ed-569bd687b7f1"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://cloud.yugabyte.com/api/public/v1"
+    }
+  ]
+}

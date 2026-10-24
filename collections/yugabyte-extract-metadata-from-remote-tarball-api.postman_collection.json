@@ -1,0 +1,354 @@
+{
+  "info": {
+    "_postman_id": "00910c24-2df3-4ffd-bd40-6f271d9006a3",
+    "name": "YugabyteDB Anywhere Extract metadata from remote tarball API",
+    "description": "ALPHA - NOT FOR EXTERNAL USE\n\nContact Support:\n Name: https://docs.yugabyte.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:08:28.000Z",
+    "updatedAt": "2026-10-22T01:08:28.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-00910c24-2df3-4ffd-bd40-6f271d9006a3"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "customers",
+              "item": [
+                {
+                  "name": "{cUUID}",
+                  "item": [
+                    {
+                      "name": "ybdb_release",
+                      "item": [
+                        {
+                          "name": "extract_metadata",
+                          "item": [
+                            {
+                              "name": "{rUUID}",
+                              "item": [
+                                {
+                                  "name": "get the extract release metadata from a remote tarball",
+                                  "id": "b27285d5-bbd0-4a95-b028-d728a41fb2fc",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "apikey",
+                                      "apikey": [
+                                        {
+                                          "key": "key",
+                                          "value": "X-AUTH-YW-API-TOKEN",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "value",
+                                          "value": "{{apiKey}}",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "in",
+                                          "value": "header",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/ybdb_release/extract_metadata/:rUUID",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "ybdb_release",
+                                        "extract_metadata",
+                                        ":rUUID"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "d6154199-cd77-4be2-b39f-e9f71536a5f8",
+                                          "key": "cUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "771ae243-8b04-4ba1-92a6-7cf1b0a5f761",
+                                          "key": "rUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    },
+                                    "description": "WARNING: This is a preview API that could change: Get extract metadata and its progress."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "c4d5003b-5bf6-441e-bdca-a625e6e3886e",
+                                      "name": "successful operation",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "X-AUTH-YW-API-TOKEN",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/ybdb_release/extract_metadata/:rUUID",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "ybdb_release",
+                                            "extract_metadata",
+                                            ":rUUID"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "cUUID"
+                                            },
+                                            {
+                                              "key": "rUUID"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"architecture\": \"aarch64\",\n  \"metadata_uuid\": \"<uuid>\",\n  \"platform\": \"LINUX\",\n  \"release_date_msecs\": \"<long>\",\n  \"release_notes\": \"<string>\",\n  \"release_type\": \"<string>\",\n  \"sha256\": \"<string>\",\n  \"status\": \"success\",\n  \"version\": \"<string>\",\n  \"yb_type\": \"YBDB\"\n}",
+                                      "createdAt": "2026-10-22T01:08:29.000Z",
+                                      "updatedAt": "2026-10-22T01:08:29.000Z",
+                                      "uid": "35240-c4d5003b-5bf6-441e-bdca-a625e6e3886e"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:08:29.000Z",
+                                  "updatedAt": "2026-10-22T01:08:29.000Z",
+                                  "uid": "35240-b27285d5-bbd0-4a95-b028-d728a41fb2fc"
+                                }
+                              ],
+                              "id": "6eb808d2-d0c2-46ee-b6d1-2ed77b603ebd",
+                              "createdAt": "2026-10-22T01:08:29.000Z",
+                              "updatedAt": "2026-10-22T01:08:29.000Z",
+                              "uid": "35240-6eb808d2-d0c2-46ee-b6d1-2ed77b603ebd"
+                            },
+                            {
+                              "name": "helper to extract release metadata from a remote tarball",
+                              "id": "8e8920cb-defd-48f5-b63d-12bf7bd00ca7",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "apikey",
+                                  "apikey": [
+                                    {
+                                      "key": "key",
+                                      "value": "X-AUTH-YW-API-TOKEN",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "value",
+                                      "value": "{{apiKey}}",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "in",
+                                      "value": "header",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"url\": \"<string>\",\n  \"uuid\": \"<uuid>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/ybdb_release/extract_metadata",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "ybdb_release",
+                                    "extract_metadata"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "bf4f15bd-7dc9-48a8-b4af-07eb02aa9b7e",
+                                      "key": "cUUID",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "WARNING: This is a preview API that could change: start extracting metadata from a remote tgz url"
+                              },
+                              "response": [
+                                {
+                                  "id": "293f46fc-1290-41da-b8f2-813bb5a2edac",
+                                  "name": "successful operation",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-AUTH-YW-API-TOKEN",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"url\": \"<string>\",\n  \"uuid\": \"<uuid>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/ybdb_release/extract_metadata",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "ybdb_release",
+                                        "extract_metadata"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "cUUID"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"resourceUUID\": \"<uuid>\"\n}",
+                                  "createdAt": "2026-10-22T01:08:29.000Z",
+                                  "updatedAt": "2026-10-22T01:08:29.000Z",
+                                  "uid": "35240-293f46fc-1290-41da-b8f2-813bb5a2edac"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T01:08:29.000Z",
+                              "updatedAt": "2026-10-22T01:08:29.000Z",
+                              "uid": "35240-8e8920cb-defd-48f5-b63d-12bf7bd00ca7"
+                            }
+                          ],
+                          "id": "b932fe94-cac6-4f9c-840b-c032b15fa9a2",
+                          "createdAt": "2026-10-22T01:08:29.000Z",
+                          "updatedAt": "2026-10-22T01:08:29.000Z",
+                          "uid": "35240-b932fe94-cac6-4f9c-840b-c032b15fa9a2"
+                        }
+                      ],
+                      "id": "c283f03a-a6c0-4345-9e41-7c7e5c497136",
+                      "createdAt": "2026-10-22T01:08:29.000Z",
+                      "updatedAt": "2026-10-22T01:08:29.000Z",
+                      "uid": "35240-c283f03a-a6c0-4345-9e41-7c7e5c497136"
+                    }
+                  ],
+                  "id": "1b2fcfad-0149-4272-84a7-65a0ba00d0d2",
+                  "createdAt": "2026-10-22T01:08:29.000Z",
+                  "updatedAt": "2026-10-22T01:08:29.000Z",
+                  "uid": "35240-1b2fcfad-0149-4272-84a7-65a0ba00d0d2"
+                }
+              ],
+              "id": "a71e999d-75c5-45ba-8d6d-9ccef57bb1a6",
+              "createdAt": "2026-10-22T01:08:29.000Z",
+              "updatedAt": "2026-10-22T01:08:29.000Z",
+              "uid": "35240-a71e999d-75c5-45ba-8d6d-9ccef57bb1a6"
+            }
+          ],
+          "id": "1268a531-d2aa-4496-9811-2eee76cfaee9",
+          "createdAt": "2026-10-22T01:08:29.000Z",
+          "updatedAt": "2026-10-22T01:08:29.000Z",
+          "uid": "35240-1268a531-d2aa-4496-9811-2eee76cfaee9"
+        }
+      ],
+      "id": "18a79652-a3f4-448f-a38f-42e7ac486cd7",
+      "createdAt": "2026-10-22T01:08:29.000Z",
+      "updatedAt": "2026-10-22T01:08:29.000Z",
+      "uid": "35240-18a79652-a3f4-448f-a38f-42e7ac486cd7"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

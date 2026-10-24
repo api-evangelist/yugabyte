@@ -1,0 +1,1497 @@
+{
+  "info": {
+    "_postman_id": "80ea5c29-5c92-4e42-a3f8-14ec46c28782",
+    "name": "Yugabytedb Encryption at rest API",
+    "description": "Operations tagged Encryption at rest across 2 of this provider's published API definitions: openapi_2.yaml, platform.swagger.json. Each path carries the servers of the definition it was published in.\n\nContact Support:\n Name: https://docs.yugabyte.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:08:23.000Z",
+    "updatedAt": "2026-10-22T01:08:23.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-80ea5c29-5c92-4e42-a3f8-14ec46c28782"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "customers",
+              "item": [
+                {
+                  "name": "{cUUID}",
+                  "item": [
+                    {
+                      "name": "kms_configs",
+                      "item": [
+                        {
+                          "name": "{configUUID}",
+                          "item": [
+                            {
+                              "name": "edit",
+                              "item": [
+                                {
+                                  "name": "Edit a KMS configuration",
+                                  "id": "fae6575b-6777-4c1d-a18a-ff30dc293aa6",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "apikey",
+                                      "apikey": [
+                                        {
+                                          "key": "key",
+                                          "value": "X-AUTH-YW-API-TOKEN",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "value",
+                                          "value": "{{apiKey}}",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "in",
+                                          "value": "header",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/kms_configs/:configUUID/edit",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "kms_configs",
+                                        ":configUUID",
+                                        "edit"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "7161df72-d338-431b-afcb-3f18394a36cf",
+                                          "key": "cUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "8fa5b7af-8b9a-4e41-b6ae-9495eaeb61c3",
+                                          "key": "configUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "d84ef389-f862-438e-9dfe-374f990e99ac",
+                                      "name": "successful operation",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "X-AUTH-YW-API-TOKEN",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/kms_configs/:configUUID/edit",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "kms_configs",
+                                            ":configUUID",
+                                            "edit"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "cUUID"
+                                            },
+                                            {
+                                              "key": "configUUID"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"resourceUUID\": \"<uuid>\",\n  \"taskUUID\": \"<uuid>\"\n}",
+                                      "createdAt": "2026-10-22T01:08:23.000Z",
+                                      "updatedAt": "2026-10-22T01:08:23.000Z",
+                                      "uid": "35240-d84ef389-f862-438e-9dfe-374f990e99ac"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:08:23.000Z",
+                                  "updatedAt": "2026-10-22T01:08:23.000Z",
+                                  "uid": "35240-fae6575b-6777-4c1d-a18a-ff30dc293aa6"
+                                }
+                              ],
+                              "id": "cccff9c1-70fe-498f-9c9c-9168b1d7db55",
+                              "createdAt": "2026-10-22T01:08:23.000Z",
+                              "updatedAt": "2026-10-22T01:08:23.000Z",
+                              "uid": "35240-cccff9c1-70fe-498f-9c9c-9168b1d7db55"
+                            },
+                            {
+                              "name": "refresh",
+                              "item": [
+                                {
+                                  "name": "Refresh KMS Config",
+                                  "id": "500f8ca1-1c5b-42b4-bada-9e786fdaa413",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "apikey",
+                                      "apikey": [
+                                        {
+                                          "key": "key",
+                                          "value": "X-AUTH-YW-API-TOKEN",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "value",
+                                          "value": "{{apiKey}}",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "in",
+                                          "value": "header",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/kms_configs/:configUUID/refresh",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "kms_configs",
+                                        ":configUUID",
+                                        "refresh"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "04e0dfa5-43cd-4148-b316-571a57436c05",
+                                          "key": "cUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "1489e6b2-dd1e-46b7-ba38-6cd80b7f519e",
+                                          "key": "configUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    },
+                                    "description": "WARNING: This is a preview API that could change."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "7f4e540f-179d-47b4-b350-0499d505db8a",
+                                      "name": "successful operation",
+                                      "originalRequest": {
+                                        "method": "PUT",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "X-AUTH-YW-API-TOKEN",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/kms_configs/:configUUID/refresh",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "kms_configs",
+                                            ":configUUID",
+                                            "refresh"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "cUUID"
+                                            },
+                                            {
+                                              "key": "configUUID"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"message\": \"<string>\",\n  \"success\": \"<boolean>\"\n}",
+                                      "createdAt": "2026-10-22T01:08:23.000Z",
+                                      "updatedAt": "2026-10-22T01:08:23.000Z",
+                                      "uid": "35240-7f4e540f-179d-47b4-b350-0499d505db8a"
+                                    },
+                                    {
+                                      "id": "c36bdbba-e705-4933-831b-dfe109ecad4e",
+                                      "name": "If there is an error refreshing the KMS config.",
+                                      "originalRequest": {
+                                        "method": "PUT",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "X-AUTH-YW-API-TOKEN",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/kms_configs/:configUUID/refresh",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "kms_configs",
+                                            ":configUUID",
+                                            "refresh"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "cUUID"
+                                            },
+                                            {
+                                              "key": "configUUID"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Internal Server Error",
+                                      "code": 500,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"error\": \"<string>\",\n  \"errorJson\": {},\n  \"httpMethod\": \"<string>\",\n  \"requestJson\": {},\n  \"requestUri\": \"<string>\",\n  \"success\": \"<boolean>\"\n}",
+                                      "createdAt": "2026-10-22T01:08:23.000Z",
+                                      "updatedAt": "2026-10-22T01:08:23.000Z",
+                                      "uid": "35240-c36bdbba-e705-4933-831b-dfe109ecad4e"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:08:23.000Z",
+                                  "updatedAt": "2026-10-22T01:08:23.000Z",
+                                  "uid": "35240-500f8ca1-1c5b-42b4-bada-9e786fdaa413"
+                                }
+                              ],
+                              "id": "60d6561d-98eb-4246-bf01-2e1aea5834de",
+                              "createdAt": "2026-10-22T01:08:23.000Z",
+                              "updatedAt": "2026-10-22T01:08:23.000Z",
+                              "uid": "35240-60d6561d-98eb-4246-bf01-2e1aea5834de"
+                            },
+                            {
+                              "name": "Delete a KMS configuration",
+                              "id": "e0601702-25d1-49c2-8113-5b70c8912bbd",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "apikey",
+                                  "apikey": [
+                                    {
+                                      "key": "key",
+                                      "value": "X-AUTH-YW-API-TOKEN",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "value",
+                                      "value": "{{apiKey}}",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "in",
+                                      "value": "header",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/kms_configs/:configUUID",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "kms_configs",
+                                    ":configUUID"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "a0d42f3d-0670-4396-a552-5fcde36b508d",
+                                      "key": "cUUID",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    },
+                                    {
+                                      "id": "a69e6888-b1cc-40ef-bf8e-4fb32451b20b",
+                                      "key": "configUUID",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                }
+                              },
+                              "response": [
+                                {
+                                  "id": "1fadb13c-f556-47bb-bd90-764ba2833e62",
+                                  "name": "successful operation",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-AUTH-YW-API-TOKEN",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/kms_configs/:configUUID",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "kms_configs",
+                                        ":configUUID"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "cUUID"
+                                        },
+                                        {
+                                          "key": "configUUID"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"resourceUUID\": \"<uuid>\",\n  \"taskUUID\": \"<uuid>\"\n}",
+                                  "createdAt": "2026-10-22T01:08:23.000Z",
+                                  "updatedAt": "2026-10-22T01:08:23.000Z",
+                                  "uid": "35240-1fadb13c-f556-47bb-bd90-764ba2833e62"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T01:08:23.000Z",
+                              "updatedAt": "2026-10-22T01:08:23.000Z",
+                              "uid": "35240-e0601702-25d1-49c2-8113-5b70c8912bbd"
+                            },
+                            {
+                              "name": "Get details of a KMS configuration",
+                              "id": "9aa4f561-fa68-4292-b95d-101d8d1caf04",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "apikey",
+                                  "apikey": [
+                                    {
+                                      "key": "key",
+                                      "value": "X-AUTH-YW-API-TOKEN",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "value",
+                                      "value": "{{apiKey}}",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "in",
+                                      "value": "header",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/kms_configs/:configUUID",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "kms_configs",
+                                    ":configUUID"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "3baaa80c-57d2-49b0-b1ca-4528f9c06539",
+                                      "key": "cUUID",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    },
+                                    {
+                                      "id": "457a5296-e335-4a3c-81e2-8ee4cbef8a63",
+                                      "key": "configUUID",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                }
+                              },
+                              "response": [
+                                {
+                                  "id": "3c71f0bd-0be5-4122-92b0-c4f6d45307b3",
+                                  "name": "successful operation",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-AUTH-YW-API-TOKEN",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/kms_configs/:configUUID",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "kms_configs",
+                                        ":configUUID"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "cUUID"
+                                        },
+                                        {
+                                          "key": "configUUID"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"ut_10\": {},\n  \"proident_0d\": {}\n}",
+                                  "createdAt": "2026-10-22T01:08:23.000Z",
+                                  "updatedAt": "2026-10-22T01:08:23.000Z",
+                                  "uid": "35240-3c71f0bd-0be5-4122-92b0-c4f6d45307b3"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T01:08:23.000Z",
+                              "updatedAt": "2026-10-22T01:08:23.000Z",
+                              "uid": "35240-9aa4f561-fa68-4292-b95d-101d8d1caf04"
+                            }
+                          ],
+                          "id": "bae07101-216c-46ad-88fc-d3e03642c678",
+                          "createdAt": "2026-10-22T01:08:23.000Z",
+                          "updatedAt": "2026-10-22T01:08:23.000Z",
+                          "uid": "35240-bae07101-216c-46ad-88fc-d3e03642c678"
+                        },
+                        {
+                          "name": "{kmsProvider}",
+                          "item": [
+                            {
+                              "name": "Create a KMS configuration",
+                              "id": "24467e28-c3f4-4999-8d01-8d184d874979",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "apikey",
+                                  "apikey": [
+                                    {
+                                      "key": "key",
+                                      "value": "X-AUTH-YW-API-TOKEN",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "value",
+                                      "value": "{{apiKey}}",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "in",
+                                      "value": "header",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/kms_configs/:kmsProvider",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "kms_configs",
+                                    ":kmsProvider"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "46f71781-fde2-43b2-a806-bb7e9c1e0cdd",
+                                      "key": "cUUID",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    },
+                                    {
+                                      "id": "2625b161-6002-4c96-9750-e4cba46fcfaf",
+                                      "key": "kmsProvider",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                }
+                              },
+                              "response": [
+                                {
+                                  "id": "dfa1d329-17ae-4f91-acdf-b635a66bc2f6",
+                                  "name": "successful operation",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-AUTH-YW-API-TOKEN",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/kms_configs/:kmsProvider",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "kms_configs",
+                                        ":kmsProvider"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "cUUID"
+                                        },
+                                        {
+                                          "key": "kmsProvider"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"resourceUUID\": \"<uuid>\",\n  \"taskUUID\": \"<uuid>\"\n}",
+                                  "createdAt": "2026-10-22T01:08:23.000Z",
+                                  "updatedAt": "2026-10-22T01:08:23.000Z",
+                                  "uid": "35240-dfa1d329-17ae-4f91-acdf-b635a66bc2f6"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T01:08:23.000Z",
+                              "updatedAt": "2026-10-22T01:08:23.000Z",
+                              "uid": "35240-24467e28-c3f4-4999-8d01-8d184d874979"
+                            }
+                          ],
+                          "id": "d67a4c6b-1973-45fd-8276-9974eba35a40",
+                          "createdAt": "2026-10-22T01:08:23.000Z",
+                          "updatedAt": "2026-10-22T01:08:23.000Z",
+                          "uid": "35240-d67a4c6b-1973-45fd-8276-9974eba35a40"
+                        },
+                        {
+                          "name": "List KMS configurations",
+                          "id": "fdc93559-b00a-4e98-817f-d2b53c4f2108",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "apikey",
+                              "apikey": [
+                                {
+                                  "key": "key",
+                                  "value": "X-AUTH-YW-API-TOKEN",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "value",
+                                  "value": "{{apiKey}}",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "in",
+                                  "value": "header",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/customers/:cUUID/kms_configs",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "customers",
+                                ":cUUID",
+                                "kms_configs"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "9b939601-73f6-420e-ac3a-af608eba4f81",
+                                  "key": "cUUID",
+                                  "value": "<uuid>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "527599d4-6366-480f-bdd6-34aa2799c5b3",
+                              "name": "successful operation",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-AUTH-YW-API-TOKEN",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/kms_configs",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "kms_configs"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "cUUID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "[]",
+                              "createdAt": "2026-10-22T01:08:23.000Z",
+                              "updatedAt": "2026-10-22T01:08:23.000Z",
+                              "uid": "35240-527599d4-6366-480f-bdd6-34aa2799c5b3"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T01:08:23.000Z",
+                          "updatedAt": "2026-10-22T01:08:23.000Z",
+                          "uid": "35240-fdc93559-b00a-4e98-817f-d2b53c4f2108"
+                        }
+                      ],
+                      "id": "accf4de4-af55-4584-b82e-e9a2769751dc",
+                      "createdAt": "2026-10-22T01:08:23.000Z",
+                      "updatedAt": "2026-10-22T01:08:23.000Z",
+                      "uid": "35240-accf4de4-af55-4584-b82e-e9a2769751dc"
+                    },
+                    {
+                      "name": "universes",
+                      "item": [
+                        {
+                          "name": "{uniUUID}",
+                          "item": [
+                            {
+                              "name": "kms",
+                              "item": [
+                                {
+                                  "name": "key_ref",
+                                  "item": [
+                                    {
+                                      "name": "Get a universe's key reference",
+                                      "id": "422c8fc8-7e0b-475b-880b-4e2b5d8f193a",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "auth": {
+                                          "type": "apikey",
+                                          "apikey": [
+                                            {
+                                              "key": "key",
+                                              "value": "X-AUTH-YW-API-TOKEN",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "value",
+                                              "value": "{{apiKey}}",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "in",
+                                              "value": "header",
+                                              "type": "string"
+                                            }
+                                          ]
+                                        },
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/kms/key_ref",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "universes",
+                                            ":uniUUID",
+                                            "kms",
+                                            "key_ref"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "7b6a0563-d764-4560-8e9b-8fc47985ad32",
+                                              "key": "cUUID",
+                                              "value": "<uuid>",
+                                              "description": "(Required) "
+                                            },
+                                            {
+                                              "id": "f0ae04e7-162f-4a46-b14b-a8f5c8748b7e",
+                                              "key": "uniUUID",
+                                              "value": "<uuid>",
+                                              "description": "(Required) "
+                                            }
+                                          ]
+                                        },
+                                        "description": "YbaApi Internal."
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "985577b7-4fd9-4fc3-b50e-4eb45167d8d5",
+                                          "name": "successful operation",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: apikey",
+                                                "key": "X-AUTH-YW-API-TOKEN",
+                                                "value": "<API Key>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/kms/key_ref",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v1",
+                                                "customers",
+                                                ":cUUID",
+                                                "universes",
+                                                ":uniUUID",
+                                                "kms",
+                                                "key_ref"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "cUUID"
+                                                },
+                                                {
+                                                  "key": "uniUUID"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"ut_10\": {},\n  \"proident_0d\": {}\n}",
+                                          "createdAt": "2026-10-22T01:08:23.000Z",
+                                          "updatedAt": "2026-10-22T01:08:23.000Z",
+                                          "uid": "35240-985577b7-4fd9-4fc3-b50e-4eb45167d8d5"
+                                        }
+                                      ],
+                                      "createdAt": "2026-10-22T01:08:23.000Z",
+                                      "updatedAt": "2026-10-22T01:08:23.000Z",
+                                      "uid": "35240-422c8fc8-7e0b-475b-880b-4e2b5d8f193a"
+                                    }
+                                  ],
+                                  "id": "2e55ed5b-27ef-4960-81f8-2fd756f82869",
+                                  "createdAt": "2026-10-22T01:08:23.000Z",
+                                  "updatedAt": "2026-10-22T01:08:23.000Z",
+                                  "uid": "35240-2e55ed5b-27ef-4960-81f8-2fd756f82869"
+                                },
+                                {
+                                  "name": "This API removes a universe's key reference history - deprecated",
+                                  "id": "9810c7e7-072b-4d95-8fef-1c6cda7d6eaf",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "apikey",
+                                      "apikey": [
+                                        {
+                                          "key": "key",
+                                          "value": "X-AUTH-YW-API-TOKEN",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "value",
+                                          "value": "{{apiKey}}",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "in",
+                                          "value": "header",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/kms",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "universes",
+                                        ":uniUUID",
+                                        "kms"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "a2ba843f-99b8-4b69-9c78-8efcc9a3e90f",
+                                          "key": "cUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "2dd26a41-e5d8-43c6-b405-c02163cc5cea",
+                                          "key": "uniUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    },
+                                    "description": "Deprecated since YBA version 2.20.0.0.\nDo not use."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "91948e36-1841-4580-90c2-a5a1cdf4bce2",
+                                      "name": "successful operation",
+                                      "originalRequest": {
+                                        "method": "DELETE",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "X-AUTH-YW-API-TOKEN",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/kms",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "universes",
+                                            ":uniUUID",
+                                            "kms"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "cUUID"
+                                            },
+                                            {
+                                              "key": "uniUUID"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"message\": \"<string>\",\n  \"success\": \"<boolean>\"\n}",
+                                      "createdAt": "2026-10-22T01:08:23.000Z",
+                                      "updatedAt": "2026-10-22T01:08:23.000Z",
+                                      "uid": "35240-91948e36-1841-4580-90c2-a5a1cdf4bce2"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:08:23.000Z",
+                                  "updatedAt": "2026-10-22T01:08:23.000Z",
+                                  "uid": "35240-9810c7e7-072b-4d95-8fef-1c6cda7d6eaf"
+                                },
+                                {
+                                  "name": "Get a universe's key reference history",
+                                  "id": "6acdc55b-9720-441a-9ca5-df70f3c92698",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "apikey",
+                                      "apikey": [
+                                        {
+                                          "key": "key",
+                                          "value": "X-AUTH-YW-API-TOKEN",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "value",
+                                          "value": "{{apiKey}}",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "in",
+                                          "value": "header",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/kms",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "universes",
+                                        ":uniUUID",
+                                        "kms"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "99bddd3f-8f77-4856-ba05-91699aec96a2",
+                                          "key": "cUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "cb7c02ad-8930-40fd-a67e-18c5a2f0a775",
+                                          "key": "uniUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    },
+                                    "description": "YbaApi Internal."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "d47945a8-04bc-4f5d-a773-143bc17eb129",
+                                      "name": "successful operation",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "X-AUTH-YW-API-TOKEN",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/kms",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "universes",
+                                            ":uniUUID",
+                                            "kms"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "cUUID"
+                                            },
+                                            {
+                                              "key": "uniUUID"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "[]",
+                                      "createdAt": "2026-10-22T01:08:23.000Z",
+                                      "updatedAt": "2026-10-22T01:08:23.000Z",
+                                      "uid": "35240-d47945a8-04bc-4f5d-a773-143bc17eb129"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:08:23.000Z",
+                                  "updatedAt": "2026-10-22T01:08:23.000Z",
+                                  "uid": "35240-6acdc55b-9720-441a-9ca5-df70f3c92698"
+                                },
+                                {
+                                  "name": "Retrive a universe's KMS key",
+                                  "id": "6460c069-7a70-45a1-9a69-fe48c32d4354",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "apikey",
+                                      "apikey": [
+                                        {
+                                          "key": "key",
+                                          "value": "X-AUTH-YW-API-TOKEN",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "value",
+                                          "value": "{{apiKey}}",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "in",
+                                          "value": "header",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/kms",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "universes",
+                                        ":uniUUID",
+                                        "kms"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "a6e23afa-1fa8-4262-b585-db782fbedc76",
+                                          "key": "cUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "56d6d651-4186-46cb-a102-2b0530afce4f",
+                                          "key": "uniUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    },
+                                    "description": "YbaApi Internal."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "c4ac8856-0c42-44be-a47f-e8d23150fe07",
+                                      "name": "successful operation",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "X-AUTH-YW-API-TOKEN",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/kms",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "universes",
+                                            ":uniUUID",
+                                            "kms"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "cUUID"
+                                            },
+                                            {
+                                              "key": "uniUUID"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"ut_10\": {},\n  \"proident_0d\": {}\n}",
+                                      "createdAt": "2026-10-22T01:08:23.000Z",
+                                      "updatedAt": "2026-10-22T01:08:23.000Z",
+                                      "uid": "35240-c4ac8856-0c42-44be-a47f-e8d23150fe07"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:08:23.000Z",
+                                  "updatedAt": "2026-10-22T01:08:23.000Z",
+                                  "uid": "35240-6460c069-7a70-45a1-9a69-fe48c32d4354"
+                                }
+                              ],
+                              "id": "d786ff0f-7bbd-4ab9-8606-cf1e3b3dc856",
+                              "createdAt": "2026-10-22T01:08:23.000Z",
+                              "updatedAt": "2026-10-22T01:08:23.000Z",
+                              "uid": "35240-d786ff0f-7bbd-4ab9-8606-cf1e3b3dc856"
+                            }
+                          ],
+                          "id": "0beb2c30-1a76-4ace-8d59-a9c62483680d",
+                          "createdAt": "2026-10-22T01:08:23.000Z",
+                          "updatedAt": "2026-10-22T01:08:23.000Z",
+                          "uid": "35240-0beb2c30-1a76-4ace-8d59-a9c62483680d"
+                        }
+                      ],
+                      "id": "be783eee-dcb7-42ac-a047-8a243fda2f0c",
+                      "createdAt": "2026-10-22T01:08:23.000Z",
+                      "updatedAt": "2026-10-22T01:08:23.000Z",
+                      "uid": "35240-be783eee-dcb7-42ac-a047-8a243fda2f0c"
+                    }
+                  ],
+                  "id": "926ca611-7dbd-4796-b4c9-912dd0e67fc6",
+                  "createdAt": "2026-10-22T01:08:23.000Z",
+                  "updatedAt": "2026-10-22T01:08:23.000Z",
+                  "uid": "35240-926ca611-7dbd-4796-b4c9-912dd0e67fc6"
+                }
+              ],
+              "id": "e2d66d16-14c0-4e1c-960f-2d09cde3dc48",
+              "createdAt": "2026-10-22T01:08:23.000Z",
+              "updatedAt": "2026-10-22T01:08:23.000Z",
+              "uid": "35240-e2d66d16-14c0-4e1c-960f-2d09cde3dc48"
+            }
+          ],
+          "id": "de4c4963-7cb1-4482-91ac-e5498000aaf2",
+          "createdAt": "2026-10-22T01:08:23.000Z",
+          "updatedAt": "2026-10-22T01:08:23.000Z",
+          "uid": "35240-de4c4963-7cb1-4482-91ac-e5498000aaf2"
+        }
+      ],
+      "id": "c0f92860-ab00-485e-82e7-8dec6644ea70",
+      "createdAt": "2026-10-22T01:08:23.000Z",
+      "updatedAt": "2026-10-22T01:08:23.000Z",
+      "uid": "35240-c0f92860-ab00-485e-82e7-8dec6644ea70"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

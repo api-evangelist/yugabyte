@@ -1,0 +1,1417 @@
+{
+  "info": {
+    "_postman_id": "9c7b1469-e442-4186-96bf-517c88f301e2",
+    "name": "Yugabytedb Schedule management API",
+    "description": "Operations tagged Schedule management across 2 of this provider's published API definitions: openapi_2.yaml, platform.swagger.json. Each path carries the servers of the definition it was published in.\n\nContact Support:\n Name: https://docs.yugabyte.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:12:30.000Z",
+    "updatedAt": "2026-10-22T01:12:30.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-9c7b1469-e442-4186-96bf-517c88f301e2"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "customers",
+              "item": [
+                {
+                  "name": "{cUUID}",
+                  "item": [
+                    {
+                      "name": "schedules",
+                      "item": [
+                        {
+                          "name": "page",
+                          "item": [
+                            {
+                              "name": "List schedules V2",
+                              "id": "5a40f549-c83d-4ac1-b77a-563ecd04c4cf",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "apikey",
+                                  "apikey": [
+                                    {
+                                      "key": "key",
+                                      "value": "X-AUTH-YW-API-TOKEN",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "value",
+                                      "value": "{{apiKey}}",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "in",
+                                      "value": "header",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"direction\": \"ASC\",\n  \"filter\": {\n    \"status\": [\n      \"Stopped\",\n      \"Error\"\n    ],\n    \"taskTypes\": [\n      \"RestartUniverseKubernetesUpgrade\",\n      \"UpdateUniverseConfig\"\n    ],\n    \"universeUUIDList\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ]\n  },\n  \"limit\": \"<integer>\",\n  \"needTotalCount\": \"<boolean>\",\n  \"offset\": \"<integer>\",\n  \"sortBy\": \"scheduleName\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/schedules/page",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "schedules",
+                                    "page"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "bfb9c077-2b9e-40d2-b53c-1db79e790d4e",
+                                      "key": "cUUID",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                }
+                              },
+                              "response": [
+                                {
+                                  "id": "af5a72f0-ddb0-48b2-aa0a-5f3184bb5b0d",
+                                  "name": "successful operation",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-AUTH-YW-API-TOKEN",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"direction\": \"ASC\",\n  \"filter\": {\n    \"status\": [\n      \"Stopped\",\n      \"Error\"\n    ],\n    \"taskTypes\": [\n      \"RestartUniverseKubernetesUpgrade\",\n      \"UpdateUniverseConfig\"\n    ],\n    \"universeUUIDList\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ]\n  },\n  \"limit\": \"<integer>\",\n  \"needTotalCount\": \"<boolean>\",\n  \"offset\": \"<integer>\",\n  \"sortBy\": \"scheduleName\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/schedules/page",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "schedules",
+                                        "page"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "cUUID"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"entities\": [\n    {\n      \"backlogStatus\": \"<boolean>\",\n      \"backupInfo\": {\n        \"backupType\": \"TRANSACTION_STATUS_TABLE_TYPE\",\n        \"expiryTimeUnit\": \"DAYS\",\n        \"fullBackup\": \"<boolean>\",\n        \"keyspaceList\": [\n          {\n            \"allTables\": \"<boolean>\",\n            \"backupPointInTimeRestoreWindow\": {\n              \"timestampRetentionWindowEndMillis\": \"<long>\",\n              \"timestampRetentionWindowStartMillis\": \"<long>\"\n            },\n            \"backupSizeInBytes\": \"<long>\",\n            \"defaultLocation\": \"<string>\",\n            \"keyspace\": \"<string>\",\n            \"perRegionLocations\": [\n              {\n                \"HOST_BASE\": \"<string>\",\n                \"LOCATION\": \"<string>\",\n                \"REGION\": \"<string>\"\n              },\n              {\n                \"HOST_BASE\": \"<string>\",\n                \"LOCATION\": \"<string>\",\n                \"REGION\": \"<string>\"\n              }\n            ],\n            \"tableUUIDList\": [\n              \"<uuid>\",\n              \"<uuid>\"\n            ],\n            \"tablesList\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          {\n            \"allTables\": \"<boolean>\",\n            \"backupPointInTimeRestoreWindow\": {\n              \"timestampRetentionWindowEndMillis\": \"<long>\",\n              \"timestampRetentionWindowStartMillis\": \"<long>\"\n            },\n            \"backupSizeInBytes\": \"<long>\",\n            \"defaultLocation\": \"<string>\",\n            \"keyspace\": \"<string>\",\n            \"perRegionLocations\": [\n              {\n                \"HOST_BASE\": \"<string>\",\n                \"LOCATION\": \"<string>\",\n                \"REGION\": \"<string>\"\n              },\n              {\n                \"HOST_BASE\": \"<string>\",\n                \"LOCATION\": \"<string>\",\n                \"REGION\": \"<string>\"\n              }\n            ],\n            \"tableUUIDList\": [\n              \"<uuid>\",\n              \"<uuid>\"\n            ],\n            \"tablesList\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        ],\n        \"parallelism\": \"<long>\",\n        \"pointInTimeRestoreEnabled\": \"<boolean>\",\n        \"storageConfigUUID\": \"<uuid>\",\n        \"timeBeforeDelete\": \"<long>\",\n        \"universeUUID\": \"<uuid>\",\n        \"useRoles\": \"<boolean>\",\n        \"useTablespaces\": \"<boolean>\"\n      },\n      \"cronExpression\": \"<string>\",\n      \"customerUUID\": \"<uuid>\",\n      \"failureCount\": \"<integer>\",\n      \"frequency\": \"<long>\",\n      \"frequencyTimeUnit\": \"MICROSECONDS\",\n      \"incrementBacklogStatus\": \"<boolean>\",\n      \"incrementalBackupFrequency\": \"<long>\",\n      \"incrementalBackupFrequencyTimeUnit\": \"YEARS\",\n      \"runningState\": \"<boolean>\",\n      \"scheduleName\": \"<string>\",\n      \"scheduleUUID\": \"<uuid>\",\n      \"status\": \"Stopped\",\n      \"tableByTableBackup\": \"<boolean>\",\n      \"taskType\": \"AnsibleSetupServer\",\n      \"useLocalTimezone\": \"<boolean>\",\n      \"nextExpectedTask\": \"<dateTime>\",\n      \"prevCompletedTask\": \"<dateTime>\"\n    },\n    {\n      \"backlogStatus\": \"<boolean>\",\n      \"backupInfo\": {\n        \"backupType\": \"REDIS_TABLE_TYPE\",\n        \"expiryTimeUnit\": \"YEARS\",\n        \"fullBackup\": \"<boolean>\",\n        \"keyspaceList\": [\n          {\n            \"allTables\": \"<boolean>\",\n            \"backupPointInTimeRestoreWindow\": {\n              \"timestampRetentionWindowEndMillis\": \"<long>\",\n              \"timestampRetentionWindowStartMillis\": \"<long>\"\n            },\n            \"backupSizeInBytes\": \"<long>\",\n            \"defaultLocation\": \"<string>\",\n            \"keyspace\": \"<string>\",\n            \"perRegionLocations\": [\n              {\n                \"HOST_BASE\": \"<string>\",\n                \"LOCATION\": \"<string>\",\n                \"REGION\": \"<string>\"\n              },\n              {\n                \"HOST_BASE\": \"<string>\",\n                \"LOCATION\": \"<string>\",\n                \"REGION\": \"<string>\"\n              }\n            ],\n            \"tableUUIDList\": [\n              \"<uuid>\",\n              \"<uuid>\"\n            ],\n            \"tablesList\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          {\n            \"allTables\": \"<boolean>\",\n            \"backupPointInTimeRestoreWindow\": {\n              \"timestampRetentionWindowEndMillis\": \"<long>\",\n              \"timestampRetentionWindowStartMillis\": \"<long>\"\n            },\n            \"backupSizeInBytes\": \"<long>\",\n            \"defaultLocation\": \"<string>\",\n            \"keyspace\": \"<string>\",\n            \"perRegionLocations\": [\n              {\n                \"HOST_BASE\": \"<string>\",\n                \"LOCATION\": \"<string>\",\n                \"REGION\": \"<string>\"\n              },\n              {\n                \"HOST_BASE\": \"<string>\",\n                \"LOCATION\": \"<string>\",\n                \"REGION\": \"<string>\"\n              }\n            ],\n            \"tableUUIDList\": [\n              \"<uuid>\",\n              \"<uuid>\"\n            ],\n            \"tablesList\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        ],\n        \"parallelism\": \"<long>\",\n        \"pointInTimeRestoreEnabled\": \"<boolean>\",\n        \"storageConfigUUID\": \"<uuid>\",\n        \"timeBeforeDelete\": \"<long>\",\n        \"universeUUID\": \"<uuid>\",\n        \"useRoles\": \"<boolean>\",\n        \"useTablespaces\": \"<boolean>\"\n      },\n      \"cronExpression\": \"<string>\",\n      \"customerUUID\": \"<uuid>\",\n      \"failureCount\": \"<integer>\",\n      \"frequency\": \"<long>\",\n      \"frequencyTimeUnit\": \"MICROSECONDS\",\n      \"incrementBacklogStatus\": \"<boolean>\",\n      \"incrementalBackupFrequency\": \"<long>\",\n      \"incrementalBackupFrequencyTimeUnit\": \"SECONDS\",\n      \"runningState\": \"<boolean>\",\n      \"scheduleName\": \"<string>\",\n      \"scheduleUUID\": \"<uuid>\",\n      \"status\": \"Paused\",\n      \"tableByTableBackup\": \"<boolean>\",\n      \"taskType\": \"PauseKubernetesUniverse\",\n      \"useLocalTimezone\": \"<boolean>\",\n      \"nextExpectedTask\": \"<dateTime>\",\n      \"prevCompletedTask\": \"<dateTime>\"\n    }\n  ],\n  \"hasNext\": \"<boolean>\",\n  \"hasPrev\": \"<boolean>\",\n  \"totalCount\": \"<integer>\"\n}",
+                                  "createdAt": "2026-10-22T01:12:30.000Z",
+                                  "updatedAt": "2026-10-22T01:12:30.000Z",
+                                  "uid": "35240-af5a72f0-ddb0-48b2-aa0a-5f3184bb5b0d"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T01:12:30.000Z",
+                              "updatedAt": "2026-10-22T01:12:30.000Z",
+                              "uid": "35240-5a40f549-c83d-4ac1-b77a-563ecd04c4cf"
+                            }
+                          ],
+                          "id": "b4e49947-5ff2-45d6-b6e2-cc1b3f886d5e",
+                          "createdAt": "2026-10-22T01:12:30.000Z",
+                          "updatedAt": "2026-10-22T01:12:30.000Z",
+                          "uid": "35240-b4e49947-5ff2-45d6-b6e2-cc1b3f886d5e"
+                        },
+                        {
+                          "name": "{sUUID}",
+                          "item": [
+                            {
+                              "name": "delete",
+                              "item": [
+                                {
+                                  "name": "Delete a schedule V2 - deprecated",
+                                  "id": "e09eeb73-7d29-445e-bc23-4a0b3776ee65",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "apikey",
+                                      "apikey": [
+                                        {
+                                          "key": "key",
+                                          "value": "X-AUTH-YW-API-TOKEN",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "value",
+                                          "value": "{{apiKey}}",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "in",
+                                          "value": "header",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/schedules/:sUUID/delete",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "schedules",
+                                        ":sUUID",
+                                        "delete"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "b0dfac28-347e-4217-a8ca-bcee28582ca3",
+                                          "key": "cUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "b52d4031-ac09-43e7-aa75-a161a07bc01f",
+                                          "key": "sUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    },
+                                    "description": "Deprecated since YBA version 2024.2.0.0.\nUse 'Delete a backup schedule async' instead."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "c142c937-7024-471a-a1a7-2a131d219ba5",
+                                      "name": "successful operation",
+                                      "originalRequest": {
+                                        "method": "DELETE",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "X-AUTH-YW-API-TOKEN",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/schedules/:sUUID/delete",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "schedules",
+                                            ":sUUID",
+                                            "delete"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "cUUID"
+                                            },
+                                            {
+                                              "key": "sUUID"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"message\": \"<string>\",\n  \"success\": \"<boolean>\"\n}",
+                                      "createdAt": "2026-10-22T01:12:30.000Z",
+                                      "updatedAt": "2026-10-22T01:12:30.000Z",
+                                      "uid": "35240-c142c937-7024-471a-a1a7-2a131d219ba5"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:12:30.000Z",
+                                  "updatedAt": "2026-10-22T01:12:30.000Z",
+                                  "uid": "35240-e09eeb73-7d29-445e-bc23-4a0b3776ee65"
+                                }
+                              ],
+                              "id": "40ccb659-2a7a-432d-8185-ad3f8237496e",
+                              "createdAt": "2026-10-22T01:12:30.000Z",
+                              "updatedAt": "2026-10-22T01:12:30.000Z",
+                              "uid": "35240-40ccb659-2a7a-432d-8185-ad3f8237496e"
+                            },
+                            {
+                              "name": "Delete a schedule - deprecated",
+                              "id": "64a2c15a-d148-4e7e-a869-3de1c3e50249",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "apikey",
+                                  "apikey": [
+                                    {
+                                      "key": "key",
+                                      "value": "X-AUTH-YW-API-TOKEN",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "value",
+                                      "value": "{{apiKey}}",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "in",
+                                      "value": "header",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/schedules/:sUUID",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "schedules",
+                                    ":sUUID"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "e8270116-f832-46e7-ae47-5e93daf81892",
+                                      "key": "cUUID",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    },
+                                    {
+                                      "id": "a18258c2-6410-408d-ba97-6bffd9ca25a2",
+                                      "key": "sUUID",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Deprecated since YBA version 2.20.0.0.\nUse 'Delete a schedule V2' instead."
+                              },
+                              "response": [
+                                {
+                                  "id": "be138a67-8dcb-40c7-acec-380b8b55ba92",
+                                  "name": "successful operation",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-AUTH-YW-API-TOKEN",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/schedules/:sUUID",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "schedules",
+                                        ":sUUID"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "cUUID"
+                                        },
+                                        {
+                                          "key": "sUUID"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"message\": \"<string>\",\n  \"success\": \"<boolean>\"\n}",
+                                  "createdAt": "2026-10-22T01:12:30.000Z",
+                                  "updatedAt": "2026-10-22T01:12:30.000Z",
+                                  "uid": "35240-be138a67-8dcb-40c7-acec-380b8b55ba92"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T01:12:30.000Z",
+                              "updatedAt": "2026-10-22T01:12:30.000Z",
+                              "uid": "35240-64a2c15a-d148-4e7e-a869-3de1c3e50249"
+                            },
+                            {
+                              "name": "Get Schedule",
+                              "id": "25ec8888-154f-41de-bf7e-8a6341cf0829",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "apikey",
+                                  "apikey": [
+                                    {
+                                      "key": "key",
+                                      "value": "X-AUTH-YW-API-TOKEN",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "value",
+                                      "value": "{{apiKey}}",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "in",
+                                      "value": "header",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/schedules/:sUUID",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "schedules",
+                                    ":sUUID"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "3530fef0-1749-44b2-81b2-5698618876ac",
+                                      "key": "cUUID",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    },
+                                    {
+                                      "id": "834d3c33-78a8-4dd3-9bc0-584edcb86887",
+                                      "key": "sUUID",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                }
+                              },
+                              "response": [
+                                {
+                                  "id": "b2a93cf0-d96e-4d04-8e33-f8f68a2715ee",
+                                  "name": "successful operation",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-AUTH-YW-API-TOKEN",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/schedules/:sUUID",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "schedules",
+                                        ":sUUID"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "cUUID"
+                                        },
+                                        {
+                                          "key": "sUUID"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"kubernetesOperatorControlled\": \"<boolean>\",\n  \"backlogStatus\": \"<boolean>\",\n  \"cronExpression\": \"<string>\",\n  \"failureCount\": \"<integer>\",\n  \"frequency\": \"<long>\",\n  \"frequencyTimeUnit\": \"MICROSECONDS\",\n  \"incrementBacklogStatus\": \"<boolean>\",\n  \"nextIncrementScheduleTaskTime\": \"<dateTime>\",\n  \"nextScheduleTaskTime\": \"<dateTime>\",\n  \"ownerUUID\": \"<uuid>\",\n  \"runningState\": \"<boolean>\",\n  \"scheduleName\": \"<string>\",\n  \"scheduleUUID\": \"<uuid>\",\n  \"status\": \"Deleting\",\n  \"taskType\": \"CheckSshConnection\",\n  \"useLocalTimezone\": \"<boolean>\",\n  \"userEmail\": \"<string>\"\n}",
+                                  "createdAt": "2026-10-22T01:12:30.000Z",
+                                  "updatedAt": "2026-10-22T01:12:30.000Z",
+                                  "uid": "35240-b2a93cf0-d96e-4d04-8e33-f8f68a2715ee"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T01:12:30.000Z",
+                              "updatedAt": "2026-10-22T01:12:30.000Z",
+                              "uid": "35240-25ec8888-154f-41de-bf7e-8a6341cf0829"
+                            },
+                            {
+                              "name": "Edit a backup schedule V2 - deprecated",
+                              "id": "5935f1f6-b21f-4a29-95c1-6d94a0377107",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "apikey",
+                                  "apikey": [
+                                    {
+                                      "key": "key",
+                                      "value": "X-AUTH-YW-API-TOKEN",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "value",
+                                      "value": "{{apiKey}}",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "in",
+                                      "value": "header",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"cronExpression\": \"<string>\",\n  \"frequency\": \"<long>\",\n  \"frequencyTimeUnit\": \"MINUTES\",\n  \"incrementalBackupFrequency\": \"<long>\",\n  \"incrementalBackupFrequencyTimeUnit\": \"SECONDS\",\n  \"runImmediateBackupOnResume\": \"<boolean>\",\n  \"status\": \"Stopped\",\n  \"timeBeforeDelete\": \"<long>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/schedules/:sUUID",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "schedules",
+                                    ":sUUID"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "537ba1d6-734c-4464-b124-39df7148908c",
+                                      "key": "cUUID",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    },
+                                    {
+                                      "id": "dfd45987-ec14-40d5-bbde-ab06ca60d474",
+                                      "key": "sUUID",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Deprecated since YBA version 2024.2.0.0.\nUse 'Edit a backup schedule async' instead."
+                              },
+                              "response": [
+                                {
+                                  "id": "0dc6e12f-34b1-4a3a-965f-c02f65eaba64",
+                                  "name": "successful operation",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-AUTH-YW-API-TOKEN",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"cronExpression\": \"<string>\",\n  \"frequency\": \"<long>\",\n  \"frequencyTimeUnit\": \"MINUTES\",\n  \"incrementalBackupFrequency\": \"<long>\",\n  \"incrementalBackupFrequencyTimeUnit\": \"SECONDS\",\n  \"runImmediateBackupOnResume\": \"<boolean>\",\n  \"status\": \"Stopped\",\n  \"timeBeforeDelete\": \"<long>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/schedules/:sUUID",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "schedules",
+                                        ":sUUID"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "cUUID"
+                                        },
+                                        {
+                                          "key": "sUUID"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"kubernetesOperatorControlled\": \"<boolean>\",\n  \"backlogStatus\": \"<boolean>\",\n  \"cronExpression\": \"<string>\",\n  \"failureCount\": \"<integer>\",\n  \"frequency\": \"<long>\",\n  \"frequencyTimeUnit\": \"MICROSECONDS\",\n  \"incrementBacklogStatus\": \"<boolean>\",\n  \"nextIncrementScheduleTaskTime\": \"<dateTime>\",\n  \"nextScheduleTaskTime\": \"<dateTime>\",\n  \"ownerUUID\": \"<uuid>\",\n  \"runningState\": \"<boolean>\",\n  \"scheduleName\": \"<string>\",\n  \"scheduleUUID\": \"<uuid>\",\n  \"status\": \"Deleting\",\n  \"taskType\": \"CheckSshConnection\",\n  \"useLocalTimezone\": \"<boolean>\",\n  \"userEmail\": \"<string>\"\n}",
+                                  "createdAt": "2026-10-22T01:12:30.000Z",
+                                  "updatedAt": "2026-10-22T01:12:30.000Z",
+                                  "uid": "35240-0dc6e12f-34b1-4a3a-965f-c02f65eaba64"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T01:12:30.000Z",
+                              "updatedAt": "2026-10-22T01:12:30.000Z",
+                              "uid": "35240-5935f1f6-b21f-4a29-95c1-6d94a0377107"
+                            }
+                          ],
+                          "id": "0ee21362-fccb-49fd-b406-953aeeedb4c0",
+                          "createdAt": "2026-10-22T01:12:30.000Z",
+                          "updatedAt": "2026-10-22T01:12:30.000Z",
+                          "uid": "35240-0ee21362-fccb-49fd-b406-953aeeedb4c0"
+                        },
+                        {
+                          "name": "List schedules - deprecated",
+                          "id": "8b7870a6-c683-4a7b-9ce9-8b03857544bf",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "apikey",
+                              "apikey": [
+                                {
+                                  "key": "key",
+                                  "value": "X-AUTH-YW-API-TOKEN",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "value",
+                                  "value": "{{apiKey}}",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "in",
+                                  "value": "header",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/customers/:cUUID/schedules",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "customers",
+                                ":cUUID",
+                                "schedules"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "1159646b-19ea-44e2-9ffa-2eb25086ba77",
+                                  "key": "cUUID",
+                                  "value": "<uuid>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Deprecated since YBA version 2.20.0.0.\nUse 'List schedules V2' instead."
+                          },
+                          "response": [
+                            {
+                              "id": "0bd16e6f-0fe6-4662-92ca-b3a03cb4dd56",
+                              "name": "successful operation",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-AUTH-YW-API-TOKEN",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/schedules",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "schedules"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "cUUID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "[\n  {\n    \"kubernetesOperatorControlled\": \"<boolean>\",\n    \"backlogStatus\": \"<boolean>\",\n    \"cronExpression\": \"<string>\",\n    \"failureCount\": \"<integer>\",\n    \"frequency\": \"<long>\",\n    \"frequencyTimeUnit\": \"MICROSECONDS\",\n    \"incrementBacklogStatus\": \"<boolean>\",\n    \"nextIncrementScheduleTaskTime\": \"<dateTime>\",\n    \"nextScheduleTaskTime\": \"<dateTime>\",\n    \"ownerUUID\": \"<uuid>\",\n    \"runningState\": \"<boolean>\",\n    \"scheduleName\": \"<string>\",\n    \"scheduleUUID\": \"<uuid>\",\n    \"status\": \"Stopped\",\n    \"taskType\": \"WaitForDataMove\",\n    \"useLocalTimezone\": \"<boolean>\",\n    \"userEmail\": \"<string>\"\n  },\n  {\n    \"kubernetesOperatorControlled\": \"<boolean>\",\n    \"backlogStatus\": \"<boolean>\",\n    \"cronExpression\": \"<string>\",\n    \"failureCount\": \"<integer>\",\n    \"frequency\": \"<long>\",\n    \"frequencyTimeUnit\": \"MINUTES\",\n    \"incrementBacklogStatus\": \"<boolean>\",\n    \"nextIncrementScheduleTaskTime\": \"<dateTime>\",\n    \"nextScheduleTaskTime\": \"<dateTime>\",\n    \"ownerUUID\": \"<uuid>\",\n    \"runningState\": \"<boolean>\",\n    \"scheduleName\": \"<string>\",\n    \"scheduleUUID\": \"<uuid>\",\n    \"status\": \"Stopped\",\n    \"taskType\": \"LdapUniverseSync\",\n    \"useLocalTimezone\": \"<boolean>\",\n    \"userEmail\": \"<string>\"\n  }\n]",
+                              "createdAt": "2026-10-22T01:12:30.000Z",
+                              "updatedAt": "2026-10-22T01:12:30.000Z",
+                              "uid": "35240-0bd16e6f-0fe6-4662-92ca-b3a03cb4dd56"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T01:12:30.000Z",
+                          "updatedAt": "2026-10-22T01:12:30.000Z",
+                          "uid": "35240-8b7870a6-c683-4a7b-9ce9-8b03857544bf"
+                        }
+                      ],
+                      "id": "713c0b30-3a11-4fc1-b3e4-7823cbb51a31",
+                      "createdAt": "2026-10-22T01:12:30.000Z",
+                      "updatedAt": "2026-10-22T01:12:30.000Z",
+                      "uid": "35240-713c0b30-3a11-4fc1-b3e4-7823cbb51a31"
+                    },
+                    {
+                      "name": "universes",
+                      "item": [
+                        {
+                          "name": "{uniUUID}",
+                          "item": [
+                            {
+                              "name": "schedules",
+                              "item": [
+                                {
+                                  "name": "{sUUID}",
+                                  "item": [
+                                    {
+                                      "name": "delete_backup_schedule_async",
+                                      "item": [
+                                        {
+                                          "name": "Delete a backup schedule async",
+                                          "id": "65b05519-008d-4be1-9fd8-758b507cba22",
+                                          "protocolProfileBehavior": {
+                                            "disableBodyPruning": true
+                                          },
+                                          "request": {
+                                            "auth": {
+                                              "type": "apikey",
+                                              "apikey": [
+                                                {
+                                                  "key": "key",
+                                                  "value": "X-AUTH-YW-API-TOKEN",
+                                                  "type": "string"
+                                                },
+                                                {
+                                                  "key": "value",
+                                                  "value": "{{apiKey}}",
+                                                  "type": "string"
+                                                },
+                                                {
+                                                  "key": "in",
+                                                  "value": "header",
+                                                  "type": "string"
+                                                }
+                                              ]
+                                            },
+                                            "method": "DELETE",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/schedules/:sUUID/delete_backup_schedule_async",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v1",
+                                                "customers",
+                                                ":cUUID",
+                                                "universes",
+                                                ":uniUUID",
+                                                "schedules",
+                                                ":sUUID",
+                                                "delete_backup_schedule_async"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "id": "e22cc4e5-f0f2-4b34-b804-6180f5385ff0",
+                                                  "key": "cUUID",
+                                                  "value": "<uuid>",
+                                                  "description": "(Required) "
+                                                },
+                                                {
+                                                  "id": "fb0b9a71-4af8-4c32-a606-30ab16e82d4e",
+                                                  "key": "uniUUID",
+                                                  "value": "<uuid>",
+                                                  "description": "(Required) "
+                                                },
+                                                {
+                                                  "id": "66ca1f30-c713-484b-88c6-6f1412e154fc",
+                                                  "key": "sUUID",
+                                                  "value": "<uuid>",
+                                                  "description": "(Required) "
+                                                }
+                                              ]
+                                            },
+                                            "description": "WARNING: This is a preview API that could change. Delete a backup schedule async."
+                                          },
+                                          "response": [
+                                            {
+                                              "id": "9b1e1e51-e17c-4c53-b6e6-d26a3aeccc36",
+                                              "name": "successful operation",
+                                              "originalRequest": {
+                                                "method": "DELETE",
+                                                "header": [
+                                                  {
+                                                    "key": "Accept",
+                                                    "value": "application/json"
+                                                  },
+                                                  {
+                                                    "description": "Added as a part of security scheme: apikey",
+                                                    "key": "X-AUTH-YW-API-TOKEN",
+                                                    "value": "<API Key>"
+                                                  }
+                                                ],
+                                                "url": {
+                                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/schedules/:sUUID/delete_backup_schedule_async",
+                                                  "host": [
+                                                    "{{baseUrl}}"
+                                                  ],
+                                                  "path": [
+                                                    "api",
+                                                    "v1",
+                                                    "customers",
+                                                    ":cUUID",
+                                                    "universes",
+                                                    ":uniUUID",
+                                                    "schedules",
+                                                    ":sUUID",
+                                                    "delete_backup_schedule_async"
+                                                  ],
+                                                  "variable": [
+                                                    {
+                                                      "key": "cUUID"
+                                                    },
+                                                    {
+                                                      "key": "uniUUID"
+                                                    },
+                                                    {
+                                                      "key": "sUUID"
+                                                    }
+                                                  ]
+                                                }
+                                              },
+                                              "status": "OK",
+                                              "code": 200,
+                                              "_postman_previewlanguage": "json",
+                                              "header": [
+                                                {
+                                                  "key": "Content-Type",
+                                                  "value": "application/json"
+                                                }
+                                              ],
+                                              "cookie": [],
+                                              "responseTime": null,
+                                              "body": "{\n  \"resourceUUID\": \"<uuid>\",\n  \"taskUUID\": \"<uuid>\"\n}",
+                                              "createdAt": "2026-10-22T01:12:30.000Z",
+                                              "updatedAt": "2026-10-22T01:12:30.000Z",
+                                              "uid": "35240-9b1e1e51-e17c-4c53-b6e6-d26a3aeccc36"
+                                            }
+                                          ],
+                                          "createdAt": "2026-10-22T01:12:30.000Z",
+                                          "updatedAt": "2026-10-22T01:12:30.000Z",
+                                          "uid": "35240-65b05519-008d-4be1-9fd8-758b507cba22"
+                                        }
+                                      ],
+                                      "id": "df84a7a4-889e-43d7-a472-7d6a779271cd",
+                                      "createdAt": "2026-10-22T01:12:30.000Z",
+                                      "updatedAt": "2026-10-22T01:12:30.000Z",
+                                      "uid": "35240-df84a7a4-889e-43d7-a472-7d6a779271cd"
+                                    },
+                                    {
+                                      "name": "edit_backup_schedule_async",
+                                      "item": [
+                                        {
+                                          "name": "Edit a backup schedule async",
+                                          "id": "cbf17ced-aa71-4abc-9d50-c8ee72d9e1b4",
+                                          "protocolProfileBehavior": {
+                                            "disableBodyPruning": true
+                                          },
+                                          "request": {
+                                            "auth": {
+                                              "type": "apikey",
+                                              "apikey": [
+                                                {
+                                                  "key": "key",
+                                                  "value": "X-AUTH-YW-API-TOKEN",
+                                                  "type": "string"
+                                                },
+                                                {
+                                                  "key": "value",
+                                                  "value": "{{apiKey}}",
+                                                  "type": "string"
+                                                },
+                                                {
+                                                  "key": "in",
+                                                  "value": "header",
+                                                  "type": "string"
+                                                }
+                                              ]
+                                            },
+                                            "method": "PUT",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "{\n  \"cronExpression\": \"<string>\",\n  \"frequencyTimeUnit\": \"SECONDS\",\n  \"incrementalBackupFrequency\": \"<long>\",\n  \"incrementalBackupFrequencyTimeUnit\": \"YEARS\",\n  \"schedulingFrequency\": \"<long>\",\n  \"timeBeforeDelete\": \"<long>\"\n}",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/schedules/:sUUID/edit_backup_schedule_async",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v1",
+                                                "customers",
+                                                ":cUUID",
+                                                "universes",
+                                                ":uniUUID",
+                                                "schedules",
+                                                ":sUUID",
+                                                "edit_backup_schedule_async"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "id": "14283324-fd7c-4041-96ff-bc3f18194420",
+                                                  "key": "cUUID",
+                                                  "value": "<uuid>",
+                                                  "description": "(Required) "
+                                                },
+                                                {
+                                                  "id": "c2e9c298-3669-4dc6-870e-e5370f02558b",
+                                                  "key": "uniUUID",
+                                                  "value": "<uuid>",
+                                                  "description": "(Required) "
+                                                },
+                                                {
+                                                  "id": "261facce-0257-4f04-8d81-65a7d524d78a",
+                                                  "key": "sUUID",
+                                                  "value": "<uuid>",
+                                                  "description": "(Required) "
+                                                }
+                                              ]
+                                            },
+                                            "description": "WARNING: This is a preview API that could change. Edit a backup schedule async."
+                                          },
+                                          "response": [
+                                            {
+                                              "id": "a323eacc-0705-4298-869a-40b1e5b3437e",
+                                              "name": "successful operation",
+                                              "originalRequest": {
+                                                "method": "PUT",
+                                                "header": [
+                                                  {
+                                                    "key": "Content-Type",
+                                                    "value": "application/json"
+                                                  },
+                                                  {
+                                                    "key": "Accept",
+                                                    "value": "application/json"
+                                                  },
+                                                  {
+                                                    "description": "Added as a part of security scheme: apikey",
+                                                    "key": "X-AUTH-YW-API-TOKEN",
+                                                    "value": "<API Key>"
+                                                  }
+                                                ],
+                                                "body": {
+                                                  "mode": "raw",
+                                                  "raw": "{\n  \"cronExpression\": \"<string>\",\n  \"frequencyTimeUnit\": \"SECONDS\",\n  \"incrementalBackupFrequency\": \"<long>\",\n  \"incrementalBackupFrequencyTimeUnit\": \"YEARS\",\n  \"schedulingFrequency\": \"<long>\",\n  \"timeBeforeDelete\": \"<long>\"\n}",
+                                                  "options": {
+                                                    "raw": {
+                                                      "headerFamily": "json",
+                                                      "language": "json"
+                                                    }
+                                                  }
+                                                },
+                                                "url": {
+                                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/schedules/:sUUID/edit_backup_schedule_async",
+                                                  "host": [
+                                                    "{{baseUrl}}"
+                                                  ],
+                                                  "path": [
+                                                    "api",
+                                                    "v1",
+                                                    "customers",
+                                                    ":cUUID",
+                                                    "universes",
+                                                    ":uniUUID",
+                                                    "schedules",
+                                                    ":sUUID",
+                                                    "edit_backup_schedule_async"
+                                                  ],
+                                                  "variable": [
+                                                    {
+                                                      "key": "cUUID"
+                                                    },
+                                                    {
+                                                      "key": "uniUUID"
+                                                    },
+                                                    {
+                                                      "key": "sUUID"
+                                                    }
+                                                  ]
+                                                }
+                                              },
+                                              "status": "OK",
+                                              "code": 200,
+                                              "_postman_previewlanguage": "json",
+                                              "header": [
+                                                {
+                                                  "key": "Content-Type",
+                                                  "value": "application/json"
+                                                }
+                                              ],
+                                              "cookie": [],
+                                              "responseTime": null,
+                                              "body": "{\n  \"resourceUUID\": \"<uuid>\",\n  \"taskUUID\": \"<uuid>\"\n}",
+                                              "createdAt": "2026-10-22T01:12:30.000Z",
+                                              "updatedAt": "2026-10-22T01:12:30.000Z",
+                                              "uid": "35240-a323eacc-0705-4298-869a-40b1e5b3437e"
+                                            }
+                                          ],
+                                          "createdAt": "2026-10-22T01:12:30.000Z",
+                                          "updatedAt": "2026-10-22T01:12:30.000Z",
+                                          "uid": "35240-cbf17ced-aa71-4abc-9d50-c8ee72d9e1b4"
+                                        }
+                                      ],
+                                      "id": "dad32c0c-02d6-49e4-9773-ca07f5169e35",
+                                      "createdAt": "2026-10-22T01:12:30.000Z",
+                                      "updatedAt": "2026-10-22T01:12:30.000Z",
+                                      "uid": "35240-dad32c0c-02d6-49e4-9773-ca07f5169e35"
+                                    },
+                                    {
+                                      "name": "pause_resume",
+                                      "item": [
+                                        {
+                                          "name": "Toggle a backup schedule",
+                                          "id": "1fd32ea5-fd7a-4c00-9e67-cd0dabe7ab71",
+                                          "protocolProfileBehavior": {
+                                            "disableBodyPruning": true
+                                          },
+                                          "request": {
+                                            "auth": {
+                                              "type": "apikey",
+                                              "apikey": [
+                                                {
+                                                  "key": "key",
+                                                  "value": "X-AUTH-YW-API-TOKEN",
+                                                  "type": "string"
+                                                },
+                                                {
+                                                  "key": "value",
+                                                  "value": "{{apiKey}}",
+                                                  "type": "string"
+                                                },
+                                                {
+                                                  "key": "in",
+                                                  "value": "header",
+                                                  "type": "string"
+                                                }
+                                              ]
+                                            },
+                                            "method": "PUT",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "{\n  \"status\": \"Editing\",\n  \"runImmediateBackupOnResume\": \"<boolean>\"\n}",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/schedules/:sUUID/pause_resume",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v1",
+                                                "customers",
+                                                ":cUUID",
+                                                "universes",
+                                                ":uniUUID",
+                                                "schedules",
+                                                ":sUUID",
+                                                "pause_resume"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "id": "b288426a-155d-4974-8813-affc343e0424",
+                                                  "key": "cUUID",
+                                                  "value": "<uuid>",
+                                                  "description": "(Required) "
+                                                },
+                                                {
+                                                  "id": "478bef32-5198-47d6-83f8-94a62feaa2da",
+                                                  "key": "uniUUID",
+                                                  "value": "<uuid>",
+                                                  "description": "(Required) "
+                                                },
+                                                {
+                                                  "id": "69cc317f-ebcc-4224-82f0-be3e9e26533d",
+                                                  "key": "sUUID",
+                                                  "value": "<uuid>",
+                                                  "description": "(Required) "
+                                                }
+                                              ]
+                                            },
+                                            "description": "WARNING: This is a preview API that could change. Toggle a backup schedule. Only allowed to toggle backup schedule state between Active and Stopped."
+                                          },
+                                          "response": [
+                                            {
+                                              "id": "c3df3e17-9d26-42fe-8e92-ee9abf027b9c",
+                                              "name": "successful operation",
+                                              "originalRequest": {
+                                                "method": "PUT",
+                                                "header": [
+                                                  {
+                                                    "key": "Content-Type",
+                                                    "value": "application/json"
+                                                  },
+                                                  {
+                                                    "key": "Accept",
+                                                    "value": "application/json"
+                                                  },
+                                                  {
+                                                    "description": "Added as a part of security scheme: apikey",
+                                                    "key": "X-AUTH-YW-API-TOKEN",
+                                                    "value": "<API Key>"
+                                                  }
+                                                ],
+                                                "body": {
+                                                  "mode": "raw",
+                                                  "raw": "{\n  \"status\": \"Editing\",\n  \"runImmediateBackupOnResume\": \"<boolean>\"\n}",
+                                                  "options": {
+                                                    "raw": {
+                                                      "headerFamily": "json",
+                                                      "language": "json"
+                                                    }
+                                                  }
+                                                },
+                                                "url": {
+                                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/schedules/:sUUID/pause_resume",
+                                                  "host": [
+                                                    "{{baseUrl}}"
+                                                  ],
+                                                  "path": [
+                                                    "api",
+                                                    "v1",
+                                                    "customers",
+                                                    ":cUUID",
+                                                    "universes",
+                                                    ":uniUUID",
+                                                    "schedules",
+                                                    ":sUUID",
+                                                    "pause_resume"
+                                                  ],
+                                                  "variable": [
+                                                    {
+                                                      "key": "cUUID"
+                                                    },
+                                                    {
+                                                      "key": "uniUUID"
+                                                    },
+                                                    {
+                                                      "key": "sUUID"
+                                                    }
+                                                  ]
+                                                }
+                                              },
+                                              "status": "OK",
+                                              "code": 200,
+                                              "_postman_previewlanguage": "json",
+                                              "header": [
+                                                {
+                                                  "key": "Content-Type",
+                                                  "value": "application/json"
+                                                }
+                                              ],
+                                              "cookie": [],
+                                              "responseTime": null,
+                                              "body": "{\n  \"message\": \"<string>\",\n  \"success\": \"<boolean>\"\n}",
+                                              "createdAt": "2026-10-22T01:12:30.000Z",
+                                              "updatedAt": "2026-10-22T01:12:30.000Z",
+                                              "uid": "35240-c3df3e17-9d26-42fe-8e92-ee9abf027b9c"
+                                            }
+                                          ],
+                                          "createdAt": "2026-10-22T01:12:30.000Z",
+                                          "updatedAt": "2026-10-22T01:12:30.000Z",
+                                          "uid": "35240-1fd32ea5-fd7a-4c00-9e67-cd0dabe7ab71"
+                                        }
+                                      ],
+                                      "id": "241cb094-2d9d-4ea9-befc-efb486656fe9",
+                                      "createdAt": "2026-10-22T01:12:30.000Z",
+                                      "updatedAt": "2026-10-22T01:12:30.000Z",
+                                      "uid": "35240-241cb094-2d9d-4ea9-befc-efb486656fe9"
+                                    }
+                                  ],
+                                  "id": "d79fc0db-b9ce-47b6-ae25-d2822e3836be",
+                                  "createdAt": "2026-10-22T01:12:30.000Z",
+                                  "updatedAt": "2026-10-22T01:12:30.000Z",
+                                  "uid": "35240-d79fc0db-b9ce-47b6-ae25-d2822e3836be"
+                                }
+                              ],
+                              "id": "f3b9883d-b87b-44f4-b7f4-2de3d049129d",
+                              "createdAt": "2026-10-22T01:12:30.000Z",
+                              "updatedAt": "2026-10-22T01:12:30.000Z",
+                              "uid": "35240-f3b9883d-b87b-44f4-b7f4-2de3d049129d"
+                            }
+                          ],
+                          "id": "58f535ae-74fc-4271-8c5b-4d5e8b565fce",
+                          "createdAt": "2026-10-22T01:12:30.000Z",
+                          "updatedAt": "2026-10-22T01:12:30.000Z",
+                          "uid": "35240-58f535ae-74fc-4271-8c5b-4d5e8b565fce"
+                        }
+                      ],
+                      "id": "dd755af1-3afb-414a-944a-b625d4b53dbb",
+                      "createdAt": "2026-10-22T01:12:30.000Z",
+                      "updatedAt": "2026-10-22T01:12:30.000Z",
+                      "uid": "35240-dd755af1-3afb-414a-944a-b625d4b53dbb"
+                    }
+                  ],
+                  "id": "2c8efe05-8d57-4876-8339-6fb9dddfe533",
+                  "createdAt": "2026-10-22T01:12:30.000Z",
+                  "updatedAt": "2026-10-22T01:12:30.000Z",
+                  "uid": "35240-2c8efe05-8d57-4876-8339-6fb9dddfe533"
+                }
+              ],
+              "id": "b2fc434b-d17d-4d92-8767-bcf839063948",
+              "createdAt": "2026-10-22T01:12:30.000Z",
+              "updatedAt": "2026-10-22T01:12:30.000Z",
+              "uid": "35240-b2fc434b-d17d-4d92-8767-bcf839063948"
+            }
+          ],
+          "id": "e9887566-e29a-430a-9edb-b292a495c24d",
+          "createdAt": "2026-10-22T01:12:30.000Z",
+          "updatedAt": "2026-10-22T01:12:30.000Z",
+          "uid": "35240-e9887566-e29a-430a-9edb-b292a495c24d"
+        }
+      ],
+      "id": "f1623e8c-de45-4d09-84a9-8f71a50e83d7",
+      "createdAt": "2026-10-22T01:12:30.000Z",
+      "updatedAt": "2026-10-22T01:12:30.000Z",
+      "uid": "35240-f1623e8c-de45-4d09-84a9-8f71a50e83d7"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

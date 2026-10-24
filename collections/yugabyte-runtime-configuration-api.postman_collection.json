@@ -1,0 +1,1114 @@
+{
+  "info": {
+    "_postman_id": "0f812266-0a74-4cdc-bc16-c99e38216fd9",
+    "name": "Yugabytedb Runtime configuration API",
+    "description": "Operations tagged Runtime configuration across 2 of this provider's published API definitions: openapi_2.yaml, platform.swagger.json. Each path carries the servers of the definition it was published in.\n\nContact Support:\n Name: https://docs.yugabyte.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:12:20.000Z",
+    "updatedAt": "2026-10-22T01:12:21.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-0f812266-0a74-4cdc-bc16-c99e38216fd9"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "customers",
+              "item": [
+                {
+                  "name": "{cUUID}",
+                  "item": [
+                    {
+                      "name": "runtime_config",
+                      "item": [
+                        {
+                          "name": "scopes",
+                          "item": [
+                            {
+                              "name": "List configuration scopes",
+                              "id": "f92425da-7b58-4f39-a0af-51ba2bd15c6f",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "apikey",
+                                  "apikey": [
+                                    {
+                                      "key": "key",
+                                      "value": "X-AUTH-YW-API-TOKEN",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "value",
+                                      "value": "{{apiKey}}",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "in",
+                                      "value": "header",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/runtime_config/scopes",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "runtime_config",
+                                    "scopes"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "d03c5ef1-06c4-4744-b1fc-8186372ede71",
+                                      "key": "cUUID",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Lists all (including empty scopes) runtime config scopes for current customer. List includes the Global scope that spans multiple customers, scope for customer specific overrides for current customer and one scope each for each universe and provider."
+                              },
+                              "response": [
+                                {
+                                  "id": "9be31591-ea79-4ae0-8156-8b9a334d80b3",
+                                  "name": "successful operation",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-AUTH-YW-API-TOKEN",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/runtime_config/scopes",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "runtime_config",
+                                        "scopes"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "cUUID"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"scopedConfigList\": [\n    {\n      \"configEntries\": [\n        {\n          \"inherited\": \"<boolean>\",\n          \"key\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"inherited\": \"<boolean>\",\n          \"key\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"mutableScope\": \"<boolean>\",\n      \"type\": \"UNIVERSE\",\n      \"uuid\": \"<uuid>\"\n    },\n    {\n      \"configEntries\": [\n        {\n          \"inherited\": \"<boolean>\",\n          \"key\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"inherited\": \"<boolean>\",\n          \"key\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"mutableScope\": \"<boolean>\",\n      \"type\": \"GLOBAL\",\n      \"uuid\": \"<uuid>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-10-22T01:12:21.000Z",
+                                  "updatedAt": "2026-10-22T01:12:21.000Z",
+                                  "uid": "35240-9be31591-ea79-4ae0-8156-8b9a334d80b3"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T01:12:21.000Z",
+                              "updatedAt": "2026-10-22T01:12:21.000Z",
+                              "uid": "35240-f92425da-7b58-4f39-a0af-51ba2bd15c6f"
+                            }
+                          ],
+                          "id": "819cff70-071e-4180-b21c-385bc8770108",
+                          "createdAt": "2026-10-22T01:12:21.000Z",
+                          "updatedAt": "2026-10-22T01:12:21.000Z",
+                          "uid": "35240-819cff70-071e-4180-b21c-385bc8770108"
+                        },
+                        {
+                          "name": "{scope}",
+                          "item": [
+                            {
+                              "name": "key",
+                              "item": [
+                                {
+                                  "name": "{key}",
+                                  "item": [
+                                    {
+                                      "name": "Delete a configuration key",
+                                      "id": "6017979f-ae5e-4643-84d8-599a71252dd8",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "auth": {
+                                          "type": "apikey",
+                                          "apikey": [
+                                            {
+                                              "key": "key",
+                                              "value": "X-AUTH-YW-API-TOKEN",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "value",
+                                              "value": "{{apiKey}}",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "in",
+                                              "value": "header",
+                                              "type": "string"
+                                            }
+                                          ]
+                                        },
+                                        "method": "DELETE",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/runtime_config/:scope/key/:key",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "runtime_config",
+                                            ":scope",
+                                            "key",
+                                            ":key"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "3840508b-3709-439a-bc2b-fe6a07c3b421",
+                                              "key": "cUUID",
+                                              "value": "<uuid>",
+                                              "description": "(Required) "
+                                            },
+                                            {
+                                              "id": "74e2d860-99b5-4dcb-9378-b50c2a06742b",
+                                              "key": "scope",
+                                              "value": "<uuid>",
+                                              "description": "(Required) "
+                                            },
+                                            {
+                                              "id": "14978b4e-6e39-40d3-9626-5f06deb50a55",
+                                              "key": "key",
+                                              "value": "<string>",
+                                              "description": "(Required) "
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "8467e71f-273f-45cb-b2bc-e1da4ae8372c",
+                                          "name": "successful operation",
+                                          "originalRequest": {
+                                            "method": "DELETE",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: apikey",
+                                                "key": "X-AUTH-YW-API-TOKEN",
+                                                "value": "<API Key>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v1/customers/:cUUID/runtime_config/:scope/key/:key",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v1",
+                                                "customers",
+                                                ":cUUID",
+                                                "runtime_config",
+                                                ":scope",
+                                                "key",
+                                                ":key"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "cUUID"
+                                                },
+                                                {
+                                                  "key": "scope"
+                                                },
+                                                {
+                                                  "key": "key"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"message\": \"<string>\",\n  \"success\": \"<boolean>\"\n}",
+                                          "createdAt": "2026-10-22T01:12:21.000Z",
+                                          "updatedAt": "2026-10-22T01:12:21.000Z",
+                                          "uid": "35240-8467e71f-273f-45cb-b2bc-e1da4ae8372c"
+                                        }
+                                      ],
+                                      "createdAt": "2026-10-22T01:12:21.000Z",
+                                      "updatedAt": "2026-10-22T01:12:21.000Z",
+                                      "uid": "35240-6017979f-ae5e-4643-84d8-599a71252dd8"
+                                    },
+                                    {
+                                      "name": "Get a configuration key",
+                                      "id": "bfdebb7b-1426-40b9-828c-3641ae19b9e3",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "auth": {
+                                          "type": "apikey",
+                                          "apikey": [
+                                            {
+                                              "key": "key",
+                                              "value": "X-AUTH-YW-API-TOKEN",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "value",
+                                              "value": "{{apiKey}}",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "in",
+                                              "value": "header",
+                                              "type": "string"
+                                            }
+                                          ]
+                                        },
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "text/plain"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/runtime_config/:scope/key/:key",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "runtime_config",
+                                            ":scope",
+                                            "key",
+                                            ":key"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "22f9b79a-e802-4a5f-a631-db2ecbfbe5a3",
+                                              "key": "cUUID",
+                                              "value": "<uuid>",
+                                              "description": "(Required) "
+                                            },
+                                            {
+                                              "id": "c1160ae7-513e-4c2d-9333-971e4466b120",
+                                              "key": "scope",
+                                              "value": "<uuid>",
+                                              "description": "(Required) "
+                                            },
+                                            {
+                                              "id": "0aaf5570-a9d0-4626-bb61-367b23fa6f85",
+                                              "key": "key",
+                                              "value": "<string>",
+                                              "description": "(Required) "
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "1728c9bf-5f5a-4dcc-8f31-acc6e94a4007",
+                                          "name": "successful operation",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "text/plain"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: apikey",
+                                                "key": "X-AUTH-YW-API-TOKEN",
+                                                "value": "<API Key>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v1/customers/:cUUID/runtime_config/:scope/key/:key",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v1",
+                                                "customers",
+                                                ":cUUID",
+                                                "runtime_config",
+                                                ":scope",
+                                                "key",
+                                                ":key"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "cUUID"
+                                                },
+                                                {
+                                                  "key": "scope"
+                                                },
+                                                {
+                                                  "key": "key"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "text/plain"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "<string>",
+                                          "createdAt": "2026-10-22T01:12:21.000Z",
+                                          "updatedAt": "2026-10-22T01:12:21.000Z",
+                                          "uid": "35240-1728c9bf-5f5a-4dcc-8f31-acc6e94a4007"
+                                        }
+                                      ],
+                                      "createdAt": "2026-10-22T01:12:21.000Z",
+                                      "updatedAt": "2026-10-22T01:12:21.000Z",
+                                      "uid": "35240-bfdebb7b-1426-40b9-828c-3641ae19b9e3"
+                                    },
+                                    {
+                                      "name": "Update a configuration key",
+                                      "id": "5d25651f-7014-4790-9968-275eeb7c1822",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "auth": {
+                                          "type": "apikey",
+                                          "apikey": [
+                                            {
+                                              "key": "key",
+                                              "value": "X-AUTH-YW-API-TOKEN",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "value",
+                                              "value": "{{apiKey}}",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "in",
+                                              "value": "header",
+                                              "type": "string"
+                                            }
+                                          ]
+                                        },
+                                        "method": "PUT",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "text/plain"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "<string>"
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/runtime_config/:scope/key/:key",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "runtime_config",
+                                            ":scope",
+                                            "key",
+                                            ":key"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "3a64418e-fcf4-493d-8543-1511dff579fc",
+                                              "key": "cUUID",
+                                              "value": "<uuid>",
+                                              "description": "(Required) "
+                                            },
+                                            {
+                                              "id": "81694511-700c-4d36-8001-6d4f20981838",
+                                              "key": "scope",
+                                              "value": "<uuid>",
+                                              "description": "(Required) "
+                                            },
+                                            {
+                                              "id": "21162cb2-4dd6-4b67-9305-2c14414eeac7",
+                                              "key": "key",
+                                              "value": "<string>",
+                                              "description": "(Required) "
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "7a050ca7-9ea9-40b3-a517-c8c23b6f3589",
+                                          "name": "successful operation",
+                                          "originalRequest": {
+                                            "method": "PUT",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "text/plain"
+                                              },
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: apikey",
+                                                "key": "X-AUTH-YW-API-TOKEN",
+                                                "value": "<API Key>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "<string>"
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v1/customers/:cUUID/runtime_config/:scope/key/:key",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v1",
+                                                "customers",
+                                                ":cUUID",
+                                                "runtime_config",
+                                                ":scope",
+                                                "key",
+                                                ":key"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "cUUID"
+                                                },
+                                                {
+                                                  "key": "scope"
+                                                },
+                                                {
+                                                  "key": "key"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"message\": \"<string>\",\n  \"success\": \"<boolean>\"\n}",
+                                          "createdAt": "2026-10-22T01:12:21.000Z",
+                                          "updatedAt": "2026-10-22T01:12:21.000Z",
+                                          "uid": "35240-7a050ca7-9ea9-40b3-a517-c8c23b6f3589"
+                                        }
+                                      ],
+                                      "createdAt": "2026-10-22T01:12:21.000Z",
+                                      "updatedAt": "2026-10-22T01:12:21.000Z",
+                                      "uid": "35240-5d25651f-7014-4790-9968-275eeb7c1822"
+                                    }
+                                  ],
+                                  "id": "d8943997-9c56-4c8d-9ac4-78d7ff4ed248",
+                                  "createdAt": "2026-10-22T01:12:21.000Z",
+                                  "updatedAt": "2026-10-22T01:12:21.000Z",
+                                  "uid": "35240-d8943997-9c56-4c8d-9ac4-78d7ff4ed248"
+                                }
+                              ],
+                              "id": "8ddf3810-2213-4a88-85f5-ddc9c6cd5bc8",
+                              "createdAt": "2026-10-22T01:12:21.000Z",
+                              "updatedAt": "2026-10-22T01:12:21.000Z",
+                              "uid": "35240-8ddf3810-2213-4a88-85f5-ddc9c6cd5bc8"
+                            },
+                            {
+                              "name": "List configuration entries for a scope",
+                              "id": "d80ef47b-a53c-4a57-bf03-a6a4f6ca5c4f",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "apikey",
+                                  "apikey": [
+                                    {
+                                      "key": "key",
+                                      "value": "X-AUTH-YW-API-TOKEN",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "value",
+                                      "value": "{{apiKey}}",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "in",
+                                      "value": "header",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/runtime_config/:scope?includeInherited=false",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "runtime_config",
+                                    ":scope"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "includeInherited",
+                                      "value": "false"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "96140f89-8957-4c24-ad26-0287c6e4cd03",
+                                      "key": "cUUID",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    },
+                                    {
+                                      "id": "c38761ba-0f56-485b-9ad4-f252a357560c",
+                                      "key": "scope",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Lists all runtime config entries for a given scope for current customer."
+                              },
+                              "response": [
+                                {
+                                  "id": "5ff03b75-7cfe-417b-9689-e4d08489847e",
+                                  "name": "successful operation",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-AUTH-YW-API-TOKEN",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/runtime_config/:scope?includeInherited=false",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "runtime_config",
+                                        ":scope"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "includeInherited",
+                                          "value": "false"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "cUUID"
+                                        },
+                                        {
+                                          "key": "scope"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"configEntries\": [\n    {\n      \"inherited\": \"<boolean>\",\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"inherited\": \"<boolean>\",\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"mutableScope\": \"<boolean>\",\n  \"type\": \"PROVIDER\",\n  \"uuid\": \"<uuid>\"\n}",
+                                  "createdAt": "2026-10-22T01:12:21.000Z",
+                                  "updatedAt": "2026-10-22T01:12:21.000Z",
+                                  "uid": "35240-5ff03b75-7cfe-417b-9689-e4d08489847e"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T01:12:21.000Z",
+                              "updatedAt": "2026-10-22T01:12:21.000Z",
+                              "uid": "35240-d80ef47b-a53c-4a57-bf03-a6a4f6ca5c4f"
+                            }
+                          ],
+                          "id": "90a39d06-5a4d-4b98-beeb-c149bcb01520",
+                          "createdAt": "2026-10-22T01:12:21.000Z",
+                          "updatedAt": "2026-10-22T01:12:21.000Z",
+                          "uid": "35240-90a39d06-5a4d-4b98-beeb-c149bcb01520"
+                        }
+                      ],
+                      "id": "6df8c7ef-1b7f-403e-b5a0-3b540a3ba456",
+                      "createdAt": "2026-10-22T01:12:21.000Z",
+                      "updatedAt": "2026-10-22T01:12:21.000Z",
+                      "uid": "35240-6df8c7ef-1b7f-403e-b5a0-3b540a3ba456"
+                    }
+                  ],
+                  "id": "cc0e015f-a726-44a7-a8d8-36e601bdd8d0",
+                  "createdAt": "2026-10-22T01:12:21.000Z",
+                  "updatedAt": "2026-10-22T01:12:21.000Z",
+                  "uid": "35240-cc0e015f-a726-44a7-a8d8-36e601bdd8d0"
+                }
+              ],
+              "id": "872df8f6-356c-4b73-bbb9-d6e4a3691a9f",
+              "createdAt": "2026-10-22T01:12:21.000Z",
+              "updatedAt": "2026-10-22T01:12:21.000Z",
+              "uid": "35240-872df8f6-356c-4b73-bbb9-d6e4a3691a9f"
+            },
+            {
+              "name": "runtime_config",
+              "item": [
+                {
+                  "name": "feature_flags",
+                  "item": [
+                    {
+                      "name": "List all the feature flag runtime config keys and their values",
+                      "id": "da6f8e12-ee76-4153-8b38-277d928170d1",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "X-AUTH-YW-API-TOKEN",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/runtime_config/feature_flags",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "runtime_config",
+                            "feature_flags"
+                          ]
+                        },
+                        "description": "YbaApi Internal."
+                      },
+                      "response": [
+                        {
+                          "id": "011c08c8-81e2-4350-b1e8-04e945768eb1",
+                          "name": "successful operation",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-AUTH-YW-API-TOKEN",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/runtime_config/feature_flags",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "runtime_config",
+                                "feature_flags"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "[\n  {\n    \"inherited\": \"<boolean>\",\n    \"key\": \"<string>\",\n    \"value\": \"<string>\"\n  },\n  {\n    \"inherited\": \"<boolean>\",\n    \"key\": \"<string>\",\n    \"value\": \"<string>\"\n  }\n]",
+                          "createdAt": "2026-10-22T01:12:21.000Z",
+                          "updatedAt": "2026-10-22T01:12:21.000Z",
+                          "uid": "35240-011c08c8-81e2-4350-b1e8-04e945768eb1"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T01:12:21.000Z",
+                      "updatedAt": "2026-10-22T01:12:21.000Z",
+                      "uid": "35240-da6f8e12-ee76-4153-8b38-277d928170d1"
+                    }
+                  ],
+                  "id": "168413a8-7e90-460c-b554-456105d0feb0",
+                  "createdAt": "2026-10-22T01:12:21.000Z",
+                  "updatedAt": "2026-10-22T01:12:21.000Z",
+                  "uid": "35240-168413a8-7e90-460c-b554-456105d0feb0"
+                },
+                {
+                  "name": "mutable_key_info",
+                  "item": [
+                    {
+                      "name": "List mutable keys",
+                      "id": "085b9c4e-7f68-42ac-a287-cd37ac8a7d13",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "X-AUTH-YW-API-TOKEN",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/runtime_config/mutable_key_info",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "runtime_config",
+                            "mutable_key_info"
+                          ]
+                        },
+                        "description": "List all the mutable runtime config keys with metadata"
+                      },
+                      "response": [
+                        {
+                          "id": "7a4d5390-9193-430d-a369-78f854f349c0",
+                          "name": "successful operation",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-AUTH-YW-API-TOKEN",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/runtime_config/mutable_key_info",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "runtime_config",
+                                "mutable_key_info"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "[\n  {\n    \"dataType\": {\n      \"name\": \"<string>\"\n    },\n    \"displayName\": \"<string>\",\n    \"helpTxt\": \"<string>\",\n    \"key\": \"<string>\",\n    \"scope\": \"CUSTOMER\",\n    \"tags\": [\n      \"INTERNAL\",\n      \"PUBLIC\"\n    ]\n  },\n  {\n    \"dataType\": {\n      \"name\": \"<string>\"\n    },\n    \"displayName\": \"<string>\",\n    \"helpTxt\": \"<string>\",\n    \"key\": \"<string>\",\n    \"scope\": \"PROVIDER\",\n    \"tags\": [\n      \"INTERNAL\",\n      \"PUBLIC\"\n    ]\n  }\n]",
+                          "createdAt": "2026-10-22T01:12:21.000Z",
+                          "updatedAt": "2026-10-22T01:12:21.000Z",
+                          "uid": "35240-7a4d5390-9193-430d-a369-78f854f349c0"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T01:12:21.000Z",
+                      "updatedAt": "2026-10-22T01:12:21.000Z",
+                      "uid": "35240-085b9c4e-7f68-42ac-a287-cd37ac8a7d13"
+                    }
+                  ],
+                  "id": "e52a82b7-12ad-4b10-b5ba-a43b1541e79e",
+                  "createdAt": "2026-10-22T01:12:21.000Z",
+                  "updatedAt": "2026-10-22T01:12:21.000Z",
+                  "uid": "35240-e52a82b7-12ad-4b10-b5ba-a43b1541e79e"
+                },
+                {
+                  "name": "mutable_keys",
+                  "item": [
+                    {
+                      "name": "List mutable keys",
+                      "id": "571338c2-befa-4836-b74c-ed0e6e8e0797",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "X-AUTH-YW-API-TOKEN",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/runtime_config/mutable_keys",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "runtime_config",
+                            "mutable_keys"
+                          ]
+                        },
+                        "description": "List all the mutable runtime config keys"
+                      },
+                      "response": [
+                        {
+                          "id": "971740f4-6398-4c64-ab4f-34bdfc333916",
+                          "name": "successful operation",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-AUTH-YW-API-TOKEN",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/runtime_config/mutable_keys",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "runtime_config",
+                                "mutable_keys"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "[\n  \"<string>\",\n  \"<string>\"\n]",
+                          "createdAt": "2026-10-22T01:12:21.000Z",
+                          "updatedAt": "2026-10-22T01:12:21.000Z",
+                          "uid": "35240-971740f4-6398-4c64-ab4f-34bdfc333916"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T01:12:21.000Z",
+                      "updatedAt": "2026-10-22T01:12:21.000Z",
+                      "uid": "35240-571338c2-befa-4836-b74c-ed0e6e8e0797"
+                    }
+                  ],
+                  "id": "963415cf-b04c-4279-84c2-370c8c1b47cf",
+                  "createdAt": "2026-10-22T01:12:21.000Z",
+                  "updatedAt": "2026-10-22T01:12:21.000Z",
+                  "uid": "35240-963415cf-b04c-4279-84c2-370c8c1b47cf"
+                }
+              ],
+              "id": "90546a14-7ff1-4baf-948a-8ac06a9fd1b7",
+              "createdAt": "2026-10-22T01:12:21.000Z",
+              "updatedAt": "2026-10-22T01:12:21.000Z",
+              "uid": "35240-90546a14-7ff1-4baf-948a-8ac06a9fd1b7"
+            }
+          ],
+          "id": "1505613e-7298-449b-8fbf-067c2d0d2a5a",
+          "createdAt": "2026-10-22T01:12:21.000Z",
+          "updatedAt": "2026-10-22T01:12:21.000Z",
+          "uid": "35240-1505613e-7298-449b-8fbf-067c2d0d2a5a"
+        }
+      ],
+      "id": "0997c52d-562e-419f-b2cc-89f73727cf07",
+      "createdAt": "2026-10-22T01:12:21.000Z",
+      "updatedAt": "2026-10-22T01:12:21.000Z",
+      "uid": "35240-0997c52d-562e-419f-b2cc-89f73727cf07"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

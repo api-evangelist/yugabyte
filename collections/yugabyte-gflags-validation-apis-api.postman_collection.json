@@ -1,0 +1,524 @@
+{
+  "info": {
+    "_postman_id": "0caa2edd-01fe-446d-b87e-c326a1512077",
+    "name": "YugabyteDB Anywhere GFlags Validation APIs API",
+    "description": "ALPHA - NOT FOR EXTERNAL USE\n\nContact Support:\n Name: https://docs.yugabyte.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:08:35.000Z",
+    "updatedAt": "2026-10-22T01:08:35.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-0caa2edd-01fe-446d-b87e-c326a1512077"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "metadata",
+              "item": [
+                {
+                  "name": "version",
+                  "item": [
+                    {
+                      "name": "{version}",
+                      "item": [
+                        {
+                          "name": "gflag",
+                          "item": [
+                            {
+                              "name": "Get gflag metadata",
+                              "id": "734096bf-70af-4c80-b802-8e682adb7ab5",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "apikey",
+                                  "apikey": [
+                                    {
+                                      "key": "key",
+                                      "value": "X-AUTH-YW-API-TOKEN",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "value",
+                                      "value": "{{apiKey}}",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "in",
+                                      "value": "header",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/metadata/version/:version/gflag?name=<string>&server=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "metadata",
+                                    "version",
+                                    ":version",
+                                    "gflag"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "name",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "key": "server",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "d836c48d-0b3b-4129-bb26-fa63205384a1",
+                                      "key": "version",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "WARNING: This is a preview API that could change."
+                              },
+                              "response": [
+                                {
+                                  "id": "8897bb5e-77d7-4191-9ff1-572b872699b0",
+                                  "name": "successful operation",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-AUTH-YW-API-TOKEN",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/metadata/version/:version/gflag?name=<string>&server=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "metadata",
+                                        "version",
+                                        ":version",
+                                        "gflag"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "name",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "key": "server",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "version"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"current\": \"<string>\",\n  \"default\": \"<string>\",\n  \"file\": \"<string>\",\n  \"initial\": \"<string>\",\n  \"meaning\": \"<string>\",\n  \"name\": \"<string>\",\n  \"tags\": \"<string>\",\n  \"target\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                                  "createdAt": "2026-10-22T01:08:35.000Z",
+                                  "updatedAt": "2026-10-22T01:08:35.000Z",
+                                  "uid": "35240-8897bb5e-77d7-4191-9ff1-572b872699b0"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T01:08:35.000Z",
+                              "updatedAt": "2026-10-22T01:08:35.000Z",
+                              "uid": "35240-734096bf-70af-4c80-b802-8e682adb7ab5"
+                            }
+                          ],
+                          "id": "03016f51-046c-442f-8635-4f11efa4d885",
+                          "createdAt": "2026-10-22T01:08:35.000Z",
+                          "updatedAt": "2026-10-22T01:08:35.000Z",
+                          "uid": "35240-03016f51-046c-442f-8635-4f11efa4d885"
+                        },
+                        {
+                          "name": "list_gflags",
+                          "item": [
+                            {
+                              "name": "List all gflags for a release",
+                              "id": "bc23b09d-bc0b-4b5f-b98e-3085e43fb4e8",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "apikey",
+                                  "apikey": [
+                                    {
+                                      "key": "key",
+                                      "value": "X-AUTH-YW-API-TOKEN",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "value",
+                                      "value": "{{apiKey}}",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "in",
+                                      "value": "header",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/metadata/version/:version/list_gflags?name=<string>&server=<string>&mostUsedGFlags=false&showExperimental=false",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "metadata",
+                                    "version",
+                                    ":version",
+                                    "list_gflags"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "name",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "key": "server",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "key": "mostUsedGFlags",
+                                      "value": "false"
+                                    },
+                                    {
+                                      "key": "showExperimental",
+                                      "value": "false"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "c4ad87d5-06df-43fd-9c8f-2c7da74f2e71",
+                                      "key": "version",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "WARNING: This is a preview API that could change."
+                              },
+                              "response": [
+                                {
+                                  "id": "cfac8b2e-6bd7-40b1-8646-475638feeaca",
+                                  "name": "successful operation",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-AUTH-YW-API-TOKEN",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/metadata/version/:version/list_gflags?name=<string>&server=<string>&mostUsedGFlags=false&showExperimental=false",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "metadata",
+                                        "version",
+                                        ":version",
+                                        "list_gflags"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "name",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "key": "server",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "key": "mostUsedGFlags",
+                                          "value": "false"
+                                        },
+                                        {
+                                          "key": "showExperimental",
+                                          "value": "false"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "version"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "[\n  {\n    \"current\": \"<string>\",\n    \"default\": \"<string>\",\n    \"file\": \"<string>\",\n    \"initial\": \"<string>\",\n    \"meaning\": \"<string>\",\n    \"name\": \"<string>\",\n    \"tags\": \"<string>\",\n    \"target\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  {\n    \"current\": \"<string>\",\n    \"default\": \"<string>\",\n    \"file\": \"<string>\",\n    \"initial\": \"<string>\",\n    \"meaning\": \"<string>\",\n    \"name\": \"<string>\",\n    \"tags\": \"<string>\",\n    \"target\": \"<string>\",\n    \"type\": \"<string>\"\n  }\n]",
+                                  "createdAt": "2026-10-22T01:08:35.000Z",
+                                  "updatedAt": "2026-10-22T01:08:35.000Z",
+                                  "uid": "35240-cfac8b2e-6bd7-40b1-8646-475638feeaca"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T01:08:35.000Z",
+                              "updatedAt": "2026-10-22T01:08:35.000Z",
+                              "uid": "35240-bc23b09d-bc0b-4b5f-b98e-3085e43fb4e8"
+                            }
+                          ],
+                          "id": "046ecc5e-b075-43af-b7d8-14f5193f1c1e",
+                          "createdAt": "2026-10-22T01:08:35.000Z",
+                          "updatedAt": "2026-10-22T01:08:35.000Z",
+                          "uid": "35240-046ecc5e-b075-43af-b7d8-14f5193f1c1e"
+                        },
+                        {
+                          "name": "validate_gflags",
+                          "item": [
+                            {
+                              "name": "Validate gflags",
+                              "id": "869d4fdc-fe76-4bed-900d-94b667be381a",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "apikey",
+                                  "apikey": [
+                                    {
+                                      "key": "key",
+                                      "value": "X-AUTH-YW-API-TOKEN",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "value",
+                                      "value": "{{apiKey}}",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "in",
+                                      "value": "header",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"gflags\": [\n    {\n      \"MASTER\": \"<string>\",\n      \"Name\": \"<string>\",\n      \"TSERVER\": \"<string>\"\n    },\n    {\n      \"MASTER\": \"<string>\",\n      \"Name\": \"<string>\",\n      \"TSERVER\": \"<string>\"\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/metadata/version/:version/validate_gflags",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "metadata",
+                                    "version",
+                                    ":version",
+                                    "validate_gflags"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "d55060ab-e1e0-4e59-8eb9-09ae0ee306f1",
+                                      "key": "version",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "WARNING: This is a preview API that could change."
+                              },
+                              "response": [
+                                {
+                                  "id": "6242c853-522f-4371-99d4-6acd950f332f",
+                                  "name": "successful operation",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-AUTH-YW-API-TOKEN",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"gflags\": [\n    {\n      \"MASTER\": \"<string>\",\n      \"Name\": \"<string>\",\n      \"TSERVER\": \"<string>\"\n    },\n    {\n      \"MASTER\": \"<string>\",\n      \"Name\": \"<string>\",\n      \"TSERVER\": \"<string>\"\n    }\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/metadata/version/:version/validate_gflags",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "metadata",
+                                        "version",
+                                        ":version",
+                                        "validate_gflags"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "version"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "[\n  {\n    \"MASTER\": {\n      \"error\": \"<string>\",\n      \"exist\": \"<boolean>\"\n    },\n    \"Name\": \"<string>\",\n    \"TSERVER\": {\n      \"error\": \"<string>\",\n      \"exist\": \"<boolean>\"\n    }\n  },\n  {\n    \"MASTER\": {\n      \"error\": \"<string>\",\n      \"exist\": \"<boolean>\"\n    },\n    \"Name\": \"<string>\",\n    \"TSERVER\": {\n      \"error\": \"<string>\",\n      \"exist\": \"<boolean>\"\n    }\n  }\n]",
+                                  "createdAt": "2026-10-22T01:08:35.000Z",
+                                  "updatedAt": "2026-10-22T01:08:35.000Z",
+                                  "uid": "35240-6242c853-522f-4371-99d4-6acd950f332f"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T01:08:35.000Z",
+                              "updatedAt": "2026-10-22T01:08:35.000Z",
+                              "uid": "35240-869d4fdc-fe76-4bed-900d-94b667be381a"
+                            }
+                          ],
+                          "id": "2daba305-9a3e-4f11-9132-82dd913898a5",
+                          "createdAt": "2026-10-22T01:08:35.000Z",
+                          "updatedAt": "2026-10-22T01:08:35.000Z",
+                          "uid": "35240-2daba305-9a3e-4f11-9132-82dd913898a5"
+                        }
+                      ],
+                      "id": "a2935bed-60c3-460b-aebb-7d72492f38cc",
+                      "createdAt": "2026-10-22T01:08:35.000Z",
+                      "updatedAt": "2026-10-22T01:08:35.000Z",
+                      "uid": "35240-a2935bed-60c3-460b-aebb-7d72492f38cc"
+                    }
+                  ],
+                  "id": "8c04cf8f-3ddd-4da4-859c-5e4aad798e4a",
+                  "createdAt": "2026-10-22T01:08:35.000Z",
+                  "updatedAt": "2026-10-22T01:08:35.000Z",
+                  "uid": "35240-8c04cf8f-3ddd-4da4-859c-5e4aad798e4a"
+                }
+              ],
+              "id": "22570acd-ea54-4542-ae82-da2394680444",
+              "createdAt": "2026-10-22T01:08:35.000Z",
+              "updatedAt": "2026-10-22T01:08:35.000Z",
+              "uid": "35240-22570acd-ea54-4542-ae82-da2394680444"
+            }
+          ],
+          "id": "28cfe093-2f26-41a2-afd8-894e01e7bf66",
+          "createdAt": "2026-10-22T01:08:35.000Z",
+          "updatedAt": "2026-10-22T01:08:35.000Z",
+          "uid": "35240-28cfe093-2f26-41a2-afd8-894e01e7bf66"
+        }
+      ],
+      "id": "c640bbce-1b7b-4520-8812-8fefd973275e",
+      "createdAt": "2026-10-22T01:08:35.000Z",
+      "updatedAt": "2026-10-22T01:08:35.000Z",
+      "uid": "35240-c640bbce-1b7b-4520-8812-8fefd973275e"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

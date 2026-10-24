@@ -1,0 +1,1799 @@
+{
+  "info": {
+    "_postman_id": "0b7b0958-2e7e-4b74-ab22-113a8c2ab887",
+    "name": "Yugabytedb Node instances API",
+    "description": "Operations tagged Node instances across 2 of this provider's published API definitions: openapi_2.yaml, platform.swagger.json. Each path carries the servers of the definition it was published in.\n\nContact Support:\n Name: https://docs.yugabyte.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:10:40.000Z",
+    "updatedAt": "2026-10-22T01:10:40.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-0b7b0958-2e7e-4b74-ab22-113a8c2ab887"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "customers",
+              "item": [
+                {
+                  "name": "{cUUID}",
+                  "item": [
+                    {
+                      "name": "nodes",
+                      "item": [
+                        {
+                          "name": "{nodeUUID}",
+                          "item": [
+                            {
+                              "name": "list",
+                              "item": [
+                                {
+                                  "name": "Get a node instance",
+                                  "id": "daf76d1f-0a32-4089-b969-57b74e00a218",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "apikey",
+                                      "apikey": [
+                                        {
+                                          "key": "key",
+                                          "value": "X-AUTH-YW-API-TOKEN",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "value",
+                                          "value": "{{apiKey}}",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "in",
+                                          "value": "header",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/nodes/:nodeUUID/list",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "nodes",
+                                        ":nodeUUID",
+                                        "list"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "7bde5ff0-fa30-4d47-af12-c451c6890112",
+                                          "key": "cUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "638e5d72-b450-4b0b-8f07-b73a82aa0170",
+                                          "key": "nodeUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "ace562c7-50d2-4de6-ba75-7e855a72d623",
+                                      "name": "successful operation",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "X-AUTH-YW-API-TOKEN",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/nodes/:nodeUUID/list",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "nodes",
+                                            ":nodeUUID",
+                                            "list"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "cUUID"
+                                            },
+                                            {
+                                              "key": "nodeUUID"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"details\": {\n    \"instanceName\": \"<string>\",\n    \"instanceType\": \"<string>\",\n    \"ip\": \"<string>\",\n    \"region\": \"<string>\",\n    \"zone\": \"<string>\",\n    \"nodeName\": \"<string>\",\n    \"sshUser\": \"<string>\"\n  },\n  \"detailsJson\": \"<string>\",\n  \"inUse\": \"<boolean>\",\n  \"instanceName\": \"<string>\",\n  \"instanceTypeCode\": \"<string>\",\n  \"manuallyDecommissioned\": \"<boolean>\",\n  \"nodeName\": \"<string>\",\n  \"nodeUuid\": \"<uuid>\",\n  \"state\": \"USED\",\n  \"zoneUuid\": \"<uuid>\"\n}",
+                                      "createdAt": "2026-10-22T01:10:41.000Z",
+                                      "updatedAt": "2026-10-22T01:10:41.000Z",
+                                      "uid": "35240-ace562c7-50d2-4de6-ba75-7e855a72d623"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:10:41.000Z",
+                                  "updatedAt": "2026-10-22T01:10:41.000Z",
+                                  "uid": "35240-daf76d1f-0a32-4089-b969-57b74e00a218"
+                                }
+                              ],
+                              "id": "e0456f35-f310-4226-b937-75a5075bd69a",
+                              "createdAt": "2026-10-22T01:10:41.000Z",
+                              "updatedAt": "2026-10-22T01:10:41.000Z",
+                              "uid": "35240-e0456f35-f310-4226-b937-75a5075bd69a"
+                            }
+                          ],
+                          "id": "22fddb23-bd03-4321-aa39-072b107639de",
+                          "createdAt": "2026-10-22T01:10:41.000Z",
+                          "updatedAt": "2026-10-22T01:10:41.000Z",
+                          "uid": "35240-22fddb23-bd03-4321-aa39-072b107639de"
+                        },
+                        {
+                          "name": "List all node instances of a customer",
+                          "id": "104622cb-cf59-4693-bbbf-8f4f18d0a98f",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "apikey",
+                              "apikey": [
+                                {
+                                  "key": "key",
+                                  "value": "X-AUTH-YW-API-TOKEN",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "value",
+                                  "value": "{{apiKey}}",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "in",
+                                  "value": "header",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/customers/:cUUID/nodes?nodeIp=null",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "customers",
+                                ":cUUID",
+                                "nodes"
+                              ],
+                              "query": [
+                                {
+                                  "key": "nodeIp",
+                                  "value": "null"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "f90f1deb-55fe-4980-b7e3-2b2cb98b3dd5",
+                                  "key": "cUUID",
+                                  "value": "<uuid>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "d87f22ef-8e0c-4334-b204-cabbaa4ec687",
+                              "name": "successful operation",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-AUTH-YW-API-TOKEN",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/nodes?nodeIp=null",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "nodes"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "nodeIp",
+                                      "value": "null"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "cUUID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"details\": {\n    \"instanceName\": \"<string>\",\n    \"instanceType\": \"<string>\",\n    \"ip\": \"<string>\",\n    \"region\": \"<string>\",\n    \"zone\": \"<string>\",\n    \"nodeName\": \"<string>\",\n    \"sshUser\": \"<string>\"\n  },\n  \"detailsJson\": \"<string>\",\n  \"inUse\": \"<boolean>\",\n  \"instanceName\": \"<string>\",\n  \"instanceTypeCode\": \"<string>\",\n  \"manuallyDecommissioned\": \"<boolean>\",\n  \"nodeName\": \"<string>\",\n  \"nodeUuid\": \"<uuid>\",\n  \"state\": \"USED\",\n  \"zoneUuid\": \"<uuid>\"\n}",
+                              "createdAt": "2026-10-22T01:10:41.000Z",
+                              "updatedAt": "2026-10-22T01:10:41.000Z",
+                              "uid": "35240-d87f22ef-8e0c-4334-b204-cabbaa4ec687"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T01:10:41.000Z",
+                          "updatedAt": "2026-10-22T01:10:41.000Z",
+                          "uid": "35240-104622cb-cf59-4693-bbbf-8f4f18d0a98f"
+                        }
+                      ],
+                      "id": "d0b7032c-fe8c-4ce8-9a0a-e05cfb83790a",
+                      "createdAt": "2026-10-22T01:10:41.000Z",
+                      "updatedAt": "2026-10-22T01:10:41.000Z",
+                      "uid": "35240-d0b7032c-fe8c-4ce8-9a0a-e05cfb83790a"
+                    },
+                    {
+                      "name": "providers",
+                      "item": [
+                        {
+                          "name": "{pUUID}",
+                          "item": [
+                            {
+                              "name": "instances",
+                              "item": [
+                                {
+                                  "name": "{instanceIP}",
+                                  "item": [
+                                    {
+                                      "name": "state",
+                                      "item": [
+                                        {
+                                          "name": "Update node instance state",
+                                          "id": "3b20b57e-1ebf-4d33-9537-052a5d93965b",
+                                          "protocolProfileBehavior": {
+                                            "disableBodyPruning": true
+                                          },
+                                          "request": {
+                                            "auth": {
+                                              "type": "apikey",
+                                              "apikey": [
+                                                {
+                                                  "key": "key",
+                                                  "value": "X-AUTH-YW-API-TOKEN",
+                                                  "type": "string"
+                                                },
+                                                {
+                                                  "key": "value",
+                                                  "value": "{{apiKey}}",
+                                                  "type": "string"
+                                                },
+                                                {
+                                                  "key": "in",
+                                                  "value": "header",
+                                                  "type": "string"
+                                                }
+                                              ]
+                                            },
+                                            "method": "PUT",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "{\n  \"state\": \"FREE\"\n}",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v1/customers/:cUUID/providers/:pUUID/instances/:instanceIP/state",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v1",
+                                                "customers",
+                                                ":cUUID",
+                                                "providers",
+                                                ":pUUID",
+                                                "instances",
+                                                ":instanceIP",
+                                                "state"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "id": "07b68ee0-32ea-4ed6-b3a5-ba6f118c7f56",
+                                                  "key": "cUUID",
+                                                  "value": "<uuid>",
+                                                  "description": "(Required) "
+                                                },
+                                                {
+                                                  "id": "5d2bcaf4-3cb8-43d3-a807-77fdd543154b",
+                                                  "key": "pUUID",
+                                                  "value": "<uuid>",
+                                                  "description": "(Required) "
+                                                },
+                                                {
+                                                  "id": "5b781feb-cebb-4249-8b02-a7593e4157aa",
+                                                  "key": "instanceIP",
+                                                  "value": "<string>",
+                                                  "description": "(Required) "
+                                                }
+                                              ]
+                                            },
+                                            "description": "WARNING: This is a preview API that could change."
+                                          },
+                                          "response": [
+                                            {
+                                              "id": "5caf7eb0-5442-44ac-966d-92b20bfe346b",
+                                              "name": "successful operation",
+                                              "originalRequest": {
+                                                "method": "PUT",
+                                                "header": [
+                                                  {
+                                                    "key": "Content-Type",
+                                                    "value": "application/json"
+                                                  },
+                                                  {
+                                                    "key": "Accept",
+                                                    "value": "application/json"
+                                                  },
+                                                  {
+                                                    "description": "Added as a part of security scheme: apikey",
+                                                    "key": "X-AUTH-YW-API-TOKEN",
+                                                    "value": "<API Key>"
+                                                  }
+                                                ],
+                                                "body": {
+                                                  "mode": "raw",
+                                                  "raw": "{\n  \"state\": \"FREE\"\n}",
+                                                  "options": {
+                                                    "raw": {
+                                                      "headerFamily": "json",
+                                                      "language": "json"
+                                                    }
+                                                  }
+                                                },
+                                                "url": {
+                                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/providers/:pUUID/instances/:instanceIP/state",
+                                                  "host": [
+                                                    "{{baseUrl}}"
+                                                  ],
+                                                  "path": [
+                                                    "api",
+                                                    "v1",
+                                                    "customers",
+                                                    ":cUUID",
+                                                    "providers",
+                                                    ":pUUID",
+                                                    "instances",
+                                                    ":instanceIP",
+                                                    "state"
+                                                  ],
+                                                  "variable": [
+                                                    {
+                                                      "key": "cUUID"
+                                                    },
+                                                    {
+                                                      "key": "pUUID"
+                                                    },
+                                                    {
+                                                      "key": "instanceIP"
+                                                    }
+                                                  ]
+                                                }
+                                              },
+                                              "status": "OK",
+                                              "code": 200,
+                                              "_postman_previewlanguage": "json",
+                                              "header": [
+                                                {
+                                                  "key": "Content-Type",
+                                                  "value": "application/json"
+                                                }
+                                              ],
+                                              "cookie": [],
+                                              "responseTime": null,
+                                              "body": "{\n  \"resourceUUID\": \"<uuid>\",\n  \"taskUUID\": \"<uuid>\"\n}",
+                                              "createdAt": "2026-10-22T01:10:41.000Z",
+                                              "updatedAt": "2026-10-22T01:10:41.000Z",
+                                              "uid": "35240-5caf7eb0-5442-44ac-966d-92b20bfe346b"
+                                            }
+                                          ],
+                                          "createdAt": "2026-10-22T01:10:41.000Z",
+                                          "updatedAt": "2026-10-22T01:10:41.000Z",
+                                          "uid": "35240-3b20b57e-1ebf-4d33-9537-052a5d93965b"
+                                        }
+                                      ],
+                                      "id": "c82bd580-8a3a-4ee6-bfb1-3b83ec1007c5",
+                                      "createdAt": "2026-10-22T01:10:41.000Z",
+                                      "updatedAt": "2026-10-22T01:10:41.000Z",
+                                      "uid": "35240-c82bd580-8a3a-4ee6-bfb1-3b83ec1007c5"
+                                    },
+                                    {
+                                      "name": "Delete a node instance",
+                                      "id": "a77b4793-a590-4074-8d98-12b68b70777d",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "auth": {
+                                          "type": "apikey",
+                                          "apikey": [
+                                            {
+                                              "key": "key",
+                                              "value": "X-AUTH-YW-API-TOKEN",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "value",
+                                              "value": "{{apiKey}}",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "in",
+                                              "value": "header",
+                                              "type": "string"
+                                            }
+                                          ]
+                                        },
+                                        "method": "DELETE",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/providers/:pUUID/instances/:instanceIP",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "providers",
+                                            ":pUUID",
+                                            "instances",
+                                            ":instanceIP"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "9c111d2e-12db-472e-89c2-e91c1c80a464",
+                                              "key": "cUUID",
+                                              "value": "<uuid>",
+                                              "description": "(Required) "
+                                            },
+                                            {
+                                              "id": "5c7bd831-d17b-4587-9500-62b84258609f",
+                                              "key": "pUUID",
+                                              "value": "<uuid>",
+                                              "description": "(Required) "
+                                            },
+                                            {
+                                              "id": "5d6dab4c-9dc4-4275-b116-23447ca8c77b",
+                                              "key": "instanceIP",
+                                              "value": "<string>",
+                                              "description": "(Required) "
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "52710b20-b74d-418a-85e0-dc4f734a2c59",
+                                          "name": "successful operation",
+                                          "originalRequest": {
+                                            "method": "DELETE",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: apikey",
+                                                "key": "X-AUTH-YW-API-TOKEN",
+                                                "value": "<API Key>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v1/customers/:cUUID/providers/:pUUID/instances/:instanceIP",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v1",
+                                                "customers",
+                                                ":cUUID",
+                                                "providers",
+                                                ":pUUID",
+                                                "instances",
+                                                ":instanceIP"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "cUUID"
+                                                },
+                                                {
+                                                  "key": "pUUID"
+                                                },
+                                                {
+                                                  "key": "instanceIP"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"message\": \"<string>\",\n  \"success\": \"<boolean>\"\n}",
+                                          "createdAt": "2026-10-22T01:10:41.000Z",
+                                          "updatedAt": "2026-10-22T01:10:41.000Z",
+                                          "uid": "35240-52710b20-b74d-418a-85e0-dc4f734a2c59"
+                                        }
+                                      ],
+                                      "createdAt": "2026-10-22T01:10:41.000Z",
+                                      "updatedAt": "2026-10-22T01:10:41.000Z",
+                                      "uid": "35240-a77b4793-a590-4074-8d98-12b68b70777d"
+                                    },
+                                    {
+                                      "name": "Detached node action",
+                                      "id": "7c68732a-d4a2-4833-a61e-c89b6088341b",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "auth": {
+                                          "type": "apikey",
+                                          "apikey": [
+                                            {
+                                              "key": "key",
+                                              "value": "X-AUTH-YW-API-TOKEN",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "value",
+                                              "value": "{{apiKey}}",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "in",
+                                              "value": "header",
+                                              "type": "string"
+                                            }
+                                          ]
+                                        },
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"nodeAction\": \"REMOVE\",\n  \"force\": \"<boolean>\",\n  \"runOnlyPrechecks\": \"<boolean>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/providers/:pUUID/instances/:instanceIP",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "providers",
+                                            ":pUUID",
+                                            "instances",
+                                            ":instanceIP"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "57f529c5-7ac7-4201-adc2-84c7b7e92caf",
+                                              "key": "cUUID",
+                                              "value": "<uuid>",
+                                              "description": "(Required) "
+                                            },
+                                            {
+                                              "id": "830f5e34-f2b7-4121-b39f-6d957faf9b19",
+                                              "key": "pUUID",
+                                              "value": "<uuid>",
+                                              "description": "(Required) "
+                                            },
+                                            {
+                                              "id": "c23c409c-7fdc-476b-acbb-86a20bcd806d",
+                                              "key": "instanceIP",
+                                              "value": "<string>",
+                                              "description": "(Required) "
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "f62f0e9e-b9c8-46c8-9e42-5a2f0d1bb792",
+                                          "name": "successful operation",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: apikey",
+                                                "key": "X-AUTH-YW-API-TOKEN",
+                                                "value": "<API Key>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "{\n  \"nodeAction\": \"REMOVE\",\n  \"force\": \"<boolean>\",\n  \"runOnlyPrechecks\": \"<boolean>\"\n}",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v1/customers/:cUUID/providers/:pUUID/instances/:instanceIP",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v1",
+                                                "customers",
+                                                ":cUUID",
+                                                "providers",
+                                                ":pUUID",
+                                                "instances",
+                                                ":instanceIP"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "cUUID"
+                                                },
+                                                {
+                                                  "key": "pUUID"
+                                                },
+                                                {
+                                                  "key": "instanceIP"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"resourceUUID\": \"<uuid>\",\n  \"taskUUID\": \"<uuid>\"\n}",
+                                          "createdAt": "2026-10-22T01:10:41.000Z",
+                                          "updatedAt": "2026-10-22T01:10:41.000Z",
+                                          "uid": "35240-f62f0e9e-b9c8-46c8-9e42-5a2f0d1bb792"
+                                        }
+                                      ],
+                                      "createdAt": "2026-10-22T01:10:41.000Z",
+                                      "updatedAt": "2026-10-22T01:10:41.000Z",
+                                      "uid": "35240-7c68732a-d4a2-4833-a61e-c89b6088341b"
+                                    }
+                                  ],
+                                  "id": "313d8b8b-a91a-41e7-a170-a72e9b739724",
+                                  "createdAt": "2026-10-22T01:10:41.000Z",
+                                  "updatedAt": "2026-10-22T01:10:41.000Z",
+                                  "uid": "35240-313d8b8b-a91a-41e7-a170-a72e9b739724"
+                                }
+                              ],
+                              "id": "ea267d98-1627-41d7-88de-55d5fb425152",
+                              "createdAt": "2026-10-22T01:10:41.000Z",
+                              "updatedAt": "2026-10-22T01:10:41.000Z",
+                              "uid": "35240-ea267d98-1627-41d7-88de-55d5fb425152"
+                            },
+                            {
+                              "name": "nodes",
+                              "item": [
+                                {
+                                  "name": "list",
+                                  "item": [
+                                    {
+                                      "name": "List all of a provider's node instances",
+                                      "id": "8b63fbf4-3577-4127-ab3e-fb13bcc89f9d",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "auth": {
+                                          "type": "apikey",
+                                          "apikey": [
+                                            {
+                                              "key": "key",
+                                              "value": "X-AUTH-YW-API-TOKEN",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "value",
+                                              "value": "{{apiKey}}",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "in",
+                                              "value": "header",
+                                              "type": "string"
+                                            }
+                                          ]
+                                        },
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/providers/:pUUID/nodes/list",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "providers",
+                                            ":pUUID",
+                                            "nodes",
+                                            "list"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "d8d84018-0ef3-4b3c-bda9-0d46e02314de",
+                                              "key": "cUUID",
+                                              "value": "<uuid>",
+                                              "description": "(Required) "
+                                            },
+                                            {
+                                              "id": "0a5ee763-a6f7-49d2-91d3-37afdc0b2b91",
+                                              "key": "pUUID",
+                                              "value": "<uuid>",
+                                              "description": "(Required) "
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "952d1b27-052e-4e1b-aade-39e9be6368d0",
+                                          "name": "successful operation",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: apikey",
+                                                "key": "X-AUTH-YW-API-TOKEN",
+                                                "value": "<API Key>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v1/customers/:cUUID/providers/:pUUID/nodes/list",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v1",
+                                                "customers",
+                                                ":cUUID",
+                                                "providers",
+                                                ":pUUID",
+                                                "nodes",
+                                                "list"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "cUUID"
+                                                },
+                                                {
+                                                  "key": "pUUID"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "[\n  {\n    \"details\": {\n      \"instanceName\": \"<string>\",\n      \"instanceType\": \"<string>\",\n      \"ip\": \"<string>\",\n      \"region\": \"<string>\",\n      \"zone\": \"<string>\",\n      \"nodeName\": \"<string>\",\n      \"sshUser\": \"<string>\"\n    },\n    \"detailsJson\": \"<string>\",\n    \"inUse\": \"<boolean>\",\n    \"instanceName\": \"<string>\",\n    \"instanceTypeCode\": \"<string>\",\n    \"manuallyDecommissioned\": \"<boolean>\",\n    \"nodeName\": \"<string>\",\n    \"nodeUuid\": \"<uuid>\",\n    \"state\": \"USED\",\n    \"zoneUuid\": \"<uuid>\"\n  },\n  {\n    \"details\": {\n      \"instanceName\": \"<string>\",\n      \"instanceType\": \"<string>\",\n      \"ip\": \"<string>\",\n      \"region\": \"<string>\",\n      \"zone\": \"<string>\",\n      \"nodeName\": \"<string>\",\n      \"sshUser\": \"<string>\"\n    },\n    \"detailsJson\": \"<string>\",\n    \"inUse\": \"<boolean>\",\n    \"instanceName\": \"<string>\",\n    \"instanceTypeCode\": \"<string>\",\n    \"manuallyDecommissioned\": \"<boolean>\",\n    \"nodeName\": \"<string>\",\n    \"nodeUuid\": \"<uuid>\",\n    \"state\": \"USED\",\n    \"zoneUuid\": \"<uuid>\"\n  }\n]",
+                                          "createdAt": "2026-10-22T01:10:41.000Z",
+                                          "updatedAt": "2026-10-22T01:10:41.000Z",
+                                          "uid": "35240-952d1b27-052e-4e1b-aade-39e9be6368d0"
+                                        }
+                                      ],
+                                      "createdAt": "2026-10-22T01:10:41.000Z",
+                                      "updatedAt": "2026-10-22T01:10:41.000Z",
+                                      "uid": "35240-8b63fbf4-3577-4127-ab3e-fb13bcc89f9d"
+                                    }
+                                  ],
+                                  "id": "20ed544b-d251-40ed-868b-5e9701e6c18e",
+                                  "createdAt": "2026-10-22T01:10:41.000Z",
+                                  "updatedAt": "2026-10-22T01:10:41.000Z",
+                                  "uid": "35240-20ed544b-d251-40ed-868b-5e9701e6c18e"
+                                }
+                              ],
+                              "id": "7e048ea6-76de-4168-9e60-eb5ed81a4cd1",
+                              "createdAt": "2026-10-22T01:10:41.000Z",
+                              "updatedAt": "2026-10-22T01:10:41.000Z",
+                              "uid": "35240-7e048ea6-76de-4168-9e60-eb5ed81a4cd1"
+                            }
+                          ],
+                          "id": "11497c5a-c0e7-47c6-9ae8-3f92ce17ffef",
+                          "createdAt": "2026-10-22T01:10:41.000Z",
+                          "updatedAt": "2026-10-22T01:10:41.000Z",
+                          "uid": "35240-11497c5a-c0e7-47c6-9ae8-3f92ce17ffef"
+                        }
+                      ],
+                      "id": "ff43122f-58d2-4e6f-8e87-80f9196cf920",
+                      "createdAt": "2026-10-22T01:10:41.000Z",
+                      "updatedAt": "2026-10-22T01:10:41.000Z",
+                      "uid": "35240-ff43122f-58d2-4e6f-8e87-80f9196cf920"
+                    },
+                    {
+                      "name": "universes",
+                      "item": [
+                        {
+                          "name": "{universeUUID}",
+                          "item": [
+                            {
+                              "name": "nodes",
+                              "item": [
+                                {
+                                  "name": "{nodeName}",
+                                  "item": [
+                                    {
+                                      "name": "details",
+                                      "item": [
+                                        {
+                                          "name": "Get node details",
+                                          "id": "699955ba-62ec-4bf3-b793-21320c3244e6",
+                                          "protocolProfileBehavior": {
+                                            "disableBodyPruning": true
+                                          },
+                                          "request": {
+                                            "auth": {
+                                              "type": "apikey",
+                                              "apikey": [
+                                                {
+                                                  "key": "key",
+                                                  "value": "X-AUTH-YW-API-TOKEN",
+                                                  "type": "string"
+                                                },
+                                                {
+                                                  "key": "value",
+                                                  "value": "{{apiKey}}",
+                                                  "type": "string"
+                                                },
+                                                {
+                                                  "key": "in",
+                                                  "value": "header",
+                                                  "type": "string"
+                                                }
+                                              ]
+                                            },
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:universeUUID/nodes/:nodeName/details",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v1",
+                                                "customers",
+                                                ":cUUID",
+                                                "universes",
+                                                ":universeUUID",
+                                                "nodes",
+                                                ":nodeName",
+                                                "details"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "id": "4efaf892-0e74-4e91-b97a-2efdcd8b43fa",
+                                                  "key": "cUUID",
+                                                  "value": "<uuid>",
+                                                  "description": "(Required) "
+                                                },
+                                                {
+                                                  "id": "9b4635c9-109c-408b-81b8-f8b265dc0794",
+                                                  "key": "universeUUID",
+                                                  "value": "<uuid>",
+                                                  "description": "(Required) "
+                                                },
+                                                {
+                                                  "id": "ea74ccea-caec-4a1c-95c7-0fda69e310a2",
+                                                  "key": "nodeName",
+                                                  "value": "<string>",
+                                                  "description": "(Required) "
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "response": [
+                                            {
+                                              "id": "45b23d50-044a-4041-be31-179a894f2abf",
+                                              "name": "successful operation",
+                                              "originalRequest": {
+                                                "method": "GET",
+                                                "header": [
+                                                  {
+                                                    "key": "Accept",
+                                                    "value": "application/json"
+                                                  },
+                                                  {
+                                                    "description": "Added as a part of security scheme: apikey",
+                                                    "key": "X-AUTH-YW-API-TOKEN",
+                                                    "value": "<API Key>"
+                                                  }
+                                                ],
+                                                "url": {
+                                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:universeUUID/nodes/:nodeName/details",
+                                                  "host": [
+                                                    "{{baseUrl}}"
+                                                  ],
+                                                  "path": [
+                                                    "api",
+                                                    "v1",
+                                                    "customers",
+                                                    ":cUUID",
+                                                    "universes",
+                                                    ":universeUUID",
+                                                    "nodes",
+                                                    ":nodeName",
+                                                    "details"
+                                                  ],
+                                                  "variable": [
+                                                    {
+                                                      "key": "cUUID"
+                                                    },
+                                                    {
+                                                      "key": "universeUUID"
+                                                    },
+                                                    {
+                                                      "key": "nodeName"
+                                                    }
+                                                  ]
+                                                }
+                                              },
+                                              "status": "OK",
+                                              "code": 200,
+                                              "_postman_previewlanguage": "json",
+                                              "header": [
+                                                {
+                                                  "key": "Content-Type",
+                                                  "value": "application/json"
+                                                }
+                                              ],
+                                              "cookie": [],
+                                              "responseTime": null,
+                                              "body": "{\n  \"kubernetesOverrides\": \"<string>\",\n  \"allowedActions\": [\n    \"PRECHECK_DETACHED\",\n    \"DECOMMISSION\"\n  ],\n  \"autoSyncMasterAddrs\": \"<boolean>\",\n  \"azUuid\": \"<uuid>\",\n  \"cloudInfo\": {\n    \"assignPublicIP\": \"<boolean>\",\n    \"az\": \"<string>\",\n    \"cloud\": \"<string>\",\n    \"instance_type\": \"<string>\",\n    \"kubernetesNamespace\": \"<string>\",\n    \"kubernetesPodName\": \"<string>\",\n    \"lun_indexes\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"mount_roots\": \"<string>\",\n    \"private_dns\": \"<string>\",\n    \"private_ip\": \"<string>\",\n    \"public_dns\": \"<string>\",\n    \"public_ip\": \"<string>\",\n    \"region\": \"<string>\",\n    \"root_volume\": \"<string>\",\n    \"secondary_private_ip\": \"<string>\",\n    \"secondary_subnet_id\": \"<string>\",\n    \"subnet_id\": \"<string>\",\n    \"useTimeSync\": \"<boolean>\"\n  },\n  \"cronsActive\": \"<boolean>\",\n  \"dedicatedTo\": \"YSQLSERVER\",\n  \"disksAreMountedByUUID\": \"<boolean>\",\n  \"internalYsqlServerRpcPort\": \"<integer>\",\n  \"isMaster\": \"<boolean>\",\n  \"isRedisServer\": \"<boolean>\",\n  \"isTserver\": \"<boolean>\",\n  \"isYqlServer\": \"<boolean>\",\n  \"isYsqlServer\": \"<boolean>\",\n  \"lastVolumeUpdateTime\": \"<dateTime>\",\n  \"machineImage\": \"<string>\",\n  \"masterHttpPort\": \"<integer>\",\n  \"masterRpcPort\": \"<integer>\",\n  \"masterState\": \"Configured\",\n  \"nodeExporterPort\": \"<integer>\",\n  \"nodeIdx\": \"<integer>\",\n  \"nodeName\": \"<string>\",\n  \"nodeUuid\": \"<uuid>\",\n  \"otelCollectorMetricsPort\": \"<integer>\",\n  \"placementUuid\": \"<uuid>\",\n  \"redisServerHttpPort\": \"<integer>\",\n  \"redisServerRpcPort\": \"<integer>\",\n  \"sshPortOverride\": \"<integer>\",\n  \"sshUserOverride\": \"<string>\",\n  \"state\": \"Live\",\n  \"tserverHttpPort\": \"<integer>\",\n  \"tserverRpcPort\": \"<integer>\",\n  \"ybControllerHttpPort\": \"<integer>\",\n  \"ybControllerRpcPort\": \"<integer>\",\n  \"ybPrebuiltAmi\": \"<boolean>\",\n  \"yqlServerHttpPort\": \"<integer>\",\n  \"yqlServerRpcPort\": \"<integer>\",\n  \"ysqlServerHttpPort\": \"<integer>\",\n  \"ysqlServerRpcPort\": \"<integer>\"\n}",
+                                              "createdAt": "2026-10-22T01:10:41.000Z",
+                                              "updatedAt": "2026-10-22T01:10:41.000Z",
+                                              "uid": "35240-45b23d50-044a-4041-be31-179a894f2abf"
+                                            }
+                                          ],
+                                          "createdAt": "2026-10-22T01:10:41.000Z",
+                                          "updatedAt": "2026-10-22T01:10:41.000Z",
+                                          "uid": "35240-699955ba-62ec-4bf3-b793-21320c3244e6"
+                                        }
+                                      ],
+                                      "id": "7cbb8ac6-8ffd-4069-96a8-c4c4a790c031",
+                                      "createdAt": "2026-10-22T01:10:41.000Z",
+                                      "updatedAt": "2026-10-22T01:10:41.000Z",
+                                      "uid": "35240-7cbb8ac6-8ffd-4069-96a8-c4c4a790c031"
+                                    },
+                                    {
+                                      "name": "Perform the specified action on the universe node",
+                                      "id": "c53cadd8-87cc-4b0a-8646-7dfe152cf340",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "auth": {
+                                          "type": "apikey",
+                                          "apikey": [
+                                            {
+                                              "key": "key",
+                                              "value": "X-AUTH-YW-API-TOKEN",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "value",
+                                              "value": "{{apiKey}}",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "in",
+                                              "value": "header",
+                                              "type": "string"
+                                            }
+                                          ]
+                                        },
+                                        "method": "PUT",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"nodeAction\": \"REMOVE\",\n  \"force\": \"<boolean>\",\n  \"runOnlyPrechecks\": \"<boolean>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:universeUUID/nodes/:nodeName",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "universes",
+                                            ":universeUUID",
+                                            "nodes",
+                                            ":nodeName"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "5488e829-8282-4994-a2c2-1e9e9c8f90bf",
+                                              "key": "cUUID",
+                                              "value": "<uuid>",
+                                              "description": "(Required) "
+                                            },
+                                            {
+                                              "id": "8547a1b4-319a-4550-87c7-03629cd5ce85",
+                                              "key": "universeUUID",
+                                              "value": "<uuid>",
+                                              "description": "(Required) "
+                                            },
+                                            {
+                                              "id": "d04c7544-110c-4f5b-9060-7c5b2ad5683e",
+                                              "key": "nodeName",
+                                              "value": "<string>",
+                                              "description": "(Required) "
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "35ea99ac-e59b-4eb2-8416-aa0e5650b5fd",
+                                          "name": "successful operation",
+                                          "originalRequest": {
+                                            "method": "PUT",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: apikey",
+                                                "key": "X-AUTH-YW-API-TOKEN",
+                                                "value": "<API Key>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "{\n  \"nodeAction\": \"REMOVE\",\n  \"force\": \"<boolean>\",\n  \"runOnlyPrechecks\": \"<boolean>\"\n}",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:universeUUID/nodes/:nodeName",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v1",
+                                                "customers",
+                                                ":cUUID",
+                                                "universes",
+                                                ":universeUUID",
+                                                "nodes",
+                                                ":nodeName"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "cUUID"
+                                                },
+                                                {
+                                                  "key": "universeUUID"
+                                                },
+                                                {
+                                                  "key": "nodeName"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"resourceUUID\": \"<uuid>\",\n  \"taskUUID\": \"<uuid>\"\n}",
+                                          "createdAt": "2026-10-22T01:10:41.000Z",
+                                          "updatedAt": "2026-10-22T01:10:41.000Z",
+                                          "uid": "35240-35ea99ac-e59b-4eb2-8416-aa0e5650b5fd"
+                                        }
+                                      ],
+                                      "createdAt": "2026-10-22T01:10:41.000Z",
+                                      "updatedAt": "2026-10-22T01:10:41.000Z",
+                                      "uid": "35240-c53cadd8-87cc-4b0a-8646-7dfe152cf340"
+                                    }
+                                  ],
+                                  "id": "55183888-d8b6-4a4c-adc5-16c28d3cc9d1",
+                                  "createdAt": "2026-10-22T01:10:41.000Z",
+                                  "updatedAt": "2026-10-22T01:10:41.000Z",
+                                  "uid": "35240-55183888-d8b6-4a4c-adc5-16c28d3cc9d1"
+                                }
+                              ],
+                              "id": "f6c0f10f-9441-4b5f-87e5-54aead7a695e",
+                              "createdAt": "2026-10-22T01:10:41.000Z",
+                              "updatedAt": "2026-10-22T01:10:41.000Z",
+                              "uid": "35240-f6c0f10f-9441-4b5f-87e5-54aead7a695e"
+                            }
+                          ],
+                          "id": "8f32f07f-3859-4dc1-a3e6-158190a4a6f3",
+                          "createdAt": "2026-10-22T01:10:41.000Z",
+                          "updatedAt": "2026-10-22T01:10:41.000Z",
+                          "uid": "35240-8f32f07f-3859-4dc1-a3e6-158190a4a6f3"
+                        }
+                      ],
+                      "id": "fedeab6d-fc6d-4f3b-a7d9-61a6b5908736",
+                      "createdAt": "2026-10-22T01:10:41.000Z",
+                      "updatedAt": "2026-10-22T01:10:41.000Z",
+                      "uid": "35240-fedeab6d-fc6d-4f3b-a7d9-61a6b5908736"
+                    },
+                    {
+                      "name": "zones",
+                      "item": [
+                        {
+                          "name": "{azUUID}",
+                          "item": [
+                            {
+                              "name": "nodes",
+                              "item": [
+                                {
+                                  "name": "list",
+                                  "item": [
+                                    {
+                                      "name": "List all of a zone's node instances",
+                                      "id": "1266e465-a4bc-406e-8426-91e7603404ed",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "auth": {
+                                          "type": "apikey",
+                                          "apikey": [
+                                            {
+                                              "key": "key",
+                                              "value": "X-AUTH-YW-API-TOKEN",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "value",
+                                              "value": "{{apiKey}}",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "in",
+                                              "value": "header",
+                                              "type": "string"
+                                            }
+                                          ]
+                                        },
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/zones/:azUUID/nodes/list",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "zones",
+                                            ":azUUID",
+                                            "nodes",
+                                            "list"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "12f9b66d-198d-4173-8413-c14008eabf6b",
+                                              "key": "cUUID",
+                                              "value": "<uuid>",
+                                              "description": "(Required) "
+                                            },
+                                            {
+                                              "id": "3c4bf30e-09f5-4fb3-884b-d8b0f80e0260",
+                                              "key": "azUUID",
+                                              "value": "<uuid>",
+                                              "description": "(Required) "
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "a240076d-83ab-4244-9de0-6eeb89c1ed4d",
+                                          "name": "successful operation",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: apikey",
+                                                "key": "X-AUTH-YW-API-TOKEN",
+                                                "value": "<API Key>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v1/customers/:cUUID/zones/:azUUID/nodes/list",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v1",
+                                                "customers",
+                                                ":cUUID",
+                                                "zones",
+                                                ":azUUID",
+                                                "nodes",
+                                                "list"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "cUUID"
+                                                },
+                                                {
+                                                  "key": "azUUID"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "[\n  {\n    \"details\": {\n      \"instanceName\": \"<string>\",\n      \"instanceType\": \"<string>\",\n      \"ip\": \"<string>\",\n      \"region\": \"<string>\",\n      \"zone\": \"<string>\",\n      \"nodeName\": \"<string>\",\n      \"sshUser\": \"<string>\"\n    },\n    \"detailsJson\": \"<string>\",\n    \"inUse\": \"<boolean>\",\n    \"instanceName\": \"<string>\",\n    \"instanceTypeCode\": \"<string>\",\n    \"manuallyDecommissioned\": \"<boolean>\",\n    \"nodeName\": \"<string>\",\n    \"nodeUuid\": \"<uuid>\",\n    \"state\": \"USED\",\n    \"zoneUuid\": \"<uuid>\"\n  },\n  {\n    \"details\": {\n      \"instanceName\": \"<string>\",\n      \"instanceType\": \"<string>\",\n      \"ip\": \"<string>\",\n      \"region\": \"<string>\",\n      \"zone\": \"<string>\",\n      \"nodeName\": \"<string>\",\n      \"sshUser\": \"<string>\"\n    },\n    \"detailsJson\": \"<string>\",\n    \"inUse\": \"<boolean>\",\n    \"instanceName\": \"<string>\",\n    \"instanceTypeCode\": \"<string>\",\n    \"manuallyDecommissioned\": \"<boolean>\",\n    \"nodeName\": \"<string>\",\n    \"nodeUuid\": \"<uuid>\",\n    \"state\": \"USED\",\n    \"zoneUuid\": \"<uuid>\"\n  }\n]",
+                                          "createdAt": "2026-10-22T01:10:41.000Z",
+                                          "updatedAt": "2026-10-22T01:10:41.000Z",
+                                          "uid": "35240-a240076d-83ab-4244-9de0-6eeb89c1ed4d"
+                                        }
+                                      ],
+                                      "createdAt": "2026-10-22T01:10:41.000Z",
+                                      "updatedAt": "2026-10-22T01:10:41.000Z",
+                                      "uid": "35240-1266e465-a4bc-406e-8426-91e7603404ed"
+                                    }
+                                  ],
+                                  "id": "d2de8cd8-2beb-42be-96c5-40711cc0a7a4",
+                                  "createdAt": "2026-10-22T01:10:41.000Z",
+                                  "updatedAt": "2026-10-22T01:10:41.000Z",
+                                  "uid": "35240-d2de8cd8-2beb-42be-96c5-40711cc0a7a4"
+                                },
+                                {
+                                  "name": "validate",
+                                  "item": [
+                                    {
+                                      "name": "Validate a node instance",
+                                      "id": "92b28019-baba-4422-a7e9-f7e5205e12d1",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "auth": {
+                                          "type": "apikey",
+                                          "apikey": [
+                                            {
+                                              "key": "key",
+                                              "value": "X-AUTH-YW-API-TOKEN",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "value",
+                                              "value": "{{apiKey}}",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "in",
+                                              "value": "header",
+                                              "type": "string"
+                                            }
+                                          ]
+                                        },
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/zones/:azUUID/nodes/validate",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "zones",
+                                            ":azUUID",
+                                            "nodes",
+                                            "validate"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "880aac93-3972-46bd-a778-06ba02e692c4",
+                                              "key": "cUUID",
+                                              "value": "<uuid>",
+                                              "description": "(Required) "
+                                            },
+                                            {
+                                              "id": "a20661fe-a559-4243-8f00-b2804ea49e2a",
+                                              "key": "azUUID",
+                                              "value": "<uuid>",
+                                              "description": "(Required) "
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "56122a30-6793-4d1e-a21a-2762c1046aa8",
+                                          "name": "successful operation",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: apikey",
+                                                "key": "X-AUTH-YW-API-TOKEN",
+                                                "value": "<API Key>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v1/customers/:cUUID/zones/:azUUID/nodes/validate",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v1",
+                                                "customers",
+                                                ":cUUID",
+                                                "zones",
+                                                ":azUUID",
+                                                "nodes",
+                                                "validate"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "cUUID"
+                                                },
+                                                {
+                                                  "key": "azUUID"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"dolor_1e5\": {\n    \"description\": \"<string>\",\n    \"required\": \"<boolean>\",\n    \"type\": \"HOME_DIR_EXISTS\",\n    \"valid\": \"<boolean>\",\n    \"value\": \"<string>\"\n  }\n}",
+                                          "createdAt": "2026-10-22T01:10:41.000Z",
+                                          "updatedAt": "2026-10-22T01:10:41.000Z",
+                                          "uid": "35240-56122a30-6793-4d1e-a21a-2762c1046aa8"
+                                        }
+                                      ],
+                                      "createdAt": "2026-10-22T01:10:41.000Z",
+                                      "updatedAt": "2026-10-22T01:10:41.000Z",
+                                      "uid": "35240-92b28019-baba-4422-a7e9-f7e5205e12d1"
+                                    }
+                                  ],
+                                  "id": "7ac27f47-cb93-46f4-9224-13ccd1e32d6d",
+                                  "createdAt": "2026-10-22T01:10:41.000Z",
+                                  "updatedAt": "2026-10-22T01:10:41.000Z",
+                                  "uid": "35240-7ac27f47-cb93-46f4-9224-13ccd1e32d6d"
+                                },
+                                {
+                                  "name": "Create a node instance",
+                                  "id": "988bb7b6-42a7-4aee-9558-212996ece1ba",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "apikey",
+                                      "apikey": [
+                                        {
+                                          "key": "key",
+                                          "value": "X-AUTH-YW-API-TOKEN",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "value",
+                                          "value": "{{apiKey}}",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "in",
+                                          "value": "header",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"nodes\": [\n    {\n      \"instanceName\": \"<string>\",\n      \"instanceType\": \"<string>\",\n      \"ip\": \"<string>\",\n      \"region\": \"<string>\",\n      \"zone\": \"<string>\",\n      \"nodeName\": \"<string>\",\n      \"sshUser\": \"<string>\"\n    }\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/zones/:azUUID/nodes",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "zones",
+                                        ":azUUID",
+                                        "nodes"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "db69b23e-650d-467b-b0bd-d276f324cbdf",
+                                          "key": "cUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "96eec431-cc72-4f0d-a1cf-a20547d39d18",
+                                          "key": "azUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "6f8249d2-6d2d-490a-b599-50bd10409e0b",
+                                      "name": "successful operation",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "X-AUTH-YW-API-TOKEN",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"nodes\": [\n    {\n      \"instanceName\": \"<string>\",\n      \"instanceType\": \"<string>\",\n      \"ip\": \"<string>\",\n      \"region\": \"<string>\",\n      \"zone\": \"<string>\",\n      \"nodeName\": \"<string>\",\n      \"sshUser\": \"<string>\"\n    }\n  ]\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/zones/:azUUID/nodes",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "zones",
+                                            ":azUUID",
+                                            "nodes"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "cUUID"
+                                            },
+                                            {
+                                              "key": "azUUID"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"irure56_\": {\n    \"details\": {\n      \"instanceName\": \"<string>\",\n      \"instanceType\": \"<string>\",\n      \"ip\": \"<string>\",\n      \"region\": \"<string>\",\n      \"zone\": \"<string>\",\n      \"nodeName\": \"<string>\",\n      \"sshUser\": \"<string>\"\n    },\n    \"detailsJson\": \"<string>\",\n    \"inUse\": \"<boolean>\",\n    \"instanceName\": \"<string>\",\n    \"instanceTypeCode\": \"<string>\",\n    \"manuallyDecommissioned\": \"<boolean>\",\n    \"nodeName\": \"<string>\",\n    \"nodeUuid\": \"<uuid>\",\n    \"state\": \"FREE\",\n    \"zoneUuid\": \"<uuid>\"\n  },\n  \"utd0\": {\n    \"details\": {\n      \"instanceName\": \"<string>\",\n      \"instanceType\": \"<string>\",\n      \"ip\": \"<string>\",\n      \"region\": \"<string>\",\n      \"zone\": \"<string>\",\n      \"nodeName\": \"<string>\",\n      \"sshUser\": \"<string>\"\n    },\n    \"detailsJson\": \"<string>\",\n    \"inUse\": \"<boolean>\",\n    \"instanceName\": \"<string>\",\n    \"instanceTypeCode\": \"<string>\",\n    \"manuallyDecommissioned\": \"<boolean>\",\n    \"nodeName\": \"<string>\",\n    \"nodeUuid\": \"<uuid>\",\n    \"state\": \"USED\",\n    \"zoneUuid\": \"<uuid>\"\n  }\n}",
+                                      "createdAt": "2026-10-22T01:10:41.000Z",
+                                      "updatedAt": "2026-10-22T01:10:41.000Z",
+                                      "uid": "35240-6f8249d2-6d2d-490a-b599-50bd10409e0b"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:10:41.000Z",
+                                  "updatedAt": "2026-10-22T01:10:41.000Z",
+                                  "uid": "35240-988bb7b6-42a7-4aee-9558-212996ece1ba"
+                                }
+                              ],
+                              "id": "3548f89a-7c47-456b-b1d0-65d5dc0971c1",
+                              "createdAt": "2026-10-22T01:10:41.000Z",
+                              "updatedAt": "2026-10-22T01:10:41.000Z",
+                              "uid": "35240-3548f89a-7c47-456b-b1d0-65d5dc0971c1"
+                            }
+                          ],
+                          "id": "4ddff5d3-633a-4f26-abff-fb0a53628ea7",
+                          "createdAt": "2026-10-22T01:10:41.000Z",
+                          "updatedAt": "2026-10-22T01:10:41.000Z",
+                          "uid": "35240-4ddff5d3-633a-4f26-abff-fb0a53628ea7"
+                        }
+                      ],
+                      "id": "2d409334-b868-4b5a-86bb-c33cb7a0ef5b",
+                      "createdAt": "2026-10-22T01:10:41.000Z",
+                      "updatedAt": "2026-10-22T01:10:41.000Z",
+                      "uid": "35240-2d409334-b868-4b5a-86bb-c33cb7a0ef5b"
+                    }
+                  ],
+                  "id": "8e6ba29e-6abd-41eb-a033-552f770ef91a",
+                  "createdAt": "2026-10-22T01:10:41.000Z",
+                  "updatedAt": "2026-10-22T01:10:41.000Z",
+                  "uid": "35240-8e6ba29e-6abd-41eb-a033-552f770ef91a"
+                }
+              ],
+              "id": "538bb293-48d2-43b2-a16c-8812c4552e1e",
+              "createdAt": "2026-10-22T01:10:41.000Z",
+              "updatedAt": "2026-10-22T01:10:41.000Z",
+              "uid": "35240-538bb293-48d2-43b2-a16c-8812c4552e1e"
+            }
+          ],
+          "id": "f6833b82-eb97-4bc1-ae71-8435fcdeda06",
+          "createdAt": "2026-10-22T01:10:41.000Z",
+          "updatedAt": "2026-10-22T01:10:41.000Z",
+          "uid": "35240-f6833b82-eb97-4bc1-ae71-8435fcdeda06"
+        }
+      ],
+      "id": "fd87e404-18da-4057-93a3-5a445566a995",
+      "createdAt": "2026-10-22T01:10:41.000Z",
+      "updatedAt": "2026-10-22T01:10:41.000Z",
+      "uid": "35240-fd87e404-18da-4057-93a3-5a445566a995"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

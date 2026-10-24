@@ -1,0 +1,564 @@
+{
+  "info": {
+    "_postman_id": "ff6f9582-9e00-49dc-98d0-e6d8aa317e80",
+    "name": "YugabyteDB Anywhere Universe CDC Management API",
+    "description": "ALPHA - NOT FOR EXTERNAL USE\n\nContact Support:\n Name: https://docs.yugabyte.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:13:33.000Z",
+    "updatedAt": "2026-10-22T01:13:33.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ff6f9582-9e00-49dc-98d0-e6d8aa317e80"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "customers",
+              "item": [
+                {
+                  "name": "{cUUID}",
+                  "item": [
+                    {
+                      "name": "universes",
+                      "item": [
+                        {
+                          "name": "{uniUUID}",
+                          "item": [
+                            {
+                              "name": "cdc_replication_slots",
+                              "item": [
+                                {
+                                  "name": "List CDC Replication slot for a cluster",
+                                  "id": "5191f67c-0e82-476b-a9f4-f0d3b2744086",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "apikey",
+                                      "apikey": [
+                                        {
+                                          "key": "key",
+                                          "value": "X-AUTH-YW-API-TOKEN",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "value",
+                                          "value": "{{apiKey}}",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "in",
+                                          "value": "header",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "GET",
+                                    "header": [],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/cdc_replication_slots",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "universes",
+                                        ":uniUUID",
+                                        "cdc_replication_slots"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "83a020a8-c877-4ed1-b3e1-908901cd3e84",
+                                          "key": "cUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "5fb0f51a-caf5-4e88-9a14-f788f20ac2e3",
+                                          "key": "uniUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    },
+                                    "description": "WARNING: This is a preview API that could change."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "de484ffa-c2ce-417b-adc7-6aa6c0172c92",
+                                      "name": "successful operation",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "X-AUTH-YW-API-TOKEN",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/cdc_replication_slots",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "universes",
+                                            ":uniUUID",
+                                            "cdc_replication_slots"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "cUUID"
+                                            },
+                                            {
+                                              "key": "uniUUID"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Internal Server Error",
+                                      "code": 500,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-10-22T01:13:33.000Z",
+                                      "updatedAt": "2026-10-22T01:13:33.000Z",
+                                      "uid": "35240-de484ffa-c2ce-417b-adc7-6aa6c0172c92"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:13:33.000Z",
+                                  "updatedAt": "2026-10-22T01:13:33.000Z",
+                                  "uid": "35240-5191f67c-0e82-476b-a9f4-f0d3b2744086"
+                                }
+                              ],
+                              "id": "30d3d885-7c5d-40c7-aa82-30107ed9dfa2",
+                              "createdAt": "2026-10-22T01:13:33.000Z",
+                              "updatedAt": "2026-10-22T01:13:33.000Z",
+                              "uid": "35240-30d3d885-7c5d-40c7-aa82-30107ed9dfa2"
+                            },
+                            {
+                              "name": "cdc_streams",
+                              "item": [
+                                {
+                                  "name": "{streamId}",
+                                  "item": [
+                                    {
+                                      "name": "Delete a CDC stream for a cluster",
+                                      "id": "55683796-6e00-4652-bf69-f090e1ba6206",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "auth": {
+                                          "type": "apikey",
+                                          "apikey": [
+                                            {
+                                              "key": "key",
+                                              "value": "X-AUTH-YW-API-TOKEN",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "value",
+                                              "value": "{{apiKey}}",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "in",
+                                              "value": "header",
+                                              "type": "string"
+                                            }
+                                          ]
+                                        },
+                                        "method": "DELETE",
+                                        "header": [],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/cdc_streams/:streamId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "universes",
+                                            ":uniUUID",
+                                            "cdc_streams",
+                                            ":streamId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "9510d2b5-a7c3-481b-9f06-bfd971d85a67",
+                                              "key": "cUUID",
+                                              "value": "<uuid>",
+                                              "description": "(Required) "
+                                            },
+                                            {
+                                              "id": "5a58b0e9-c583-4899-a5bf-f9c9c59323f2",
+                                              "key": "uniUUID",
+                                              "value": "<uuid>",
+                                              "description": "(Required) "
+                                            },
+                                            {
+                                              "id": "1c31c797-32d8-4815-8169-9592602b0cd2",
+                                              "key": "streamId",
+                                              "value": "<string>",
+                                              "description": "(Required) "
+                                            }
+                                          ]
+                                        },
+                                        "description": "YbaApi Internal."
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "bdde171f-56a1-403d-8b14-af962769d61a",
+                                          "name": "successful operation",
+                                          "originalRequest": {
+                                            "method": "DELETE",
+                                            "header": [
+                                              {
+                                                "description": "Added as a part of security scheme: apikey",
+                                                "key": "X-AUTH-YW-API-TOKEN",
+                                                "value": "<API Key>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/cdc_streams/:streamId",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v1",
+                                                "customers",
+                                                ":cUUID",
+                                                "universes",
+                                                ":uniUUID",
+                                                "cdc_streams",
+                                                ":streamId"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "cUUID"
+                                                },
+                                                {
+                                                  "key": "uniUUID"
+                                                },
+                                                {
+                                                  "key": "streamId"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Internal Server Error",
+                                          "code": 500,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-10-22T01:13:33.000Z",
+                                          "updatedAt": "2026-10-22T01:13:33.000Z",
+                                          "uid": "35240-bdde171f-56a1-403d-8b14-af962769d61a"
+                                        }
+                                      ],
+                                      "createdAt": "2026-10-22T01:13:33.000Z",
+                                      "updatedAt": "2026-10-22T01:13:33.000Z",
+                                      "uid": "35240-55683796-6e00-4652-bf69-f090e1ba6206"
+                                    }
+                                  ],
+                                  "id": "b3bdd981-0429-477a-93f7-fda700e77230",
+                                  "createdAt": "2026-10-22T01:13:33.000Z",
+                                  "updatedAt": "2026-10-22T01:13:33.000Z",
+                                  "uid": "35240-b3bdd981-0429-477a-93f7-fda700e77230"
+                                },
+                                {
+                                  "name": "List CDC Streams for a cluster",
+                                  "id": "84f8a793-d51c-4a03-a1f2-19f0f71862fa",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "apikey",
+                                      "apikey": [
+                                        {
+                                          "key": "key",
+                                          "value": "X-AUTH-YW-API-TOKEN",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "value",
+                                          "value": "{{apiKey}}",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "in",
+                                          "value": "header",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "GET",
+                                    "header": [],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/cdc_streams",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "universes",
+                                        ":uniUUID",
+                                        "cdc_streams"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "dbbbfee5-96e2-49ab-b82c-282ad43fdafc",
+                                          "key": "cUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "b6a7b8c1-6724-462e-841c-da844c2a13e8",
+                                          "key": "uniUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    },
+                                    "description": "YbaApi Internal."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "9a59cf29-2a03-448f-bcf6-98560f50f541",
+                                      "name": "successful operation",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "X-AUTH-YW-API-TOKEN",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/cdc_streams",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "universes",
+                                            ":uniUUID",
+                                            "cdc_streams"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "cUUID"
+                                            },
+                                            {
+                                              "key": "uniUUID"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Internal Server Error",
+                                      "code": 500,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-10-22T01:13:33.000Z",
+                                      "updatedAt": "2026-10-22T01:13:33.000Z",
+                                      "uid": "35240-9a59cf29-2a03-448f-bcf6-98560f50f541"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:13:33.000Z",
+                                  "updatedAt": "2026-10-22T01:13:33.000Z",
+                                  "uid": "35240-84f8a793-d51c-4a03-a1f2-19f0f71862fa"
+                                },
+                                {
+                                  "name": "Create CDC Stream for a cluster",
+                                  "id": "cc8bf75b-a6ba-41d6-a46b-4fe9d45de876",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "apikey",
+                                      "apikey": [
+                                        {
+                                          "key": "key",
+                                          "value": "X-AUTH-YW-API-TOKEN",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "value",
+                                          "value": "{{apiKey}}",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "in",
+                                          "value": "header",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "POST",
+                                    "header": [],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/cdc_streams",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "universes",
+                                        ":uniUUID",
+                                        "cdc_streams"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "d8d8a941-2431-4cd6-88ff-2d215e5d835b",
+                                          "key": "cUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "b802b849-e637-40b3-9efd-af5fe3b3dea9",
+                                          "key": "uniUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    },
+                                    "description": "YbaApi Internal."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "593834d5-e264-4fe3-8dfb-15b29c1da4dc",
+                                      "name": "successful operation",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "X-AUTH-YW-API-TOKEN",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/cdc_streams",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "universes",
+                                            ":uniUUID",
+                                            "cdc_streams"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "cUUID"
+                                            },
+                                            {
+                                              "key": "uniUUID"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Internal Server Error",
+                                      "code": 500,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-10-22T01:13:33.000Z",
+                                      "updatedAt": "2026-10-22T01:13:33.000Z",
+                                      "uid": "35240-593834d5-e264-4fe3-8dfb-15b29c1da4dc"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:13:33.000Z",
+                                  "updatedAt": "2026-10-22T01:13:33.000Z",
+                                  "uid": "35240-cc8bf75b-a6ba-41d6-a46b-4fe9d45de876"
+                                }
+                              ],
+                              "id": "6b82c0bb-f6cc-4e83-8d9c-f7907b6fb7fb",
+                              "createdAt": "2026-10-22T01:13:33.000Z",
+                              "updatedAt": "2026-10-22T01:13:33.000Z",
+                              "uid": "35240-6b82c0bb-f6cc-4e83-8d9c-f7907b6fb7fb"
+                            }
+                          ],
+                          "id": "de5dd80a-22ed-4631-bc7e-a7d208237e77",
+                          "createdAt": "2026-10-22T01:13:33.000Z",
+                          "updatedAt": "2026-10-22T01:13:33.000Z",
+                          "uid": "35240-de5dd80a-22ed-4631-bc7e-a7d208237e77"
+                        }
+                      ],
+                      "id": "a3fa6f9a-a8a3-4dec-bbf8-59653164db4e",
+                      "createdAt": "2026-10-22T01:13:33.000Z",
+                      "updatedAt": "2026-10-22T01:13:33.000Z",
+                      "uid": "35240-a3fa6f9a-a8a3-4dec-bbf8-59653164db4e"
+                    }
+                  ],
+                  "id": "29eb2971-2cd6-4033-9077-f178d724da24",
+                  "createdAt": "2026-10-22T01:13:33.000Z",
+                  "updatedAt": "2026-10-22T01:13:33.000Z",
+                  "uid": "35240-29eb2971-2cd6-4033-9077-f178d724da24"
+                }
+              ],
+              "id": "864a7bca-7469-46ad-a52c-82f8282deddf",
+              "createdAt": "2026-10-22T01:13:33.000Z",
+              "updatedAt": "2026-10-22T01:13:33.000Z",
+              "uid": "35240-864a7bca-7469-46ad-a52c-82f8282deddf"
+            }
+          ],
+          "id": "4ac576f4-a249-45fb-bd21-8fe406a54a66",
+          "createdAt": "2026-10-22T01:13:33.000Z",
+          "updatedAt": "2026-10-22T01:13:33.000Z",
+          "uid": "35240-4ac576f4-a249-45fb-bd21-8fe406a54a66"
+        }
+      ],
+      "id": "7c6a2caf-68c5-4f91-949f-3feb5ef2664a",
+      "createdAt": "2026-10-22T01:13:33.000Z",
+      "updatedAt": "2026-10-22T01:13:33.000Z",
+      "uid": "35240-7c6a2caf-68c5-4f91-949f-3feb5ef2664a"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

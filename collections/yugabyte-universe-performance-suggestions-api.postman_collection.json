@@ -1,0 +1,482 @@
+{
+  "info": {
+    "_postman_id": "90e8b070-b940-445f-b91d-bd0dcac0c676",
+    "name": "YugabyteDB Anywhere Universe performance suggestions API",
+    "description": "ALPHA - NOT FOR EXTERNAL USE\n\nContact Support:\n Name: https://docs.yugabyte.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:14:10.000Z",
+    "updatedAt": "2026-10-22T01:14:10.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-90e8b070-b940-445f-b91d-bd0dcac0c676"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "customers",
+              "item": [
+                {
+                  "name": "{cUUID}",
+                  "item": [
+                    {
+                      "name": "universes",
+                      "item": [
+                        {
+                          "name": "{uniUUID}",
+                          "item": [
+                            {
+                              "name": "query_distribution_suggestions",
+                              "item": [
+                                {
+                                  "name": "Get query distribution improvement suggestion for a universe",
+                                  "id": "66dc356a-8e0f-4b00-8863-988a919573b2",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "apikey",
+                                      "apikey": [
+                                        {
+                                          "key": "key",
+                                          "value": "X-AUTH-YW-API-TOKEN",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "value",
+                                          "value": "{{apiKey}}",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "in",
+                                          "value": "header",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/query_distribution_suggestions",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "universes",
+                                        ":uniUUID",
+                                        "query_distribution_suggestions"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "20dbf339-5669-42a4-8e78-8987d10933df",
+                                          "key": "cUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "ccd790ce-4626-47b7-bf41-44392f0b79ed",
+                                          "key": "uniUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    },
+                                    "description": "WARNING: This is a preview API that could change."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "bdc00d43-7eaf-4e3d-b8a1-664d1dec4f02",
+                                      "name": "successful operation",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "X-AUTH-YW-API-TOKEN",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/query_distribution_suggestions",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "universes",
+                                            ":uniUUID",
+                                            "query_distribution_suggestions"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "cUUID"
+                                            },
+                                            {
+                                              "key": "uniUUID"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"adviceType\": \"<string>\",\n  \"description\": \"<string>\",\n  \"details\": [\n    {\n      \"node\": \"<string>\",\n      \"numDelete\": \"<integer>\",\n      \"numInsert\": \"<integer>\",\n      \"numSelect\": \"<integer>\",\n      \"numUpdate\": \"<integer>\"\n    },\n    {\n      \"node\": \"<string>\",\n      \"numDelete\": \"<integer>\",\n      \"numInsert\": \"<integer>\",\n      \"numSelect\": \"<integer>\",\n      \"numUpdate\": \"<integer>\"\n    }\n  ],\n  \"endTime\": \"<string>\",\n  \"startTime\": \"<string>\",\n  \"suggestion\": \"<string>\"\n}",
+                                      "createdAt": "2026-10-22T01:14:11.000Z",
+                                      "updatedAt": "2026-10-22T01:14:11.000Z",
+                                      "uid": "35240-bdc00d43-7eaf-4e3d-b8a1-664d1dec4f02"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:14:11.000Z",
+                                  "updatedAt": "2026-10-22T01:14:11.000Z",
+                                  "uid": "35240-66dc356a-8e0f-4b00-8863-988a919573b2"
+                                }
+                              ],
+                              "id": "a49d6552-b2fc-4437-98b7-c261bebb0246",
+                              "createdAt": "2026-10-22T01:14:11.000Z",
+                              "updatedAt": "2026-10-22T01:14:11.000Z",
+                              "uid": "35240-a49d6552-b2fc-4437-98b7-c261bebb0246"
+                            },
+                            {
+                              "name": "range_hash",
+                              "item": [
+                                {
+                                  "name": "Return list of hash indexes",
+                                  "id": "e412b6f7-c18a-4396-af4b-d32020e83367",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "apikey",
+                                      "apikey": [
+                                        {
+                                          "key": "key",
+                                          "value": "X-AUTH-YW-API-TOKEN",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "value",
+                                          "value": "{{apiKey}}",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "in",
+                                          "value": "header",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/range_hash",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "universes",
+                                        ":uniUUID",
+                                        "range_hash"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "0cb73017-14e8-4814-bbcb-9e0ef906ea89",
+                                          "key": "cUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "9c30c146-bbc8-4cb3-a7ee-4cb4c812c7c4",
+                                          "key": "uniUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    },
+                                    "description": "WARNING: This is a preview API that could change. Returns list of hash indexes on timestamp columns."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "a36466b2-7542-4643-9ec6-999e8b2ea6b6",
+                                      "name": "successful operation",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "X-AUTH-YW-API-TOKEN",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/range_hash",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "universes",
+                                            ":uniUUID",
+                                            "range_hash"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "cUUID"
+                                            },
+                                            {
+                                              "key": "uniUUID"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"current_database\": \"<string>\",\n  \"description\": \"<string>\",\n  \"index_command\": \"<string>\",\n  \"index_name\": \"<string>\",\n  \"table_name\": \"<string>\"\n}",
+                                      "createdAt": "2026-10-22T01:14:11.000Z",
+                                      "updatedAt": "2026-10-22T01:14:11.000Z",
+                                      "uid": "35240-a36466b2-7542-4643-9ec6-999e8b2ea6b6"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:14:11.000Z",
+                                  "updatedAt": "2026-10-22T01:14:11.000Z",
+                                  "uid": "35240-e412b6f7-c18a-4396-af4b-d32020e83367"
+                                }
+                              ],
+                              "id": "d5ca46c4-1f45-4a5e-832a-be1b44f98a6f",
+                              "createdAt": "2026-10-22T01:14:11.000Z",
+                              "updatedAt": "2026-10-22T01:14:11.000Z",
+                              "uid": "35240-d5ca46c4-1f45-4a5e-832a-be1b44f98a6f"
+                            },
+                            {
+                              "name": "unused_indexes",
+                              "item": [
+                                {
+                                  "name": "Return list of each unused index across the universe",
+                                  "id": "c500392e-48ad-4d43-a249-325f00ff0244",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "apikey",
+                                      "apikey": [
+                                        {
+                                          "key": "key",
+                                          "value": "X-AUTH-YW-API-TOKEN",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "value",
+                                          "value": "{{apiKey}}",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "in",
+                                          "value": "header",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/unused_indexes",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "universes",
+                                        ":uniUUID",
+                                        "unused_indexes"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "ae7f9673-a3a1-4f09-a9e8-92bcfcdfcde5",
+                                          "key": "cUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "0772039c-4c43-4186-922e-83752b783de1",
+                                          "key": "uniUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    },
+                                    "description": "WARNING: This is a preview API that could change. Returns list of unused indexes, along with their database and table."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "6f03ebd5-fe18-47d8-822b-43c39351bae5",
+                                      "name": "successful operation",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "X-AUTH-YW-API-TOKEN",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/unused_indexes",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "universes",
+                                            ":uniUUID",
+                                            "unused_indexes"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "cUUID"
+                                            },
+                                            {
+                                              "key": "uniUUID"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"current_database\": \"<string>\",\n  \"description\": \"<string>\",\n  \"index_command\": \"<string>\",\n  \"index_name\": \"<string>\",\n  \"table_name\": \"<string>\"\n}",
+                                      "createdAt": "2026-10-22T01:14:11.000Z",
+                                      "updatedAt": "2026-10-22T01:14:11.000Z",
+                                      "uid": "35240-6f03ebd5-fe18-47d8-822b-43c39351bae5"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:14:11.000Z",
+                                  "updatedAt": "2026-10-22T01:14:11.000Z",
+                                  "uid": "35240-c500392e-48ad-4d43-a249-325f00ff0244"
+                                }
+                              ],
+                              "id": "3f47c161-b5a7-48bb-8510-24cab27905bd",
+                              "createdAt": "2026-10-22T01:14:11.000Z",
+                              "updatedAt": "2026-10-22T01:14:11.000Z",
+                              "uid": "35240-3f47c161-b5a7-48bb-8510-24cab27905bd"
+                            }
+                          ],
+                          "id": "e5a24b68-7a76-4a60-b65f-5e09d2b0628c",
+                          "createdAt": "2026-10-22T01:14:11.000Z",
+                          "updatedAt": "2026-10-22T01:14:11.000Z",
+                          "uid": "35240-e5a24b68-7a76-4a60-b65f-5e09d2b0628c"
+                        }
+                      ],
+                      "id": "df075a60-444f-438c-a997-d192cbb44391",
+                      "createdAt": "2026-10-22T01:14:11.000Z",
+                      "updatedAt": "2026-10-22T01:14:11.000Z",
+                      "uid": "35240-df075a60-444f-438c-a997-d192cbb44391"
+                    }
+                  ],
+                  "id": "5cf8c95a-d901-4867-b06b-8469fe8a2d87",
+                  "createdAt": "2026-10-22T01:14:11.000Z",
+                  "updatedAt": "2026-10-22T01:14:11.000Z",
+                  "uid": "35240-5cf8c95a-d901-4867-b06b-8469fe8a2d87"
+                }
+              ],
+              "id": "65000bb7-d67c-4584-97db-1788f5c5adc8",
+              "createdAt": "2026-10-22T01:14:11.000Z",
+              "updatedAt": "2026-10-22T01:14:11.000Z",
+              "uid": "35240-65000bb7-d67c-4584-97db-1788f5c5adc8"
+            }
+          ],
+          "id": "9f69ed2a-73c8-4b9e-aa98-0b1796e60301",
+          "createdAt": "2026-10-22T01:14:11.000Z",
+          "updatedAt": "2026-10-22T01:14:11.000Z",
+          "uid": "35240-9f69ed2a-73c8-4b9e-aa98-0b1796e60301"
+        }
+      ],
+      "id": "8259f506-0419-4e34-b2e5-64cbfa09761f",
+      "createdAt": "2026-10-22T01:14:11.000Z",
+      "updatedAt": "2026-10-22T01:14:11.000Z",
+      "uid": "35240-8259f506-0419-4e34-b2e5-64cbfa09761f"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

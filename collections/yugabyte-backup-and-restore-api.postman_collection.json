@@ -1,0 +1,175 @@
+{
+  "info": {
+    "_postman_id": "1129b2f9-8a36-46ca-811f-85343233bfcf",
+    "name": "YugabyteDB Anywhere V2 Backup And Restore API",
+    "description": "An improved set of APIs for managing YugabyteDB Anywhere\n\nContact Support:\n Name: YugabyteDB Anywhere Support\n Email: support@yugabyte.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:06:44.000Z",
+    "updatedAt": "2026-10-22T01:06:44.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-1129b2f9-8a36-46ca-811f-85343233bfcf"
+  },
+  "item": [
+    {
+      "name": "ybc",
+      "item": [
+        {
+          "name": "gflags-metadata",
+          "item": [
+            {
+              "name": "List YBC Gflags metadata",
+              "id": "26221ff3-13b3-47b9-8ea1-b4bf5e5e73df",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "X-AUTH-YW-API-TOKEN",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/ybc/gflags-metadata",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "ybc",
+                    "gflags-metadata"
+                  ]
+                },
+                "description": "Get list of all YBC gflags and related metadata."
+              },
+              "response": [
+                {
+                  "id": "e25a840e-a51a-4f75-84c6-e46697f028e6",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-AUTH-YW-API-TOKEN",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/ybc/gflags-metadata",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "ybc",
+                        "gflags-metadata"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"name\": \"<string>\",\n    \"meaning\": \"<string>\",\n    \"default\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  {\n    \"name\": \"<string>\",\n    \"meaning\": \"<string>\",\n    \"default\": \"<string>\",\n    \"type\": \"<string>\"\n  }\n]",
+                  "createdAt": "2026-10-22T01:06:44.000Z",
+                  "updatedAt": "2026-10-22T01:06:44.000Z",
+                  "uid": "35240-e25a840e-a51a-4f75-84c6-e46697f028e6"
+                },
+                {
+                  "id": "8e84b5c1-d121-4bf3-b0f0-ddb372afea11",
+                  "name": "Not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-AUTH-YW-API-TOKEN",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/ybc/gflags-metadata",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "ybc",
+                        "gflags-metadata"
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:06:44.000Z",
+                  "updatedAt": "2026-10-22T01:06:44.000Z",
+                  "uid": "35240-8e84b5c1-d121-4bf3-b0f0-ddb372afea11"
+                }
+              ],
+              "createdAt": "2026-10-22T01:06:44.000Z",
+              "updatedAt": "2026-10-22T01:06:44.000Z",
+              "uid": "35240-26221ff3-13b3-47b9-8ea1-b4bf5e5e73df"
+            }
+          ],
+          "id": "8c057ff5-bbbb-4916-89c5-de0143b9b0aa",
+          "createdAt": "2026-10-22T01:06:44.000Z",
+          "updatedAt": "2026-10-22T01:06:44.000Z",
+          "uid": "35240-8c057ff5-bbbb-4916-89c5-de0143b9b0aa"
+        }
+      ],
+      "id": "ca27ef7a-27c1-45d1-9201-174fb8c0bb60",
+      "createdAt": "2026-10-22T01:06:44.000Z",
+      "updatedAt": "2026-10-22T01:06:44.000Z",
+      "uid": "35240-ca27ef7a-27c1-45d1-9201-174fb8c0bb60"
+    }
+  ],
+  "variable": [
+    {
+      "key": "protocol",
+      "value": "http"
+    },
+    {
+      "key": "host_port",
+      "value": "localhost:9000"
+    },
+    {
+      "key": "baseUrl",
+      "value": "{{protocol}}://{{host_port}}/api/v2"
+    }
+  ]
+}

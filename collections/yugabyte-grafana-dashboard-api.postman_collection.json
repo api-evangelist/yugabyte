@@ -1,0 +1,144 @@
+{
+  "info": {
+    "_postman_id": "3e23e983-31af-4866-b743-1e06f960ea80",
+    "name": "Yugabytedb Grafana Dashboard API",
+    "description": "Operations tagged Grafana Dashboard across 2 of this provider's published API definitions: openapi_2.yaml, platform.swagger.json. Each path carries the servers of the definition it was published in.\n\nContact Support:\n Name: https://docs.yugabyte.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:08:39.000Z",
+    "updatedAt": "2026-10-22T01:08:39.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-3e23e983-31af-4866-b743-1e06f960ea80"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "grafana_dashboard",
+              "item": [
+                {
+                  "name": "Get Grafana Dashboard",
+                  "id": "34d7c0a5-f56e-43b3-bafc-f895dbc63956",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "X-AUTH-YW-API-TOKEN",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v1/grafana_dashboard",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v1",
+                        "grafana_dashboard"
+                      ]
+                    },
+                    "description": "WARNING: This is a preview API that could change."
+                  },
+                  "response": [
+                    {
+                      "id": "8e34311a-842b-42d2-bc9d-0bd93f921220",
+                      "name": "successful operation",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-AUTH-YW-API-TOKEN",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/grafana_dashboard",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "grafana_dashboard"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "<string>",
+                      "createdAt": "2026-10-22T01:08:39.000Z",
+                      "updatedAt": "2026-10-22T01:08:39.000Z",
+                      "uid": "35240-8e34311a-842b-42d2-bc9d-0bd93f921220"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:08:39.000Z",
+                  "updatedAt": "2026-10-22T01:08:39.000Z",
+                  "uid": "35240-34d7c0a5-f56e-43b3-bafc-f895dbc63956"
+                }
+              ],
+              "id": "67dc65d8-c779-4819-bed0-9216867ea6aa",
+              "createdAt": "2026-10-22T01:08:39.000Z",
+              "updatedAt": "2026-10-22T01:08:39.000Z",
+              "uid": "35240-67dc65d8-c779-4819-bed0-9216867ea6aa"
+            }
+          ],
+          "id": "482e2c3b-ea0d-4062-9237-ba16abee11a4",
+          "createdAt": "2026-10-22T01:08:39.000Z",
+          "updatedAt": "2026-10-22T01:08:39.000Z",
+          "uid": "35240-482e2c3b-ea0d-4062-9237-ba16abee11a4"
+        }
+      ],
+      "id": "8357271c-366b-476f-a0ca-4d9e3bb23e01",
+      "createdAt": "2026-10-22T01:08:39.000Z",
+      "updatedAt": "2026-10-22T01:08:39.000Z",
+      "uid": "35240-8357271c-366b-476f-a0ca-4d9e3bb23e01"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

@@ -1,0 +1,1052 @@
+{
+  "info": {
+    "_postman_id": "cddbae09-5004-48fd-ae86-e27f2f1050a4",
+    "name": "Yugabytedb Universe database management API",
+    "description": "Operations tagged Universe database management across 2 of this provider's published API definitions: openapi_2.yaml, platform.swagger.json. Each path carries the servers of the definition it was published in.\n\nContact Support:\n Name: https://docs.yugabyte.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:13:41.000Z",
+    "updatedAt": "2026-10-22T01:13:42.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-cddbae09-5004-48fd-ae86-e27f2f1050a4"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "customers",
+              "item": [
+                {
+                  "name": "{cUUID}",
+                  "item": [
+                    {
+                      "name": "universes",
+                      "item": [
+                        {
+                          "name": "{uniUUID}",
+                          "item": [
+                            {
+                              "name": "create_db_credentials",
+                              "item": [
+                                {
+                                  "name": "Create a database user for a universe",
+                                  "id": "b1110982-22ad-4247-9408-291931d2a23d",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "apikey",
+                                      "apikey": [
+                                        {
+                                          "key": "key",
+                                          "value": "X-AUTH-YW-API-TOKEN",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "value",
+                                          "value": "{{apiKey}}",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "in",
+                                          "value": "header",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"dbName\": \"<string>\",\n  \"password\": \"<string>\",\n  \"username\": \"<string>\",\n  \"ycqlAdminPassword\": \"<string>\",\n  \"ycqlAdminUsername\": \"<string>\",\n  \"ysqlAdminPassword\": \"<string>\",\n  \"ysqlAdminUsername\": \"<string>\",\n  \"dbRoleAttributes\": [\n    {\n      \"name\": \"NOCREATEROLE\"\n    },\n    {\n      \"name\": \"NOBYPASSRLS\"\n    }\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/create_db_credentials",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "universes",
+                                        ":uniUUID",
+                                        "create_db_credentials"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "3657f18a-bb5c-4b43-af31-fb679e4ee5e8",
+                                          "key": "cUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "e1cf507f-c948-4af5-a591-74437b4bc5a7",
+                                          "key": "uniUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    },
+                                    "description": "YbaApi Internal."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "f4689605-d63f-4f28-a87a-95108e83b428",
+                                      "name": "successful operation",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "X-AUTH-YW-API-TOKEN",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"dbName\": \"<string>\",\n  \"password\": \"<string>\",\n  \"username\": \"<string>\",\n  \"ycqlAdminPassword\": \"<string>\",\n  \"ycqlAdminUsername\": \"<string>\",\n  \"ysqlAdminPassword\": \"<string>\",\n  \"ysqlAdminUsername\": \"<string>\",\n  \"dbRoleAttributes\": [\n    {\n      \"name\": \"NOCREATEROLE\"\n    },\n    {\n      \"name\": \"NOBYPASSRLS\"\n    }\n  ]\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/create_db_credentials",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "universes",
+                                            ":uniUUID",
+                                            "create_db_credentials"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "cUUID"
+                                            },
+                                            {
+                                              "key": "uniUUID"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"message\": \"<string>\",\n  \"success\": \"<boolean>\"\n}",
+                                      "createdAt": "2026-10-22T01:13:42.000Z",
+                                      "updatedAt": "2026-10-22T01:13:42.000Z",
+                                      "uid": "35240-f4689605-d63f-4f28-a87a-95108e83b428"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:13:42.000Z",
+                                  "updatedAt": "2026-10-22T01:13:42.000Z",
+                                  "uid": "35240-b1110982-22ad-4247-9408-291931d2a23d"
+                                }
+                              ],
+                              "id": "8e955dab-000d-426f-bd76-67ab80440ac7",
+                              "createdAt": "2026-10-22T01:13:42.000Z",
+                              "updatedAt": "2026-10-22T01:13:42.000Z",
+                              "uid": "35240-8e955dab-000d-426f-bd76-67ab80440ac7"
+                            },
+                            {
+                              "name": "run_query",
+                              "item": [
+                                {
+                                  "name": "Run a YSQL query in a universe",
+                                  "id": "5173a095-9dd0-4efe-8501-5d2dc1c87053",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "apikey",
+                                      "apikey": [
+                                        {
+                                          "key": "key",
+                                          "value": "X-AUTH-YW-API-TOKEN",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "value",
+                                          "value": "{{apiKey}}",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "in",
+                                          "value": "header",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"db_name\": \"<string>\",\n  \"node_name\": \"<string>\",\n  \"query\": \"<string>\",\n  \"table_type\": \"YQL_TABLE_TYPE\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/run_query",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "universes",
+                                        ":uniUUID",
+                                        "run_query"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "c451c604-7c9c-485b-8ce7-9ec9b43068b4",
+                                          "key": "cUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "fb434df5-a50a-413e-8a74-f1b495d4d090",
+                                          "key": "uniUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    },
+                                    "description": "YbaApi Internal. Runs a YSQL query. Only valid when the platform is running in `OSS` mode."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "a48937ff-a323-4140-9729-86c708ce7142",
+                                      "name": "successful operation",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "X-AUTH-YW-API-TOKEN",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"db_name\": \"<string>\",\n  \"node_name\": \"<string>\",\n  \"query\": \"<string>\",\n  \"table_type\": \"YQL_TABLE_TYPE\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/run_query",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "universes",
+                                            ":uniUUID",
+                                            "run_query"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "cUUID"
+                                            },
+                                            {
+                                              "key": "uniUUID"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{}",
+                                      "createdAt": "2026-10-22T01:13:42.000Z",
+                                      "updatedAt": "2026-10-22T01:13:42.000Z",
+                                      "uid": "35240-a48937ff-a323-4140-9729-86c708ce7142"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:13:42.000Z",
+                                  "updatedAt": "2026-10-22T01:13:42.000Z",
+                                  "uid": "35240-5173a095-9dd0-4efe-8501-5d2dc1c87053"
+                                }
+                              ],
+                              "id": "9429eb74-ba6c-44e6-90e5-32d0f6fba23d",
+                              "createdAt": "2026-10-22T01:13:42.000Z",
+                              "updatedAt": "2026-10-22T01:13:42.000Z",
+                              "uid": "35240-9429eb74-ba6c-44e6-90e5-32d0f6fba23d"
+                            },
+                            {
+                              "name": "update_db_credentials",
+                              "item": [
+                                {
+                                  "name": "Set a universe's database credentials",
+                                  "id": "4f3481dd-90f3-4173-bac3-1bb0719c4706",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "apikey",
+                                      "apikey": [
+                                        {
+                                          "key": "key",
+                                          "value": "X-AUTH-YW-API-TOKEN",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "value",
+                                          "value": "{{apiKey}}",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "in",
+                                          "value": "header",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"dbName\": \"<string>\",\n  \"ycqlAdminPassword\": \"<string>\",\n  \"ycqlAdminUsername\": \"<string>\",\n  \"ycqlCurrAdminPassword\": \"<string>\",\n  \"ysqlAdminPassword\": \"<string>\",\n  \"ysqlAdminUsername\": \"<string>\",\n  \"ysqlCurrAdminPassword\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/update_db_credentials",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "universes",
+                                        ":uniUUID",
+                                        "update_db_credentials"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "6072ba28-8d4e-420f-a24a-a9f40810f28d",
+                                          "key": "cUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "346c23bc-2c3e-4fc6-a171-9f15770ed001",
+                                          "key": "uniUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    },
+                                    "description": "YbaApi Internal."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "78877273-38ff-4a3f-8290-db9bf94a18c9",
+                                      "name": "successful operation",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "X-AUTH-YW-API-TOKEN",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"dbName\": \"<string>\",\n  \"ycqlAdminPassword\": \"<string>\",\n  \"ycqlAdminUsername\": \"<string>\",\n  \"ycqlCurrAdminPassword\": \"<string>\",\n  \"ysqlAdminPassword\": \"<string>\",\n  \"ysqlAdminUsername\": \"<string>\",\n  \"ysqlCurrAdminPassword\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/update_db_credentials",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "universes",
+                                            ":uniUUID",
+                                            "update_db_credentials"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "cUUID"
+                                            },
+                                            {
+                                              "key": "uniUUID"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"message\": \"<string>\",\n  \"success\": \"<boolean>\"\n}",
+                                      "createdAt": "2026-10-22T01:13:42.000Z",
+                                      "updatedAt": "2026-10-22T01:13:42.000Z",
+                                      "uid": "35240-78877273-38ff-4a3f-8290-db9bf94a18c9"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:13:42.000Z",
+                                  "updatedAt": "2026-10-22T01:13:42.000Z",
+                                  "uid": "35240-4f3481dd-90f3-4173-bac3-1bb0719c4706"
+                                }
+                              ],
+                              "id": "5b3deed9-e090-40c6-8ff3-e1696289d031",
+                              "createdAt": "2026-10-22T01:13:42.000Z",
+                              "updatedAt": "2026-10-22T01:13:42.000Z",
+                              "uid": "35240-5b3deed9-e090-40c6-8ff3-e1696289d031"
+                            },
+                            {
+                              "name": "run_in_shell",
+                              "item": [
+                                {
+                                  "name": "Run a shell command",
+                                  "id": "e481ec3c-6d14-45ab-8b1a-7dee4bc9bd24",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "apikey",
+                                      "apikey": [
+                                        {
+                                          "key": "key",
+                                          "value": "X-AUTH-YW-API-TOKEN",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "value",
+                                          "value": "{{apiKey}}",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "in",
+                                          "value": "header",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/run_in_shell",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "universes",
+                                        ":uniUUID",
+                                        "run_in_shell"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "a55397a1-1d78-449f-8f27-148cb82d2544",
+                                          "key": "cUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "9c6415e6-0106-4700-a6aa-4069fd7f614d",
+                                          "key": "uniUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    },
+                                    "description": "This operation is no longer supported, for security reasons."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "f8590fb6-a0d2-4815-8d2a-9885c74f8c86",
+                                      "name": "successful operation",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "X-AUTH-YW-API-TOKEN",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/run_in_shell",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "universes",
+                                            ":uniUUID",
+                                            "run_in_shell"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "cUUID"
+                                            },
+                                            {
+                                              "key": "uniUUID"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"error\": \"<string>\",\n  \"errorJson\": {},\n  \"success\": \"<boolean>\"\n}",
+                                      "createdAt": "2026-10-22T01:13:42.000Z",
+                                      "updatedAt": "2026-10-22T01:13:42.000Z",
+                                      "uid": "35240-f8590fb6-a0d2-4815-8d2a-9885c74f8c86"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:13:42.000Z",
+                                  "updatedAt": "2026-10-22T01:13:42.000Z",
+                                  "uid": "35240-e481ec3c-6d14-45ab-8b1a-7dee4bc9bd24"
+                                }
+                              ],
+                              "id": "0157e437-3a40-45d1-8971-f87e6c4be775",
+                              "createdAt": "2026-10-22T01:13:42.000Z",
+                              "updatedAt": "2026-10-22T01:13:42.000Z",
+                              "uid": "35240-0157e437-3a40-45d1-8971-f87e6c4be775"
+                            }
+                          ],
+                          "id": "6d3e5c45-0e25-4418-8f9f-2eb2108fc3d4",
+                          "createdAt": "2026-10-22T01:13:42.000Z",
+                          "updatedAt": "2026-10-22T01:13:42.000Z",
+                          "uid": "35240-6d3e5c45-0e25-4418-8f9f-2eb2108fc3d4"
+                        },
+                        {
+                          "name": "{univUUID}",
+                          "item": [
+                            {
+                              "name": "configure",
+                              "item": [
+                                {
+                                  "name": "ycql",
+                                  "item": [
+                                    {
+                                      "name": "Configure YCQL",
+                                      "id": "d2ec5116-3c36-4565-a805-4c8779e5dd5b",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "auth": {
+                                          "type": "apikey",
+                                          "apikey": [
+                                            {
+                                              "key": "key",
+                                              "value": "X-AUTH-YW-API-TOKEN",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "value",
+                                              "value": "{{apiKey}}",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "in",
+                                              "value": "header",
+                                              "type": "string"
+                                            }
+                                          ]
+                                        },
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"communicationPorts\": {\n    \"internalYsqlServerRpcPort\": \"<integer>\",\n    \"masterHttpPort\": \"<integer>\",\n    \"masterRpcPort\": \"<integer>\",\n    \"nodeExporterPort\": \"<integer>\",\n    \"otelCollectorMetricsPort\": \"<integer>\",\n    \"redisServerHttpPort\": \"<integer>\",\n    \"redisServerRpcPort\": \"<integer>\",\n    \"tserverHttpPort\": \"<integer>\",\n    \"tserverRpcPort\": \"<integer>\",\n    \"ybControllerHttpPort\": \"<integer>\",\n    \"ybControllerrRpcPort\": \"<integer>\",\n    \"yqlServerHttpPort\": \"<integer>\",\n    \"yqlServerRpcPort\": \"<integer>\",\n    \"ysqlServerHttpPort\": \"<integer>\",\n    \"ysqlServerRpcPort\": \"<integer>\"\n  },\n  \"enableYCQL\": \"<boolean>\",\n  \"enableYCQLAuth\": \"<boolean>\",\n  \"ycqlPassword\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:univUUID/configure/ycql",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "universes",
+                                            ":univUUID",
+                                            "configure",
+                                            "ycql"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "e9b669df-30ca-457b-b5a3-31c95895515c",
+                                              "key": "cUUID",
+                                              "value": "<uuid>",
+                                              "description": "(Required) "
+                                            },
+                                            {
+                                              "id": "0de67e13-95e7-4561-8cd0-4ec10a9065b3",
+                                              "key": "univUUID",
+                                              "value": "<uuid>",
+                                              "description": "(Required) "
+                                            }
+                                          ]
+                                        },
+                                        "description": "WARNING: This is a preview API that could change. Queues a task to configure ycql in a universe."
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "9901a122-a27f-45fb-a3fc-77911ea0cb2b",
+                                          "name": "successful operation",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: apikey",
+                                                "key": "X-AUTH-YW-API-TOKEN",
+                                                "value": "<API Key>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "{\n  \"communicationPorts\": {\n    \"internalYsqlServerRpcPort\": \"<integer>\",\n    \"masterHttpPort\": \"<integer>\",\n    \"masterRpcPort\": \"<integer>\",\n    \"nodeExporterPort\": \"<integer>\",\n    \"otelCollectorMetricsPort\": \"<integer>\",\n    \"redisServerHttpPort\": \"<integer>\",\n    \"redisServerRpcPort\": \"<integer>\",\n    \"tserverHttpPort\": \"<integer>\",\n    \"tserverRpcPort\": \"<integer>\",\n    \"ybControllerHttpPort\": \"<integer>\",\n    \"ybControllerrRpcPort\": \"<integer>\",\n    \"yqlServerHttpPort\": \"<integer>\",\n    \"yqlServerRpcPort\": \"<integer>\",\n    \"ysqlServerHttpPort\": \"<integer>\",\n    \"ysqlServerRpcPort\": \"<integer>\"\n  },\n  \"enableYCQL\": \"<boolean>\",\n  \"enableYCQLAuth\": \"<boolean>\",\n  \"ycqlPassword\": \"<string>\"\n}",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:univUUID/configure/ycql",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v1",
+                                                "customers",
+                                                ":cUUID",
+                                                "universes",
+                                                ":univUUID",
+                                                "configure",
+                                                "ycql"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "cUUID"
+                                                },
+                                                {
+                                                  "key": "univUUID"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"resourceUUID\": \"<uuid>\",\n  \"taskUUID\": \"<uuid>\"\n}",
+                                          "createdAt": "2026-10-22T01:13:42.000Z",
+                                          "updatedAt": "2026-10-22T01:13:42.000Z",
+                                          "uid": "35240-9901a122-a27f-45fb-a3fc-77911ea0cb2b"
+                                        }
+                                      ],
+                                      "createdAt": "2026-10-22T01:13:42.000Z",
+                                      "updatedAt": "2026-10-22T01:13:42.000Z",
+                                      "uid": "35240-d2ec5116-3c36-4565-a805-4c8779e5dd5b"
+                                    }
+                                  ],
+                                  "id": "eb408cd2-844a-40f4-94e0-105baf95b444",
+                                  "createdAt": "2026-10-22T01:13:42.000Z",
+                                  "updatedAt": "2026-10-22T01:13:42.000Z",
+                                  "uid": "35240-eb408cd2-844a-40f4-94e0-105baf95b444"
+                                },
+                                {
+                                  "name": "ysql",
+                                  "item": [
+                                    {
+                                      "name": "Configure YSQL",
+                                      "id": "2d18ac3b-cf3f-420f-b9f8-9cb01fc89d52",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "auth": {
+                                          "type": "apikey",
+                                          "apikey": [
+                                            {
+                                              "key": "key",
+                                              "value": "X-AUTH-YW-API-TOKEN",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "value",
+                                              "value": "{{apiKey}}",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "in",
+                                              "value": "header",
+                                              "type": "string"
+                                            }
+                                          ]
+                                        },
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"communicationPorts\": {\n    \"internalYsqlServerRpcPort\": \"<integer>\",\n    \"masterHttpPort\": \"<integer>\",\n    \"masterRpcPort\": \"<integer>\",\n    \"nodeExporterPort\": \"<integer>\",\n    \"otelCollectorMetricsPort\": \"<integer>\",\n    \"redisServerHttpPort\": \"<integer>\",\n    \"redisServerRpcPort\": \"<integer>\",\n    \"tserverHttpPort\": \"<integer>\",\n    \"tserverRpcPort\": \"<integer>\",\n    \"ybControllerHttpPort\": \"<integer>\",\n    \"ybControllerrRpcPort\": \"<integer>\",\n    \"yqlServerHttpPort\": \"<integer>\",\n    \"yqlServerRpcPort\": \"<integer>\",\n    \"ysqlServerHttpPort\": \"<integer>\",\n    \"ysqlServerRpcPort\": \"<integer>\"\n  },\n  \"connectionPoolingGflags\": {\n    \"voluptate9\": {\n      \"gflagGroups\": [\n        \"ENHANCED_POSTGRES_COMPATIBILITY\",\n        \"ENHANCED_POSTGRES_COMPATIBILITY\"\n      ],\n      \"inheritFromPrimary\": \"<boolean>\",\n      \"perAZ\": {\n        \"enim_716\": {\n          \"value\": {\n            \"aliqua_d\": {\n              \"consectetur_b56\": \"<string>\"\n            }\n          }\n        },\n        \"aliquip_f\": {\n          \"value\": {\n            \"sunt_7bf\": {\n              \"ullamco_be_\": \"<string>\"\n            },\n            \"sit1fc\": {\n              \"quis0d\": \"<string>\",\n              \"ex_1\": \"<string>\",\n              \"dolor818\": \"<string>\"\n            }\n          }\n        }\n      },\n      \"perProcessFlags\": {\n        \"value\": {\n          \"temporfb2\": {\n            \"ut2d\": \"<string>\",\n            \"ad_a\": \"<string>\"\n          },\n          \"inbb\": {\n            \"tempor_f8\": \"<string>\",\n            \"ullamco9\": \"<string>\",\n            \"eu6f\": \"<string>\"\n          },\n          \"enim_0\": {\n            \"qui94\": \"<string>\"\n          }\n        }\n      }\n    },\n    \"voluptate_64\": {\n      \"gflagGroups\": [\n        \"ENHANCED_POSTGRES_COMPATIBILITY\",\n        \"ENHANCED_POSTGRES_COMPATIBILITY\"\n      ],\n      \"inheritFromPrimary\": \"<boolean>\",\n      \"perAZ\": {\n        \"ea_ab\": {\n          \"value\": {\n            \"voluptate035\": {\n              \"sed6dc\": \"<string>\",\n              \"aliqua8d\": \"<string>\"\n            },\n            \"ut3f4\": {\n              \"dolore6b1\": \"<string>\",\n              \"exercitation3\": \"<string>\"\n            },\n            \"dolordf\": {\n              \"exercitation0\": \"<string>\"\n            }\n          }\n        },\n        \"aute_f\": {\n          \"value\": {\n            \"occaecat14\": {\n              \"esse08\": \"<string>\",\n              \"ut_cf\": \"<string>\"\n            },\n            \"Lorema\": {\n              \"deserunt8\": \"<string>\",\n              \"reprehenderit_fa\": \"<string>\"\n            }\n          }\n        }\n      },\n      \"perProcessFlags\": {\n        \"value\": {\n          \"sed_78\": {\n            \"aliquip_61f\": \"<string>\",\n            \"amet_bf\": \"<string>\",\n            \"Excepteur_4\": \"<string>\",\n            \"tempor1c_\": \"<string>\"\n          },\n          \"quisd\": {\n            \"aute_d\": \"<string>\"\n          }\n        }\n      }\n    },\n    \"qui0\": {\n      \"gflagGroups\": [\n        \"ENHANCED_POSTGRES_COMPATIBILITY\",\n        \"ENHANCED_POSTGRES_COMPATIBILITY\"\n      ],\n      \"inheritFromPrimary\": \"<boolean>\",\n      \"perAZ\": {\n        \"estd\": {\n          \"value\": {\n            \"mollit_33\": {\n              \"enim_4\": \"<string>\"\n            }\n          }\n        }\n      },\n      \"perProcessFlags\": {\n        \"value\": {\n          \"consectetur_2d\": {\n            \"aliquip8\": \"<string>\"\n          }\n        }\n      }\n    }\n  },\n  \"enableConnectionPooling\": \"<boolean>\",\n  \"enableYSQL\": \"<boolean>\",\n  \"enableYSQLAuth\": \"<boolean>\",\n  \"ysqlPassword\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:univUUID/configure/ysql",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "universes",
+                                            ":univUUID",
+                                            "configure",
+                                            "ysql"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "ff338b93-15a2-40f8-b321-411bfde9a27d",
+                                              "key": "cUUID",
+                                              "value": "<uuid>",
+                                              "description": "(Required) "
+                                            },
+                                            {
+                                              "id": "15f091bc-bffa-416a-9d38-6d6fd511a817",
+                                              "key": "univUUID",
+                                              "value": "<uuid>",
+                                              "description": "(Required) "
+                                            }
+                                          ]
+                                        },
+                                        "description": "WARNING: This is a preview API that could change. Queues a task to configure ysql in a universe."
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "48372dfc-701a-4dee-bf18-0ebbaf9daf96",
+                                          "name": "successful operation",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: apikey",
+                                                "key": "X-AUTH-YW-API-TOKEN",
+                                                "value": "<API Key>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "{\n  \"communicationPorts\": {\n    \"internalYsqlServerRpcPort\": \"<integer>\",\n    \"masterHttpPort\": \"<integer>\",\n    \"masterRpcPort\": \"<integer>\",\n    \"nodeExporterPort\": \"<integer>\",\n    \"otelCollectorMetricsPort\": \"<integer>\",\n    \"redisServerHttpPort\": \"<integer>\",\n    \"redisServerRpcPort\": \"<integer>\",\n    \"tserverHttpPort\": \"<integer>\",\n    \"tserverRpcPort\": \"<integer>\",\n    \"ybControllerHttpPort\": \"<integer>\",\n    \"ybControllerrRpcPort\": \"<integer>\",\n    \"yqlServerHttpPort\": \"<integer>\",\n    \"yqlServerRpcPort\": \"<integer>\",\n    \"ysqlServerHttpPort\": \"<integer>\",\n    \"ysqlServerRpcPort\": \"<integer>\"\n  },\n  \"connectionPoolingGflags\": {\n    \"voluptate9\": {\n      \"gflagGroups\": [\n        \"ENHANCED_POSTGRES_COMPATIBILITY\",\n        \"ENHANCED_POSTGRES_COMPATIBILITY\"\n      ],\n      \"inheritFromPrimary\": \"<boolean>\",\n      \"perAZ\": {\n        \"enim_716\": {\n          \"value\": {\n            \"aliqua_d\": {\n              \"consectetur_b56\": \"<string>\"\n            }\n          }\n        },\n        \"aliquip_f\": {\n          \"value\": {\n            \"sunt_7bf\": {\n              \"ullamco_be_\": \"<string>\"\n            },\n            \"sit1fc\": {\n              \"quis0d\": \"<string>\",\n              \"ex_1\": \"<string>\",\n              \"dolor818\": \"<string>\"\n            }\n          }\n        }\n      },\n      \"perProcessFlags\": {\n        \"value\": {\n          \"temporfb2\": {\n            \"ut2d\": \"<string>\",\n            \"ad_a\": \"<string>\"\n          },\n          \"inbb\": {\n            \"tempor_f8\": \"<string>\",\n            \"ullamco9\": \"<string>\",\n            \"eu6f\": \"<string>\"\n          },\n          \"enim_0\": {\n            \"qui94\": \"<string>\"\n          }\n        }\n      }\n    },\n    \"voluptate_64\": {\n      \"gflagGroups\": [\n        \"ENHANCED_POSTGRES_COMPATIBILITY\",\n        \"ENHANCED_POSTGRES_COMPATIBILITY\"\n      ],\n      \"inheritFromPrimary\": \"<boolean>\",\n      \"perAZ\": {\n        \"ea_ab\": {\n          \"value\": {\n            \"voluptate035\": {\n              \"sed6dc\": \"<string>\",\n              \"aliqua8d\": \"<string>\"\n            },\n            \"ut3f4\": {\n              \"dolore6b1\": \"<string>\",\n              \"exercitation3\": \"<string>\"\n            },\n            \"dolordf\": {\n              \"exercitation0\": \"<string>\"\n            }\n          }\n        },\n        \"aute_f\": {\n          \"value\": {\n            \"occaecat14\": {\n              \"esse08\": \"<string>\",\n              \"ut_cf\": \"<string>\"\n            },\n            \"Lorema\": {\n              \"deserunt8\": \"<string>\",\n              \"reprehenderit_fa\": \"<string>\"\n            }\n          }\n        }\n      },\n      \"perProcessFlags\": {\n        \"value\": {\n          \"sed_78\": {\n            \"aliquip_61f\": \"<string>\",\n            \"amet_bf\": \"<string>\",\n            \"Excepteur_4\": \"<string>\",\n            \"tempor1c_\": \"<string>\"\n          },\n          \"quisd\": {\n            \"aute_d\": \"<string>\"\n          }\n        }\n      }\n    },\n    \"qui0\": {\n      \"gflagGroups\": [\n        \"ENHANCED_POSTGRES_COMPATIBILITY\",\n        \"ENHANCED_POSTGRES_COMPATIBILITY\"\n      ],\n      \"inheritFromPrimary\": \"<boolean>\",\n      \"perAZ\": {\n        \"estd\": {\n          \"value\": {\n            \"mollit_33\": {\n              \"enim_4\": \"<string>\"\n            }\n          }\n        }\n      },\n      \"perProcessFlags\": {\n        \"value\": {\n          \"consectetur_2d\": {\n            \"aliquip8\": \"<string>\"\n          }\n        }\n      }\n    }\n  },\n  \"enableConnectionPooling\": \"<boolean>\",\n  \"enableYSQL\": \"<boolean>\",\n  \"enableYSQLAuth\": \"<boolean>\",\n  \"ysqlPassword\": \"<string>\"\n}",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:univUUID/configure/ysql",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v1",
+                                                "customers",
+                                                ":cUUID",
+                                                "universes",
+                                                ":univUUID",
+                                                "configure",
+                                                "ysql"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "cUUID"
+                                                },
+                                                {
+                                                  "key": "univUUID"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"resourceUUID\": \"<uuid>\",\n  \"taskUUID\": \"<uuid>\"\n}",
+                                          "createdAt": "2026-10-22T01:13:42.000Z",
+                                          "updatedAt": "2026-10-22T01:13:42.000Z",
+                                          "uid": "35240-48372dfc-701a-4dee-bf18-0ebbaf9daf96"
+                                        }
+                                      ],
+                                      "createdAt": "2026-10-22T01:13:42.000Z",
+                                      "updatedAt": "2026-10-22T01:13:42.000Z",
+                                      "uid": "35240-2d18ac3b-cf3f-420f-b9f8-9cb01fc89d52"
+                                    }
+                                  ],
+                                  "id": "aef870ca-f856-4726-94dc-9b854dbe01b2",
+                                  "createdAt": "2026-10-22T01:13:42.000Z",
+                                  "updatedAt": "2026-10-22T01:13:42.000Z",
+                                  "uid": "35240-aef870ca-f856-4726-94dc-9b854dbe01b2"
+                                }
+                              ],
+                              "id": "c3356bf2-db8e-4d67-a8c2-199fd2c053bd",
+                              "createdAt": "2026-10-22T01:13:42.000Z",
+                              "updatedAt": "2026-10-22T01:13:42.000Z",
+                              "uid": "35240-c3356bf2-db8e-4d67-a8c2-199fd2c053bd"
+                            }
+                          ],
+                          "id": "2f49920b-adde-48ff-832d-1b4e368e17eb",
+                          "createdAt": "2026-10-22T01:13:42.000Z",
+                          "updatedAt": "2026-10-22T01:13:42.000Z",
+                          "uid": "35240-2f49920b-adde-48ff-832d-1b4e368e17eb"
+                        }
+                      ],
+                      "id": "28a3f7d9-1a4a-4424-ac97-72384c906df6",
+                      "createdAt": "2026-10-22T01:13:42.000Z",
+                      "updatedAt": "2026-10-22T01:13:42.000Z",
+                      "uid": "35240-28a3f7d9-1a4a-4424-ac97-72384c906df6"
+                    }
+                  ],
+                  "id": "a5fbb790-c48e-4565-a539-484296b5d876",
+                  "createdAt": "2026-10-22T01:13:42.000Z",
+                  "updatedAt": "2026-10-22T01:13:42.000Z",
+                  "uid": "35240-a5fbb790-c48e-4565-a539-484296b5d876"
+                }
+              ],
+              "id": "e6f2b1e1-1aae-4712-8de9-10901a0d611b",
+              "createdAt": "2026-10-22T01:13:42.000Z",
+              "updatedAt": "2026-10-22T01:13:42.000Z",
+              "uid": "35240-e6f2b1e1-1aae-4712-8de9-10901a0d611b"
+            }
+          ],
+          "id": "240577d9-456a-4b55-86ce-bd9dbcd5c919",
+          "createdAt": "2026-10-22T01:13:42.000Z",
+          "updatedAt": "2026-10-22T01:13:42.000Z",
+          "uid": "35240-240577d9-456a-4b55-86ce-bd9dbcd5c919"
+        }
+      ],
+      "id": "2c6c3a5c-59d4-43b2-aef9-0f0158a5db51",
+      "createdAt": "2026-10-22T01:13:42.000Z",
+      "updatedAt": "2026-10-22T01:13:42.000Z",
+      "uid": "35240-2c6c3a5c-59d4-43b2-aef9-0f0158a5db51"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

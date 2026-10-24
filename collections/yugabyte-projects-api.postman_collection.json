@@ -1,0 +1,196 @@
+{
+  "info": {
+    "_postman_id": "f66e0de0-f02c-418b-969b-246bcc11eb03",
+    "name": "YugabyteDB Aeon REST Projects API",
+    "description": "The YugabyteDB Aeon REST API provides programmatic access to YugabyteDB's fully managed cloud database service.\n\nContact Support:\n Name: Yugabyte Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:11:34.000Z",
+    "updatedAt": "2026-10-22T01:11:35.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f66e0de0-f02c-418b-969b-246bcc11eb03"
+  },
+  "item": [
+    {
+      "name": "accounts",
+      "item": [
+        {
+          "name": "{accountId}",
+          "item": [
+            {
+              "name": "projects",
+              "item": [
+                {
+                  "name": "YugabyteDB Aeon List Projects",
+                  "id": "227e222a-2b7c-4539-80ed-e78e30eef552",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/:accountId/projects",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        ":accountId",
+                        "projects"
+                      ],
+                      "variable": [
+                        {
+                          "id": "31549110-8ed9-4ed5-9ef7-35090b8ba6b8",
+                          "key": "accountId",
+                          "value": "<uuid>",
+                          "description": "(Required) The unique identifier of the YugabyteDB Aeon account."
+                        }
+                      ]
+                    },
+                    "description": "Returns all projects within the specified account. Projects group clusters and resources for organizational or billing purposes."
+                  },
+                  "response": [
+                    {
+                      "id": "14f338ee-88fe-4310-8f0e-5122e567cfa9",
+                      "name": "List of projects returned successfully",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/projects",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "projects"
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": [\n    {\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"account_id\": \"<uuid>\",\n      \"created_at\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"account_id\": \"<uuid>\",\n      \"created_at\": \"<dateTime>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-22T01:11:35.000Z",
+                      "updatedAt": "2026-10-22T01:11:35.000Z",
+                      "uid": "35240-14f338ee-88fe-4310-8f0e-5122e567cfa9"
+                    },
+                    {
+                      "id": "642bc432-ba2a-469b-b56b-f08384b2b4e0",
+                      "name": "The API key is missing, invalid, or expired.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/projects",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "projects"
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"status\": \"<integer>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:11:35.000Z",
+                      "updatedAt": "2026-10-22T01:11:35.000Z",
+                      "uid": "35240-642bc432-ba2a-469b-b56b-f08384b2b4e0"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:11:35.000Z",
+                  "updatedAt": "2026-10-22T01:11:35.000Z",
+                  "uid": "35240-227e222a-2b7c-4539-80ed-e78e30eef552"
+                }
+              ],
+              "id": "db2b8aa3-4bb2-4eb6-a990-4cc20c239ff0",
+              "createdAt": "2026-10-22T01:11:35.000Z",
+              "updatedAt": "2026-10-22T01:11:35.000Z",
+              "uid": "35240-db2b8aa3-4bb2-4eb6-a990-4cc20c239ff0"
+            }
+          ],
+          "id": "ebda777f-6fe0-4976-a348-6d269a750f5e",
+          "createdAt": "2026-10-22T01:11:35.000Z",
+          "updatedAt": "2026-10-22T01:11:35.000Z",
+          "uid": "35240-ebda777f-6fe0-4976-a348-6d269a750f5e"
+        }
+      ],
+      "id": "60e6f65d-d21c-4bd2-b699-fb6bd7a5fcfe",
+      "createdAt": "2026-10-22T01:11:35.000Z",
+      "updatedAt": "2026-10-22T01:11:35.000Z",
+      "uid": "35240-60e6f65d-d21c-4bd2-b699-fb6bd7a5fcfe"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://cloud.yugabyte.com/api/public/v1"
+    }
+  ]
+}

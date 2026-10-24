@@ -1,0 +1,903 @@
+{
+  "info": {
+    "_postman_id": "728d1878-1ced-4648-9f69-b65f7b2d5177",
+    "name": "Yugabytedb Release management API",
+    "description": "Operations tagged Release management across 2 of this provider's published API definitions: openapi_2.yaml, platform.swagger.json. Each path carries the servers of the definition it was published in.\n\nContact Support:\n Name: https://docs.yugabyte.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:11:57.000Z",
+    "updatedAt": "2026-10-22T01:11:58.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-728d1878-1ced-4648-9f69-b65f7b2d5177"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "customers",
+              "item": [
+                {
+                  "name": "{cUUID}",
+                  "item": [
+                    {
+                      "name": "providers",
+                      "item": [
+                        {
+                          "name": "{pUUID}",
+                          "item": [
+                            {
+                              "name": "releases",
+                              "item": [
+                                {
+                                  "name": "List releases by provider - deprecated",
+                                  "id": "ae370354-68b7-49b7-b497-5a7837e35d98",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "apikey",
+                                      "apikey": [
+                                        {
+                                          "key": "key",
+                                          "value": "X-AUTH-YW-API-TOKEN",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "value",
+                                          "value": "{{apiKey}}",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "in",
+                                          "value": "header",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/providers/:pUUID/releases?includeMetadata=false",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "providers",
+                                        ":pUUID",
+                                        "releases"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "includeMetadata",
+                                          "value": "false"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "b054e6cd-fd6b-45e8-b032-cd16afa83408",
+                                          "key": "cUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "cabf3130-c597-4334-9972-bf30e0fa64ff",
+                                          "key": "pUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    },
+                                    "description": "Deprecated since YBA version 2.20.0.0.\nUse /api/v1/customers/{cUUID}/releases/:arch instead"
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "fdf42840-a82d-4598-a9cc-7f4243eb1a30",
+                                      "name": "successful operation",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "X-AUTH-YW-API-TOKEN",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/providers/:pUUID/releases?includeMetadata=false",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "providers",
+                                            ":pUUID",
+                                            "releases"
+                                          ],
+                                          "query": [
+                                            {
+                                              "key": "includeMetadata",
+                                              "value": "false"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "cUUID"
+                                            },
+                                            {
+                                              "key": "pUUID"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"laborumc8\": {},\n  \"est_60\": {}\n}",
+                                      "createdAt": "2026-10-22T01:11:58.000Z",
+                                      "updatedAt": "2026-10-22T01:11:58.000Z",
+                                      "uid": "35240-fdf42840-a82d-4598-a9cc-7f4243eb1a30"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:11:58.000Z",
+                                  "updatedAt": "2026-10-22T01:11:58.000Z",
+                                  "uid": "35240-ae370354-68b7-49b7-b497-5a7837e35d98"
+                                }
+                              ],
+                              "id": "019f4a93-7f75-4092-baad-dfd7aa0ebbcd",
+                              "createdAt": "2026-10-22T01:11:58.000Z",
+                              "updatedAt": "2026-10-22T01:11:58.000Z",
+                              "uid": "35240-019f4a93-7f75-4092-baad-dfd7aa0ebbcd"
+                            }
+                          ],
+                          "id": "7e1575a5-0c1a-4fb3-97a3-aeb915736a8a",
+                          "createdAt": "2026-10-22T01:11:58.000Z",
+                          "updatedAt": "2026-10-22T01:11:58.000Z",
+                          "uid": "35240-7e1575a5-0c1a-4fb3-97a3-aeb915736a8a"
+                        }
+                      ],
+                      "id": "ddcfbc76-8339-43a4-a799-856a4e3046b7",
+                      "createdAt": "2026-10-22T01:11:58.000Z",
+                      "updatedAt": "2026-10-22T01:11:58.000Z",
+                      "uid": "35240-ddcfbc76-8339-43a4-a799-856a4e3046b7"
+                    },
+                    {
+                      "name": "releases",
+                      "item": [
+                        {
+                          "name": "{name}",
+                          "item": [
+                            {
+                              "name": "Deprecated: sinceVersion: 2024.1",
+                              "id": "42842b40-99e2-4d99-af25-ee093756ac35",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "apikey",
+                                  "apikey": [
+                                    {
+                                      "key": "key",
+                                      "value": "X-AUTH-YW-API-TOKEN",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "value",
+                                      "value": "{{apiKey}}",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "in",
+                                      "value": "header",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/releases/:name",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "releases",
+                                    ":name"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "2d3d7695-cb45-4602-b1c3-38ccd3098f1a",
+                                      "key": "cUUID",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    },
+                                    {
+                                      "id": "d7f5b312-64df-41c8-8ffd-8da54f1bfa08",
+                                      "key": "name",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                }
+                              },
+                              "response": [
+                                {
+                                  "id": "f18d4506-74f6-4c4a-8d36-a5e9fb2ffb5f",
+                                  "name": "successful operation",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-AUTH-YW-API-TOKEN",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/releases/:name",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "releases",
+                                        ":name"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "cUUID"
+                                        },
+                                        {
+                                          "key": "name"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"chartPath\": \"<string>\",\n  \"filePath\": \"<string>\",\n  \"gcs\": {\n    \"paths\": {\n      \"helmChart\": \"<string>\",\n      \"helmChartChecksum\": \"<string>\",\n      \"x86_64\": \"<string>\",\n      \"x86_64_checksum\": \"<string>\"\n    }\n  },\n  \"http\": {\n    \"paths\": {\n      \"helmChart\": \"<string>\",\n      \"helmChartChecksum\": \"<string>\",\n      \"x86_64\": \"<string>\",\n      \"x86_64_checksum\": \"<string>\"\n    }\n  },\n  \"imageTag\": \"<string>\",\n  \"notes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"packages\": [\n    {\n      \"arch\": \"x86_64\",\n      \"path\": \"<string>\"\n    },\n    {\n      \"arch\": \"aarch64\",\n      \"path\": \"<string>\"\n    }\n  ],\n  \"s3\": {\n    \"paths\": {\n      \"helmChart\": \"<string>\",\n      \"helmChartChecksum\": \"<string>\",\n      \"x86_64\": \"<string>\",\n      \"x86_64_checksum\": \"<string>\"\n    }\n  },\n  \"state\": \"DISABLED\"\n}",
+                                  "createdAt": "2026-10-22T01:11:58.000Z",
+                                  "updatedAt": "2026-10-22T01:11:58.000Z",
+                                  "uid": "35240-f18d4506-74f6-4c4a-8d36-a5e9fb2ffb5f"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T01:11:58.000Z",
+                              "updatedAt": "2026-10-22T01:11:58.000Z",
+                              "uid": "35240-42842b40-99e2-4d99-af25-ee093756ac35"
+                            },
+                            {
+                              "name": "Deprecated: sinceVersion: 2024.1",
+                              "id": "4758d198-34ab-4733-b25a-ded0afbad0dd",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "apikey",
+                                  "apikey": [
+                                    {
+                                      "key": "key",
+                                      "value": "X-AUTH-YW-API-TOKEN",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "value",
+                                      "value": "{{apiKey}}",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "in",
+                                      "value": "header",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/releases/:name",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "releases",
+                                    ":name"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "3f12c168-7884-45ac-9aef-194898435a14",
+                                      "key": "cUUID",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    },
+                                    {
+                                      "id": "9ba065d2-7a51-4006-9126-4aaa18efa592",
+                                      "key": "name",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                }
+                              },
+                              "response": [
+                                {
+                                  "id": "449c42a0-e5ad-4bac-a7d9-dca84bd55fa0",
+                                  "name": "successful operation",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-AUTH-YW-API-TOKEN",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/releases/:name",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "releases",
+                                        ":name"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "cUUID"
+                                        },
+                                        {
+                                          "key": "name"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"chartPath\": \"<string>\",\n  \"filePath\": \"<string>\",\n  \"gcs\": {\n    \"paths\": {\n      \"helmChart\": \"<string>\",\n      \"helmChartChecksum\": \"<string>\",\n      \"x86_64\": \"<string>\",\n      \"x86_64_checksum\": \"<string>\"\n    }\n  },\n  \"http\": {\n    \"paths\": {\n      \"helmChart\": \"<string>\",\n      \"helmChartChecksum\": \"<string>\",\n      \"x86_64\": \"<string>\",\n      \"x86_64_checksum\": \"<string>\"\n    }\n  },\n  \"imageTag\": \"<string>\",\n  \"notes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"packages\": [\n    {\n      \"arch\": \"x86_64\",\n      \"path\": \"<string>\"\n    },\n    {\n      \"arch\": \"aarch64\",\n      \"path\": \"<string>\"\n    }\n  ],\n  \"s3\": {\n    \"paths\": {\n      \"helmChart\": \"<string>\",\n      \"helmChartChecksum\": \"<string>\",\n      \"x86_64\": \"<string>\",\n      \"x86_64_checksum\": \"<string>\"\n    }\n  },\n  \"state\": \"DISABLED\"\n}",
+                                  "createdAt": "2026-10-22T01:11:58.000Z",
+                                  "updatedAt": "2026-10-22T01:11:58.000Z",
+                                  "uid": "35240-449c42a0-e5ad-4bac-a7d9-dca84bd55fa0"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T01:11:58.000Z",
+                              "updatedAt": "2026-10-22T01:11:58.000Z",
+                              "uid": "35240-4758d198-34ab-4733-b25a-ded0afbad0dd"
+                            }
+                          ],
+                          "id": "4b7279fc-6df3-4e75-8c1b-49c9d10cfb00",
+                          "createdAt": "2026-10-22T01:11:58.000Z",
+                          "updatedAt": "2026-10-22T01:11:58.000Z",
+                          "uid": "35240-4b7279fc-6df3-4e75-8c1b-49c9d10cfb00"
+                        },
+                        {
+                          "name": "Deprecated: sinceVersion: 2024.1",
+                          "id": "8e3e1e9e-d414-4726-bda4-d071e05ac622",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "apikey",
+                              "apikey": [
+                                {
+                                  "key": "key",
+                                  "value": "X-AUTH-YW-API-TOKEN",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "value",
+                                  "value": "{{apiKey}}",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "in",
+                                  "value": "header",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/customers/:cUUID/releases?includeMetadata=false&arch=null",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "customers",
+                                ":cUUID",
+                                "releases"
+                              ],
+                              "query": [
+                                {
+                                  "key": "includeMetadata",
+                                  "value": "false"
+                                },
+                                {
+                                  "key": "arch",
+                                  "value": "null"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "d4d9b1d6-54f2-48d7-ac9a-ca88d7d7855b",
+                                  "key": "cUUID",
+                                  "value": "<uuid>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "0a3a8773-7444-414d-aeee-05f2fc277478",
+                              "name": "successful operation",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-AUTH-YW-API-TOKEN",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/releases?includeMetadata=false&arch=null",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "releases"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "includeMetadata",
+                                      "value": "false"
+                                    },
+                                    {
+                                      "key": "arch",
+                                      "value": "null"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "cUUID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"laborumc8\": {},\n  \"est_60\": {}\n}",
+                              "createdAt": "2026-10-22T01:11:58.000Z",
+                              "updatedAt": "2026-10-22T01:11:58.000Z",
+                              "uid": "35240-0a3a8773-7444-414d-aeee-05f2fc277478"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T01:11:58.000Z",
+                          "updatedAt": "2026-10-22T01:11:58.000Z",
+                          "uid": "35240-8e3e1e9e-d414-4726-bda4-d071e05ac622"
+                        },
+                        {
+                          "name": "Deprecated: sinceVersion 2024.1",
+                          "id": "1682d3d1-4655-4c65-b44e-9f60703f71b8",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "apikey",
+                              "apikey": [
+                                {
+                                  "key": "key",
+                                  "value": "X-AUTH-YW-API-TOKEN",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "value",
+                                  "value": "{{apiKey}}",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "in",
+                                  "value": "header",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"gcs\": {\n    \"paths\": {\n      \"helmChart\": \"<string>\",\n      \"helmChartChecksum\": \"<string>\",\n      \"x86_64\": \"<string>\",\n      \"x86_64_checksum\": \"<string>\"\n    }\n  },\n  \"http\": {\n    \"paths\": {\n      \"helmChart\": \"<string>\",\n      \"helmChartChecksum\": \"<string>\",\n      \"x86_64\": \"<string>\",\n      \"x86_64_checksum\": \"<string>\"\n    }\n  },\n  \"s3\": {\n    \"paths\": {\n      \"helmChart\": \"<string>\",\n      \"helmChartChecksum\": \"<string>\",\n      \"x86_64\": \"<string>\",\n      \"x86_64_checksum\": \"<string>\"\n    }\n  },\n  \"version\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/customers/:cUUID/releases",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "customers",
+                                ":cUUID",
+                                "releases"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "df80d22d-e143-4032-848a-444232e36f44",
+                                  "key": "cUUID",
+                                  "value": "<uuid>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "3a361844-0a2c-470f-9f50-74da630925d3",
+                              "name": "successful operation",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-AUTH-YW-API-TOKEN",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"gcs\": {\n    \"paths\": {\n      \"helmChart\": \"<string>\",\n      \"helmChartChecksum\": \"<string>\",\n      \"x86_64\": \"<string>\",\n      \"x86_64_checksum\": \"<string>\"\n    }\n  },\n  \"http\": {\n    \"paths\": {\n      \"helmChart\": \"<string>\",\n      \"helmChartChecksum\": \"<string>\",\n      \"x86_64\": \"<string>\",\n      \"x86_64_checksum\": \"<string>\"\n    }\n  },\n  \"s3\": {\n    \"paths\": {\n      \"helmChart\": \"<string>\",\n      \"helmChartChecksum\": \"<string>\",\n      \"x86_64\": \"<string>\",\n      \"x86_64_checksum\": \"<string>\"\n    }\n  },\n  \"version\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/releases",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "releases"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "cUUID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"success\": \"<boolean>\"\n}",
+                              "createdAt": "2026-10-22T01:11:58.000Z",
+                              "updatedAt": "2026-10-22T01:11:58.000Z",
+                              "uid": "35240-3a361844-0a2c-470f-9f50-74da630925d3"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T01:11:58.000Z",
+                          "updatedAt": "2026-10-22T01:11:58.000Z",
+                          "uid": "35240-1682d3d1-4655-4c65-b44e-9f60703f71b8"
+                        },
+                        {
+                          "name": "Refresh a release",
+                          "id": "5610ee4f-a90f-403f-a1b2-a8cb01fe2a8d",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "apikey",
+                              "apikey": [
+                                {
+                                  "key": "key",
+                                  "value": "X-AUTH-YW-API-TOKEN",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "value",
+                                  "value": "{{apiKey}}",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "in",
+                                  "value": "header",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/customers/:cUUID/releases",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "customers",
+                                ":cUUID",
+                                "releases"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "84262005-f1cd-4cdd-b367-91989f125ea3",
+                                  "key": "cUUID",
+                                  "value": "<uuid>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "915a22f7-c09e-4f70-854e-cd837d756279",
+                              "name": "successful operation",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-AUTH-YW-API-TOKEN",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/releases",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "releases"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "cUUID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"success\": \"<boolean>\"\n}",
+                              "createdAt": "2026-10-22T01:11:58.000Z",
+                              "updatedAt": "2026-10-22T01:11:58.000Z",
+                              "uid": "35240-915a22f7-c09e-4f70-854e-cd837d756279"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T01:11:58.000Z",
+                          "updatedAt": "2026-10-22T01:11:58.000Z",
+                          "uid": "35240-5610ee4f-a90f-403f-a1b2-a8cb01fe2a8d"
+                        }
+                      ],
+                      "id": "5e765ec8-e831-4380-9f61-51ba6e8920cb",
+                      "createdAt": "2026-10-22T01:11:58.000Z",
+                      "updatedAt": "2026-10-22T01:11:58.000Z",
+                      "uid": "35240-5e765ec8-e831-4380-9f61-51ba6e8920cb"
+                    }
+                  ],
+                  "id": "a76d31dc-5304-45d4-b735-2443befabca6",
+                  "createdAt": "2026-10-22T01:11:58.000Z",
+                  "updatedAt": "2026-10-22T01:11:58.000Z",
+                  "uid": "35240-a76d31dc-5304-45d4-b735-2443befabca6"
+                }
+              ],
+              "id": "dc299825-5b1b-4ab1-a4b4-d2ff9ed88584",
+              "createdAt": "2026-10-22T01:11:58.000Z",
+              "updatedAt": "2026-10-22T01:11:58.000Z",
+              "uid": "35240-dc299825-5b1b-4ab1-a4b4-d2ff9ed88584"
+            }
+          ],
+          "id": "2271c6fb-f0cb-47f3-8c59-71fdcb623907",
+          "createdAt": "2026-10-22T01:11:58.000Z",
+          "updatedAt": "2026-10-22T01:11:58.000Z",
+          "uid": "35240-2271c6fb-f0cb-47f3-8c59-71fdcb623907"
+        }
+      ],
+      "id": "add10008-8cf9-477e-be85-8121b0554229",
+      "createdAt": "2026-10-22T01:11:58.000Z",
+      "updatedAt": "2026-10-22T01:11:58.000Z",
+      "uid": "35240-add10008-8cf9-477e-be85-8121b0554229"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

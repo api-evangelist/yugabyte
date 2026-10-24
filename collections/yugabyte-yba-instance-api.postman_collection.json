@@ -1,0 +1,196 @@
+{
+  "info": {
+    "_postman_id": "47b5c5c2-b030-46a9-9575-c8523578a2fd",
+    "name": "YugabyteDB Anywhere V2 YBA Instance API",
+    "description": "An improved set of APIs for managing YugabyteDB Anywhere\n\nContact Support:\n Name: YugabyteDB Anywhere Support\n Email: support@yugabyte.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:15:06.000Z",
+    "updatedAt": "2026-10-22T01:15:06.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-47b5c5c2-b030-46a9-9575-c8523578a2fd"
+  },
+  "item": [
+    {
+      "name": "yba-info",
+      "item": [
+        {
+          "name": "Get YBAInstance info",
+          "id": "80cb8344-85fa-4a8e-a921-8b3cccd8d235",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-AUTH-YW-API-TOKEN",
+                  "type": "string"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "in",
+                  "value": "header",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/yba-info",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "yba-info"
+              ]
+            },
+            "description": "Get YBA Instance info"
+          },
+          "response": [
+            {
+              "id": "22106e9b-c8f6-4eda-80db-f0e1dcaf3207",
+              "name": "YBA Info",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-AUTH-YW-API-TOKEN",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/yba-info",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "yba-info"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"fips_enabled\": \"<boolean>\"\n}",
+              "createdAt": "2026-10-22T01:15:07.000Z",
+              "updatedAt": "2026-10-22T01:15:07.000Z",
+              "uid": "35240-22106e9b-c8f6-4eda-80db-f0e1dcaf3207"
+            },
+            {
+              "id": "7a8ecf1f-d8f0-46d2-a7c2-54402ac5eaa5",
+              "name": "Client Error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-AUTH-YW-API-TOKEN",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/yba-info",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "yba-info"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T01:15:07.000Z",
+              "updatedAt": "2026-10-22T01:15:07.000Z",
+              "uid": "35240-7a8ecf1f-d8f0-46d2-a7c2-54402ac5eaa5"
+            },
+            {
+              "id": "86f54e92-a2b8-45fc-aa15-95524642598c",
+              "name": "Server Error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-AUTH-YW-API-TOKEN",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/yba-info",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "yba-info"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T01:15:07.000Z",
+              "updatedAt": "2026-10-22T01:15:07.000Z",
+              "uid": "35240-86f54e92-a2b8-45fc-aa15-95524642598c"
+            }
+          ],
+          "createdAt": "2026-10-22T01:15:07.000Z",
+          "updatedAt": "2026-10-22T01:15:07.000Z",
+          "uid": "35240-80cb8344-85fa-4a8e-a921-8b3cccd8d235"
+        }
+      ],
+      "id": "62d7f87d-39a7-4bad-8a46-3370dc665ff4",
+      "createdAt": "2026-10-22T01:15:07.000Z",
+      "updatedAt": "2026-10-22T01:15:07.000Z",
+      "uid": "35240-62d7f87d-39a7-4bad-8a46-3370dc665ff4"
+    }
+  ],
+  "variable": [
+    {
+      "key": "protocol",
+      "value": "http"
+    },
+    {
+      "key": "host_port",
+      "value": "localhost:9000"
+    },
+    {
+      "key": "baseUrl",
+      "value": "{{protocol}}://{{host_port}}/api/v2"
+    }
+  ]
+}

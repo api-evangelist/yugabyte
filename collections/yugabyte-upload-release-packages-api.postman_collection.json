@@ -1,0 +1,326 @@
+{
+  "info": {
+    "_postman_id": "3825c415-2bb8-4112-8529-d4b63b5a3226",
+    "name": "YugabyteDB Anywhere Upload Release packages API",
+    "description": "ALPHA - NOT FOR EXTERNAL USE\n\nContact Support:\n Name: https://docs.yugabyte.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:14:46.000Z",
+    "updatedAt": "2026-10-22T01:14:46.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-3825c415-2bb8-4112-8529-d4b63b5a3226"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "customers",
+              "item": [
+                {
+                  "name": "{cUUID}",
+                  "item": [
+                    {
+                      "name": "ybdb_release",
+                      "item": [
+                        {
+                          "name": "upload",
+                          "item": [
+                            {
+                              "name": "{rUUID}",
+                              "item": [
+                                {
+                                  "name": "get an uploaded release metadata",
+                                  "id": "ded6e98f-8249-4d96-b058-0f639fa3f11e",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "apikey",
+                                      "apikey": [
+                                        {
+                                          "key": "key",
+                                          "value": "X-AUTH-YW-API-TOKEN",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "value",
+                                          "value": "{{apiKey}}",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "in",
+                                          "value": "header",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/ybdb_release/upload/:rUUID",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "ybdb_release",
+                                        "upload",
+                                        ":rUUID"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "bbf1ef49-7541-4551-95b9-a3f8f2ccddea",
+                                          "key": "cUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "5ebccc64-0f4b-48bf-92ce-d7d75b86d20f",
+                                          "key": "rUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    },
+                                    "description": "WARNING: This is a preview API that could change: get uploaded release metadata"
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "e4057b64-b03b-415d-be36-b371ba4566ae",
+                                      "name": "successful operation",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "X-AUTH-YW-API-TOKEN",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/ybdb_release/upload/:rUUID",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "ybdb_release",
+                                            "upload",
+                                            ":rUUID"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "cUUID"
+                                            },
+                                            {
+                                              "key": "rUUID"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"architecture\": \"aarch64\",\n  \"metadata_uuid\": \"<uuid>\",\n  \"platform\": \"LINUX\",\n  \"release_date_msecs\": \"<long>\",\n  \"release_notes\": \"<string>\",\n  \"release_type\": \"<string>\",\n  \"sha256\": \"<string>\",\n  \"status\": \"running\",\n  \"version\": \"<string>\",\n  \"yb_type\": \"YBDB\"\n}",
+                                      "createdAt": "2026-10-22T01:14:47.000Z",
+                                      "updatedAt": "2026-10-22T01:14:47.000Z",
+                                      "uid": "35240-e4057b64-b03b-415d-be36-b371ba4566ae"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:14:47.000Z",
+                                  "updatedAt": "2026-10-22T01:14:47.000Z",
+                                  "uid": "35240-ded6e98f-8249-4d96-b058-0f639fa3f11e"
+                                }
+                              ],
+                              "id": "6beef6ea-2602-4d22-b47d-f9ec3f37ce2a",
+                              "createdAt": "2026-10-22T01:14:47.000Z",
+                              "updatedAt": "2026-10-22T01:14:47.000Z",
+                              "uid": "35240-6beef6ea-2602-4d22-b47d-f9ec3f37ce2a"
+                            },
+                            {
+                              "name": "upload a release tgz",
+                              "id": "dc120457-20a6-47f6-9408-8d06a556d09e",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "apikey",
+                                  "apikey": [
+                                    {
+                                      "key": "key",
+                                      "value": "X-AUTH-YW-API-TOKEN",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "value",
+                                      "value": "{{apiKey}}",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "in",
+                                      "value": "header",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/ybdb_release/upload",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "ybdb_release",
+                                    "upload"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "3cb9537a-4ce6-4770-aec9-9eee6093bddc",
+                                      "key": "cUUID",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "WARNING: This is a preview API that could change: upload release tgz file"
+                              },
+                              "response": [
+                                {
+                                  "id": "636986f6-4add-4452-b42d-20de9fabc57a",
+                                  "name": "successful operation",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-AUTH-YW-API-TOKEN",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/ybdb_release/upload",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "ybdb_release",
+                                        "upload"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "cUUID"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"resourceUUID\": \"<uuid>\"\n}",
+                                  "createdAt": "2026-10-22T01:14:47.000Z",
+                                  "updatedAt": "2026-10-22T01:14:47.000Z",
+                                  "uid": "35240-636986f6-4add-4452-b42d-20de9fabc57a"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T01:14:47.000Z",
+                              "updatedAt": "2026-10-22T01:14:47.000Z",
+                              "uid": "35240-dc120457-20a6-47f6-9408-8d06a556d09e"
+                            }
+                          ],
+                          "id": "5b864aa2-18d9-4918-9b69-7a0d921d40b2",
+                          "createdAt": "2026-10-22T01:14:47.000Z",
+                          "updatedAt": "2026-10-22T01:14:47.000Z",
+                          "uid": "35240-5b864aa2-18d9-4918-9b69-7a0d921d40b2"
+                        }
+                      ],
+                      "id": "f9781e13-8667-4bf9-af1b-9e39ecab99fd",
+                      "createdAt": "2026-10-22T01:14:47.000Z",
+                      "updatedAt": "2026-10-22T01:14:47.000Z",
+                      "uid": "35240-f9781e13-8667-4bf9-af1b-9e39ecab99fd"
+                    }
+                  ],
+                  "id": "1b6fc803-8175-48db-9bfa-132547444b73",
+                  "createdAt": "2026-10-22T01:14:47.000Z",
+                  "updatedAt": "2026-10-22T01:14:47.000Z",
+                  "uid": "35240-1b6fc803-8175-48db-9bfa-132547444b73"
+                }
+              ],
+              "id": "2c6a24de-b696-4530-a01c-38539ef587df",
+              "createdAt": "2026-10-22T01:14:47.000Z",
+              "updatedAt": "2026-10-22T01:14:47.000Z",
+              "uid": "35240-2c6a24de-b696-4530-a01c-38539ef587df"
+            }
+          ],
+          "id": "cb30eaaa-120d-443a-ad3e-c9f9a22c8e2b",
+          "createdAt": "2026-10-22T01:14:47.000Z",
+          "updatedAt": "2026-10-22T01:14:47.000Z",
+          "uid": "35240-cb30eaaa-120d-443a-ad3e-c9f9a22c8e2b"
+        }
+      ],
+      "id": "bd81ceb8-806e-4082-9186-291ec5cd3cc3",
+      "createdAt": "2026-10-22T01:14:47.000Z",
+      "updatedAt": "2026-10-22T01:14:47.000Z",
+      "uid": "35240-bd81ceb8-806e-4082-9186-291ec5cd3cc3"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

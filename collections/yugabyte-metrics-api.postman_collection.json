@@ -1,0 +1,320 @@
+{
+  "info": {
+    "_postman_id": "2b3a6849-cd6f-438d-8d8a-ea940cb3d167",
+    "name": "Yugabytedb Metrics API",
+    "description": "Operations tagged Metrics across 3 of this provider's published API definitions: openapi.yaml, openapi_2.yaml, platform.swagger.json. Each path carries the servers of the definition it was published in.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:10:23.000Z",
+    "updatedAt": "2026-10-22T01:10:23.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-2b3a6849-cd6f-438d-8d8a-ea940cb3d167"
+  },
+  "item": [
+    {
+      "name": "host-info",
+      "item": [
+        {
+          "name": "Get Prometheus host info",
+          "id": "3c81b003-dd98-4506-8171-186a96a83498",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-AUTH-YW-API-TOKEN",
+                  "type": "string"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "in",
+                  "value": "header",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/host-info",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "host-info"
+              ]
+            },
+            "description": "Get the Url for the Prometheus instance of the current YBA"
+          },
+          "response": [
+            {
+              "id": "a0de3c8b-ecc7-4892-9332-2d3370f9f407",
+              "name": "success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-AUTH-YW-API-TOKEN",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/host-info",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "host-info"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"prometheus_url\": \"<string>\",\n  \"use_browser_fqdn\": \"<boolean>\"\n}",
+              "createdAt": "2026-10-22T01:10:23.000Z",
+              "updatedAt": "2026-10-22T01:10:23.000Z",
+              "uid": "35240-a0de3c8b-ecc7-4892-9332-2d3370f9f407"
+            },
+            {
+              "id": "e8dabf6b-5529-4ea9-a6f5-1a5c07948542",
+              "name": "Client Error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-AUTH-YW-API-TOKEN",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/host-info",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "host-info"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T01:10:23.000Z",
+              "updatedAt": "2026-10-22T01:10:23.000Z",
+              "uid": "35240-e8dabf6b-5529-4ea9-a6f5-1a5c07948542"
+            },
+            {
+              "id": "4dddbd41-a526-4cef-aa91-92d3205de8b3",
+              "name": "Server Error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-AUTH-YW-API-TOKEN",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/host-info",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "host-info"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T01:10:23.000Z",
+              "updatedAt": "2026-10-22T01:10:23.000Z",
+              "uid": "35240-4dddbd41-a526-4cef-aa91-92d3205de8b3"
+            }
+          ],
+          "createdAt": "2026-10-22T01:10:23.000Z",
+          "updatedAt": "2026-10-22T01:10:23.000Z",
+          "uid": "35240-3c81b003-dd98-4506-8171-186a96a83498"
+        }
+      ],
+      "id": "e5f18b96-4a38-4d1d-8f26-009c451a2edc",
+      "createdAt": "2026-10-22T01:10:23.000Z",
+      "updatedAt": "2026-10-22T01:10:23.000Z",
+      "uid": "35240-e5f18b96-4a38-4d1d-8f26-009c451a2edc"
+    },
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "prometheus_metrics",
+              "item": [
+                {
+                  "name": "Get Prometheus metrics",
+                  "id": "1c218840-c1ac-41fe-a8fe-f4c93d19bdc7",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "X-AUTH-YW-API-TOKEN",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v1/prometheus_metrics",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v1",
+                        "prometheus_metrics"
+                      ]
+                    },
+                    "description": "Available since YBA version 2.8.0.0."
+                  },
+                  "response": [
+                    {
+                      "id": "28d04158-deaa-4d7f-bc4c-16bbefbdaa6e",
+                      "name": "successful operation",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-AUTH-YW-API-TOKEN",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/prometheus_metrics",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "prometheus_metrics"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "<string>",
+                      "createdAt": "2026-10-22T01:10:23.000Z",
+                      "updatedAt": "2026-10-22T01:10:23.000Z",
+                      "uid": "35240-28d04158-deaa-4d7f-bc4c-16bbefbdaa6e"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:10:23.000Z",
+                  "updatedAt": "2026-10-22T01:10:23.000Z",
+                  "uid": "35240-1c218840-c1ac-41fe-a8fe-f4c93d19bdc7"
+                }
+              ],
+              "id": "eb35f20b-6707-4d35-8825-1c8172333cdc",
+              "createdAt": "2026-10-22T01:10:23.000Z",
+              "updatedAt": "2026-10-22T01:10:23.000Z",
+              "uid": "35240-eb35f20b-6707-4d35-8825-1c8172333cdc"
+            }
+          ],
+          "id": "4b6f62d3-c1fa-482c-899c-b557f569b47d",
+          "createdAt": "2026-10-22T01:10:23.000Z",
+          "updatedAt": "2026-10-22T01:10:23.000Z",
+          "uid": "35240-4b6f62d3-c1fa-482c-899c-b557f569b47d"
+        }
+      ],
+      "id": "4e9acb36-f9b5-4fa8-ba1b-05c8868731d0",
+      "createdAt": "2026-10-22T01:10:23.000Z",
+      "updatedAt": "2026-10-22T01:10:23.000Z",
+      "uid": "35240-4e9acb36-f9b5-4fa8-ba1b-05c8868731d0"
+    }
+  ],
+  "variable": [
+    {
+      "key": "protocol",
+      "value": "http"
+    },
+    {
+      "key": "host_port",
+      "value": "localhost:9000"
+    },
+    {
+      "key": "baseUrl",
+      "value": "{{protocol}}://{{host_port}}/api/v2"
+    }
+  ]
+}

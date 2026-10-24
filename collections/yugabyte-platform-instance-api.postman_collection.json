@@ -1,0 +1,641 @@
+{
+  "info": {
+    "_postman_id": "534c89fc-8731-490c-8838-85df04f8de45",
+    "name": "YugabyteDB Anywhere Platform Instance API",
+    "description": "ALPHA - NOT FOR EXTERNAL USE\n\nContact Support:\n Name: https://docs.yugabyte.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:11:12.000Z",
+    "updatedAt": "2026-10-22T01:11:13.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-534c89fc-8731-490c-8838-85df04f8de45"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "settings",
+              "item": [
+                {
+                  "name": "ha",
+                  "item": [
+                    {
+                      "name": "config",
+                      "item": [
+                        {
+                          "name": "{cUUID}",
+                          "item": [
+                            {
+                              "name": "instance",
+                              "item": [
+                                {
+                                  "name": "local",
+                                  "item": [
+                                    {
+                                      "name": "Get local",
+                                      "id": "894e0a24-f30e-45bc-9bfa-eed807790e52",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "auth": {
+                                          "type": "apikey",
+                                          "apikey": [
+                                            {
+                                              "key": "key",
+                                              "value": "X-AUTH-YW-API-TOKEN",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "value",
+                                              "value": "{{apiKey}}",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "in",
+                                              "value": "header",
+                                              "type": "string"
+                                            }
+                                          ]
+                                        },
+                                        "method": "GET",
+                                        "header": [],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/settings/ha/config/:cUUID/instance/local",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "settings",
+                                            "ha",
+                                            "config",
+                                            ":cUUID",
+                                            "instance",
+                                            "local"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "5850ffe0-2f97-4d65-bc45-ea6d9ce0f051",
+                                              "key": "cUUID",
+                                              "value": "<uuid>",
+                                              "description": "(Required) "
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "9e55083b-00f9-432e-b8fe-d8260de03fb8",
+                                          "name": "successful operation",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "description": "Added as a part of security scheme: apikey",
+                                                "key": "X-AUTH-YW-API-TOKEN",
+                                                "value": "<API Key>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v1/settings/ha/config/:cUUID/instance/local",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v1",
+                                                "settings",
+                                                "ha",
+                                                "config",
+                                                ":cUUID",
+                                                "instance",
+                                                "local"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "cUUID"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Internal Server Error",
+                                          "code": 500,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-10-22T01:11:13.000Z",
+                                          "updatedAt": "2026-10-22T01:11:13.000Z",
+                                          "uid": "35240-9e55083b-00f9-432e-b8fe-d8260de03fb8"
+                                        }
+                                      ],
+                                      "createdAt": "2026-10-22T01:11:13.000Z",
+                                      "updatedAt": "2026-10-22T01:11:13.000Z",
+                                      "uid": "35240-894e0a24-f30e-45bc-9bfa-eed807790e52"
+                                    }
+                                  ],
+                                  "id": "e78c8407-91b1-40cf-bcda-5de2af30c6af",
+                                  "createdAt": "2026-10-22T01:11:13.000Z",
+                                  "updatedAt": "2026-10-22T01:11:13.000Z",
+                                  "uid": "35240-e78c8407-91b1-40cf-bcda-5de2af30c6af"
+                                },
+                                {
+                                  "name": "{iUUID}",
+                                  "item": [
+                                    {
+                                      "name": "promote",
+                                      "item": [
+                                        {
+                                          "name": "Promote platform instance",
+                                          "id": "2aeca061-4717-4eba-a735-c6c3c9c4f98a",
+                                          "protocolProfileBehavior": {
+                                            "disableBodyPruning": true
+                                          },
+                                          "request": {
+                                            "auth": {
+                                              "type": "apikey",
+                                              "apikey": [
+                                                {
+                                                  "key": "key",
+                                                  "value": "X-AUTH-YW-API-TOKEN",
+                                                  "type": "string"
+                                                },
+                                                {
+                                                  "key": "value",
+                                                  "value": "{{apiKey}}",
+                                                  "type": "string"
+                                                },
+                                                {
+                                                  "key": "in",
+                                                  "value": "header",
+                                                  "type": "string"
+                                                }
+                                              ]
+                                            },
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "{\n  \"backup_file\": \"<string>\"\n}",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v1/settings/ha/config/:cUUID/instance/:iUUID/promote?curLeader=null&isForcePromote=true",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v1",
+                                                "settings",
+                                                "ha",
+                                                "config",
+                                                ":cUUID",
+                                                "instance",
+                                                ":iUUID",
+                                                "promote"
+                                              ],
+                                              "query": [
+                                                {
+                                                  "key": "curLeader",
+                                                  "value": "null"
+                                                },
+                                                {
+                                                  "key": "isForcePromote",
+                                                  "value": "true"
+                                                }
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "id": "ce0aaa6a-4fcb-4de8-8792-e1857a5478fd",
+                                                  "key": "cUUID",
+                                                  "value": "<uuid>",
+                                                  "description": "(Required) "
+                                                },
+                                                {
+                                                  "id": "a2805523-7d33-4c39-952b-7ef173f530e1",
+                                                  "key": "iUUID",
+                                                  "value": "<uuid>",
+                                                  "description": "(Required) "
+                                                }
+                                              ]
+                                            },
+                                            "description": "Available since YBA version 2.20.0."
+                                          },
+                                          "response": [
+                                            {
+                                              "id": "9e26ffbf-255f-4ad0-a77f-37877503eb95",
+                                              "name": "successful operation",
+                                              "originalRequest": {
+                                                "method": "POST",
+                                                "header": [
+                                                  {
+                                                    "key": "Content-Type",
+                                                    "value": "application/json"
+                                                  },
+                                                  {
+                                                    "description": "Added as a part of security scheme: apikey",
+                                                    "key": "X-AUTH-YW-API-TOKEN",
+                                                    "value": "<API Key>"
+                                                  }
+                                                ],
+                                                "body": {
+                                                  "mode": "raw",
+                                                  "raw": "{\n  \"backup_file\": \"<string>\"\n}",
+                                                  "options": {
+                                                    "raw": {
+                                                      "headerFamily": "json",
+                                                      "language": "json"
+                                                    }
+                                                  }
+                                                },
+                                                "url": {
+                                                  "raw": "{{baseUrl}}/api/v1/settings/ha/config/:cUUID/instance/:iUUID/promote?curLeader=null&isForcePromote=true",
+                                                  "host": [
+                                                    "{{baseUrl}}"
+                                                  ],
+                                                  "path": [
+                                                    "api",
+                                                    "v1",
+                                                    "settings",
+                                                    "ha",
+                                                    "config",
+                                                    ":cUUID",
+                                                    "instance",
+                                                    ":iUUID",
+                                                    "promote"
+                                                  ],
+                                                  "query": [
+                                                    {
+                                                      "key": "curLeader",
+                                                      "value": "null"
+                                                    },
+                                                    {
+                                                      "key": "isForcePromote",
+                                                      "value": "true"
+                                                    }
+                                                  ],
+                                                  "variable": [
+                                                    {
+                                                      "key": "cUUID"
+                                                    },
+                                                    {
+                                                      "key": "iUUID"
+                                                    }
+                                                  ]
+                                                }
+                                              },
+                                              "status": "Internal Server Error",
+                                              "code": 500,
+                                              "_postman_previewlanguage": "text",
+                                              "header": [],
+                                              "cookie": [],
+                                              "responseTime": null,
+                                              "body": null,
+                                              "createdAt": "2026-10-22T01:11:13.000Z",
+                                              "updatedAt": "2026-10-22T01:11:13.000Z",
+                                              "uid": "35240-9e26ffbf-255f-4ad0-a77f-37877503eb95"
+                                            }
+                                          ],
+                                          "createdAt": "2026-10-22T01:11:13.000Z",
+                                          "updatedAt": "2026-10-22T01:11:13.000Z",
+                                          "uid": "35240-2aeca061-4717-4eba-a735-c6c3c9c4f98a"
+                                        }
+                                      ],
+                                      "id": "e6ff7634-3887-40b6-b056-3e9dd4dd9a83",
+                                      "createdAt": "2026-10-22T01:11:13.000Z",
+                                      "updatedAt": "2026-10-22T01:11:13.000Z",
+                                      "uid": "35240-e6ff7634-3887-40b6-b056-3e9dd4dd9a83"
+                                    },
+                                    {
+                                      "name": "Delete instance",
+                                      "id": "7ac9fbcb-c389-410f-a831-20cf20c0add0",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "auth": {
+                                          "type": "apikey",
+                                          "apikey": [
+                                            {
+                                              "key": "key",
+                                              "value": "X-AUTH-YW-API-TOKEN",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "value",
+                                              "value": "{{apiKey}}",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "in",
+                                              "value": "header",
+                                              "type": "string"
+                                            }
+                                          ]
+                                        },
+                                        "method": "DELETE",
+                                        "header": [],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/settings/ha/config/:cUUID/instance/:iUUID",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "settings",
+                                            "ha",
+                                            "config",
+                                            ":cUUID",
+                                            "instance",
+                                            ":iUUID"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "21179593-82e3-4af4-89af-93cd424d25f2",
+                                              "key": "cUUID",
+                                              "value": "<uuid>",
+                                              "description": "(Required) "
+                                            },
+                                            {
+                                              "id": "2c84c369-5070-44a2-839a-507f2b39953b",
+                                              "key": "iUUID",
+                                              "value": "<uuid>",
+                                              "description": "(Required) "
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "4f9f151c-f421-4610-9217-2475bf1326cc",
+                                          "name": "successful operation",
+                                          "originalRequest": {
+                                            "method": "DELETE",
+                                            "header": [
+                                              {
+                                                "description": "Added as a part of security scheme: apikey",
+                                                "key": "X-AUTH-YW-API-TOKEN",
+                                                "value": "<API Key>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v1/settings/ha/config/:cUUID/instance/:iUUID",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v1",
+                                                "settings",
+                                                "ha",
+                                                "config",
+                                                ":cUUID",
+                                                "instance",
+                                                ":iUUID"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "cUUID"
+                                                },
+                                                {
+                                                  "key": "iUUID"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Internal Server Error",
+                                          "code": 500,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-10-22T01:11:13.000Z",
+                                          "updatedAt": "2026-10-22T01:11:13.000Z",
+                                          "uid": "35240-4f9f151c-f421-4610-9217-2475bf1326cc"
+                                        }
+                                      ],
+                                      "createdAt": "2026-10-22T01:11:13.000Z",
+                                      "updatedAt": "2026-10-22T01:11:13.000Z",
+                                      "uid": "35240-7ac9fbcb-c389-410f-a831-20cf20c0add0"
+                                    }
+                                  ],
+                                  "id": "5a3744e3-66d4-4ca6-b0fb-5672b21b2be5",
+                                  "createdAt": "2026-10-22T01:11:13.000Z",
+                                  "updatedAt": "2026-10-22T01:11:13.000Z",
+                                  "uid": "35240-5a3744e3-66d4-4ca6-b0fb-5672b21b2be5"
+                                },
+                                {
+                                  "name": "Create platform instance",
+                                  "id": "80a0d705-405b-4e77-b5c9-aac7888972f3",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "apikey",
+                                      "apikey": [
+                                        {
+                                          "key": "key",
+                                          "value": "X-AUTH-YW-API-TOKEN",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "value",
+                                          "value": "{{apiKey}}",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "in",
+                                          "value": "header",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"address\": \"<string>\",\n  \"cleanAddress\": \"<string>\",\n  \"is_leader\": \"<boolean>\",\n  \"is_local\": \"<boolean>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/settings/ha/config/:cUUID/instance",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "settings",
+                                        "ha",
+                                        "config",
+                                        ":cUUID",
+                                        "instance"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "2e6af6ea-44a7-47bc-ba05-d33e0dbb1d74",
+                                          "key": "cUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    },
+                                    "description": "Available since YBA version 2.20.0."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "ae4fc0e7-0cab-4fdc-973c-e0d82059fb6a",
+                                      "name": "successful operation",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "X-AUTH-YW-API-TOKEN",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"address\": \"<string>\",\n  \"cleanAddress\": \"<string>\",\n  \"is_leader\": \"<boolean>\",\n  \"is_local\": \"<boolean>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/settings/ha/config/:cUUID/instance",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "settings",
+                                            "ha",
+                                            "config",
+                                            ":cUUID",
+                                            "instance"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "cUUID"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"address\": \"<string>\",\n  \"instance_state\": \"Disconnected\",\n  \"is_leader\": \"<boolean>\",\n  \"state\": \"LEADER\",\n  \"uuid\": \"<uuid>\",\n  \"ybaVersion\": \"<string>\",\n  \"config_uuid\": \"<uuid>\",\n  \"is_local\": \"<boolean>\",\n  \"last_backup\": \"<dateTime>\"\n}",
+                                      "createdAt": "2026-10-22T01:11:13.000Z",
+                                      "updatedAt": "2026-10-22T01:11:13.000Z",
+                                      "uid": "35240-ae4fc0e7-0cab-4fdc-973c-e0d82059fb6a"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:11:13.000Z",
+                                  "updatedAt": "2026-10-22T01:11:13.000Z",
+                                  "uid": "35240-80a0d705-405b-4e77-b5c9-aac7888972f3"
+                                }
+                              ],
+                              "id": "0ba4f79f-f256-4875-a115-1457fa78365e",
+                              "createdAt": "2026-10-22T01:11:13.000Z",
+                              "updatedAt": "2026-10-22T01:11:13.000Z",
+                              "uid": "35240-0ba4f79f-f256-4875-a115-1457fa78365e"
+                            }
+                          ],
+                          "id": "f38f4a9d-3a3f-4c14-b3cd-0e987e684a8e",
+                          "createdAt": "2026-10-22T01:11:13.000Z",
+                          "updatedAt": "2026-10-22T01:11:13.000Z",
+                          "uid": "35240-f38f4a9d-3a3f-4c14-b3cd-0e987e684a8e"
+                        }
+                      ],
+                      "id": "05cde973-154d-43e3-b2fd-984792b47ca9",
+                      "createdAt": "2026-10-22T01:11:13.000Z",
+                      "updatedAt": "2026-10-22T01:11:13.000Z",
+                      "uid": "35240-05cde973-154d-43e3-b2fd-984792b47ca9"
+                    }
+                  ],
+                  "id": "e42b1608-f835-457a-b469-23e537b2114f",
+                  "createdAt": "2026-10-22T01:11:13.000Z",
+                  "updatedAt": "2026-10-22T01:11:13.000Z",
+                  "uid": "35240-e42b1608-f835-457a-b469-23e537b2114f"
+                }
+              ],
+              "id": "fba44dbb-3130-473b-9f61-23ee2d3f6afa",
+              "createdAt": "2026-10-22T01:11:13.000Z",
+              "updatedAt": "2026-10-22T01:11:13.000Z",
+              "uid": "35240-fba44dbb-3130-473b-9f61-23ee2d3f6afa"
+            }
+          ],
+          "id": "78680009-f179-4cd8-a6eb-773c6d00b56b",
+          "createdAt": "2026-10-22T01:11:13.000Z",
+          "updatedAt": "2026-10-22T01:11:13.000Z",
+          "uid": "35240-78680009-f179-4cd8-a6eb-773c6d00b56b"
+        }
+      ],
+      "id": "93380ff0-0e04-4e83-bbc8-36ca26f34a59",
+      "createdAt": "2026-10-22T01:11:13.000Z",
+      "updatedAt": "2026-10-22T01:11:13.000Z",
+      "uid": "35240-93380ff0-0e04-4e83-bbc8-36ca26f34a59"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

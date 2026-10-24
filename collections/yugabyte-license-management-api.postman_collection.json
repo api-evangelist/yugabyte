@@ -1,0 +1,311 @@
+{
+  "info": {
+    "_postman_id": "5977db04-704d-44eb-b9c9-c533d8d3ef00",
+    "name": "YugabyteDB Anywhere License Management API",
+    "description": "ALPHA - NOT FOR EXTERNAL USE\n\nContact Support:\n Name: https://docs.yugabyte.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:10:07.000Z",
+    "updatedAt": "2026-10-22T01:10:07.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-5977db04-704d-44eb-b9c9-c533d8d3ef00"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "customers",
+              "item": [
+                {
+                  "name": "{cUUID}",
+                  "item": [
+                    {
+                      "name": "licenses",
+                      "item": [
+                        {
+                          "name": "{lUUID}",
+                          "item": [
+                            {
+                              "name": "Delete a license",
+                              "id": "76542b4c-dfb9-4f4c-9f03-d0cf54b04bb5",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "apikey",
+                                  "apikey": [
+                                    {
+                                      "key": "key",
+                                      "value": "X-AUTH-YW-API-TOKEN",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "value",
+                                      "value": "{{apiKey}}",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "in",
+                                      "value": "header",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/licenses/:lUUID",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "licenses",
+                                    ":lUUID"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "2c319af7-aee8-488e-bce9-b527c7359287",
+                                      "key": "cUUID",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    },
+                                    {
+                                      "id": "5ac48239-65ec-44ca-a292-9eddcdb22aac",
+                                      "key": "lUUID",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                }
+                              },
+                              "response": [
+                                {
+                                  "id": "60b1b6e4-08a2-4c90-ae5d-65c82616da21",
+                                  "name": "successful operation",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-AUTH-YW-API-TOKEN",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/licenses/:lUUID",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "licenses",
+                                        ":lUUID"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "cUUID"
+                                        },
+                                        {
+                                          "key": "lUUID"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"message\": \"<string>\",\n  \"success\": \"<boolean>\"\n}",
+                                  "createdAt": "2026-10-22T01:10:07.000Z",
+                                  "updatedAt": "2026-10-22T01:10:07.000Z",
+                                  "uid": "35240-60b1b6e4-08a2-4c90-ae5d-65c82616da21"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T01:10:07.000Z",
+                              "updatedAt": "2026-10-22T01:10:07.000Z",
+                              "uid": "35240-76542b4c-dfb9-4f4c-9f03-d0cf54b04bb5"
+                            }
+                          ],
+                          "id": "d372bd5e-edfe-43ab-acaf-d1699c763b15",
+                          "createdAt": "2026-10-22T01:10:07.000Z",
+                          "updatedAt": "2026-10-22T01:10:07.000Z",
+                          "uid": "35240-d372bd5e-edfe-43ab-acaf-d1699c763b15"
+                        },
+                        {
+                          "name": "Uploads the license",
+                          "id": "c1e89a3a-f795-426c-a408-58a1acb08a2f",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "apikey",
+                              "apikey": [
+                                {
+                                  "key": "key",
+                                  "value": "X-AUTH-YW-API-TOKEN",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "value",
+                                  "value": "{{apiKey}}",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "in",
+                                  "value": "header",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/customers/:cUUID/licenses",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "customers",
+                                ":cUUID",
+                                "licenses"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "118a90a2-3816-4ea9-a56f-947342f7ae9f",
+                                  "key": "cUUID",
+                                  "value": "<uuid>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "2b679cf6-77cc-4139-9b48-a1fddd097eed",
+                              "name": "successful operation",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-AUTH-YW-API-TOKEN",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/licenses",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "licenses"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "cUUID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"license\": \"<string>\",\n  \"licenseType\": \"<string>\",\n  \"creationDate\": \"<dateTime>\",\n  \"customerUUID\": \"<uuid>\",\n  \"licenseUUID\": \"<uuid>\"\n}",
+                              "createdAt": "2026-10-22T01:10:07.000Z",
+                              "updatedAt": "2026-10-22T01:10:07.000Z",
+                              "uid": "35240-2b679cf6-77cc-4139-9b48-a1fddd097eed"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T01:10:07.000Z",
+                          "updatedAt": "2026-10-22T01:10:07.000Z",
+                          "uid": "35240-c1e89a3a-f795-426c-a408-58a1acb08a2f"
+                        }
+                      ],
+                      "id": "4b1d8ce7-ed30-4d85-82af-237aef265dc1",
+                      "createdAt": "2026-10-22T01:10:07.000Z",
+                      "updatedAt": "2026-10-22T01:10:07.000Z",
+                      "uid": "35240-4b1d8ce7-ed30-4d85-82af-237aef265dc1"
+                    }
+                  ],
+                  "id": "1aadffea-cccc-47c9-9f65-d2a4c4fe607b",
+                  "createdAt": "2026-10-22T01:10:07.000Z",
+                  "updatedAt": "2026-10-22T01:10:07.000Z",
+                  "uid": "35240-1aadffea-cccc-47c9-9f65-d2a4c4fe607b"
+                }
+              ],
+              "id": "00d3e643-fd34-46f2-9cac-05a18828a1a4",
+              "createdAt": "2026-10-22T01:10:07.000Z",
+              "updatedAt": "2026-10-22T01:10:07.000Z",
+              "uid": "35240-00d3e643-fd34-46f2-9cac-05a18828a1a4"
+            }
+          ],
+          "id": "4d9c1aeb-018b-49db-9354-333a038b8883",
+          "createdAt": "2026-10-22T01:10:07.000Z",
+          "updatedAt": "2026-10-22T01:10:07.000Z",
+          "uid": "35240-4d9c1aeb-018b-49db-9354-333a038b8883"
+        }
+      ],
+      "id": "db72f66c-98ce-4805-b965-7548c9be5b67",
+      "createdAt": "2026-10-22T01:10:07.000Z",
+      "updatedAt": "2026-10-22T01:10:07.000Z",
+      "uid": "35240-db72f66c-98ce-4805-b965-7548c9be5b67"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

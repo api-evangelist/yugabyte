@@ -1,0 +1,1543 @@
+{
+  "info": {
+    "_postman_id": "49ebbef2-8d90-4a36-9347-fb9c17eea766",
+    "name": "YugabyteDB Anywhere Performance Advisor API",
+    "description": "ALPHA - NOT FOR EXTERNAL USE\n\nContact Support:\n Name: https://docs.yugabyte.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:10:59.000Z",
+    "updatedAt": "2026-10-22T01:11:00.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-49ebbef2-8d90-4a36-9347-fb9c17eea766"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "customers",
+              "item": [
+                {
+                  "name": "{cUUID}",
+                  "item": [
+                    {
+                      "name": "performance_recommendation_state_change",
+                      "item": [
+                        {
+                          "name": "page",
+                          "item": [
+                            {
+                              "name": "List performance recommendations state change audit events (paginated)",
+                              "id": "7f66808b-5f14-4f81-be77-f4fa2cff80ee",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "apikey",
+                                  "apikey": [
+                                    {
+                                      "key": "key",
+                                      "value": "X-AUTH-YW-API-TOKEN",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "value",
+                                      "value": "{{apiKey}}",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "in",
+                                      "value": "header",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"direction\": \"DESC\",\n  \"filter\": {\n    \"customerId\": \"<uuid>\",\n    \"ids\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ],\n    \"recommendationId\": \"<uuid>\",\n    \"userId\": \"<uuid>\"\n  },\n  \"limit\": \"<integer>\",\n  \"needTotalCount\": \"<boolean>\",\n  \"offset\": \"<integer>\",\n  \"sortBy\": \"timestamp\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/performance_recommendation_state_change/page",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "performance_recommendation_state_change",
+                                    "page"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "9c161267-15d7-4d35-8f04-88c8f3ea229f",
+                                      "key": "cUUID",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "WARNING: This is a preview API that could change."
+                              },
+                              "response": [
+                                {
+                                  "id": "af233310-58d9-4fb1-b9b9-8828cb8e1f01",
+                                  "name": "successful operation",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-AUTH-YW-API-TOKEN",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"direction\": \"DESC\",\n  \"filter\": {\n    \"customerId\": \"<uuid>\",\n    \"ids\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ],\n    \"recommendationId\": \"<uuid>\",\n    \"userId\": \"<uuid>\"\n  },\n  \"limit\": \"<integer>\",\n  \"needTotalCount\": \"<boolean>\",\n  \"offset\": \"<integer>\",\n  \"sortBy\": \"timestamp\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/performance_recommendation_state_change/page",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "performance_recommendation_state_change",
+                                        "page"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "cUUID"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"entities\": [\n    {\n      \"customerId\": \"<uuid>\",\n      \"fieldName\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"new\": \"<boolean>\",\n      \"previousValue\": \"<string>\",\n      \"timestamp\": \"<long>\",\n      \"updatedValue\": \"<string>\",\n      \"userId\": \"<uuid>\"\n    },\n    {\n      \"customerId\": \"<uuid>\",\n      \"fieldName\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"new\": \"<boolean>\",\n      \"previousValue\": \"<string>\",\n      \"timestamp\": \"<long>\",\n      \"updatedValue\": \"<string>\",\n      \"userId\": \"<uuid>\"\n    }\n  ],\n  \"hasNext\": \"<boolean>\",\n  \"hasPrev\": \"<boolean>\",\n  \"totalCount\": \"<integer>\"\n}",
+                                  "createdAt": "2026-10-22T01:11:00.000Z",
+                                  "updatedAt": "2026-10-22T01:11:00.000Z",
+                                  "uid": "35240-af233310-58d9-4fb1-b9b9-8828cb8e1f01"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T01:11:00.000Z",
+                              "updatedAt": "2026-10-22T01:11:00.000Z",
+                              "uid": "35240-7f66808b-5f14-4f81-be77-f4fa2cff80ee"
+                            }
+                          ],
+                          "id": "442f1cf8-1649-4dd0-88ba-d2c990297a4b",
+                          "createdAt": "2026-10-22T01:11:00.000Z",
+                          "updatedAt": "2026-10-22T01:11:00.000Z",
+                          "uid": "35240-442f1cf8-1649-4dd0-88ba-d2c990297a4b"
+                        }
+                      ],
+                      "id": "28f245f8-b269-49a5-a6fd-1b249c2d47c2",
+                      "createdAt": "2026-10-22T01:11:00.000Z",
+                      "updatedAt": "2026-10-22T01:11:00.000Z",
+                      "uid": "35240-28f245f8-b269-49a5-a6fd-1b249c2d47c2"
+                    },
+                    {
+                      "name": "performance_recommendations",
+                      "item": [
+                        {
+                          "name": "hide",
+                          "item": [
+                            {
+                              "name": "Hide performance recommendations",
+                              "id": "db92513a-186c-49ec-a380-5a4a0a55b23a",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "apikey",
+                                  "apikey": [
+                                    {
+                                      "key": "key",
+                                      "value": "X-AUTH-YW-API-TOKEN",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "value",
+                                      "value": "{{apiKey}}",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "in",
+                                      "value": "header",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"createdInstantBefore\": \"<long>\",\n  \"customerId\": \"<uuid>\",\n  \"ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"isStale\": \"<boolean>\",\n  \"priorities\": [\n    \"MEDIUM\",\n    \"MEDIUM\"\n  ],\n  \"states\": [\n    \"HIDDEN\",\n    \"OPEN\"\n  ],\n  \"types\": [\n    \"QUERY_LOAD_SKEW\",\n    \"CONNECTION_SKEW\"\n  ],\n  \"universeId\": \"<uuid>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/performance_recommendations/hide",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "performance_recommendations",
+                                    "hide"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "1368fb99-c4f3-4a4c-b4a4-2dc5d05bf221",
+                                      "key": "cUUID",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "YbaApi Internal."
+                              },
+                              "response": [
+                                {
+                                  "id": "0f29aa5a-f245-4499-a14c-e5ceb064e955",
+                                  "name": "successful operation",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-AUTH-YW-API-TOKEN",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"createdInstantBefore\": \"<long>\",\n  \"customerId\": \"<uuid>\",\n  \"ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"isStale\": \"<boolean>\",\n  \"priorities\": [\n    \"MEDIUM\",\n    \"MEDIUM\"\n  ],\n  \"states\": [\n    \"HIDDEN\",\n    \"OPEN\"\n  ],\n  \"types\": [\n    \"QUERY_LOAD_SKEW\",\n    \"CONNECTION_SKEW\"\n  ],\n  \"universeId\": \"<uuid>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/performance_recommendations/hide",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "performance_recommendations",
+                                        "hide"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "cUUID"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"message\": \"<string>\",\n  \"success\": \"<boolean>\"\n}",
+                                  "createdAt": "2026-10-22T01:11:00.000Z",
+                                  "updatedAt": "2026-10-22T01:11:00.000Z",
+                                  "uid": "35240-0f29aa5a-f245-4499-a14c-e5ceb064e955"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T01:11:00.000Z",
+                              "updatedAt": "2026-10-22T01:11:00.000Z",
+                              "uid": "35240-db92513a-186c-49ec-a380-5a4a0a55b23a"
+                            }
+                          ],
+                          "id": "23152630-c8b9-4fe8-8efd-f1464be4082e",
+                          "createdAt": "2026-10-22T01:11:00.000Z",
+                          "updatedAt": "2026-10-22T01:11:00.000Z",
+                          "uid": "35240-23152630-c8b9-4fe8-8efd-f1464be4082e"
+                        },
+                        {
+                          "name": "page",
+                          "item": [
+                            {
+                              "name": "List performance recommendations (paginated)",
+                              "id": "cb3392a6-94ae-4a78-91a3-f6e54309f539",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "apikey",
+                                  "apikey": [
+                                    {
+                                      "key": "key",
+                                      "value": "X-AUTH-YW-API-TOKEN",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "value",
+                                      "value": "{{apiKey}}",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "in",
+                                      "value": "header",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"direction\": \"DESC\",\n  \"filter\": {\n    \"createdInstantBefore\": \"<long>\",\n    \"customerId\": \"<uuid>\",\n    \"ids\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ],\n    \"isStale\": \"<boolean>\",\n    \"priorities\": [\n      \"HIGH\",\n      \"HIGH\"\n    ],\n    \"states\": [\n      \"RESOLVED\",\n      \"RESOLVED\"\n    ],\n    \"types\": [\n      \"CPU_USAGE\",\n      \"RANGE_SHARDING\"\n    ],\n    \"universeId\": \"<uuid>\"\n  },\n  \"limit\": \"<integer>\",\n  \"needTotalCount\": \"<boolean>\",\n  \"offset\": \"<integer>\",\n  \"sortBy\": \"recommendationType\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/performance_recommendations/page",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "performance_recommendations",
+                                    "page"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "bf2974cf-6499-41f1-9584-1e0c4ea47777",
+                                      "key": "cUUID",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "WARNING: This is a preview API that could change."
+                              },
+                              "response": [
+                                {
+                                  "id": "d7e02079-c31c-4649-80cf-3d3a958cb272",
+                                  "name": "successful operation",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-AUTH-YW-API-TOKEN",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"direction\": \"DESC\",\n  \"filter\": {\n    \"createdInstantBefore\": \"<long>\",\n    \"customerId\": \"<uuid>\",\n    \"ids\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ],\n    \"isStale\": \"<boolean>\",\n    \"priorities\": [\n      \"HIGH\",\n      \"HIGH\"\n    ],\n    \"states\": [\n      \"RESOLVED\",\n      \"RESOLVED\"\n    ],\n    \"types\": [\n      \"CPU_USAGE\",\n      \"RANGE_SHARDING\"\n    ],\n    \"universeId\": \"<uuid>\"\n  },\n  \"limit\": \"<integer>\",\n  \"needTotalCount\": \"<boolean>\",\n  \"offset\": \"<integer>\",\n  \"sortBy\": \"recommendationType\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/performance_recommendations/page",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "performance_recommendations",
+                                        "page"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "cUUID"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"entities\": [\n    {\n      \"customerId\": \"<uuid>\",\n      \"entityNames\": \"<string>\",\n      \"entityType\": \"NODE\",\n      \"id\": \"<uuid>\",\n      \"isStale\": \"<boolean>\",\n      \"new\": \"<boolean>\",\n      \"observation\": \"<string>\",\n      \"recommendation\": \"<string>\",\n      \"recommendationInfo\": {\n        \"irure4\": {},\n        \"irure_2\": {}\n      },\n      \"recommendationPriority\": \"MEDIUM\",\n      \"recommendationState\": \"HIDDEN\",\n      \"recommendationTimestamp\": \"<long>\",\n      \"recommendationType\": \"CPU_USAGE\",\n      \"stateChangeAuditInfoList\": [\n        {\n          \"customerId\": \"<uuid>\",\n          \"fieldName\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"new\": \"<boolean>\",\n          \"previousValue\": \"<string>\",\n          \"timestamp\": \"<long>\",\n          \"updatedValue\": \"<string>\",\n          \"userId\": \"<uuid>\"\n        },\n        {\n          \"customerId\": \"<uuid>\",\n          \"fieldName\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"new\": \"<boolean>\",\n          \"previousValue\": \"<string>\",\n          \"timestamp\": \"<long>\",\n          \"updatedValue\": \"<string>\",\n          \"userId\": \"<uuid>\"\n        }\n      ],\n      \"universeId\": \"<uuid>\"\n    },\n    {\n      \"customerId\": \"<uuid>\",\n      \"entityNames\": \"<string>\",\n      \"entityType\": \"NODE\",\n      \"id\": \"<uuid>\",\n      \"isStale\": \"<boolean>\",\n      \"new\": \"<boolean>\",\n      \"observation\": \"<string>\",\n      \"recommendation\": \"<string>\",\n      \"recommendationInfo\": {\n        \"ipsum_3d\": {},\n        \"culpa5e0\": {}\n      },\n      \"recommendationPriority\": \"HIGH\",\n      \"recommendationState\": \"HIDDEN\",\n      \"recommendationTimestamp\": \"<long>\",\n      \"recommendationType\": \"HOT_SHARD\",\n      \"stateChangeAuditInfoList\": [\n        {\n          \"customerId\": \"<uuid>\",\n          \"fieldName\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"new\": \"<boolean>\",\n          \"previousValue\": \"<string>\",\n          \"timestamp\": \"<long>\",\n          \"updatedValue\": \"<string>\",\n          \"userId\": \"<uuid>\"\n        },\n        {\n          \"customerId\": \"<uuid>\",\n          \"fieldName\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"new\": \"<boolean>\",\n          \"previousValue\": \"<string>\",\n          \"timestamp\": \"<long>\",\n          \"updatedValue\": \"<string>\",\n          \"userId\": \"<uuid>\"\n        }\n      ],\n      \"universeId\": \"<uuid>\"\n    }\n  ],\n  \"hasNext\": \"<boolean>\",\n  \"hasPrev\": \"<boolean>\",\n  \"totalCount\": \"<integer>\"\n}",
+                                  "createdAt": "2026-10-22T01:11:00.000Z",
+                                  "updatedAt": "2026-10-22T01:11:00.000Z",
+                                  "uid": "35240-d7e02079-c31c-4649-80cf-3d3a958cb272"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T01:11:00.000Z",
+                              "updatedAt": "2026-10-22T01:11:00.000Z",
+                              "uid": "35240-cb3392a6-94ae-4a78-91a3-f6e54309f539"
+                            }
+                          ],
+                          "id": "e62a4069-e073-427e-abc4-315684a80b52",
+                          "createdAt": "2026-10-22T01:11:00.000Z",
+                          "updatedAt": "2026-10-22T01:11:00.000Z",
+                          "uid": "35240-e62a4069-e073-427e-abc4-315684a80b52"
+                        },
+                        {
+                          "name": "resolve",
+                          "item": [
+                            {
+                              "name": "Resolve performance recommendations",
+                              "id": "63d781a3-f82f-4423-a8d0-7b5e93b57929",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "apikey",
+                                  "apikey": [
+                                    {
+                                      "key": "key",
+                                      "value": "X-AUTH-YW-API-TOKEN",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "value",
+                                      "value": "{{apiKey}}",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "in",
+                                      "value": "header",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"createdInstantBefore\": \"<long>\",\n  \"customerId\": \"<uuid>\",\n  \"ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"isStale\": \"<boolean>\",\n  \"priorities\": [\n    \"MEDIUM\",\n    \"MEDIUM\"\n  ],\n  \"states\": [\n    \"HIDDEN\",\n    \"OPEN\"\n  ],\n  \"types\": [\n    \"QUERY_LOAD_SKEW\",\n    \"CONNECTION_SKEW\"\n  ],\n  \"universeId\": \"<uuid>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/performance_recommendations/resolve",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "performance_recommendations",
+                                    "resolve"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "cde742a9-5a6f-400d-900f-65edd76ba299",
+                                      "key": "cUUID",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "YbaApi Internal."
+                              },
+                              "response": [
+                                {
+                                  "id": "ec825b7b-4723-456b-b74b-e0960f882222",
+                                  "name": "successful operation",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-AUTH-YW-API-TOKEN",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"createdInstantBefore\": \"<long>\",\n  \"customerId\": \"<uuid>\",\n  \"ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"isStale\": \"<boolean>\",\n  \"priorities\": [\n    \"MEDIUM\",\n    \"MEDIUM\"\n  ],\n  \"states\": [\n    \"HIDDEN\",\n    \"OPEN\"\n  ],\n  \"types\": [\n    \"QUERY_LOAD_SKEW\",\n    \"CONNECTION_SKEW\"\n  ],\n  \"universeId\": \"<uuid>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/performance_recommendations/resolve",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "performance_recommendations",
+                                        "resolve"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "cUUID"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"message\": \"<string>\",\n  \"success\": \"<boolean>\"\n}",
+                                  "createdAt": "2026-10-22T01:11:00.000Z",
+                                  "updatedAt": "2026-10-22T01:11:00.000Z",
+                                  "uid": "35240-ec825b7b-4723-456b-b74b-e0960f882222"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T01:11:00.000Z",
+                              "updatedAt": "2026-10-22T01:11:00.000Z",
+                              "uid": "35240-63d781a3-f82f-4423-a8d0-7b5e93b57929"
+                            }
+                          ],
+                          "id": "a826531a-2f10-44fe-a7d8-28c655bca449",
+                          "createdAt": "2026-10-22T01:11:00.000Z",
+                          "updatedAt": "2026-10-22T01:11:00.000Z",
+                          "uid": "35240-a826531a-2f10-44fe-a7d8-28c655bca449"
+                        },
+                        {
+                          "name": "{rUUID}",
+                          "item": [
+                            {
+                              "name": "Get performance recommendation details",
+                              "id": "a71a26b3-d163-4ed1-9b84-19e522323f3b",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "apikey",
+                                  "apikey": [
+                                    {
+                                      "key": "key",
+                                      "value": "X-AUTH-YW-API-TOKEN",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "value",
+                                      "value": "{{apiKey}}",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "in",
+                                      "value": "header",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/performance_recommendations/:rUUID",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "performance_recommendations",
+                                    ":rUUID"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "5b91e1cb-d468-4cdd-ad80-62f7d52cc5c6",
+                                      "key": "cUUID",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    },
+                                    {
+                                      "id": "ac12912f-5eb6-4677-88b0-3b25fd9d815c",
+                                      "key": "rUUID",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "WARNING: This is a preview API that could change."
+                              },
+                              "response": [
+                                {
+                                  "id": "a1d7a940-3f6e-4523-9dd5-83311cc2ca6f",
+                                  "name": "successful operation",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-AUTH-YW-API-TOKEN",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/performance_recommendations/:rUUID",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "performance_recommendations",
+                                        ":rUUID"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "cUUID"
+                                        },
+                                        {
+                                          "key": "rUUID"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"customerId\": \"<uuid>\",\n  \"entityNames\": \"<string>\",\n  \"entityType\": \"NODE\",\n  \"id\": \"<uuid>\",\n  \"isStale\": \"<boolean>\",\n  \"new\": \"<boolean>\",\n  \"observation\": \"<string>\",\n  \"recommendation\": \"<string>\",\n  \"recommendationInfo\": {\n    \"dolor1\": {},\n    \"id_4\": {}\n  },\n  \"recommendationPriority\": \"MEDIUM\",\n  \"recommendationState\": \"RESOLVED\",\n  \"recommendationTimestamp\": \"<long>\",\n  \"recommendationType\": \"RANGE_SHARDING\",\n  \"stateChangeAuditInfoList\": [\n    {\n      \"customerId\": \"<uuid>\",\n      \"fieldName\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"new\": \"<boolean>\",\n      \"previousValue\": \"<string>\",\n      \"timestamp\": \"<long>\",\n      \"updatedValue\": \"<string>\",\n      \"userId\": \"<uuid>\"\n    },\n    {\n      \"customerId\": \"<uuid>\",\n      \"fieldName\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"new\": \"<boolean>\",\n      \"previousValue\": \"<string>\",\n      \"timestamp\": \"<long>\",\n      \"updatedValue\": \"<string>\",\n      \"userId\": \"<uuid>\"\n    }\n  ],\n  \"universeId\": \"<uuid>\"\n}",
+                                  "createdAt": "2026-10-22T01:11:00.000Z",
+                                  "updatedAt": "2026-10-22T01:11:00.000Z",
+                                  "uid": "35240-a1d7a940-3f6e-4523-9dd5-83311cc2ca6f"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T01:11:00.000Z",
+                              "updatedAt": "2026-10-22T01:11:00.000Z",
+                              "uid": "35240-a71a26b3-d163-4ed1-9b84-19e522323f3b"
+                            }
+                          ],
+                          "id": "c7836002-94d6-4e82-a29c-918e7f52cb87",
+                          "createdAt": "2026-10-22T01:11:00.000Z",
+                          "updatedAt": "2026-10-22T01:11:00.000Z",
+                          "uid": "35240-c7836002-94d6-4e82-a29c-918e7f52cb87"
+                        },
+                        {
+                          "name": "Delete performance recommendations",
+                          "id": "87f170dc-13b2-4a14-af83-64995c102cab",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "apikey",
+                              "apikey": [
+                                {
+                                  "key": "key",
+                                  "value": "X-AUTH-YW-API-TOKEN",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "value",
+                                  "value": "{{apiKey}}",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "in",
+                                  "value": "header",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"createdInstantBefore\": \"<long>\",\n  \"customerId\": \"<uuid>\",\n  \"ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"isStale\": \"<boolean>\",\n  \"priorities\": [\n    \"MEDIUM\",\n    \"MEDIUM\"\n  ],\n  \"states\": [\n    \"HIDDEN\",\n    \"OPEN\"\n  ],\n  \"types\": [\n    \"QUERY_LOAD_SKEW\",\n    \"CONNECTION_SKEW\"\n  ],\n  \"universeId\": \"<uuid>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/customers/:cUUID/performance_recommendations",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "customers",
+                                ":cUUID",
+                                "performance_recommendations"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "b69de999-b4a0-41af-95c5-1b9f876a97a3",
+                                  "key": "cUUID",
+                                  "value": "<uuid>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "WARNING: This is a preview API that could change."
+                          },
+                          "response": [
+                            {
+                              "id": "6ff30ba0-b858-4d06-aca0-c4faffa4f9b6",
+                              "name": "successful operation",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-AUTH-YW-API-TOKEN",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"createdInstantBefore\": \"<long>\",\n  \"customerId\": \"<uuid>\",\n  \"ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"isStale\": \"<boolean>\",\n  \"priorities\": [\n    \"MEDIUM\",\n    \"MEDIUM\"\n  ],\n  \"states\": [\n    \"HIDDEN\",\n    \"OPEN\"\n  ],\n  \"types\": [\n    \"QUERY_LOAD_SKEW\",\n    \"CONNECTION_SKEW\"\n  ],\n  \"universeId\": \"<uuid>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/performance_recommendations",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "performance_recommendations"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "cUUID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"success\": \"<boolean>\"\n}",
+                              "createdAt": "2026-10-22T01:11:00.000Z",
+                              "updatedAt": "2026-10-22T01:11:00.000Z",
+                              "uid": "35240-6ff30ba0-b858-4d06-aca0-c4faffa4f9b6"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T01:11:00.000Z",
+                          "updatedAt": "2026-10-22T01:11:00.000Z",
+                          "uid": "35240-87f170dc-13b2-4a14-af83-64995c102cab"
+                        }
+                      ],
+                      "id": "22f7ad7d-2a88-442c-b1e1-bee8f4a4b137",
+                      "createdAt": "2026-10-22T01:11:00.000Z",
+                      "updatedAt": "2026-10-22T01:11:00.000Z",
+                      "uid": "35240-22f7ad7d-2a88-442c-b1e1-bee8f4a4b137"
+                    },
+                    {
+                      "name": "universes",
+                      "item": [
+                        {
+                          "name": "{uniUUID}",
+                          "item": [
+                            {
+                              "name": "last_run",
+                              "item": [
+                                {
+                                  "name": "Get last performance advisor run details",
+                                  "id": "493a680b-199f-46ad-9595-b696d4bfb2b7",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "apikey",
+                                      "apikey": [
+                                        {
+                                          "key": "key",
+                                          "value": "X-AUTH-YW-API-TOKEN",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "value",
+                                          "value": "{{apiKey}}",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "in",
+                                          "value": "header",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/last_run",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "universes",
+                                        ":uniUUID",
+                                        "last_run"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "8c50662b-d466-41dc-8502-5161cf5cb29f",
+                                          "key": "cUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "edcb104f-5cb0-4110-8555-07cc1b213072",
+                                          "key": "uniUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    },
+                                    "description": "WARNING: This is a preview API that could change."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "a3faa79d-dd34-435c-9255-f75000726533",
+                                      "name": "successful operation",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "X-AUTH-YW-API-TOKEN",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/last_run",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "universes",
+                                            ":uniUUID",
+                                            "last_run"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "cUUID"
+                                            },
+                                            {
+                                              "key": "uniUUID"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"message\": \"<string>\",\n  \"success\": \"<boolean>\"\n}",
+                                      "createdAt": "2026-10-22T01:11:00.000Z",
+                                      "updatedAt": "2026-10-22T01:11:00.000Z",
+                                      "uid": "35240-a3faa79d-dd34-435c-9255-f75000726533"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:11:00.000Z",
+                                  "updatedAt": "2026-10-22T01:11:00.000Z",
+                                  "uid": "35240-493a680b-199f-46ad-9595-b696d4bfb2b7"
+                                }
+                              ],
+                              "id": "f974a448-7f68-4690-ad78-c6c5c5315f0e",
+                              "createdAt": "2026-10-22T01:11:00.000Z",
+                              "updatedAt": "2026-10-22T01:11:00.000Z",
+                              "uid": "35240-f974a448-7f68-4690-ad78-c6c5c5315f0e"
+                            },
+                            {
+                              "name": "perf_advisor_settings",
+                              "item": [
+                                {
+                                  "name": "Get universe performance advisor settings",
+                                  "id": "cf36f2db-2cd7-456e-bcab-eeb0427a13d8",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "apikey",
+                                      "apikey": [
+                                        {
+                                          "key": "key",
+                                          "value": "X-AUTH-YW-API-TOKEN",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "value",
+                                          "value": "{{apiKey}}",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "in",
+                                          "value": "header",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/perf_advisor_settings",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "universes",
+                                        ":uniUUID",
+                                        "perf_advisor_settings"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "6562153c-3fba-41fd-bd87-5c2b423923d3",
+                                          "key": "cUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "6190b74a-33cc-4db3-bcdf-4a5f6ed0ad03",
+                                          "key": "uniUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    },
+                                    "description": "WARNING: This is a preview API that could change."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "62d4a59a-5dd5-49eb-8c5a-2f068f469f8e",
+                                      "name": "successful operation",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "X-AUTH-YW-API-TOKEN",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/perf_advisor_settings",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "universes",
+                                            ":uniUUID",
+                                            "perf_advisor_settings"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "cUUID"
+                                            },
+                                            {
+                                              "key": "uniUUID"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"defaultSettings\": {\n    \"connection_skew_interval_mins\": \"<integer>\",\n    \"connection_skew_min_connections\": \"<integer>\",\n    \"connection_skew_threshold_pct\": \"<double>\",\n    \"cpu_skew_interval_mins\": \"<integer>\",\n    \"cpu_skew_min_usage_pct\": \"<double>\",\n    \"cpu_skew_threshold_pct\": \"<double>\",\n    \"cpu_usage_interval_mins\": \"<integer>\",\n    \"cpu_usage_threshold\": \"<double>\",\n    \"enabled\": \"<boolean>\",\n    \"hot_shard_interval_mins\": \"<integer>\",\n    \"hot_shard_min_node_reads\": \"<integer>\",\n    \"hot_shard_min_node_writes\": \"<integer>\",\n    \"hot_shard_read_skew_threshold_pct\": \"<double>\",\n    \"hot_shard_write_skew_threshold_pct\": \"<double>\",\n    \"query_skew_interval_mins\": \"<integer>\",\n    \"query_skew_min_queries\": \"<integer>\",\n    \"query_skew_threshold_pct\": \"<double>\",\n    \"rejected_conn_interval_mins\": \"<integer>\",\n    \"rejected_conn_threshold\": \"<integer>\",\n    \"universe_frequency_mins\": \"<integer>\"\n  },\n  \"universeSettings\": {\n    \"connection_skew_interval_mins\": \"<integer>\",\n    \"connection_skew_min_connections\": \"<integer>\",\n    \"connection_skew_threshold_pct\": \"<double>\",\n    \"cpu_skew_interval_mins\": \"<integer>\",\n    \"cpu_skew_min_usage_pct\": \"<double>\",\n    \"cpu_skew_threshold_pct\": \"<double>\",\n    \"cpu_usage_interval_mins\": \"<integer>\",\n    \"cpu_usage_threshold\": \"<double>\",\n    \"enabled\": \"<boolean>\",\n    \"hot_shard_interval_mins\": \"<integer>\",\n    \"hot_shard_min_node_reads\": \"<integer>\",\n    \"hot_shard_min_node_writes\": \"<integer>\",\n    \"hot_shard_read_skew_threshold_pct\": \"<double>\",\n    \"hot_shard_write_skew_threshold_pct\": \"<double>\",\n    \"query_skew_interval_mins\": \"<integer>\",\n    \"query_skew_min_queries\": \"<integer>\",\n    \"query_skew_threshold_pct\": \"<double>\",\n    \"rejected_conn_interval_mins\": \"<integer>\",\n    \"rejected_conn_threshold\": \"<integer>\",\n    \"universe_frequency_mins\": \"<integer>\"\n  }\n}",
+                                      "createdAt": "2026-10-22T01:11:00.000Z",
+                                      "updatedAt": "2026-10-22T01:11:00.000Z",
+                                      "uid": "35240-62d4a59a-5dd5-49eb-8c5a-2f068f469f8e"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:11:00.000Z",
+                                  "updatedAt": "2026-10-22T01:11:00.000Z",
+                                  "uid": "35240-cf36f2db-2cd7-456e-bcab-eeb0427a13d8"
+                                },
+                                {
+                                  "name": "Update universe performance advisor settings",
+                                  "id": "d3d1f4ea-2298-4855-8133-92ce2352f24c",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "apikey",
+                                      "apikey": [
+                                        {
+                                          "key": "key",
+                                          "value": "X-AUTH-YW-API-TOKEN",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "value",
+                                          "value": "{{apiKey}}",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "in",
+                                          "value": "header",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"connection_skew_interval_mins\": \"<integer>\",\n  \"connection_skew_min_connections\": \"<integer>\",\n  \"connection_skew_threshold_pct\": \"<double>\",\n  \"cpu_skew_interval_mins\": \"<integer>\",\n  \"cpu_skew_min_usage_pct\": \"<double>\",\n  \"cpu_skew_threshold_pct\": \"<double>\",\n  \"cpu_usage_interval_mins\": \"<integer>\",\n  \"cpu_usage_threshold\": \"<double>\",\n  \"enabled\": \"<boolean>\",\n  \"hot_shard_interval_mins\": \"<integer>\",\n  \"hot_shard_min_node_reads\": \"<integer>\",\n  \"hot_shard_min_node_writes\": \"<integer>\",\n  \"hot_shard_read_skew_threshold_pct\": \"<double>\",\n  \"hot_shard_write_skew_threshold_pct\": \"<double>\",\n  \"query_skew_interval_mins\": \"<integer>\",\n  \"query_skew_min_queries\": \"<integer>\",\n  \"query_skew_threshold_pct\": \"<double>\",\n  \"rejected_conn_interval_mins\": \"<integer>\",\n  \"rejected_conn_threshold\": \"<integer>\",\n  \"universe_frequency_mins\": \"<integer>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/perf_advisor_settings",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "universes",
+                                        ":uniUUID",
+                                        "perf_advisor_settings"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "47ca4dad-4cac-499f-9543-ee65a4539894",
+                                          "key": "cUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "0fa91d1f-a79f-47ea-9a04-6698faf27413",
+                                          "key": "uniUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    },
+                                    "description": "WARNING: This is a preview API that could change."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "cb0107e2-ca94-4db3-a64d-5d275f766c2a",
+                                      "name": "successful operation",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "X-AUTH-YW-API-TOKEN",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"connection_skew_interval_mins\": \"<integer>\",\n  \"connection_skew_min_connections\": \"<integer>\",\n  \"connection_skew_threshold_pct\": \"<double>\",\n  \"cpu_skew_interval_mins\": \"<integer>\",\n  \"cpu_skew_min_usage_pct\": \"<double>\",\n  \"cpu_skew_threshold_pct\": \"<double>\",\n  \"cpu_usage_interval_mins\": \"<integer>\",\n  \"cpu_usage_threshold\": \"<double>\",\n  \"enabled\": \"<boolean>\",\n  \"hot_shard_interval_mins\": \"<integer>\",\n  \"hot_shard_min_node_reads\": \"<integer>\",\n  \"hot_shard_min_node_writes\": \"<integer>\",\n  \"hot_shard_read_skew_threshold_pct\": \"<double>\",\n  \"hot_shard_write_skew_threshold_pct\": \"<double>\",\n  \"query_skew_interval_mins\": \"<integer>\",\n  \"query_skew_min_queries\": \"<integer>\",\n  \"query_skew_threshold_pct\": \"<double>\",\n  \"rejected_conn_interval_mins\": \"<integer>\",\n  \"rejected_conn_threshold\": \"<integer>\",\n  \"universe_frequency_mins\": \"<integer>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/perf_advisor_settings",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "universes",
+                                            ":uniUUID",
+                                            "perf_advisor_settings"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "cUUID"
+                                            },
+                                            {
+                                              "key": "uniUUID"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"message\": \"<string>\",\n  \"success\": \"<boolean>\"\n}",
+                                      "createdAt": "2026-10-22T01:11:00.000Z",
+                                      "updatedAt": "2026-10-22T01:11:00.000Z",
+                                      "uid": "35240-cb0107e2-ca94-4db3-a64d-5d275f766c2a"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:11:00.000Z",
+                                  "updatedAt": "2026-10-22T01:11:00.000Z",
+                                  "uid": "35240-d3d1f4ea-2298-4855-8133-92ce2352f24c"
+                                }
+                              ],
+                              "id": "51c750fe-e396-41db-ae24-98b1ebb79fbb",
+                              "createdAt": "2026-10-22T01:11:00.000Z",
+                              "updatedAt": "2026-10-22T01:11:00.000Z",
+                              "uid": "35240-51c750fe-e396-41db-ae24-98b1ebb79fbb"
+                            },
+                            {
+                              "name": "start_manually",
+                              "item": [
+                                {
+                                  "name": "Start performance advisor run for universe",
+                                  "id": "7f397137-d873-49b4-afea-c95d3b4506d6",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "apikey",
+                                      "apikey": [
+                                        {
+                                          "key": "key",
+                                          "value": "X-AUTH-YW-API-TOKEN",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "value",
+                                          "value": "{{apiKey}}",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "in",
+                                          "value": "header",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/start_manually",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "universes",
+                                        ":uniUUID",
+                                        "start_manually"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "e91ba9e3-c8d2-416f-ba90-406acfc0f2ed",
+                                          "key": "cUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "0cc9b090-d50e-43a0-a4ee-b66fc515cec7",
+                                          "key": "uniUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    },
+                                    "description": "WARNING: This is a preview API that could change."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "41198eeb-4412-442e-ac4f-1b23f4cf6163",
+                                      "name": "successful operation",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "X-AUTH-YW-API-TOKEN",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/start_manually",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "universes",
+                                            ":uniUUID",
+                                            "start_manually"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "cUUID"
+                                            },
+                                            {
+                                              "key": "uniUUID"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"activeRun\": {\n    \"customerUUID\": \"<uuid>\",\n    \"state\": \"FAILED\",\n    \"universeUUID\": \"<uuid>\",\n    \"uuid\": \"<uuid>\",\n    \"endTime\": \"<dateTime>\",\n    \"manual\": \"<boolean>\",\n    \"scheduleTime\": \"<dateTime>\",\n    \"startTime\": \"<dateTime>\"\n  },\n  \"message\": \"<string>\",\n  \"success\": \"<boolean>\"\n}",
+                                      "createdAt": "2026-10-22T01:11:00.000Z",
+                                      "updatedAt": "2026-10-22T01:11:00.000Z",
+                                      "uid": "35240-41198eeb-4412-442e-ac4f-1b23f4cf6163"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:11:00.000Z",
+                                  "updatedAt": "2026-10-22T01:11:00.000Z",
+                                  "uid": "35240-7f397137-d873-49b4-afea-c95d3b4506d6"
+                                }
+                              ],
+                              "id": "5a71a402-9b15-45c3-9077-278fbeff2aa4",
+                              "createdAt": "2026-10-22T01:11:00.000Z",
+                              "updatedAt": "2026-10-22T01:11:00.000Z",
+                              "uid": "35240-5a71a402-9b15-45c3-9077-278fbeff2aa4"
+                            }
+                          ],
+                          "id": "98900179-d79e-497a-a336-af6ff3c320cf",
+                          "createdAt": "2026-10-22T01:11:00.000Z",
+                          "updatedAt": "2026-10-22T01:11:00.000Z",
+                          "uid": "35240-98900179-d79e-497a-a336-af6ff3c320cf"
+                        }
+                      ],
+                      "id": "e3aa1889-b48b-4ae3-b9cc-140d15c062be",
+                      "createdAt": "2026-10-22T01:11:00.000Z",
+                      "updatedAt": "2026-10-22T01:11:00.000Z",
+                      "uid": "35240-e3aa1889-b48b-4ae3-b9cc-140d15c062be"
+                    }
+                  ],
+                  "id": "6586f384-ac68-4f68-a6f1-e3842d65f7d0",
+                  "createdAt": "2026-10-22T01:11:00.000Z",
+                  "updatedAt": "2026-10-22T01:11:00.000Z",
+                  "uid": "35240-6586f384-ac68-4f68-a6f1-e3842d65f7d0"
+                }
+              ],
+              "id": "8dbee4ab-382d-47ae-b2c4-c0eeee1571ec",
+              "createdAt": "2026-10-22T01:11:00.000Z",
+              "updatedAt": "2026-10-22T01:11:00.000Z",
+              "uid": "35240-8dbee4ab-382d-47ae-b2c4-c0eeee1571ec"
+            }
+          ],
+          "id": "b56de525-3bca-4b19-a7dc-f294c8c49323",
+          "createdAt": "2026-10-22T01:11:00.000Z",
+          "updatedAt": "2026-10-22T01:11:00.000Z",
+          "uid": "35240-b56de525-3bca-4b19-a7dc-f294c8c49323"
+        }
+      ],
+      "id": "973c4f9a-d56c-4816-bf7a-3c8079665d47",
+      "createdAt": "2026-10-22T01:11:00.000Z",
+      "updatedAt": "2026-10-22T01:11:00.000Z",
+      "uid": "35240-973c4f9a-d56c-4816-bf7a-3c8079665d47"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

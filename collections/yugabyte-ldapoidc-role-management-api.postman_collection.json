@@ -1,0 +1,694 @@
+{
+  "info": {
+    "_postman_id": "c19fbb9f-d533-4b65-8bda-dd09c170fa04",
+    "name": "YugabyteDB Anywhere LDAPOIDC Role management API",
+    "description": "ALPHA - NOT FOR EXTERNAL USE\n\nContact Support:\n Name: https://docs.yugabyte.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:09:34.000Z",
+    "updatedAt": "2026-10-22T01:09:35.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-c19fbb9f-d533-4b65-8bda-dd09c170fa04"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "customers",
+              "item": [
+                {
+                  "name": "{cUUID}",
+                  "item": [
+                    {
+                      "name": "ldap_mappings",
+                      "item": [
+                        {
+                          "name": "List LDAP Mappings",
+                          "id": "51b45505-24bd-4d5a-b9a6-d866ff1cb763",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "apikey",
+                              "apikey": [
+                                {
+                                  "key": "key",
+                                  "value": "X-AUTH-YW-API-TOKEN",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "value",
+                                  "value": "{{apiKey}}",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "in",
+                                  "value": "header",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/customers/:cUUID/ldap_mappings",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "customers",
+                                ":cUUID",
+                                "ldap_mappings"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "82169820-d53a-4410-a600-0a6cdeeca3be",
+                                  "key": "cUUID",
+                                  "value": "<uuid>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Deprecated since YBA version 2024.2.0.0. Please use the v2 /auth/group-mappings GET endpoint instead. Note that this API will not return the custom roles assigned to groups via the new /api/v2/customers/{cUUID}/auth/group-mappings API."
+                          },
+                          "response": [
+                            {
+                              "id": "f34f9f03-8e6d-41ea-9d59-8e7b768071d5",
+                              "name": "successful operation",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-AUTH-YW-API-TOKEN",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/ldap_mappings",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "ldap_mappings"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "cUUID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"ldapDnToYbaRolePairs\": [\n    {\n      \"distinguishedName\": \"<string>\",\n      \"ybaRole\": \"ReadOnly\"\n    },\n    {\n      \"distinguishedName\": \"<string>\",\n      \"ybaRole\": \"SuperAdmin\"\n    }\n  ]\n}",
+                              "createdAt": "2026-10-22T01:09:35.000Z",
+                              "updatedAt": "2026-10-22T01:09:35.000Z",
+                              "uid": "35240-f34f9f03-8e6d-41ea-9d59-8e7b768071d5"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T01:09:35.000Z",
+                          "updatedAt": "2026-10-22T01:09:35.000Z",
+                          "uid": "35240-51b45505-24bd-4d5a-b9a6-d866ff1cb763"
+                        },
+                        {
+                          "name": "Set LDAP Mappings",
+                          "id": "1a29bed6-96f9-4861-8eb2-58a3c40c68d5",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "apikey",
+                              "apikey": [
+                                {
+                                  "key": "key",
+                                  "value": "X-AUTH-YW-API-TOKEN",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "value",
+                                  "value": "{{apiKey}}",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "in",
+                                  "value": "header",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"ldapDnToYbaRolePairs\": [\n    {\n      \"distinguishedName\": \"<string>\",\n      \"ybaRole\": \"ReadOnly\"\n    },\n    {\n      \"distinguishedName\": \"<string>\",\n      \"ybaRole\": \"SuperAdmin\"\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/customers/:cUUID/ldap_mappings",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "customers",
+                                ":cUUID",
+                                "ldap_mappings"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "9770dcf9-7c46-4b95-bd12-3a2c9b617f0f",
+                                  "key": "cUUID",
+                                  "value": "<uuid>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Deprecated since YBA version 2024.2.0.0. Please use the v2 /auth/group-mappings PUT endpoint instead"
+                          },
+                          "response": [
+                            {
+                              "id": "5a4f063f-d04e-4523-954e-6eb57ee5a891",
+                              "name": "successful operation",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-AUTH-YW-API-TOKEN",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"ldapDnToYbaRolePairs\": [\n    {\n      \"distinguishedName\": \"<string>\",\n      \"ybaRole\": \"ReadOnly\"\n    },\n    {\n      \"distinguishedName\": \"<string>\",\n      \"ybaRole\": \"SuperAdmin\"\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/ldap_mappings",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "ldap_mappings"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "cUUID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-10-22T01:09:35.000Z",
+                              "updatedAt": "2026-10-22T01:09:35.000Z",
+                              "uid": "35240-5a4f063f-d04e-4523-954e-6eb57ee5a891"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T01:09:35.000Z",
+                          "updatedAt": "2026-10-22T01:09:35.000Z",
+                          "uid": "35240-1a29bed6-96f9-4861-8eb2-58a3c40c68d5"
+                        }
+                      ],
+                      "id": "d0334a8e-e5e5-4feb-8196-c473a887f742",
+                      "createdAt": "2026-10-22T01:09:35.000Z",
+                      "updatedAt": "2026-10-22T01:09:35.000Z",
+                      "uid": "35240-d0334a8e-e5e5-4feb-8196-c473a887f742"
+                    },
+                    {
+                      "name": "oidc_mappings",
+                      "item": [
+                        {
+                          "name": "{groupName}",
+                          "item": [
+                            {
+                              "name": "Delete a OIDC group mapping",
+                              "id": "e060cf8c-4c27-42ce-9b47-708a57bd7b24",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "apikey",
+                                  "apikey": [
+                                    {
+                                      "key": "key",
+                                      "value": "X-AUTH-YW-API-TOKEN",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "value",
+                                      "value": "{{apiKey}}",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "in",
+                                      "value": "header",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/oidc_mappings/:groupName",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "oidc_mappings",
+                                    ":groupName"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "29997aac-ce5d-4392-a164-728c5064859d",
+                                      "key": "cUUID",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    },
+                                    {
+                                      "id": "f8d969a0-586e-4189-9d46-d1f72fa124fe",
+                                      "key": "groupName",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Deprecated since YBA version 2024.2.0.0. Please use the v2 /auth/group-mappings/{groupUUID} DELETE endpoint instead"
+                              },
+                              "response": [
+                                {
+                                  "id": "d055916c-c375-4916-afb3-a4af8f888981",
+                                  "name": "successful operation",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-AUTH-YW-API-TOKEN",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/oidc_mappings/:groupName",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "oidc_mappings",
+                                        ":groupName"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "cUUID"
+                                        },
+                                        {
+                                          "key": "groupName"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"message\": \"<string>\",\n  \"success\": \"<boolean>\"\n}",
+                                  "createdAt": "2026-10-22T01:09:35.000Z",
+                                  "updatedAt": "2026-10-22T01:09:35.000Z",
+                                  "uid": "35240-d055916c-c375-4916-afb3-a4af8f888981"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T01:09:35.000Z",
+                              "updatedAt": "2026-10-22T01:09:35.000Z",
+                              "uid": "35240-e060cf8c-4c27-42ce-9b47-708a57bd7b24"
+                            }
+                          ],
+                          "id": "cafad142-61c2-4464-aa25-2c07088d68fa",
+                          "createdAt": "2026-10-22T01:09:35.000Z",
+                          "updatedAt": "2026-10-22T01:09:35.000Z",
+                          "uid": "35240-cafad142-61c2-4464-aa25-2c07088d68fa"
+                        },
+                        {
+                          "name": "List OIDC Group Mappings",
+                          "id": "f9558525-c99d-4e90-add8-f94a8f7395ad",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "apikey",
+                              "apikey": [
+                                {
+                                  "key": "key",
+                                  "value": "X-AUTH-YW-API-TOKEN",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "value",
+                                  "value": "{{apiKey}}",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "in",
+                                  "value": "header",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/customers/:cUUID/oidc_mappings",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "customers",
+                                ":cUUID",
+                                "oidc_mappings"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "8c923770-5f4b-4670-a729-57677ae55e9d",
+                                  "key": "cUUID",
+                                  "value": "<uuid>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Deprecated since YBA version 2024.2.0.0. Please use the v2 /auth/group-mappings GET endpoint instead. Note that this API will not return the custom roles assigned to groups via the new /api/v2/customers/{cUUID}/auth/group-mappings API."
+                          },
+                          "response": [
+                            {
+                              "id": "a1464f88-a3c7-43fb-951d-c5f4b3e792ce",
+                              "name": "successful operation",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-AUTH-YW-API-TOKEN",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/oidc_mappings",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "oidc_mappings"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "cUUID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"oidcGroupToYbaRolesPairs\": [\n    {\n      \"groupName\": \"<string>\",\n      \"roles\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ]\n    },\n    {\n      \"groupName\": \"<string>\",\n      \"roles\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ]\n    }\n  ]\n}",
+                              "createdAt": "2026-10-22T01:09:35.000Z",
+                              "updatedAt": "2026-10-22T01:09:35.000Z",
+                              "uid": "35240-a1464f88-a3c7-43fb-951d-c5f4b3e792ce"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T01:09:35.000Z",
+                          "updatedAt": "2026-10-22T01:09:35.000Z",
+                          "uid": "35240-f9558525-c99d-4e90-add8-f94a8f7395ad"
+                        },
+                        {
+                          "name": "Set OIDC Mappings",
+                          "id": "4f70158e-ef33-4997-8514-4246593d71d0",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "apikey",
+                              "apikey": [
+                                {
+                                  "key": "key",
+                                  "value": "X-AUTH-YW-API-TOKEN",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "value",
+                                  "value": "{{apiKey}}",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "in",
+                                  "value": "header",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"oidcGroupToYbaRolesPairs\": [\n    {\n      \"groupName\": \"<string>\",\n      \"roles\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ]\n    },\n    {\n      \"groupName\": \"<string>\",\n      \"roles\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ]\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/customers/:cUUID/oidc_mappings",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "customers",
+                                ":cUUID",
+                                "oidc_mappings"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "2c55594a-6c1a-4c50-a4fd-5ddd64a371f7",
+                                  "key": "cUUID",
+                                  "value": "<uuid>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Deprecated since YBA version 2024.2.0.0. Please use the v2 /auth/group-mappings PUT endpoint instead"
+                          },
+                          "response": [
+                            {
+                              "id": "5d1b9f8c-f059-42e9-9d4e-227255b1432d",
+                              "name": "successful operation",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-AUTH-YW-API-TOKEN",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"oidcGroupToYbaRolesPairs\": [\n    {\n      \"groupName\": \"<string>\",\n      \"roles\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ]\n    },\n    {\n      \"groupName\": \"<string>\",\n      \"roles\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ]\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/oidc_mappings",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "oidc_mappings"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "cUUID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-10-22T01:09:35.000Z",
+                              "updatedAt": "2026-10-22T01:09:35.000Z",
+                              "uid": "35240-5d1b9f8c-f059-42e9-9d4e-227255b1432d"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T01:09:35.000Z",
+                          "updatedAt": "2026-10-22T01:09:35.000Z",
+                          "uid": "35240-4f70158e-ef33-4997-8514-4246593d71d0"
+                        }
+                      ],
+                      "id": "de846d6d-f289-4b5a-8b2b-65affd6f8628",
+                      "createdAt": "2026-10-22T01:09:35.000Z",
+                      "updatedAt": "2026-10-22T01:09:35.000Z",
+                      "uid": "35240-de846d6d-f289-4b5a-8b2b-65affd6f8628"
+                    }
+                  ],
+                  "id": "b2aa3aa1-3e5b-4ddf-9867-785477e4b6a3",
+                  "createdAt": "2026-10-22T01:09:35.000Z",
+                  "updatedAt": "2026-10-22T01:09:35.000Z",
+                  "uid": "35240-b2aa3aa1-3e5b-4ddf-9867-785477e4b6a3"
+                }
+              ],
+              "id": "e19dbd92-8067-4b43-b224-9cfdd8ff6b5e",
+              "createdAt": "2026-10-22T01:09:35.000Z",
+              "updatedAt": "2026-10-22T01:09:35.000Z",
+              "uid": "35240-e19dbd92-8067-4b43-b224-9cfdd8ff6b5e"
+            }
+          ],
+          "id": "e932f5b6-ef23-41cb-ac09-c4680a336db5",
+          "createdAt": "2026-10-22T01:09:35.000Z",
+          "updatedAt": "2026-10-22T01:09:35.000Z",
+          "uid": "35240-e932f5b6-ef23-41cb-ac09-c4680a336db5"
+        }
+      ],
+      "id": "16e0b86f-1951-4779-928d-be8be1361c82",
+      "createdAt": "2026-10-22T01:09:35.000Z",
+      "updatedAt": "2026-10-22T01:09:35.000Z",
+      "uid": "35240-16e0b86f-1951-4779-928d-be8be1361c82"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

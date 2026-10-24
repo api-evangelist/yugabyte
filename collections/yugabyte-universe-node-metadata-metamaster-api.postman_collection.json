@@ -1,0 +1,890 @@
+{
+  "info": {
+    "_postman_id": "d1715c5b-0507-4d65-8c41-58319b75bc85",
+    "name": "Yugabytedb Universe node metadata (metamaster) Universe\u2026",
+    "description": "Operations tagged Universe node metadata (metamaster) across 2 of this provider's published API definitions: openapi_2.yaml, platform.swagger.json. Each path carries the servers of the definition it was published in.\n\nContact Support:\n Name: https://docs.yugabyte.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:14:04.000Z",
+    "updatedAt": "2026-10-22T01:14:04.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-d1715c5b-0507-4d65-8c41-58319b75bc85"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "customers",
+              "item": [
+                {
+                  "name": "{cUUID}",
+                  "item": [
+                    {
+                      "name": "universes",
+                      "item": [
+                        {
+                          "name": "{uniUUID}",
+                          "item": [
+                            {
+                              "name": "master_lb_state",
+                              "item": [
+                                {
+                                  "name": "Get the state of master load balancing ops",
+                                  "id": "87f9535b-0044-4e6e-8761-f0ebc068c350",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "apikey",
+                                      "apikey": [
+                                        {
+                                          "key": "key",
+                                          "value": "X-AUTH-YW-API-TOKEN",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "value",
+                                          "value": "{{apiKey}}",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "in",
+                                          "value": "header",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/master_lb_state",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "universes",
+                                        ":uniUUID",
+                                        "master_lb_state"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "0ed4157c-a4cc-496c-9dbe-146f4e70af5c",
+                                          "key": "cUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "314970fe-96d8-4df6-a4d1-67310318f9e9",
+                                          "key": "uniUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    },
+                                    "description": "YbaApi Internal. Available since YBA version 2024.2.0"
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "1102b8a6-e480-4683-b505-41db54e853bf",
+                                      "name": "successful operation",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "X-AUTH-YW-API-TOKEN",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/master_lb_state",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "universes",
+                                            ":uniUUID",
+                                            "master_lb_state"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "cUUID"
+                                            },
+                                            {
+                                              "key": "uniUUID"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"isEnabled\": \"<boolean>\",\n  \"estTimeToBalanceSecs\": \"<long>\",\n  \"isIdle\": \"<boolean>\"\n}",
+                                      "createdAt": "2026-10-22T01:14:04.000Z",
+                                      "updatedAt": "2026-10-22T01:14:04.000Z",
+                                      "uid": "35240-1102b8a6-e480-4683-b505-41db54e853bf"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:14:04.000Z",
+                                  "updatedAt": "2026-10-22T01:14:04.000Z",
+                                  "uid": "35240-87f9535b-0044-4e6e-8761-f0ebc068c350"
+                                }
+                              ],
+                              "id": "92184016-cdbd-4838-90ec-fa156a02454e",
+                              "createdAt": "2026-10-22T01:14:04.000Z",
+                              "updatedAt": "2026-10-22T01:14:04.000Z",
+                              "uid": "35240-92184016-cdbd-4838-90ec-fa156a02454e"
+                            },
+                            {
+                              "name": "masters",
+                              "item": [
+                                {
+                                  "name": "List a master node's addresses",
+                                  "id": "11fa3cbc-5a9f-42c3-9323-78c87fd349b4",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "apikey",
+                                      "apikey": [
+                                        {
+                                          "key": "key",
+                                          "value": "X-AUTH-YW-API-TOKEN",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "value",
+                                          "value": "{{apiKey}}",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "in",
+                                          "value": "header",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/masters",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "universes",
+                                        ":uniUUID",
+                                        "masters"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "bcc7a4bb-6276-48bc-a266-1ba87f14ee48",
+                                          "key": "cUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "c0e33836-cb24-4c7b-885f-cfb900563b9e",
+                                          "key": "uniUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    },
+                                    "description": "Available since YBA version 2.2.0.0."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "b3ed9531-ced5-43f2-ab1d-3f5576386cb1",
+                                      "name": "successful operation",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "X-AUTH-YW-API-TOKEN",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/masters",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "universes",
+                                            ":uniUUID",
+                                            "masters"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "cUUID"
+                                            },
+                                            {
+                                              "key": "uniUUID"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "<string>",
+                                      "createdAt": "2026-10-22T01:14:04.000Z",
+                                      "updatedAt": "2026-10-22T01:14:04.000Z",
+                                      "uid": "35240-b3ed9531-ced5-43f2-ab1d-3f5576386cb1"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:14:04.000Z",
+                                  "updatedAt": "2026-10-22T01:14:04.000Z",
+                                  "uid": "35240-11fa3cbc-5a9f-42c3-9323-78c87fd349b4"
+                                }
+                              ],
+                              "id": "f166c42b-3cd4-41a4-b267-ec4d95f49058",
+                              "createdAt": "2026-10-22T01:14:04.000Z",
+                              "updatedAt": "2026-10-22T01:14:04.000Z",
+                              "uid": "35240-f166c42b-3cd4-41a4-b267-ec4d95f49058"
+                            },
+                            {
+                              "name": "redisservers",
+                              "item": [
+                                {
+                                  "name": "List a REDIS server's addresses",
+                                  "id": "aa360cba-3ae8-40b4-92be-f4550a40c2cd",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "apikey",
+                                      "apikey": [
+                                        {
+                                          "key": "key",
+                                          "value": "X-AUTH-YW-API-TOKEN",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "value",
+                                          "value": "{{apiKey}}",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "in",
+                                          "value": "header",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/redisservers",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "universes",
+                                        ":uniUUID",
+                                        "redisservers"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "bc1c30d9-be76-4103-bdbc-438240022bc7",
+                                          "key": "cUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "de1576b5-c5a9-4de7-9528-df3626d5fcfb",
+                                          "key": "uniUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    },
+                                    "description": "Available since YBA version 2.2.0.0."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "6df62dfa-5327-4b8d-95a1-70dc27467d0a",
+                                      "name": "successful operation",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "X-AUTH-YW-API-TOKEN",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/redisservers",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "universes",
+                                            ":uniUUID",
+                                            "redisservers"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "cUUID"
+                                            },
+                                            {
+                                              "key": "uniUUID"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "<string>",
+                                      "createdAt": "2026-10-22T01:14:04.000Z",
+                                      "updatedAt": "2026-10-22T01:14:04.000Z",
+                                      "uid": "35240-6df62dfa-5327-4b8d-95a1-70dc27467d0a"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:14:04.000Z",
+                                  "updatedAt": "2026-10-22T01:14:04.000Z",
+                                  "uid": "35240-aa360cba-3ae8-40b4-92be-f4550a40c2cd"
+                                }
+                              ],
+                              "id": "827fe25e-107e-4120-b81f-281761e147e6",
+                              "createdAt": "2026-10-22T01:14:04.000Z",
+                              "updatedAt": "2026-10-22T01:14:04.000Z",
+                              "uid": "35240-827fe25e-107e-4120-b81f-281761e147e6"
+                            },
+                            {
+                              "name": "yqlservers",
+                              "item": [
+                                {
+                                  "name": "List a YQL server's addresses",
+                                  "id": "ed33f74b-9110-4c08-95d2-848dd868a3b0",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "apikey",
+                                      "apikey": [
+                                        {
+                                          "key": "key",
+                                          "value": "X-AUTH-YW-API-TOKEN",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "value",
+                                          "value": "{{apiKey}}",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "in",
+                                          "value": "header",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/yqlservers",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "universes",
+                                        ":uniUUID",
+                                        "yqlservers"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "d8a1ac15-9297-443b-b2ef-30ef585d1c71",
+                                          "key": "cUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "85820091-c311-43ed-b3fc-7eba0491596a",
+                                          "key": "uniUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    },
+                                    "description": "Available since YBA version 2.2.0.0."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "f844317f-f840-4a87-88b7-f311ffea5f1c",
+                                      "name": "successful operation",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "X-AUTH-YW-API-TOKEN",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/yqlservers",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "universes",
+                                            ":uniUUID",
+                                            "yqlservers"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "cUUID"
+                                            },
+                                            {
+                                              "key": "uniUUID"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "<string>",
+                                      "createdAt": "2026-10-22T01:14:04.000Z",
+                                      "updatedAt": "2026-10-22T01:14:04.000Z",
+                                      "uid": "35240-f844317f-f840-4a87-88b7-f311ffea5f1c"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:14:04.000Z",
+                                  "updatedAt": "2026-10-22T01:14:04.000Z",
+                                  "uid": "35240-ed33f74b-9110-4c08-95d2-848dd868a3b0"
+                                }
+                              ],
+                              "id": "4e35b33b-5e32-4978-b780-bf7cd34c6218",
+                              "createdAt": "2026-10-22T01:14:04.000Z",
+                              "updatedAt": "2026-10-22T01:14:04.000Z",
+                              "uid": "35240-4e35b33b-5e32-4978-b780-bf7cd34c6218"
+                            },
+                            {
+                              "name": "ysqlservers",
+                              "item": [
+                                {
+                                  "name": "List a YSQL server's addresses",
+                                  "id": "6aba4e52-6fa6-4d70-8a41-3d63d09aa1c4",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "apikey",
+                                      "apikey": [
+                                        {
+                                          "key": "key",
+                                          "value": "X-AUTH-YW-API-TOKEN",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "value",
+                                          "value": "{{apiKey}}",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "in",
+                                          "value": "header",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/ysqlservers",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "universes",
+                                        ":uniUUID",
+                                        "ysqlservers"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "85fc7cf3-0fd8-4fe6-ab27-b505bb1cbfa4",
+                                          "key": "cUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "ecd38158-0ccf-4ad0-87fd-610b40ebc774",
+                                          "key": "uniUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    },
+                                    "description": "Available since YBA version 2.2.0.0."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "a25215cc-79e1-43b2-9c55-d34a153b6415",
+                                      "name": "successful operation",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "X-AUTH-YW-API-TOKEN",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/ysqlservers",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "universes",
+                                            ":uniUUID",
+                                            "ysqlservers"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "cUUID"
+                                            },
+                                            {
+                                              "key": "uniUUID"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "<string>",
+                                      "createdAt": "2026-10-22T01:14:04.000Z",
+                                      "updatedAt": "2026-10-22T01:14:04.000Z",
+                                      "uid": "35240-a25215cc-79e1-43b2-9c55-d34a153b6415"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:14:04.000Z",
+                                  "updatedAt": "2026-10-22T01:14:04.000Z",
+                                  "uid": "35240-6aba4e52-6fa6-4d70-8a41-3d63d09aa1c4"
+                                }
+                              ],
+                              "id": "8d75c4c5-f092-46f8-96c0-d1783d7c2257",
+                              "createdAt": "2026-10-22T01:14:04.000Z",
+                              "updatedAt": "2026-10-22T01:14:04.000Z",
+                              "uid": "35240-8d75c4c5-f092-46f8-96c0-d1783d7c2257"
+                            }
+                          ],
+                          "id": "1be2f484-a26b-437f-8a1c-2618edd9ba36",
+                          "createdAt": "2026-10-22T01:14:04.000Z",
+                          "updatedAt": "2026-10-22T01:14:04.000Z",
+                          "uid": "35240-1be2f484-a26b-437f-8a1c-2618edd9ba36"
+                        }
+                      ],
+                      "id": "19e3812b-bf70-40ae-883e-5a130fd56443",
+                      "createdAt": "2026-10-22T01:14:04.000Z",
+                      "updatedAt": "2026-10-22T01:14:04.000Z",
+                      "uid": "35240-19e3812b-bf70-40ae-883e-5a130fd56443"
+                    }
+                  ],
+                  "id": "9c3fa62a-14f5-4490-ba46-f444b7d24c4f",
+                  "createdAt": "2026-10-22T01:14:04.000Z",
+                  "updatedAt": "2026-10-22T01:14:04.000Z",
+                  "uid": "35240-9c3fa62a-14f5-4490-ba46-f444b7d24c4f"
+                }
+              ],
+              "id": "f3a2d611-1ca8-48fe-8e1b-4daad5b6698e",
+              "createdAt": "2026-10-22T01:14:04.000Z",
+              "updatedAt": "2026-10-22T01:14:04.000Z",
+              "uid": "35240-f3a2d611-1ca8-48fe-8e1b-4daad5b6698e"
+            }
+          ],
+          "id": "405640e7-73c4-4fcb-a135-75733cb55acd",
+          "createdAt": "2026-10-22T01:14:04.000Z",
+          "updatedAt": "2026-10-22T01:14:04.000Z",
+          "uid": "35240-405640e7-73c4-4fcb-a135-75733cb55acd"
+        }
+      ],
+      "id": "c1791caa-c693-410c-898b-7ef4e98d7c91",
+      "createdAt": "2026-10-22T01:14:04.000Z",
+      "updatedAt": "2026-10-22T01:14:04.000Z",
+      "uid": "35240-c1791caa-c693-410c-898b-7ef4e98d7c91"
+    },
+    {
+      "name": "metamaster",
+      "item": [
+        {
+          "name": "universe",
+          "item": [
+            {
+              "name": "{universeUUID}",
+              "item": [
+                {
+                  "name": "List a universe's master nodes",
+                  "id": "54c1aafa-1da9-4625-91f7-06e239864587",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "X-AUTH-YW-API-TOKEN",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/metamaster/universe/:universeUUID",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "metamaster",
+                        "universe",
+                        ":universeUUID"
+                      ],
+                      "variable": [
+                        {
+                          "id": "22dfc5a9-870e-44ba-a407-e62f1963c32a",
+                          "key": "universeUUID",
+                          "value": "<uuid>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "d126e620-6c7c-4f9d-9dea-e7206a49a21f",
+                      "name": "successful operation",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-AUTH-YW-API-TOKEN",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/metamaster/universe/:universeUUID",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "metamaster",
+                            "universe",
+                            ":universeUUID"
+                          ],
+                          "variable": [
+                            {
+                              "key": "universeUUID"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"masters\": [\n    {\n      \"cloudInfo\": {\n        \"assignPublicIP\": \"<boolean>\",\n        \"az\": \"<string>\",\n        \"cloud\": \"<string>\",\n        \"instance_type\": \"<string>\",\n        \"kubernetesNamespace\": \"<string>\",\n        \"kubernetesPodName\": \"<string>\",\n        \"lun_indexes\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"mount_roots\": \"<string>\",\n        \"private_dns\": \"<string>\",\n        \"private_ip\": \"<string>\",\n        \"public_dns\": \"<string>\",\n        \"public_ip\": \"<string>\",\n        \"region\": \"<string>\",\n        \"root_volume\": \"<string>\",\n        \"secondary_private_ip\": \"<string>\",\n        \"secondary_subnet_id\": \"<string>\",\n        \"subnet_id\": \"<string>\",\n        \"useTimeSync\": \"<boolean>\"\n      },\n      \"masterRpcPort\": \"<integer>\"\n    },\n    {\n      \"cloudInfo\": {\n        \"assignPublicIP\": \"<boolean>\",\n        \"az\": \"<string>\",\n        \"cloud\": \"<string>\",\n        \"instance_type\": \"<string>\",\n        \"kubernetesNamespace\": \"<string>\",\n        \"kubernetesPodName\": \"<string>\",\n        \"lun_indexes\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"mount_roots\": \"<string>\",\n        \"private_dns\": \"<string>\",\n        \"private_ip\": \"<string>\",\n        \"public_dns\": \"<string>\",\n        \"public_ip\": \"<string>\",\n        \"region\": \"<string>\",\n        \"root_volume\": \"<string>\",\n        \"secondary_private_ip\": \"<string>\",\n        \"secondary_subnet_id\": \"<string>\",\n        \"subnet_id\": \"<string>\",\n        \"useTimeSync\": \"<boolean>\"\n      },\n      \"masterRpcPort\": \"<integer>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-22T01:14:04.000Z",
+                      "updatedAt": "2026-10-22T01:14:04.000Z",
+                      "uid": "35240-d126e620-6c7c-4f9d-9dea-e7206a49a21f"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:14:04.000Z",
+                  "updatedAt": "2026-10-22T01:14:04.000Z",
+                  "uid": "35240-54c1aafa-1da9-4625-91f7-06e239864587"
+                }
+              ],
+              "id": "dc5812d0-7829-4123-9c3d-9a8c89010cd2",
+              "createdAt": "2026-10-22T01:14:04.000Z",
+              "updatedAt": "2026-10-22T01:14:04.000Z",
+              "uid": "35240-dc5812d0-7829-4123-9c3d-9a8c89010cd2"
+            }
+          ],
+          "id": "dd1dfacb-db12-4850-b0c7-096b5d4525b8",
+          "createdAt": "2026-10-22T01:14:04.000Z",
+          "updatedAt": "2026-10-22T01:14:04.000Z",
+          "uid": "35240-dd1dfacb-db12-4850-b0c7-096b5d4525b8"
+        }
+      ],
+      "id": "dc0888fe-d62d-43fe-b6e6-8640d51dc03a",
+      "createdAt": "2026-10-22T01:14:04.000Z",
+      "updatedAt": "2026-10-22T01:14:04.000Z",
+      "uid": "35240-dc0888fe-d62d-43fe-b6e6-8640d51dc03a"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

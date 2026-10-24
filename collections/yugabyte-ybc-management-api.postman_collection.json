@@ -1,0 +1,824 @@
+{
+  "info": {
+    "_postman_id": "d6ebe90b-2e42-4e52-aa52-87945379c873",
+    "name": "YugabyteDB Anywhere Ybc Management API",
+    "description": "ALPHA - NOT FOR EXTERNAL USE\n\nContact Support:\n Name: https://docs.yugabyte.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:15:12.000Z",
+    "updatedAt": "2026-10-22T01:15:13.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-d6ebe90b-2e42-4e52-aa52-87945379c873"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "customers",
+              "item": [
+                {
+                  "name": "{cUUID}",
+                  "item": [
+                    {
+                      "name": "universes",
+                      "item": [
+                        {
+                          "name": "{uniUUID}",
+                          "item": [
+                            {
+                              "name": "ybc",
+                              "item": [
+                                {
+                                  "name": "disable",
+                                  "item": [
+                                    {
+                                      "name": "Disable YBC on the universe nodes",
+                                      "id": "2aabb730-5961-4f3b-9e37-df804b561783",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "auth": {
+                                          "type": "apikey",
+                                          "apikey": [
+                                            {
+                                              "key": "key",
+                                              "value": "X-AUTH-YW-API-TOKEN",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "value",
+                                              "value": "{{apiKey}}",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "in",
+                                              "value": "header",
+                                              "type": "string"
+                                            }
+                                          ]
+                                        },
+                                        "method": "PUT",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/ybc/disable",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "universes",
+                                            ":uniUUID",
+                                            "ybc",
+                                            "disable"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "f3551e60-ef97-43f8-9cf9-f086e34dc389",
+                                              "key": "cUUID",
+                                              "value": "<uuid>",
+                                              "description": "(Required) "
+                                            },
+                                            {
+                                              "id": "c88f6524-7643-4d26-a53b-772658339c62",
+                                              "key": "uniUUID",
+                                              "value": "<uuid>",
+                                              "description": "(Required) "
+                                            }
+                                          ]
+                                        },
+                                        "description": "YbaApi Internal."
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "0b8dac5e-7cee-4ed8-95bb-7859209e952e",
+                                          "name": "successful operation",
+                                          "originalRequest": {
+                                            "method": "PUT",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: apikey",
+                                                "key": "X-AUTH-YW-API-TOKEN",
+                                                "value": "<API Key>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/ybc/disable",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v1",
+                                                "customers",
+                                                ":cUUID",
+                                                "universes",
+                                                ":uniUUID",
+                                                "ybc",
+                                                "disable"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "cUUID"
+                                                },
+                                                {
+                                                  "key": "uniUUID"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"resourceUUID\": \"<uuid>\",\n  \"taskUUID\": \"<uuid>\"\n}",
+                                          "createdAt": "2026-10-22T01:15:13.000Z",
+                                          "updatedAt": "2026-10-22T01:15:13.000Z",
+                                          "uid": "35240-0b8dac5e-7cee-4ed8-95bb-7859209e952e"
+                                        }
+                                      ],
+                                      "createdAt": "2026-10-22T01:15:13.000Z",
+                                      "updatedAt": "2026-10-22T01:15:13.000Z",
+                                      "uid": "35240-2aabb730-5961-4f3b-9e37-df804b561783"
+                                    }
+                                  ],
+                                  "id": "2ac14a5e-1f8d-4b56-815f-5c1a093daaea",
+                                  "createdAt": "2026-10-22T01:15:13.000Z",
+                                  "updatedAt": "2026-10-22T01:15:13.000Z",
+                                  "uid": "35240-2ac14a5e-1f8d-4b56-815f-5c1a093daaea"
+                                },
+                                {
+                                  "name": "install",
+                                  "item": [
+                                    {
+                                      "name": "Install YBC on the universe nodes",
+                                      "id": "6a688fd6-e06a-49c3-bb17-0f45c14d4d32",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "auth": {
+                                          "type": "apikey",
+                                          "apikey": [
+                                            {
+                                              "key": "key",
+                                              "value": "X-AUTH-YW-API-TOKEN",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "value",
+                                              "value": "{{apiKey}}",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "in",
+                                              "value": "header",
+                                              "type": "string"
+                                            }
+                                          ]
+                                        },
+                                        "method": "PUT",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/ybc/install?ybcVersion=<string>",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "universes",
+                                            ":uniUUID",
+                                            "ybc",
+                                            "install"
+                                          ],
+                                          "query": [
+                                            {
+                                              "key": "ybcVersion",
+                                              "value": "<string>"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "ca263ef4-e120-4f6a-9e17-450e655ae34a",
+                                              "key": "cUUID",
+                                              "value": "<uuid>",
+                                              "description": "(Required) "
+                                            },
+                                            {
+                                              "id": "4e73ce2a-1cd5-4bf9-a687-c8d54d1892ff",
+                                              "key": "uniUUID",
+                                              "value": "<uuid>",
+                                              "description": "(Required) "
+                                            }
+                                          ]
+                                        },
+                                        "description": "YbaApi Internal."
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "710d9a55-2be6-4fde-8bf5-c61589f9c84d",
+                                          "name": "successful operation",
+                                          "originalRequest": {
+                                            "method": "PUT",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: apikey",
+                                                "key": "X-AUTH-YW-API-TOKEN",
+                                                "value": "<API Key>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/ybc/install?ybcVersion=<string>",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v1",
+                                                "customers",
+                                                ":cUUID",
+                                                "universes",
+                                                ":uniUUID",
+                                                "ybc",
+                                                "install"
+                                              ],
+                                              "query": [
+                                                {
+                                                  "key": "ybcVersion",
+                                                  "value": "<string>"
+                                                }
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "cUUID"
+                                                },
+                                                {
+                                                  "key": "uniUUID"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"resourceUUID\": \"<uuid>\",\n  \"taskUUID\": \"<uuid>\"\n}",
+                                          "createdAt": "2026-10-22T01:15:13.000Z",
+                                          "updatedAt": "2026-10-22T01:15:13.000Z",
+                                          "uid": "35240-710d9a55-2be6-4fde-8bf5-c61589f9c84d"
+                                        }
+                                      ],
+                                      "createdAt": "2026-10-22T01:15:13.000Z",
+                                      "updatedAt": "2026-10-22T01:15:13.000Z",
+                                      "uid": "35240-6a688fd6-e06a-49c3-bb17-0f45c14d4d32"
+                                    }
+                                  ],
+                                  "id": "fe21a5c9-60af-46d2-82f7-23e9495a77c5",
+                                  "createdAt": "2026-10-22T01:15:13.000Z",
+                                  "updatedAt": "2026-10-22T01:15:13.000Z",
+                                  "uid": "35240-fe21a5c9-60af-46d2-82f7-23e9495a77c5"
+                                },
+                                {
+                                  "name": "upgrade",
+                                  "item": [
+                                    {
+                                      "name": "gflags",
+                                      "item": [
+                                        {
+                                          "name": "Upgrade YBC gflags on the universe nodes",
+                                          "id": "4f579bb5-4d55-42f9-9b45-b4900b2f4476",
+                                          "protocolProfileBehavior": {
+                                            "disableBodyPruning": true
+                                          },
+                                          "request": {
+                                            "auth": {
+                                              "type": "apikey",
+                                              "apikey": [
+                                                {
+                                                  "key": "key",
+                                                  "value": "X-AUTH-YW-API-TOKEN",
+                                                  "type": "string"
+                                                },
+                                                {
+                                                  "key": "value",
+                                                  "value": "{{apiKey}}",
+                                                  "type": "string"
+                                                },
+                                                {
+                                                  "key": "in",
+                                                  "value": "header",
+                                                  "type": "string"
+                                                }
+                                              ]
+                                            },
+                                            "method": "PUT",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/ybc/upgrade/gflags",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v1",
+                                                "customers",
+                                                ":cUUID",
+                                                "universes",
+                                                ":uniUUID",
+                                                "ybc",
+                                                "upgrade",
+                                                "gflags"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "id": "8e13c5b7-acfd-45e8-b58b-efd765031731",
+                                                  "key": "cUUID",
+                                                  "value": "<uuid>",
+                                                  "description": "(Required) "
+                                                },
+                                                {
+                                                  "id": "38a7eb25-7648-4478-81f5-ff4009bf72dd",
+                                                  "key": "uniUUID",
+                                                  "value": "<uuid>",
+                                                  "description": "(Required) "
+                                                }
+                                              ]
+                                            },
+                                            "description": "YbaApi Internal."
+                                          },
+                                          "response": [
+                                            {
+                                              "id": "3718b66a-d9ae-4136-9c9d-245b711d273e",
+                                              "name": "successful operation",
+                                              "originalRequest": {
+                                                "method": "PUT",
+                                                "header": [
+                                                  {
+                                                    "key": "Accept",
+                                                    "value": "application/json"
+                                                  },
+                                                  {
+                                                    "description": "Added as a part of security scheme: apikey",
+                                                    "key": "X-AUTH-YW-API-TOKEN",
+                                                    "value": "<API Key>"
+                                                  }
+                                                ],
+                                                "url": {
+                                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/ybc/upgrade/gflags",
+                                                  "host": [
+                                                    "{{baseUrl}}"
+                                                  ],
+                                                  "path": [
+                                                    "api",
+                                                    "v1",
+                                                    "customers",
+                                                    ":cUUID",
+                                                    "universes",
+                                                    ":uniUUID",
+                                                    "ybc",
+                                                    "upgrade",
+                                                    "gflags"
+                                                  ],
+                                                  "variable": [
+                                                    {
+                                                      "key": "cUUID"
+                                                    },
+                                                    {
+                                                      "key": "uniUUID"
+                                                    }
+                                                  ]
+                                                }
+                                              },
+                                              "status": "OK",
+                                              "code": 200,
+                                              "_postman_previewlanguage": "json",
+                                              "header": [
+                                                {
+                                                  "key": "Content-Type",
+                                                  "value": "application/json"
+                                                }
+                                              ],
+                                              "cookie": [],
+                                              "responseTime": null,
+                                              "body": "{\n  \"resourceUUID\": \"<uuid>\",\n  \"taskUUID\": \"<uuid>\"\n}",
+                                              "createdAt": "2026-10-22T01:15:13.000Z",
+                                              "updatedAt": "2026-10-22T01:15:13.000Z",
+                                              "uid": "35240-3718b66a-d9ae-4136-9c9d-245b711d273e"
+                                            }
+                                          ],
+                                          "createdAt": "2026-10-22T01:15:13.000Z",
+                                          "updatedAt": "2026-10-22T01:15:13.000Z",
+                                          "uid": "35240-4f579bb5-4d55-42f9-9b45-b4900b2f4476"
+                                        }
+                                      ],
+                                      "id": "4fbde768-57ff-49ee-8b3c-aa1f39321a1a",
+                                      "createdAt": "2026-10-22T01:15:13.000Z",
+                                      "updatedAt": "2026-10-22T01:15:13.000Z",
+                                      "uid": "35240-4fbde768-57ff-49ee-8b3c-aa1f39321a1a"
+                                    },
+                                    {
+                                      "name": "Upgrade YBC on the universe nodes",
+                                      "id": "8689339d-c01e-4949-9a1f-9733e59d17a5",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "auth": {
+                                          "type": "apikey",
+                                          "apikey": [
+                                            {
+                                              "key": "key",
+                                              "value": "X-AUTH-YW-API-TOKEN",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "value",
+                                              "value": "{{apiKey}}",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "in",
+                                              "value": "header",
+                                              "type": "string"
+                                            }
+                                          ]
+                                        },
+                                        "method": "PUT",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/ybc/upgrade?ybcVersion=<string>",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "universes",
+                                            ":uniUUID",
+                                            "ybc",
+                                            "upgrade"
+                                          ],
+                                          "query": [
+                                            {
+                                              "key": "ybcVersion",
+                                              "value": "<string>"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "80738783-478a-4896-afee-9d34b8f6b2aa",
+                                              "key": "cUUID",
+                                              "value": "<uuid>",
+                                              "description": "(Required) "
+                                            },
+                                            {
+                                              "id": "17407191-9371-429a-b1b5-305bfd11c591",
+                                              "key": "uniUUID",
+                                              "value": "<uuid>",
+                                              "description": "(Required) "
+                                            }
+                                          ]
+                                        },
+                                        "description": "YbaApi Internal."
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "0c4ed46f-dd0f-4615-993b-b70a381479ae",
+                                          "name": "successful operation",
+                                          "originalRequest": {
+                                            "method": "PUT",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: apikey",
+                                                "key": "X-AUTH-YW-API-TOKEN",
+                                                "value": "<API Key>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/ybc/upgrade?ybcVersion=<string>",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v1",
+                                                "customers",
+                                                ":cUUID",
+                                                "universes",
+                                                ":uniUUID",
+                                                "ybc",
+                                                "upgrade"
+                                              ],
+                                              "query": [
+                                                {
+                                                  "key": "ybcVersion",
+                                                  "value": "<string>"
+                                                }
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "cUUID"
+                                                },
+                                                {
+                                                  "key": "uniUUID"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"resourceUUID\": \"<uuid>\",\n  \"taskUUID\": \"<uuid>\"\n}",
+                                          "createdAt": "2026-10-22T01:15:13.000Z",
+                                          "updatedAt": "2026-10-22T01:15:13.000Z",
+                                          "uid": "35240-0c4ed46f-dd0f-4615-993b-b70a381479ae"
+                                        }
+                                      ],
+                                      "createdAt": "2026-10-22T01:15:13.000Z",
+                                      "updatedAt": "2026-10-22T01:15:13.000Z",
+                                      "uid": "35240-8689339d-c01e-4949-9a1f-9733e59d17a5"
+                                    }
+                                  ],
+                                  "id": "250f3033-ab89-44aa-9cb8-b77e74d9578b",
+                                  "createdAt": "2026-10-22T01:15:13.000Z",
+                                  "updatedAt": "2026-10-22T01:15:13.000Z",
+                                  "uid": "35240-250f3033-ab89-44aa-9cb8-b77e74d9578b"
+                                }
+                              ],
+                              "id": "44d32d6e-903b-4cc5-94a8-0b25491ea4f9",
+                              "createdAt": "2026-10-22T01:15:13.000Z",
+                              "updatedAt": "2026-10-22T01:15:13.000Z",
+                              "uid": "35240-44d32d6e-903b-4cc5-94a8-0b25491ea4f9"
+                            },
+                            {
+                              "name": "ybc_throttle_params_async",
+                              "item": [
+                                {
+                                  "name": "Set throttle params in YB-Controller( async )",
+                                  "id": "3bc0bf3a-ef6b-4d70-b070-99b93945c297",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "apikey",
+                                      "apikey": [
+                                        {
+                                          "key": "key",
+                                          "value": "X-AUTH-YW-API-TOKEN",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "value",
+                                          "value": "{{apiKey}}",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "in",
+                                          "value": "header",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"diskReadBytesPerSecond\": \"<long>\",\n  \"diskWriteBytesPerSecond\": \"<long>\",\n  \"maxConcurrentDownloads\": \"<long>\",\n  \"maxConcurrentUploads\": \"<long>\",\n  \"perDownloadNumObjects\": \"<long>\",\n  \"perUploadNumObjects\": \"<long>\",\n  \"resetDefaults\": \"<boolean>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/ybc_throttle_params_async",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "universes",
+                                        ":uniUUID",
+                                        "ybc_throttle_params_async"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "09e25585-2567-4242-a598-9afd1c2eecb2",
+                                          "key": "cUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "700a6c03-c8d4-4e32-8cfa-fab91584993d",
+                                          "key": "uniUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "089c7b19-6f4d-4fca-98e6-33e70822487d",
+                                      "name": "successful operation",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "X-AUTH-YW-API-TOKEN",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"diskReadBytesPerSecond\": \"<long>\",\n  \"diskWriteBytesPerSecond\": \"<long>\",\n  \"maxConcurrentDownloads\": \"<long>\",\n  \"maxConcurrentUploads\": \"<long>\",\n  \"perDownloadNumObjects\": \"<long>\",\n  \"perUploadNumObjects\": \"<long>\",\n  \"resetDefaults\": \"<boolean>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/universes/:uniUUID/ybc_throttle_params_async",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "universes",
+                                            ":uniUUID",
+                                            "ybc_throttle_params_async"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "cUUID"
+                                            },
+                                            {
+                                              "key": "uniUUID"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"message\": \"<string>\",\n  \"success\": \"<boolean>\"\n}",
+                                      "createdAt": "2026-10-22T01:15:13.000Z",
+                                      "updatedAt": "2026-10-22T01:15:13.000Z",
+                                      "uid": "35240-089c7b19-6f4d-4fca-98e6-33e70822487d"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:15:13.000Z",
+                                  "updatedAt": "2026-10-22T01:15:13.000Z",
+                                  "uid": "35240-3bc0bf3a-ef6b-4d70-b070-99b93945c297"
+                                }
+                              ],
+                              "id": "88c11712-338b-4a5b-9898-f1db11e85515",
+                              "createdAt": "2026-10-22T01:15:13.000Z",
+                              "updatedAt": "2026-10-22T01:15:13.000Z",
+                              "uid": "35240-88c11712-338b-4a5b-9898-f1db11e85515"
+                            }
+                          ],
+                          "id": "df4cc4e4-14bf-49bd-8a9b-1c20181218ca",
+                          "createdAt": "2026-10-22T01:15:13.000Z",
+                          "updatedAt": "2026-10-22T01:15:13.000Z",
+                          "uid": "35240-df4cc4e4-14bf-49bd-8a9b-1c20181218ca"
+                        }
+                      ],
+                      "id": "e381c0f4-736c-4306-bce7-a0a75327ebec",
+                      "createdAt": "2026-10-22T01:15:13.000Z",
+                      "updatedAt": "2026-10-22T01:15:13.000Z",
+                      "uid": "35240-e381c0f4-736c-4306-bce7-a0a75327ebec"
+                    }
+                  ],
+                  "id": "776ec348-2e27-49ac-aa64-12af00352fdb",
+                  "createdAt": "2026-10-22T01:15:13.000Z",
+                  "updatedAt": "2026-10-22T01:15:13.000Z",
+                  "uid": "35240-776ec348-2e27-49ac-aa64-12af00352fdb"
+                }
+              ],
+              "id": "e6e71c45-dcec-41c6-b0cd-b628b956657b",
+              "createdAt": "2026-10-22T01:15:13.000Z",
+              "updatedAt": "2026-10-22T01:15:13.000Z",
+              "uid": "35240-e6e71c45-dcec-41c6-b0cd-b628b956657b"
+            }
+          ],
+          "id": "c01b3e94-b59f-49aa-bece-c5bda0aa4076",
+          "createdAt": "2026-10-22T01:15:13.000Z",
+          "updatedAt": "2026-10-22T01:15:13.000Z",
+          "uid": "35240-c01b3e94-b59f-49aa-bece-c5bda0aa4076"
+        }
+      ],
+      "id": "834a942f-0a3e-42ed-9db3-ea69d65db9bf",
+      "createdAt": "2026-10-22T01:15:13.000Z",
+      "updatedAt": "2026-10-22T01:15:13.000Z",
+      "uid": "35240-834a942f-0a3e-42ed-9db3-ea69d65db9bf"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

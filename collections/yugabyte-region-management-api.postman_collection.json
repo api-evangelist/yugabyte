@@ -1,0 +1,1193 @@
+{
+  "info": {
+    "_postman_id": "848e5d8f-d817-4a9d-8f7d-de997332d21b",
+    "name": "Yugabytedb Region management API",
+    "description": "Operations tagged Region management across 2 of this provider's published API definitions: openapi_2.yaml, platform.swagger.json. Each path carries the servers of the definition it was published in.\n\nContact Support:\n Name: https://docs.yugabyte.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:11:53.000Z",
+    "updatedAt": "2026-10-22T01:11:53.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-848e5d8f-d817-4a9d-8f7d-de997332d21b"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "customers",
+              "item": [
+                {
+                  "name": "{cUUID}",
+                  "item": [
+                    {
+                      "name": "providers",
+                      "item": [
+                        {
+                          "name": "{pUUID}",
+                          "item": [
+                            {
+                              "name": "provider_regions",
+                              "item": [
+                                {
+                                  "name": "{rUUID}",
+                                  "item": [
+                                    {
+                                      "name": "Modify a region",
+                                      "id": "876b9eb4-b269-4c76-8b42-b3b3c3a157df",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "auth": {
+                                          "type": "apikey",
+                                          "apikey": [
+                                            {
+                                              "key": "key",
+                                              "value": "X-AUTH-YW-API-TOKEN",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "value",
+                                              "value": "{{apiKey}}",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "in",
+                                              "value": "header",
+                                              "type": "string"
+                                            }
+                                          ]
+                                        },
+                                        "method": "PUT",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"zones\": [\n    {\n      \"name\": \"<string>\",\n      \"active\": \"<boolean>\",\n      \"code\": \"<string>\",\n      \"config\": {\n        \"quis58\": \"<string>\",\n        \"esseec\": \"<string>\",\n        \"cupidatatac\": \"<string>\",\n        \"voluptate_d4\": \"<string>\"\n      },\n      \"details\": {\n        \"cloudInfo\": {\n          \"kubernetes\": {\n            \"kubernetesOperatorControlled\": \"<boolean>\",\n            \"certManagerClusterIssuer\": \"<string>\",\n            \"certManagerIssuer\": \"<string>\",\n            \"certManagerIssuerGroup\": \"<string>\",\n            \"certManagerIssuerKind\": \"<string>\",\n            \"certManagerIssuerName\": \"<string>\",\n            \"isKubernetesOperatorControlled\": \"<boolean>\",\n            \"kubeConfig\": \"<string>\",\n            \"kubeConfigContent\": \"<string>\",\n            \"kubeConfigName\": \"<string>\",\n            \"kubeDomain\": \"<string>\",\n            \"kubeNamespace\": \"<string>\",\n            \"kubePodAddressTemplate\": \"<string>\",\n            \"kubernetesImagePullSecretName\": \"<string>\",\n            \"kubernetesImageRegistry\": \"<string>\",\n            \"kubernetesProvider\": \"<string>\",\n            \"kubernetesPullSecret\": \"<string>\",\n            \"kubernetesPullSecretContent\": \"<string>\",\n            \"kubernetesPullSecretName\": \"<string>\",\n            \"kubernetesServiceAccount\": \"<string>\",\n            \"kubernetesStorageClass\": \"<string>\",\n            \"overrides\": \"<string>\"\n          }\n        }\n      },\n      \"kubeconfigPath\": \"<string>\",\n      \"secondarySubnet\": \"<string>\",\n      \"subnet\": \"<string>\",\n      \"uuid\": \"<uuid>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"active\": \"<boolean>\",\n      \"code\": \"<string>\",\n      \"config\": {\n        \"est_8\": \"<string>\",\n        \"ut8\": \"<string>\"\n      },\n      \"details\": {\n        \"cloudInfo\": {\n          \"kubernetes\": {\n            \"kubernetesOperatorControlled\": \"<boolean>\",\n            \"certManagerClusterIssuer\": \"<string>\",\n            \"certManagerIssuer\": \"<string>\",\n            \"certManagerIssuerGroup\": \"<string>\",\n            \"certManagerIssuerKind\": \"<string>\",\n            \"certManagerIssuerName\": \"<string>\",\n            \"isKubernetesOperatorControlled\": \"<boolean>\",\n            \"kubeConfig\": \"<string>\",\n            \"kubeConfigContent\": \"<string>\",\n            \"kubeConfigName\": \"<string>\",\n            \"kubeDomain\": \"<string>\",\n            \"kubeNamespace\": \"<string>\",\n            \"kubePodAddressTemplate\": \"<string>\",\n            \"kubernetesImagePullSecretName\": \"<string>\",\n            \"kubernetesImageRegistry\": \"<string>\",\n            \"kubernetesProvider\": \"<string>\",\n            \"kubernetesPullSecret\": \"<string>\",\n            \"kubernetesPullSecretContent\": \"<string>\",\n            \"kubernetesPullSecretName\": \"<string>\",\n            \"kubernetesServiceAccount\": \"<string>\",\n            \"kubernetesStorageClass\": \"<string>\",\n            \"overrides\": \"<string>\"\n          }\n        }\n      },\n      \"kubeconfigPath\": \"<string>\",\n      \"secondarySubnet\": \"<string>\",\n      \"subnet\": \"<string>\",\n      \"uuid\": \"<uuid>\"\n    }\n  ],\n  \"active\": \"<boolean>\",\n  \"code\": \"<string>\",\n  \"config\": {\n    \"in0\": \"<string>\",\n    \"culpa_b7\": \"<string>\",\n    \"etb_4\": \"<string>\",\n    \"proident_bd1\": \"<string>\"\n  },\n  \"details\": {\n    \"cloudInfo\": {\n      \"aws\": {\n        \"arch\": \"x86_64\",\n        \"securityGroupId\": \"<string>\",\n        \"vnet\": \"<string>\",\n        \"ybImage\": \"<string>\"\n      },\n      \"azu\": {\n        \"azuNetworkRGOverride\": \"<string>\",\n        \"azuRGOverride\": \"<string>\",\n        \"securityGroupId\": \"<string>\",\n        \"vnet\": \"<string>\",\n        \"ybImage\": \"<string>\"\n      },\n      \"gcp\": {\n        \"instanceTemplate\": \"<string>\",\n        \"ybImage\": \"<string>\"\n      },\n      \"kubernetes\": {\n        \"kubernetesOperatorControlled\": \"<boolean>\",\n        \"certManagerClusterIssuer\": \"<string>\",\n        \"certManagerIssuer\": \"<string>\",\n        \"certManagerIssuerGroup\": \"<string>\",\n        \"certManagerIssuerKind\": \"<string>\",\n        \"certManagerIssuerName\": \"<string>\",\n        \"isKubernetesOperatorControlled\": \"<boolean>\",\n        \"kubeConfig\": \"<string>\",\n        \"kubeConfigContent\": \"<string>\",\n        \"kubeConfigName\": \"<string>\",\n        \"kubeDomain\": \"<string>\",\n        \"kubeNamespace\": \"<string>\",\n        \"kubePodAddressTemplate\": \"<string>\",\n        \"kubernetesImagePullSecretName\": \"<string>\",\n        \"kubernetesImageRegistry\": \"<string>\",\n        \"kubernetesProvider\": \"<string>\",\n        \"kubernetesPullSecret\": \"<string>\",\n        \"kubernetesPullSecretContent\": \"<string>\",\n        \"kubernetesPullSecretName\": \"<string>\",\n        \"kubernetesServiceAccount\": \"<string>\",\n        \"kubernetesStorageClass\": \"<string>\",\n        \"overrides\": \"<string>\"\n      }\n    }\n  },\n  \"latitude\": \"<double>\",\n  \"longitude\": \"<double>\",\n  \"name\": \"<string>\",\n  \"securityGroupId\": \"<string>\",\n  \"uuid\": \"<uuid>\",\n  \"vnetName\": \"<string>\",\n  \"ybImage\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/providers/:pUUID/provider_regions/:rUUID",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "providers",
+                                            ":pUUID",
+                                            "provider_regions",
+                                            ":rUUID"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "c8ee81b6-ec14-40fa-8e0a-9c68eca643a4",
+                                              "key": "cUUID",
+                                              "value": "<uuid>",
+                                              "description": "(Required) "
+                                            },
+                                            {
+                                              "id": "995673e9-abb6-46ec-b54b-e1b8dd9d73a3",
+                                              "key": "pUUID",
+                                              "value": "<uuid>",
+                                              "description": "(Required) "
+                                            },
+                                            {
+                                              "id": "88315af0-669e-40f0-a36e-d58c1d629e8c",
+                                              "key": "rUUID",
+                                              "value": "<uuid>",
+                                              "description": "(Required) "
+                                            }
+                                          ]
+                                        },
+                                        "description": "WARNING: This is a preview API that could change."
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "042efff2-a6e2-436e-9e40-318f4d318b4a",
+                                          "name": "successful operation",
+                                          "originalRequest": {
+                                            "method": "PUT",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: apikey",
+                                                "key": "X-AUTH-YW-API-TOKEN",
+                                                "value": "<API Key>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "{\n  \"zones\": [\n    {\n      \"name\": \"<string>\",\n      \"active\": \"<boolean>\",\n      \"code\": \"<string>\",\n      \"config\": {\n        \"quis58\": \"<string>\",\n        \"esseec\": \"<string>\",\n        \"cupidatatac\": \"<string>\",\n        \"voluptate_d4\": \"<string>\"\n      },\n      \"details\": {\n        \"cloudInfo\": {\n          \"kubernetes\": {\n            \"kubernetesOperatorControlled\": \"<boolean>\",\n            \"certManagerClusterIssuer\": \"<string>\",\n            \"certManagerIssuer\": \"<string>\",\n            \"certManagerIssuerGroup\": \"<string>\",\n            \"certManagerIssuerKind\": \"<string>\",\n            \"certManagerIssuerName\": \"<string>\",\n            \"isKubernetesOperatorControlled\": \"<boolean>\",\n            \"kubeConfig\": \"<string>\",\n            \"kubeConfigContent\": \"<string>\",\n            \"kubeConfigName\": \"<string>\",\n            \"kubeDomain\": \"<string>\",\n            \"kubeNamespace\": \"<string>\",\n            \"kubePodAddressTemplate\": \"<string>\",\n            \"kubernetesImagePullSecretName\": \"<string>\",\n            \"kubernetesImageRegistry\": \"<string>\",\n            \"kubernetesProvider\": \"<string>\",\n            \"kubernetesPullSecret\": \"<string>\",\n            \"kubernetesPullSecretContent\": \"<string>\",\n            \"kubernetesPullSecretName\": \"<string>\",\n            \"kubernetesServiceAccount\": \"<string>\",\n            \"kubernetesStorageClass\": \"<string>\",\n            \"overrides\": \"<string>\"\n          }\n        }\n      },\n      \"kubeconfigPath\": \"<string>\",\n      \"secondarySubnet\": \"<string>\",\n      \"subnet\": \"<string>\",\n      \"uuid\": \"<uuid>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"active\": \"<boolean>\",\n      \"code\": \"<string>\",\n      \"config\": {\n        \"est_8\": \"<string>\",\n        \"ut8\": \"<string>\"\n      },\n      \"details\": {\n        \"cloudInfo\": {\n          \"kubernetes\": {\n            \"kubernetesOperatorControlled\": \"<boolean>\",\n            \"certManagerClusterIssuer\": \"<string>\",\n            \"certManagerIssuer\": \"<string>\",\n            \"certManagerIssuerGroup\": \"<string>\",\n            \"certManagerIssuerKind\": \"<string>\",\n            \"certManagerIssuerName\": \"<string>\",\n            \"isKubernetesOperatorControlled\": \"<boolean>\",\n            \"kubeConfig\": \"<string>\",\n            \"kubeConfigContent\": \"<string>\",\n            \"kubeConfigName\": \"<string>\",\n            \"kubeDomain\": \"<string>\",\n            \"kubeNamespace\": \"<string>\",\n            \"kubePodAddressTemplate\": \"<string>\",\n            \"kubernetesImagePullSecretName\": \"<string>\",\n            \"kubernetesImageRegistry\": \"<string>\",\n            \"kubernetesProvider\": \"<string>\",\n            \"kubernetesPullSecret\": \"<string>\",\n            \"kubernetesPullSecretContent\": \"<string>\",\n            \"kubernetesPullSecretName\": \"<string>\",\n            \"kubernetesServiceAccount\": \"<string>\",\n            \"kubernetesStorageClass\": \"<string>\",\n            \"overrides\": \"<string>\"\n          }\n        }\n      },\n      \"kubeconfigPath\": \"<string>\",\n      \"secondarySubnet\": \"<string>\",\n      \"subnet\": \"<string>\",\n      \"uuid\": \"<uuid>\"\n    }\n  ],\n  \"active\": \"<boolean>\",\n  \"code\": \"<string>\",\n  \"config\": {\n    \"in0\": \"<string>\",\n    \"culpa_b7\": \"<string>\",\n    \"etb_4\": \"<string>\",\n    \"proident_bd1\": \"<string>\"\n  },\n  \"details\": {\n    \"cloudInfo\": {\n      \"aws\": {\n        \"arch\": \"x86_64\",\n        \"securityGroupId\": \"<string>\",\n        \"vnet\": \"<string>\",\n        \"ybImage\": \"<string>\"\n      },\n      \"azu\": {\n        \"azuNetworkRGOverride\": \"<string>\",\n        \"azuRGOverride\": \"<string>\",\n        \"securityGroupId\": \"<string>\",\n        \"vnet\": \"<string>\",\n        \"ybImage\": \"<string>\"\n      },\n      \"gcp\": {\n        \"instanceTemplate\": \"<string>\",\n        \"ybImage\": \"<string>\"\n      },\n      \"kubernetes\": {\n        \"kubernetesOperatorControlled\": \"<boolean>\",\n        \"certManagerClusterIssuer\": \"<string>\",\n        \"certManagerIssuer\": \"<string>\",\n        \"certManagerIssuerGroup\": \"<string>\",\n        \"certManagerIssuerKind\": \"<string>\",\n        \"certManagerIssuerName\": \"<string>\",\n        \"isKubernetesOperatorControlled\": \"<boolean>\",\n        \"kubeConfig\": \"<string>\",\n        \"kubeConfigContent\": \"<string>\",\n        \"kubeConfigName\": \"<string>\",\n        \"kubeDomain\": \"<string>\",\n        \"kubeNamespace\": \"<string>\",\n        \"kubePodAddressTemplate\": \"<string>\",\n        \"kubernetesImagePullSecretName\": \"<string>\",\n        \"kubernetesImageRegistry\": \"<string>\",\n        \"kubernetesProvider\": \"<string>\",\n        \"kubernetesPullSecret\": \"<string>\",\n        \"kubernetesPullSecretContent\": \"<string>\",\n        \"kubernetesPullSecretName\": \"<string>\",\n        \"kubernetesServiceAccount\": \"<string>\",\n        \"kubernetesStorageClass\": \"<string>\",\n        \"overrides\": \"<string>\"\n      }\n    }\n  },\n  \"latitude\": \"<double>\",\n  \"longitude\": \"<double>\",\n  \"name\": \"<string>\",\n  \"securityGroupId\": \"<string>\",\n  \"uuid\": \"<uuid>\",\n  \"vnetName\": \"<string>\",\n  \"ybImage\": \"<string>\"\n}",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v1/customers/:cUUID/providers/:pUUID/provider_regions/:rUUID",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v1",
+                                                "customers",
+                                                ":cUUID",
+                                                "providers",
+                                                ":pUUID",
+                                                "provider_regions",
+                                                ":rUUID"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "cUUID"
+                                                },
+                                                {
+                                                  "key": "pUUID"
+                                                },
+                                                {
+                                                  "key": "rUUID"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"zones\": [\n    {\n      \"name\": \"<string>\",\n      \"active\": \"<boolean>\",\n      \"code\": \"<string>\",\n      \"config\": {\n        \"quis58\": \"<string>\",\n        \"esseec\": \"<string>\",\n        \"cupidatatac\": \"<string>\",\n        \"voluptate_d4\": \"<string>\"\n      },\n      \"details\": {\n        \"cloudInfo\": {\n          \"kubernetes\": {\n            \"kubernetesOperatorControlled\": \"<boolean>\",\n            \"certManagerClusterIssuer\": \"<string>\",\n            \"certManagerIssuer\": \"<string>\",\n            \"certManagerIssuerGroup\": \"<string>\",\n            \"certManagerIssuerKind\": \"<string>\",\n            \"certManagerIssuerName\": \"<string>\",\n            \"isKubernetesOperatorControlled\": \"<boolean>\",\n            \"kubeConfig\": \"<string>\",\n            \"kubeConfigContent\": \"<string>\",\n            \"kubeConfigName\": \"<string>\",\n            \"kubeDomain\": \"<string>\",\n            \"kubeNamespace\": \"<string>\",\n            \"kubePodAddressTemplate\": \"<string>\",\n            \"kubernetesImagePullSecretName\": \"<string>\",\n            \"kubernetesImageRegistry\": \"<string>\",\n            \"kubernetesProvider\": \"<string>\",\n            \"kubernetesPullSecret\": \"<string>\",\n            \"kubernetesPullSecretContent\": \"<string>\",\n            \"kubernetesPullSecretName\": \"<string>\",\n            \"kubernetesServiceAccount\": \"<string>\",\n            \"kubernetesStorageClass\": \"<string>\",\n            \"overrides\": \"<string>\"\n          }\n        }\n      },\n      \"kubeconfigPath\": \"<string>\",\n      \"secondarySubnet\": \"<string>\",\n      \"subnet\": \"<string>\",\n      \"uuid\": \"<uuid>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"active\": \"<boolean>\",\n      \"code\": \"<string>\",\n      \"config\": {\n        \"est_8\": \"<string>\",\n        \"ut8\": \"<string>\"\n      },\n      \"details\": {\n        \"cloudInfo\": {\n          \"kubernetes\": {\n            \"kubernetesOperatorControlled\": \"<boolean>\",\n            \"certManagerClusterIssuer\": \"<string>\",\n            \"certManagerIssuer\": \"<string>\",\n            \"certManagerIssuerGroup\": \"<string>\",\n            \"certManagerIssuerKind\": \"<string>\",\n            \"certManagerIssuerName\": \"<string>\",\n            \"isKubernetesOperatorControlled\": \"<boolean>\",\n            \"kubeConfig\": \"<string>\",\n            \"kubeConfigContent\": \"<string>\",\n            \"kubeConfigName\": \"<string>\",\n            \"kubeDomain\": \"<string>\",\n            \"kubeNamespace\": \"<string>\",\n            \"kubePodAddressTemplate\": \"<string>\",\n            \"kubernetesImagePullSecretName\": \"<string>\",\n            \"kubernetesImageRegistry\": \"<string>\",\n            \"kubernetesProvider\": \"<string>\",\n            \"kubernetesPullSecret\": \"<string>\",\n            \"kubernetesPullSecretContent\": \"<string>\",\n            \"kubernetesPullSecretName\": \"<string>\",\n            \"kubernetesServiceAccount\": \"<string>\",\n            \"kubernetesStorageClass\": \"<string>\",\n            \"overrides\": \"<string>\"\n          }\n        }\n      },\n      \"kubeconfigPath\": \"<string>\",\n      \"secondarySubnet\": \"<string>\",\n      \"subnet\": \"<string>\",\n      \"uuid\": \"<uuid>\"\n    }\n  ],\n  \"active\": \"<boolean>\",\n  \"code\": \"<string>\",\n  \"config\": {\n    \"in0\": \"<string>\",\n    \"culpa_b7\": \"<string>\",\n    \"etb_4\": \"<string>\",\n    \"proident_bd1\": \"<string>\"\n  },\n  \"details\": {\n    \"cloudInfo\": {\n      \"aws\": {\n        \"arch\": \"x86_64\",\n        \"securityGroupId\": \"<string>\",\n        \"vnet\": \"<string>\",\n        \"ybImage\": \"<string>\"\n      },\n      \"azu\": {\n        \"azuNetworkRGOverride\": \"<string>\",\n        \"azuRGOverride\": \"<string>\",\n        \"securityGroupId\": \"<string>\",\n        \"vnet\": \"<string>\",\n        \"ybImage\": \"<string>\"\n      },\n      \"gcp\": {\n        \"instanceTemplate\": \"<string>\",\n        \"ybImage\": \"<string>\"\n      },\n      \"kubernetes\": {\n        \"kubernetesOperatorControlled\": \"<boolean>\",\n        \"certManagerClusterIssuer\": \"<string>\",\n        \"certManagerIssuer\": \"<string>\",\n        \"certManagerIssuerGroup\": \"<string>\",\n        \"certManagerIssuerKind\": \"<string>\",\n        \"certManagerIssuerName\": \"<string>\",\n        \"isKubernetesOperatorControlled\": \"<boolean>\",\n        \"kubeConfig\": \"<string>\",\n        \"kubeConfigContent\": \"<string>\",\n        \"kubeConfigName\": \"<string>\",\n        \"kubeDomain\": \"<string>\",\n        \"kubeNamespace\": \"<string>\",\n        \"kubePodAddressTemplate\": \"<string>\",\n        \"kubernetesImagePullSecretName\": \"<string>\",\n        \"kubernetesImageRegistry\": \"<string>\",\n        \"kubernetesProvider\": \"<string>\",\n        \"kubernetesPullSecret\": \"<string>\",\n        \"kubernetesPullSecretContent\": \"<string>\",\n        \"kubernetesPullSecretName\": \"<string>\",\n        \"kubernetesServiceAccount\": \"<string>\",\n        \"kubernetesStorageClass\": \"<string>\",\n        \"overrides\": \"<string>\"\n      }\n    }\n  },\n  \"latitude\": \"<double>\",\n  \"longitude\": \"<double>\",\n  \"name\": \"<string>\",\n  \"securityGroupId\": \"<string>\",\n  \"uuid\": \"<uuid>\",\n  \"vnetName\": \"<string>\",\n  \"ybImage\": \"<string>\"\n}",
+                                          "createdAt": "2026-10-22T01:11:54.000Z",
+                                          "updatedAt": "2026-10-22T01:11:54.000Z",
+                                          "uid": "35240-042efff2-a6e2-436e-9e40-318f4d318b4a"
+                                        }
+                                      ],
+                                      "createdAt": "2026-10-22T01:11:54.000Z",
+                                      "updatedAt": "2026-10-22T01:11:54.000Z",
+                                      "uid": "35240-876b9eb4-b269-4c76-8b42-b3b3c3a157df"
+                                    }
+                                  ],
+                                  "id": "28da30e9-1f0b-4dd4-9ba8-d7b279e7157c",
+                                  "createdAt": "2026-10-22T01:11:53.000Z",
+                                  "updatedAt": "2026-10-22T01:11:53.000Z",
+                                  "uid": "35240-28da30e9-1f0b-4dd4-9ba8-d7b279e7157c"
+                                },
+                                {
+                                  "name": "Create a new region",
+                                  "id": "8d8ece98-4204-473d-bb4b-45cf642261b6",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "apikey",
+                                      "apikey": [
+                                        {
+                                          "key": "key",
+                                          "value": "X-AUTH-YW-API-TOKEN",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "value",
+                                          "value": "{{apiKey}}",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "in",
+                                          "value": "header",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"zones\": [\n    {\n      \"name\": \"<string>\",\n      \"active\": \"<boolean>\",\n      \"code\": \"<string>\",\n      \"config\": {\n        \"quis58\": \"<string>\",\n        \"esseec\": \"<string>\",\n        \"cupidatatac\": \"<string>\",\n        \"voluptate_d4\": \"<string>\"\n      },\n      \"details\": {\n        \"cloudInfo\": {\n          \"kubernetes\": {\n            \"kubernetesOperatorControlled\": \"<boolean>\",\n            \"certManagerClusterIssuer\": \"<string>\",\n            \"certManagerIssuer\": \"<string>\",\n            \"certManagerIssuerGroup\": \"<string>\",\n            \"certManagerIssuerKind\": \"<string>\",\n            \"certManagerIssuerName\": \"<string>\",\n            \"isKubernetesOperatorControlled\": \"<boolean>\",\n            \"kubeConfig\": \"<string>\",\n            \"kubeConfigContent\": \"<string>\",\n            \"kubeConfigName\": \"<string>\",\n            \"kubeDomain\": \"<string>\",\n            \"kubeNamespace\": \"<string>\",\n            \"kubePodAddressTemplate\": \"<string>\",\n            \"kubernetesImagePullSecretName\": \"<string>\",\n            \"kubernetesImageRegistry\": \"<string>\",\n            \"kubernetesProvider\": \"<string>\",\n            \"kubernetesPullSecret\": \"<string>\",\n            \"kubernetesPullSecretContent\": \"<string>\",\n            \"kubernetesPullSecretName\": \"<string>\",\n            \"kubernetesServiceAccount\": \"<string>\",\n            \"kubernetesStorageClass\": \"<string>\",\n            \"overrides\": \"<string>\"\n          }\n        }\n      },\n      \"kubeconfigPath\": \"<string>\",\n      \"secondarySubnet\": \"<string>\",\n      \"subnet\": \"<string>\",\n      \"uuid\": \"<uuid>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"active\": \"<boolean>\",\n      \"code\": \"<string>\",\n      \"config\": {\n        \"est_8\": \"<string>\",\n        \"ut8\": \"<string>\"\n      },\n      \"details\": {\n        \"cloudInfo\": {\n          \"kubernetes\": {\n            \"kubernetesOperatorControlled\": \"<boolean>\",\n            \"certManagerClusterIssuer\": \"<string>\",\n            \"certManagerIssuer\": \"<string>\",\n            \"certManagerIssuerGroup\": \"<string>\",\n            \"certManagerIssuerKind\": \"<string>\",\n            \"certManagerIssuerName\": \"<string>\",\n            \"isKubernetesOperatorControlled\": \"<boolean>\",\n            \"kubeConfig\": \"<string>\",\n            \"kubeConfigContent\": \"<string>\",\n            \"kubeConfigName\": \"<string>\",\n            \"kubeDomain\": \"<string>\",\n            \"kubeNamespace\": \"<string>\",\n            \"kubePodAddressTemplate\": \"<string>\",\n            \"kubernetesImagePullSecretName\": \"<string>\",\n            \"kubernetesImageRegistry\": \"<string>\",\n            \"kubernetesProvider\": \"<string>\",\n            \"kubernetesPullSecret\": \"<string>\",\n            \"kubernetesPullSecretContent\": \"<string>\",\n            \"kubernetesPullSecretName\": \"<string>\",\n            \"kubernetesServiceAccount\": \"<string>\",\n            \"kubernetesStorageClass\": \"<string>\",\n            \"overrides\": \"<string>\"\n          }\n        }\n      },\n      \"kubeconfigPath\": \"<string>\",\n      \"secondarySubnet\": \"<string>\",\n      \"subnet\": \"<string>\",\n      \"uuid\": \"<uuid>\"\n    }\n  ],\n  \"active\": \"<boolean>\",\n  \"code\": \"<string>\",\n  \"config\": {\n    \"in0\": \"<string>\",\n    \"culpa_b7\": \"<string>\",\n    \"etb_4\": \"<string>\",\n    \"proident_bd1\": \"<string>\"\n  },\n  \"details\": {\n    \"cloudInfo\": {\n      \"aws\": {\n        \"arch\": \"x86_64\",\n        \"securityGroupId\": \"<string>\",\n        \"vnet\": \"<string>\",\n        \"ybImage\": \"<string>\"\n      },\n      \"azu\": {\n        \"azuNetworkRGOverride\": \"<string>\",\n        \"azuRGOverride\": \"<string>\",\n        \"securityGroupId\": \"<string>\",\n        \"vnet\": \"<string>\",\n        \"ybImage\": \"<string>\"\n      },\n      \"gcp\": {\n        \"instanceTemplate\": \"<string>\",\n        \"ybImage\": \"<string>\"\n      },\n      \"kubernetes\": {\n        \"kubernetesOperatorControlled\": \"<boolean>\",\n        \"certManagerClusterIssuer\": \"<string>\",\n        \"certManagerIssuer\": \"<string>\",\n        \"certManagerIssuerGroup\": \"<string>\",\n        \"certManagerIssuerKind\": \"<string>\",\n        \"certManagerIssuerName\": \"<string>\",\n        \"isKubernetesOperatorControlled\": \"<boolean>\",\n        \"kubeConfig\": \"<string>\",\n        \"kubeConfigContent\": \"<string>\",\n        \"kubeConfigName\": \"<string>\",\n        \"kubeDomain\": \"<string>\",\n        \"kubeNamespace\": \"<string>\",\n        \"kubePodAddressTemplate\": \"<string>\",\n        \"kubernetesImagePullSecretName\": \"<string>\",\n        \"kubernetesImageRegistry\": \"<string>\",\n        \"kubernetesProvider\": \"<string>\",\n        \"kubernetesPullSecret\": \"<string>\",\n        \"kubernetesPullSecretContent\": \"<string>\",\n        \"kubernetesPullSecretName\": \"<string>\",\n        \"kubernetesServiceAccount\": \"<string>\",\n        \"kubernetesStorageClass\": \"<string>\",\n        \"overrides\": \"<string>\"\n      }\n    }\n  },\n  \"latitude\": \"<double>\",\n  \"longitude\": \"<double>\",\n  \"name\": \"<string>\",\n  \"securityGroupId\": \"<string>\",\n  \"uuid\": \"<uuid>\",\n  \"vnetName\": \"<string>\",\n  \"ybImage\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/providers/:pUUID/provider_regions",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "providers",
+                                        ":pUUID",
+                                        "provider_regions"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "dca97110-df80-47b9-a4e3-ba7aa92432d3",
+                                          "key": "cUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "36ace1e8-276f-4386-9f6b-6451b57398a4",
+                                          "key": "pUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    },
+                                    "description": "WARNING: This is a preview API that could change."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "4995f5c9-a201-490a-879a-4d7c13c3aed4",
+                                      "name": "successful operation",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "X-AUTH-YW-API-TOKEN",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"zones\": [\n    {\n      \"name\": \"<string>\",\n      \"active\": \"<boolean>\",\n      \"code\": \"<string>\",\n      \"config\": {\n        \"quis58\": \"<string>\",\n        \"esseec\": \"<string>\",\n        \"cupidatatac\": \"<string>\",\n        \"voluptate_d4\": \"<string>\"\n      },\n      \"details\": {\n        \"cloudInfo\": {\n          \"kubernetes\": {\n            \"kubernetesOperatorControlled\": \"<boolean>\",\n            \"certManagerClusterIssuer\": \"<string>\",\n            \"certManagerIssuer\": \"<string>\",\n            \"certManagerIssuerGroup\": \"<string>\",\n            \"certManagerIssuerKind\": \"<string>\",\n            \"certManagerIssuerName\": \"<string>\",\n            \"isKubernetesOperatorControlled\": \"<boolean>\",\n            \"kubeConfig\": \"<string>\",\n            \"kubeConfigContent\": \"<string>\",\n            \"kubeConfigName\": \"<string>\",\n            \"kubeDomain\": \"<string>\",\n            \"kubeNamespace\": \"<string>\",\n            \"kubePodAddressTemplate\": \"<string>\",\n            \"kubernetesImagePullSecretName\": \"<string>\",\n            \"kubernetesImageRegistry\": \"<string>\",\n            \"kubernetesProvider\": \"<string>\",\n            \"kubernetesPullSecret\": \"<string>\",\n            \"kubernetesPullSecretContent\": \"<string>\",\n            \"kubernetesPullSecretName\": \"<string>\",\n            \"kubernetesServiceAccount\": \"<string>\",\n            \"kubernetesStorageClass\": \"<string>\",\n            \"overrides\": \"<string>\"\n          }\n        }\n      },\n      \"kubeconfigPath\": \"<string>\",\n      \"secondarySubnet\": \"<string>\",\n      \"subnet\": \"<string>\",\n      \"uuid\": \"<uuid>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"active\": \"<boolean>\",\n      \"code\": \"<string>\",\n      \"config\": {\n        \"est_8\": \"<string>\",\n        \"ut8\": \"<string>\"\n      },\n      \"details\": {\n        \"cloudInfo\": {\n          \"kubernetes\": {\n            \"kubernetesOperatorControlled\": \"<boolean>\",\n            \"certManagerClusterIssuer\": \"<string>\",\n            \"certManagerIssuer\": \"<string>\",\n            \"certManagerIssuerGroup\": \"<string>\",\n            \"certManagerIssuerKind\": \"<string>\",\n            \"certManagerIssuerName\": \"<string>\",\n            \"isKubernetesOperatorControlled\": \"<boolean>\",\n            \"kubeConfig\": \"<string>\",\n            \"kubeConfigContent\": \"<string>\",\n            \"kubeConfigName\": \"<string>\",\n            \"kubeDomain\": \"<string>\",\n            \"kubeNamespace\": \"<string>\",\n            \"kubePodAddressTemplate\": \"<string>\",\n            \"kubernetesImagePullSecretName\": \"<string>\",\n            \"kubernetesImageRegistry\": \"<string>\",\n            \"kubernetesProvider\": \"<string>\",\n            \"kubernetesPullSecret\": \"<string>\",\n            \"kubernetesPullSecretContent\": \"<string>\",\n            \"kubernetesPullSecretName\": \"<string>\",\n            \"kubernetesServiceAccount\": \"<string>\",\n            \"kubernetesStorageClass\": \"<string>\",\n            \"overrides\": \"<string>\"\n          }\n        }\n      },\n      \"kubeconfigPath\": \"<string>\",\n      \"secondarySubnet\": \"<string>\",\n      \"subnet\": \"<string>\",\n      \"uuid\": \"<uuid>\"\n    }\n  ],\n  \"active\": \"<boolean>\",\n  \"code\": \"<string>\",\n  \"config\": {\n    \"in0\": \"<string>\",\n    \"culpa_b7\": \"<string>\",\n    \"etb_4\": \"<string>\",\n    \"proident_bd1\": \"<string>\"\n  },\n  \"details\": {\n    \"cloudInfo\": {\n      \"aws\": {\n        \"arch\": \"x86_64\",\n        \"securityGroupId\": \"<string>\",\n        \"vnet\": \"<string>\",\n        \"ybImage\": \"<string>\"\n      },\n      \"azu\": {\n        \"azuNetworkRGOverride\": \"<string>\",\n        \"azuRGOverride\": \"<string>\",\n        \"securityGroupId\": \"<string>\",\n        \"vnet\": \"<string>\",\n        \"ybImage\": \"<string>\"\n      },\n      \"gcp\": {\n        \"instanceTemplate\": \"<string>\",\n        \"ybImage\": \"<string>\"\n      },\n      \"kubernetes\": {\n        \"kubernetesOperatorControlled\": \"<boolean>\",\n        \"certManagerClusterIssuer\": \"<string>\",\n        \"certManagerIssuer\": \"<string>\",\n        \"certManagerIssuerGroup\": \"<string>\",\n        \"certManagerIssuerKind\": \"<string>\",\n        \"certManagerIssuerName\": \"<string>\",\n        \"isKubernetesOperatorControlled\": \"<boolean>\",\n        \"kubeConfig\": \"<string>\",\n        \"kubeConfigContent\": \"<string>\",\n        \"kubeConfigName\": \"<string>\",\n        \"kubeDomain\": \"<string>\",\n        \"kubeNamespace\": \"<string>\",\n        \"kubePodAddressTemplate\": \"<string>\",\n        \"kubernetesImagePullSecretName\": \"<string>\",\n        \"kubernetesImageRegistry\": \"<string>\",\n        \"kubernetesProvider\": \"<string>\",\n        \"kubernetesPullSecret\": \"<string>\",\n        \"kubernetesPullSecretContent\": \"<string>\",\n        \"kubernetesPullSecretName\": \"<string>\",\n        \"kubernetesServiceAccount\": \"<string>\",\n        \"kubernetesStorageClass\": \"<string>\",\n        \"overrides\": \"<string>\"\n      }\n    }\n  },\n  \"latitude\": \"<double>\",\n  \"longitude\": \"<double>\",\n  \"name\": \"<string>\",\n  \"securityGroupId\": \"<string>\",\n  \"uuid\": \"<uuid>\",\n  \"vnetName\": \"<string>\",\n  \"ybImage\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/providers/:pUUID/provider_regions",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "providers",
+                                            ":pUUID",
+                                            "provider_regions"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "cUUID"
+                                            },
+                                            {
+                                              "key": "pUUID"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"zones\": [\n    {\n      \"name\": \"<string>\",\n      \"active\": \"<boolean>\",\n      \"code\": \"<string>\",\n      \"config\": {\n        \"quis58\": \"<string>\",\n        \"esseec\": \"<string>\",\n        \"cupidatatac\": \"<string>\",\n        \"voluptate_d4\": \"<string>\"\n      },\n      \"details\": {\n        \"cloudInfo\": {\n          \"kubernetes\": {\n            \"kubernetesOperatorControlled\": \"<boolean>\",\n            \"certManagerClusterIssuer\": \"<string>\",\n            \"certManagerIssuer\": \"<string>\",\n            \"certManagerIssuerGroup\": \"<string>\",\n            \"certManagerIssuerKind\": \"<string>\",\n            \"certManagerIssuerName\": \"<string>\",\n            \"isKubernetesOperatorControlled\": \"<boolean>\",\n            \"kubeConfig\": \"<string>\",\n            \"kubeConfigContent\": \"<string>\",\n            \"kubeConfigName\": \"<string>\",\n            \"kubeDomain\": \"<string>\",\n            \"kubeNamespace\": \"<string>\",\n            \"kubePodAddressTemplate\": \"<string>\",\n            \"kubernetesImagePullSecretName\": \"<string>\",\n            \"kubernetesImageRegistry\": \"<string>\",\n            \"kubernetesProvider\": \"<string>\",\n            \"kubernetesPullSecret\": \"<string>\",\n            \"kubernetesPullSecretContent\": \"<string>\",\n            \"kubernetesPullSecretName\": \"<string>\",\n            \"kubernetesServiceAccount\": \"<string>\",\n            \"kubernetesStorageClass\": \"<string>\",\n            \"overrides\": \"<string>\"\n          }\n        }\n      },\n      \"kubeconfigPath\": \"<string>\",\n      \"secondarySubnet\": \"<string>\",\n      \"subnet\": \"<string>\",\n      \"uuid\": \"<uuid>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"active\": \"<boolean>\",\n      \"code\": \"<string>\",\n      \"config\": {\n        \"est_8\": \"<string>\",\n        \"ut8\": \"<string>\"\n      },\n      \"details\": {\n        \"cloudInfo\": {\n          \"kubernetes\": {\n            \"kubernetesOperatorControlled\": \"<boolean>\",\n            \"certManagerClusterIssuer\": \"<string>\",\n            \"certManagerIssuer\": \"<string>\",\n            \"certManagerIssuerGroup\": \"<string>\",\n            \"certManagerIssuerKind\": \"<string>\",\n            \"certManagerIssuerName\": \"<string>\",\n            \"isKubernetesOperatorControlled\": \"<boolean>\",\n            \"kubeConfig\": \"<string>\",\n            \"kubeConfigContent\": \"<string>\",\n            \"kubeConfigName\": \"<string>\",\n            \"kubeDomain\": \"<string>\",\n            \"kubeNamespace\": \"<string>\",\n            \"kubePodAddressTemplate\": \"<string>\",\n            \"kubernetesImagePullSecretName\": \"<string>\",\n            \"kubernetesImageRegistry\": \"<string>\",\n            \"kubernetesProvider\": \"<string>\",\n            \"kubernetesPullSecret\": \"<string>\",\n            \"kubernetesPullSecretContent\": \"<string>\",\n            \"kubernetesPullSecretName\": \"<string>\",\n            \"kubernetesServiceAccount\": \"<string>\",\n            \"kubernetesStorageClass\": \"<string>\",\n            \"overrides\": \"<string>\"\n          }\n        }\n      },\n      \"kubeconfigPath\": \"<string>\",\n      \"secondarySubnet\": \"<string>\",\n      \"subnet\": \"<string>\",\n      \"uuid\": \"<uuid>\"\n    }\n  ],\n  \"active\": \"<boolean>\",\n  \"code\": \"<string>\",\n  \"config\": {\n    \"in0\": \"<string>\",\n    \"culpa_b7\": \"<string>\",\n    \"etb_4\": \"<string>\",\n    \"proident_bd1\": \"<string>\"\n  },\n  \"details\": {\n    \"cloudInfo\": {\n      \"aws\": {\n        \"arch\": \"x86_64\",\n        \"securityGroupId\": \"<string>\",\n        \"vnet\": \"<string>\",\n        \"ybImage\": \"<string>\"\n      },\n      \"azu\": {\n        \"azuNetworkRGOverride\": \"<string>\",\n        \"azuRGOverride\": \"<string>\",\n        \"securityGroupId\": \"<string>\",\n        \"vnet\": \"<string>\",\n        \"ybImage\": \"<string>\"\n      },\n      \"gcp\": {\n        \"instanceTemplate\": \"<string>\",\n        \"ybImage\": \"<string>\"\n      },\n      \"kubernetes\": {\n        \"kubernetesOperatorControlled\": \"<boolean>\",\n        \"certManagerClusterIssuer\": \"<string>\",\n        \"certManagerIssuer\": \"<string>\",\n        \"certManagerIssuerGroup\": \"<string>\",\n        \"certManagerIssuerKind\": \"<string>\",\n        \"certManagerIssuerName\": \"<string>\",\n        \"isKubernetesOperatorControlled\": \"<boolean>\",\n        \"kubeConfig\": \"<string>\",\n        \"kubeConfigContent\": \"<string>\",\n        \"kubeConfigName\": \"<string>\",\n        \"kubeDomain\": \"<string>\",\n        \"kubeNamespace\": \"<string>\",\n        \"kubePodAddressTemplate\": \"<string>\",\n        \"kubernetesImagePullSecretName\": \"<string>\",\n        \"kubernetesImageRegistry\": \"<string>\",\n        \"kubernetesProvider\": \"<string>\",\n        \"kubernetesPullSecret\": \"<string>\",\n        \"kubernetesPullSecretContent\": \"<string>\",\n        \"kubernetesPullSecretName\": \"<string>\",\n        \"kubernetesServiceAccount\": \"<string>\",\n        \"kubernetesStorageClass\": \"<string>\",\n        \"overrides\": \"<string>\"\n      }\n    }\n  },\n  \"latitude\": \"<double>\",\n  \"longitude\": \"<double>\",\n  \"name\": \"<string>\",\n  \"securityGroupId\": \"<string>\",\n  \"uuid\": \"<uuid>\",\n  \"vnetName\": \"<string>\",\n  \"ybImage\": \"<string>\"\n}",
+                                      "createdAt": "2026-10-22T01:11:54.000Z",
+                                      "updatedAt": "2026-10-22T01:11:54.000Z",
+                                      "uid": "35240-4995f5c9-a201-490a-879a-4d7c13c3aed4"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:11:54.000Z",
+                                  "updatedAt": "2026-10-22T01:11:54.000Z",
+                                  "uid": "35240-8d8ece98-4204-473d-bb4b-45cf642261b6"
+                                }
+                              ],
+                              "id": "03166bbc-b940-4e7a-80ba-4b001788871a",
+                              "createdAt": "2026-10-22T01:11:53.000Z",
+                              "updatedAt": "2026-10-22T01:11:53.000Z",
+                              "uid": "35240-03166bbc-b940-4e7a-80ba-4b001788871a"
+                            },
+                            {
+                              "name": "regions",
+                              "item": [
+                                {
+                                  "name": "{rUUID}",
+                                  "item": [
+                                    {
+                                      "name": "Delete a region",
+                                      "id": "9460da66-7e62-4bbd-aa29-449291d3d9bd",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "auth": {
+                                          "type": "apikey",
+                                          "apikey": [
+                                            {
+                                              "key": "key",
+                                              "value": "X-AUTH-YW-API-TOKEN",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "value",
+                                              "value": "{{apiKey}}",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "in",
+                                              "value": "header",
+                                              "type": "string"
+                                            }
+                                          ]
+                                        },
+                                        "method": "DELETE",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/providers/:pUUID/regions/:rUUID",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "providers",
+                                            ":pUUID",
+                                            "regions",
+                                            ":rUUID"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "bc2ceff4-ebee-4b6c-b9d6-0d3b02250ccc",
+                                              "key": "cUUID",
+                                              "value": "<uuid>",
+                                              "description": "(Required) "
+                                            },
+                                            {
+                                              "id": "140673f0-8fa6-42e7-b9d8-daf209e5ad73",
+                                              "key": "pUUID",
+                                              "value": "<uuid>",
+                                              "description": "(Required) "
+                                            },
+                                            {
+                                              "id": "d3df8f26-1b2c-4597-8f8b-7b53aee98874",
+                                              "key": "rUUID",
+                                              "value": "<uuid>",
+                                              "description": "(Required) "
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "c8370f12-a3f9-46fa-8f22-ad4aadfd4e04",
+                                          "name": "successful operation",
+                                          "originalRequest": {
+                                            "method": "DELETE",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: apikey",
+                                                "key": "X-AUTH-YW-API-TOKEN",
+                                                "value": "<API Key>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v1/customers/:cUUID/providers/:pUUID/regions/:rUUID",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v1",
+                                                "customers",
+                                                ":cUUID",
+                                                "providers",
+                                                ":pUUID",
+                                                "regions",
+                                                ":rUUID"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "cUUID"
+                                                },
+                                                {
+                                                  "key": "pUUID"
+                                                },
+                                                {
+                                                  "key": "rUUID"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{}",
+                                          "createdAt": "2026-10-22T01:11:54.000Z",
+                                          "updatedAt": "2026-10-22T01:11:54.000Z",
+                                          "uid": "35240-c8370f12-a3f9-46fa-8f22-ad4aadfd4e04"
+                                        }
+                                      ],
+                                      "createdAt": "2026-10-22T01:11:54.000Z",
+                                      "updatedAt": "2026-10-22T01:11:54.000Z",
+                                      "uid": "35240-9460da66-7e62-4bbd-aa29-449291d3d9bd"
+                                    },
+                                    {
+                                      "name": "Edit regions - deprecated",
+                                      "id": "3f02a3f3-1117-436a-8455-276989bdc044",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "auth": {
+                                          "type": "apikey",
+                                          "apikey": [
+                                            {
+                                              "key": "key",
+                                              "value": "X-AUTH-YW-API-TOKEN",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "value",
+                                              "value": "{{apiKey}}",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "in",
+                                              "value": "header",
+                                              "type": "string"
+                                            }
+                                          ]
+                                        },
+                                        "method": "PUT",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"code\": \"<string>\",\n  \"destVpcId\": \"<string>\",\n  \"hostVpcId\": \"<string>\",\n  \"hostVpcRegion\": \"<string>\",\n  \"latitude\": \"<double>\",\n  \"longitude\": \"<double>\",\n  \"name\": \"<string>\",\n  \"securityGroupId\": \"<string>\",\n  \"vnetName\": \"<string>\",\n  \"ybImage\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/providers/:pUUID/regions/:rUUID",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "providers",
+                                            ":pUUID",
+                                            "regions",
+                                            ":rUUID"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "1ad2c86d-51db-41ed-a52e-34b547f7ba46",
+                                              "key": "cUUID",
+                                              "value": "<uuid>",
+                                              "description": "(Required) "
+                                            },
+                                            {
+                                              "id": "167f8dd2-8dfc-465f-9961-ac466624c744",
+                                              "key": "pUUID",
+                                              "value": "<uuid>",
+                                              "description": "(Required) "
+                                            },
+                                            {
+                                              "id": "6f622c64-8c79-4b88-9fac-87aeaf1c5c85",
+                                              "key": "rUUID",
+                                              "value": "<uuid>",
+                                              "description": "(Required) "
+                                            }
+                                          ]
+                                        },
+                                        "description": "Deprecated since YBA version 2.18.2.0.\nUse /api/v1/customers/{cUUID}/provider/{pUUID}/provider_regions instead"
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "37045869-24a0-42e3-8cb1-00cd501f4973",
+                                          "name": "successful operation",
+                                          "originalRequest": {
+                                            "method": "PUT",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: apikey",
+                                                "key": "X-AUTH-YW-API-TOKEN",
+                                                "value": "<API Key>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "{\n  \"code\": \"<string>\",\n  \"destVpcId\": \"<string>\",\n  \"hostVpcId\": \"<string>\",\n  \"hostVpcRegion\": \"<string>\",\n  \"latitude\": \"<double>\",\n  \"longitude\": \"<double>\",\n  \"name\": \"<string>\",\n  \"securityGroupId\": \"<string>\",\n  \"vnetName\": \"<string>\",\n  \"ybImage\": \"<string>\"\n}",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v1/customers/:cUUID/providers/:pUUID/regions/:rUUID",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v1",
+                                                "customers",
+                                                ":cUUID",
+                                                "providers",
+                                                ":pUUID",
+                                                "regions",
+                                                ":rUUID"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "cUUID"
+                                                },
+                                                {
+                                                  "key": "pUUID"
+                                                },
+                                                {
+                                                  "key": "rUUID"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{}",
+                                          "createdAt": "2026-10-22T01:11:54.000Z",
+                                          "updatedAt": "2026-10-22T01:11:54.000Z",
+                                          "uid": "35240-37045869-24a0-42e3-8cb1-00cd501f4973"
+                                        }
+                                      ],
+                                      "createdAt": "2026-10-22T01:11:54.000Z",
+                                      "updatedAt": "2026-10-22T01:11:54.000Z",
+                                      "uid": "35240-3f02a3f3-1117-436a-8455-276989bdc044"
+                                    }
+                                  ],
+                                  "id": "2027448d-e689-4b20-b432-30c27349e00c",
+                                  "createdAt": "2026-10-22T01:11:53.000Z",
+                                  "updatedAt": "2026-10-22T01:11:53.000Z",
+                                  "uid": "35240-2027448d-e689-4b20-b432-30c27349e00c"
+                                },
+                                {
+                                  "name": "List a provider's regions",
+                                  "id": "ba93169b-31ec-4fa9-a0f3-91d4c9d2d9aa",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "apikey",
+                                      "apikey": [
+                                        {
+                                          "key": "key",
+                                          "value": "X-AUTH-YW-API-TOKEN",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "value",
+                                          "value": "{{apiKey}}",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "in",
+                                          "value": "header",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/providers/:pUUID/regions",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "providers",
+                                        ":pUUID",
+                                        "regions"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "0ac7f9f0-8356-4a0e-948e-858a2e561aac",
+                                          "key": "cUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "ee58707b-00a9-4d2e-8f58-37cbd4c884ce",
+                                          "key": "pUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "8aae839d-b884-49ea-85a7-4aa699a28362",
+                                      "name": "successful operation",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "X-AUTH-YW-API-TOKEN",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/providers/:pUUID/regions",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "providers",
+                                            ":pUUID",
+                                            "regions"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "cUUID"
+                                            },
+                                            {
+                                              "key": "pUUID"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "[\n  {\n    \"zones\": [\n      {\n        \"name\": \"<string>\",\n        \"active\": \"<boolean>\",\n        \"code\": \"<string>\",\n        \"config\": {\n          \"enim_c\": \"<string>\"\n        },\n        \"details\": {\n          \"cloudInfo\": {\n            \"kubernetes\": {\n              \"kubernetesOperatorControlled\": \"<boolean>\",\n              \"certManagerClusterIssuer\": \"<string>\",\n              \"certManagerIssuer\": \"<string>\",\n              \"certManagerIssuerGroup\": \"<string>\",\n              \"certManagerIssuerKind\": \"<string>\",\n              \"certManagerIssuerName\": \"<string>\",\n              \"isKubernetesOperatorControlled\": \"<boolean>\",\n              \"kubeConfig\": \"<string>\",\n              \"kubeConfigContent\": \"<string>\",\n              \"kubeConfigName\": \"<string>\",\n              \"kubeDomain\": \"<string>\",\n              \"kubeNamespace\": \"<string>\",\n              \"kubePodAddressTemplate\": \"<string>\",\n              \"kubernetesImagePullSecretName\": \"<string>\",\n              \"kubernetesImageRegistry\": \"<string>\",\n              \"kubernetesProvider\": \"<string>\",\n              \"kubernetesPullSecret\": \"<string>\",\n              \"kubernetesPullSecretContent\": \"<string>\",\n              \"kubernetesPullSecretName\": \"<string>\",\n              \"kubernetesServiceAccount\": \"<string>\",\n              \"kubernetesStorageClass\": \"<string>\",\n              \"overrides\": \"<string>\"\n            }\n          }\n        },\n        \"kubeconfigPath\": \"<string>\",\n        \"secondarySubnet\": \"<string>\",\n        \"subnet\": \"<string>\",\n        \"uuid\": \"<uuid>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"active\": \"<boolean>\",\n        \"code\": \"<string>\",\n        \"config\": {\n          \"ex_8e5\": \"<string>\",\n          \"veniam_\": \"<string>\",\n          \"consectetur_cc7\": \"<string>\",\n          \"velit_f1\": \"<string>\"\n        },\n        \"details\": {\n          \"cloudInfo\": {\n            \"kubernetes\": {\n              \"kubernetesOperatorControlled\": \"<boolean>\",\n              \"certManagerClusterIssuer\": \"<string>\",\n              \"certManagerIssuer\": \"<string>\",\n              \"certManagerIssuerGroup\": \"<string>\",\n              \"certManagerIssuerKind\": \"<string>\",\n              \"certManagerIssuerName\": \"<string>\",\n              \"isKubernetesOperatorControlled\": \"<boolean>\",\n              \"kubeConfig\": \"<string>\",\n              \"kubeConfigContent\": \"<string>\",\n              \"kubeConfigName\": \"<string>\",\n              \"kubeDomain\": \"<string>\",\n              \"kubeNamespace\": \"<string>\",\n              \"kubePodAddressTemplate\": \"<string>\",\n              \"kubernetesImagePullSecretName\": \"<string>\",\n              \"kubernetesImageRegistry\": \"<string>\",\n              \"kubernetesProvider\": \"<string>\",\n              \"kubernetesPullSecret\": \"<string>\",\n              \"kubernetesPullSecretContent\": \"<string>\",\n              \"kubernetesPullSecretName\": \"<string>\",\n              \"kubernetesServiceAccount\": \"<string>\",\n              \"kubernetesStorageClass\": \"<string>\",\n              \"overrides\": \"<string>\"\n            }\n          }\n        },\n        \"kubeconfigPath\": \"<string>\",\n        \"secondarySubnet\": \"<string>\",\n        \"subnet\": \"<string>\",\n        \"uuid\": \"<uuid>\"\n      }\n    ],\n    \"active\": \"<boolean>\",\n    \"code\": \"<string>\",\n    \"config\": {\n      \"proidentb4d\": \"<string>\",\n      \"ut_c\": \"<string>\"\n    },\n    \"details\": {\n      \"cloudInfo\": {\n        \"aws\": {\n          \"arch\": \"aarch64\",\n          \"securityGroupId\": \"<string>\",\n          \"vnet\": \"<string>\",\n          \"ybImage\": \"<string>\"\n        },\n        \"azu\": {\n          \"azuNetworkRGOverride\": \"<string>\",\n          \"azuRGOverride\": \"<string>\",\n          \"securityGroupId\": \"<string>\",\n          \"vnet\": \"<string>\",\n          \"ybImage\": \"<string>\"\n        },\n        \"gcp\": {\n          \"instanceTemplate\": \"<string>\",\n          \"ybImage\": \"<string>\"\n        },\n        \"kubernetes\": {\n          \"kubernetesOperatorControlled\": \"<boolean>\",\n          \"certManagerClusterIssuer\": \"<string>\",\n          \"certManagerIssuer\": \"<string>\",\n          \"certManagerIssuerGroup\": \"<string>\",\n          \"certManagerIssuerKind\": \"<string>\",\n          \"certManagerIssuerName\": \"<string>\",\n          \"isKubernetesOperatorControlled\": \"<boolean>\",\n          \"kubeConfig\": \"<string>\",\n          \"kubeConfigContent\": \"<string>\",\n          \"kubeConfigName\": \"<string>\",\n          \"kubeDomain\": \"<string>\",\n          \"kubeNamespace\": \"<string>\",\n          \"kubePodAddressTemplate\": \"<string>\",\n          \"kubernetesImagePullSecretName\": \"<string>\",\n          \"kubernetesImageRegistry\": \"<string>\",\n          \"kubernetesProvider\": \"<string>\",\n          \"kubernetesPullSecret\": \"<string>\",\n          \"kubernetesPullSecretContent\": \"<string>\",\n          \"kubernetesPullSecretName\": \"<string>\",\n          \"kubernetesServiceAccount\": \"<string>\",\n          \"kubernetesStorageClass\": \"<string>\",\n          \"overrides\": \"<string>\"\n        }\n      }\n    },\n    \"latitude\": \"<double>\",\n    \"longitude\": \"<double>\",\n    \"name\": \"<string>\",\n    \"securityGroupId\": \"<string>\",\n    \"uuid\": \"<uuid>\",\n    \"vnetName\": \"<string>\",\n    \"ybImage\": \"<string>\"\n  },\n  {\n    \"zones\": [\n      {\n        \"name\": \"<string>\",\n        \"active\": \"<boolean>\",\n        \"code\": \"<string>\",\n        \"config\": {\n          \"consectetur0\": \"<string>\",\n          \"minim9\": \"<string>\",\n          \"dolore_366\": \"<string>\"\n        },\n        \"details\": {\n          \"cloudInfo\": {\n            \"kubernetes\": {\n              \"kubernetesOperatorControlled\": \"<boolean>\",\n              \"certManagerClusterIssuer\": \"<string>\",\n              \"certManagerIssuer\": \"<string>\",\n              \"certManagerIssuerGroup\": \"<string>\",\n              \"certManagerIssuerKind\": \"<string>\",\n              \"certManagerIssuerName\": \"<string>\",\n              \"isKubernetesOperatorControlled\": \"<boolean>\",\n              \"kubeConfig\": \"<string>\",\n              \"kubeConfigContent\": \"<string>\",\n              \"kubeConfigName\": \"<string>\",\n              \"kubeDomain\": \"<string>\",\n              \"kubeNamespace\": \"<string>\",\n              \"kubePodAddressTemplate\": \"<string>\",\n              \"kubernetesImagePullSecretName\": \"<string>\",\n              \"kubernetesImageRegistry\": \"<string>\",\n              \"kubernetesProvider\": \"<string>\",\n              \"kubernetesPullSecret\": \"<string>\",\n              \"kubernetesPullSecretContent\": \"<string>\",\n              \"kubernetesPullSecretName\": \"<string>\",\n              \"kubernetesServiceAccount\": \"<string>\",\n              \"kubernetesStorageClass\": \"<string>\",\n              \"overrides\": \"<string>\"\n            }\n          }\n        },\n        \"kubeconfigPath\": \"<string>\",\n        \"secondarySubnet\": \"<string>\",\n        \"subnet\": \"<string>\",\n        \"uuid\": \"<uuid>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"active\": \"<boolean>\",\n        \"code\": \"<string>\",\n        \"config\": {\n          \"ipsum22f\": \"<string>\",\n          \"in2\": \"<string>\"\n        },\n        \"details\": {\n          \"cloudInfo\": {\n            \"kubernetes\": {\n              \"kubernetesOperatorControlled\": \"<boolean>\",\n              \"certManagerClusterIssuer\": \"<string>\",\n              \"certManagerIssuer\": \"<string>\",\n              \"certManagerIssuerGroup\": \"<string>\",\n              \"certManagerIssuerKind\": \"<string>\",\n              \"certManagerIssuerName\": \"<string>\",\n              \"isKubernetesOperatorControlled\": \"<boolean>\",\n              \"kubeConfig\": \"<string>\",\n              \"kubeConfigContent\": \"<string>\",\n              \"kubeConfigName\": \"<string>\",\n              \"kubeDomain\": \"<string>\",\n              \"kubeNamespace\": \"<string>\",\n              \"kubePodAddressTemplate\": \"<string>\",\n              \"kubernetesImagePullSecretName\": \"<string>\",\n              \"kubernetesImageRegistry\": \"<string>\",\n              \"kubernetesProvider\": \"<string>\",\n              \"kubernetesPullSecret\": \"<string>\",\n              \"kubernetesPullSecretContent\": \"<string>\",\n              \"kubernetesPullSecretName\": \"<string>\",\n              \"kubernetesServiceAccount\": \"<string>\",\n              \"kubernetesStorageClass\": \"<string>\",\n              \"overrides\": \"<string>\"\n            }\n          }\n        },\n        \"kubeconfigPath\": \"<string>\",\n        \"secondarySubnet\": \"<string>\",\n        \"subnet\": \"<string>\",\n        \"uuid\": \"<uuid>\"\n      }\n    ],\n    \"active\": \"<boolean>\",\n    \"code\": \"<string>\",\n    \"config\": {\n      \"adf7\": \"<string>\",\n      \"amet_9e3\": \"<string>\",\n      \"ipsumff\": \"<string>\"\n    },\n    \"details\": {\n      \"cloudInfo\": {\n        \"aws\": {\n          \"arch\": \"aarch64\",\n          \"securityGroupId\": \"<string>\",\n          \"vnet\": \"<string>\",\n          \"ybImage\": \"<string>\"\n        },\n        \"azu\": {\n          \"azuNetworkRGOverride\": \"<string>\",\n          \"azuRGOverride\": \"<string>\",\n          \"securityGroupId\": \"<string>\",\n          \"vnet\": \"<string>\",\n          \"ybImage\": \"<string>\"\n        },\n        \"gcp\": {\n          \"instanceTemplate\": \"<string>\",\n          \"ybImage\": \"<string>\"\n        },\n        \"kubernetes\": {\n          \"kubernetesOperatorControlled\": \"<boolean>\",\n          \"certManagerClusterIssuer\": \"<string>\",\n          \"certManagerIssuer\": \"<string>\",\n          \"certManagerIssuerGroup\": \"<string>\",\n          \"certManagerIssuerKind\": \"<string>\",\n          \"certManagerIssuerName\": \"<string>\",\n          \"isKubernetesOperatorControlled\": \"<boolean>\",\n          \"kubeConfig\": \"<string>\",\n          \"kubeConfigContent\": \"<string>\",\n          \"kubeConfigName\": \"<string>\",\n          \"kubeDomain\": \"<string>\",\n          \"kubeNamespace\": \"<string>\",\n          \"kubePodAddressTemplate\": \"<string>\",\n          \"kubernetesImagePullSecretName\": \"<string>\",\n          \"kubernetesImageRegistry\": \"<string>\",\n          \"kubernetesProvider\": \"<string>\",\n          \"kubernetesPullSecret\": \"<string>\",\n          \"kubernetesPullSecretContent\": \"<string>\",\n          \"kubernetesPullSecretName\": \"<string>\",\n          \"kubernetesServiceAccount\": \"<string>\",\n          \"kubernetesStorageClass\": \"<string>\",\n          \"overrides\": \"<string>\"\n        }\n      }\n    },\n    \"latitude\": \"<double>\",\n    \"longitude\": \"<double>\",\n    \"name\": \"<string>\",\n    \"securityGroupId\": \"<string>\",\n    \"uuid\": \"<uuid>\",\n    \"vnetName\": \"<string>\",\n    \"ybImage\": \"<string>\"\n  }\n]",
+                                      "createdAt": "2026-10-22T01:11:54.000Z",
+                                      "updatedAt": "2026-10-22T01:11:54.000Z",
+                                      "uid": "35240-8aae839d-b884-49ea-85a7-4aa699a28362"
+                                    },
+                                    {
+                                      "id": "2c632202-be02-4ab8-9f27-25bb145c4921",
+                                      "name": "If there was a server or database issue when listing the regions",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "X-AUTH-YW-API-TOKEN",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/providers/:pUUID/regions",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "providers",
+                                            ":pUUID",
+                                            "regions"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "cUUID"
+                                            },
+                                            {
+                                              "key": "pUUID"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Internal Server Error",
+                                      "code": 500,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"error\": \"<string>\",\n  \"errorJson\": {},\n  \"httpMethod\": \"<string>\",\n  \"requestJson\": {},\n  \"requestUri\": \"<string>\",\n  \"success\": \"<boolean>\"\n}",
+                                      "createdAt": "2026-10-22T01:11:54.000Z",
+                                      "updatedAt": "2026-10-22T01:11:54.000Z",
+                                      "uid": "35240-2c632202-be02-4ab8-9f27-25bb145c4921"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:11:54.000Z",
+                                  "updatedAt": "2026-10-22T01:11:54.000Z",
+                                  "uid": "35240-ba93169b-31ec-4fa9-a0f3-91d4c9d2d9aa"
+                                },
+                                {
+                                  "name": "Create Region - deprecated",
+                                  "id": "53f012b0-6a58-4f1d-affc-2ed0d6fdbd1f",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "apikey",
+                                      "apikey": [
+                                        {
+                                          "key": "key",
+                                          "value": "X-AUTH-YW-API-TOKEN",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "value",
+                                          "value": "{{apiKey}}",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "in",
+                                          "value": "header",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"code\": \"<string>\",\n  \"destVpcId\": \"<string>\",\n  \"hostVpcId\": \"<string>\",\n  \"hostVpcRegion\": \"<string>\",\n  \"latitude\": \"<double>\",\n  \"longitude\": \"<double>\",\n  \"name\": \"<string>\",\n  \"securityGroupId\": \"<string>\",\n  \"vnetName\": \"<string>\",\n  \"ybImage\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:cUUID/providers/:pUUID/regions",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":cUUID",
+                                        "providers",
+                                        ":pUUID",
+                                        "regions"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "9d0481e5-111f-44c6-a33e-1676dc9c4766",
+                                          "key": "cUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "4a80ef88-2c77-47f7-a72b-3e9833596218",
+                                          "key": "pUUID",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    },
+                                    "description": "Deprecated since YBA version 2.18.2.0.\nUse /api/v1/customers/{cUUID}/provider/{pUUID}/provider_regions instead"
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "73862ce3-9990-4385-9dd2-3602e2a7667e",
+                                      "name": "successful operation",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "X-AUTH-YW-API-TOKEN",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"code\": \"<string>\",\n  \"destVpcId\": \"<string>\",\n  \"hostVpcId\": \"<string>\",\n  \"hostVpcRegion\": \"<string>\",\n  \"latitude\": \"<double>\",\n  \"longitude\": \"<double>\",\n  \"name\": \"<string>\",\n  \"securityGroupId\": \"<string>\",\n  \"vnetName\": \"<string>\",\n  \"ybImage\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/customers/:cUUID/providers/:pUUID/regions",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "customers",
+                                            ":cUUID",
+                                            "providers",
+                                            ":pUUID",
+                                            "regions"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "cUUID"
+                                            },
+                                            {
+                                              "key": "pUUID"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"zones\": [\n    {\n      \"name\": \"<string>\",\n      \"active\": \"<boolean>\",\n      \"code\": \"<string>\",\n      \"config\": {\n        \"quis58\": \"<string>\",\n        \"esseec\": \"<string>\",\n        \"cupidatatac\": \"<string>\",\n        \"voluptate_d4\": \"<string>\"\n      },\n      \"details\": {\n        \"cloudInfo\": {\n          \"kubernetes\": {\n            \"kubernetesOperatorControlled\": \"<boolean>\",\n            \"certManagerClusterIssuer\": \"<string>\",\n            \"certManagerIssuer\": \"<string>\",\n            \"certManagerIssuerGroup\": \"<string>\",\n            \"certManagerIssuerKind\": \"<string>\",\n            \"certManagerIssuerName\": \"<string>\",\n            \"isKubernetesOperatorControlled\": \"<boolean>\",\n            \"kubeConfig\": \"<string>\",\n            \"kubeConfigContent\": \"<string>\",\n            \"kubeConfigName\": \"<string>\",\n            \"kubeDomain\": \"<string>\",\n            \"kubeNamespace\": \"<string>\",\n            \"kubePodAddressTemplate\": \"<string>\",\n            \"kubernetesImagePullSecretName\": \"<string>\",\n            \"kubernetesImageRegistry\": \"<string>\",\n            \"kubernetesProvider\": \"<string>\",\n            \"kubernetesPullSecret\": \"<string>\",\n            \"kubernetesPullSecretContent\": \"<string>\",\n            \"kubernetesPullSecretName\": \"<string>\",\n            \"kubernetesServiceAccount\": \"<string>\",\n            \"kubernetesStorageClass\": \"<string>\",\n            \"overrides\": \"<string>\"\n          }\n        }\n      },\n      \"kubeconfigPath\": \"<string>\",\n      \"secondarySubnet\": \"<string>\",\n      \"subnet\": \"<string>\",\n      \"uuid\": \"<uuid>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"active\": \"<boolean>\",\n      \"code\": \"<string>\",\n      \"config\": {\n        \"est_8\": \"<string>\",\n        \"ut8\": \"<string>\"\n      },\n      \"details\": {\n        \"cloudInfo\": {\n          \"kubernetes\": {\n            \"kubernetesOperatorControlled\": \"<boolean>\",\n            \"certManagerClusterIssuer\": \"<string>\",\n            \"certManagerIssuer\": \"<string>\",\n            \"certManagerIssuerGroup\": \"<string>\",\n            \"certManagerIssuerKind\": \"<string>\",\n            \"certManagerIssuerName\": \"<string>\",\n            \"isKubernetesOperatorControlled\": \"<boolean>\",\n            \"kubeConfig\": \"<string>\",\n            \"kubeConfigContent\": \"<string>\",\n            \"kubeConfigName\": \"<string>\",\n            \"kubeDomain\": \"<string>\",\n            \"kubeNamespace\": \"<string>\",\n            \"kubePodAddressTemplate\": \"<string>\",\n            \"kubernetesImagePullSecretName\": \"<string>\",\n            \"kubernetesImageRegistry\": \"<string>\",\n            \"kubernetesProvider\": \"<string>\",\n            \"kubernetesPullSecret\": \"<string>\",\n            \"kubernetesPullSecretContent\": \"<string>\",\n            \"kubernetesPullSecretName\": \"<string>\",\n            \"kubernetesServiceAccount\": \"<string>\",\n            \"kubernetesStorageClass\": \"<string>\",\n            \"overrides\": \"<string>\"\n          }\n        }\n      },\n      \"kubeconfigPath\": \"<string>\",\n      \"secondarySubnet\": \"<string>\",\n      \"subnet\": \"<string>\",\n      \"uuid\": \"<uuid>\"\n    }\n  ],\n  \"active\": \"<boolean>\",\n  \"code\": \"<string>\",\n  \"config\": {\n    \"in0\": \"<string>\",\n    \"culpa_b7\": \"<string>\",\n    \"etb_4\": \"<string>\",\n    \"proident_bd1\": \"<string>\"\n  },\n  \"details\": {\n    \"cloudInfo\": {\n      \"aws\": {\n        \"arch\": \"x86_64\",\n        \"securityGroupId\": \"<string>\",\n        \"vnet\": \"<string>\",\n        \"ybImage\": \"<string>\"\n      },\n      \"azu\": {\n        \"azuNetworkRGOverride\": \"<string>\",\n        \"azuRGOverride\": \"<string>\",\n        \"securityGroupId\": \"<string>\",\n        \"vnet\": \"<string>\",\n        \"ybImage\": \"<string>\"\n      },\n      \"gcp\": {\n        \"instanceTemplate\": \"<string>\",\n        \"ybImage\": \"<string>\"\n      },\n      \"kubernetes\": {\n        \"kubernetesOperatorControlled\": \"<boolean>\",\n        \"certManagerClusterIssuer\": \"<string>\",\n        \"certManagerIssuer\": \"<string>\",\n        \"certManagerIssuerGroup\": \"<string>\",\n        \"certManagerIssuerKind\": \"<string>\",\n        \"certManagerIssuerName\": \"<string>\",\n        \"isKubernetesOperatorControlled\": \"<boolean>\",\n        \"kubeConfig\": \"<string>\",\n        \"kubeConfigContent\": \"<string>\",\n        \"kubeConfigName\": \"<string>\",\n        \"kubeDomain\": \"<string>\",\n        \"kubeNamespace\": \"<string>\",\n        \"kubePodAddressTemplate\": \"<string>\",\n        \"kubernetesImagePullSecretName\": \"<string>\",\n        \"kubernetesImageRegistry\": \"<string>\",\n        \"kubernetesProvider\": \"<string>\",\n        \"kubernetesPullSecret\": \"<string>\",\n        \"kubernetesPullSecretContent\": \"<string>\",\n        \"kubernetesPullSecretName\": \"<string>\",\n        \"kubernetesServiceAccount\": \"<string>\",\n        \"kubernetesStorageClass\": \"<string>\",\n        \"overrides\": \"<string>\"\n      }\n    }\n  },\n  \"latitude\": \"<double>\",\n  \"longitude\": \"<double>\",\n  \"name\": \"<string>\",\n  \"securityGroupId\": \"<string>\",\n  \"uuid\": \"<uuid>\",\n  \"vnetName\": \"<string>\",\n  \"ybImage\": \"<string>\"\n}",
+                                      "createdAt": "2026-10-22T01:11:54.000Z",
+                                      "updatedAt": "2026-10-22T01:11:54.000Z",
+                                      "uid": "35240-73862ce3-9990-4385-9dd2-3602e2a7667e"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:11:54.000Z",
+                                  "updatedAt": "2026-10-22T01:11:54.000Z",
+                                  "uid": "35240-53f012b0-6a58-4f1d-affc-2ed0d6fdbd1f"
+                                }
+                              ],
+                              "id": "a0c47b43-9bb2-4788-b0b4-f8d7acbe6384",
+                              "createdAt": "2026-10-22T01:11:53.000Z",
+                              "updatedAt": "2026-10-22T01:11:53.000Z",
+                              "uid": "35240-a0c47b43-9bb2-4788-b0b4-f8d7acbe6384"
+                            }
+                          ],
+                          "id": "6bb17e56-d203-4eb1-b734-4d1e006917f8",
+                          "createdAt": "2026-10-22T01:11:53.000Z",
+                          "updatedAt": "2026-10-22T01:11:53.000Z",
+                          "uid": "35240-6bb17e56-d203-4eb1-b734-4d1e006917f8"
+                        }
+                      ],
+                      "id": "8d3e16c4-9bd6-452a-881e-87c82e24f2b4",
+                      "createdAt": "2026-10-22T01:11:53.000Z",
+                      "updatedAt": "2026-10-22T01:11:53.000Z",
+                      "uid": "35240-8d3e16c4-9bd6-452a-881e-87c82e24f2b4"
+                    },
+                    {
+                      "name": "regions",
+                      "item": [
+                        {
+                          "name": "List regions for all providers",
+                          "id": "dcc6beca-12cd-4dfe-9f7b-7c57f2333279",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "apikey",
+                              "apikey": [
+                                {
+                                  "key": "key",
+                                  "value": "X-AUTH-YW-API-TOKEN",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "value",
+                                  "value": "{{apiKey}}",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "in",
+                                  "value": "header",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/customers/:cUUID/regions",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "customers",
+                                ":cUUID",
+                                "regions"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "7ffcfe37-7a08-4775-b7c3-51417ada8982",
+                                  "key": "cUUID",
+                                  "value": "<uuid>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "d976f63f-6e4a-4682-a02f-af7650f63d81",
+                              "name": "successful operation",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-AUTH-YW-API-TOKEN",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:cUUID/regions",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":cUUID",
+                                    "regions"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "cUUID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "[\n  {\n    \"zones\": [\n      {\n        \"name\": \"<string>\",\n        \"active\": \"<boolean>\",\n        \"code\": \"<string>\",\n        \"config\": {\n          \"enim_c\": \"<string>\"\n        },\n        \"details\": {\n          \"cloudInfo\": {\n            \"kubernetes\": {\n              \"kubernetesOperatorControlled\": \"<boolean>\",\n              \"certManagerClusterIssuer\": \"<string>\",\n              \"certManagerIssuer\": \"<string>\",\n              \"certManagerIssuerGroup\": \"<string>\",\n              \"certManagerIssuerKind\": \"<string>\",\n              \"certManagerIssuerName\": \"<string>\",\n              \"isKubernetesOperatorControlled\": \"<boolean>\",\n              \"kubeConfig\": \"<string>\",\n              \"kubeConfigContent\": \"<string>\",\n              \"kubeConfigName\": \"<string>\",\n              \"kubeDomain\": \"<string>\",\n              \"kubeNamespace\": \"<string>\",\n              \"kubePodAddressTemplate\": \"<string>\",\n              \"kubernetesImagePullSecretName\": \"<string>\",\n              \"kubernetesImageRegistry\": \"<string>\",\n              \"kubernetesProvider\": \"<string>\",\n              \"kubernetesPullSecret\": \"<string>\",\n              \"kubernetesPullSecretContent\": \"<string>\",\n              \"kubernetesPullSecretName\": \"<string>\",\n              \"kubernetesServiceAccount\": \"<string>\",\n              \"kubernetesStorageClass\": \"<string>\",\n              \"overrides\": \"<string>\"\n            }\n          }\n        },\n        \"kubeconfigPath\": \"<string>\",\n        \"secondarySubnet\": \"<string>\",\n        \"subnet\": \"<string>\",\n        \"uuid\": \"<uuid>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"active\": \"<boolean>\",\n        \"code\": \"<string>\",\n        \"config\": {\n          \"ex_8e5\": \"<string>\",\n          \"veniam_\": \"<string>\",\n          \"consectetur_cc7\": \"<string>\",\n          \"velit_f1\": \"<string>\"\n        },\n        \"details\": {\n          \"cloudInfo\": {\n            \"kubernetes\": {\n              \"kubernetesOperatorControlled\": \"<boolean>\",\n              \"certManagerClusterIssuer\": \"<string>\",\n              \"certManagerIssuer\": \"<string>\",\n              \"certManagerIssuerGroup\": \"<string>\",\n              \"certManagerIssuerKind\": \"<string>\",\n              \"certManagerIssuerName\": \"<string>\",\n              \"isKubernetesOperatorControlled\": \"<boolean>\",\n              \"kubeConfig\": \"<string>\",\n              \"kubeConfigContent\": \"<string>\",\n              \"kubeConfigName\": \"<string>\",\n              \"kubeDomain\": \"<string>\",\n              \"kubeNamespace\": \"<string>\",\n              \"kubePodAddressTemplate\": \"<string>\",\n              \"kubernetesImagePullSecretName\": \"<string>\",\n              \"kubernetesImageRegistry\": \"<string>\",\n              \"kubernetesProvider\": \"<string>\",\n              \"kubernetesPullSecret\": \"<string>\",\n              \"kubernetesPullSecretContent\": \"<string>\",\n              \"kubernetesPullSecretName\": \"<string>\",\n              \"kubernetesServiceAccount\": \"<string>\",\n              \"kubernetesStorageClass\": \"<string>\",\n              \"overrides\": \"<string>\"\n            }\n          }\n        },\n        \"kubeconfigPath\": \"<string>\",\n        \"secondarySubnet\": \"<string>\",\n        \"subnet\": \"<string>\",\n        \"uuid\": \"<uuid>\"\n      }\n    ],\n    \"active\": \"<boolean>\",\n    \"code\": \"<string>\",\n    \"config\": {\n      \"proidentb4d\": \"<string>\",\n      \"ut_c\": \"<string>\"\n    },\n    \"details\": {\n      \"cloudInfo\": {\n        \"aws\": {\n          \"arch\": \"aarch64\",\n          \"securityGroupId\": \"<string>\",\n          \"vnet\": \"<string>\",\n          \"ybImage\": \"<string>\"\n        },\n        \"azu\": {\n          \"azuNetworkRGOverride\": \"<string>\",\n          \"azuRGOverride\": \"<string>\",\n          \"securityGroupId\": \"<string>\",\n          \"vnet\": \"<string>\",\n          \"ybImage\": \"<string>\"\n        },\n        \"gcp\": {\n          \"instanceTemplate\": \"<string>\",\n          \"ybImage\": \"<string>\"\n        },\n        \"kubernetes\": {\n          \"kubernetesOperatorControlled\": \"<boolean>\",\n          \"certManagerClusterIssuer\": \"<string>\",\n          \"certManagerIssuer\": \"<string>\",\n          \"certManagerIssuerGroup\": \"<string>\",\n          \"certManagerIssuerKind\": \"<string>\",\n          \"certManagerIssuerName\": \"<string>\",\n          \"isKubernetesOperatorControlled\": \"<boolean>\",\n          \"kubeConfig\": \"<string>\",\n          \"kubeConfigContent\": \"<string>\",\n          \"kubeConfigName\": \"<string>\",\n          \"kubeDomain\": \"<string>\",\n          \"kubeNamespace\": \"<string>\",\n          \"kubePodAddressTemplate\": \"<string>\",\n          \"kubernetesImagePullSecretName\": \"<string>\",\n          \"kubernetesImageRegistry\": \"<string>\",\n          \"kubernetesProvider\": \"<string>\",\n          \"kubernetesPullSecret\": \"<string>\",\n          \"kubernetesPullSecretContent\": \"<string>\",\n          \"kubernetesPullSecretName\": \"<string>\",\n          \"kubernetesServiceAccount\": \"<string>\",\n          \"kubernetesStorageClass\": \"<string>\",\n          \"overrides\": \"<string>\"\n        }\n      }\n    },\n    \"latitude\": \"<double>\",\n    \"longitude\": \"<double>\",\n    \"name\": \"<string>\",\n    \"securityGroupId\": \"<string>\",\n    \"uuid\": \"<uuid>\",\n    \"vnetName\": \"<string>\",\n    \"ybImage\": \"<string>\"\n  },\n  {\n    \"zones\": [\n      {\n        \"name\": \"<string>\",\n        \"active\": \"<boolean>\",\n        \"code\": \"<string>\",\n        \"config\": {\n          \"consectetur0\": \"<string>\",\n          \"minim9\": \"<string>\",\n          \"dolore_366\": \"<string>\"\n        },\n        \"details\": {\n          \"cloudInfo\": {\n            \"kubernetes\": {\n              \"kubernetesOperatorControlled\": \"<boolean>\",\n              \"certManagerClusterIssuer\": \"<string>\",\n              \"certManagerIssuer\": \"<string>\",\n              \"certManagerIssuerGroup\": \"<string>\",\n              \"certManagerIssuerKind\": \"<string>\",\n              \"certManagerIssuerName\": \"<string>\",\n              \"isKubernetesOperatorControlled\": \"<boolean>\",\n              \"kubeConfig\": \"<string>\",\n              \"kubeConfigContent\": \"<string>\",\n              \"kubeConfigName\": \"<string>\",\n              \"kubeDomain\": \"<string>\",\n              \"kubeNamespace\": \"<string>\",\n              \"kubePodAddressTemplate\": \"<string>\",\n              \"kubernetesImagePullSecretName\": \"<string>\",\n              \"kubernetesImageRegistry\": \"<string>\",\n              \"kubernetesProvider\": \"<string>\",\n              \"kubernetesPullSecret\": \"<string>\",\n              \"kubernetesPullSecretContent\": \"<string>\",\n              \"kubernetesPullSecretName\": \"<string>\",\n              \"kubernetesServiceAccount\": \"<string>\",\n              \"kubernetesStorageClass\": \"<string>\",\n              \"overrides\": \"<string>\"\n            }\n          }\n        },\n        \"kubeconfigPath\": \"<string>\",\n        \"secondarySubnet\": \"<string>\",\n        \"subnet\": \"<string>\",\n        \"uuid\": \"<uuid>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"active\": \"<boolean>\",\n        \"code\": \"<string>\",\n        \"config\": {\n          \"ipsum22f\": \"<string>\",\n          \"in2\": \"<string>\"\n        },\n        \"details\": {\n          \"cloudInfo\": {\n            \"kubernetes\": {\n              \"kubernetesOperatorControlled\": \"<boolean>\",\n              \"certManagerClusterIssuer\": \"<string>\",\n              \"certManagerIssuer\": \"<string>\",\n              \"certManagerIssuerGroup\": \"<string>\",\n              \"certManagerIssuerKind\": \"<string>\",\n              \"certManagerIssuerName\": \"<string>\",\n              \"isKubernetesOperatorControlled\": \"<boolean>\",\n              \"kubeConfig\": \"<string>\",\n              \"kubeConfigContent\": \"<string>\",\n              \"kubeConfigName\": \"<string>\",\n              \"kubeDomain\": \"<string>\",\n              \"kubeNamespace\": \"<string>\",\n              \"kubePodAddressTemplate\": \"<string>\",\n              \"kubernetesImagePullSecretName\": \"<string>\",\n              \"kubernetesImageRegistry\": \"<string>\",\n              \"kubernetesProvider\": \"<string>\",\n              \"kubernetesPullSecret\": \"<string>\",\n              \"kubernetesPullSecretContent\": \"<string>\",\n              \"kubernetesPullSecretName\": \"<string>\",\n              \"kubernetesServiceAccount\": \"<string>\",\n              \"kubernetesStorageClass\": \"<string>\",\n              \"overrides\": \"<string>\"\n            }\n          }\n        },\n        \"kubeconfigPath\": \"<string>\",\n        \"secondarySubnet\": \"<string>\",\n        \"subnet\": \"<string>\",\n        \"uuid\": \"<uuid>\"\n      }\n    ],\n    \"active\": \"<boolean>\",\n    \"code\": \"<string>\",\n    \"config\": {\n      \"adf7\": \"<string>\",\n      \"amet_9e3\": \"<string>\",\n      \"ipsumff\": \"<string>\"\n    },\n    \"details\": {\n      \"cloudInfo\": {\n        \"aws\": {\n          \"arch\": \"aarch64\",\n          \"securityGroupId\": \"<string>\",\n          \"vnet\": \"<string>\",\n          \"ybImage\": \"<string>\"\n        },\n        \"azu\": {\n          \"azuNetworkRGOverride\": \"<string>\",\n          \"azuRGOverride\": \"<string>\",\n          \"securityGroupId\": \"<string>\",\n          \"vnet\": \"<string>\",\n          \"ybImage\": \"<string>\"\n        },\n        \"gcp\": {\n          \"instanceTemplate\": \"<string>\",\n          \"ybImage\": \"<string>\"\n        },\n        \"kubernetes\": {\n          \"kubernetesOperatorControlled\": \"<boolean>\",\n          \"certManagerClusterIssuer\": \"<string>\",\n          \"certManagerIssuer\": \"<string>\",\n          \"certManagerIssuerGroup\": \"<string>\",\n          \"certManagerIssuerKind\": \"<string>\",\n          \"certManagerIssuerName\": \"<string>\",\n          \"isKubernetesOperatorControlled\": \"<boolean>\",\n          \"kubeConfig\": \"<string>\",\n          \"kubeConfigContent\": \"<string>\",\n          \"kubeConfigName\": \"<string>\",\n          \"kubeDomain\": \"<string>\",\n          \"kubeNamespace\": \"<string>\",\n          \"kubePodAddressTemplate\": \"<string>\",\n          \"kubernetesImagePullSecretName\": \"<string>\",\n          \"kubernetesImageRegistry\": \"<string>\",\n          \"kubernetesProvider\": \"<string>\",\n          \"kubernetesPullSecret\": \"<string>\",\n          \"kubernetesPullSecretContent\": \"<string>\",\n          \"kubernetesPullSecretName\": \"<string>\",\n          \"kubernetesServiceAccount\": \"<string>\",\n          \"kubernetesStorageClass\": \"<string>\",\n          \"overrides\": \"<string>\"\n        }\n      }\n    },\n    \"latitude\": \"<double>\",\n    \"longitude\": \"<double>\",\n    \"name\": \"<string>\",\n    \"securityGroupId\": \"<string>\",\n    \"uuid\": \"<uuid>\",\n    \"vnetName\": \"<string>\",\n    \"ybImage\": \"<string>\"\n  }\n]",
+                              "createdAt": "2026-10-22T01:11:54.000Z",
+                              "updatedAt": "2026-10-22T01:11:54.000Z",
+                              "uid": "35240-d976f63f-6e4a-4682-a02f-af7650f63d81"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T01:11:54.000Z",
+                          "updatedAt": "2026-10-22T01:11:54.000Z",
+                          "uid": "35240-dcc6beca-12cd-4dfe-9f7b-7c57f2333279"
+                        }
+                      ],
+                      "id": "0442385c-fc72-42c0-96ee-da35c442d605",
+                      "createdAt": "2026-10-22T01:11:53.000Z",
+                      "updatedAt": "2026-10-22T01:11:53.000Z",
+                      "uid": "35240-0442385c-fc72-42c0-96ee-da35c442d605"
+                    }
+                  ],
+                  "id": "20957704-3fe8-49c3-8d83-1ad873b5531d",
+                  "createdAt": "2026-10-22T01:11:53.000Z",
+                  "updatedAt": "2026-10-22T01:11:53.000Z",
+                  "uid": "35240-20957704-3fe8-49c3-8d83-1ad873b5531d"
+                }
+              ],
+              "id": "97784513-deb1-4906-b06d-ee88c7e588fa",
+              "createdAt": "2026-10-22T01:11:53.000Z",
+              "updatedAt": "2026-10-22T01:11:53.000Z",
+              "uid": "35240-97784513-deb1-4906-b06d-ee88c7e588fa"
+            }
+          ],
+          "id": "31462126-21be-459f-a891-cb18c5ce530b",
+          "createdAt": "2026-10-22T01:11:53.000Z",
+          "updatedAt": "2026-10-22T01:11:53.000Z",
+          "uid": "35240-31462126-21be-459f-a891-cb18c5ce530b"
+        }
+      ],
+      "id": "b80d11e8-19fb-4c4f-b0a7-9f0c078831e5",
+      "createdAt": "2026-10-22T01:11:53.000Z",
+      "updatedAt": "2026-10-22T01:11:53.000Z",
+      "uid": "35240-b80d11e8-19fb-4c4f-b0a7-9f0c078831e5"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}
